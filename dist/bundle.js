@@ -134,14 +134,24 @@ function initMap() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parse_response__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parse_response___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__parse_response__);
+
+
 function requestMta() {
   $.ajax({
     url: 'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045'
-  }).then((data) => parseRespose(data), (errors) => console.log(errors))
-};
+  }).then((data) => Object(__WEBPACK_IMPORTED_MODULE_0__parse_response__["default"])(data), (errors) => console.log(errors))
+}
 
 /* harmony default export */ __webpack_exports__["a"] = (requestMta);
 
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+throw new Error("Module parse failed: Unexpected token (3:0)\nYou may need an appropriate loader to handle this file type.\n| import \n| \n| function parseRespose(data) {\n| \n| }");
 
 /***/ })
 /******/ ]);
