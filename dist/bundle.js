@@ -70,10 +70,13 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__request_mta__ = __webpack_require__(4);
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.initMap = __WEBPACK_IMPORTED_MODULE_0__map__["a" /* default */]
+  window.initMap = __WEBPACK_IMPORTED_MODULE_0__map__["a" /* default */];
+  setInterval()
 });
 
 
@@ -121,6 +124,22 @@ function initMap() {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (initMap);
+
+
+/***/ }),
+/* 2 */,
+/* 3 */,
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function requestMta() {
+  $.ajax({
+    url: 'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045'
+  }).then((data) => console.log(data), (errors) => console.log(errors))
+};
+
+/* unused harmony default export */ var _unused_webpack_default_export = (requestMta);
 
 
 /***/ })
