@@ -1,4 +1,6 @@
-function initMap() {
+import { stations } from './stations';
+
+export const initMap = () => {
   const map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 40.77, lng: -73.97},
     zoom: 12.5,
@@ -34,6 +36,13 @@ function initMap() {
       }
     ]
   });
+  populate(stations);
 }
 
-export default initMap;
+export const updateMap = () => {
+
+}
+
+function populate(s) {
+  console.log(s)
+}
