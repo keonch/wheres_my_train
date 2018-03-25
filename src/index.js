@@ -1,10 +1,9 @@
 import { initMap } from './map';
 import requestMta from './request_mta';
-// import
 
 document.addEventListener('DOMContentLoaded', () => {
-  initMap();
+  const map = initMap();
   window.requestMta = requestMta;
-  // setInterval(requestMta, 31000);
-
 });
+
+// setInterval(requestMta, 31000);

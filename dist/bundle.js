@@ -71,6 +71,95 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./data/stations.js":
+/*!**************************!*\
+  !*** ./data/stations.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const stations = [
+  {
+    stop_id: "R30",
+    stop_name: "DeKalb Av",
+    stop_lat: 40.690635,
+    stop_lon: -73.981824
+  },
+  {
+    stop_id: "D22",
+    stop_name: "Grand St",
+    stop_lat: 40.718267,
+    stop_lon: -73.993753
+  },
+  {
+    stop_id: "D21",
+    stop_name: "Broadway-Lafayette St",
+    stop_lat: 40.725297,
+    stop_lon: -73.996204
+  },
+  {
+    stop_id: "D20",
+    stop_name: "14 St - Union Sq",
+    stop_lat: 40.735736,
+    stop_lon: -73.990568
+  },
+  {
+    stop_id: "D17",
+    stop_name: "34 St - Herald Sq",
+    stop_lat: 40.749719,
+    stop_lon: -73.987823
+  },
+  {
+    stop_id: "D16",
+    stop_name: "42 St - Bryant Pk",
+    stop_lat: 40.754222,
+    stop_lon: -73.984569
+  },
+  {
+    stop_id: "D15",
+    stop_name: "47-50 Sts - Rockefeller Ctr",
+    stop_lat: 40.758663,
+    stop_lon: -73.981329
+  },
+  {
+    stop_id: "D14",
+    stop_name: "7 Av",
+    stop_lat: 40.762862,
+    stop_lon: -73.981637
+  },
+  {
+    stop_id: "A24",
+    stop_name: "59 St - Columbus Circle",
+    stop_lat: 40.768296,
+    stop_lon: -73.981736
+  },
+  {
+    stop_id: "A15",
+    stop_name: "125 St",
+    stop_lat: 40.811109,
+    stop_lon: -73.952343
+  },
+  {
+    stop_id: "D13",
+    stop_name: "145 St",
+    stop_lat: 40.824783,
+    stop_lon: -73.944216
+  },
+  {
+    stop_id: "D12",
+    stop_name: "155 St",
+    stop_lat: 40.830135,
+    stop_lon: -73.938209
+  }
+];
+
+/* harmony default export */ __webpack_exports__["default"] = (stations);
+
+
+/***/ }),
+
 /***/ "./node_modules/@protobufjs/aspromise/index.js":
 /*!*****************************************************!*\
   !*** ./node_modules/@protobufjs/aspromise/index.js ***!
@@ -68267,10 +68356,214 @@ function extend() {
 
 /***/ }),
 
-/***/ "./src/gtfs-realtime.js":
-/*!******************************!*\
-  !*** ./src/gtfs-realtime.js ***!
-  \******************************/
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
+/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
+  window.requestMta = _request_mta__WEBPACK_IMPORTED_MODULE_1__["default"];
+});
+
+// setInterval(requestMta, 31000);
+
+
+/***/ }),
+
+/***/ "./src/map.js":
+/*!********************!*\
+  !*** ./src/map.js ***!
+  \********************/
+/*! exports provided: initMap */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMap", function() { return initMap; });
+/* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
+
+
+// export default class Map {
+//   constructor(){
+//     this.map = this.initMap();
+//   }
+//
+//   initMap() {
+//     const map = new google.maps.Map(document.getElementById('map'), {
+//       center: {lat: 40.77, lng: -73.97},
+//       zoom: 12.5,
+//       styles: [
+//         {
+//           featureType: "poi",
+//           elementType: "labels",
+//           stylers: [{ visibility: "off" }]
+//         },
+//         {
+//           featureType: "water",
+//           elementType: "labels",
+//           stylers: [{ visibility: "off" }]
+//         },
+//         {
+//           featureType: "road",
+//           elementType: "labels",
+//           stylers: [{ visibility: "off" }]
+//         },
+//         {
+//           elementType: 'geometry',
+//           stylers: [{color: '#f5f5f5'}]
+//         },
+//         {
+//           featureType: 'transit.line',
+//           elementType: 'geometry',
+//           stylers: [{color: '#e5e5e5'}]
+//         },
+//         {
+//           featureType: 'water',
+//           elementType: 'geometry',
+//           stylers: [{color: '#c9c9c9'}]
+//         }
+//       ]
+//     });
+//     this.setStations(map, stations);
+//     this.createLines(map);
+//   }
+//
+//
+//     const line = new google.maps.Polyline({
+//       path: [{lat: stations[0].stop_lat, lon: station[0].stop_lon}, {lat: stations[1].stop_lat, lon: station[1].stop_lon}],
+//       icons: [{
+//         icon: "",
+//         offset: '100%'
+//       }],
+//       map: map;
+//     });
+//   }
+// }
+
+function initMap() {
+  const map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 40.77, lng: -73.97},
+    zoom: 12.5,
+    styles: [
+      {
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }]
+      },
+      {
+        featureType: "water",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }]
+      },
+      {
+        featureType: "road",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }]
+      },
+      {
+        elementType: 'geometry',
+        stylers: [{color: '#f5f5f5'}]
+      },
+      {
+        featureType: 'transit.line',
+        elementType: 'geometry',
+        stylers: [{color: '#e5e5e5'}]
+      },
+      {
+        featureType: 'water',
+        elementType: 'geometry',
+        stylers: [{color: '#c9c9c9'}]
+      }
+    ]
+  });
+
+  const lineSymbol = {
+    path: google.maps.SymbolPath.CIRCLE,
+    scale: 8,
+    strokeColor: '#393'
+  };
+
+  const line = new google.maps.Polyline({
+    path: [
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][1].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][1].stop_lon},
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][0].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][0].stop_lon}
+    ],
+    icons: [{
+      icon: lineSymbol,
+      offset: '100%'
+    }],
+    map: map
+  });
+
+  // animateCircle(line);
+}
+
+// function animateCircle(line) {
+//   var count = 0;
+//   window.setInterval(function() {
+//     count = (count + 1) % 200;
+//
+//     var icons = line.get('icons');
+//     icons[0].offset = (count / 2) + '%';
+//     line.set('icons', icons);
+//   }, 20);
+// }
+
+
+/***/ }),
+
+/***/ "./src/request_mta.js":
+/*!****************************!*\
+  !*** ./src/request_mta.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
+/* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/gtfs-realtime */ "./util/gtfs-realtime.js");
+/* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _util_train_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/train_utils */ "./util/train_utils.js");
+
+
+
+
+const req = {
+  method: 'GET',
+  url: 'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=21',
+  encoding: null
+};
+
+function requestMta () {
+  request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      const feed = _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
+      Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed);
+    }
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (requestMta);
+
+
+/***/ }),
+
+/***/ "./util/gtfs-realtime.js":
+/*!*******************************!*\
+  !*** ./util/gtfs-realtime.js ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -72579,147 +72872,39 @@ module.exports = $root;
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! no exports provided */
+/***/ "./util/train_utils.js":
+/*!*****************************!*\
+  !*** ./util/train_utils.js ***!
+  \*****************************/
+/*! exports provided: parseFeed */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
-/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
-
-
-// import
-
-document.addEventListener('DOMContentLoaded', () => {
-  Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
-  window.requestMta = _request_mta__WEBPACK_IMPORTED_MODULE_1__["default"];
-  // setInterval(requestMta, 31000);
-
-});
-
-
-/***/ }),
-
-/***/ "./src/map.js":
-/*!********************!*\
-  !*** ./src/map.js ***!
-  \********************/
-/*! exports provided: initMap, updateMap */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMap", function() { return initMap; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMap", function() { return updateMap; });
-/* harmony import */ var _stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stations */ "./src/stations.js");
-
-
-const initMap = () => {
-  const map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.77, lng: -73.97},
-    zoom: 12.5,
-    styles: [
-      {
-        featureType: "poi",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }]
-      },
-      {
-        featureType: "water",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }]
-      },
-      {
-        featureType: "road",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }]
-      },
-      {
-        elementType: 'geometry',
-        stylers: [{color: '#f5f5f5'}]
-      },
-      {
-        featureType: 'transit.line',
-        elementType: 'geometry',
-        stylers: [{color: '#e5e5e5'}]
-      },
-      {
-        featureType: 'water',
-        elementType: 'geometry',
-        stylers: [{color: '#c9c9c9'}]
-      }
-    ]
-  });
-  populate(_stations__WEBPACK_IMPORTED_MODULE_0__["stations"]);
-}
-
-const updateMap = () => {
-
-}
-
-function populate(s) {
-  console.log(s)
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
-
-/***/ }),
-
-/***/ "./src/request_mta.js":
-/*!****************************!*\
-  !*** ./src/request_mta.js ***!
-  \****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {var GtfsRealtimeBindings = __webpack_require__(/*! ./gtfs-realtime */ "./src/gtfs-realtime.js");
-var request = __webpack_require__(/*! request */ "./node_modules/request/index.js");
-
-var requestSettings = {
-  method: 'GET',
-  url: 'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=21',
-  encoding: null
-};
-
-function requestMta () {
-  console.log("ping");
-  request(requestSettings, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      console.log("200 ok");
-      window.GtfsRealtimeBindings = GtfsRealtimeBindings;
-      var feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
-      console.log("decoded");
-      console.log(feed);
-      // feed.entity.forEach(function(entity) {
-        // console.log(entity);
-        // if (entity.trip_update) {
-          // console.log(entity.trip_update);
-        // }
-      // });
-    }
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+function parseFeed (feed) {
+  console.log(feed);
+  feed.entity.forEach((train) => {
+    withinManhattan(train);
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (requestMta);
+function withinManhattan(train) {
+
+}
+
+function drawLine(map) {
+    new google.maps.Polyline({
+    path: [fromStation, toStation],
+    icons: [{
+      icon: lineSymbol,
+      offset: '100%'
+    }],
+    map: map
+  });
+}
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
-
-/***/ }),
-
-/***/ "./src/stations.js":
-/*!*************************!*\
-  !*** ./src/stations.js ***!
-  \*************************/
-/*! exports provided: stations */
-/***/ (function(module, exports) {
-
-throw new Error("Module parse failed: Unexpected token (3:24)\nYou may need an appropriate loader to handle this file type.\n| import Papa from 'papaparse';\n| \n| export const stations =() {\n|   $.get({url: './stops.csv'}).then((stops) => {\n|     Papa.parse(file, {");
 
 /***/ }),
 
