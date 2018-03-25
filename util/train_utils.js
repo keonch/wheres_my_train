@@ -1,7 +1,7 @@
 export function timeArrival(dataTimeArrival) {
   const currentTime = new Date();
   const arrivalTime = new Date(dataTimeArrival * 1000)
-  const time = arrivalTime - currentTime;
+  const time = (arrivalTime - currentTime);
   return time;
 }
 

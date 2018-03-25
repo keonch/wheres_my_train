@@ -9,17 +9,15 @@ export default class Train {
       icon: this.image
     });
     this.position = this.marker.getPosition().toJSON();
-    this.destination = {
-      arrivalTime: null,
-      location: {}
-    };
+    this.destination = {};
+    this.arrivalTime = null;
+
+    this.upcomingStation = {};
   }
 
-  setDestination(toStation) {
-    this.destination = {
-      arrivalTime: 1522015341,
-      location: {lat: toStation.stop_lat, lng: toStation.stop_lon}
-    }
+  update(realtimeData) {
+    this.destination = {lat: realtimeData.stop_lat, lng: realtimeData.stop_lon};
+    this.arrivalTime = realtimeData.arrival;
   }
 
   move(toPosition) {
@@ -27,8 +25,8 @@ export default class Train {
   }
 
   something() {
-    const d = dist(this.position, this.destination.location);
-    const t = timeArrival(this.destination.arrivalTime);
+    const d = dist(this.position, this.destination);
+    const t = timeArrival(this.arrivalTime);
     const speed = (d / t);
     return speed;
   }

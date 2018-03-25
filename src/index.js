@@ -9,6 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.requestMta = requestMta;
   const train1 = new Train(map, stations[0]);
   const train2 = new Train(map, stations[1]);
-  train1.setDestination(stations[1]);
+  // train1.update(stations[1]);
   window.train1 = train1;
 });

@@ -68380,7 +68380,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.requestMta = _request_mta__WEBPACK_IMPORTED_MODULE_2__["requestMta"];
   const train1 = new _train__WEBPACK_IMPORTED_MODULE_0__["default"](map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][0]);
   const train2 = new _train__WEBPACK_IMPORTED_MODULE_0__["default"](map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][1]);
-  train1.setDestination(_data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][1]);
+  // train1.update(stations[1]);
   window.train1 = train1;
 });
 
@@ -68524,17 +68524,15 @@ class Train {
       icon: this.image
     });
     this.position = this.marker.getPosition().toJSON();
-    this.destination = {
-      arrivalTime: null,
-      location: {}
-    };
+    this.destination = {};
+    this.arrivalTime = null;
+
+    this.upcomingStation = {};
   }
 
-  setDestination(toStation) {
-    this.destination = {
-      arrivalTime: 1522015341,
-      location: {lat: toStation.stop_lat, lng: toStation.stop_lon}
-    }
+  update(realtimeData) {
+    this.destination = {lat: realtimeData.stop_lat, lng: realtimeData.stop_lon};
+    this.arrivalTime = realtimeData.arrival;
   }
 
   move(toPosition) {
@@ -68542,8 +68540,8 @@ class Train {
   }
 
   something() {
-    const d = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_0__["dist"])(this.position, this.destination.location);
-    const t = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_0__["timeArrival"])(this.destination.arrivalTime);
+    const d = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_0__["dist"])(this.position, this.destination);
+    const t = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_0__["timeArrival"])(this.arrivalTime);
     const speed = (d / t);
     return speed;
   }
@@ -68567,9 +68565,27 @@ class Train {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
+
+
 function parseFeed(feed) {
+  const trains = [];
   console.log(feed);
+  feed.entity.forEach((e) => {
+    if (withinManhattan(e)) trains.push(e);
+  });
+  console.log(trains);
 };
+
+// ADJUST FOR OTHER ROUTES
+function withinManhattan(train) {
+  if (!train.tripUpdate) return false;
+
+  // Check if most current destination stop is within manhattan
+  const latestDestination = train.tripUpdate.stopTimeUpdate[0].stopId.slice(0, -1);
+  const stationIds = _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"].map(station => station.stop_id);
+  return stationIds.includes(latestDestination);
+}
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
@@ -72901,7 +72917,7 @@ __webpack_require__.r(__webpack_exports__);
 function timeArrival(dataTimeArrival) {
   const currentTime = new Date();
   const arrivalTime = new Date(dataTimeArrival * 1000)
-  const time = arrivalTime - currentTime;
+  const time = (arrivalTime - currentTime);
   return time;
 }
 
