@@ -9,13 +9,6 @@ function withinManhattan(train) {
 
 }
 
-function drawLine(map) {
-    new google.maps.Polyline({
-    path: [fromStation, toStation],
-    icons: [{
-      icon: lineSymbol,
-      offset: '100%'
-    }],
-    map: map
-  });
+export function createTrain(map) {
+  
 }

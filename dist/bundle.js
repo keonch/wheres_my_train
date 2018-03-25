@@ -68367,11 +68367,14 @@ function extend() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
 /* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
+/* harmony import */ var _util_train_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/train_utils */ "./util/train_utils.js");
+
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
+  Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["createTrain"])(map);
   window.requestMta = _request_mta__WEBPACK_IMPORTED_MODULE_1__["default"];
 });
 
@@ -68392,63 +68395,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMap", function() { return initMap; });
 /* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
 
-
-// export default class Map {
-//   constructor(){
-//     this.map = this.initMap();
-//   }
-//
-//   initMap() {
-//     const map = new google.maps.Map(document.getElementById('map'), {
-//       center: {lat: 40.77, lng: -73.97},
-//       zoom: 12.5,
-//       styles: [
-//         {
-//           featureType: "poi",
-//           elementType: "labels",
-//           stylers: [{ visibility: "off" }]
-//         },
-//         {
-//           featureType: "water",
-//           elementType: "labels",
-//           stylers: [{ visibility: "off" }]
-//         },
-//         {
-//           featureType: "road",
-//           elementType: "labels",
-//           stylers: [{ visibility: "off" }]
-//         },
-//         {
-//           elementType: 'geometry',
-//           stylers: [{color: '#f5f5f5'}]
-//         },
-//         {
-//           featureType: 'transit.line',
-//           elementType: 'geometry',
-//           stylers: [{color: '#e5e5e5'}]
-//         },
-//         {
-//           featureType: 'water',
-//           elementType: 'geometry',
-//           stylers: [{color: '#c9c9c9'}]
-//         }
-//       ]
-//     });
-//     this.setStations(map, stations);
-//     this.createLines(map);
-//   }
-//
-//
-//     const line = new google.maps.Polyline({
-//       path: [{lat: stations[0].stop_lat, lon: station[0].stop_lon}, {lat: stations[1].stop_lat, lon: station[1].stop_lon}],
-//       icons: [{
-//         icon: "",
-//         offset: '100%'
-//       }],
-//       map: map;
-//     });
-//   }
-// }
 
 function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
@@ -68486,28 +68432,40 @@ function initMap() {
       }
     ]
   });
-
-  const lineSymbol = {
-    path: google.maps.SymbolPath.CIRCLE,
-    scale: 8,
-    strokeColor: '#393'
-  };
-
   const line = new google.maps.Polyline({
     path: [
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][0].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][0].stop_lon},
       {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][1].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][1].stop_lon},
-      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][0].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][0].stop_lon}
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][2].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][2].stop_lon},
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][3].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][3].stop_lon},
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][4].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][4].stop_lon},
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][5].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][5].stop_lon},
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][6].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][6].stop_lon},
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][7].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][7].stop_lon},
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][8].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][8].stop_lon},
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][9].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][9].stop_lon},
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][10].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][10].stop_lon},
+      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][11].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][11].stop_lon}
     ],
-    icons: [{
-      icon: lineSymbol,
-      offset: '100%'
-    }],
+    strokeColor: '#ffa500',
+    strokeWeight: 1,
     map: map
   });
-
-  // animateCircle(line);
 }
-
+// icons: [{
+//   icon: lineSymbol,
+//   offset: '100%'
+// }],
+//
+// const lineSymbol = {
+//   path: google.maps.SymbolPath.CIRCLE,
+//   scale: 5,
+//   strokeColor: '#fff'
+// };
+//
+//
+// animateCircle(line);
+//
 // function animateCircle(line) {
 //   var count = 0;
 //   window.setInterval(function() {
@@ -72876,12 +72834,13 @@ module.exports = $root;
 /*!*****************************!*\
   !*** ./util/train_utils.js ***!
   \*****************************/
-/*! exports provided: parseFeed */
+/*! exports provided: parseFeed, createTrain */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTrain", function() { return createTrain; });
 function parseFeed (feed) {
   console.log(feed);
   feed.entity.forEach((train) => {
@@ -72893,15 +72852,8 @@ function withinManhattan(train) {
 
 }
 
-function drawLine(map) {
-    new google.maps.Polyline({
-    path: [fromStation, toStation],
-    icons: [{
-      icon: lineSymbol,
-      offset: '100%'
-    }],
-    map: map
-  });
+function createTrain(map) {
+  
 }
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))

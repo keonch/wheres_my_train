@@ -1,62 +1,5 @@
 import stations from '../data/stations';
 
-// export default class Map {
-//   constructor(){
-//     this.map = this.initMap();
-//   }
-//
-//   initMap() {
-//     const map = new google.maps.Map(document.getElementById('map'), {
-//       center: {lat: 40.77, lng: -73.97},
-//       zoom: 12.5,
-//       styles: [
-//         {
-//           featureType: "poi",
-//           elementType: "labels",
-//           stylers: [{ visibility: "off" }]
-//         },
-//         {
-//           featureType: "water",
-//           elementType: "labels",
-//           stylers: [{ visibility: "off" }]
-//         },
-//         {
-//           featureType: "road",
-//           elementType: "labels",
-//           stylers: [{ visibility: "off" }]
-//         },
-//         {
-//           elementType: 'geometry',
-//           stylers: [{color: '#f5f5f5'}]
-//         },
-//         {
-//           featureType: 'transit.line',
-//           elementType: 'geometry',
-//           stylers: [{color: '#e5e5e5'}]
-//         },
-//         {
-//           featureType: 'water',
-//           elementType: 'geometry',
-//           stylers: [{color: '#c9c9c9'}]
-//         }
-//       ]
-//     });
-//     this.setStations(map, stations);
-//     this.createLines(map);
-//   }
-//
-//
-//     const line = new google.maps.Polyline({
-//       path: [{lat: stations[0].stop_lat, lon: station[0].stop_lon}, {lat: stations[1].stop_lat, lon: station[1].stop_lon}],
-//       icons: [{
-//         icon: "",
-//         offset: '100%'
-//       }],
-//       map: map;
-//     });
-//   }
-// }
-
 export function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 40.77, lng: -73.97},
@@ -93,28 +36,40 @@ export function initMap() {
       }
     ]
   });
-
-  const lineSymbol = {
-    path: google.maps.SymbolPath.CIRCLE,
-    scale: 8,
-    strokeColor: '#393'
-  };
-
   const line = new google.maps.Polyline({
     path: [
+      {lat: stations[0].stop_lat, lng: stations[0].stop_lon},
       {lat: stations[1].stop_lat, lng: stations[1].stop_lon},
-      {lat: stations[0].stop_lat, lng: stations[0].stop_lon}
+      {lat: stations[2].stop_lat, lng: stations[2].stop_lon},
+      {lat: stations[3].stop_lat, lng: stations[3].stop_lon},
+      {lat: stations[4].stop_lat, lng: stations[4].stop_lon},
+      {lat: stations[5].stop_lat, lng: stations[5].stop_lon},
+      {lat: stations[6].stop_lat, lng: stations[6].stop_lon},
+      {lat: stations[7].stop_lat, lng: stations[7].stop_lon},
+      {lat: stations[8].stop_lat, lng: stations[8].stop_lon},
+      {lat: stations[9].stop_lat, lng: stations[9].stop_lon},
+      {lat: stations[10].stop_lat, lng: stations[10].stop_lon},
+      {lat: stations[11].stop_lat, lng: stations[11].stop_lon}
     ],
-    icons: [{
-      icon: lineSymbol,
-      offset: '100%'
-    }],
+    strokeColor: '#ffa500',
+    strokeWeight: 1,
     map: map
   });
-
-  // animateCircle(line);
 }
-
+// icons: [{
+//   icon: lineSymbol,
+//   offset: '100%'
+// }],
+//
+// const lineSymbol = {
+//   path: google.maps.SymbolPath.CIRCLE,
+//   scale: 5,
+//   strokeColor: '#fff'
+// };
+//
+//
+// animateCircle(line);
+//
 // function animateCircle(line) {
 //   var count = 0;
 //   window.setInterval(function() {
