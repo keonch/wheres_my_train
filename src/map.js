@@ -1,7 +1,7 @@
 import stations from '../data/stations';
 
 export function initMap() {
-  const map = new google.maps.Map(document.getElementById('map'), {
+  return new google.maps.Map(document.getElementById('map'), {
     center: {lat: 40.77, lng: -73.97},
     zoom: 12.5,
     styles: [
@@ -36,47 +36,27 @@ export function initMap() {
       }
     ]
   });
-  const line = new google.maps.Polyline({
+}
+
+export function setupStations(map) {
+  return new google.maps.Polyline({
     path: [
       {lat: stations[0].stop_lat, lng: stations[0].stop_lon},
-      {lat: stations[1].stop_lat, lng: stations[1].stop_lon},
-      {lat: stations[2].stop_lat, lng: stations[2].stop_lon},
-      {lat: stations[3].stop_lat, lng: stations[3].stop_lon},
-      {lat: stations[4].stop_lat, lng: stations[4].stop_lon},
-      {lat: stations[5].stop_lat, lng: stations[5].stop_lon},
-      {lat: stations[6].stop_lat, lng: stations[6].stop_lon},
-      {lat: stations[7].stop_lat, lng: stations[7].stop_lon},
-      {lat: stations[8].stop_lat, lng: stations[8].stop_lon},
-      {lat: stations[9].stop_lat, lng: stations[9].stop_lon},
-      {lat: stations[10].stop_lat, lng: stations[10].stop_lon},
-      {lat: stations[11].stop_lat, lng: stations[11].stop_lon}
+      {lat: stations[1].stop_lat, lng: stations[1].stop_lon}
+      // {lat: stations[2].stop_lat, lng: stations[2].stop_lon},
+      // {lat: stations[3].stop_lat, lng: stations[3].stop_lon},
+      // {lat: stations[4].stop_lat, lng: stations[4].stop_lon},
+      // {lat: stations[5].stop_lat, lng: stations[5].stop_lon},
+      // {lat: stations[6].stop_lat, lng: stations[6].stop_lon},
+      // {lat: stations[7].stop_lat, lng: stations[7].stop_lon},
+      // {lat: stations[8].stop_lat, lng: stations[8].stop_lon},
+      // {lat: stations[9].stop_lat, lng: stations[9].stop_lon},
+      // {lat: stations[10].stop_lat, lng: stations[10].stop_lon},
+      // {lat: stations[11].stop_lat, lng: stations[11].stop_lon}
     ],
+    icons: [],
     strokeColor: '#ffa500',
     strokeWeight: 1,
     map: map
   });
 }
-// icons: [{
-//   icon: lineSymbol,
-//   offset: '100%'
-// }],
-//
-// const lineSymbol = {
-//   path: google.maps.SymbolPath.CIRCLE,
-//   scale: 5,
-//   strokeColor: '#fff'
-// };
-//
-//
-// animateCircle(line);
-//
-// function animateCircle(line) {
-//   var count = 0;
-//   window.setInterval(function() {
-//     count = (count + 1) % 200;
-//
-//     var icons = line.get('icons');
-//     icons[0].offset = (count / 2) + '%';
-//     line.set('icons', icons);
-//   }, 20);
-// }

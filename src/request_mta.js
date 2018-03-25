@@ -1,6 +1,6 @@
 import request from 'request';
 import GtfsRealtimeBindings from '../util/gtfs-realtime';
-import { parseFeed } from '../util/train_utils';
+import { parseFeed } from '../util/data_util';
 
 const req = {
   method: 'GET',
@@ -8,7 +8,7 @@ const req = {
   encoding: null
 };
 
-function requestMta () {
+export function requestMta () {
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
@@ -16,5 +16,3 @@ function requestMta () {
     }
   });
 }
-
-export default requestMta;

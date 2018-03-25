@@ -1,14 +1,13 @@
-export function parseFeed (feed) {
-  console.log(feed);
-  feed.entity.forEach((train) => {
-    withinManhattan(train);
-  });
+export function timeArrival(dataTimeArrival) {
+  const currentTime = new Date();
+  const arrivalTime = new Date(dataTimeArrival * 1000)
+  const time = arrivalTime - currentTime;
+  return time;
 }
 
-function withinManhattan(train) {
-
-}
-
-export function createTrain(map) {
-  
+export function dist(from, to) {
+  const dx = to.lat - from.lat;
+  const dy = to.lng - from.lng;
+  const dist = Math.sqrt((dx * dx) + (dy * dy));
+  return dist;
 }
