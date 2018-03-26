@@ -13,6 +13,8 @@ export function requestMta() {
     if (!error && response.statusCode == 200) {
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
       const trainFeeds = parseFeed(feed);
+      console.log(trainFeeds);
+      console.log(feed);
       window.store.updateTrains(trainFeeds);
     }
   });

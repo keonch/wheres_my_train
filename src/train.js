@@ -1,4 +1,4 @@
-import { timeArrival, dist } from '../util/train_utils';
+import { time, dist } from '../util/train_utils';
 
 export default class Train {
   constructor(map, station) {
@@ -8,7 +8,7 @@ export default class Train {
       map: map,
       icon: {
         url: this.image,
-        scaledSize: new google.maps.Size(30, 30)
+        scaledSize: new google.maps.Size(40, 40)
       }
     });
     this.position = this.marker.getPosition().toJSON();
@@ -29,7 +29,7 @@ export default class Train {
 
   something() {
     const d = dist(this.position, this.destination);
-    const t = timeArrival(this.arrivalTime);
+    const t = time(this.arrivalTime);
     const speed = (d / t);
     return speed;
   }

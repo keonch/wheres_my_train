@@ -86601,7 +86601,7 @@ function initMap() {
       }
     ]
   });
-  markStations(map);
+  // markStations(map);
   return map;
 }
 
@@ -86651,7 +86651,7 @@ function markStations(map) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestMta", function() { return requestMta; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestMta", function() { return requestMta; });
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/gtfs-realtime */ "./util/gtfs-realtime.js");
@@ -86672,11 +86672,14 @@ function requestMta() {
     if (!error && response.statusCode == 200) {
       const feed = _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
       const trainFeeds = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed);
+      console.log(trainFeeds);
+      console.log(feed);
       window.store.updateTrains(trainFeeds);
     }
   });
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -86701,7 +86704,7 @@ class Train {
       map: map,
       icon: {
         url: this.image,
-        scaledSize: new google.maps.Size(30, 30)
+        scaledSize: new google.maps.Size(40, 40)
       }
     });
     this.position = this.marker.getPosition().toJSON();
@@ -86722,7 +86725,7 @@ class Train {
 
   something() {
     const d = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_0__["dist"])(this.position, this.destination);
-    const t = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_0__["timeArrival"])(this.arrivalTime);
+    const t = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_0__["time"])(this.arrivalTime);
     const speed = (d / t);
     return speed;
   }
@@ -86748,6 +86751,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Store; });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _src_train__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/train */ "./src/train.js");
+/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
+
+
 
 
 class Store {
@@ -86764,6 +86771,20 @@ class Store {
       return acc;
     }, {});
     this.state.trains = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, this.state.trains, newFeed);
+    this.setupTrains();
+  }
+
+  setupTrains() {
+    Object.keys(this.state.trains).forEach((id) => {
+      const train = this.state.trains[id];
+
+      if (!train.trainClass) {
+        const station = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStation"])(train);
+        new _src_train__WEBPACK_IMPORTED_MODULE_1__["default"](this.state.map, station);
+      }
+
+      
+    });
   }
 }
 
@@ -86774,12 +86795,13 @@ class Store {
 /*!****************************!*\
   !*** ./util/data_utils.js ***!
   \****************************/
-/*! exports provided: parseFeed */
+/*! exports provided: parseFeed, getStation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStation", function() { return getStation; });
 /* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
 
 
@@ -86798,6 +86820,14 @@ function withinManhattan(train) {
   const latestDestination = train.tripUpdate.stopTimeUpdate[train.tripUpdate.stopTimeUpdate.length - 1].stopId.slice(0, -1);
   const stationIds = _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"].map(station => station.stop_id);
   return stationIds.includes(latestDestination);
+}
+
+function getStation(train) {
+  const stationId = train.tripUpdate.stopTimeUpdate.slice(-1)[0].stopId.slice(0, -1);
+  const station = _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"].find((station) => {
+    return station.stop_id == stationId
+  })
+  return station
 }
 
 
@@ -91119,14 +91149,14 @@ module.exports = $root;
 /*!*****************************!*\
   !*** ./util/train_utils.js ***!
   \*****************************/
-/*! exports provided: timeArrival, dist */
+/*! exports provided: time, dist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeArrival", function() { return timeArrival; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "time", function() { return time; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dist", function() { return dist; });
-function timeArrival(dataTimeArrival) {
+function time(dataTimeArrival) {
   const currentTime = new Date();
   const arrivalTime = new Date(dataTimeArrival * 1000)
   const time = (arrivalTime - currentTime);

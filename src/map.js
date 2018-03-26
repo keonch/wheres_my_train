@@ -41,7 +41,7 @@ export function initMap() {
       }
     ]
   });
-  markStations(map);
+  // markStations(map);
   return map;
 }
 

@@ -1,4 +1,6 @@
 import { merge } from 'lodash';
+import Train from '../src/train';
+import { getStation } from '../util/data_utils';
 
 export default class Store {
   constructor(map) {
@@ -14,5 +16,19 @@ export default class Store {
       return acc;
     }, {});
     this.state.trains = merge({}, this.state.trains, newFeed);
+    this.setupTrains();
+  }
+
+  setupTrains() {
+    Object.keys(this.state.trains).forEach((id) => {
+      const train = this.state.trains[id];
+
+      if (!train.trainClass) {
+        const station = getStation(train);
+        new Train(this.state.map, station);
+      }
+
+      
+    });
   }
 }

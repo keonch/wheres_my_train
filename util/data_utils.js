@@ -16,3 +16,11 @@ function withinManhattan(train) {
   const stationIds = stations.map(station => station.stop_id);
   return stationIds.includes(latestDestination);
 }
+
+export function getStation(train) {
+  const stationId = train.tripUpdate.stopTimeUpdate.slice(-1)[0].stopId.slice(0, -1);
+  const station = stations.find((station) => {
+    return station.stop_id == stationId
+  })
+  return station
+}
