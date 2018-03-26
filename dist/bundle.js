@@ -68369,6 +68369,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map */ "./src/map.js");
 /* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
 /* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
+/* harmony import */ var _store_trains__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/trains */ "./store/trains.js");
+/* harmony import */ var _store_trains__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_store_trains__WEBPACK_IMPORTED_MODULE_4__);
+
+
 
 
 
@@ -68377,10 +68381,12 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener('DOMContentLoaded', () => {
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_1__["initMap"])();
 
-  window.requestMta = _request_mta__WEBPACK_IMPORTED_MODULE_2__["requestMta"];
+  setInterval(Object(_request_mta__WEBPACK_IMPORTED_MODULE_2__["requestMta"])(), 30000);
+
   const train1 = new _train__WEBPACK_IMPORTED_MODULE_0__["default"](map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][0]);
   const train2 = new _train__WEBPACK_IMPORTED_MODULE_0__["default"](map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][1]);
   window.train1 = train1;
+  window.store = _store_trains__WEBPACK_IMPORTED_MODULE_4___default.a;
 });
 
 
@@ -68477,22 +68483,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/gtfs-realtime */ "./util/gtfs-realtime.js");
 /* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _util_data_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/data_util */ "./util/data_util.js");
+/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
 
 
 
 
 const req = {
   method: 'GET',
-  url: 'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=21',
+  url: 'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=16',
   encoding: null
 };
 
-function requestMta () {
+function requestMta() {
   request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       const feed = _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
-      return Object(_util_data_util__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed);
+      const trains = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed);
+      Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["updateAll"])(trains);
     }
   });
 }
@@ -68515,11 +68522,14 @@ __webpack_require__.r(__webpack_exports__);
 
 class Train {
   constructor(map, station) {
-    this.image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+    this.image = 'http://icons.iconarchive.com/icons/icons8/android/32/Transport-Train-icon.png';
     this.marker = new google.maps.Marker({
       position: {lat: station.stop_lat, lng: station.stop_lon},
       map: map,
-      icon: this.image
+      icon: {
+        url: this.image,
+        scaledSize: new google.maps.Size(30, 30)
+      }
     });
     this.position = this.marker.getPosition().toJSON();
     this.destination = {};
@@ -68553,21 +68563,35 @@ class Train {
 
 /***/ }),
 
-/***/ "./util/data_util.js":
-/*!***************************!*\
-  !*** ./util/data_util.js ***!
-  \***************************/
-/*! exports provided: parseFeed */
+/***/ "./store/trains.js":
+/*!*************************!*\
+  !*** ./store/trains.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+
+/***/ }),
+
+/***/ "./util/data_utils.js":
+/*!****************************!*\
+  !*** ./util/data_utils.js ***!
+  \****************************/
+/*! exports provided: parseFeed, updateAll */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAll", function() { return updateAll; });
 /* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
 
 
 function parseFeed(feed) {
   const trains = [];
+  console.log(feed);
   feed.entity.forEach((e) => {
     if (withinManhattan(e)) trains.push(e);
   });
@@ -68577,13 +68601,21 @@ function parseFeed(feed) {
 function withinManhattan(train) {
   if (!train.tripUpdate) return false;
 
-  // Check if most current destination stop is within manhattan
-  const latestDestination = train.tripUpdate.stopTimeUpdate[0].stopId.slice(0, -1);
+  // Check if current destination is within manhattan
+  const latestDestination = train.tripUpdate.stopTimeUpdate[train.tripUpdate.stopTimeUpdate.length - 1].stopId.slice(0, -1);
   const stationIds = _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"].map(station => station.stop_id);
-
   return stationIds.includes(latestDestination);
 }
 
+function updateAll(trains) {
+  const newState = trains.reduce(function(acc, cur) {
+    acc[cur.id] = cur;
+    return acc;
+  }, {});
+  console.log(newState);
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

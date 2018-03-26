@@ -2,11 +2,14 @@ import { timeArrival, dist } from '../util/train_utils';
 
 export default class Train {
   constructor(map, station) {
-    this.image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+    this.image = 'http://icons.iconarchive.com/icons/icons8/android/32/Transport-Train-icon.png';
     this.marker = new google.maps.Marker({
       position: {lat: station.stop_lat, lng: station.stop_lon},
       map: map,
-      icon: this.image
+      icon: {
+        url: this.image,
+        scaledSize: new google.maps.Size(30, 30)
+      }
     });
     this.position = this.marker.getPosition().toJSON();
     this.destination = {};
