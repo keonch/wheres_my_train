@@ -47,9 +47,9 @@ export function initMap() {
 
 function markStations(map) {
   const image = 'https://cdn3.iconfinder.com/data/icons/map/500/communication-256.png';
-  stations.forEach((station) => {
+  Object.keys(stations).forEach((id) => {
     new google.maps.Marker({
-      position: {lat: station.stop_lat, lng: station.stop_lon},
+      position: {lat: stations[id].stop_lat, lng: stations[id].stop_lon},
       map: map,
       icon: {
         url: image,
@@ -57,6 +57,7 @@ function markStations(map) {
       }
     });
   })
+
   // return new google.maps.Polyline({
   //   path: [
   //     {lat: stations[0].stop_lat, lng: stations[0].stop_lon},
