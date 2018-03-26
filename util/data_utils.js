@@ -2,7 +2,6 @@ import stations from '../data/stations';
 
 export function parseFeed(feed) {
   const trainFeeds = [];
-  console.log(feed);
   feed.entity.forEach((e) => {
     if (withinManhattan(e)) trainFeeds.push(e);
   });

@@ -86514,18 +86514,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // setInterval(() => requestMta(), 30000);
   window.requestMta = _request_mta__WEBPACK_IMPORTED_MODULE_1__["requestMta"];
+
   const train1 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][0]);
-  const train2 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][1]);
-  const train3 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][2]);
-  const train4 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][3]);
-  const train5 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][4]);
-  const train6 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][5]);
-  const train7 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][6]);
-  const train8 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][7]);
-  const train9 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][8]);
-  const train10 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][9]);
-  const train11 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][10]);
-  const train12 = new _train__WEBPACK_IMPORTED_MODULE_2__["default"](window.store.state.map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][11]);
 
   window.train1 = train1;
 });
@@ -86571,7 +86561,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function initMap() {
-  return new google.maps.Map(document.getElementById('map'), {
+  const map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 40.77, lng: -73.97},
     zoom: 12.5,
     styles: [
@@ -86590,6 +86580,11 @@ function initMap() {
         elementType: "labels",
         stylers: [{ visibility: "off" }]
       },
+      // {
+      //   featureType: "transit",
+      //   elementType: "labels",
+      //   stylers: [{ visibility: "off" }]
+      // },
       {
         elementType: 'geometry',
         stylers: [{color: '#f5f5f5'}]
@@ -86606,30 +86601,43 @@ function initMap() {
       }
     ]
   });
+  markStations(map);
+  return map;
 }
 
-// export function setupStations(map) {
-//   return new google.maps.Polyline({
-//     path: [
-//       {lat: stations[0].stop_lat, lng: stations[0].stop_lon},
-//       {lat: stations[1].stop_lat, lng: stations[1].stop_lon}
-//       // {lat: stations[2].stop_lat, lng: stations[2].stop_lon},
-//       // {lat: stations[3].stop_lat, lng: stations[3].stop_lon},
-//       // {lat: stations[4].stop_lat, lng: stations[4].stop_lon},
-//       // {lat: stations[5].stop_lat, lng: stations[5].stop_lon},
-//       // {lat: stations[6].stop_lat, lng: stations[6].stop_lon},
-//       // {lat: stations[7].stop_lat, lng: stations[7].stop_lon},
-//       // {lat: stations[8].stop_lat, lng: stations[8].stop_lon},
-//       // {lat: stations[9].stop_lat, lng: stations[9].stop_lon},
-//       // {lat: stations[10].stop_lat, lng: stations[10].stop_lon},
-//       // {lat: stations[11].stop_lat, lng: stations[11].stop_lon}
-//     ],
-//     icons: [],
-//     strokeColor: '#ffa500',
-//     strokeWeight: 1,
-//     map: map
-//   });
-// }
+function markStations(map) {
+  const image = 'https://cdn3.iconfinder.com/data/icons/map/500/communication-256.png';
+  _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"].forEach((station) => {
+    new google.maps.Marker({
+      position: {lat: station.stop_lat, lng: station.stop_lon},
+      map: map,
+      icon: {
+        url: image,
+        scaledSize: new google.maps.Size(20, 20)
+      }
+    });
+  })
+  // return new google.maps.Polyline({
+  //   path: [
+  //     {lat: stations[0].stop_lat, lng: stations[0].stop_lon},
+  //     {lat: stations[1].stop_lat, lng: stations[1].stop_lon}
+  //     // {lat: stations[2].stop_lat, lng: stations[2].stop_lon},
+  //     // {lat: stations[3].stop_lat, lng: stations[3].stop_lon},
+  //     // {lat: stations[4].stop_lat, lng: stations[4].stop_lon},
+  //     // {lat: stations[5].stop_lat, lng: stations[5].stop_lon},
+  //     // {lat: stations[6].stop_lat, lng: stations[6].stop_lon},
+  //     // {lat: stations[7].stop_lat, lng: stations[7].stop_lon},
+  //     // {lat: stations[8].stop_lat, lng: stations[8].stop_lon},
+  //     // {lat: stations[9].stop_lat, lng: stations[9].stop_lon},
+  //     // {lat: stations[10].stop_lat, lng: stations[10].stop_lon},
+  //     // {lat: stations[11].stop_lat, lng: stations[11].stop_lon}
+  //   ],
+  //   icons: [],
+  //   strokeColor: '#ffa500',
+  //   strokeWeight: 1,
+  //   map: map
+  // });
+}
 
 
 /***/ }),
@@ -86771,13 +86779,12 @@ class Store {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
 
 
 function parseFeed(feed) {
   const trainFeeds = [];
-  console.log(feed);
   feed.entity.forEach((e) => {
     if (withinManhattan(e)) trainFeeds.push(e);
   });
@@ -86793,7 +86800,6 @@ function withinManhattan(train) {
   return stationIds.includes(latestDestination);
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
