@@ -1,12 +1,12 @@
 import stations from '../data/stations';
 
 export function parseFeed(feed) {
-  const trains = [];
+  const trainFeeds = [];
   console.log(feed);
   feed.entity.forEach((e) => {
-    if (withinManhattan(e)) trains.push(e);
+    if (withinManhattan(e)) trainFeeds.push(e);
   });
-  return trains;
+  return trainFeeds;
 };
 
 function withinManhattan(train) {
@@ -17,13 +17,3 @@ function withinManhattan(train) {
   const stationIds = stations.map(station => station.stop_id);
   return stationIds.includes(latestDestination);
 }
-
-export function updateAll(trains) {
-  const newState = trains.reduce(function(acc, cur) {
-    acc[cur.id] = cur;
-    return acc;
-  }, {});
-  console.log(newState);
-}
-
-// TODO SETUP updateAll FUNCTION AND withinManhattan

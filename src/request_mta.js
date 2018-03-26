@@ -1,6 +1,6 @@
 import request from 'request';
 import GtfsRealtimeBindings from '../util/gtfs-realtime';
-import { parseFeed, updateAll } from '../util/data_utils';
+import { parseFeed } from '../util/data_utils';
 
 const req = {
   method: 'GET',
@@ -12,8 +12,8 @@ export function requestMta() {
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
-      const trains = parseFeed(feed);
-      updateAll(trains);
+      const trainFeeds = parseFeed(feed);
+      window.store.updateTrains(trainFeeds);
     }
   });
 }
