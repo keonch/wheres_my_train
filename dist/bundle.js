@@ -68374,13 +68374,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_1__["initMap"])();
+
   window.requestMta = _request_mta__WEBPACK_IMPORTED_MODULE_2__["requestMta"];
   const train1 = new _train__WEBPACK_IMPORTED_MODULE_0__["default"](map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][0]);
   const train2 = new _train__WEBPACK_IMPORTED_MODULE_0__["default"](map, _data_stations__WEBPACK_IMPORTED_MODULE_3__["default"][1]);
-  // train1.update(stations[1]);
   window.train1 = train1;
 });
 
@@ -68391,13 +68390,12 @@ document.addEventListener('DOMContentLoaded', () => {
 /*!********************!*\
   !*** ./src/map.js ***!
   \********************/
-/*! exports provided: initMap, setupStations */
+/*! exports provided: initMap */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMap", function() { return initMap; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupStations", function() { return setupStations; });
 /* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
 
 
@@ -68439,28 +68437,28 @@ function initMap() {
   });
 }
 
-function setupStations(map) {
-  return new google.maps.Polyline({
-    path: [
-      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][0].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][0].stop_lon},
-      {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][1].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][1].stop_lon}
-      // {lat: stations[2].stop_lat, lng: stations[2].stop_lon},
-      // {lat: stations[3].stop_lat, lng: stations[3].stop_lon},
-      // {lat: stations[4].stop_lat, lng: stations[4].stop_lon},
-      // {lat: stations[5].stop_lat, lng: stations[5].stop_lon},
-      // {lat: stations[6].stop_lat, lng: stations[6].stop_lon},
-      // {lat: stations[7].stop_lat, lng: stations[7].stop_lon},
-      // {lat: stations[8].stop_lat, lng: stations[8].stop_lon},
-      // {lat: stations[9].stop_lat, lng: stations[9].stop_lon},
-      // {lat: stations[10].stop_lat, lng: stations[10].stop_lon},
-      // {lat: stations[11].stop_lat, lng: stations[11].stop_lon}
-    ],
-    icons: [],
-    strokeColor: '#ffa500',
-    strokeWeight: 1,
-    map: map
-  });
-}
+// export function setupStations(map) {
+//   return new google.maps.Polyline({
+//     path: [
+//       {lat: stations[0].stop_lat, lng: stations[0].stop_lon},
+//       {lat: stations[1].stop_lat, lng: stations[1].stop_lon}
+//       // {lat: stations[2].stop_lat, lng: stations[2].stop_lon},
+//       // {lat: stations[3].stop_lat, lng: stations[3].stop_lon},
+//       // {lat: stations[4].stop_lat, lng: stations[4].stop_lon},
+//       // {lat: stations[5].stop_lat, lng: stations[5].stop_lon},
+//       // {lat: stations[6].stop_lat, lng: stations[6].stop_lon},
+//       // {lat: stations[7].stop_lat, lng: stations[7].stop_lon},
+//       // {lat: stations[8].stop_lat, lng: stations[8].stop_lon},
+//       // {lat: stations[9].stop_lat, lng: stations[9].stop_lon},
+//       // {lat: stations[10].stop_lat, lng: stations[10].stop_lon},
+//       // {lat: stations[11].stop_lat, lng: stations[11].stop_lon}
+//     ],
+//     icons: [],
+//     strokeColor: '#ffa500',
+//     strokeWeight: 1,
+//     map: map
+//   });
+// }
 
 
 /***/ }),
@@ -68494,7 +68492,7 @@ function requestMta () {
   request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       const feed = _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
-      Object(_util_data_util__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed);
+      return Object(_util_data_util__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed);
     }
   });
 }
@@ -68564,30 +68562,28 @@ class Train {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
 
 
 function parseFeed(feed) {
   const trains = [];
-  console.log(feed);
   feed.entity.forEach((e) => {
     if (withinManhattan(e)) trains.push(e);
   });
-  console.log(trains);
+  return trains;
 };
 
-// ADJUST FOR OTHER ROUTES
 function withinManhattan(train) {
   if (!train.tripUpdate) return false;
 
   // Check if most current destination stop is within manhattan
   const latestDestination = train.tripUpdate.stopTimeUpdate[0].stopId.slice(0, -1);
   const stationIds = _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"].map(station => station.stop_id);
+
   return stationIds.includes(latestDestination);
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

@@ -12,7 +12,7 @@ export function requestMta () {
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
-      parseFeed(feed);
+      return parseFeed(feed);
     }
   });
 }
