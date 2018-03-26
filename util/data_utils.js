@@ -25,3 +25,5 @@ export function updateAll(trains) {
   }, {});
   console.log(newState);
 }
+
+// TODO SETUP updateAll FUNCTION AND withinManhattan

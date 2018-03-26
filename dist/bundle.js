@@ -68615,6 +68615,8 @@ function updateAll(trains) {
   console.log(newState);
 }
 
+// TODO SETUP updateAll FUNCTION AND withinManhattan
+
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
