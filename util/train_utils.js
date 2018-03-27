@@ -11,7 +11,3 @@ export function dist(from, to) {
   const dist = Math.sqrt((dx * dx) + (dy * dy));
   return dist;
 }
-
-export function setStartPosition() {
-
-}

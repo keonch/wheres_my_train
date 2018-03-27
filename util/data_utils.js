@@ -1,3 +1,5 @@
+import stations from '../data/stations';
+
 export function parseFeed(feed) {
   let trainFeeds = {};
 
@@ -11,6 +13,11 @@ export function parseFeed(feed) {
       trainFeeds[tripId] = Object.assign({}, trainFeeds[tripId],{tripUpdate: e.tripUpdate});
     }
   });
-  
   return trainFeeds;
 };
+
+export function getStationById(stationId) {
+  let station = stations[stationId];
+  if (station === undefined) station = {"stop_id": 101, "stop_name": "Van Cortlandt Park - 242 St", "stop_lat": 40.889248, "stop_lon": -73.898583, "location_type": 1};
+  return station;
+}

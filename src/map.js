@@ -2,8 +2,8 @@ import stations from '../data/stations';
 
 export function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.77, lng: -73.97},
-    zoom: 12.5,
+    center: {lat: 40.7, lng: -73.99},
+    zoom: 11.3,
     styles: [
       {
         featureType: "poi",
@@ -53,7 +53,7 @@ function markStations(map) {
       map: map,
       icon: {
         url: image,
-        scaledSize: new google.maps.Size(20, 20)
+        scaledSize: new google.maps.Size(5, 5)
       }
     });
   })
