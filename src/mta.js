@@ -34,7 +34,9 @@ function requestMta(store, req) {
       const parsedFeed = parseFeed(feed);
       console.log(parsedFeed);
       store.updateTrains(parsedFeed);
+    } else {
+      // setup a condition to break out of loop
+      window.setTimeout(() => requestMta(store, req), 5000);
     }
   });
-  }
 }
