@@ -13,5 +13,5 @@ export function dist(from, to) {
 }
 
 export function setStartPosition() {
-  
+
 }

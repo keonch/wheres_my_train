@@ -3,6 +3,4 @@ import { requestMta } from './request_mta';
 
 document.addEventListener('DOMContentLoaded', () => {
   initialize();
-
-  window.requestMta = requestMta;
 });

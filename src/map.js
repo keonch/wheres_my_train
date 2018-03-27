@@ -60,18 +60,7 @@ function markStations(map) {
 
   // return new google.maps.Polyline({
   //   path: [
-  //     {lat: stations[0].stop_lat, lng: stations[0].stop_lon},
-  //     {lat: stations[1].stop_lat, lng: stations[1].stop_lon}
-  //     // {lat: stations[2].stop_lat, lng: stations[2].stop_lon},
-  //     // {lat: stations[3].stop_lat, lng: stations[3].stop_lon},
-  //     // {lat: stations[4].stop_lat, lng: stations[4].stop_lon},
-  //     // {lat: stations[5].stop_lat, lng: stations[5].stop_lon},
-  //     // {lat: stations[6].stop_lat, lng: stations[6].stop_lon},
-  //     // {lat: stations[7].stop_lat, lng: stations[7].stop_lon},
-  //     // {lat: stations[8].stop_lat, lng: stations[8].stop_lon},
-  //     // {lat: stations[9].stop_lat, lng: stations[9].stop_lon},
-  //     // {lat: stations[10].stop_lat, lng: stations[10].stop_lon},
-  //     // {lat: stations[11].stop_lat, lng: stations[11].stop_lon}
+  //
   //   ],
   //   icons: [],
   //   strokeColor: '#ffa500',

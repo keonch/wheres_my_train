@@ -9,12 +9,12 @@ const req = {
   encoding: null
 };
 
-export function requestMta() {
+export function requestMta(store) {
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
       const parsedFeed = parseFeed(feed);
-      window.store.updateTrains(parsedFeed);
+      store.updateTrains(parsedFeed);
     }
   });
 }

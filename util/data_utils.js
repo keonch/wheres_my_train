@@ -11,5 +11,6 @@ export function parseFeed(feed) {
       trainFeeds[tripId] = Object.assign({}, trainFeeds[tripId],{tripUpdate: e.tripUpdate});
     }
   });
+  
   return trainFeeds;
 };
