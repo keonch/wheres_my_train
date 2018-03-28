@@ -5,15 +5,18 @@ export function timeRatio(timeFrom, timeTo) {
   return (currentTime / routeTime);
 }
 
-export function dist(from, to) {
-  const dx = to.lat - from.lat;
-  const dy = to.lng - from.lng;
-  const dist = Math.sqrt((dx * dx) + (dy * dy));
-  return dist;
-}
-
 export function interpolate(from, to, r) {
   const lat = from.lat + (to.lat - from.lat) * r;
   const lng = from.lng + (to.lng - from.lng) * r;
   return { lat: lat, lng: lng };
+}
+
+export function getVelocity(toStation, currentPos, timeOfArrival) {
+  const dLat = toStation.lat - currentPos.lat;
+  const dLng = toStation.lng - currentPos.lng;
+  const disp = [dLat, dLng];
+  const t = (timeOfArrival * 1000) - new Date();
+  const v = [(disp[0] / t), (disp[1] / t)];
+  console.log(v);
+  return v;
 }

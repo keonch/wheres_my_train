@@ -23,7 +23,6 @@ export default class Store {
 
     Object.keys(this.state.trains).forEach((train) => {
       train.step(timeDelta);
-      // train.movePosition();
     });
     this.lastTime = time;
 

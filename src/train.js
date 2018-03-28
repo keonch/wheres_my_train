@@ -1,6 +1,6 @@
 import trainIcons from '../assets/train_icons';
 import { getStationById, getLatLng } from '../util/data_utils';
-import { dist, timeRatio, interpolate } from '../util/train_utils';
+import { getVelocity, timeRatio, interpolate } from '../util/train_utils';
 
 export default class Train {
   constructor(map, feed, trainId) {
@@ -17,11 +17,12 @@ export default class Train {
     this.toStation;
     this.status;
 
-    this.getRealtimePosition();
+    this.setMarkerState();
 
     // estimated state of train
     this.mapFrom;
     this.mapTo;
+    this.velocity = [0, 0];
 
     this.marker = new google.maps.Marker({
       position: {
@@ -67,10 +68,14 @@ export default class Train {
       this.realtimeFromStation = previousStop.arrival.time;
       this.fromStation = getStationById(previousStop.stopId);
       this.status = "lastStop"
+    } else if (!previousStop && !nextStop) {
+      this.realtimeFromStation = this.stops[0].arrival.time;
+      this.fromStation = getStationById(this.stops[0].stopId);
+      this.status = "idle"
     }
   }
 
-  getRealtimePosition() {
+  setMarkerState() {
     let realtimePos;
 
     if (this.status === "inTransit") {
@@ -82,8 +87,6 @@ export default class Train {
       realtimePos = getLatLng(this.fromStation);
     }
 
-    console.log(realtimePos);
-    console.log(this);
     this.mapFrom = realtimePos;
   }
 
@@ -91,12 +94,15 @@ export default class Train {
     // timeDelta is number of milliseconds since last move
     // if the computer is busy the time delta will be larger
     // velocity of object is how far it should move in 1/60th of a second
+
+    if (this.status != "inTransit") return;
+
     const velocityScale = timeDelta / (1000 / 60),
-        offsetLat = this.velocity[0] * velocityScale,
-        offsetLng = this.velocity[1] * velocityScale,
-        lat = this.marker.getMarkerPosition() + offsetLat,
-        lng = this.marker.getMarkerPosition() + offsetLng,
-        stepPosition = { lat: lat, lng: lng }
+      offsetLat = this.velocity[0] * velocityScale,
+      offsetLng = this.velocity[1] * velocityScale,
+      lat = this.marker.getMarkerPosition() + offsetLat,
+      lng = this.marker.getMarkerPosition() + offsetLng,
+      stepPosition = { lat: lat, lng: lng }
     this.marker.setPosition(stepPosition);
   }
 

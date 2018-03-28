@@ -69869,9 +69869,10 @@ __webpack_require__.r(__webpack_exports__);
 
 function initialize() {
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
-  window.store = new _store_store__WEBPACK_IMPORTED_MODULE_2__["default"](map);
-  // setInterval(() => requestMta(store), 30000);
+  const store = new _store_store__WEBPACK_IMPORTED_MODULE_2__["default"](map);
+  window.store = store;
   window.fetchMtaData = _mta__WEBPACK_IMPORTED_MODULE_1__["fetchMtaData"];
+  Object(_mta__WEBPACK_IMPORTED_MODULE_1__["fetchMtaData"])(store);
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (initialize);
@@ -69973,7 +69974,7 @@ function markStations(map) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/gtfs-realtime */ "./util/gtfs-realtime.js");
@@ -69998,6 +69999,7 @@ function fetchMtaData(store) {
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=51'
 
   ];
+
   urls.forEach((url) => {
     const req = {
       method: 'GET',
@@ -70014,16 +70016,14 @@ function requestMta(store, req) {
       status = 200;
       const feed = _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
       const parsedFeed = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed);
-      console.log(parsedFeed);
       store.updateTrains(parsedFeed);
     } else {
       // setup a condition to break out of loop
-      window.setTimeout(() => requestMta(store, req), 5000);
+      window.setTimeout(() => requestMta(store, req), 3000);
     }
   });
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -70036,7 +70036,7 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons */ "./assets/train_icons.js");
 /* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
 /* harmony import */ var _util_train_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/train_utils */ "./util/train_utils.js");
@@ -70059,11 +70059,12 @@ class Train {
     this.toStation;
     this.status;
 
-    this.getRealtimePosition();
+    this.setMarkerState();
 
     // estimated state of train
     this.mapFrom;
     this.mapTo;
+    this.velocity = [0, 0];
 
     this.marker = new google.maps.Marker({
       position: {
@@ -70109,10 +70110,14 @@ class Train {
       this.realtimeFromStation = previousStop.arrival.time;
       this.fromStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(previousStop.stopId);
       this.status = "lastStop"
+    } else if (!previousStop && !nextStop) {
+      this.realtimeFromStation = this.stops[0].arrival.time;
+      this.fromStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(this.stops[0].stopId);
+      this.status = "idle"
     }
   }
 
-  getRealtimePosition() {
+  setMarkerState() {
     let realtimePos;
 
     if (this.status === "inTransit") {
@@ -70124,8 +70129,6 @@ class Train {
       realtimePos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.fromStation);
     }
 
-    console.log(realtimePos);
-    console.log(this);
     this.mapFrom = realtimePos;
   }
 
@@ -70133,12 +70136,15 @@ class Train {
     // timeDelta is number of milliseconds since last move
     // if the computer is busy the time delta will be larger
     // velocity of object is how far it should move in 1/60th of a second
+
+    if (this.status != "inTransit") return;
+
     const velocityScale = timeDelta / (1000 / 60),
-        offsetLat = this.velocity[0] * velocityScale,
-        offsetLng = this.velocity[1] * velocityScale,
-        lat = this.marker.getMarkerPosition() + offsetLat,
-        lng = this.marker.getMarkerPosition() + offsetLng,
-        stepPosition = { lat: lat, lng: lng }
+      offsetLat = this.velocity[0] * velocityScale,
+      offsetLng = this.velocity[1] * velocityScale,
+      lat = this.marker.getMarkerPosition() + offsetLat,
+      lng = this.marker.getMarkerPosition() + offsetLng,
+      stepPosition = { lat: lat, lng: lng }
     this.marker.setPosition(stepPosition);
   }
 
@@ -70147,7 +70153,6 @@ class Train {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -70187,7 +70192,6 @@ class Store {
 
     Object.keys(this.state.trains).forEach((train) => {
       train.step(timeDelta);
-      // train.movePosition();
     });
     this.lastTime = time;
 
@@ -74560,26 +74564,19 @@ module.exports = $root;
 /*!*****************************!*\
   !*** ./util/train_utils.js ***!
   \*****************************/
-/*! exports provided: timeRatio, dist, interpolate */
+/*! exports provided: timeRatio, interpolate, getVelocity */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeRatio", function() { return timeRatio; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dist", function() { return dist; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeRatio", function() { return timeRatio; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getVelocity", function() { return getVelocity; });
 function timeRatio(timeFrom, timeTo) {
   const routeTime = (timeTo - timeFrom) * 1000;
   const currentTime = (timeTo * 1000) - new Date();
   // if currentTime is negative train has passed the station
   return (currentTime / routeTime);
-}
-
-function dist(from, to) {
-  const dx = to.lat - from.lat;
-  const dy = to.lng - from.lng;
-  const dist = Math.sqrt((dx * dx) + (dy * dy));
-  return dist;
 }
 
 function interpolate(from, to, r) {
@@ -74588,6 +74585,17 @@ function interpolate(from, to, r) {
   return { lat: lat, lng: lng };
 }
 
+function getVelocity(toStation, currentPos, timeOfArrival) {
+  const dLat = toStation.lat - currentPos.lat;
+  const dLng = toStation.lng - currentPos.lng;
+  const disp = [dLat, dLng];
+  const t = (timeOfArrival * 1000) - new Date();
+  const v = [(disp[0] / t), (disp[1] / t)];
+  console.log(v);
+  return v;
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
