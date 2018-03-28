@@ -70048,7 +70048,7 @@ class Train {
   constructor(map, feed, trainId) {
     this.trainLabel = trainId[7];
 
-    this.setTrainState(feed);
+    this.initialize(feed);
 
     // realtime state of train
     this.stops;
@@ -70058,8 +70058,6 @@ class Train {
     this.fromStation;
     this.toStation;
     this.status;
-
-    this.setMarkerState();
 
     // estimated state of train
     this.mapFrom;
@@ -70079,13 +70077,18 @@ class Train {
     });
   }
 
+  initialize(feed) {
+    this.setTrainState(feed);
+    this.setMarkerState();
+    this.setVelocity();
+  }
+
   setTrainState(feed) {
     this.stops = feed.tripUpdate.stopTimeUpdate;
     this.realtime = feed.vehicle ? feed.vehicle.timestamp : 0;
 
     let previousStop;
     let nextStop;
-
     for (let i = 0; i < this.stops.length; i++) {
       const stop = this.stops[i];
       if (stop.departure && this.realtime >= stop.departure.time) {
@@ -70119,7 +70122,7 @@ class Train {
 
   setMarkerState() {
     let realtimePos;
-
+    let newVelocity;
     if (this.status === "inTransit") {
       const from = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.fromStation);
       const to = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.toStation);
@@ -70127,18 +70130,20 @@ class Train {
       realtimePos = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["interpolate"])(from, to, tr);
     } else if (this.status === "lastStop" || this.status === "idle") {
       realtimePos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.fromStation);
+      newVelocity = [0, 0];
     }
-
     this.mapFrom = realtimePos;
+  }
+
+  setVelocity() {
+    newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["getVelocity"])(to, )
   }
 
   step(timeDelta) {
     // timeDelta is number of milliseconds since last move
     // if the computer is busy the time delta will be larger
     // velocity of object is how far it should move in 1/60th of a second
-
     if (this.status != "inTransit") return;
-
     const velocityScale = timeDelta / (1000 / 60),
       offsetLat = this.velocity[0] * velocityScale,
       offsetLng = this.velocity[1] * velocityScale,
