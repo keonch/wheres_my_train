@@ -13,8 +13,20 @@ export default class Store {
       if (!this.state.trains[trainId]) {
         this.state.trains[trainId] = new Train(this.state.map, feed[trainId], trainId);
       } else {
-        this.state.trains[trainId].update(feed[trainId]);
+        this.state.trains[trainId].setTrainState(feed[trainId]);
       }
     });
+  }
+
+  animate(time) {
+    const timeDelta = time - this.lastTime;
+
+    Object.keys(this.state.trains).forEach((train) => {
+      train.step(timeDelta);
+      // train.movePosition();
+    });
+    this.lastTime = time;
+
+    requestAnimationFrame(this.animate.bind(this));
   }
 }

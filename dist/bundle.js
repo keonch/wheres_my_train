@@ -70036,9 +70036,11 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
-/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
-/* harmony import */ var _assets_train_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/train_icons */ "./assets/train_icons.js");
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony import */ var _assets_train_icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons */ "./assets/train_icons.js");
+/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
+/* harmony import */ var _util_train_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/train_utils */ "./util/train_utils.js");
+
 
 
 
@@ -70046,59 +70048,106 @@ class Train {
   constructor(map, feed, trainId) {
     this.trainLabel = trainId[7];
 
-    this.setupTrainFeed(feed);
+    this.setTrainState(feed);
 
+    // realtime state of train
     this.stops;
     this.realtime;
     this.realtimeFromStation;
     this.realtimeToStation;
+    this.fromStation;
+    this.toStation;
+    this.status;
+
+    this.getRealtimePosition();
+
+    // estimated state of train
+    this.mapFrom;
+    this.mapTo;
 
     this.marker = new google.maps.Marker({
-      position: {lat: this.realtimeFromStation.stop_lat, lng: this.realtimeFromStation.stop_lon},
+      position: {
+        lat: this.mapFrom.lat,
+        lng: this.mapFrom.lng
+      },
       map: map,
       icon: {
-        url: _assets_train_icons__WEBPACK_IMPORTED_MODULE_1__["default"][this.trainLabel],
-        scaledSize: new google.maps.Size(10, 10)
+        url: _assets_train_icons__WEBPACK_IMPORTED_MODULE_0__["default"][this.trainLabel],
+        scaledSize: new google.maps.Size(20, 20)
       }
     });
-    this.markerPosition = this.marker.getPosition().toJSON();
   }
 
-  setupTrainFeed(feed) {
+  setTrainState(feed) {
     this.stops = feed.tripUpdate.stopTimeUpdate;
-    this.realtime = this.getTimestamp(feed.vehicle);
-    this.updateRealtimeStations();
-  }
+    this.realtime = feed.vehicle ? feed.vehicle.timestamp : 0;
 
-  getTimestamp(vehicleFeed) {
-    if (vehicleFeed) {
-      return vehicleFeed.timestamp;
-    } else {
-      return 0;
-    }
-  }
-
-  updateRealtimeStations() {
     let previousStop;
     let nextStop;
+
     for (let i = 0; i < this.stops.length; i++) {
-      if (this.stops[i].departure && this.realtime >= this.stops[i].departure.time) {
-        previousStop = this.stops[i];
-      } else if (this.stops[i].arrival && this.realtime <= this.stops[i].arrival.time) {
-        nextStop = this.stops[i];
+      const stop = this.stops[i];
+      if (stop.departure && this.realtime >= stop.departure.time) {
+        previousStop = stop;
+      } else if (stop.arrival && this.realtime <= stop.arrival.time) {
+        nextStop = stop;
         break;
       }
     }
-    if (!previousStop) previousStop = this.stops[0];
-    this.realtimeFromStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_0__["getStationById"])(previousStop.stopId);
-    if (nextStop) this.realtimeToStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_0__["getStationById"])(nextStop.stopId);
+
+    if (!previousStop && nextStop) {
+      this.realtimeToStation = nextStop.arrival.time;
+      this.fromStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(nextStop.stopId);
+      this.status = "idle";
+    } else if (previousStop && nextStop) {
+      this.realtimeFromStation = previousStop.departure.time;
+      this.realtimeToStation = nextStop.arrival.time;
+      this.fromStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(previousStop.stopId);
+      this.toStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(nextStop.stopId);
+      this.status = "inTransit";
+    } else if (previousStop && !nextStop) {
+      this.realtimeFromStation = previousStop.arrival.time;
+      this.fromStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(previousStop.stopId);
+      this.status = "lastStop"
+    }
   }
 
-  update(feed) {
-    this.setupTrainFeed(feed);
+  getRealtimePosition() {
+    let realtimePos;
+
+    if (this.status === "inTransit") {
+      const from = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.fromStation);
+      const to = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.toStation);
+      const tr = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["timeRatio"])(this.realtimeFromStation, this.realtimeToStation)
+      realtimePos = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["interpolate"])(from, to, tr);
+    } else if (this.status === "lastStop" || this.status === "idle") {
+      realtimePos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.fromStation);
+    }
+
+    console.log(realtimePos);
+    console.log(this);
+    this.mapFrom = realtimePos;
+  }
+
+  step(timeDelta) {
+    // timeDelta is number of milliseconds since last move
+    // if the computer is busy the time delta will be larger
+    // velocity of object is how far it should move in 1/60th of a second
+    const velocityScale = timeDelta / (1000 / 60),
+        offsetLat = this.velocity[0] * velocityScale,
+        offsetLng = this.velocity[1] * velocityScale,
+        lat = this.marker.getMarkerPosition() + offsetLat,
+        lng = this.marker.getMarkerPosition() + offsetLng,
+        stepPosition = { lat: lat, lng: lng }
+    this.marker.setPosition(stepPosition);
+  }
+
+  getMarkerPosition() {
+    return this.marker.getPosition().toJSON();
   }
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -70128,9 +70177,21 @@ class Store {
       if (!this.state.trains[trainId]) {
         this.state.trains[trainId] = new _src_train__WEBPACK_IMPORTED_MODULE_0__["default"](this.state.map, feed[trainId], trainId);
       } else {
-        this.state.trains[trainId].update(feed[trainId]);
+        this.state.trains[trainId].setTrainState(feed[trainId]);
       }
     });
+  }
+
+  animate(time) {
+    const timeDelta = time - this.lastTime;
+
+    Object.keys(this.state.trains).forEach((train) => {
+      train.step(timeDelta);
+      // train.movePosition();
+    });
+    this.lastTime = time;
+
+    requestAnimationFrame(this.animate.bind(this));
   }
 }
 
@@ -70141,13 +70202,14 @@ class Store {
 /*!****************************!*\
   !*** ./util/data_utils.js ***!
   \****************************/
-/*! exports provided: parseFeed, getStationById */
+/*! exports provided: parseFeed, getStationById, getLatLng */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStationById", function() { return getStationById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatLng", function() { return getLatLng; });
 /* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
 
 
@@ -70169,8 +70231,14 @@ function parseFeed(feed) {
 
 function getStationById(stationId) {
   let station = _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][stationId];
+
+  // placeholder station
   if (station === undefined) station = {"stop_id": 101, "stop_name": "Van Cortlandt Park - 242 St", "stop_lat": 40.889248, "stop_lon": -73.898583, "location_type": 1};
   return station;
+}
+
+function getLatLng(station) {
+  return { lat: station.stop_lat, lng: station.stop_lon };
 }
 
 
@@ -74484,6 +74552,41 @@ $root.transit_realtime = (function() {
 })();
 
 module.exports = $root;
+
+
+/***/ }),
+
+/***/ "./util/train_utils.js":
+/*!*****************************!*\
+  !*** ./util/train_utils.js ***!
+  \*****************************/
+/*! exports provided: timeRatio, dist, interpolate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeRatio", function() { return timeRatio; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dist", function() { return dist; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
+function timeRatio(timeFrom, timeTo) {
+  const routeTime = (timeTo - timeFrom) * 1000;
+  const currentTime = (timeTo * 1000) - new Date();
+  // if currentTime is negative train has passed the station
+  return (currentTime / routeTime);
+}
+
+function dist(from, to) {
+  const dx = to.lat - from.lat;
+  const dy = to.lng - from.lng;
+  const dist = Math.sqrt((dx * dx) + (dy * dy));
+  return dist;
+}
+
+function interpolate(from, to, r) {
+  const lat = from.lat + (to.lat - from.lat) * r;
+  const lng = from.lng + (to.lng - from.lng) * r;
+  return { lat: lat, lng: lng };
+}
 
 
 /***/ }),
