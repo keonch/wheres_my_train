@@ -17,6 +17,5 @@ export function getVelocity(toStation, currentPos, timeOfArrival) {
   const disp = [dLat, dLng];
   const t = (timeOfArrival * 1000) - new Date();
   const v = [(disp[0] / t), (disp[1] / t)];
-  console.log(v);
   return v;
 }

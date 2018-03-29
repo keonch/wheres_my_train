@@ -20,14 +20,20 @@ export function initMap() {
         elementType: "labels",
         stylers: [{ visibility: "off" }]
       },
-      // {
-      //   featureType: "transit",
-      //   elementType: "labels",
-      //   stylers: [{ visibility: "off" }]
-      // },
       {
         elementType: 'geometry',
-        stylers: [{color: '#f5f5f5'}]
+        stylers: [{color: '#3d3d3d'}]
+        // stylers: [{color: '#f5f5f5'}]
+      },
+      {
+        featureType: 'administrative.all',
+        elementType: 'labels.text.stroke',
+        stylers: [{visibility: "off"}]
+      },
+      {
+        featureType: 'administrative.all',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#ffffff'}]
       },
       {
         featureType: 'transit.line',
@@ -35,8 +41,13 @@ export function initMap() {
         stylers: [{color: '#e5e5e5'}]
       },
       {
+        featureType: 'transit.station',
+        stylers: [{ visibility: "off" }]
+      },
+      {
         featureType: 'water',
         elementType: 'geometry',
+        // stylers: [{color: '#c9c9c9'}]
         stylers: [{color: '#c9c9c9'}]
       }
     ]

@@ -18,11 +18,16 @@ export default class Store {
     });
   }
 
+  start() {
+    // start the animation
+    requestAnimationFrame(this.animate.bind(this));
+  }
+
   animate(time) {
     const timeDelta = time - this.lastTime;
 
-    Object.keys(this.state.trains).forEach((train) => {
-      train.step(timeDelta);
+    Object.keys(this.state.trains).forEach((trainId) => {
+      this.state.trains[trainId].step(timeDelta);
     });
     this.lastTime = time;
 

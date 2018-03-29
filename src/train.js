@@ -6,26 +6,110 @@ export default class Train {
   constructor(map, feed, trainId) {
     this.trainLabel = trainId[7];
 
-    this.initialize(feed);
 
-    // realtime state of train
+    // vehicleTime state of train
     this.stops;
-    this.realtime;
-    this.realtimeFromStation;
-    this.realtimeToStation;
-    this.fromStation;
-    this.toStation;
+    this.vehicleTime;
+    this.prevStationTime;
+    this.nextStationTime;
+    this.prevStation;
+    this.nextStation;
     this.status;
 
     // estimated state of train
-    this.mapFrom;
-    this.mapTo;
+    this.marker = null;
+    this.startPos;
+    this.nextPos;
     this.velocity = [0, 0];
 
+    this.initialize(map, feed);
+  }
+
+  initialize(map, feed) {
+    this.setTrainState(feed);
+    this.setRenderState();
+    this.setVelocity();
+    this.setMarker(map);
+  }
+
+  update(feed) {
+    this.setTrainState(feed);
+    this.updateRenderState();
+    this.updateVelocity();
+  }
+
+  setTrainState(feed) {
+    this.stops = feed.tripUpdate.stopTimeUpdate;
+    this.vehicleTime = feed.vehicle ? feed.vehicle.timestamp : 0;
+
+    let previousStop;
+    let nextStop;
+    for (let i = 0; i < this.stops.length; i++) {
+      const stop = this.stops[i];
+      if (stop.departure && this.vehicleTime >= stop.departure.time) {
+        previousStop = stop;
+      } else if (stop.arrival && this.vehicleTime <= stop.arrival.time) {
+        nextStop = stop;
+        break;
+      }
+    }
+
+    // add train delays if vehicleTime is << current time(new Date)
+
+    if (!previousStop && nextStop) {
+      this.nextStationTime = nextStop.arrival.time;
+      this.prevStation = getStationById(nextStop.stopId);
+      this.nextStation = this.prevStation;
+      this.status = "idle";
+    } else if (previousStop && nextStop) {
+      this.prevStationTime = previousStop.departure.time;
+      this.nextStationTime = nextStop.arrival.time;
+      this.prevStation = getStationById(previousStop.stopId);
+      this.nextStation = getStationById(nextStop.stopId);
+      this.status = "inTransit";
+    } else if (previousStop && !nextStop) {
+      this.prevStationTime = previousStop.arrival.time;
+      this.prevStation = getStationById(previousStop.stopId);
+      this.nextStation = this.prevStation;
+      this.status = "lastStop"
+    } else if (!previousStop && !nextStop) {
+      this.prevStationTime = this.stops[0].arrival.time;
+      this.prevStation = getStationById(this.stops[0].stopId);
+      this.nextStation = this.prevStation;
+      this.status = "idle"
+    }
+  }
+
+  setRenderState() {
+    let vehicleTimePos;
+    if (this.status === "inTransit") {
+      const from = getLatLng(this.prevStation);
+      const to = getLatLng(this.nextStation);
+      const tr = timeRatio(this.prevStationTime, this.nextStationTime)
+      if (tr >= 0) {
+        vehicleTimePos = interpolate(from, to, tr);
+      } else {
+        vehicleTimePos = to;
+      }
+      this.nextPos = to;
+    } else if (this.status === "lastStop" || this.status === "idle") {
+      vehicleTimePos = getLatLng(this.prevStation);
+    }
+    this.startPos = vehicleTimePos;
+  }
+
+  setVelocity() {
+    if (this.status === "inTransit") {
+      const newVelocity = getVelocity(this.nextPos, this.startPos, this.nextStationTime);
+      this.velocity = [newVelocity[0], newVelocity[1]];
+    }
+  }
+
+  setMarker(map) {
     this.marker = new google.maps.Marker({
       position: {
-        lat: this.mapFrom.lat,
-        lng: this.mapFrom.lng
+        lat: this.startPos.lat,
+        lng: this.startPos.lng
       },
       map: map,
       icon: {
@@ -35,83 +119,35 @@ export default class Train {
     });
   }
 
-  initialize(feed) {
-    this.setTrainState(feed);
-    this.setMarkerState();
-    this.setVelocity();
+  updateRenderState() {
+    this.nextPos = getLatLng(this.nextStation);
   }
 
-  setTrainState(feed) {
-    this.stops = feed.tripUpdate.stopTimeUpdate;
-    this.realtime = feed.vehicle ? feed.vehicle.timestamp : 0;
-
-    let previousStop;
-    let nextStop;
-    for (let i = 0; i < this.stops.length; i++) {
-      const stop = this.stops[i];
-      if (stop.departure && this.realtime >= stop.departure.time) {
-        previousStop = stop;
-      } else if (stop.arrival && this.realtime <= stop.arrival.time) {
-        nextStop = stop;
-        break;
-      }
-    }
-
-    if (!previousStop && nextStop) {
-      this.realtimeToStation = nextStop.arrival.time;
-      this.fromStation = getStationById(nextStop.stopId);
-      this.status = "idle";
-    } else if (previousStop && nextStop) {
-      this.realtimeFromStation = previousStop.departure.time;
-      this.realtimeToStation = nextStop.arrival.time;
-      this.fromStation = getStationById(previousStop.stopId);
-      this.toStation = getStationById(nextStop.stopId);
-      this.status = "inTransit";
-    } else if (previousStop && !nextStop) {
-      this.realtimeFromStation = previousStop.arrival.time;
-      this.fromStation = getStationById(previousStop.stopId);
-      this.status = "lastStop"
-    } else if (!previousStop && !nextStop) {
-      this.realtimeFromStation = this.stops[0].arrival.time;
-      this.fromStation = getStationById(this.stops[0].stopId);
-      this.status = "idle"
-    }
+  updateVelocity() {
+    // if (this.status === "inTransit") {
+    const newVelocity = getVelocity(this.nextPos, this.startPos, this.nextStationTime);
+    this.velocity = [newVelocity[0], newVelocity[1]];
+    // }
+    // else if (this.status === "lastStop" && this.nextPos === this.startPos) {
+    //   const newVelocity = getVelocity(this.nextPos, this.startPos, this.nextStationTime);
+    //   this.velocity = [(this.velocity[0] + newVelocity[0]), (this.velocity[1] + newVelocity[1])];
+    // }
   }
-
-  setMarkerState() {
-    let realtimePos;
-    let newVelocity;
-    if (this.status === "inTransit") {
-      const from = getLatLng(this.fromStation);
-      const to = getLatLng(this.toStation);
-      const tr = timeRatio(this.realtimeFromStation, this.realtimeToStation)
-      realtimePos = interpolate(from, to, tr);
-    } else if (this.status === "lastStop" || this.status === "idle") {
-      realtimePos = getLatLng(this.fromStation);
-      newVelocity = [0, 0];
-    }
-    this.mapFrom = realtimePos;
-  }
-
-  setVelocity() {
-    newVelocity = getVelocity(to, )
-  }
+  // if ((this.status === "idle" || this.status === "lastStop") && markerPosition === this.nextPos) {
+  //   this.velocity = [0, 0];
+  // const markerPosition = (this.marker) ? this.marker.getPosition().toJSON() : null;
 
   step(timeDelta) {
     // timeDelta is number of milliseconds since last move
     // if the computer is busy the time delta will be larger
     // velocity of object is how far it should move in 1/60th of a second
     if (this.status != "inTransit") return;
-    const velocityScale = timeDelta / (1000 / 60),
-      offsetLat = this.velocity[0] * velocityScale,
-      offsetLng = this.velocity[1] * velocityScale,
-      lat = this.marker.getMarkerPosition() + offsetLat,
-      lng = this.marker.getMarkerPosition() + offsetLng,
-      stepPosition = { lat: lat, lng: lng }
+    const velocityScale = timeDelta / (1000 / 60);
+    const offsetLat = this.velocity[0] * velocityScale;
+    const offsetLng = this.velocity[1] * velocityScale;
+    const mapLat = this.marker.getPosition().toJSON().lat + offsetLat;
+    const mapLng = this.marker.getPosition().toJSON().lng + offsetLng;
+    const stepPosition = { lat: mapLat, lng: mapLng };
     this.marker.setPosition(stepPosition);
-  }
-
-  getMarkerPosition() {
-    return this.marker.getPosition().toJSON();
   }
 }
