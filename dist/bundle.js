@@ -70190,22 +70190,18 @@ class Train {
   }
 
   setMarker(map) {
-    // const icon = {
-    //   url: trainIcons[this.trainLabel],
-    //   scaledSize: new google.maps.Size(20, 20)
-    // }
     const color = _assets_train__WEBPACK_IMPORTED_MODULE_0__["trainColors"][this.trainLabel];
-    const point = new google.maps.Point(36, 15);
+    const point = new google.maps.Point(32, 17);
 
     const trainSymbol = {
       path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
-      rotation: 45,
+      rotation: 138,
       strokeColor: '#666666',
       strokeWeight: 1,
       fillColor: color,
       fillOpacity: 1,
       labelOrigin: point,
-      scale: .4
+      scale: .5
     };
 
     const trainLabel = {
