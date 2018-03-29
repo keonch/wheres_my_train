@@ -13,7 +13,7 @@ export default class Store {
       if (!this.state.trains[trainId]) {
         this.state.trains[trainId] = new Train(this.state.map, feed[trainId], trainId);
       } else {
-        this.state.trains[trainId].setTrainState(feed[trainId]);
+        this.state.trains[trainId].update(feed[trainId]);
       }
     });
   }

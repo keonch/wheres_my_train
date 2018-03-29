@@ -2,7 +2,6 @@ import stations from '../data/stations';
 
 export function parseFeed(feed) {
   let trainFeeds = {};
-
   feed.entity.forEach((e) => {
     let tripId;
     if (e.vehicle) {
