@@ -70181,18 +70181,9 @@ class Train {
   }
 
   updateVelocity() {
-    // if (this.status === "inTransit") {
-    const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["getVelocity"])(this.nextPos, this.startPos, this.nextStationTime);
+    const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["getVelocity"])(this.nextPos, this.marker.getPosition().toJSON(), this.nextStationTime);
     this.velocity = [newVelocity[0], newVelocity[1]];
-    // }
-    // else if (this.status === "lastStop" && this.nextPos === this.startPos) {
-    //   const newVelocity = getVelocity(this.nextPos, this.startPos, this.nextStationTime);
-    //   this.velocity = [(this.velocity[0] + newVelocity[0]), (this.velocity[1] + newVelocity[1])];
-    // }
   }
-  // if ((this.status === "idle" || this.status === "lastStop") && markerPosition === this.nextPos) {
-  //   this.velocity = [0, 0];
-  // const markerPosition = (this.marker) ? this.marker.getPosition().toJSON() : null;
 
   step(timeDelta) {
     // timeDelta is number of milliseconds since last move
