@@ -1,4 +1,4 @@
-const trainIcons = {
+export const trainIcons = {
   "A": "http://web.mta.info/siteimages/subwaybullets/36px/A.png",
   "B": "http://web.mta.info/siteimages/subwaybullets/36px/B.png",
   "C": "http://web.mta.info/siteimages/subwaybullets/36px/C.png",
@@ -26,4 +26,29 @@ const trainIcons = {
   "S": "http://www.mta.info/sites/default/files/mtaimgs/sir_36px.png",
   "G": "http://www.mta.info/sites/default/files/mtaimgs/g_36px.png"
 }
-export default trainIcons;
+export const trainColors = {
+  "A": "#00008E",
+  "B": "#CC8400",
+  "C": "#00008E",
+  "D": "#CC8400",
+  "E": "#00008E",
+  "F": "#CC8400",
+  "H": "#00008E",
+  "J": "#5B3B00",
+  "L": "#BFBFBF",
+  "M": "#CC8400",
+  "N": "#CCCC00",
+  "Q": "#CCCC00",
+  "R": "#CCCC00",
+  "W": "#CCCC00",
+  "Z": "#5B3B00",
+  "1": "#B70000",
+  "2": "#B70000",
+  "3": "#B70000",
+  "4": "#006600",
+  "5": "#006600",
+  "6": "#006600",
+  "7": "#660066",
+  "S": "#0000CE",
+  "G": "#59B759"
+};

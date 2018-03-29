@@ -1,4 +1,4 @@
-import trainIcons from '../assets/train_icons';
+import { trainIcons, trainColors } from '../assets/train';
 import { getStationById, getLatLng } from '../util/data_utils';
 import { getVelocity, timeRatio, interpolate } from '../util/train_utils';
 
@@ -106,16 +106,37 @@ export default class Train {
   }
 
   setMarker(map) {
+    // const icon = {
+    //   url: trainIcons[this.trainLabel],
+    //   scaledSize: new google.maps.Size(20, 20)
+    // }
+    const color = trainColors[this.trainLabel];
+    const point = new google.maps.Point(36, 15);
+
+    const trainSymbol = {
+      path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
+      rotation: 45,
+      strokeColor: '#666666',
+      strokeWeight: 1,
+      fillColor: color,
+      fillOpacity: 1,
+      labelOrigin: point,
+      scale: .4
+    };
+
+    const trainLabel = {
+      text: this.trainLabel,
+      color: '#ffffff'
+    }
+
     this.marker = new google.maps.Marker({
       position: {
         lat: this.startPos.lat,
         lng: this.startPos.lng
       },
       map: map,
-      icon: {
-        url: trainIcons[this.trainLabel],
-        scaledSize: new google.maps.Size(20, 20)
-      }
+      icon: trainSymbol,
+      label: trainLabel
     });
   }
 

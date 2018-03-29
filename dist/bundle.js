@@ -71,15 +71,17 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/train_icons.js":
-/*!*******************************!*\
-  !*** ./assets/train_icons.js ***!
-  \*******************************/
-/*! exports provided: default */
+/***/ "./assets/train.js":
+/*!*************************!*\
+  !*** ./assets/train.js ***!
+  \*************************/
+/*! exports provided: trainIcons, trainColors */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trainIcons", function() { return trainIcons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trainColors", function() { return trainColors; });
 const trainIcons = {
   "A": "http://web.mta.info/siteimages/subwaybullets/36px/A.png",
   "B": "http://web.mta.info/siteimages/subwaybullets/36px/B.png",
@@ -108,7 +110,32 @@ const trainIcons = {
   "S": "http://www.mta.info/sites/default/files/mtaimgs/sir_36px.png",
   "G": "http://www.mta.info/sites/default/files/mtaimgs/g_36px.png"
 }
-/* harmony default export */ __webpack_exports__["default"] = (trainIcons);
+const trainColors = {
+  "A": "#00008E",
+  "B": "#CC8400",
+  "C": "#00008E",
+  "D": "#CC8400",
+  "E": "#00008E",
+  "F": "#CC8400",
+  "H": "#00008E",
+  "J": "#5B3B00",
+  "L": "#BFBFBF",
+  "M": "#CC8400",
+  "N": "#CCCC00",
+  "Q": "#CCCC00",
+  "R": "#CCCC00",
+  "W": "#CCCC00",
+  "Z": "#5B3B00",
+  "1": "#B70000",
+  "2": "#B70000",
+  "3": "#B70000",
+  "4": "#006600",
+  "5": "#006600",
+  "6": "#006600",
+  "7": "#660066",
+  "S": "#0000CE",
+  "G": "#59B759"
+};
 
 
 /***/ }),
@@ -70052,7 +70079,7 @@ function requestMta(store, req) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
-/* harmony import */ var _assets_train_icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons */ "./assets/train_icons.js");
+/* harmony import */ var _assets_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train */ "./assets/train.js");
 /* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
 /* harmony import */ var _util_train_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/train_utils */ "./util/train_utils.js");
 
@@ -70163,16 +70190,37 @@ class Train {
   }
 
   setMarker(map) {
+    // const icon = {
+    //   url: trainIcons[this.trainLabel],
+    //   scaledSize: new google.maps.Size(20, 20)
+    // }
+    const color = _assets_train__WEBPACK_IMPORTED_MODULE_0__["trainColors"][this.trainLabel];
+    const point = new google.maps.Point(36, 15);
+
+    const trainSymbol = {
+      path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
+      rotation: 45,
+      strokeColor: '#666666',
+      strokeWeight: 1,
+      fillColor: color,
+      fillOpacity: 1,
+      labelOrigin: point,
+      scale: .4
+    };
+
+    const trainLabel = {
+      text: this.trainLabel,
+      color: '#ffffff'
+    }
+
     this.marker = new google.maps.Marker({
       position: {
         lat: this.startPos.lat,
         lng: this.startPos.lng
       },
       map: map,
-      icon: {
-        url: _assets_train_icons__WEBPACK_IMPORTED_MODULE_0__["default"][this.trainLabel],
-        scaledSize: new google.maps.Size(20, 20)
-      }
+      icon: trainSymbol,
+      label: trainLabel
     });
   }
 
