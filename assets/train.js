@@ -1,21 +1,21 @@
 export const trainIcons = {
   "A": "http://web.mta.info/siteimages/subwaybullets/36px/A.png",
-  "B": "http://web.mta.info/siteimages/subwaybullets/36px/B.png",
   "C": "http://web.mta.info/siteimages/subwaybullets/36px/C.png",
-  "D": "http://web.mta.info/siteimages/subwaybullets/36px/D.png",
   "E": "http://web.mta.info/siteimages/subwaybullets/36px/E.png",
-  "F": "http://web.mta.info/siteimages/subwaybullets/36px/F.png",
   "H": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/NYCS-bull-trans-H.svg/600px-NYCS-bull-trans-H.svg.png",
-  "J": "http://web.mta.info/siteimages/subwaybullets/36px/J.png",
-  "L": "http://web.mta.info/siteimages/subwaybullets/36px/L.png",
+  "B": "http://web.mta.info/siteimages/subwaybullets/36px/B.png",
+  "D": "http://web.mta.info/siteimages/subwaybullets/36px/D.png",
+  "F": "http://web.mta.info/siteimages/subwaybullets/36px/F.png",
   "M": "http://www.mta.info/sites/default/files/mtaimgs/m_36px.png",
+  "J": "http://web.mta.info/siteimages/subwaybullets/36px/J.png",
+  "Z": "http://web.mta.info/siteimages/subwaybullets/36px/Z.png",
+  "L": "http://web.mta.info/siteimages/subwaybullets/36px/L.png",
   "N": "http://web.mta.info/siteimages/subwaybullets/36px/N.png",
   "Q": "http://web.mta.info/siteimages/subwaybullets/36px/Q.png",
   "R": "http://web.mta.info/siteimages/subwaybullets/36px/R.png",
   "W": "http://web.mta.info/siteimages/subwaybullets/36px/w.png",
   // "S": "http://web.mta.info/siteimages/subwaybullets/36px/S.png",
   "S": "http://web.mta.info/siteimages/subwaybullets/36px/S.png",
-  "Z": "http://web.mta.info/siteimages/subwaybullets/36px/Z.png",
   "1": "http://web.mta.info/siteimages/subwaybullets/36px/1.png",
   "2": "http://web.mta.info/siteimages/subwaybullets/36px/2.png",
   "3": "http://web.mta.info/siteimages/subwaybullets/36px/3.png",
@@ -26,6 +26,7 @@ export const trainIcons = {
   "S": "http://www.mta.info/sites/default/files/mtaimgs/sir_36px.png",
   "G": "http://www.mta.info/sites/default/files/mtaimgs/g_36px.png"
 }
+
 export const trainColors = {
   "A": {
     trainColor: "#00008E",

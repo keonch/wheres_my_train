@@ -38,7 +38,8 @@ export function initMap() {
       {
         featureType: 'transit.line',
         elementType: 'geometry',
-        stylers: [{color: '#e5e5e5'}]
+        // stylers: [{color: '#e5e5e5'}]
+        stylers: [{ visibility: "off" }]
       },
       {
         featureType: 'transit.station',
