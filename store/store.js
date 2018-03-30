@@ -5,7 +5,8 @@ export default class Store {
   constructor(map) {
     this.state = {
       map: map,
-      trains: {}
+      trains: {},
+      routes: {}
     }
   }
 
