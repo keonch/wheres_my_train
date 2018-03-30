@@ -23,7 +23,7 @@ export const trainIcons = {
   "5": "http://web.mta.info/siteimages/subwaybullets/36px/5.png",
   "6": "http://web.mta.info/siteimages/subwaybullets/36px/6.png",
   "7": "http://web.mta.info/siteimages/subwaybullets/36px/7.png",
-  "S": "http://www.mta.info/sites/default/files/mtaimgs/sir_36px.png",
+  "S": "assets/images/sir.png",
   "G": "http://www.mta.info/sites/default/files/mtaimgs/g_36px.png"
 }
 

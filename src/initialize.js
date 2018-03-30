@@ -5,7 +5,7 @@ import Store from '../store/store';
 function initialize() {
   const map = initMap();
   const store = new Store(map);
-  fetchMtaData(store);
+  // fetchMtaData(store);
   store.start();
   // const fetch = setInterval(() => fetchMtaData(store), 20000);
   window.store = store;

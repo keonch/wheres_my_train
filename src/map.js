@@ -2,8 +2,8 @@ import stations from '../data/stations';
 
 export function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.7, lng: -73.99},
-    zoom: 11.3,
+    center: {lat: 40.7, lng: -73.96},
+    zoom: 12,
     styles: [
       {
         featureType: "poi",
@@ -34,6 +34,11 @@ export function initMap() {
         featureType: 'administrative.all',
         elementType: 'labels.text.fill',
         stylers: [{color: '#ffffff'}]
+      },
+      {
+        featureType: 'administrative.neighborhood',
+        elementType: 'labels.text.fill',
+        stylers: [{visibility: "off"}]
       },
       {
         featureType: 'transit.line',

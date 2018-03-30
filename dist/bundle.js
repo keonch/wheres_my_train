@@ -107,7 +107,7 @@ const trainIcons = {
   "5": "http://web.mta.info/siteimages/subwaybullets/36px/5.png",
   "6": "http://web.mta.info/siteimages/subwaybullets/36px/6.png",
   "7": "http://web.mta.info/siteimages/subwaybullets/36px/7.png",
-  "S": "http://www.mta.info/sites/default/files/mtaimgs/sir_36px.png",
+  "S": "assets/images/sir.png",
   "G": "http://www.mta.info/sites/default/files/mtaimgs/g_36px.png"
 }
 
@@ -87075,7 +87075,7 @@ __webpack_require__.r(__webpack_exports__);
 function initialize() {
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
   const store = new _store_store__WEBPACK_IMPORTED_MODULE_2__["default"](map);
-  Object(_mta__WEBPACK_IMPORTED_MODULE_1__["fetchMtaData"])(store);
+  // fetchMtaData(store);
   store.start();
   // const fetch = setInterval(() => fetchMtaData(store), 20000);
   window.store = store;
@@ -87106,8 +87106,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.7, lng: -73.99},
-    zoom: 11.3,
+    center: {lat: 40.7, lng: -73.96},
+    zoom: 12,
     styles: [
       {
         featureType: "poi",
@@ -87138,6 +87138,11 @@ function initMap() {
         featureType: 'administrative.all',
         elementType: 'labels.text.fill',
         stylers: [{color: '#ffffff'}]
+      },
+      {
+        featureType: 'administrative.neighborhood',
+        elementType: 'labels.text.fill',
+        stylers: [{visibility: "off"}]
       },
       {
         featureType: 'transit.line',
