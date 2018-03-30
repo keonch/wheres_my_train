@@ -87042,51 +87042,24 @@ function extend() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _initialize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./initialize */ "./src/initialize.js");
-/* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
+/* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
+/* harmony import */ var _mta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mta */ "./src/mta.js");
+/* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/store */ "./store/store.js");
+
+
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  Object(_initialize__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  const iconDiv = document.getElementById('train-icons');
-  Object(_page_setup__WEBPACK_IMPORTED_MODULE_1__["default"])(iconDiv);
-});
-
-
-/***/ }),
-
-/***/ "./src/initialize.js":
-/*!***************************!*\
-  !*** ./src/initialize.js ***!
-  \***************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
-/* harmony import */ var _mta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mta */ "./src/mta.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/store */ "./store/store.js");
-
-
-
-
-function initialize() {
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
-  const store = new _store_store__WEBPACK_IMPORTED_MODULE_2__["default"](map);
-  // fetchMtaData(store);
+  const store = new _store_store__WEBPACK_IMPORTED_MODULE_3__["default"](map);
   store.start();
   // const fetch = setInterval(() => fetchMtaData(store), 20000);
   window.store = store;
   window.fetchMtaData = _mta__WEBPACK_IMPORTED_MODULE_1__["fetchMtaData"];
-  // function stopFetch() {
-  //   clearInterval(fetch);
-  // }
-  // window.stopFetch = stopFetch;
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (initialize);
+  Object(_page_setup__WEBPACK_IMPORTED_MODULE_2__["default"])(store.state);
+});
 
 
 /***/ }),
@@ -87268,9 +87241,12 @@ function requestMta(store, req) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train */ "./assets/train.js");
+/* harmony import */ var _util_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/utils */ "./util/utils.js");
 
 
-function setupTrainIcons(iconDiv) {
+
+function setupTrainIcons(state) {
+  const iconDiv = document.getElementById('train-icons');
   const rows = {
     row1: ["A", "C", "E", "B", "D", "F", "M", "L"],
     row2: ["1", "2", "3", "4", "5", "6", "7"],
@@ -87283,8 +87259,9 @@ function setupTrainIcons(iconDiv) {
     row.forEach((trainLabel) => {
       const url = _assets_train__WEBPACK_IMPORTED_MODULE_0__["trainIcons"][trainLabel];
       const trainIcon = document.createElement('img');
-      trainIcon.className = `train-label train-${trainLabel}`
+      trainIcon.className = `train-label train-${trainLabel}`;
       trainIcon.src = url;
+      trainIcon.addEventListener('click', () => Object(_util_utils__WEBPACK_IMPORTED_MODULE_1__["toggleTrains"])(trainLabel, state));
       rowDiv.appendChild(trainIcon);
     });
     iconDiv.appendChild(rowDiv);
@@ -87443,7 +87420,7 @@ class Train {
         lat: this.startPos.lat,
         lng: this.startPos.lng
       },
-      map: map,
+      map: null,
       icon: trainSymbol,
       label: trainLabel
     });
@@ -87477,6 +87454,15 @@ class Train {
     this.marker.setPosition(this.stepPosition);
   }
 
+  toggleMarker(map) {
+    let toggle;
+    if (this.marker.map) {
+      toggle = null;
+    } else {
+      toggle = map;
+    }
+    this.marker.setMap(toggle);
+  }
 }
 
 
@@ -91934,6 +91920,28 @@ function getVelocity(toStation, currentPos, timeOfArrival) {
   return v;
 }
 
+
+/***/ }),
+
+/***/ "./util/utils.js":
+/*!***********************!*\
+  !*** ./util/utils.js ***!
+  \***********************/
+/*! exports provided: toggleTrains */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleTrains", function() { return toggleTrains; });
+function toggleTrains(trainLabel, state) {
+  console.log("ToggleTrains");
+  Object.keys(state.trains).forEach((trainId) => {
+    const train = store.state.trains[trainId];
+    if (train.trainLabel === trainLabel) train.toggleMarker(state.map);
+  });
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

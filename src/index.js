@@ -1,8 +1,14 @@
-import initialize from './initialize';
+import { initMap } from './map';
+import { fetchMtaData } from './mta';
 import setupTrainIcons from './page_setup';
+import Store from '../store/store';
 
 document.addEventListener('DOMContentLoaded', () => {
-  initialize();
-  const iconDiv = document.getElementById('train-icons');
-  setupTrainIcons(iconDiv);
+  const map = initMap();
+  const store = new Store(map);
+  store.start();
+  // const fetch = setInterval(() => fetchMtaData(store), 20000);
+  window.store = store;
+  window.fetchMtaData = fetchMtaData;
+  setupTrainIcons(store.state);
 });

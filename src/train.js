@@ -132,7 +132,7 @@ export default class Train {
         lat: this.startPos.lat,
         lng: this.startPos.lng
       },
-      map: map,
+      map: null,
       icon: trainSymbol,
       label: trainLabel
     });
@@ -166,4 +166,13 @@ export default class Train {
     this.marker.setPosition(this.stepPosition);
   }
 
+  toggleMarker(map) {
+    let toggle;
+    if (this.marker.map) {
+      toggle = null;
+    } else {
+      toggle = map;
+    }
+    this.marker.setMap(toggle);
+  }
 }
