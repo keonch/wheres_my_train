@@ -27,28 +27,100 @@ export const trainIcons = {
   "G": "http://www.mta.info/sites/default/files/mtaimgs/g_36px.png"
 }
 export const trainColors = {
-  "A": "#00008E",
-  "B": "#CC8400",
-  "C": "#00008E",
-  "D": "#CC8400",
-  "E": "#00008E",
-  "F": "#CC8400",
-  "H": "#00008E",
-  "J": "#5B3B00",
-  "L": "#BFBFBF",
-  "M": "#CC8400",
-  "N": "#CCCC00",
-  "Q": "#CCCC00",
-  "R": "#CCCC00",
-  "W": "#CCCC00",
-  "Z": "#5B3B00",
-  "1": "#B70000",
-  "2": "#B70000",
-  "3": "#B70000",
-  "4": "#006600",
-  "5": "#006600",
-  "6": "#006600",
-  "7": "#660066",
-  "S": "#0000CE",
-  "G": "#59B759"
+  "A": {
+    trainColor: "#00008E",
+    labelColor: "#ffffff"
+  },
+  "B": {
+    trainColor: "#CC8400",
+    labelColor: "#ffffff"
+  },
+  "C": {
+    trainColor: "#00008E",
+    labelColor: "#ffffff"
+  },
+  "D": {
+    trainColor: "#CC8400",
+    labelColor: "#ffffff"
+  },
+  "E": {
+    trainColor: "#00008E",
+    labelColor: "#ffffff"
+  },
+  "F": {
+    trainColor: "#CC8400",
+    labelColor: "#ffffff"
+  },
+  "H": {
+    trainColor: "#00008E",
+    labelColor: "#ffffff"
+  },
+  "J": {
+    trainColor: "#5B3B00",
+    labelColor: "#ffffff"
+  },
+  "L": {
+    trainColor: "#BFBFBF",
+    labelColor: "#ffffff"
+  },
+  "M": {
+    trainColor: "#CC8400",
+    labelColor: "#ffffff"
+  },
+  "N": {
+    trainColor: "#CCCC00",
+    labelColor: "#000000"
+  },
+  "Q": {
+    trainColor: "#CCCC00",
+    labelColor: "#000000"
+  },
+  "R": {
+    trainColor: "#CCCC00",
+    labelColor: "#000000"
+  },
+  "W": {
+    trainColor: "#CCCC00",
+    labelColor: "#000000"
+  },
+  "Z": {
+    trainColor: "#5B3B00",
+    labelColor: "#ffffff"
+  },
+  "1": {
+    trainColor: "#B70000",
+    labelColor: "#ffffff"
+  },
+  "2": {
+    trainColor: "#B70000",
+    labelColor: "#ffffff"
+  },
+  "3": {
+    trainColor: "#B70000",
+    labelColor: "#ffffff"
+  },
+  "4": {
+    trainColor: "#006600",
+    labelColor: "#ffffff"
+  },
+  "5": {
+    trainColor: "#006600",
+    labelColor: "#ffffff"
+  },
+  "6": {
+    trainColor: "#006600",
+    labelColor: "#ffffff"
+  },
+  "7": {
+    trainColor: "#660066",
+    labelColor: "#ffffff"
+  },
+  "S": {
+    trainColor: "#0000CE",
+    labelColor: "#ffffff"
+  },
+  "G": {
+    trainColor: "#59B759",
+    labelColor: "#ffffff"
+  }
 };

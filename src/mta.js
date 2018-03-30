@@ -14,7 +14,6 @@ export function fetchMtaData(store) {
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=31',
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=36',
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=51'
-
   ];
 
   urls.forEach((url) => {
@@ -32,11 +31,13 @@ function requestMta(store, req) {
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       status = 200;
+      console.log("OK");
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
       const parsedFeed = parseFeed(feed);
       store.updateTrains(parsedFeed);
     } else {
       // setup a condition to break out of loop
+      console.log("refetching");
       window.setTimeout(() => requestMta(store, req), 3000);
     }
   });

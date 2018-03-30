@@ -5,11 +5,15 @@ import Store from '../store/store';
 function initialize() {
   const map = initMap();
   const store = new Store(map);
-  store.start();
   fetchMtaData(store);
-  setInterval(() => fetchMtaData(store), 20000);
+  store.start();
+  // const fetch = setInterval(() => fetchMtaData(store), 20000);
   window.store = store;
   window.fetchMtaData = fetchMtaData;
+  // function stopFetch() {
+  //   clearInterval(fetch);
+  // }
+  // window.stopFetch = stopFetch;
 }
 
 export default initialize;

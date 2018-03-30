@@ -6,7 +6,6 @@ export default class Train {
   constructor(map, feed, trainId) {
     this.trainLabel = trainId[7];
 
-
     // vehicleTime state of train
     this.stops;
     this.vehicleTime;
@@ -106,15 +105,16 @@ export default class Train {
   }
 
   setMarker(map) {
-    const color = trainColors[this.trainLabel];
-    const point = new google.maps.Point(32, 17);
+    const trainColor = trainColors[this.trainLabel].trainColor;
+    const labelColor = trainColors[this.trainLabel].labelColor;
+    const point = new google.maps.Point(30, 16);
 
     const trainSymbol = {
       path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
       rotation: 138,
       strokeColor: '#666666',
-      strokeWeight: 1,
-      fillColor: color,
+      strokeWeight: 3,
+      fillColor: trainColor,
       fillOpacity: 1,
       labelOrigin: point,
       scale: .5
@@ -122,8 +122,10 @@ export default class Train {
 
     const trainLabel = {
       text: this.trainLabel,
-      color: '#ffffff'
-    }
+      color: labelColor,
+      fontSize: "12px",
+      fontWeight: "700"
+    };
 
     this.marker = new google.maps.Marker({
       position: {
@@ -145,7 +147,7 @@ export default class Train {
     this.velocity = [newVelocity[0], newVelocity[1]];
   }
 
-  step(timeDelta) {
+  setStep(timeDelta) {
     // timeDelta is number of milliseconds since last move
     // if the computer is busy the time delta will be larger
     // velocity of object is how far it should move in 1/60th of a second
@@ -156,6 +158,12 @@ export default class Train {
     const mapLat = this.marker.getPosition().toJSON().lat + offsetLat;
     const mapLng = this.marker.getPosition().toJSON().lng + offsetLng;
     const stepPosition = { lat: mapLat, lng: mapLng };
-    this.marker.setPosition(stepPosition);
+
+    this.stepPosition = stepPosition;
   }
+
+  step() {
+    this.marker.setPosition(this.stepPosition);
+  }
+
 }
