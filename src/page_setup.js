@@ -17,10 +17,8 @@ export function setupTrainIcons(state) {
       trainIcon.className = `train-label train-${trainLabel}`;
       trainIcon.src = url;
       trainIcon.addEventListener('click', () => {
-        const toggled = toggleTrains(trainLabel, state);
-        if (toggled) {
-          toggleClass(trainIcon);
-        }
+        const toggleble = toggleTrains(trainLabel, state);
+        if (toggleble) toggleClass(trainIcon);
       });
       rowDiv.appendChild(trainIcon);
     });
@@ -28,22 +26,37 @@ export function setupTrainIcons(state) {
   });
 }
 
+export function setupToggleButtons() {
+  const buttonDiv = document.getElementById('toggle-buttons');
+  const toggleAll = document.createElement('button');
+  const northBound = document.createElement('button');
+  const southBound = document.createElement('button');
+  toggleAll.className = 'toggle-all';
+  toggleAll.textContent = 'Select All';
+  northBound.className = 'toggle-northbound';
+  northBound.textContent = 'Northbound Trains';
+  southBound.className = 'toggle-southbound';
+  southBound.textContent = 'Southbound Trains';
+  buttonDiv.appendChild(toggleAll);
+  buttonDiv.appendChild(northBound);
+  buttonDiv.appendChild(southBound);
+}
+
 function toggleTrains(trainLabel, state) {
-  let toggle = false;
+  let toggleble = false;
   Object.keys(state.trains).forEach((trainId) => {
     const train = state.trains[trainId];
     if (train.trainLabel === trainLabel) {
       train.toggleMarker(state.map);
-      toggle = true;
+      toggleble = true;
     }
   });
-  return toggle;
+  return toggleble;
 }
 
 function toggleClass(element) {
-  if (element.classList.contains('active')) {
-    element.classList.remove('active');
-  } else {
-    element.classList.add('active');
-  }
+  element.classList.contains('active') ?
+  element.classList.remove('active')
+  :
+  element.classList.add('active')
 };

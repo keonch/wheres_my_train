@@ -1,6 +1,6 @@
 import { initMap } from './map';
 import { fetchMtaData } from './mta';
-import { setupTrainIcons } from './page_setup';
+import { setupTrainIcons, setupToggleButtons } from './page_setup';
 import Store from '../store/store';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,4 +12,5 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   window.fetchMtaData = fetchMtaData;
   setupTrainIcons(store.state);
+  setupToggleButtons();
 });

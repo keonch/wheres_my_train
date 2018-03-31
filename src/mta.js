@@ -27,7 +27,6 @@ export function fetchMtaData(store) {
 }
 
 function requestMta(store, req) {
-  console.log("fetching");
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       status = 200;
@@ -37,7 +36,6 @@ function requestMta(store, req) {
       store.updateTrains(parsedFeed);
     } else {
       // setup a condition to break out of loop
-      console.log("refetching");
       window.setTimeout(() => requestMta(store, req), 3000);
     }
   });

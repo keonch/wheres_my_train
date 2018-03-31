@@ -22,7 +22,6 @@ export default class Store {
   }
 
   start() {
-    // start the animation
     requestAnimationFrame(this.animate.bind(this));
   }
 

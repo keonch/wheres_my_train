@@ -26,15 +26,17 @@ h1 {
   font-size: 35px;
   font-family: helvetica, sans-serif;
   font-weight: 400;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
   margin: 80px 0 40px 0;
+  min-width: 400px;
+  text-align: center;
 }
 
 #train-icons {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  min-height: 400px;
+  min-height: 275px;
 }
 
 .train-icon-row {
@@ -52,8 +54,9 @@ h1 {
 
 .train-label:hover {
   box-sizing: border-box;
-  background-color: grey;
+  background-color: darkgrey;
   border-radius: 100000px;
+  cursor: pointer;
 }
 
 .train-label:active {
@@ -62,8 +65,26 @@ h1 {
 
 .train-label.active {
   box-sizing: border-box;
-  background-color: white;
+  background-color: lightgrey;
   border-radius: 100000px;
+}
+
+#toggle-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 300px;
+}
+
+button {
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  font-family: helvetica;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: lightgrey;
 }
 
 .info {

@@ -87060,6 +87060,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   window.fetchMtaData = _mta__WEBPACK_IMPORTED_MODULE_1__["fetchMtaData"];
   Object(_page_setup__WEBPACK_IMPORTED_MODULE_2__["setupTrainIcons"])(store.state);
+  Object(_page_setup__WEBPACK_IMPORTED_MODULE_2__["setupToggleButtons"])();
 });
 
 
@@ -87121,8 +87122,8 @@ function initMap() {
       {
         featureType: 'transit.line',
         elementType: 'geometry',
-        // stylers: [{color: '#e5e5e5'}]
-        stylers: [{ visibility: "off" }]
+        stylers: [{color: '#494949'}]
+        // stylers: [{ visibility: "off" }]
       },
       {
         featureType: 'transit.station',
@@ -87212,7 +87213,6 @@ function fetchMtaData(store) {
 }
 
 function requestMta(store, req) {
-  console.log("fetching");
   request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       status = 200;
@@ -87222,7 +87222,6 @@ function requestMta(store, req) {
       store.updateTrains(parsedFeed);
     } else {
       // setup a condition to break out of loop
-      console.log("refetching");
       window.setTimeout(() => requestMta(store, req), 3000);
     }
   });
@@ -87236,12 +87235,13 @@ function requestMta(store, req) {
 /*!***************************!*\
   !*** ./src/page_setup.js ***!
   \***************************/
-/*! exports provided: setupTrainIcons */
+/*! exports provided: setupTrainIcons, setupToggleButtons */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupTrainIcons", function() { return setupTrainIcons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupToggleButtons", function() { return setupToggleButtons; });
 /* harmony import */ var _assets_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train */ "./assets/train.js");
 
 
@@ -87262,10 +87262,8 @@ function setupTrainIcons(state) {
       trainIcon.className = `train-label train-${trainLabel}`;
       trainIcon.src = url;
       trainIcon.addEventListener('click', () => {
-        const toggled = toggleTrains(trainLabel, state);
-        if (toggled) {
-          toggleClass(trainIcon);
-        }
+        const toggleble = toggleTrains(trainLabel, state);
+        if (toggleble) toggleClass(trainIcon);
       });
       rowDiv.appendChild(trainIcon);
     });
@@ -87273,24 +87271,39 @@ function setupTrainIcons(state) {
   });
 }
 
+function setupToggleButtons() {
+  const buttonDiv = document.getElementById('toggle-buttons');
+  const toggleAll = document.createElement('button');
+  const northBound = document.createElement('button');
+  const southBound = document.createElement('button');
+  toggleAll.className = 'toggle-all';
+  toggleAll.textContent = 'Select All';
+  northBound.className = 'toggle-northbound';
+  northBound.textContent = 'Northbound Trains';
+  southBound.className = 'toggle-southbound';
+  southBound.textContent = 'Southbound Trains';
+  buttonDiv.appendChild(toggleAll);
+  buttonDiv.appendChild(northBound);
+  buttonDiv.appendChild(southBound);
+}
+
 function toggleTrains(trainLabel, state) {
-  let toggle = false;
+  let toggleble = false;
   Object.keys(state.trains).forEach((trainId) => {
     const train = state.trains[trainId];
     if (train.trainLabel === trainLabel) {
       train.toggleMarker(state.map);
-      toggle = true;
+      toggleble = true;
     }
   });
-  return toggle;
+  return toggleble;
 }
 
 function toggleClass(element) {
-  if (element.classList.contains('active')) {
-    element.classList.remove('active');
-  } else {
-    element.classList.add('active');
-  }
+  element.classList.contains('active') ?
+  element.classList.remove('active')
+  :
+  element.classList.add('active')
 };
 
 
@@ -87423,8 +87436,8 @@ class Train {
     const trainSymbol = {
       path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
       rotation: 138,
-      strokeColor: '#666666',
-      strokeWeight: 3,
+      strokeColor: '#43464B',
+      strokeWeight: 1,
       fillColor: trainColor,
       fillOpacity: 1,
       labelOrigin: point,
@@ -87528,7 +87541,6 @@ class Store {
   }
 
   start() {
-    // start the animation
     requestAnimationFrame(this.animate.bind(this));
   }
 
