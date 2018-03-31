@@ -1,9 +1,10 @@
 import { initMap } from './map';
 import { fetchMtaData } from './mta';
-import { setupTrainIcons, setupToggleButtons } from './page_setup';
+import { setupTime, setupTrainIcons, setupToggleButtons } from './page_setup';
 import Store from '../store/store';
 
 document.addEventListener('DOMContentLoaded', () => {
+  setupTime();
   const map = initMap();
   const store = new Store(map);
   store.start();

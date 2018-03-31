@@ -1,5 +1,46 @@
 import { trainIcons } from '../assets/train';
 
+export function setupTime() {
+  const clock = document.getElementById('clock');
+  const currentTime = document.createElement('div');
+  currentTime.id = 'current-time';
+  clock.appendChild(currentTime);
+  const lastUpdate = document.createElement('div');
+  lastUpdate.id = 'last-update';
+  lastUpdate.textContent = 'Updated At ...'
+  clock.appendChild(lastUpdate);
+
+  startTime();
+}
+
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  h = checkTime(h);
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('current-time').textContent = `Current Time ${h}:${m}:${s}`;
+  setTimeout(startTime, 500);
+}
+
+export function updateTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  h = checkTime(h);
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('last-update').textContent = `Updated At ${h}:${m}:${s}`;
+}
+
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};
+    return i;
+}
+
 export function setupTrainIcons(state) {
   const iconDiv = document.getElementById('train-icons');
   const rows = {
@@ -28,14 +69,14 @@ export function setupTrainIcons(state) {
 
 export function setupToggleButtons() {
   const buttonDiv = document.getElementById('toggle-buttons');
-  const toggleAll = document.createElement('button');
-  const northBound = document.createElement('button');
-  const southBound = document.createElement('button');
-  toggleAll.className = 'toggle-all';
+  const toggleAll = document.createElement('div');
+  const northBound = document.createElement('div');
+  const southBound = document.createElement('div');
+  toggleAll.className = 'toggle-button toggle-all';
   toggleAll.textContent = 'Select All';
-  northBound.className = 'toggle-northbound';
+  northBound.className = 'toggle-button toggle-northbound';
   northBound.textContent = 'Northbound Trains';
-  southBound.className = 'toggle-southbound';
+  southBound.className = 'toggle-button toggle-southbound';
   southBound.textContent = 'Southbound Trains';
   buttonDiv.appendChild(toggleAll);
   buttonDiv.appendChild(northBound);

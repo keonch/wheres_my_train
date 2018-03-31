@@ -87052,6 +87052,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  Object(_page_setup__WEBPACK_IMPORTED_MODULE_2__["setupTime"])();
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
   const store = new _store_store__WEBPACK_IMPORTED_MODULE_3__["default"](map);
   store.start();
@@ -87177,13 +87178,15 @@ function markStations(map) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/gtfs-realtime */ "./util/gtfs-realtime.js");
 /* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/store */ "./store/store.js");
+/* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
+
 
 
 
@@ -87216,7 +87219,7 @@ function requestMta(store, req) {
   request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       status = 200;
-      console.log("OK");
+      Object(_page_setup__WEBPACK_IMPORTED_MODULE_4__["updateTime"])();
       const feed = _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
       const parsedFeed = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed);
       store.updateTrains(parsedFeed);
@@ -87227,7 +87230,6 @@ function requestMta(store, req) {
   });
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -87235,15 +87237,58 @@ function requestMta(store, req) {
 /*!***************************!*\
   !*** ./src/page_setup.js ***!
   \***************************/
-/*! exports provided: setupTrainIcons, setupToggleButtons */
+/*! exports provided: setupTime, updateTime, setupTrainIcons, setupToggleButtons */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupTime", function() { return setupTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTime", function() { return updateTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupTrainIcons", function() { return setupTrainIcons; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupToggleButtons", function() { return setupToggleButtons; });
 /* harmony import */ var _assets_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train */ "./assets/train.js");
 
+
+function setupTime() {
+  const clock = document.getElementById('clock');
+  const currentTime = document.createElement('div');
+  currentTime.id = 'current-time';
+  clock.appendChild(currentTime);
+  const lastUpdate = document.createElement('div');
+  lastUpdate.id = 'last-update';
+  lastUpdate.textContent = 'Updated At ...'
+  clock.appendChild(lastUpdate);
+
+  startTime();
+}
+
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  h = checkTime(h);
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('current-time').textContent = `Current Time ${h}:${m}:${s}`;
+  setTimeout(startTime, 500);
+}
+
+function updateTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  h = checkTime(h);
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('last-update').textContent = `Updated At ${h}:${m}:${s}`;
+}
+
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};
+    return i;
+}
 
 function setupTrainIcons(state) {
   const iconDiv = document.getElementById('train-icons');
@@ -87273,14 +87318,14 @@ function setupTrainIcons(state) {
 
 function setupToggleButtons() {
   const buttonDiv = document.getElementById('toggle-buttons');
-  const toggleAll = document.createElement('button');
-  const northBound = document.createElement('button');
-  const southBound = document.createElement('button');
-  toggleAll.className = 'toggle-all';
+  const toggleAll = document.createElement('div');
+  const northBound = document.createElement('div');
+  const southBound = document.createElement('div');
+  toggleAll.className = 'toggle-button toggle-all';
   toggleAll.textContent = 'Select All';
-  northBound.className = 'toggle-northbound';
+  northBound.className = 'toggle-button toggle-northbound';
   northBound.textContent = 'Northbound Trains';
-  southBound.className = 'toggle-southbound';
+  southBound.className = 'toggle-button toggle-southbound';
   southBound.textContent = 'Southbound Trains';
   buttonDiv.appendChild(toggleAll);
   buttonDiv.appendChild(northBound);

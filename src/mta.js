@@ -2,6 +2,7 @@ import request from 'request';
 import GtfsRealtimeBindings from '../util/gtfs-realtime';
 import { parseFeed } from '../util/data_utils';
 import Store from '../store/store';
+import { updateTime } from './page_setup';
 
 export function fetchMtaData(store) {
   const urls = [
@@ -30,7 +31,7 @@ function requestMta(store, req) {
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       status = 200;
-      console.log("OK");
+      updateTime();
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
       const parsedFeed = parseFeed(feed);
       store.updateTrains(parsedFeed);

@@ -21,13 +21,29 @@ html, body {
   align-items: center;
 }
 
+#clock {
+  min-width: 100px;
+  font-size: 14px;
+  font-family: helvetica;
+  font-weight: 500;
+  color: #E4E4E4;
+  align-self: flex-start;
+  margin: 5px 0 0 5px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#current-time, #last-update {
+  margin: 2px 0;
+}
+
 h1 {
   color: #E4E4E4;
   font-size: 35px;
   font-family: helvetica, sans-serif;
   font-weight: 400;
   letter-spacing: 1px;
-  margin: 80px 0 40px 0;
+  margin: 50px 0 40px 0;
   min-width: 400px;
   text-align: center;
 }
@@ -77,14 +93,25 @@ h1 {
   min-width: 300px;
 }
 
-button {
+.toggle-button {
   width: 90px;
   height: 40px;
   border-radius: 5px;
   font-family: helvetica;
   font-size: 13px;
   font-weight: 500;
-  background-color: lightgrey;
+  background-color: #D3D3D3;
+  color: #434343;
+  text-align: center;
+}
+
+.toggle-button:hover {
+  color: #E4E4E4;
+  background-color: grey;
+  cursor: pointer;
+}
+
+.toggle-button:active {
 }
 
 .info {
