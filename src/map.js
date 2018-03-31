@@ -22,7 +22,7 @@ export function initMap() {
       },
       {
         elementType: 'geometry',
-        stylers: [{color: '#3d3d3d'}]
+        stylers: [{color: '#7F7F7F'}]
         // stylers: [{color: '#f5f5f5'}]
       },
       {
@@ -54,7 +54,7 @@ export function initMap() {
         featureType: 'water',
         elementType: 'geometry',
         // stylers: [{color: '#c9c9c9'}]
-        stylers: [{color: '#c9c9c9'}]
+        stylers: [{color: '#062d3f'}]
       }
     ]
   });

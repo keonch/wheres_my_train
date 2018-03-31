@@ -83,32 +83,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trainIcons", function() { return trainIcons; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trainColors", function() { return trainColors; });
 const trainIcons = {
-  "A": "http://web.mta.info/siteimages/subwaybullets/36px/A.png",
-  "C": "http://web.mta.info/siteimages/subwaybullets/36px/C.png",
-  "E": "http://web.mta.info/siteimages/subwaybullets/36px/E.png",
+  "A": "assets/images/NYCS-bull-trans-A.svg",
+  "C": "assets/images/NYCS-bull-trans-C.svg",
+  "E": "assets/images/NYCS-bull-trans-E.svg",
   "H": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/NYCS-bull-trans-H.svg/600px-NYCS-bull-trans-H.svg.png",
-  "B": "http://web.mta.info/siteimages/subwaybullets/36px/B.png",
-  "D": "http://web.mta.info/siteimages/subwaybullets/36px/D.png",
-  "F": "http://web.mta.info/siteimages/subwaybullets/36px/F.png",
-  "M": "http://www.mta.info/sites/default/files/mtaimgs/m_36px.png",
-  "J": "http://web.mta.info/siteimages/subwaybullets/36px/J.png",
-  "Z": "http://web.mta.info/siteimages/subwaybullets/36px/Z.png",
-  "L": "http://web.mta.info/siteimages/subwaybullets/36px/L.png",
-  "N": "http://web.mta.info/siteimages/subwaybullets/36px/N.png",
-  "Q": "http://web.mta.info/siteimages/subwaybullets/36px/Q.png",
-  "R": "http://web.mta.info/siteimages/subwaybullets/36px/R.png",
-  "W": "http://web.mta.info/siteimages/subwaybullets/36px/w.png",
+  "B": "assets/images/NYCS-bull-trans-B.svg",
+  "D": "assets/images/NYCS-bull-trans-D.svg",
+  "F": "assets/images/NYCS-bull-trans-F.svg",
+  "M": "assets/images/NYCS-bull-trans-M.svg",
+  "J": "assets/images/NYCS-bull-trans-J.svg",
+  "Z": "assets/images/NYCS-bull-trans-Z.svg",
+  "L": "assets/images/NYCS-bull-trans-L.svg",
+  "N": "assets/images/NYCS-bull-trans-N.svg",
+  "Q": "assets/images/NYCS-bull-trans-Q.svg",
+  "R": "assets/images/NYCS-bull-trans-R.svg",
+  "W": "assets/images/NYCS-bull-trans-W.svg",
   // "S": "http://web.mta.info/siteimages/subwaybullets/36px/S.png",
   "S": "http://web.mta.info/siteimages/subwaybullets/36px/S.png",
-  "1": "http://web.mta.info/siteimages/subwaybullets/36px/1.png",
-  "2": "http://web.mta.info/siteimages/subwaybullets/36px/2.png",
-  "3": "http://web.mta.info/siteimages/subwaybullets/36px/3.png",
-  "4": "http://web.mta.info/siteimages/subwaybullets/36px/4.png",
-  "5": "http://web.mta.info/siteimages/subwaybullets/36px/5.png",
-  "6": "http://web.mta.info/siteimages/subwaybullets/36px/6.png",
-  "7": "http://web.mta.info/siteimages/subwaybullets/36px/7.png",
+  "1": "assets/images/NYCS-bull-trans-1.svg",
+  "2": "assets/images/NYCS-bull-trans-2.svg",
+  "3": "assets/images/NYCS-bull-trans-3.svg",
+  "4": "assets/images/NYCS-bull-trans-4.svg",
+  "5": "assets/images/NYCS-bull-trans-5.svg",
+  "6": "assets/images/NYCS-bull-trans-6.svg",
+  "7": "assets/images/NYCS-bull-trans-7.svg",
   "S": "assets/images/sir.png",
-  "G": "http://www.mta.info/sites/default/files/mtaimgs/g_36px.png"
+  "G": "assets/images/NYCS-bull-trans-G.svg"
 }
 
 const trainColors = {
@@ -87055,10 +87055,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
   const store = new _store_store__WEBPACK_IMPORTED_MODULE_3__["default"](map);
   store.start();
+  Object(_mta__WEBPACK_IMPORTED_MODULE_1__["fetchMtaData"])(store);
   // const fetch = setInterval(() => fetchMtaData(store), 20000);
   window.store = store;
   window.fetchMtaData = _mta__WEBPACK_IMPORTED_MODULE_1__["fetchMtaData"];
-  Object(_page_setup__WEBPACK_IMPORTED_MODULE_2__["default"])(store.state);
+  Object(_page_setup__WEBPACK_IMPORTED_MODULE_2__["setupTrainIcons"])(store.state);
 });
 
 
@@ -87099,7 +87100,7 @@ function initMap() {
       },
       {
         elementType: 'geometry',
-        stylers: [{color: '#3d3d3d'}]
+        stylers: [{color: '#7F7F7F'}]
         // stylers: [{color: '#f5f5f5'}]
       },
       {
@@ -87131,7 +87132,7 @@ function initMap() {
         featureType: 'water',
         elementType: 'geometry',
         // stylers: [{color: '#c9c9c9'}]
-        stylers: [{color: '#c9c9c9'}]
+        stylers: [{color: '#062d3f'}]
       }
     ]
   });
@@ -87235,14 +87236,13 @@ function requestMta(store, req) {
 /*!***************************!*\
   !*** ./src/page_setup.js ***!
   \***************************/
-/*! exports provided: default */
+/*! exports provided: setupTrainIcons */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupTrainIcons", function() { return setupTrainIcons; });
 /* harmony import */ var _assets_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train */ "./assets/train.js");
-/* harmony import */ var _util_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/utils */ "./util/utils.js");
-
 
 
 function setupTrainIcons(state) {
@@ -87261,14 +87261,37 @@ function setupTrainIcons(state) {
       const trainIcon = document.createElement('img');
       trainIcon.className = `train-label train-${trainLabel}`;
       trainIcon.src = url;
-      trainIcon.addEventListener('click', () => Object(_util_utils__WEBPACK_IMPORTED_MODULE_1__["toggleTrains"])(trainLabel, state));
+      trainIcon.addEventListener('click', () => {
+        const toggled = toggleTrains(trainLabel, state);
+        if (toggled) {
+          toggleClass(trainIcon);
+        }
+      });
       rowDiv.appendChild(trainIcon);
     });
     iconDiv.appendChild(rowDiv);
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (setupTrainIcons);
+function toggleTrains(trainLabel, state) {
+  let toggle = false;
+  Object.keys(state.trains).forEach((trainId) => {
+    const train = state.trains[trainId];
+    if (train.trainLabel === trainLabel) {
+      train.toggleMarker(state.map);
+      toggle = true;
+    }
+  });
+  return toggle;
+}
+
+function toggleClass(element) {
+  if (element.classList.contains('active')) {
+    element.classList.remove('active');
+  } else {
+    element.classList.add('active');
+  }
+};
 
 
 /***/ }),
@@ -91920,28 +91943,6 @@ function getVelocity(toStation, currentPos, timeOfArrival) {
   return v;
 }
 
-
-/***/ }),
-
-/***/ "./util/utils.js":
-/*!***********************!*\
-  !*** ./util/utils.js ***!
-  \***********************/
-/*! exports provided: toggleTrains */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleTrains", function() { return toggleTrains; });
-function toggleTrains(trainLabel, state) {
-  console.log("ToggleTrains");
-  Object.keys(state.trains).forEach((trainId) => {
-    const train = store.state.trains[trainId];
-    if (train.trainLabel === trainLabel) train.toggleMarker(state.map);
-  });
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

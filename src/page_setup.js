@@ -1,7 +1,6 @@
 import { trainIcons } from '../assets/train';
-import { toggleTrains } from '../util/utils';
 
-function setupTrainIcons(state) {
+export function setupTrainIcons(state) {
   const iconDiv = document.getElementById('train-icons');
   const rows = {
     row1: ["A", "C", "E", "B", "D", "F", "M", "L"],
@@ -17,11 +16,34 @@ function setupTrainIcons(state) {
       const trainIcon = document.createElement('img');
       trainIcon.className = `train-label train-${trainLabel}`;
       trainIcon.src = url;
-      trainIcon.addEventListener('click', () => toggleTrains(trainLabel, state));
+      trainIcon.addEventListener('click', () => {
+        const toggled = toggleTrains(trainLabel, state);
+        if (toggled) {
+          toggleClass(trainIcon);
+        }
+      });
       rowDiv.appendChild(trainIcon);
     });
     iconDiv.appendChild(rowDiv);
   });
 }
 
-export default setupTrainIcons;
+function toggleTrains(trainLabel, state) {
+  let toggle = false;
+  Object.keys(state.trains).forEach((trainId) => {
+    const train = state.trains[trainId];
+    if (train.trainLabel === trainLabel) {
+      train.toggleMarker(state.map);
+      toggle = true;
+    }
+  });
+  return toggle;
+}
+
+function toggleClass(element) {
+  if (element.classList.contains('active')) {
+    element.classList.remove('active');
+  } else {
+    element.classList.add('active');
+  }
+};
