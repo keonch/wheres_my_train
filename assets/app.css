@@ -111,9 +111,6 @@ h1 {
   cursor: pointer;
 }
 
-.toggle-button:active {
-}
-
 .info {
   display: flex;
   flex-flow: column nowrap;

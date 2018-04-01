@@ -6,7 +6,7 @@ export default class Train {
   constructor(map, feed, trainId) {
     this.trainLabel = trainId[7];
 
-    // vehicleTime state of train
+    // vehicle state - based on realtime
     this.stops;
     this.vehicleTime;
     this.prevStationTime;
@@ -15,7 +15,7 @@ export default class Train {
     this.nextStation;
     this.status;
 
-    // estimated state of train
+    // marker state - based on estimation
     this.marker = null;
     this.startPos;
     this.nextPos;

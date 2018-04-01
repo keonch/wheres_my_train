@@ -87375,7 +87375,7 @@ class Train {
   constructor(map, feed, trainId) {
     this.trainLabel = trainId[7];
 
-    // vehicleTime state of train
+    // vehicle state - based on realtime
     this.stops;
     this.vehicleTime;
     this.prevStationTime;
@@ -87384,7 +87384,7 @@ class Train {
     this.nextStation;
     this.status;
 
-    // estimated state of train
+    // marker state - based on estimation
     this.marker = null;
     this.startPos;
     this.nextPos;
@@ -87618,7 +87618,7 @@ class Store {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStationById", function() { return getStationById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatLng", function() { return getLatLng; });
 /* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
@@ -87636,6 +87636,7 @@ function parseFeed(feed) {
       trainFeeds[tripId] = Object.assign({}, trainFeeds[tripId],{tripUpdate: e.tripUpdate});
     }
   });
+  console.log(trainFeeds);
   return trainFeeds;
 };
 
@@ -87651,6 +87652,7 @@ function getLatLng(station) {
   return { lat: station.stop_lat, lng: station.stop_lon };
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
