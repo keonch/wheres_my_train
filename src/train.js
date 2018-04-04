@@ -109,9 +109,18 @@ export default class Train {
     const labelColor = trainColors[this.trainLabel].labelColor;
     const point = new google.maps.Point(30, 16);
 
+    let rotation;
+    if (this.startPos && this.nextPos) {
+      const p1 = new google.maps.LatLng(this.startPos.lat, this.startPos.lng);
+      const p2 = new google.maps.LatLng(this.nextPos.lat, this.nextPos.lng);
+      rotation = google.maps.geometry.spherical.computeHeading(p1, p2) + 90;
+    } else {
+      rotation = 90;
+    }
+
     const trainSymbol = {
       path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
-      rotation: 138,
+      rotation: rotation,
       strokeColor: '#43464B',
       strokeWeight: 1,
       fillColor: trainColor,

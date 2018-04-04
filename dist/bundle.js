@@ -87178,7 +87178,7 @@ function markStations(map) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/gtfs-realtime */ "./util/gtfs-realtime.js");
@@ -87216,8 +87216,10 @@ function fetchMtaData(store) {
 }
 
 function requestMta(store, req) {
+  console.log("Fetching");
   request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
+      console.log("200 OK");
       status = 200;
       Object(_page_setup__WEBPACK_IMPORTED_MODULE_4__["updateTime"])();
       const feed = _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
@@ -87230,6 +87232,7 @@ function requestMta(store, req) {
   });
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -87478,9 +87481,18 @@ class Train {
     const labelColor = _assets_train__WEBPACK_IMPORTED_MODULE_0__["trainColors"][this.trainLabel].labelColor;
     const point = new google.maps.Point(30, 16);
 
+    let rotation;
+    if (this.startPos && this.nextPos) {
+      const p1 = new google.maps.LatLng(this.startPos.lat, this.startPos.lng);
+      const p2 = new google.maps.LatLng(this.nextPos.lat, this.nextPos.lng);
+      rotation = google.maps.geometry.spherical.computeHeading(p1, p2) + 90;
+    } else {
+      rotation = 90;
+    }
+
     const trainSymbol = {
       path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
-      rotation: 138,
+      rotation: rotation,
       strokeColor: '#43464B',
       strokeWeight: 1,
       fillColor: trainColor,
