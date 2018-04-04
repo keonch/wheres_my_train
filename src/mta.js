@@ -1,7 +1,6 @@
 import request from 'request';
 import GtfsRealtimeBindings from '../util/gtfs-realtime';
 import { parseFeed } from '../util/data_utils';
-import Store from '../store/store';
 import { updateTime } from './page_setup';
 
 export function fetchMtaData(store) {
@@ -32,11 +31,9 @@ function requestMta(store, req) {
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       console.log("200 OK");
-      status = 200;
       updateTime();
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
-      const parsedFeed = parseFeed(feed);
-      store.updateTrains(parsedFeed);
+      store.setupTrains(parseFeed(feed));
     } else {
       // setup a condition to break out of loop
       window.setTimeout(() => requestMta(store, req), 3000);

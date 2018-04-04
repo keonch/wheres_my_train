@@ -7,44 +7,40 @@ export default class Train {
     this.trainLabel = trainId[7];
 
     // vehicle state - based on realtime
-    this.stops;
     this.vehicleTime;
     this.prevStationTime;
     this.nextStationTime;
-    this.prevStation;
-    this.nextStation;
+    this.prevStationPos;
+    this.nextStationPos;
     this.status;
 
     // marker state - based on estimation
     this.marker = null;
-    this.startPos;
+    this.pos;
     this.nextPos;
     this.velocity = [0, 0];
 
-    this.initialize(map, feed);
-  }
-
-  initialize(map, feed) {
-    this.setTrainState(feed);
+    this.setStates(feed);
     this.setRenderState();
     this.setVelocity();
     this.setMarker(map);
   }
 
   update(feed) {
-    this.setTrainState(feed);
+    this.setStates(feed);
     this.updateRenderState();
     this.updateVelocity();
   }
 
-  setTrainState(feed) {
-    this.stops = feed.tripUpdate.stopTimeUpdate;
+  setStates(feed) {
+    const stops = feed.tripUpdate.stopTimeUpdate;
+
     this.vehicleTime = feed.vehicle ? feed.vehicle.timestamp : 0;
 
     let previousStop;
     let nextStop;
-    for (let i = 0; i < this.stops.length; i++) {
-      const stop = this.stops[i];
+    for (let i = 0; i < stops.length; i++) {
+      const stop = stops[i];
       if (stop.departure && this.vehicleTime >= stop.departure.time) {
         previousStop = stop;
       } else if (stop.arrival && this.vehicleTime <= stop.arrival.time) {
@@ -72,8 +68,8 @@ export default class Train {
       this.nextStation = this.prevStation;
       this.status = "lastStop"
     } else if (!previousStop && !nextStop) {
-      this.prevStationTime = this.stops[0].arrival.time;
-      this.prevStation = getStationById(this.stops[0].stopId);
+      this.prevStationTime = stops[0].arrival.time;
+      this.prevStation = getStationById(stops[0].stopId);
       this.nextStation = this.prevStation;
       this.status = "idle"
     }
@@ -94,12 +90,12 @@ export default class Train {
     } else if (this.status === "lastStop" || this.status === "idle") {
       vehicleTimePos = getLatLng(this.prevStation);
     }
-    this.startPos = vehicleTimePos;
+    this.pos = vehicleTimePos;
   }
 
   setVelocity() {
     if (this.status === "inTransit") {
-      const newVelocity = getVelocity(this.nextPos, this.startPos, this.nextStationTime);
+      const newVelocity = getVelocity(this.nextPos, this.pos, this.nextStationTime);
       this.velocity = [newVelocity[0], newVelocity[1]];
     }
   }
@@ -110,8 +106,8 @@ export default class Train {
     const point = new google.maps.Point(30, 16);
 
     let rotation;
-    if (this.startPos && this.nextPos) {
-      const p1 = new google.maps.LatLng(this.startPos.lat, this.startPos.lng);
+    if (this.pos && this.nextPos) {
+      const p1 = new google.maps.LatLng(this.pos.lat, this.pos.lng);
       const p2 = new google.maps.LatLng(this.nextPos.lat, this.nextPos.lng);
       rotation = google.maps.geometry.spherical.computeHeading(p1, p2) + 90;
     } else {
@@ -138,8 +134,8 @@ export default class Train {
 
     this.marker = new google.maps.Marker({
       position: {
-        lat: this.startPos.lat,
-        lng: this.startPos.lng
+        lat: this.pos.lat,
+        lng: this.pos.lng
       },
       map: null,
       icon: trainSymbol,
@@ -173,6 +169,7 @@ export default class Train {
 
   step() {
     this.marker.setPosition(this.stepPosition);
+    this.pos = this.stepPosition;
   }
 
   toggleMarker(map) {
