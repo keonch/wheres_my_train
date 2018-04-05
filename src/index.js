@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const map = initMap();
   const store = new Store(map);
   store.start();
+  window.store = store;
   // const fetch = setInterval(() => fetchMtaData(store), 20000);
   setupTrainIcons(store.state);
   // setupToggleButtons();

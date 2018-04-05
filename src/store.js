@@ -1,8 +1,8 @@
 import Train from '../src/train';
 import { fetchMtaData } from './mta';
 // import { sortRoute, sortOffRoute } from '../util/data_utils';
-import { groupStations } from '../data/group_stations';
-import routes from '../data/subway_routes.json';
+// import { groupStations } from '../data/group_stations';
+// import routes from '../data/subway_routes.json';
 import stations from '../data/stations';
 
 export default class Store {
@@ -18,12 +18,9 @@ export default class Store {
   start() {
     requestAnimationFrame(this.animate.bind(this));
     fetchMtaData(this);
-    this.setupRoutes();
   }
 
   setupTrains(feed) {
-    // const feedRoutes = new Set();
-
     const latestFeedTrainId = Object.keys(feed).forEach((trainId) => {
       // if train feed does not include vehicleUpdate OR tripUpdate the
       // train is not assigned a route hence no instance of the train is made
@@ -33,80 +30,79 @@ export default class Store {
       // create a new train instance if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        this.state.trains[trainId] = new Train(this.state.map, feed[trainId], trainId);
-        // this.inputRoute(feed[trainId].tripUpdate.stopTimeUpdate, this.state.trains[trainId].trainLabel);
+        const train = new Train(this.state.map, feed[trainId], trainId);
+        this.state.trains[trainId] = train;
+        const stops = feed[trainId].tripUpdate.stopTimeUpdate;
+        this.setRoute(train, stops);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
       } else if (this.state.trains[trainId]) {
         this.state.trains[trainId].update(feed[trainId]);
-        // this.inputRoute(feed[trainId].tripUpdate.stopTimeUpdate, this.state.trains[trainId].trainLabel);
+
       } else {
         return;
       }
-      // feedRoutes.add(this.state.trains[trainId].trainLabel);
     });
-    // this.setupRoutes(feedRoutes);
+    this.createRoutes();
   }
 
-  // inputRoute(stations, trainLabel) {
-  //   if (!this.state.routes[trainLabel]) {
-  //     this.state.routes[trainLabel] = {};
-  //     this.state.routes[trainLabel].mainRoute = new Set();
-  //     this.state.routes[trainLabel].offRoute = new Set();
-  //   }
-  //
-  //   stations.forEach((station) => {
-  //     if (station.stopId[0] === trainLabel) {
-  //       this.state.routes[trainLabel].mainRoute.add(station.stopId.slice(0, -1));
-  //     } else {
-  //       this.state.routes[trainLabel].offRoute.add(station.stopId.slice(0, -1));
-  //     }
-  //   });
-  // }
-  //
-  // setupRoutes(routes) {
-  //   routes.forEach((route) => {
-  //     this.state.routes[route].mainRoute = sortRoute(this.state.routes[route].mainRoute);
-  //     this.state.routes[route].offRoute = sortOffRoute(this.state.routes[route].offRoute)
-  //   });
-  // }
+  setRoute(train, stops) {
+    const existingRoute = this.state.routes[train.trainLabel];
 
-  setupRoutes() {
-    const groupedStations = groupStations();
-    console.log(groupedStations);
-    Object.keys(routes).forEach((trainLabel) => {
-      this.state.routes[trainLabel] = new Set();
-      routes[trainLabel].forEach((stationName) => {
-        const includedStations = groupedStations[stationName];
-        const stationLatLng = this.getStationLatLng(stationName, trainLabel, includedStations);
-        this.state.routes[trainLabel].add(stationLatLng);
+    if (!existingRoute) {
+      this.state.routes[train.trainLabel] = [];
+      stops.forEach((stop) => {
+        this.state.routes[train.trainLabel].push(stop.stopId.slice(0, 3));
+      })
+    } else {
+      const newRoute = stops.map((stop) => {
+        return stop.stopId.slice(0, 3);
+      })
+      this.mergeRoutes(existingRoute, newRoute)
+    }
+  }
+
+  mergeRoutes(existingRoute, newRoute) {
+    let mergedRoute;
+    let newStops;
+    if (existingRoute.length >== newRoute.length) {
+      mergedRoute = existingRoute;
+
+    } else {
+      mergedRoute = newRoute;
+    }
+
+    const newStops = existingRoute - newRoute;
+    if (existingRoute.length == 0) {
+      return newRoute;
+    } else if (newRoute.length == 0) {
+      return existingRoute;
+    }
+
+    console.log(newStops);
+
+    newRoute.forEach((stop) => {
+
+    });
+  }
+
+  createRoutes() {
+    Object.values(this.state.routes).forEach((routeStations) => {
+      const route = routeStations.map((stationId) => {
+        const latLng = {};
+        latLng.lat = stations[stationId].stop_lat;
+        latLng.lng = stations[stationId].stop_lon;
+        return latLng;
+      })
+      new google.maps.Polyline({
+        path: route,
+        // icons: [{
+        //   icon: lineSymbol,
+        //   offset: '100%'
+        // }],
+        map: this.state.map
       });
-      this.setupPolylines(trainLabel);
-    });
-    console.log(this.state.routes);
-  }
-
-  getStationLatLng(stationName, trainLabel, includedStations) {
-    const latLng = {};
-    Object.keys(stations).forEach((stop_id) => {
-      if (stations[stop_id].stop_name === stationName && includedStations.has(stop_id)) {
-        latLng.lat = stations[stop_id].stop_lat;
-        latLng.lng = stations[stop_id].stop_lon;
-      }
-    })
-    console.log(latLng);
-    return latLng;
-  }
-
-  setupPolylines(trainLabel) {
-    this.state.polyLines[trainLabel] = new google.maps.Polyline({
-      path: Array.from(this.state.routes[trainLabel]),
-      // icons: [{
-      //   icon: lineSymbol,
-      //   offset: '100%'
-      // }],
-      map: this.state.map
     });
   }
 
