@@ -59,33 +59,33 @@ export default class Store {
       const newRoute = stops.map((stop) => {
         return stop.stopId.slice(0, 3);
       })
-      this.mergeRoutes(existingRoute, newRoute)
+      // this.mergeRoutes(existingRoute, newRoute)
     }
   }
-
-  mergeRoutes(existingRoute, newRoute) {
-    let mergedRoute;
-    let newStops;
-    if (existingRoute.length >== newRoute.length) {
-      mergedRoute = existingRoute;
-
-    } else {
-      mergedRoute = newRoute;
-    }
-
-    const newStops = existingRoute - newRoute;
-    if (existingRoute.length == 0) {
-      return newRoute;
-    } else if (newRoute.length == 0) {
-      return existingRoute;
-    }
-
-    console.log(newStops);
-
-    newRoute.forEach((stop) => {
-
-    });
-  }
+  //
+  // mergeRoutes(existingRoute, newRoute) {
+  //   let mergedRoute;
+  //   let newStops;
+  //   if (existingRoute.length >== newRoute.length) {
+  //     mergedRoute = existingRoute;
+  //
+  //   } else {
+  //     mergedRoute = newRoute;
+  //   }
+  //
+  //   const newStops = existingRoute - newRoute;
+  //   if (existingRoute.length == 0) {
+  //     return newRoute;
+  //   } else if (newRoute.length == 0) {
+  //     return existingRoute;
+  //   }
+  //
+  //   console.log(newStops);
+  //
+  //   newRoute.forEach((stop) => {
+  //
+  //   });
+  // }
 
   createRoutes() {
     Object.values(this.state.routes).forEach((routeStations) => {
