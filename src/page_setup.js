@@ -44,8 +44,8 @@ function checkTime(i) {
 export function setupTrainIcons(state) {
   const iconDiv = document.getElementById('train-icons');
   const rows = {
-    row1: ["A", "C", "E", "B", "D", "F", "M", "L"],
-    row2: ["1", "2", "3", "4", "5", "6", "7"],
+    row1: ["A", "C", "E", "B", "D", "F", "M", "7"],
+    // row2: ["1", "2", "3", "4", "5", "6", "L"],
     row3: ["N", "Q", "R", "W", "G", "J", "Z", "S"]
   }
 

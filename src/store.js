@@ -62,6 +62,7 @@ export default class Store {
       // this.mergeRoutes(existingRoute, newRoute)
     }
   }
+
   //
   // mergeRoutes(existingRoute, newRoute) {
   //   let mergedRoute;
