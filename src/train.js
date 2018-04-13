@@ -1,4 +1,5 @@
-import { trainIcons, trainColors } from '../assets/train';
+import trainIcons from '../assets/train_icons.json';
+import trainColors from '../assets/train_colors.json';
 import { getStationById, getLatLng } from '../util/data_utils';
 import { getVelocity, timeRatio, interpolate } from '../util/train_utils';
 

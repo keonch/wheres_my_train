@@ -71,145 +71,25 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/train.js":
-/*!*************************!*\
-  !*** ./assets/train.js ***!
-  \*************************/
-/*! exports provided: trainIcons, trainColors */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./assets/train_colors.json":
+/*!**********************************!*\
+  !*** ./assets/train_colors.json ***!
+  \**********************************/
+/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, B, C, D, E, F, H, J, L, M, N, Q, R, W, Z, S, G, default */
+/***/ (function(module) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trainIcons", function() { return trainIcons; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trainColors", function() { return trainColors; });
-const trainIcons = {
-  "A": "assets/images/NYCS-bull-trans-A.svg",
-  "C": "assets/images/NYCS-bull-trans-C.svg",
-  "E": "assets/images/NYCS-bull-trans-E.svg",
-  "H": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/NYCS-bull-trans-H.svg/600px-NYCS-bull-trans-H.svg.png",
-  "B": "assets/images/NYCS-bull-trans-B.svg",
-  "D": "assets/images/NYCS-bull-trans-D.svg",
-  "F": "assets/images/NYCS-bull-trans-F.svg",
-  "M": "assets/images/NYCS-bull-trans-M.svg",
-  "J": "assets/images/NYCS-bull-trans-J.svg",
-  "Z": "assets/images/NYCS-bull-trans-Z.svg",
-  "L": "assets/images/NYCS-bull-trans-L.svg",
-  "N": "assets/images/NYCS-bull-trans-N.svg",
-  "Q": "assets/images/NYCS-bull-trans-Q.svg",
-  "R": "assets/images/NYCS-bull-trans-R.svg",
-  "W": "assets/images/NYCS-bull-trans-W.svg",
-  // "S": "http://web.mta.info/siteimages/subwaybullets/36px/S.png",
-  "S": "http://web.mta.info/siteimages/subwaybullets/36px/S.png",
-  "1": "assets/images/NYCS-bull-trans-1.svg",
-  "2": "assets/images/NYCS-bull-trans-2.svg",
-  "3": "assets/images/NYCS-bull-trans-3.svg",
-  "4": "assets/images/NYCS-bull-trans-4.svg",
-  "5": "assets/images/NYCS-bull-trans-5.svg",
-  "6": "assets/images/NYCS-bull-trans-6.svg",
-  "7": "assets/images/NYCS-bull-trans-7.svg",
-  "S": "assets/images/sir.png",
-  "G": "assets/images/NYCS-bull-trans-G.svg"
-}
+module.exports = {"1":{"trainColor":"#B70000","labelColor":"#ffffff"},"2":{"trainColor":"#B70000","labelColor":"#ffffff"},"3":{"trainColor":"#B70000","labelColor":"#ffffff"},"4":{"trainColor":"#006600","labelColor":"#ffffff"},"5":{"trainColor":"#006600","labelColor":"#ffffff"},"6":{"trainColor":"#006600","labelColor":"#ffffff"},"7":{"trainColor":"#660066","labelColor":"#ffffff"},"A":{"trainColor":"#00008E","labelColor":"#ffffff"},"B":{"trainColor":"#CC8400","labelColor":"#ffffff"},"C":{"trainColor":"#00008E","labelColor":"#ffffff"},"D":{"trainColor":"#CC8400","labelColor":"#ffffff"},"E":{"trainColor":"#00008E","labelColor":"#ffffff"},"F":{"trainColor":"#CC8400","labelColor":"#ffffff"},"H":{"trainColor":"#00008E","labelColor":"#ffffff"},"J":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"L":{"trainColor":"#BFBFBF","labelColor":"#ffffff"},"M":{"trainColor":"#CC8400","labelColor":"#ffffff"},"N":{"trainColor":"#CCCC00","labelColor":"#000000"},"Q":{"trainColor":"#CCCC00","labelColor":"#000000"},"R":{"trainColor":"#CCCC00","labelColor":"#000000"},"W":{"trainColor":"#CCCC00","labelColor":"#000000"},"Z":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"S":{"trainColor":"#0000CE","labelColor":"#ffffff"},"G":{"trainColor":"#59B759","labelColor":"#ffffff"}};
 
-const trainColors = {
-  "A": {
-    trainColor: "#00008E",
-    labelColor: "#ffffff"
-  },
-  "B": {
-    trainColor: "#CC8400",
-    labelColor: "#ffffff"
-  },
-  "C": {
-    trainColor: "#00008E",
-    labelColor: "#ffffff"
-  },
-  "D": {
-    trainColor: "#CC8400",
-    labelColor: "#ffffff"
-  },
-  "E": {
-    trainColor: "#00008E",
-    labelColor: "#ffffff"
-  },
-  "F": {
-    trainColor: "#CC8400",
-    labelColor: "#ffffff"
-  },
-  "H": {
-    trainColor: "#00008E",
-    labelColor: "#ffffff"
-  },
-  "J": {
-    trainColor: "#5B3B00",
-    labelColor: "#ffffff"
-  },
-  "L": {
-    trainColor: "#BFBFBF",
-    labelColor: "#ffffff"
-  },
-  "M": {
-    trainColor: "#CC8400",
-    labelColor: "#ffffff"
-  },
-  "N": {
-    trainColor: "#CCCC00",
-    labelColor: "#000000"
-  },
-  "Q": {
-    trainColor: "#CCCC00",
-    labelColor: "#000000"
-  },
-  "R": {
-    trainColor: "#CCCC00",
-    labelColor: "#000000"
-  },
-  "W": {
-    trainColor: "#CCCC00",
-    labelColor: "#000000"
-  },
-  "Z": {
-    trainColor: "#5B3B00",
-    labelColor: "#ffffff"
-  },
-  "1": {
-    trainColor: "#B70000",
-    labelColor: "#ffffff"
-  },
-  "2": {
-    trainColor: "#B70000",
-    labelColor: "#ffffff"
-  },
-  "3": {
-    trainColor: "#B70000",
-    labelColor: "#ffffff"
-  },
-  "4": {
-    trainColor: "#006600",
-    labelColor: "#ffffff"
-  },
-  "5": {
-    trainColor: "#006600",
-    labelColor: "#ffffff"
-  },
-  "6": {
-    trainColor: "#006600",
-    labelColor: "#ffffff"
-  },
-  "7": {
-    trainColor: "#660066",
-    labelColor: "#ffffff"
-  },
-  "S": {
-    trainColor: "#0000CE",
-    labelColor: "#ffffff"
-  },
-  "G": {
-    trainColor: "#59B759",
-    labelColor: "#ffffff"
-  }
-};
+/***/ }),
 
+/***/ "./assets/train_icons.json":
+/*!*********************************!*\
+  !*** ./assets/train_icons.json ***!
+  \*********************************/
+/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, C, E, H, B, D, F, M, J, Z, L, N, Q, R, W, S, G, default */
+/***/ (function(module) {
+
+module.exports = {"1":"assets/images/NYCS-bull-trans-1.svg","2":"assets/images/NYCS-bull-trans-2.svg","3":"assets/images/NYCS-bull-trans-3.svg","4":"assets/images/NYCS-bull-trans-4.svg","5":"assets/images/NYCS-bull-trans-5.svg","6":"assets/images/NYCS-bull-trans-6.svg","7":"assets/images/NYCS-bull-trans-7.svg","A":"assets/images/NYCS-bull-trans-A.svg","C":"assets/images/NYCS-bull-trans-C.svg","E":"assets/images/NYCS-bull-trans-E.svg","H":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/NYCS-bull-trans-H.svg/600px-NYCS-bull-trans-H.svg.png","B":"assets/images/NYCS-bull-trans-B.svg","D":"assets/images/NYCS-bull-trans-D.svg","F":"assets/images/NYCS-bull-trans-F.svg","M":"assets/images/NYCS-bull-trans-M.svg","J":"assets/images/NYCS-bull-trans-J.svg","Z":"assets/images/NYCS-bull-trans-Z.svg","L":"assets/images/NYCS-bull-trans-L.svg","N":"assets/images/NYCS-bull-trans-N.svg","Q":"assets/images/NYCS-bull-trans-Q.svg","R":"assets/images/NYCS-bull-trans-R.svg","W":"assets/images/NYCS-bull-trans-W.svg","S":"assets/images/sir.png","G":"assets/images/NYCS-bull-trans-G.svg"};
 
 /***/ }),
 
@@ -70170,7 +70050,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTime", function() { return updateTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupTrainIcons", function() { return setupTrainIcons; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupToggleButtons", function() { return setupToggleButtons; });
-/* harmony import */ var _assets_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train */ "./assets/train.js");
+/* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
+var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 
 
 function setupTime() {
@@ -70226,7 +70107,7 @@ function setupTrainIcons(state) {
     const rowDiv = document.createElement('div');
     rowDiv.className = `train-icon-row row${idx}`;
     row.forEach((trainLabel) => {
-      const url = _assets_train__WEBPACK_IMPORTED_MODULE_0__["trainIcons"][trainLabel];
+      const url = _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[trainLabel];
       const trainIcon = document.createElement('img');
       trainIcon.className = `train-label train-${trainLabel}`;
       trainIcon.src = url;
@@ -70430,9 +70311,13 @@ class Store {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
-/* harmony import */ var _assets_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train */ "./assets/train.js");
-/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
-/* harmony import */ var _util_train_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/train_utils */ "./util/train_utils.js");
+/* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
+var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
+/* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
+var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__});
+/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
+/* harmony import */ var _util_train_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/train_utils */ "./util/train_utils.js");
+
 
 
 
@@ -70488,23 +70373,23 @@ class Train {
 
     if (!previousStop && nextStop) {
       this.nextStationTime = nextStop.arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(nextStop.stopId);
+      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(nextStop.stopId);
       this.nextStation = this.prevStation;
       this.status = "idle";
     } else if (previousStop && nextStop) {
       this.prevStationTime = previousStop.departure.time;
       this.nextStationTime = nextStop.arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(previousStop.stopId);
-      this.nextStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(nextStop.stopId);
+      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(previousStop.stopId);
+      this.nextStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(nextStop.stopId);
       this.status = "inTransit";
     } else if (previousStop && !nextStop) {
       this.prevStationTime = previousStop.arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(previousStop.stopId);
+      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(previousStop.stopId);
       this.nextStation = this.prevStation;
       this.status = "lastStop"
     } else if (!previousStop && !nextStop) {
       this.prevStationTime = stops[0].arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getStationById"])(stops[0].stopId);
+      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(stops[0].stopId);
       this.nextStation = this.prevStation;
       this.status = "idle"
     }
@@ -70513,31 +70398,31 @@ class Train {
   setRenderState() {
     let vehicleTimePos;
     if (this.status === "inTransit") {
-      const from = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStation);
-      const to = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStation);
-      const tr = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["timeRatio"])(this.prevStationTime, this.nextStationTime)
+      const from = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getLatLng"])(this.prevStation);
+      const to = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getLatLng"])(this.nextStation);
+      const tr = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_3__["timeRatio"])(this.prevStationTime, this.nextStationTime)
       if (tr >= 0) {
-        vehicleTimePos = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["interpolate"])(from, to, tr);
+        vehicleTimePos = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_3__["interpolate"])(from, to, tr);
       } else {
         vehicleTimePos = to;
       }
       this.nextPos = to;
     } else if (this.status === "lastStop" || this.status === "idle") {
-      vehicleTimePos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStation);
+      vehicleTimePos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getLatLng"])(this.prevStation);
     }
     this.pos = vehicleTimePos;
   }
 
   setVelocity() {
     if (this.status === "inTransit") {
-      const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["getVelocity"])(this.nextPos, this.pos, this.nextStationTime);
+      const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_3__["getVelocity"])(this.nextPos, this.pos, this.nextStationTime);
       this.velocity = [newVelocity[0], newVelocity[1]];
     }
   }
 
   setMarker(map) {
-    const trainColor = _assets_train__WEBPACK_IMPORTED_MODULE_0__["trainColors"][this.trainLabel].trainColor;
-    const labelColor = _assets_train__WEBPACK_IMPORTED_MODULE_0__["trainColors"][this.trainLabel].labelColor;
+    const trainColor = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__[this.trainLabel].trainColor;
+    const labelColor = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__[this.trainLabel].labelColor;
     const point = new google.maps.Point(30, 16);
 
     let rotation;
@@ -70579,11 +70464,11 @@ class Train {
   }
 
   updateRenderState() {
-    this.nextPos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStation);
+    this.nextPos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getLatLng"])(this.nextStation);
   }
 
   updateVelocity() {
-    const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["getVelocity"])(this.nextPos, this.marker.getPosition().toJSON(), this.nextStationTime);
+    const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_3__["getVelocity"])(this.nextPos, this.marker.getPosition().toJSON(), this.nextStationTime);
     this.velocity = [newVelocity[0], newVelocity[1]];
   }
 

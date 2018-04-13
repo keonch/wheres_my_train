@@ -1,4 +1,4 @@
-import { trainIcons } from '../assets/train';
+import trainIcons from '../assets/train_icons.json';
 
 export function setupTime() {
   const clock = document.getElementById('clock');
