@@ -1,7 +1,6 @@
 import { initMap } from './map';
 import { setupTime, setupTrainIcons, setupToggleButtons } from './page_setup';
 import Store from './store';
-import {groupStations} from '../util/group_stations';
 
 document.addEventListener('DOMContentLoaded', () => {
   setupTime();

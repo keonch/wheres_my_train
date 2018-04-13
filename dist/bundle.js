@@ -72635,8 +72635,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
 /* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ "./src/store.js");
-/* harmony import */ var _util_group_stations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/group_stations */ "./util/group_stations.js");
-
 
 
 
@@ -72712,8 +72710,8 @@ function initMap() {
       {
         featureType: 'transit.line',
         elementType: 'geometry',
-        stylers: [{color: '#494949'}]
-        // stylers: [{ visibility: "off" }]
+        // stylers: [{color: '#494949'}]
+        stylers: [{ visibility: "off" }]
       },
       {
         featureType: 'transit.station',
@@ -72743,66 +72741,6 @@ function markStations(map) {
       }
     });
   })
-}
-
-
-/***/ }),
-
-/***/ "./src/mta.js":
-/*!********************!*\
-  !*** ./src/mta.js ***!
-  \********************/
-/*! exports provided: fetchMtaData */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
-/* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
-/* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../gtfs-realtime */ "./gtfs-realtime.js");
-/* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
-/* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
-
-
-
-
-
-function fetchMtaData(store) {
-  const urls = [
-    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=1',
-    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=26',
-    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=16',
-    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=21',
-    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=2',
-    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=11',
-    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=31',
-    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=36',
-    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=51'
-  ];
-
-  urls.forEach((url) => {
-    const req = {
-      method: 'GET',
-      url: url,
-      encoding: null
-    };
-    requestMta(store, req)
-  })
-}
-
-function requestMta(store, req) {
-  request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      Object(_page_setup__WEBPACK_IMPORTED_MODULE_3__["updateTime"])();
-      const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
-      store.setupTrains(Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed));
-    } else {
-      // setup a condition to break out of loop
-      window.setTimeout(() => requestMta(store, req), 3000);
-    }
-  });
 }
 
 
@@ -72930,6 +72868,66 @@ function toggleClass(element) {
 
 /***/ }),
 
+/***/ "./src/request_mta.js":
+/*!****************************!*\
+  !*** ./src/request_mta.js ***!
+  \****************************/
+/*! exports provided: fetchMtaData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
+/* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
+/* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../gtfs-realtime */ "./gtfs-realtime.js");
+/* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
+/* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
+
+
+
+
+
+function fetchMtaData(store) {
+  const urls = [
+    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=1',
+    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=26',
+    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=16',
+    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=21',
+    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=2',
+    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=11',
+    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=31',
+    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=36',
+    'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=51'
+  ];
+
+  urls.forEach((url) => {
+    const req = {
+      method: 'GET',
+      url: url,
+      encoding: null
+    };
+    requestMta(store, req)
+  })
+}
+
+function requestMta(store, req) {
+  request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      Object(_page_setup__WEBPACK_IMPORTED_MODULE_3__["updateTime"])();
+      const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
+      store.setupTrains(Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed));
+    } else {
+      // setup a condition to break out of loop
+      window.setTimeout(() => requestMta(store, req), 3000);
+    }
+  });
+}
+
+
+/***/ }),
+
 /***/ "./src/store.js":
 /*!**********************!*\
   !*** ./src/store.js ***!
@@ -72945,7 +72943,10 @@ __webpack_require__.r(__webpack_exports__);
 var _data_stations_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_1__});
 /* harmony import */ var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/subway_routes.json */ "./data/subway_routes.json");
 var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/Object.assign({}, _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__, {"default": _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__});
-/* harmony import */ var _mta__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mta */ "./src/mta.js");
+/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
+/* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
+var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_4__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_4__});
+
 
 
 
@@ -72963,7 +72964,7 @@ class Store {
 
   start() {
     requestAnimationFrame(this.animate.bind(this));
-    Object(_mta__WEBPACK_IMPORTED_MODULE_3__["fetchMtaData"])(this);
+    Object(_request_mta__WEBPACK_IMPORTED_MODULE_3__["fetchMtaData"])(this);
     this.setupStaticRoutes();
   }
 
@@ -73012,12 +73013,16 @@ class Store {
 
   setupPolylines() {
     Object.keys(this.state.routes).forEach((route) => {
+      const trainColor = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_4__[route].trainColor;
       const polylineRoute = new google.maps.Polyline({
         path: this.state.routes[route],
         // icons: [{
         //   icon: lineSymbol,
         //   offset: '100%'
         // }],
+        strokeColor: trainColor,
+        strokeOpacity: 1.0,
+        strokeWeight: 1,
         map: this.state.map
       });
       this.state.polylines[route] = polylineRoute;
@@ -73292,38 +73297,6 @@ function getStationById(stationId) {
 function getLatLng(station) {
   return { lat: station.stop_lat, lng: station.stop_lon };
 }
-
-
-/***/ }),
-
-/***/ "./util/group_stations.js":
-/*!********************************!*\
-  !*** ./util/group_stations.js ***!
-  \********************************/
-/*! exports provided: groupStations */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupStations", function() { return groupStations; });
-/* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
-var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_0__});
-
-
-function groupStations() {
-  const groupedStations = {};
-  Object.keys(_data_stations_json__WEBPACK_IMPORTED_MODULE_0__).forEach((stop_id) => {
-    const stationName = _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[stop_id].stop_name;
-    stop_id = stop_id.slice(0, 3);
-    if (groupedStations[stationName]) {
-      groupedStations[stationName].add(stop_id);
-    } else {
-      groupedStations[stationName] = new Set();
-      groupedStations[stationName].add(stop_id);
-    }
-  })
-  return groupedStations;
-};
 
 
 /***/ }),

@@ -1,7 +1,8 @@
 import Train from '../src/train';
 import stations from '../data/stations.json';
 import subwayRoutes from '../data/subway_routes.json';
-import { fetchMtaData } from './mta';
+import { fetchMtaData } from './request_mta';
+import trainColors from '../assets/train_colors.json';
 
 export default class Store {
   constructor(map) {
@@ -64,12 +65,16 @@ export default class Store {
 
   setupPolylines() {
     Object.keys(this.state.routes).forEach((route) => {
+      const trainColor = trainColors[route].trainColor;
       const polylineRoute = new google.maps.Polyline({
         path: this.state.routes[route],
         // icons: [{
         //   icon: lineSymbol,
         //   offset: '100%'
         // }],
+        strokeColor: trainColor,
+        strokeOpacity: 1.0,
+        strokeWeight: 1,
         map: this.state.map
       });
       this.state.polylines[route] = polylineRoute;
