@@ -1,5 +1,5 @@
 import request from 'request';
-import GtfsRealtimeBindings from '../util/gtfs-realtime';
+import GtfsRealtimeBindings from '../gtfs-realtime';
 import { parseFeed } from '../util/data_utils';
 import { updateTime } from './page_setup';
 

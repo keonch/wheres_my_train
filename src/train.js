@@ -1,7 +1,7 @@
 import trainIcons from '../assets/train_icons.json';
 import trainColors from '../assets/train_colors.json';
-import { getStationById, getLatLng } from '../util/data_utils';
 import { getVelocity, timeRatio, interpolate } from '../util/train_utils';
+import { getStationById, getLatLng } from '../util/data_utils';
 
 export default class Train {
   constructor(map, feed, trainId) {

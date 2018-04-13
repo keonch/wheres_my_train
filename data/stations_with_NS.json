@@ -1,4 +1,4 @@
-const stations = {
+{
   "101": {"stop_id": 101, "stop_name": "Van Cortlandt Park - 242 St", "stop_lat": 40.889248, "stop_lon": -73.898583, "location_type": 1},
   "101N": {"stop_id": "101N", "stop_name": "Van Cortlandt Park - 242 St", "stop_lat": 40.889248, "stop_lon": -73.898583, "location_type": "0"},
   "101S": {"stop_id": "101S", "stop_name": "Van Cortlandt Park - 242 St", "stop_lat": 40.889248, "stop_lon": -73.898583, "location_type": "0"},
@@ -1506,5 +1506,3 @@ const stations = {
   "S31N": {"stop_id": "S31N", "stop_name": "St George", "stop_lat": 40.643748, "stop_lon": -74.073643, "location_type": "0"},
   "S31S": {"stop_id": "S31S", "stop_name": "St George", "stop_lat": 40.643748, "stop_lon": -74.073643, "location_type": "0"}
 }
-
-export default stations;

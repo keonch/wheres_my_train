@@ -93,1556 +93,4336 @@ module.exports = {"1":"assets/images/NYCS-bull-trans-1.svg","2":"assets/images/N
 
 /***/ }),
 
-/***/ "./data/group_stations.js":
-/*!********************************!*\
-  !*** ./data/group_stations.js ***!
-  \********************************/
-/*! exports provided: groupStations */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./data/stations.json":
+/*!****************************!*\
+  !*** ./data/stations.json ***!
+  \****************************/
+/*! exports provided: 101, 103, 104, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 142, 201, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 301, 302, 401, 402, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 418, 419, 420, 423, 501, 502, 503, 504, 505, 601, 602, 603, 604, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 701, 702, 705, 706, 707, 708, 709, 710, 711, 712, 713, 714, 715, 716, 718, 719, 720, 721, 723, 724, 725, 726, 901, 902, A02, A03, A05, A06, A07, A09, A10, A11, A12, A14, A15, A16, A17, A18, A19, A20, A21, A22, A24, A25, A27, A28, A30, A31, A32, A33, A34, A36, A38, A40, A41, A42, A43, A44, A45, A46, A47, A48, A49, A50, A51, A52, A53, A54, A55, A57, A59, A60, A61, A63, A64, A65, B04, B06, B08, B10, B12, B13, B14, B15, B16, B17, B18, B19, B20, B21, B22, B23, D01, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D24, D25, D26, D27, D28, D29, D30, D31, D32, D33, D34, D35, D37, D38, D39, D40, D41, D42, D43, E01, F01, F02, F03, F04, F05, F06, F07, F09, F11, F12, F14, F15, F16, F18, F20, F21, F22, F23, F24, F25, F26, F27, F29, F30, F31, F32, F34, F35, F36, F38, F39, G05, G06, G07, G08, G09, G10, G11, G12, G13, G14, G15, G16, G18, G19, G20, G21, G22, G24, G26, G28, G29, G30, G31, G32, G33, G34, G35, G36, H01, H02, H03, H04, H06, H07, H08, H09, H10, H11, H12, H13, H14, H15, H19, J12, J13, J14, J15, J16, J17, J19, J20, J21, J22, J23, J24, J27, J28, J29, J30, J31, L01, L02, L03, L05, L06, L08, L10, L11, L12, L13, L14, L15, L16, L17, L19, L20, L21, L22, L24, L25, L26, L27, L28, L29, M01, M04, M05, M06, M08, M09, M10, M11, M12, M13, M14, M16, M18, M19, M20, M21, M22, M23, N02, N03, N04, N05, N06, N07, N08, N09, N10, N12, Q01, Q03, Q04, Q05, R01, R03, R04, R05, R06, R08, R09, R11, R13, R14, R15, R16, R17, R18, R19, R20, R21, R22, R23, R24, R25, R26, R27, R28, R29, R30, R31, R32, R33, R34, R35, R36, R39, R40, R41, R42, R43, R44, R45, R60, S01, S03, S04, S09, S10, S11, S12, S13, S14, S15, S16, S17, S18, S19, S20, S21, S22, S23, S24, S25, S26, S27, S28, S29, S30, S31, default */
+/***/ (function(module) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupStations", function() { return groupStations; });
-/* harmony import */ var _stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stations */ "./data/stations.js");
-
-
-function groupStations() {
-  const groupedStations = {};
-  Object.keys(_stations__WEBPACK_IMPORTED_MODULE_0__["default"]).forEach((stop_id) => {
-    const stationName = _stations__WEBPACK_IMPORTED_MODULE_0__["default"][stop_id].stop_name;
-    stop_id = stop_id.slice(0, 3);
-    if (groupedStations[stationName]) {
-      groupedStations[stationName].add(stop_id);
-    } else {
-      groupedStations[stationName] = new Set();
-      groupedStations[stationName].add(stop_id);
-    }
-  })
-  return groupedStations;
-};
-
+module.exports = {"101":{"name":"Van Cortlandt Park - 242 St","lat":40.889248,"lng":-73.898583},"103":{"name":"238 St","lat":40.884667,"lng":-73.90087},"104":{"name":"231 St","lat":40.878856,"lng":-73.904834},"106":{"name":"Marble Hill - 225 St","lat":40.874561,"lng":-73.909831},"107":{"name":"215 St","lat":40.869444,"lng":-73.915279},"108":{"name":"207 St","lat":40.864621,"lng":-73.918822},"109":{"name":"Dyckman St","lat":40.860531,"lng":-73.925536},"110":{"name":"191 St","lat":40.855225,"lng":-73.929412},"111":{"name":"181 St","lat":40.849505,"lng":-73.933596},"112":{"name":"168 St - Washington Hts","lat":40.840556,"lng":-73.940133},"113":{"name":"157 St","lat":40.834041,"lng":-73.94489},"114":{"name":"145 St","lat":40.826551,"lng":-73.95036},"115":{"name":"137 St - City College","lat":40.822008,"lng":-73.953676},"116":{"name":"125 St","lat":40.815581,"lng":-73.958372},"117":{"name":"116 St - Columbia University","lat":40.807722,"lng":-73.96411},"118":{"name":"Cathedral Pkwy","lat":40.803967,"lng":-73.966847},"119":{"name":"103 St","lat":40.799446,"lng":-73.968379},"120":{"name":"96 St","lat":40.793919,"lng":-73.972323},"121":{"name":"86 St","lat":40.788644,"lng":-73.976218},"122":{"name":"79 St","lat":40.783934,"lng":-73.979917},"123":{"name":"72 St","lat":40.778453,"lng":-73.98197},"124":{"name":"66 St - Lincoln Center","lat":40.77344,"lng":-73.982209},"125":{"name":"59 St - Columbus Circle","lat":40.768247,"lng":-73.981929},"126":{"name":"50 St","lat":40.761728,"lng":-73.983849},"127":{"name":"Times Sq - 42 St","lat":40.75529,"lng":-73.987495},"128":{"name":"34 St - Penn Station","lat":40.750373,"lng":-73.991057},"129":{"name":"28 St","lat":40.747215,"lng":-73.993365},"130":{"name":"23 St","lat":40.744081,"lng":-73.995657},"131":{"name":"18 St","lat":40.74104,"lng":-73.997871},"132":{"name":"14 St","lat":40.737826,"lng":-74.000201},"133":{"name":"Christopher St - Sheridan Sq","lat":40.733422,"lng":-74.002906},"134":{"name":"Houston St","lat":40.728251,"lng":-74.005367},"135":{"name":"Canal St","lat":40.722854,"lng":-74.006277},"136":{"name":"Franklin St","lat":40.719318,"lng":-74.006886},"137":{"name":"Chambers St","lat":40.715478,"lng":-74.009266},"138":{"name":"Cortlandt St","lat":40.711835,"lng":-74.012188},"139":{"name":"Rector St","lat":40.707513,"lng":-74.013783},"140":{"name":"South Ferry Loop","lat":40.701411,"lng":-74.013205},"142":{"name":"South Ferry","lat":40.702068,"lng":-74.013664},"201":{"name":"Wakefield - 241 St","lat":40.903125,"lng":-73.85062},"204":{"name":"Nereid Av","lat":40.898379,"lng":-73.854376},"205":{"name":"233 St","lat":40.893193,"lng":-73.857473},"206":{"name":"225 St","lat":40.888022,"lng":-73.860341},"207":{"name":"219 St","lat":40.883895,"lng":-73.862633},"208":{"name":"Gun Hill Rd","lat":40.87785,"lng":-73.866256},"209":{"name":"Burke Av","lat":40.871356,"lng":-73.867164},"210":{"name":"Allerton Av","lat":40.865462,"lng":-73.867352},"211":{"name":"Pelham Pkwy","lat":40.857192,"lng":-73.867615},"212":{"name":"Bronx Park East","lat":40.848828,"lng":-73.868457},"213":{"name":"E 180 St","lat":40.841894,"lng":-73.873488},"214":{"name":"West Farms Sq - E Tremont Av","lat":40.840295,"lng":-73.880049},"215":{"name":"174 St","lat":40.837288,"lng":-73.887734},"216":{"name":"Freeman St","lat":40.829993,"lng":-73.891865},"217":{"name":"Simpson St","lat":40.824073,"lng":-73.893064},"218":{"name":"Intervale Av","lat":40.822181,"lng":-73.896736},"219":{"name":"Prospect Av","lat":40.819585,"lng":-73.90177},"220":{"name":"Jackson Av","lat":40.81649,"lng":-73.907807},"221":{"name":"3 Av - 149 St","lat":40.816109,"lng":-73.917757},"222":{"name":"149 St - Grand Concourse","lat":40.81841,"lng":-73.926718},"224":{"name":"135 St","lat":40.814229,"lng":-73.94077},"225":{"name":"125 St","lat":40.807754,"lng":-73.945495},"226":{"name":"116 St","lat":40.802098,"lng":-73.949625},"227":{"name":"Central Park North (110 St)","lat":40.799075,"lng":-73.951822},"228":{"name":"Park Pl","lat":40.713051,"lng":-74.008811},"229":{"name":"Fulton St","lat":40.709416,"lng":-74.006571},"230":{"name":"Wall St","lat":40.706821,"lng":-74.0091},"231":{"name":"Clark St","lat":40.697466,"lng":-73.993086},"232":{"name":"Borough Hall","lat":40.693219,"lng":-73.989998},"233":{"name":"Hoyt St","lat":40.690545,"lng":-73.985065},"234":{"name":"Nevins St","lat":40.688246,"lng":-73.980492},"235":{"name":"Atlantic Av - Barclays Ctr","lat":40.684359,"lng":-73.977666},"236":{"name":"Bergen St","lat":40.680829,"lng":-73.975098},"237":{"name":"Grand Army Plaza","lat":40.675235,"lng":-73.971046},"238":{"name":"Eastern Pkwy - Brooklyn Museum","lat":40.671987,"lng":-73.964375},"239":{"name":"Franklin Av","lat":40.670682,"lng":-73.958131},"241":{"name":"President St","lat":40.667883,"lng":-73.950683},"242":{"name":"Sterling St","lat":40.662742,"lng":-73.95085},"243":{"name":"Winthrop St","lat":40.656652,"lng":-73.9502},"244":{"name":"Church Av","lat":40.650843,"lng":-73.949575},"245":{"name":"Beverly Rd","lat":40.645098,"lng":-73.948959},"246":{"name":"Newkirk Av","lat":40.639967,"lng":-73.948411},"247":{"name":"Flatbush Av - Brooklyn College","lat":40.632836,"lng":-73.947642},"248":{"name":"Nostrand Av","lat":40.669847,"lng":-73.950466},"249":{"name":"Kingston Av","lat":40.669399,"lng":-73.942161},"250":{"name":"Crown Hts - Utica Av","lat":40.668897,"lng":-73.932942},"251":{"name":"Sutter Av - Rutland Rd","lat":40.664717,"lng":-73.92261},"252":{"name":"Saratoga Av","lat":40.661453,"lng":-73.916327},"253":{"name":"Rockaway Av","lat":40.662549,"lng":-73.908946},"254":{"name":"Junius St","lat":40.663515,"lng":-73.902447},"255":{"name":"Pennsylvania Av","lat":40.664635,"lng":-73.894895},"256":{"name":"Van Siclen Av","lat":40.665449,"lng":-73.889395},"257":{"name":"New Lots Av","lat":40.666235,"lng":-73.884079},"301":{"name":"Harlem - 148 St","lat":40.82388,"lng":-73.93647},"302":{"name":"145 St","lat":40.820421,"lng":-73.936245},"401":{"name":"Woodlawn","lat":40.886037,"lng":-73.878751},"402":{"name":"Mosholu Pkwy","lat":40.87975,"lng":-73.884655},"405":{"name":"Bedford Park Blvd - Lehman College","lat":40.873412,"lng":-73.890064},"406":{"name":"Kingsbridge Rd","lat":40.86776,"lng":-73.897174},"407":{"name":"Fordham Rd","lat":40.862803,"lng":-73.901034},"408":{"name":"183 St","lat":40.858407,"lng":-73.903879},"409":{"name":"Burnside Av","lat":40.853453,"lng":-73.907684},"410":{"name":"176 St","lat":40.84848,"lng":-73.911794},"411":{"name":"Mt Eden Av","lat":40.844434,"lng":-73.914685},"412":{"name":"170 St","lat":40.840075,"lng":-73.917791},"413":{"name":"167 St","lat":40.835537,"lng":-73.9214},"414":{"name":"161 St - Yankee Stadium","lat":40.827994,"lng":-73.925831},"415":{"name":"149 St - Grand Concourse","lat":40.818375,"lng":-73.927351},"416":{"name":"138 St - Grand Concourse","lat":40.813224,"lng":-73.929849},"418":{"name":"Fulton St","lat":40.710368,"lng":-74.009509},"419":{"name":"Wall St","lat":40.707557,"lng":-74.011862},"420":{"name":"Bowling Green","lat":40.704817,"lng":-74.014065},"423":{"name":"Borough Hall","lat":40.692404,"lng":-73.990151},"501":{"name":"Eastchester - Dyre Av","lat":40.8883,"lng":-73.830834},"502":{"name":"Baychester Av","lat":40.878663,"lng":-73.838591},"503":{"name":"Gun Hill Rd","lat":40.869526,"lng":-73.846384},"504":{"name":"Pelham Pkwy","lat":40.858985,"lng":-73.855359},"505":{"name":"Morris Park","lat":40.854364,"lng":-73.860495},"601":{"name":"Pelham Bay Park","lat":40.852462,"lng":-73.828121},"602":{"name":"Buhre Av","lat":40.84681,"lng":-73.832569},"603":{"name":"Middletown Rd","lat":40.843863,"lng":-73.836322},"604":{"name":"Westchester Sq - E Tremont Av","lat":40.839892,"lng":-73.842952},"606":{"name":"Zerega Av","lat":40.836488,"lng":-73.847036},"607":{"name":"Castle Hill Av","lat":40.834255,"lng":-73.851222},"608":{"name":"Parkchester","lat":40.833226,"lng":-73.860816},"609":{"name":"St Lawrence Av","lat":40.831509,"lng":-73.867618},"610":{"name":"Morrison Av- Sound View","lat":40.829521,"lng":-73.874516},"611":{"name":"Elder Av","lat":40.828584,"lng":-73.879159},"612":{"name":"Whitlock Av","lat":40.826525,"lng":-73.886283},"613":{"name":"Hunts Point Av","lat":40.820948,"lng":-73.890549},"614":{"name":"Longwood Av","lat":40.816104,"lng":-73.896435},"615":{"name":"E 149 St","lat":40.812118,"lng":-73.904098},"616":{"name":"E 143 St - St Mary's St","lat":40.808719,"lng":-73.907657},"617":{"name":"Cypress Av","lat":40.805368,"lng":-73.914042},"618":{"name":"Brook Av","lat":40.807566,"lng":-73.91924},"619":{"name":"3 Av - 138 St","lat":40.810476,"lng":-73.926138},"621":{"name":"125 St","lat":40.804138,"lng":-73.937594},"622":{"name":"116 St","lat":40.798629,"lng":-73.941617},"623":{"name":"110 St","lat":40.79502,"lng":-73.94425},"624":{"name":"103 St","lat":40.7906,"lng":-73.947478},"625":{"name":"96 St","lat":40.785672,"lng":-73.95107},"626":{"name":"86 St","lat":40.779492,"lng":-73.955589},"627":{"name":"77 St","lat":40.77362,"lng":-73.959874},"628":{"name":"68 St - Hunter College","lat":40.768141,"lng":-73.96387},"629":{"name":"59 St","lat":40.762526,"lng":-73.967967},"630":{"name":"51 St","lat":40.757107,"lng":-73.97192},"631":{"name":"Grand Central - 42 St","lat":40.751776,"lng":-73.976848},"632":{"name":"33 St","lat":40.746081,"lng":-73.982076},"633":{"name":"28 St","lat":40.74307,"lng":-73.984264},"634":{"name":"23 St","lat":40.739864,"lng":-73.986599},"635":{"name":"14 St - Union Sq","lat":40.734673,"lng":-73.989951},"636":{"name":"Astor Pl","lat":40.730054,"lng":-73.99107},"637":{"name":"Bleecker St","lat":40.725915,"lng":-73.994659},"638":{"name":"Spring St","lat":40.722301,"lng":-73.997141},"639":{"name":"Canal St","lat":40.718803,"lng":-74.000193},"640":{"name":"Brooklyn Bridge - City Hall","lat":40.713065,"lng":-74.004131},"701":{"name":"Flushing - Main St","lat":40.7596,"lng":-73.83003},"702":{"name":"Mets - Willets Point","lat":40.754622,"lng":-73.845625},"705":{"name":"111 St","lat":40.75173,"lng":-73.855334},"706":{"name":"103 St - Corona Plaza","lat":40.749865,"lng":-73.8627},"707":{"name":"Junction Blvd","lat":40.749145,"lng":-73.869527},"708":{"name":"90 St - Elmhurst Av","lat":40.748408,"lng":-73.876613},"709":{"name":"82 St - Jackson Hts","lat":40.747659,"lng":-73.883697},"710":{"name":"74 St - Broadway","lat":40.746848,"lng":-73.891394},"711":{"name":"69 St","lat":40.746325,"lng":-73.896403},"712":{"name":"Woodside - 61 St","lat":40.74563,"lng":-73.902984},"713":{"name":"52 St","lat":40.744149,"lng":-73.912549},"714":{"name":"46 St","lat":40.743132,"lng":-73.918435},"715":{"name":"40 St","lat":40.743781,"lng":-73.924016},"716":{"name":"33 St","lat":40.744587,"lng":-73.930997},"718":{"name":"Queensboro Plaza","lat":40.750582,"lng":-73.940202},"719":{"name":"Court Sq","lat":40.747023,"lng":-73.945264},"720":{"name":"Hunters Point Av","lat":40.742216,"lng":-73.948916},"721":{"name":"Vernon Blvd - Jackson Av","lat":40.742626,"lng":-73.953581},"723":{"name":"Grand Central - 42 St","lat":40.751431,"lng":-73.976041},"724":{"name":"5 Av","lat":40.753821,"lng":-73.981963},"725":{"name":"Times Sq - 42 St","lat":40.755477,"lng":-73.987691},"726":{"name":"34 St - 11 Av","lat":40.755882,"lng":-74.00191},"901":{"name":"Grand Central - 42 St","lat":40.752769,"lng":-73.979189},"902":{"name":"Times Sq - 42 St","lat":40.755983,"lng":-73.986229},"A02":{"name":"Inwood - 207 St","lat":40.868072,"lng":-73.919899},"A03":{"name":"Dyckman St","lat":40.865491,"lng":-73.927271},"A05":{"name":"190 St","lat":40.859022,"lng":-73.93418},"A06":{"name":"181 St","lat":40.851695,"lng":-73.937969},"A07":{"name":"175 St","lat":40.847391,"lng":-73.939704},"A09":{"name":"168 St","lat":40.840719,"lng":-73.939561},"A10":{"name":"163 St - Amsterdam Av","lat":40.836013,"lng":-73.939892},"A11":{"name":"155 St","lat":40.830518,"lng":-73.941514},"A12":{"name":"145 St","lat":40.824783,"lng":-73.944216},"A14":{"name":"135 St","lat":40.817894,"lng":-73.947649},"A15":{"name":"125 St","lat":40.811109,"lng":-73.952343},"A16":{"name":"116 St","lat":40.805085,"lng":-73.954882},"A17":{"name":"Cathedral Pkwy (110 St)","lat":40.800603,"lng":-73.958161},"A18":{"name":"103 St","lat":40.796092,"lng":-73.961454},"A19":{"name":"96 St","lat":40.791642,"lng":-73.964696},"A20":{"name":"86 St","lat":40.785868,"lng":-73.968916},"A21":{"name":"81 St - Museum of Natural History","lat":40.781433,"lng":-73.972143},"A22":{"name":"72 St","lat":40.775594,"lng":-73.97641},"A24":{"name":"59 St - Columbus Circle","lat":40.768296,"lng":-73.981736},"A25":{"name":"50 St","lat":40.762456,"lng":-73.985984},"A27":{"name":"42 St - Port Authority Bus Terminal","lat":40.757308,"lng":-73.989735},"A28":{"name":"34 St - Penn Station","lat":40.752287,"lng":-73.993391},"A30":{"name":"23 St","lat":40.745906,"lng":-73.998041},"A31":{"name":"14 St","lat":40.740893,"lng":-74.00169},"A32":{"name":"W 4 St","lat":40.732338,"lng":-74.000495},"A33":{"name":"Spring St","lat":40.726227,"lng":-74.003739},"A34":{"name":"Canal St","lat":40.720824,"lng":-74.005229},"A36":{"name":"Chambers St","lat":40.714111,"lng":-74.008585},"A38":{"name":"Fulton St","lat":40.710197,"lng":-74.007691},"A40":{"name":"High St","lat":40.699337,"lng":-73.990531},"A41":{"name":"Jay St - MetroTech","lat":40.692338,"lng":-73.987342},"A42":{"name":"Hoyt - Schermerhorn Sts","lat":40.688484,"lng":-73.985001},"A43":{"name":"Lafayette Av","lat":40.686113,"lng":-73.973946},"A44":{"name":"Clinton - Washington Avs","lat":40.683263,"lng":-73.965838},"A45":{"name":"Franklin Av","lat":40.68138,"lng":-73.956848},"A46":{"name":"Nostrand Av","lat":40.680438,"lng":-73.950426},"A47":{"name":"Kingston - Throop Avs","lat":40.679921,"lng":-73.940858},"A48":{"name":"Utica Av","lat":40.679364,"lng":-73.930729},"A49":{"name":"Ralph Av","lat":40.678822,"lng":-73.920786},"A50":{"name":"Rockaway Av","lat":40.67834,"lng":-73.911946},"A51":{"name":"Broadway Jct","lat":40.678334,"lng":-73.905316},"A52":{"name":"Liberty Av","lat":40.674542,"lng":-73.896548},"A53":{"name":"Van Siclen Av","lat":40.67271,"lng":-73.890358},"A54":{"name":"Shepherd Av","lat":40.67413,"lng":-73.88075},"A55":{"name":"Euclid Av","lat":40.675377,"lng":-73.872106},"A57":{"name":"Grant Av","lat":40.677044,"lng":-73.86505},"A59":{"name":"80 St","lat":40.679371,"lng":-73.858992},"A60":{"name":"88 St","lat":40.679843,"lng":-73.85147},"A61":{"name":"Rockaway Blvd","lat":40.680429,"lng":-73.843853},"A63":{"name":"104 St","lat":40.681711,"lng":-73.837683},"A64":{"name":"111 St","lat":40.684331,"lng":-73.832163},"A65":{"name":"Ozone Park - Lefferts Blvd","lat":40.685951,"lng":-73.825798},"B04":{"name":"21 St - Queensbridge","lat":40.754203,"lng":-73.942836},"B06":{"name":"Roosevelt Island","lat":40.759145,"lng":-73.95326},"B08":{"name":"Lexington Av/63 St","lat":40.764629,"lng":-73.966113},"B10":{"name":"57 St","lat":40.763972,"lng":-73.97745},"B12":{"name":"9 Av","lat":40.646292,"lng":-73.994324},"B13":{"name":"Fort Hamilton Pkwy","lat":40.640914,"lng":-73.994304},"B14":{"name":"50 St","lat":40.63626,"lng":-73.994791},"B15":{"name":"55 St","lat":40.631435,"lng":-73.995476},"B16":{"name":"62 St","lat":40.626472,"lng":-73.996895},"B17":{"name":"71 St","lat":40.619589,"lng":-73.998864},"B18":{"name":"79 St","lat":40.613501,"lng":-74.00061},"B19":{"name":"18 Av","lat":40.607954,"lng":-74.001736},"B20":{"name":"20 Av","lat":40.604556,"lng":-73.998168},"B21":{"name":"Bay Pkwy","lat":40.601875,"lng":-73.993728},"B22":{"name":"25 Av","lat":40.597704,"lng":-73.986829},"B23":{"name":"Bay 50 St","lat":40.588841,"lng":-73.983765},"D01":{"name":"Norwood - 205 St","lat":40.874811,"lng":-73.878855},"D03":{"name":"Bedford Park Blvd","lat":40.873244,"lng":-73.887138},"D04":{"name":"Kingsbridge Rd","lat":40.866978,"lng":-73.893509},"D05":{"name":"Fordham Rd","lat":40.861296,"lng":-73.897749},"D06":{"name":"182-183 Sts","lat":40.856093,"lng":-73.900741},"D07":{"name":"Tremont Av","lat":40.85041,"lng":-73.905227},"D08":{"name":"174-175 Sts","lat":40.8459,"lng":-73.910136},"D09":{"name":"170 St","lat":40.839306,"lng":-73.9134},"D10":{"name":"167 St","lat":40.833771,"lng":-73.91844},"D11":{"name":"161 St - Yankee Stadium","lat":40.827905,"lng":-73.925651},"D12":{"name":"155 St","lat":40.830135,"lng":-73.938209},"D13":{"name":"145 St","lat":40.824783,"lng":-73.944216},"D14":{"name":"7 Av","lat":40.762862,"lng":-73.981637},"D15":{"name":"47-50 Sts - Rockefeller Ctr","lat":40.758663,"lng":-73.981329},"D16":{"name":"42 St - Bryant Pk","lat":40.754222,"lng":-73.984569},"D17":{"name":"34 St - Herald Sq","lat":40.749719,"lng":-73.987823},"D18":{"name":"23 St","lat":40.742878,"lng":-73.992821},"D19":{"name":"14 St","lat":40.738228,"lng":-73.996209},"D20":{"name":"W 4 St","lat":40.732338,"lng":-74.000495},"D21":{"name":"Broadway-Lafayette St","lat":40.725297,"lng":-73.996204},"D22":{"name":"Grand St","lat":40.718267,"lng":-73.993753},"D24":{"name":"Atlantic Av - Barclays Ctr","lat":40.68446,"lng":-73.97689},"D25":{"name":"7 Av","lat":40.67705,"lng":-73.972367},"D26":{"name":"Prospect Park","lat":40.661614,"lng":-73.962246},"D27":{"name":"Parkside Av","lat":40.655292,"lng":-73.961495},"D28":{"name":"Church Av","lat":40.650527,"lng":-73.962982},"D29":{"name":"Beverley Rd","lat":40.644031,"lng":-73.964492},"D30":{"name":"Cortelyou Rd","lat":40.640927,"lng":-73.963891},"D31":{"name":"Newkirk Plaza","lat":40.635082,"lng":-73.962793},"D32":{"name":"Avenue H","lat":40.62927,"lng":-73.961639},"D33":{"name":"Avenue J","lat":40.625039,"lng":-73.960803},"D34":{"name":"Avenue M","lat":40.617618,"lng":-73.959399},"D35":{"name":"Kings Hwy","lat":40.60867,"lng":-73.957734},"D37":{"name":"Avenue U","lat":40.5993,"lng":-73.955929},"D38":{"name":"Neck Rd","lat":40.595246,"lng":-73.955161},"D39":{"name":"Sheepshead Bay","lat":40.586896,"lng":-73.954155},"D40":{"name":"Brighton Beach","lat":40.577621,"lng":-73.961376},"D41":{"name":"Ocean Pkwy","lat":40.576312,"lng":-73.968501},"D42":{"name":"W 8 St - NY Aquarium","lat":40.576127,"lng":-73.975939},"D43":{"name":"Coney Island - Stillwell Av","lat":40.577422,"lng":-73.981233},"E01":{"name":"World Trade Center","lat":40.712582,"lng":-74.009781},"F01":{"name":"Jamaica - 179 St","lat":40.712646,"lng":-73.783817},"F02":{"name":"169 St","lat":40.71047,"lng":-73.793604},"F03":{"name":"Parsons Blvd","lat":40.707564,"lng":-73.803326},"F04":{"name":"Sutphin Blvd","lat":40.70546,"lng":-73.810708},"F05":{"name":"Briarwood - Van Wyck Blvd","lat":40.709179,"lng":-73.820574},"F06":{"name":"Kew Gardens - Union Tpke","lat":40.714441,"lng":-73.831008},"F07":{"name":"75 Av","lat":40.718331,"lng":-73.837324},"F09":{"name":"Court Sq","lat":40.747846,"lng":-73.946},"F11":{"name":"Lexington Av/53 St","lat":40.757552,"lng":-73.969055},"F12":{"name":"5 Av/53 St","lat":40.760167,"lng":-73.975224},"F14":{"name":"2 Av","lat":40.723402,"lng":-73.989938},"F15":{"name":"Delancey St","lat":40.718611,"lng":-73.988114},"F16":{"name":"East Broadway","lat":40.713715,"lng":-73.990173},"F18":{"name":"York St","lat":40.701397,"lng":-73.986751},"F20":{"name":"Bergen St","lat":40.686145,"lng":-73.990862},"F21":{"name":"Carroll St","lat":40.680303,"lng":-73.995048},"F22":{"name":"Smith - 9 Sts","lat":40.67358,"lng":-73.995959},"F23":{"name":"4 Av","lat":40.670272,"lng":-73.989779},"F24":{"name":"7 Av","lat":40.666271,"lng":-73.980305},"F25":{"name":"15 St - Prospect Park","lat":40.660365,"lng":-73.979493},"F26":{"name":"Fort Hamilton Pkwy","lat":40.650782,"lng":-73.975776},"F27":{"name":"Church Av","lat":40.644041,"lng":-73.979678},"F29":{"name":"Ditmas Av","lat":40.636119,"lng":-73.978172},"F30":{"name":"18 Av","lat":40.629755,"lng":-73.976971},"F31":{"name":"Avenue I","lat":40.625322,"lng":-73.976127},"F32":{"name":"Bay Pkwy","lat":40.620769,"lng":-73.975264},"F34":{"name":"Avenue P","lat":40.608944,"lng":-73.973022},"F35":{"name":"Kings Hwy","lat":40.603217,"lng":-73.972361},"F36":{"name":"Avenue U","lat":40.596063,"lng":-73.973357},"F38":{"name":"Avenue X","lat":40.58962,"lng":-73.97425},"F39":{"name":"Neptune Av","lat":40.581011,"lng":-73.974574},"G05":{"name":"Jamaica Center - Parsons/Archer","lat":40.702147,"lng":-73.801109},"G06":{"name":"Sutphin Blvd - Archer Av - JFK Airport","lat":40.700486,"lng":-73.807969},"G07":{"name":"Jamaica - Van Wyck","lat":40.702566,"lng":-73.816859},"G08":{"name":"Forest Hills - 71 Av","lat":40.721691,"lng":-73.844521},"G09":{"name":"67 Av","lat":40.726523,"lng":-73.852719},"G10":{"name":"63 Dr - Rego Park","lat":40.729846,"lng":-73.861604},"G11":{"name":"Woodhaven Blvd","lat":40.733106,"lng":-73.869229},"G12":{"name":"Grand Av - Newtown","lat":40.737015,"lng":-73.877223},"G13":{"name":"Elmhurst Av","lat":40.742454,"lng":-73.882017},"G14":{"name":"Jackson Hts - Roosevelt Av","lat":40.746644,"lng":-73.891338},"G15":{"name":"65 St","lat":40.749669,"lng":-73.898453},"G16":{"name":"Northern Blvd","lat":40.752885,"lng":-73.906006},"G18":{"name":"46 St","lat":40.756312,"lng":-73.913333},"G19":{"name":"Steinway St","lat":40.756879,"lng":-73.92074},"G20":{"name":"36 St","lat":40.752039,"lng":-73.928781},"G21":{"name":"Queens Plaza","lat":40.748973,"lng":-73.937243},"G22":{"name":"Court Sq","lat":40.746554,"lng":-73.943832},"G24":{"name":"21 St","lat":40.744065,"lng":-73.949724},"G26":{"name":"Greenpoint Av","lat":40.731352,"lng":-73.954449},"G28":{"name":"Nassau Av","lat":40.724635,"lng":-73.951277},"G29":{"name":"Metropolitan Av","lat":40.712792,"lng":-73.951418},"G30":{"name":"Broadway","lat":40.706092,"lng":-73.950308},"G31":{"name":"Flushing Av","lat":40.700377,"lng":-73.950234},"G32":{"name":"Myrtle - Willoughby Avs","lat":40.694568,"lng":-73.949046},"G33":{"name":"Bedford - Nostrand Avs","lat":40.689627,"lng":-73.953522},"G34":{"name":"Classon Av","lat":40.688873,"lng":-73.96007},"G35":{"name":"Clinton - Washington Avs","lat":40.688089,"lng":-73.966839},"G36":{"name":"Fulton St","lat":40.687119,"lng":-73.975375},"H01":{"name":"Aqueduct Racetrack","lat":40.668234,"lng":-73.834058},"H02":{"name":"Aqueduct - N Conduit Av","lat":40.668234,"lng":-73.834058},"H03":{"name":"Howard Beach - JFK Airport","lat":40.660476,"lng":-73.830301},"H04":{"name":"Broad Channel","lat":40.608382,"lng":-73.815925},"H06":{"name":"Beach 67 St","lat":40.590927,"lng":-73.796924},"H07":{"name":"Beach 60 St","lat":40.592374,"lng":-73.788522},"H08":{"name":"Beach 44 St","lat":40.592943,"lng":-73.776013},"H09":{"name":"Beach 36 St","lat":40.595398,"lng":-73.768175},"H10":{"name":"Beach 25 St","lat":40.600066,"lng":-73.761353},"H11":{"name":"Far Rockaway - Mott Av","lat":40.603995,"lng":-73.755405},"H12":{"name":"Beach 90 St","lat":40.588034,"lng":-73.813641},"H13":{"name":"Beach 98 St","lat":40.585307,"lng":-73.820558},"H14":{"name":"Beach 105 St","lat":40.583209,"lng":-73.827559},"H15":{"name":"Rockaway Park - Beach 116 St","lat":40.580903,"lng":-73.835592},"H19":{"name":"Broad Channel","lat":40.609014,"lng":-73.816024},"J12":{"name":"121 St","lat":40.700492,"lng":-73.828294},"J13":{"name":"111 St","lat":40.697418,"lng":-73.836345},"J14":{"name":"104 St","lat":40.695178,"lng":-73.84433},"J15":{"name":"Woodhaven Blvd","lat":40.693879,"lng":-73.851576},"J16":{"name":"85 St - Forest Pkwy","lat":40.692435,"lng":-73.86001},"J17":{"name":"75 St","lat":40.691324,"lng":-73.867139},"J19":{"name":"Cypress Hills","lat":40.689941,"lng":-73.87255},"J20":{"name":"Crescent St","lat":40.683194,"lng":-73.873785},"J21":{"name":"Norwood Av","lat":40.68141,"lng":-73.880039},"J22":{"name":"Cleveland St","lat":40.679947,"lng":-73.884639},"J23":{"name":"Van Siclen Av","lat":40.678024,"lng":-73.891688},"J24":{"name":"Alabama Av","lat":40.676992,"lng":-73.898654},"J27":{"name":"Broadway Jct","lat":40.679498,"lng":-73.904512},"J28":{"name":"Chauncey St","lat":40.682893,"lng":-73.910456},"J29":{"name":"Halsey St","lat":40.68637,"lng":-73.916559},"J30":{"name":"Gates Av","lat":40.68963,"lng":-73.92227},"J31":{"name":"Kosciuszko St","lat":40.693342,"lng":-73.928814},"L01":{"name":"8 Av","lat":40.739777,"lng":-74.002578},"L02":{"name":"6 Av","lat":40.737335,"lng":-73.996786},"L03":{"name":"Union Sq - 14 St","lat":40.734789,"lng":-73.99073},"L05":{"name":"3 Av","lat":40.732849,"lng":-73.986122},"L06":{"name":"1 Av","lat":40.730953,"lng":-73.981628},"L08":{"name":"Bedford Av","lat":40.717304,"lng":-73.956872},"L10":{"name":"Lorimer St","lat":40.714063,"lng":-73.950275},"L11":{"name":"Graham Av","lat":40.714565,"lng":-73.944053},"L12":{"name":"Grand St","lat":40.711926,"lng":-73.94067},"L13":{"name":"Montrose Av","lat":40.707739,"lng":-73.93985},"L14":{"name":"Morgan Av","lat":40.706152,"lng":-73.933147},"L15":{"name":"Jefferson St","lat":40.706607,"lng":-73.922913},"L16":{"name":"DeKalb Av","lat":40.703811,"lng":-73.918425},"L17":{"name":"Myrtle - Wyckoff Avs","lat":40.699814,"lng":-73.911586},"L19":{"name":"Halsey St","lat":40.695602,"lng":-73.904084},"L20":{"name":"Wilson Av","lat":40.688764,"lng":-73.904046},"L21":{"name":"Bushwick Av - Aberdeen St","lat":40.682829,"lng":-73.905249},"L22":{"name":"Broadway Jct","lat":40.678856,"lng":-73.90324},"L24":{"name":"Atlantic Av","lat":40.675345,"lng":-73.903097},"L25":{"name":"Sutter Av","lat":40.669367,"lng":-73.901975},"L26":{"name":"Livonia Av","lat":40.664038,"lng":-73.900571},"L27":{"name":"New Lots Av","lat":40.658733,"lng":-73.899232},"L28":{"name":"E 105 St","lat":40.650573,"lng":-73.899485},"L29":{"name":"Canarsie - Rockaway Pkwy","lat":40.646654,"lng":-73.90185},"M01":{"name":"Middle Village - Metropolitan Av","lat":40.711396,"lng":-73.889601},"M04":{"name":"Fresh Pond Rd","lat":40.706186,"lng":-73.895877},"M05":{"name":"Forest Av","lat":40.704423,"lng":-73.903077},"M06":{"name":"Seneca Av","lat":40.702762,"lng":-73.90774},"M08":{"name":"Myrtle - Wyckoff Avs","lat":40.69943,"lng":-73.912385},"M09":{"name":"Knickerbocker Av","lat":40.698664,"lng":-73.919711},"M10":{"name":"Central Av","lat":40.697857,"lng":-73.927397},"M11":{"name":"Myrtle Av","lat":40.697207,"lng":-73.935657},"M12":{"name":"Flushing Av","lat":40.70026,"lng":-73.941126},"M13":{"name":"Lorimer St","lat":40.703869,"lng":-73.947408},"M14":{"name":"Hewes St","lat":40.70687,"lng":-73.953431},"M16":{"name":"Marcy Av","lat":40.708359,"lng":-73.957757},"M18":{"name":"Essex St","lat":40.718315,"lng":-73.987437},"M19":{"name":"Bowery","lat":40.72028,"lng":-73.993915},"M20":{"name":"Canal St","lat":40.718092,"lng":-73.999892},"M21":{"name":"Chambers St","lat":40.713243,"lng":-74.003401},"M22":{"name":"Fulton St","lat":40.710374,"lng":-74.007582},"M23":{"name":"Broad St","lat":40.706476,"lng":-74.011056},"N02":{"name":"8 Av","lat":40.635064,"lng":-74.011719},"N03":{"name":"Fort Hamilton Pkwy","lat":40.631386,"lng":-74.005351},"N04":{"name":"New Utrecht Av","lat":40.624842,"lng":-73.996353},"N05":{"name":"18 Av","lat":40.620671,"lng":-73.990414},"N06":{"name":"20 Av","lat":40.61741,"lng":-73.985026},"N07":{"name":"Bay Pkwy","lat":40.611815,"lng":-73.981848},"N08":{"name":"Kings Hwy","lat":40.603923,"lng":-73.980353},"N09":{"name":"Avenue U","lat":40.597473,"lng":-73.979137},"N10":{"name":"86 St","lat":40.592721,"lng":-73.97823},"N12":{"name":"S.B. Coney Island","lat":40.577422,"lng":-73.981233},"Q01":{"name":"Canal St","lat":40.718383,"lng":-74.00046},"Q03":{"name":"72 St","lat":40.768799,"lng":-73.958424},"Q04":{"name":"86 St","lat":40.777891,"lng":-73.951787},"Q05":{"name":"96 St","lat":40.784318,"lng":-73.947152},"R01":{"name":"Astoria - Ditmars Blvd","lat":40.775036,"lng":-73.912034},"R03":{"name":"Astoria Blvd","lat":40.770258,"lng":-73.917843},"R04":{"name":"30 Av","lat":40.766779,"lng":-73.921479},"R05":{"name":"Broadway","lat":40.76182,"lng":-73.925508},"R06":{"name":"36 Av","lat":40.756804,"lng":-73.929575},"R08":{"name":"39 Av","lat":40.752882,"lng":-73.932755},"R09":{"name":"Queensboro Plaza","lat":40.750582,"lng":-73.940202},"R11":{"name":"Lexington Av/59 St","lat":40.76266,"lng":-73.967258},"R13":{"name":"5 Av/59 St","lat":40.764811,"lng":-73.973347},"R14":{"name":"57 St - 7 Av","lat":40.764664,"lng":-73.980658},"R15":{"name":"49 St","lat":40.759901,"lng":-73.984139},"R16":{"name":"Times Sq - 42 St","lat":40.754672,"lng":-73.986754},"R17":{"name":"34 St - Herald Sq","lat":40.749567,"lng":-73.98795},"R18":{"name":"28 St","lat":40.745494,"lng":-73.988691},"R19":{"name":"23 St","lat":40.741303,"lng":-73.989344},"R20":{"name":"14 St - Union Sq","lat":40.735736,"lng":-73.990568},"R21":{"name":"8 St - NYU","lat":40.730328,"lng":-73.992629},"R22":{"name":"Prince St","lat":40.724329,"lng":-73.997702},"R23":{"name":"Canal St","lat":40.719527,"lng":-74.001775},"R24":{"name":"City Hall","lat":40.713282,"lng":-74.006978},"R25":{"name":"Cortlandt St","lat":40.710668,"lng":-74.011029},"R26":{"name":"Rector St","lat":40.70722,"lng":-74.013342},"R27":{"name":"Whitehall St","lat":40.703087,"lng":-74.012994},"R28":{"name":"Court St","lat":40.6941,"lng":-73.991777},"R29":{"name":"Jay St - MetroTech","lat":40.69218,"lng":-73.985942},"R30":{"name":"DeKalb Av","lat":40.690635,"lng":-73.981824},"R31":{"name":"Atlantic Av - Barclays Ctr","lat":40.683666,"lng":-73.97881},"R32":{"name":"Union St","lat":40.677316,"lng":-73.98311},"R33":{"name":"9 St","lat":40.670847,"lng":-73.988302},"R34":{"name":"Prospect Av","lat":40.665414,"lng":-73.992872},"R35":{"name":"25 St","lat":40.660397,"lng":-73.998091},"R36":{"name":"36 St","lat":40.655144,"lng":-74.003549},"R39":{"name":"45 St","lat":40.648939,"lng":-74.010006},"R40":{"name":"53 St","lat":40.645069,"lng":-74.014034},"R41":{"name":"59 St","lat":40.641362,"lng":-74.017881},"R42":{"name":"Bay Ridge Av","lat":40.634967,"lng":-74.023377},"R43":{"name":"77 St","lat":40.629742,"lng":-74.02551},"R44":{"name":"86 St","lat":40.622687,"lng":-74.028398},"R45":{"name":"Bay Ridge - 95 St","lat":40.616622,"lng":-74.030876},"R60":{"name":"Bay Ridge - 95 St","lat":40.616622,"lng":-74.030876},"S01":{"name":"Franklin Av","lat":40.680596,"lng":-73.955827},"S03":{"name":"Park Pl","lat":40.674772,"lng":-73.957624},"S04":{"name":"Botanic Garden","lat":40.670343,"lng":-73.959245},"S09":{"name":"Tottenville","lat":40.512764,"lng":-74.251961},"S10":{"name":"Atlantic","lat":40.515401,"lng":-74.245689},"S11":{"name":"Arthur Kill","lat":40.516578,"lng":-74.242096},"S12":{"name":"Nassau","lat":40.517812,"lng":-74.238373},"S13":{"name":"Richmond Valley","lat":40.519631,"lng":-74.229141},"S14":{"name":"Pleasant Plains","lat":40.52241,"lng":-74.217847},"S15":{"name":"Prince's Bay","lat":40.525507,"lng":-74.200064},"S16":{"name":"Huguenot","lat":40.533674,"lng":-74.191794},"S17":{"name":"Annadale","lat":40.54046,"lng":-74.178217},"S18":{"name":"Eltingville","lat":40.544601,"lng":-74.16457},"S19":{"name":"Great Kills","lat":40.551231,"lng":-74.151399},"S20":{"name":"Bay Terrace","lat":40.5564,"lng":-74.136907},"S21":{"name":"Oakwood Heights","lat":40.56511,"lng":-74.12632},"S22":{"name":"New Dorp","lat":40.57348,"lng":-74.11721},"S23":{"name":"Grant City","lat":40.578965,"lng":-74.109704},"S24":{"name":"Jefferson Av","lat":40.583591,"lng":-74.103338},"S25":{"name":"Dongan Hills","lat":40.588849,"lng":-74.09609},"S26":{"name":"Old Town","lat":40.596612,"lng":-74.087368},"S27":{"name":"Grasmere","lat":40.603117,"lng":-74.084087},"S28":{"name":"Clifton","lat":40.621319,"lng":-74.071402},"S29":{"name":"Stapleton","lat":40.627915,"lng":-74.075162},"S30":{"name":"Tompkinsville","lat":40.636949,"lng":-74.074835},"S31":{"name":"St George","lat":40.643748,"lng":-74.073643}};
 
 /***/ }),
 
-/***/ "./data/stations.js":
+/***/ "./data/subway_routes.json":
+/*!*********************************!*\
+  !*** ./data/subway_routes.json ***!
+  \*********************************/
+/*! exports provided: 1, 2, 3, 4, 5, 6, 7, S, A, C, E, B, D, F, M, G, J, Z, L, N, Q, R, W, default */
+/***/ (function(module) {
+
+module.exports = {"1":["Van Cortlandt Park - 242 St","238 St","231 St","Marble Hill - 225 St","215 St","207 St","Dyckman St","191 St","181 St","168 St - Washington Hts","157 St","145 St","137 St - City College","125 St","116 St - Columbia University","Cathedral Pkwy","103 St","96 St","86 St","79 St","72 St","66 St - Lincoln Center","59 St - Columbus Circle","50 St","Times Sq - 42 St","34 St - Penn Station","28 St","23 St","18 St","14 St","Christopher St - Sheridan Sq","Houston St","Canal St","Franklin St","Chambers St","Cortlandt St","Rector St","South Ferry Loop","South Ferry"],"2":["Wakefield - 241 St","Nereid Av","233 St","225 St","219 St","Gun Hill Rd","Burke Av","Allerton Av","Pelham Pkwy","Bronx Park East","E 180 St","West Farms Sq - E Tremont Av","174 St","Freeman St","Simpson St","Intervale Av","Prospect Av","Jackson Av","3 Av - 149 St","149 St - Grand Concourse","135 St","125 St","116 St","Central Park North (110 St)","96 St","86 St","79 St","72 St","66 St - Lincoln Center","59 St - Columbus Circle","50 St","Times Sq - 42 St","34 St - Penn Station","28 St","23 St","18 St","14 St","Christopher St - Sheridan Sq","Houston St","Canal St","Franklin St","Chambers St","Park Pl","Fulton St","Wall St","Clark St","Borough Hall","Hoyt St","Nevins St","Atlantic Av - Barclays Ctr","Bergen St","Grand Army Plaza","Eastern Pkwy - Brooklyn Museum","Franklin Av","President St","Sterling St","Winthrop St","Church Av","Beverly Rd","Newkirk Av","Flatbush Av - Brooklyn College"],"3":["Harlem - 148 St","145 St","135 St","125 St","116 St","Central Park North (110 St)","96 St","72 St","Times Sq - 42 St","34 St - Penn Station","14 St","Chambers St","Park Pl","Fulton St","Wall St","Clark St","Borough Hall","Hoyt St","Nevins St","Atlantic Av - Barclays Ctr","Bergen St","Grand Army Plaza","Eastern Pkwy - Brooklyn Museum","Franklin Av","Nostrand Av","Kingston Av","Crown Hts - Utica Av","Sutter Av - Rutland Rd","Saratoga Av","Rockaway Av","Junius St","Pennsylvania Av","Van Siclen Av","New Lots Av"],"4":["Woodlawn","Mosholu Pkwy","Bedford Park Blvd - Lehman College","Kingsbridge Rd","Fordham Rd","183 St","Burnside Av","176 St","Mt Eden Av","170 St","167 St","161 St - Yankee Stadium","149 St - Grand Concourse","138 St - Grand Concourse","125 St","116 St","110 St","103 St","96 St","86 St","77 St","68 St - Hunter College","59 St","51 St","Grand Central - 42 St","33 St","28 St","23 St","14 St - Union Sq","Astor Pl","Bleecker St","Spring St","Canal St","Brooklyn Bridge - City Hall","Fulton St","Wall St","Bowling Green","Borough Hall","Hoyt St","Nevins St","Atlantic Av - Barclays Ctr","Bergen St","Grand Army Plaza","Eastern Pkwy - Brooklyn Museum","Franklin Av","Nostrand Av","Kingston - Throop Avs","Crown Hts - Utica Av","Sutter Av - Rutland Rd","Saratoga Av","Rockaway Av","Junius St","Pennsylvania Av","Van Siclen Av","New Lots Av"],"5":["Eastchester - Dyre Av","Baychester Av","Gun Hill Rd","Pelham Pkwy","Morris Park","E 180 St","West Farms Sq - E Tremont Av","174 St","Freeman St","Simpson St","Intervale Av","Prospect Av","Jackson Av","3 Av - 149 St","149 St - Grand Concourse","138 St - Grand Concourse","125 St","86 St","59 St","Grand Central - 42 St","14 St - Union Sq","Brooklyn Bridge - City Hall","Fulton St","Wall St","Bowling Green","Borough Hall","Nevins St","Atlantic Av - Barclays Ctr","Franklin Av","President St","Sterling St","Winthrop St","Church Av","Beverly Rd","Newkirk Av","Flatbush Av - Brooklyn College"],"6":["Pelham Bay Park","Buhre Av","Middletown Rd","Westchester Sq - E Tremont Av","Zerega Av","Castle Hill Av","Parkchester","St Lawrence Av","Morrison Av- Sound View","Elder Av","Whitlock Av","Hunts Point Av","Longwood Av","E 149 St","E 143 St - St Mary's St","Cypress Av","Brook Av","3 Av - 138 St","125 St","116 St","110 St","103 St","96 St","86 St","77 St","68 St - Hunter College","59 St","51 St","Grand Central - 42 St","33 St","28 St","23 St","14 St - Union Sq","Astor Pl","Bleecker St","Spring St","Canal St","Brooklyn Bridge - City Hall"],"7":["hewes - Main St","Mets - Willets Point","111 St","103 St - Corona Plaza","Junction Blvd","90 St - Elmhurst Av","82 St - Jackson Hts","74 St - Broadway","69 St","Woodside - 61 St","52 St","46 St","40 St","33 St","Queensboro Plaza","Court Sq","Hunters Point Av","Vernon Blvd - Jackson Av","Grand Central - 42 St","5 Av","Times Sq - 42 St","34 St - 11 Av"],"S":["Tottenville","Atlantic","Arthur Kill","Nassau","Richmond Valley","Pleasant Plains","Prince's Bay","Huguenot","Annadale","Eltingville","Great Kills","Bay Terrace","Oakwood Heights","New Dorp","Grant City","Jefferson Av","Dongan Hills","Old Town","Grasmere","Clifton","Stapleton","Tompkinsville","St George"],"A":["Inwood - 207 St","Dyckman St","190 St","181 St","175 St","168 St","163 St - Amsterdam Av","155 St","145 St","135 St","125 St","116 St","Cathedral Pkwy (110 St)","103 St","96 St","86 St","81 St - Museum of Natural History","72 St","59 St - Columbus Circle","50 St","42 St - Port Authority Bus Terminal","34 St - Penn Station","23 St","14 St","W 4 St","Spring St","Canal St","Chambers St","Fulton St","High St","Jay St - MetroTech","Hoyt - Schermerhorn Sts","Lafayette Av","Clinton - Washington Avs","Franklin Av","Nostrand Av","Kingston - Throop Avs","Utica Av","Ralph Av","Rockaway Av","Broadway Jct","Liberty Av","Van Siclen Av","Shepherd Av","Euclid Av","Grant Av","80 St","88 St","Rockaway Blvd","104 St","111 St","Ozone Park - Lefferts Blvd","Aqueduct Racetrack","Aqueduct - N Conduit Av","Howard Beach - JFK Airport","Broad Channel","Beach 67 St","Beach 60 St","Beach 44 St","Beach 36 St","Beach 25 St","Far Rockaway - Mott Av","Broad Channel","Beach 90 St","Beach 98 St","Beach 105 St","Rockaway Park - Beach 116 St"],"C":["168 St","163 St - Amsterdam Av","155 St","145 St","135 St","125 St","116 St","Cathedral Pkwy (110 St)","103 St","96 St","86 St","81 St - Museum of Natural History","72 St","59 St - Columbus Circle","50 St","42 St - Port Authority Bus Terminal","34 St - Penn Station","23 St","14 St","W 4 St","Spring St","Canal St","Chambers St","Fulton St","High St","Jay St - MetroTech","Hoyt - Schermerhorn Sts","Lafayette Av","Clinton - Washington Avs","Franklin Av","Nostrand Av","Kingston - Throop Avs","Utica Av","Ralph Av","Rockaway Av","Broadway Jct","Liberty Av","Van Siclen Av","Shepherd Av","Euclid Av"],"E":["Jamaica Center - Parsons/Archer","Sutphin Blvd - Archer Av - JFK Airport","Jamaica - Van Wyck","Briarwood - Van Wyck Blvd","Kew Gardens - Union Tpke","75 Av","Forest Hills - 71 Av","67 Av","63 Dr - Rego Park","Woodhaven Blvd","Grand Av - Newtown","Elmhurst Av","Jackson Hts - Roosevelt Av","65 St","Northern Blvd","46 St","Steinway St","36 St","Queens Plaza","Court Sq","Lexington Av/53 St","5 Av/53 St","7 Av","50 St","42 St - Port Authority Bus Terminal","34 St - Penn Station","23 St","14 St","W 4 St","Spring St","Canal St","World Trade Center"],"B":["Bedford Park Blvd","Kingsbridge Rd","Fordham Rd","182-183 Sts","Tremont Av","174-175 Sts","170 St","167 St","161 St - Yankee Stadium","155 St","145 St","125 St","116 St","Cathedral Pkwy (110 St)","103 St","96 St","86 St","81 St - Museum of Natural History","72 St","59 St - Columbus Circle","7 Av","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","23 St","14 St","W 4 St","Broadway-Lafayette St","Grand St","DeKalb Av","Atlantic Av - Barclays Ctr","7 Av","Prospect Park","Church Av","Newkirk Plaza","Kings Hwy","Sheepshead Bay","Brighton Beach"],"D":["Norwood - 205 St","Bedford Park Blvd","Kingsbridge Rd","Fordham Rd","182-183 Sts","Tremont Av","174-175 Sts","170 St","167 St","161 St - Yankee Stadium","155 St","145 St","125 St","59 St - Columbus Circle","7 Av","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","W 4 St","Broadway-Lafayette St","Grand St","DeKalb Av","Atlantic Av - Barclays Ctr","Union St","9 St","Prospect Av","25 St","36 St","9 Av","Fort Hamilton Pkwy","50 St","55 St","62 St","71 St","79 St","18 Av","20 Av","Bay Pkwy","25 Av","Bay 50 St","Coney Island - Stillwell Av"],"F":["Jamaica - 179 St","169 St","Parsons Blvd","Sutphin Blvd","Briarwood - Van Wyck Blvd","Kew Gardens - Union Tpke","75 Av","Forest Hills - 71 Av","Jackson Hts - Roosevelt Av","21 St - Queensbridge","Roosevelt Island","Lexington Av/63 St","57 St","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","23 St","14 St","W 4 St","Broadway-Lafayette St","2 Av","Delancey St","East Broadway","York St","Jay St - MetroTech","Bergen St","Carroll St","Smith - 9 Sts","4 Av","7 Av","15 St - Prospect Park","Fort Hamilton Pkwy","Church Av","Ditmas Av","18 Av","Avenue I","Bay Pkwy","Avenue N","Avenue P","Kings Hwy","Avenue U","Avenue X","Neptune Av","W 8 St - NY Aquarium","Coney Island - Stillwell Av"],"M":["Forest Hills - 71 Av","67 Av","63 Dr - Rego Park","Woodhaven Blvd","Grand Av - Newtown","Elmhurst Av","Jackson Hts - Roosevelt Av","65 St","Northern Blvd","46 St","Steinway St","36 St","Queens Plaza","Court Sq","Lexington Av/53 St","5 Av/53 St","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","23 St","14 St","W 4 St","Broadway-Lafayette St","Essex St","Marcy Av","Hewes St","Lorimer St","Flushing Av","Myrtle Av","Central Av","Knickerbocker Av","Myrtle - Wyckoff Avs","Seneca Av","Forest Av","Fresh Pond Rd","Middle Village - Metropolitan Av"],"G":["Court Sq","21 St","Greenpoint Av","Nassau Av","Metropolitan Av","Broadway","Flushing Av","Myrtle - Willoughby Avs","Bedford - Nostrand Avs","Classon Av","Clinton - Washington Avs","Fulton St","Hoyt St","Bergen St","Carroll St","Smith - 9 Sts","4 Av","7 Av","15 St - Prospect Park","Fort Hamilton Pkwy","Church Av"],"J":["Jamaica Center - Parsons/Archer","Sutphin Blvd - Archer Av - JFK Airport","121 St","111 St","104 St","Woodhaven Blvd","85 St - Forest Pkwy","75 St","Cypress Hills","Crescent St","Norwood Av","Cleveland St","Van Siclen Av","Alabama Av","Broadway Jct","Chauncey St","Halsey St","Gates Av","Kosciuszko St","Myrtle Av","Flushing Av","Lorimer St","Hewes St","Marcy Av","Essex St","Bowery","Canal St","Chambers St","Fulton St","Broad St"],"Z":["Jamaica Center - Parsons/Archer","Sutphin Blvd - Archer Av - JFK Airport","121 St","104 St","Woodhaven Blvd","75 St","Crescent St","Norwood Av","Van Siclen Av","Alabama Av","Broadway Jct","Gates Av","Myrtle Av","Marcy Av","Essex St","Bowery","Canal St","Chambers St","Fulton St","Broad St"],"L":["8 Av","6 Av","Union Sq - 14 St","3 Av","1 Av","Bedford Av","Lorimer St","Graham Av","Grand St","Montrose Av","Morgan Av","Jefferson St","DeKalb Av","Myrtle - Wyckoff Avs","Halsey St","Wilson Av","Bushwick Av - Aberdeen St","Broadway Jct","Atlantic Av","Sutter Av","Livonia Av","New Lots Av","E 105 St","Canarsie - Rockaway Pkwy"],"N":["Astoria - Ditmars Blvd","Astoria Blvd","30 Av","Broadway","36 Av","39 Av","Queensboro Plaza","Lexington Av/59 St","5 Av/59 St","57 St - 7 Av","49 St","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","City Hall","Cortlandt St","Rector St","Whitehall St","Court St","Jay St - MetroTech","DeKalb Av","Atlantic Av - Barclays Ctr","Union St","9 St","Prospect Av","25 St","36 St","45 St","53 St","59 St","8 Av","Fort Hamilton Pkwy","New Utrecht Av","18 Av","20 Av","Bay Pkwy","Kings Hwy","Avenue U","86 St","S.B. Coney Island"],"Q":["96 St","86 St","72 St","Lexington Av/59 St","57 St - 7 Av","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","DeKalb Av","Atlantic Av - Barclays Ctr","7 Av","Prospect Park","Parkside Av","Church Av","Beverley Rd","Cortelyou Rd","Newkirk Plaza","Avenue H","Avenue J","Avenue M","Kings Hwy","Avenue U","Neck Rd","Sheepshead Bay","Brighton Beach","Ocean Pkwy","W 8 St - NY Aquarium","Coney Island - Stillwell Av"],"R":["Forest Hills - 71 Av","67 Av","63 Dr - Rego Park","Woodhaven Blvd","Grand Av - Newtown","Elmhurst Av","Jackson Hts - Roosevelt Av","65 St","Northern Blvd","46 St","Steinway St","36 St","Queens Plaza","Lexington Av/59 St","5 Av/59 St","57 St - 7 Av","49 St","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","City Hall","Cortlandt St","Rector St","Whitehall St","Court St","Jay St - MetroTech","DeKalb Av","Atlantic Av - Barclays Ctr","Union St","9 St","Prospect Av","25 St","36 St","45 St","53 St","59 St","Bay Ridge Av","77 St","86 St","Bay Ridge - 95 St"],"W":["Astoria - Ditmars Blvd","Astoria Blvd","30 Av","Broadway","36 Av","39 Av","Queensboro Plaza","Lexington Av/59 St","5 Av/59 St","57 St - 7 Av","49 St","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","City Hall","Cortlandt St","Rector St","Whitehall St"]};
+
+/***/ }),
+
+/***/ "./gtfs-realtime.js":
 /*!**************************!*\
-  !*** ./data/stations.js ***!
+  !*** ./gtfs-realtime.js ***!
   \**************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-const stations = {
-  "101": {"stop_id": 101, "stop_name": "Van Cortlandt Park - 242 St", "stop_lat": 40.889248, "stop_lon": -73.898583, "location_type": 1},
-  "101N": {"stop_id": "101N", "stop_name": "Van Cortlandt Park - 242 St", "stop_lat": 40.889248, "stop_lon": -73.898583, "location_type": "0"},
-  "101S": {"stop_id": "101S", "stop_name": "Van Cortlandt Park - 242 St", "stop_lat": 40.889248, "stop_lon": -73.898583, "location_type": "0"},
-  "103": {"stop_id": 103, "stop_name": "238 St", "stop_lat": 40.884667, "stop_lon": -73.90087, "location_type": 1},
-  "103N": {"stop_id": "103N", "stop_name": "238 St", "stop_lat": 40.884667, "stop_lon": -73.90087, "location_type": "0"},
-  "103S": {"stop_id": "103S", "stop_name": "238 St", "stop_lat": 40.884667, "stop_lon": -73.90087, "location_type": "0"},
-  "104": {"stop_id": 104, "stop_name": "231 St", "stop_lat": 40.878856, "stop_lon": -73.904834, "location_type": 1},
-  "104N": {"stop_id": "104N", "stop_name": "231 St", "stop_lat": 40.878856, "stop_lon": -73.904834, "location_type": "0"},
-  "104S": {"stop_id": "104S", "stop_name": "231 St", "stop_lat": 40.878856, "stop_lon": -73.904834, "location_type": "0"},
-  "106": {"stop_id": 106, "stop_name": "Marble Hill - 225 St", "stop_lat": 40.874561, "stop_lon": -73.909831, "location_type": 1},
-  "106N": {"stop_id": "106N", "stop_name": "Marble Hill - 225 St", "stop_lat": 40.874561, "stop_lon": -73.909831, "location_type": "0"},
-  "106S": {"stop_id": "106S", "stop_name": "Marble Hill - 225 St", "stop_lat": 40.874561, "stop_lon": -73.909831, "location_type": "0"},
-  "107": {"stop_id": 107, "stop_name": "215 St", "stop_lat": 40.869444, "stop_lon": -73.915279, "location_type": 1},
-  "107N": {"stop_id": "107N", "stop_name": "215 St", "stop_lat": 40.869444, "stop_lon": -73.915279, "location_type": "0"},
-  "107S": {"stop_id": "107S", "stop_name": "215 St", "stop_lat": 40.869444, "stop_lon": -73.915279, "location_type": "0"},
-  "108": {"stop_id": 108, "stop_name": "207 St", "stop_lat": 40.864621, "stop_lon": -73.918822, "location_type": 1},
-  "108N": {"stop_id": "108N", "stop_name": "207 St", "stop_lat": 40.864621, "stop_lon": -73.918822, "location_type": "0"},
-  "108S": {"stop_id": "108S", "stop_name": "207 St", "stop_lat": 40.864621, "stop_lon": -73.918822, "location_type": "0"},
-  "109": {"stop_id": 109, "stop_name": "Dyckman St", "stop_lat": 40.860531, "stop_lon": -73.925536, "location_type": 1},
-  "109N": {"stop_id": "109N", "stop_name": "Dyckman St", "stop_lat": 40.860531, "stop_lon": -73.925536, "location_type": "0"},
-  "109S": {"stop_id": "109S", "stop_name": "Dyckman St", "stop_lat": 40.860531, "stop_lon": -73.925536, "location_type": "0"},
-  "110": {"stop_id": 110, "stop_name": "191 St", "stop_lat": 40.855225, "stop_lon": -73.929412, "location_type": 1},
-  "110N": {"stop_id": "110N", "stop_name": "191 St", "stop_lat": 40.855225, "stop_lon": -73.929412, "location_type": "0"},
-  "110S": {"stop_id": "110S", "stop_name": "191 St", "stop_lat": 40.855225, "stop_lon": -73.929412, "location_type": "0"},
-  "111": {"stop_id": 111, "stop_name": "181 St", "stop_lat": 40.849505, "stop_lon": -73.933596, "location_type": 1},
-  "111N": {"stop_id": "111N", "stop_name": "181 St", "stop_lat": 40.849505, "stop_lon": -73.933596, "location_type": "0"},
-  "111S": {"stop_id": "111S", "stop_name": "181 St", "stop_lat": 40.849505, "stop_lon": -73.933596, "location_type": "0"},
-  "112": {"stop_id": 112, "stop_name": "168 St - Washington Hts", "stop_lat": 40.840556, "stop_lon": -73.940133, "location_type": 1},
-  "112N": {"stop_id": "112N", "stop_name": "168 St - Washington Hts", "stop_lat": 40.840556, "stop_lon": -73.940133, "location_type": "0"},
-  "112S": {"stop_id": "112S", "stop_name": "168 St - Washington Hts", "stop_lat": 40.840556, "stop_lon": -73.940133, "location_type": "0"},
-  "113": {"stop_id": 113, "stop_name": "157 St", "stop_lat": 40.834041, "stop_lon": -73.94489, "location_type": 1},
-  "113N": {"stop_id": "113N", "stop_name": "157 St", "stop_lat": 40.834041, "stop_lon": -73.94489, "location_type": "0"},
-  "113S": {"stop_id": "113S", "stop_name": "157 St", "stop_lat": 40.834041, "stop_lon": -73.94489, "location_type": "0"},
-  "114": {"stop_id": 114, "stop_name": "145 St", "stop_lat": 40.826551, "stop_lon": -73.95036, "location_type": 1},
-  "114N": {"stop_id": "114N", "stop_name": "145 St", "stop_lat": 40.826551, "stop_lon": -73.95036, "location_type": "0"},
-  "114S": {"stop_id": "114S", "stop_name": "145 St", "stop_lat": 40.826551, "stop_lon": -73.95036, "location_type": "0"},
-  "115": {"stop_id": 115, "stop_name": "137 St - City College", "stop_lat": 40.822008, "stop_lon": -73.953676, "location_type": 1},
-  "115N": {"stop_id": "115N", "stop_name": "137 St - City College", "stop_lat": 40.822008, "stop_lon": -73.953676, "location_type": "0"},
-  "115S": {"stop_id": "115S", "stop_name": "137 St - City College", "stop_lat": 40.822008, "stop_lon": -73.953676, "location_type": "0"},
-  "116": {"stop_id": 116, "stop_name": "125 St", "stop_lat": 40.815581, "stop_lon": -73.958372, "location_type": 1},
-  "116N": {"stop_id": "116N", "stop_name": "125 St", "stop_lat": 40.815581, "stop_lon": -73.958372, "location_type": "0"},
-  "116S": {"stop_id": "116S", "stop_name": "125 St", "stop_lat": 40.815581, "stop_lon": -73.958372, "location_type": "0"},
-  "117": {"stop_id": 117, "stop_name": "116 St - Columbia University", "stop_lat": 40.807722, "stop_lon": -73.96411, "location_type": 1},
-  "117N": {"stop_id": "117N", "stop_name": "116 St - Columbia University", "stop_lat": 40.807722, "stop_lon": -73.96411, "location_type": "0"},
-  "117S": {"stop_id": "117S", "stop_name": "116 St - Columbia University", "stop_lat": 40.807722, "stop_lon": -73.96411, "location_type": "0"},
-  "118": {"stop_id": 118, "stop_name": "Cathedral Pkwy", "stop_lat": 40.803967, "stop_lon": -73.966847, "location_type": 1},
-  "118N": {"stop_id": "118N", "stop_name": "Cathedral Pkwy", "stop_lat": 40.803967, "stop_lon": -73.966847, "location_type": "0"},
-  "118S": {"stop_id": "118S", "stop_name": "Cathedral Pkwy", "stop_lat": 40.803967, "stop_lon": -73.966847, "location_type": "0"},
-  "119": {"stop_id": 119, "stop_name": "103 St", "stop_lat": 40.799446, "stop_lon": -73.968379, "location_type": 1},
-  "119N": {"stop_id": "119N", "stop_name": "103 St", "stop_lat": 40.799446, "stop_lon": -73.968379, "location_type": "0"},
-  "119S": {"stop_id": "119S", "stop_name": "103 St", "stop_lat": 40.799446, "stop_lon": -73.968379, "location_type": "0"},
-  "120": {"stop_id": 120, "stop_name": "96 St", "stop_lat": 40.793919, "stop_lon": -73.972323, "location_type": 1},
-  "120N": {"stop_id": "120N", "stop_name": "96 St", "stop_lat": 40.793919, "stop_lon": -73.972323, "location_type": "0"},
-  "120S": {"stop_id": "120S", "stop_name": "96 St", "stop_lat": 40.793919, "stop_lon": -73.972323, "location_type": "0"},
-  "121": {"stop_id": 121, "stop_name": "86 St", "stop_lat": 40.788644, "stop_lon": -73.976218, "location_type": 1},
-  "121N": {"stop_id": "121N", "stop_name": "86 St", "stop_lat": 40.788644, "stop_lon": -73.976218, "location_type": "0"},
-  "121S": {"stop_id": "121S", "stop_name": "86 St", "stop_lat": 40.788644, "stop_lon": -73.976218, "location_type": "0"},
-  "122": {"stop_id": 122, "stop_name": "79 St", "stop_lat": 40.783934, "stop_lon": -73.979917, "location_type": 1},
-  "122N": {"stop_id": "122N", "stop_name": "79 St", "stop_lat": 40.783934, "stop_lon": -73.979917, "location_type": "0"},
-  "122S": {"stop_id": "122S", "stop_name": "79 St", "stop_lat": 40.783934, "stop_lon": -73.979917, "location_type": "0"},
-  "123": {"stop_id": 123, "stop_name": "72 St", "stop_lat": 40.778453, "stop_lon": -73.98197, "location_type": 1},
-  "123N": {"stop_id": "123N", "stop_name": "72 St", "stop_lat": 40.778453, "stop_lon": -73.98197, "location_type": "0"},
-  "123S": {"stop_id": "123S", "stop_name": "72 St", "stop_lat": 40.778453, "stop_lon": -73.98197, "location_type": "0"},
-  "124": {"stop_id": 124, "stop_name": "66 St - Lincoln Center", "stop_lat": 40.77344, "stop_lon": -73.982209, "location_type": 1},
-  "124N": {"stop_id": "124N", "stop_name": "66 St - Lincoln Center", "stop_lat": 40.77344, "stop_lon": -73.982209, "location_type": "0"},
-  "124S": {"stop_id": "124S", "stop_name": "66 St - Lincoln Center", "stop_lat": 40.77344, "stop_lon": -73.982209, "location_type": "0"},
-  "125": {"stop_id": 125, "stop_name": "59 St - Columbus Circle", "stop_lat": 40.768247, "stop_lon": -73.981929, "location_type": 1},
-  "125N": {"stop_id": "125N", "stop_name": "59 St - Columbus Circle", "stop_lat": 40.768247, "stop_lon": -73.981929, "location_type": "0"},
-  "125S": {"stop_id": "125S", "stop_name": "59 St - Columbus Circle", "stop_lat": 40.768247, "stop_lon": -73.981929, "location_type": "0"},
-  "126": {"stop_id": 126, "stop_name": "50 St", "stop_lat": 40.761728, "stop_lon": -73.983849, "location_type": 1},
-  "126N": {"stop_id": "126N", "stop_name": "50 St", "stop_lat": 40.761728, "stop_lon": -73.983849, "location_type": "0"},
-  "126S": {"stop_id": "126S", "stop_name": "50 St", "stop_lat": 40.761728, "stop_lon": -73.983849, "location_type": "0"},
-  "127": {"stop_id": 127, "stop_name": "Times Sq - 42 St", "stop_lat": 40.75529, "stop_lon": -73.987495, "location_type": 1},
-  "127N": {"stop_id": "127N", "stop_name": "Times Sq - 42 St", "stop_lat": 40.75529, "stop_lon": -73.987495, "location_type": "0"},
-  "127S": {"stop_id": "127S", "stop_name": "Times Sq - 42 St", "stop_lat": 40.75529, "stop_lon": -73.987495, "location_type": "0"},
-  "128": {"stop_id": 128, "stop_name": "34 St - Penn Station", "stop_lat": 40.750373, "stop_lon": -73.991057, "location_type": 1},
-  "128N": {"stop_id": "128N", "stop_name": "34 St - Penn Station", "stop_lat": 40.750373, "stop_lon": -73.991057, "location_type": "0"},
-  "128S": {"stop_id": "128S", "stop_name": "34 St - Penn Station", "stop_lat": 40.750373, "stop_lon": -73.991057, "location_type": "0"},
-  "129": {"stop_id": 129, "stop_name": "28 St", "stop_lat": 40.747215, "stop_lon": -73.993365, "location_type": 1},
-  "129N": {"stop_id": "129N", "stop_name": "28 St", "stop_lat": 40.747215, "stop_lon": -73.993365, "location_type": "0"},
-  "129S": {"stop_id": "129S", "stop_name": "28 St", "stop_lat": 40.747215, "stop_lon": -73.993365, "location_type": "0"},
-  "130": {"stop_id": 130, "stop_name": "23 St", "stop_lat": 40.744081, "stop_lon": -73.995657, "location_type": 1},
-  "130N": {"stop_id": "130N", "stop_name": "23 St", "stop_lat": 40.744081, "stop_lon": -73.995657, "location_type": "0"},
-  "130S": {"stop_id": "130S", "stop_name": "23 St", "stop_lat": 40.744081, "stop_lon": -73.995657, "location_type": "0"},
-  "131": {"stop_id": 131, "stop_name": "18 St", "stop_lat": 40.74104, "stop_lon": -73.997871, "location_type": 1},
-  "131N": {"stop_id": "131N", "stop_name": "18 St", "stop_lat": 40.74104, "stop_lon": -73.997871, "location_type": "0"},
-  "131S": {"stop_id": "131S", "stop_name": "18 St", "stop_lat": 40.74104, "stop_lon": -73.997871, "location_type": "0"},
-  "132": {"stop_id": 132, "stop_name": "14 St", "stop_lat": 40.737826, "stop_lon": -74.000201, "location_type": 1},
-  "132N": {"stop_id": "132N", "stop_name": "14 St", "stop_lat": 40.737826, "stop_lon": -74.000201, "location_type": "0"},
-  "132S": {"stop_id": "132S", "stop_name": "14 St", "stop_lat": 40.737826, "stop_lon": -74.000201, "location_type": "0"},
-  "133": {"stop_id": 133, "stop_name": "Christopher St - Sheridan Sq", "stop_lat": 40.733422, "stop_lon": -74.002906, "location_type": 1},
-  "133N": {"stop_id": "133N", "stop_name": "Christopher St - Sheridan Sq", "stop_lat": 40.733422, "stop_lon": -74.002906, "location_type": "0"},
-  "133S": {"stop_id": "133S", "stop_name": "Christopher St - Sheridan Sq", "stop_lat": 40.733422, "stop_lon": -74.002906, "location_type": "0"},
-  "134": {"stop_id": 134, "stop_name": "Houston St", "stop_lat": 40.728251, "stop_lon": -74.005367, "location_type": 1},
-  "134N": {"stop_id": "134N", "stop_name": "Houston St", "stop_lat": 40.728251, "stop_lon": -74.005367, "location_type": "0"},
-  "134S": {"stop_id": "134S", "stop_name": "Houston St", "stop_lat": 40.728251, "stop_lon": -74.005367, "location_type": "0"},
-  "135": {"stop_id": 135, "stop_name": "Canal St", "stop_lat": 40.722854, "stop_lon": -74.006277, "location_type": 1},
-  "135N": {"stop_id": "135N", "stop_name": "Canal St", "stop_lat": 40.722854, "stop_lon": -74.006277, "location_type": "0"},
-  "135S": {"stop_id": "135S", "stop_name": "Canal St", "stop_lat": 40.722854, "stop_lon": -74.006277, "location_type": "0"},
-  "136": {"stop_id": 136, "stop_name": "Franklin St", "stop_lat": 40.719318, "stop_lon": -74.006886, "location_type": 1},
-  "136N": {"stop_id": "136N", "stop_name": "Franklin St", "stop_lat": 40.719318, "stop_lon": -74.006886, "location_type": "0"},
-  "136S": {"stop_id": "136S", "stop_name": "Franklin St", "stop_lat": 40.719318, "stop_lon": -74.006886, "location_type": "0"},
-  "137": {"stop_id": 137, "stop_name": "Chambers St", "stop_lat": 40.715478, "stop_lon": -74.009266, "location_type": 1},
-  "137N": {"stop_id": "137N", "stop_name": "Chambers St", "stop_lat": 40.715478, "stop_lon": -74.009266, "location_type": "0"},
-  "137S": {"stop_id": "137S", "stop_name": "Chambers St", "stop_lat": 40.715478, "stop_lon": -74.009266, "location_type": "0"},
-  "138": {"stop_id": 138, "stop_name": "Cortlandt St", "stop_lat": 40.711835, "stop_lon": -74.012188, "location_type": 1},
-  "138N": {"stop_id": "138N", "stop_name": "Cortlandt St", "stop_lat": 40.711835, "stop_lon": -74.012188, "location_type": "0"},
-  "138S": {"stop_id": "138S", "stop_name": "Cortlandt St", "stop_lat": 40.711835, "stop_lon": -74.012188, "location_type": "0"},
-  "139": {"stop_id": 139, "stop_name": "Rector St", "stop_lat": 40.707513, "stop_lon": -74.013783, "location_type": 1},
-  "139N": {"stop_id": "139N", "stop_name": "Rector St", "stop_lat": 40.707513, "stop_lon": -74.013783, "location_type": "0"},
-  "139S": {"stop_id": "139S", "stop_name": "Rector St", "stop_lat": 40.707513, "stop_lon": -74.013783, "location_type": "0"},
-  "140": {"stop_id": 140, "stop_name": "South Ferry Loop", "stop_lat": 40.701411, "stop_lon": -74.013205, "location_type": 1},
-  "140N": {"stop_id": "140N", "stop_name": "South Ferry Loop", "stop_lat": 40.701411, "stop_lon": -74.013205, "location_type": "0"},
-  "140S": {"stop_id": "140S", "stop_name": "South Ferry Loop", "stop_lat": 40.701411, "stop_lon": -74.013205, "location_type": "0"},
-  "142": {"stop_id": 142, "stop_name": "South Ferry", "stop_lat": 40.702068, "stop_lon": -74.013664, "location_type": 1},
-  "142N": {"stop_id": "142N", "stop_name": "South Ferry", "stop_lat": 40.702068, "stop_lon": -74.013664, "location_type": "0"},
-  "142S": {"stop_id": "142S", "stop_name": "South Ferry", "stop_lat": 40.702068, "stop_lon": -74.013664, "location_type": "0"},
-  "201": {"stop_id": 201, "stop_name": "Wakefield - 241 St", "stop_lat": 40.903125, "stop_lon": -73.85062, "location_type": 1},
-  "201N": {"stop_id": "201N", "stop_name": "Wakefield - 241 St", "stop_lat": 40.903125, "stop_lon": -73.85062, "location_type": "0"},
-  "201S": {"stop_id": "201S", "stop_name": "Wakefield - 241 St", "stop_lat": 40.903125, "stop_lon": -73.85062, "location_type": "0"},
-  "204": {"stop_id": 204, "stop_name": "Nereid Av", "stop_lat": 40.898379, "stop_lon": -73.854376, "location_type": 1},
-  "204N": {"stop_id": "204N", "stop_name": "Nereid Av", "stop_lat": 40.898379, "stop_lon": -73.854376, "location_type": "0"},
-  "204S": {"stop_id": "204S", "stop_name": "Nereid Av", "stop_lat": 40.898379, "stop_lon": -73.854376, "location_type": "0"},
-  "205": {"stop_id": 205, "stop_name": "233 St", "stop_lat": 40.893193, "stop_lon": -73.857473, "location_type": 1},
-  "205N": {"stop_id": "205N", "stop_name": "233 St", "stop_lat": 40.893193, "stop_lon": -73.857473, "location_type": "0"},
-  "205S": {"stop_id": "205S", "stop_name": "233 St", "stop_lat": 40.893193, "stop_lon": -73.857473, "location_type": "0"},
-  "206": {"stop_id": 206, "stop_name": "225 St", "stop_lat": 40.888022, "stop_lon": -73.860341, "location_type": 1},
-  "206N": {"stop_id": "206N", "stop_name": "225 St", "stop_lat": 40.888022, "stop_lon": -73.860341, "location_type": "0"},
-  "206S": {"stop_id": "206S", "stop_name": "225 St", "stop_lat": 40.888022, "stop_lon": -73.860341, "location_type": "0"},
-  "207": {"stop_id": 207, "stop_name": "219 St", "stop_lat": 40.883895, "stop_lon": -73.862633, "location_type": 1},
-  "207N": {"stop_id": "207N", "stop_name": "219 St", "stop_lat": 40.883895, "stop_lon": -73.862633, "location_type": "0"},
-  "207S": {"stop_id": "207S", "stop_name": "219 St", "stop_lat": 40.883895, "stop_lon": -73.862633, "location_type": "0"},
-  "208": {"stop_id": 208, "stop_name": "Gun Hill Rd", "stop_lat": 40.87785, "stop_lon": -73.866256, "location_type": 1},
-  "208N": {"stop_id": "208N", "stop_name": "Gun Hill Rd", "stop_lat": 40.87785, "stop_lon": -73.866256, "location_type": "0"},
-  "208S": {"stop_id": "208S", "stop_name": "Gun Hill Rd", "stop_lat": 40.87785, "stop_lon": -73.866256, "location_type": "0"},
-  "209": {"stop_id": 209, "stop_name": "Burke Av", "stop_lat": 40.871356, "stop_lon": -73.867164, "location_type": 1},
-  "209N": {"stop_id": "209N", "stop_name": "Burke Av", "stop_lat": 40.871356, "stop_lon": -73.867164, "location_type": "0"},
-  "209S": {"stop_id": "209S", "stop_name": "Burke Av", "stop_lat": 40.871356, "stop_lon": -73.867164, "location_type": "0"},
-  "210": {"stop_id": 210, "stop_name": "Allerton Av", "stop_lat": 40.865462, "stop_lon": -73.867352, "location_type": 1},
-  "210N": {"stop_id": "210N", "stop_name": "Allerton Av", "stop_lat": 40.865462, "stop_lon": -73.867352, "location_type": "0"},
-  "210S": {"stop_id": "210S", "stop_name": "Allerton Av", "stop_lat": 40.865462, "stop_lon": -73.867352, "location_type": "0"},
-  "211": {"stop_id": 211, "stop_name": "Pelham Pkwy", "stop_lat": 40.857192, "stop_lon": -73.867615, "location_type": 1},
-  "211N": {"stop_id": "211N", "stop_name": "Pelham Pkwy", "stop_lat": 40.857192, "stop_lon": -73.867615, "location_type": "0"},
-  "211S": {"stop_id": "211S", "stop_name": "Pelham Pkwy", "stop_lat": 40.857192, "stop_lon": -73.867615, "location_type": "0"},
-  "212": {"stop_id": 212, "stop_name": "Bronx Park East", "stop_lat": 40.848828, "stop_lon": -73.868457, "location_type": 1},
-  "212N": {"stop_id": "212N", "stop_name": "Bronx Park East", "stop_lat": 40.848828, "stop_lon": -73.868457, "location_type": "0"},
-  "212S": {"stop_id": "212S", "stop_name": "Bronx Park East", "stop_lat": 40.848828, "stop_lon": -73.868457, "location_type": "0"},
-  "213": {"stop_id": 213, "stop_name": "E 180 St", "stop_lat": 40.841894, "stop_lon": -73.873488, "location_type": 1},
-  "213N": {"stop_id": "213N", "stop_name": "E 180 St", "stop_lat": 40.841894, "stop_lon": -73.873488, "location_type": "0"},
-  "213S": {"stop_id": "213S", "stop_name": "E 180 St", "stop_lat": 40.841894, "stop_lon": -73.873488, "location_type": "0"},
-  "214": {"stop_id": 214, "stop_name": "West Farms Sq - E Tremont Av", "stop_lat": 40.840295, "stop_lon": -73.880049, "location_type": 1},
-  "214N": {"stop_id": "214N", "stop_name": "West Farms Sq - E Tremont Av", "stop_lat": 40.840295, "stop_lon": -73.880049, "location_type": "0"},
-  "214S": {"stop_id": "214S", "stop_name": "West Farms Sq - E Tremont Av", "stop_lat": 40.840295, "stop_lon": -73.880049, "location_type": "0"},
-  "215": {"stop_id": 215, "stop_name": "174 St", "stop_lat": 40.837288, "stop_lon": -73.887734, "location_type": 1},
-  "215N": {"stop_id": "215N", "stop_name": "174 St", "stop_lat": 40.837288, "stop_lon": -73.887734, "location_type": "0"},
-  "215S": {"stop_id": "215S", "stop_name": "174 St", "stop_lat": 40.837288, "stop_lon": -73.887734, "location_type": "0"},
-  "216": {"stop_id": 216, "stop_name": "Freeman St", "stop_lat": 40.829993, "stop_lon": -73.891865, "location_type": 1},
-  "216N": {"stop_id": "216N", "stop_name": "Freeman St", "stop_lat": 40.829993, "stop_lon": -73.891865, "location_type": "0"},
-  "216S": {"stop_id": "216S", "stop_name": "Freeman St", "stop_lat": 40.829993, "stop_lon": -73.891865, "location_type": "0"},
-  "217": {"stop_id": 217, "stop_name": "Simpson St", "stop_lat": 40.824073, "stop_lon": -73.893064, "location_type": 1},
-  "217N": {"stop_id": "217N", "stop_name": "Simpson St", "stop_lat": 40.824073, "stop_lon": -73.893064, "location_type": "0"},
-  "217S": {"stop_id": "217S", "stop_name": "Simpson St", "stop_lat": 40.824073, "stop_lon": -73.893064, "location_type": "0"},
-  "218": {"stop_id": 218, "stop_name": "Intervale Av", "stop_lat": 40.822181, "stop_lon": -73.896736, "location_type": 1},
-  "218N": {"stop_id": "218N", "stop_name": "Intervale Av", "stop_lat": 40.822181, "stop_lon": -73.896736, "location_type": "0"},
-  "218S": {"stop_id": "218S", "stop_name": "Intervale Av", "stop_lat": 40.822181, "stop_lon": -73.896736, "location_type": "0"},
-  "219": {"stop_id": 219, "stop_name": "Prospect Av", "stop_lat": 40.819585, "stop_lon": -73.90177, "location_type": 1},
-  "219N": {"stop_id": "219N", "stop_name": "Prospect Av", "stop_lat": 40.819585, "stop_lon": -73.90177, "location_type": "0"},
-  "219S": {"stop_id": "219S", "stop_name": "Prospect Av", "stop_lat": 40.819585, "stop_lon": -73.90177, "location_type": "0"},
-  "220": {"stop_id": 220, "stop_name": "Jackson Av", "stop_lat": 40.81649, "stop_lon": -73.907807, "location_type": 1},
-  "220N": {"stop_id": "220N", "stop_name": "Jackson Av", "stop_lat": 40.81649, "stop_lon": -73.907807, "location_type": "0"},
-  "220S": {"stop_id": "220S", "stop_name": "Jackson Av", "stop_lat": 40.81649, "stop_lon": -73.907807, "location_type": "0"},
-  "221": {"stop_id": 221, "stop_name": "3 Av - 149 St", "stop_lat": 40.816109, "stop_lon": -73.917757, "location_type": 1},
-  "221N": {"stop_id": "221N", "stop_name": "3 Av - 149 St", "stop_lat": 40.816109, "stop_lon": -73.917757, "location_type": "0"},
-  "221S": {"stop_id": "221S", "stop_name": "3 Av - 149 St", "stop_lat": 40.816109, "stop_lon": -73.917757, "location_type": "0"},
-  "222": {"stop_id": 222, "stop_name": "149 St - Grand Concourse", "stop_lat": 40.81841, "stop_lon": -73.926718, "location_type": 1},
-  "222N": {"stop_id": "222N", "stop_name": "149 St - Grand Concourse", "stop_lat": 40.81841, "stop_lon": -73.926718, "location_type": "0"},
-  "222S": {"stop_id": "222S", "stop_name": "149 St - Grand Concourse", "stop_lat": 40.81841, "stop_lon": -73.926718, "location_type": "0"},
-  "224": {"stop_id": 224, "stop_name": "135 St", "stop_lat": 40.814229, "stop_lon": -73.94077, "location_type": 1},
-  "224N": {"stop_id": "224N", "stop_name": "135 St", "stop_lat": 40.814229, "stop_lon": -73.94077, "location_type": "0"},
-  "224S": {"stop_id": "224S", "stop_name": "135 St", "stop_lat": 40.814229, "stop_lon": -73.94077, "location_type": "0"},
-  "225": {"stop_id": 225, "stop_name": "125 St", "stop_lat": 40.807754, "stop_lon": -73.945495, "location_type": 1},
-  "225N": {"stop_id": "225N", "stop_name": "125 St", "stop_lat": 40.807754, "stop_lon": -73.945495, "location_type": "0"},
-  "225S": {"stop_id": "225S", "stop_name": "125 St", "stop_lat": 40.807754, "stop_lon": -73.945495, "location_type": "0"},
-  "226": {"stop_id": 226, "stop_name": "116 St", "stop_lat": 40.802098, "stop_lon": -73.949625, "location_type": 1},
-  "226N": {"stop_id": "226N", "stop_name": "116 St", "stop_lat": 40.802098, "stop_lon": -73.949625, "location_type": "0"},
-  "226S": {"stop_id": "226S", "stop_name": "116 St", "stop_lat": 40.802098, "stop_lon": -73.949625, "location_type": "0"},
-  "227": {"stop_id": 227, "stop_name": "Central Park North (110 St)", "stop_lat": 40.799075, "stop_lon": -73.951822, "location_type": 1},
-  "227N": {"stop_id": "227N", "stop_name": "Central Park North (110 St)", "stop_lat": 40.799075, "stop_lon": -73.951822, "location_type": "0"},
-  "227S": {"stop_id": "227S", "stop_name": "Central Park North (110 St)", "stop_lat": 40.799075, "stop_lon": -73.951822, "location_type": "0"},
-  "228": {"stop_id": 228, "stop_name": "Park Pl", "stop_lat": 40.713051, "stop_lon": -74.008811, "location_type": 1},
-  "228N": {"stop_id": "228N", "stop_name": "Park Pl", "stop_lat": 40.713051, "stop_lon": -74.008811, "location_type": "0"},
-  "228S": {"stop_id": "228S", "stop_name": "Park Pl", "stop_lat": 40.713051, "stop_lon": -74.008811, "location_type": "0"},
-  "229": {"stop_id": 229, "stop_name": "Fulton St", "stop_lat": 40.709416, "stop_lon": -74.006571, "location_type": 1},
-  "229N": {"stop_id": "229N", "stop_name": "Fulton St", "stop_lat": 40.709416, "stop_lon": -74.006571, "location_type": "0"},
-  "229S": {"stop_id": "229S", "stop_name": "Fulton St", "stop_lat": 40.709416, "stop_lon": -74.006571, "location_type": "0"},
-  "230": {"stop_id": 230, "stop_name": "Wall St", "stop_lat": 40.706821, "stop_lon": -74.0091, "location_type": 1},
-  "230N": {"stop_id": "230N", "stop_name": "Wall St", "stop_lat": 40.706821, "stop_lon": -74.0091, "location_type": "0"},
-  "230S": {"stop_id": "230S", "stop_name": "Wall St", "stop_lat": 40.706821, "stop_lon": -74.0091, "location_type": "0"},
-  "231": {"stop_id": 231, "stop_name": "Clark St", "stop_lat": 40.697466, "stop_lon": -73.993086, "location_type": 1},
-  "231N": {"stop_id": "231N", "stop_name": "Clark St", "stop_lat": 40.697466, "stop_lon": -73.993086, "location_type": "0"},
-  "231S": {"stop_id": "231S", "stop_name": "Clark St", "stop_lat": 40.697466, "stop_lon": -73.993086, "location_type": "0"},
-  "232": {"stop_id": 232, "stop_name": "Borough Hall", "stop_lat": 40.693219, "stop_lon": -73.989998, "location_type": 1},
-  "232N": {"stop_id": "232N", "stop_name": "Borough Hall", "stop_lat": 40.693219, "stop_lon": -73.989998, "location_type": "0"},
-  "232S": {"stop_id": "232S", "stop_name": "Borough Hall", "stop_lat": 40.693219, "stop_lon": -73.989998, "location_type": "0"},
-  "233": {"stop_id": 233, "stop_name": "Hoyt St", "stop_lat": 40.690545, "stop_lon": -73.985065, "location_type": 1},
-  "233N": {"stop_id": "233N", "stop_name": "Hoyt St", "stop_lat": 40.690545, "stop_lon": -73.985065, "location_type": "0"},
-  "233S": {"stop_id": "233S", "stop_name": "Hoyt St", "stop_lat": 40.690545, "stop_lon": -73.985065, "location_type": "0"},
-  "234": {"stop_id": 234, "stop_name": "Nevins St", "stop_lat": 40.688246, "stop_lon": -73.980492, "location_type": 1},
-  "234N": {"stop_id": "234N", "stop_name": "Nevins St", "stop_lat": 40.688246, "stop_lon": -73.980492, "location_type": "0"},
-  "234S": {"stop_id": "234S", "stop_name": "Nevins St", "stop_lat": 40.688246, "stop_lon": -73.980492, "location_type": "0"},
-  "235": {"stop_id": 235, "stop_name": "Atlantic Av - Barclays Ctr", "stop_lat": 40.684359, "stop_lon": -73.977666, "location_type": 1},
-  "235N": {"stop_id": "235N", "stop_name": "Atlantic Av - Barclays Ctr", "stop_lat": 40.684359, "stop_lon": -73.977666, "location_type": "0"},
-  "235S": {"stop_id": "235S", "stop_name": "Atlantic Av - Barclays Ctr", "stop_lat": 40.684359, "stop_lon": -73.977666, "location_type": "0"},
-  "236": {"stop_id": 236, "stop_name": "Bergen St", "stop_lat": 40.680829, "stop_lon": -73.975098, "location_type": 1},
-  "236N": {"stop_id": "236N", "stop_name": "Bergen St", "stop_lat": 40.680829, "stop_lon": -73.975098, "location_type": "0"},
-  "236S": {"stop_id": "236S", "stop_name": "Bergen St", "stop_lat": 40.680829, "stop_lon": -73.975098, "location_type": "0"},
-  "237": {"stop_id": 237, "stop_name": "Grand Army Plaza", "stop_lat": 40.675235, "stop_lon": -73.971046, "location_type": 1},
-  "237N": {"stop_id": "237N", "stop_name": "Grand Army Plaza", "stop_lat": 40.675235, "stop_lon": -73.971046, "location_type": "0"},
-  "237S": {"stop_id": "237S", "stop_name": "Grand Army Plaza", "stop_lat": 40.675235, "stop_lon": -73.971046, "location_type": "0"},
-  "238": {"stop_id": 238, "stop_name": "Eastern Pkwy - Brooklyn Museum", "stop_lat": 40.671987, "stop_lon": -73.964375, "location_type": 1},
-  "238N": {"stop_id": "238N", "stop_name": "Eastern Pkwy - Brooklyn Museum", "stop_lat": 40.671987, "stop_lon": -73.964375, "location_type": "0"},
-  "238S": {"stop_id": "238S", "stop_name": "Eastern Pkwy - Brooklyn Museum", "stop_lat": 40.671987, "stop_lon": -73.964375, "location_type": "0"},
-  "239": {"stop_id": 239, "stop_name": "Franklin Av", "stop_lat": 40.670682, "stop_lon": -73.958131, "location_type": 1},
-  "239N": {"stop_id": "239N", "stop_name": "Franklin Av", "stop_lat": 40.670682, "stop_lon": -73.958131, "location_type": "0"},
-  "239S": {"stop_id": "239S", "stop_name": "Franklin Av", "stop_lat": 40.670682, "stop_lon": -73.958131, "location_type": "0"},
-  "241": {"stop_id": 241, "stop_name": "President St", "stop_lat": 40.667883, "stop_lon": -73.950683, "location_type": 1},
-  "241N": {"stop_id": "241N", "stop_name": "President St", "stop_lat": 40.667883, "stop_lon": -73.950683, "location_type": "0"},
-  "241S": {"stop_id": "241S", "stop_name": "President St", "stop_lat": 40.667883, "stop_lon": -73.950683, "location_type": "0"},
-  "242": {"stop_id": 242, "stop_name": "Sterling St", "stop_lat": 40.662742, "stop_lon": -73.95085, "location_type": 1},
-  "242N": {"stop_id": "242N", "stop_name": "Sterling St", "stop_lat": 40.662742, "stop_lon": -73.95085, "location_type": "0"},
-  "242S": {"stop_id": "242S", "stop_name": "Sterling St", "stop_lat": 40.662742, "stop_lon": -73.95085, "location_type": "0"},
-  "243": {"stop_id": 243, "stop_name": "Winthrop St", "stop_lat": 40.656652, "stop_lon": -73.9502, "location_type": 1},
-  "243N": {"stop_id": "243N", "stop_name": "Winthrop St", "stop_lat": 40.656652, "stop_lon": -73.9502, "location_type": "0"},
-  "243S": {"stop_id": "243S", "stop_name": "Winthrop St", "stop_lat": 40.656652, "stop_lon": -73.9502, "location_type": "0"},
-  "244": {"stop_id": 244, "stop_name": "Church Av", "stop_lat": 40.650843, "stop_lon": -73.949575, "location_type": 1},
-  "244N": {"stop_id": "244N", "stop_name": "Church Av", "stop_lat": 40.650843, "stop_lon": -73.949575, "location_type": "0"},
-  "244S": {"stop_id": "244S", "stop_name": "Church Av", "stop_lat": 40.650843, "stop_lon": -73.949575, "location_type": "0"},
-  "245": {"stop_id": 245, "stop_name": "Beverly Rd", "stop_lat": 40.645098, "stop_lon": -73.948959, "location_type": 1},
-  "245N": {"stop_id": "245N", "stop_name": "Beverly Rd", "stop_lat": 40.645098, "stop_lon": -73.948959, "location_type": "0"},
-  "245S": {"stop_id": "245S", "stop_name": "Beverly Rd", "stop_lat": 40.645098, "stop_lon": -73.948959, "location_type": "0"},
-  "246": {"stop_id": 246, "stop_name": "Newkirk Av", "stop_lat": 40.639967, "stop_lon": -73.948411, "location_type": 1},
-  "246N": {"stop_id": "246N", "stop_name": "Newkirk Av", "stop_lat": 40.639967, "stop_lon": -73.948411, "location_type": "0"},
-  "246S": {"stop_id": "246S", "stop_name": "Newkirk Av", "stop_lat": 40.639967, "stop_lon": -73.948411, "location_type": "0"},
-  "247": {"stop_id": 247, "stop_name": "Flatbush Av - Brooklyn College", "stop_lat": 40.632836, "stop_lon": -73.947642, "location_type": 1},
-  "247N": {"stop_id": "247N", "stop_name": "Flatbush Av - Brooklyn College", "stop_lat": 40.632836, "stop_lon": -73.947642, "location_type": "0"},
-  "247S": {"stop_id": "247S", "stop_name": "Flatbush Av - Brooklyn College", "stop_lat": 40.632836, "stop_lon": -73.947642, "location_type": "0"},
-  "248": {"stop_id": 248, "stop_name": "Nostrand Av", "stop_lat": 40.669847, "stop_lon": -73.950466, "location_type": 1},
-  "248N": {"stop_id": "248N", "stop_name": "Nostrand Av", "stop_lat": 40.669847, "stop_lon": -73.950466, "location_type": "0"},
-  "248S": {"stop_id": "248S", "stop_name": "Nostrand Av", "stop_lat": 40.669847, "stop_lon": -73.950466, "location_type": "0"},
-  "249": {"stop_id": 249, "stop_name": "Kingston Av", "stop_lat": 40.669399, "stop_lon": -73.942161, "location_type": 1},
-  "249N": {"stop_id": "249N", "stop_name": "Kingston Av", "stop_lat": 40.669399, "stop_lon": -73.942161, "location_type": "0"},
-  "249S": {"stop_id": "249S", "stop_name": "Kingston Av", "stop_lat": 40.669399, "stop_lon": -73.942161, "location_type": "0"},
-  "250": {"stop_id": 250, "stop_name": "Crown Hts - Utica Av", "stop_lat": 40.668897, "stop_lon": -73.932942, "location_type": 1},
-  "250N": {"stop_id": "250N", "stop_name": "Crown Hts - Utica Av", "stop_lat": 40.668897, "stop_lon": -73.932942, "location_type": "0"},
-  "250S": {"stop_id": "250S", "stop_name": "Crown Hts - Utica Av", "stop_lat": 40.668897, "stop_lon": -73.932942, "location_type": "0"},
-  "251": {"stop_id": 251, "stop_name": "Sutter Av - Rutland Rd", "stop_lat": 40.664717, "stop_lon": -73.92261, "location_type": 1},
-  "251N": {"stop_id": "251N", "stop_name": "Sutter Av - Rutland Rd", "stop_lat": 40.664717, "stop_lon": -73.92261, "location_type": "0"},
-  "251S": {"stop_id": "251S", "stop_name": "Sutter Av - Rutland Rd", "stop_lat": 40.664717, "stop_lon": -73.92261, "location_type": "0"},
-  "252": {"stop_id": 252, "stop_name": "Saratoga Av", "stop_lat": 40.661453, "stop_lon": -73.916327, "location_type": 1},
-  "252N": {"stop_id": "252N", "stop_name": "Saratoga Av", "stop_lat": 40.661453, "stop_lon": -73.916327, "location_type": "0"},
-  "252S": {"stop_id": "252S", "stop_name": "Saratoga Av", "stop_lat": 40.661453, "stop_lon": -73.916327, "location_type": "0"},
-  "253": {"stop_id": 253, "stop_name": "Rockaway Av", "stop_lat": 40.662549, "stop_lon": -73.908946, "location_type": 1},
-  "253N": {"stop_id": "253N", "stop_name": "Rockaway Av", "stop_lat": 40.662549, "stop_lon": -73.908946, "location_type": "0"},
-  "253S": {"stop_id": "253S", "stop_name": "Rockaway Av", "stop_lat": 40.662549, "stop_lon": -73.908946, "location_type": "0"},
-  "254": {"stop_id": 254, "stop_name": "Junius St", "stop_lat": 40.663515, "stop_lon": -73.902447, "location_type": 1},
-  "254N": {"stop_id": "254N", "stop_name": "Junius St", "stop_lat": 40.663515, "stop_lon": -73.902447, "location_type": "0"},
-  "254S": {"stop_id": "254S", "stop_name": "Junius St", "stop_lat": 40.663515, "stop_lon": -73.902447, "location_type": "0"},
-  "255": {"stop_id": 255, "stop_name": "Pennsylvania Av", "stop_lat": 40.664635, "stop_lon": -73.894895, "location_type": 1},
-  "255N": {"stop_id": "255N", "stop_name": "Pennsylvania Av", "stop_lat": 40.664635, "stop_lon": -73.894895, "location_type": "0"},
-  "255S": {"stop_id": "255S", "stop_name": "Pennsylvania Av", "stop_lat": 40.664635, "stop_lon": -73.894895, "location_type": "0"},
-  "256": {"stop_id": 256, "stop_name": "Van Siclen Av", "stop_lat": 40.665449, "stop_lon": -73.889395, "location_type": 1},
-  "256N": {"stop_id": "256N", "stop_name": "Van Siclen Av", "stop_lat": 40.665449, "stop_lon": -73.889395, "location_type": "0"},
-  "256S": {"stop_id": "256S", "stop_name": "Van Siclen Av", "stop_lat": 40.665449, "stop_lon": -73.889395, "location_type": "0"},
-  "257": {"stop_id": 257, "stop_name": "New Lots Av", "stop_lat": 40.666235, "stop_lon": -73.884079, "location_type": 1},
-  "257N": {"stop_id": "257N", "stop_name": "New Lots Av", "stop_lat": 40.666235, "stop_lon": -73.884079, "location_type": "0"},
-  "257S": {"stop_id": "257S", "stop_name": "New Lots Av", "stop_lat": 40.666235, "stop_lon": -73.884079, "location_type": "0"},
-  "301": {"stop_id": 301, "stop_name": "Harlem - 148 St", "stop_lat": 40.82388, "stop_lon": -73.93647, "location_type": 1},
-  "301N": {"stop_id": "301N", "stop_name": "Harlem - 148 St", "stop_lat": 40.82388, "stop_lon": -73.93647, "location_type": "0"},
-  "301S": {"stop_id": "301S", "stop_name": "Harlem - 148 St", "stop_lat": 40.82388, "stop_lon": -73.93647, "location_type": "0"},
-  "302": {"stop_id": 302, "stop_name": "145 St", "stop_lat": 40.820421, "stop_lon": -73.936245, "location_type": 1},
-  "302N": {"stop_id": "302N", "stop_name": "145 St", "stop_lat": 40.820421, "stop_lon": -73.936245, "location_type": "0"},
-  "302S": {"stop_id": "302S", "stop_name": "145 St", "stop_lat": 40.820421, "stop_lon": -73.936245, "location_type": "0"},
-  "401": {"stop_id": 401, "stop_name": "Woodlawn", "stop_lat": 40.886037, "stop_lon": -73.878751, "location_type": 1},
-  "401N": {"stop_id": "401N", "stop_name": "Woodlawn", "stop_lat": 40.886037, "stop_lon": -73.878751, "location_type": "0"},
-  "401S": {"stop_id": "401S", "stop_name": "Woodlawn", "stop_lat": 40.886037, "stop_lon": -73.878751, "location_type": "0"},
-  "402": {"stop_id": 402, "stop_name": "Mosholu Pkwy", "stop_lat": 40.87975, "stop_lon": -73.884655, "location_type": 1},
-  "402N": {"stop_id": "402N", "stop_name": "Mosholu Pkwy", "stop_lat": 40.87975, "stop_lon": -73.884655, "location_type": "0"},
-  "402S": {"stop_id": "402S", "stop_name": "Mosholu Pkwy", "stop_lat": 40.87975, "stop_lon": -73.884655, "location_type": "0"},
-  "405": {"stop_id": 405, "stop_name": "Bedford Park Blvd - Lehman College", "stop_lat": 40.873412, "stop_lon": -73.890064, "location_type": 1},
-  "405N": {"stop_id": "405N", "stop_name": "Bedford Park Blvd - Lehman College", "stop_lat": 40.873412, "stop_lon": -73.890064, "location_type": "0"},
-  "405S": {"stop_id": "405S", "stop_name": "Bedford Park Blvd - Lehman College", "stop_lat": 40.873412, "stop_lon": -73.890064, "location_type": "0"},
-  "406": {"stop_id": 406, "stop_name": "Kingsbridge Rd", "stop_lat": 40.86776, "stop_lon": -73.897174, "location_type": 1},
-  "406N": {"stop_id": "406N", "stop_name": "Kingsbridge Rd", "stop_lat": 40.86776, "stop_lon": -73.897174, "location_type": "0"},
-  "406S": {"stop_id": "406S", "stop_name": "Kingsbridge Rd", "stop_lat": 40.86776, "stop_lon": -73.897174, "location_type": "0"},
-  "407": {"stop_id": 407, "stop_name": "Fordham Rd", "stop_lat": 40.862803, "stop_lon": -73.901034, "location_type": 1},
-  "407N": {"stop_id": "407N", "stop_name": "Fordham Rd", "stop_lat": 40.862803, "stop_lon": -73.901034, "location_type": "0"},
-  "407S": {"stop_id": "407S", "stop_name": "Fordham Rd", "stop_lat": 40.862803, "stop_lon": -73.901034, "location_type": "0"},
-  "408": {"stop_id": 408, "stop_name": "183 St", "stop_lat": 40.858407, "stop_lon": -73.903879, "location_type": 1},
-  "408N": {"stop_id": "408N", "stop_name": "183 St", "stop_lat": 40.858407, "stop_lon": -73.903879, "location_type": "0"},
-  "408S": {"stop_id": "408S", "stop_name": "183 St", "stop_lat": 40.858407, "stop_lon": -73.903879, "location_type": "0"},
-  "409": {"stop_id": 409, "stop_name": "Burnside Av", "stop_lat": 40.853453, "stop_lon": -73.907684, "location_type": 1},
-  "409N": {"stop_id": "409N", "stop_name": "Burnside Av", "stop_lat": 40.853453, "stop_lon": -73.907684, "location_type": "0"},
-  "409S": {"stop_id": "409S", "stop_name": "Burnside Av", "stop_lat": 40.853453, "stop_lon": -73.907684, "location_type": "0"},
-  "410": {"stop_id": 410, "stop_name": "176 St", "stop_lat": 40.84848, "stop_lon": -73.911794, "location_type": 1},
-  "410N": {"stop_id": "410N", "stop_name": "176 St", "stop_lat": 40.84848, "stop_lon": -73.911794, "location_type": "0"},
-  "410S": {"stop_id": "410S", "stop_name": "176 St", "stop_lat": 40.84848, "stop_lon": -73.911794, "location_type": "0"},
-  "411": {"stop_id": 411, "stop_name": "Mt Eden Av", "stop_lat": 40.844434, "stop_lon": -73.914685, "location_type": 1},
-  "411N": {"stop_id": "411N", "stop_name": "Mt Eden Av", "stop_lat": 40.844434, "stop_lon": -73.914685, "location_type": "0"},
-  "411S": {"stop_id": "411S", "stop_name": "Mt Eden Av", "stop_lat": 40.844434, "stop_lon": -73.914685, "location_type": "0"},
-  "412": {"stop_id": 412, "stop_name": "170 St", "stop_lat": 40.840075, "stop_lon": -73.917791, "location_type": 1},
-  "412N": {"stop_id": "412N", "stop_name": "170 St", "stop_lat": 40.840075, "stop_lon": -73.917791, "location_type": "0"},
-  "412S": {"stop_id": "412S", "stop_name": "170 St", "stop_lat": 40.840075, "stop_lon": -73.917791, "location_type": "0"},
-  "413": {"stop_id": 413, "stop_name": "167 St", "stop_lat": 40.835537, "stop_lon": -73.9214, "location_type": 1},
-  "413N": {"stop_id": "413N", "stop_name": "167 St", "stop_lat": 40.835537, "stop_lon": -73.9214, "location_type": "0"},
-  "413S": {"stop_id": "413S", "stop_name": "167 St", "stop_lat": 40.835537, "stop_lon": -73.9214, "location_type": "0"},
-  "414": {"stop_id": 414, "stop_name": "161 St - Yankee Stadium", "stop_lat": 40.827994, "stop_lon": -73.925831, "location_type": 1},
-  "414N": {"stop_id": "414N", "stop_name": "161 St - Yankee Stadium", "stop_lat": 40.827994, "stop_lon": -73.925831, "location_type": "0"},
-  "414S": {"stop_id": "414S", "stop_name": "161 St - Yankee Stadium", "stop_lat": 40.827994, "stop_lon": -73.925831, "location_type": "0"},
-  "415": {"stop_id": 415, "stop_name": "149 St - Grand Concourse", "stop_lat": 40.818375, "stop_lon": -73.927351, "location_type": 1},
-  "415N": {"stop_id": "415N", "stop_name": "149 St - Grand Concourse", "stop_lat": 40.818375, "stop_lon": -73.927351, "location_type": "0"},
-  "415S": {"stop_id": "415S", "stop_name": "149 St - Grand Concourse", "stop_lat": 40.818375, "stop_lon": -73.927351, "location_type": "0"},
-  "416": {"stop_id": 416, "stop_name": "138 St - Grand Concourse", "stop_lat": 40.813224, "stop_lon": -73.929849, "location_type": 1},
-  "416N": {"stop_id": "416N", "stop_name": "138 St - Grand Concourse", "stop_lat": 40.813224, "stop_lon": -73.929849, "location_type": "0"},
-  "416S": {"stop_id": "416S", "stop_name": "138 St - Grand Concourse", "stop_lat": 40.813224, "stop_lon": -73.929849, "location_type": "0"},
-  "418": {"stop_id": 418, "stop_name": "Fulton St", "stop_lat": 40.710368, "stop_lon": -74.009509, "location_type": 1},
-  "418N": {"stop_id": "418N", "stop_name": "Fulton St", "stop_lat": 40.710368, "stop_lon": -74.009509, "location_type": "0"},
-  "418S": {"stop_id": "418S", "stop_name": "Fulton St", "stop_lat": 40.710368, "stop_lon": -74.009509, "location_type": "0"},
-  "419": {"stop_id": 419, "stop_name": "Wall St", "stop_lat": 40.707557, "stop_lon": -74.011862, "location_type": 1},
-  "419N": {"stop_id": "419N", "stop_name": "Wall St", "stop_lat": 40.707557, "stop_lon": -74.011862, "location_type": "0"},
-  "419S": {"stop_id": "419S", "stop_name": "Wall St", "stop_lat": 40.707557, "stop_lon": -74.011862, "location_type": "0"},
-  "420": {"stop_id": 420, "stop_name": "Bowling Green", "stop_lat": 40.704817, "stop_lon": -74.014065, "location_type": 1},
-  "420N": {"stop_id": "420N", "stop_name": "Bowling Green", "stop_lat": 40.704817, "stop_lon": -74.014065, "location_type": "0"},
-  "420S": {"stop_id": "420S", "stop_name": "Bowling Green", "stop_lat": 40.704817, "stop_lon": -74.014065, "location_type": "0"},
-  "423": {"stop_id": 423, "stop_name": "Borough Hall", "stop_lat": 40.692404, "stop_lon": -73.990151, "location_type": 1},
-  "423N": {"stop_id": "423N", "stop_name": "Borough Hall", "stop_lat": 40.692404, "stop_lon": -73.990151, "location_type": "0"},
-  "423S": {"stop_id": "423S", "stop_name": "Borough Hall", "stop_lat": 40.692404, "stop_lon": -73.990151, "location_type": "0"},
-  "501": {"stop_id": 501, "stop_name": "Eastchester - Dyre Av", "stop_lat": 40.8883, "stop_lon": -73.830834, "location_type": 1},
-  "501N": {"stop_id": "501N", "stop_name": "Eastchester - Dyre Av", "stop_lat": 40.8883, "stop_lon": -73.830834, "location_type": "0"},
-  "501S": {"stop_id": "501S", "stop_name": "Eastchester - Dyre Av", "stop_lat": 40.8883, "stop_lon": -73.830834, "location_type": "0"},
-  "502": {"stop_id": 502, "stop_name": "Baychester Av", "stop_lat": 40.878663, "stop_lon": -73.838591, "location_type": 1},
-  "502N": {"stop_id": "502N", "stop_name": "Baychester Av", "stop_lat": 40.878663, "stop_lon": -73.838591, "location_type": "0"},
-  "502S": {"stop_id": "502S", "stop_name": "Baychester Av", "stop_lat": 40.878663, "stop_lon": -73.838591, "location_type": "0"},
-  "503": {"stop_id": 503, "stop_name": "Gun Hill Rd", "stop_lat": 40.869526, "stop_lon": -73.846384, "location_type": 1},
-  "503N": {"stop_id": "503N", "stop_name": "Gun Hill Rd", "stop_lat": 40.869526, "stop_lon": -73.846384, "location_type": "0"},
-  "503S": {"stop_id": "503S", "stop_name": "Gun Hill Rd", "stop_lat": 40.869526, "stop_lon": -73.846384, "location_type": "0"},
-  "504": {"stop_id": 504, "stop_name": "Pelham Pkwy", "stop_lat": 40.858985, "stop_lon": -73.855359, "location_type": 1},
-  "504N": {"stop_id": "504N", "stop_name": "Pelham Pkwy", "stop_lat": 40.858985, "stop_lon": -73.855359, "location_type": "0"},
-  "504S": {"stop_id": "504S", "stop_name": "Pelham Pkwy", "stop_lat": 40.858985, "stop_lon": -73.855359, "location_type": "0"},
-  "505": {"stop_id": 505, "stop_name": "Morris Park", "stop_lat": 40.854364, "stop_lon": -73.860495, "location_type": 1},
-  "505N": {"stop_id": "505N", "stop_name": "Morris Park", "stop_lat": 40.854364, "stop_lon": -73.860495, "location_type": "0"},
-  "505S": {"stop_id": "505S", "stop_name": "Morris Park", "stop_lat": 40.854364, "stop_lon": -73.860495, "location_type": "0"},
-  "601": {"stop_id": 601, "stop_name": "Pelham Bay Park", "stop_lat": 40.852462, "stop_lon": -73.828121, "location_type": 1},
-  "601N": {"stop_id": "601N", "stop_name": "Pelham Bay Park", "stop_lat": 40.852462, "stop_lon": -73.828121, "location_type": "0"},
-  "601S": {"stop_id": "601S", "stop_name": "Pelham Bay Park", "stop_lat": 40.852462, "stop_lon": -73.828121, "location_type": "0"},
-  "602": {"stop_id": 602, "stop_name": "Buhre Av", "stop_lat": 40.84681, "stop_lon": -73.832569, "location_type": 1},
-  "602N": {"stop_id": "602N", "stop_name": "Buhre Av", "stop_lat": 40.84681, "stop_lon": -73.832569, "location_type": "0"},
-  "602S": {"stop_id": "602S", "stop_name": "Buhre Av", "stop_lat": 40.84681, "stop_lon": -73.832569, "location_type": "0"},
-  "603": {"stop_id": 603, "stop_name": "Middletown Rd", "stop_lat": 40.843863, "stop_lon": -73.836322, "location_type": 1},
-  "603N": {"stop_id": "603N", "stop_name": "Middletown Rd", "stop_lat": 40.843863, "stop_lon": -73.836322, "location_type": "0"},
-  "603S": {"stop_id": "603S", "stop_name": "Middletown Rd", "stop_lat": 40.843863, "stop_lon": -73.836322, "location_type": "0"},
-  "604": {"stop_id": 604, "stop_name": "Westchester Sq - E Tremont Av", "stop_lat": 40.839892, "stop_lon": -73.842952, "location_type": 1},
-  "604N": {"stop_id": "604N", "stop_name": "Westchester Sq - E Tremont Av", "stop_lat": 40.839892, "stop_lon": -73.842952, "location_type": "0"},
-  "604S": {"stop_id": "604S", "stop_name": "Westchester Sq - E Tremont Av", "stop_lat": 40.839892, "stop_lon": -73.842952, "location_type": "0"},
-  "606": {"stop_id": 606, "stop_name": "Zerega Av", "stop_lat": 40.836488, "stop_lon": -73.847036, "location_type": 1},
-  "606N": {"stop_id": "606N", "stop_name": "Zerega Av", "stop_lat": 40.836488, "stop_lon": -73.847036, "location_type": "0"},
-  "606S": {"stop_id": "606S", "stop_name": "Zerega Av", "stop_lat": 40.836488, "stop_lon": -73.847036, "location_type": "0"},
-  "607": {"stop_id": 607, "stop_name": "Castle Hill Av", "stop_lat": 40.834255, "stop_lon": -73.851222, "location_type": 1},
-  "607N": {"stop_id": "607N", "stop_name": "Castle Hill Av", "stop_lat": 40.834255, "stop_lon": -73.851222, "location_type": "0"},
-  "607S": {"stop_id": "607S", "stop_name": "Castle Hill Av", "stop_lat": 40.834255, "stop_lon": -73.851222, "location_type": "0"},
-  "608": {"stop_id": 608, "stop_name": "Parkchester", "stop_lat": 40.833226, "stop_lon": -73.860816, "location_type": 1},
-  "608N": {"stop_id": "608N", "stop_name": "Parkchester", "stop_lat": 40.833226, "stop_lon": -73.860816, "location_type": "0"},
-  "608S": {"stop_id": "608S", "stop_name": "Parkchester", "stop_lat": 40.833226, "stop_lon": -73.860816, "location_type": "0"},
-  "609": {"stop_id": 609, "stop_name": "St Lawrence Av", "stop_lat": 40.831509, "stop_lon": -73.867618, "location_type": 1},
-  "609N": {"stop_id": "609N", "stop_name": "St Lawrence Av", "stop_lat": 40.831509, "stop_lon": -73.867618, "location_type": "0"},
-  "609S": {"stop_id": "609S", "stop_name": "St Lawrence Av", "stop_lat": 40.831509, "stop_lon": -73.867618, "location_type": "0"},
-  "610": {"stop_id": 610, "stop_name": "Morrison Av- Sound View", "stop_lat": 40.829521, "stop_lon": -73.874516, "location_type": 1},
-  "610N": {"stop_id": "610N", "stop_name": "Morrison Av- Sound View", "stop_lat": 40.829521, "stop_lon": -73.874516, "location_type": "0"},
-  "610S": {"stop_id": "610S", "stop_name": "Morrison Av- Sound View", "stop_lat": 40.829521, "stop_lon": -73.874516, "location_type": "0"},
-  "611": {"stop_id": 611, "stop_name": "Elder Av", "stop_lat": 40.828584, "stop_lon": -73.879159, "location_type": 1},
-  "611N": {"stop_id": "611N", "stop_name": "Elder Av", "stop_lat": 40.828584, "stop_lon": -73.879159, "location_type": "0"},
-  "611S": {"stop_id": "611S", "stop_name": "Elder Av", "stop_lat": 40.828584, "stop_lon": -73.879159, "location_type": "0"},
-  "612": {"stop_id": 612, "stop_name": "Whitlock Av", "stop_lat": 40.826525, "stop_lon": -73.886283, "location_type": 1},
-  "612N": {"stop_id": "612N", "stop_name": "Whitlock Av", "stop_lat": 40.826525, "stop_lon": -73.886283, "location_type": "0"},
-  "612S": {"stop_id": "612S", "stop_name": "Whitlock Av", "stop_lat": 40.826525, "stop_lon": -73.886283, "location_type": "0"},
-  "613": {"stop_id": 613, "stop_name": "Hunts Point Av", "stop_lat": 40.820948, "stop_lon": -73.890549, "location_type": 1},
-  "613N": {"stop_id": "613N", "stop_name": "Hunts Point Av", "stop_lat": 40.820948, "stop_lon": -73.890549, "location_type": "0"},
-  "613S": {"stop_id": "613S", "stop_name": "Hunts Point Av", "stop_lat": 40.820948, "stop_lon": -73.890549, "location_type": "0"},
-  "614": {"stop_id": 614, "stop_name": "Longwood Av", "stop_lat": 40.816104, "stop_lon": -73.896435, "location_type": 1},
-  "614N": {"stop_id": "614N", "stop_name": "Longwood Av", "stop_lat": 40.816104, "stop_lon": -73.896435, "location_type": "0"},
-  "614S": {"stop_id": "614S", "stop_name": "Longwood Av", "stop_lat": 40.816104, "stop_lon": -73.896435, "location_type": "0"},
-  "615": {"stop_id": 615, "stop_name": "E 149 St", "stop_lat": 40.812118, "stop_lon": -73.904098, "location_type": 1},
-  "615N": {"stop_id": "615N", "stop_name": "E 149 St", "stop_lat": 40.812118, "stop_lon": -73.904098, "location_type": "0"},
-  "615S": {"stop_id": "615S", "stop_name": "E 149 St", "stop_lat": 40.812118, "stop_lon": -73.904098, "location_type": "0"},
-  "616": {"stop_id": 616, "stop_name": "E 143 St - St Mary's St", "stop_lat": 40.808719, "stop_lon": -73.907657, "location_type": 1},
-  "616N": {"stop_id": "616N", "stop_name": "E 143 St - St Mary's St", "stop_lat": 40.808719, "stop_lon": -73.907657, "location_type": "0"},
-  "616S": {"stop_id": "616S", "stop_name": "E 143 St - St Mary's St", "stop_lat": 40.808719, "stop_lon": -73.907657, "location_type": "0"},
-  "617": {"stop_id": 617, "stop_name": "Cypress Av", "stop_lat": 40.805368, "stop_lon": -73.914042, "location_type": 1},
-  "617N": {"stop_id": "617N", "stop_name": "Cypress Av", "stop_lat": 40.805368, "stop_lon": -73.914042, "location_type": "0"},
-  "617S": {"stop_id": "617S", "stop_name": "Cypress Av", "stop_lat": 40.805368, "stop_lon": -73.914042, "location_type": "0"},
-  "618": {"stop_id": 618, "stop_name": "Brook Av", "stop_lat": 40.807566, "stop_lon": -73.91924, "location_type": 1},
-  "618N": {"stop_id": "618N", "stop_name": "Brook Av", "stop_lat": 40.807566, "stop_lon": -73.91924, "location_type": "0"},
-  "618S": {"stop_id": "618S", "stop_name": "Brook Av", "stop_lat": 40.807566, "stop_lon": -73.91924, "location_type": "0"},
-  "619": {"stop_id": 619, "stop_name": "3 Av - 138 St", "stop_lat": 40.810476, "stop_lon": -73.926138, "location_type": 1},
-  "619N": {"stop_id": "619N", "stop_name": "3 Av - 138 St", "stop_lat": 40.810476, "stop_lon": -73.926138, "location_type": "0"},
-  "619S": {"stop_id": "619S", "stop_name": "3 Av - 138 St", "stop_lat": 40.810476, "stop_lon": -73.926138, "location_type": "0"},
-  "621": {"stop_id": 621, "stop_name": "125 St", "stop_lat": 40.804138, "stop_lon": -73.937594, "location_type": 1},
-  "621N": {"stop_id": "621N", "stop_name": "125 St", "stop_lat": 40.804138, "stop_lon": -73.937594, "location_type": "0"},
-  "621S": {"stop_id": "621S", "stop_name": "125 St", "stop_lat": 40.804138, "stop_lon": -73.937594, "location_type": "0"},
-  "622": {"stop_id": 622, "stop_name": "116 St", "stop_lat": 40.798629, "stop_lon": -73.941617, "location_type": 1},
-  "622N": {"stop_id": "622N", "stop_name": "116 St", "stop_lat": 40.798629, "stop_lon": -73.941617, "location_type": "0"},
-  "622S": {"stop_id": "622S", "stop_name": "116 St", "stop_lat": 40.798629, "stop_lon": -73.941617, "location_type": "0"},
-  "623": {"stop_id": 623, "stop_name": "110 St", "stop_lat": 40.79502, "stop_lon": -73.94425, "location_type": 1},
-  "623N": {"stop_id": "623N", "stop_name": "110 St", "stop_lat": 40.79502, "stop_lon": -73.94425, "location_type": "0"},
-  "623S": {"stop_id": "623S", "stop_name": "110 St", "stop_lat": 40.79502, "stop_lon": -73.94425, "location_type": "0"},
-  "624": {"stop_id": 624, "stop_name": "103 St", "stop_lat": 40.7906, "stop_lon": -73.947478, "location_type": 1},
-  "624N": {"stop_id": "624N", "stop_name": "103 St", "stop_lat": 40.7906, "stop_lon": -73.947478, "location_type": "0"},
-  "624S": {"stop_id": "624S", "stop_name": "103 St", "stop_lat": 40.7906, "stop_lon": -73.947478, "location_type": "0"},
-  "625": {"stop_id": 625, "stop_name": "96 St", "stop_lat": 40.785672, "stop_lon": -73.95107, "location_type": 1},
-  "625N": {"stop_id": "625N", "stop_name": "96 St", "stop_lat": 40.785672, "stop_lon": -73.95107, "location_type": "0"},
-  "625S": {"stop_id": "625S", "stop_name": "96 St", "stop_lat": 40.785672, "stop_lon": -73.95107, "location_type": "0"},
-  "626": {"stop_id": 626, "stop_name": "86 St", "stop_lat": 40.779492, "stop_lon": -73.955589, "location_type": 1},
-  "626N": {"stop_id": "626N", "stop_name": "86 St", "stop_lat": 40.779492, "stop_lon": -73.955589, "location_type": "0"},
-  "626S": {"stop_id": "626S", "stop_name": "86 St", "stop_lat": 40.779492, "stop_lon": -73.955589, "location_type": "0"},
-  "627": {"stop_id": 627, "stop_name": "77 St", "stop_lat": 40.77362, "stop_lon": -73.959874, "location_type": 1},
-  "627N": {"stop_id": "627N", "stop_name": "77 St", "stop_lat": 40.77362, "stop_lon": -73.959874, "location_type": "0"},
-  "627S": {"stop_id": "627S", "stop_name": "77 St", "stop_lat": 40.77362, "stop_lon": -73.959874, "location_type": "0"},
-  "628": {"stop_id": 628, "stop_name": "68 St - Hunter College", "stop_lat": 40.768141, "stop_lon": -73.96387, "location_type": 1},
-  "628N": {"stop_id": "628N", "stop_name": "68 St - Hunter College", "stop_lat": 40.768141, "stop_lon": -73.96387, "location_type": "0"},
-  "628S": {"stop_id": "628S", "stop_name": "68 St - Hunter College", "stop_lat": 40.768141, "stop_lon": -73.96387, "location_type": "0"},
-  "629": {"stop_id": 629, "stop_name": "59 St", "stop_lat": 40.762526, "stop_lon": -73.967967, "location_type": 1},
-  "629N": {"stop_id": "629N", "stop_name": "59 St", "stop_lat": 40.762526, "stop_lon": -73.967967, "location_type": "0"},
-  "629S": {"stop_id": "629S", "stop_name": "59 St", "stop_lat": 40.762526, "stop_lon": -73.967967, "location_type": "0"},
-  "630": {"stop_id": 630, "stop_name": "51 St", "stop_lat": 40.757107, "stop_lon": -73.97192, "location_type": 1},
-  "630N": {"stop_id": "630N", "stop_name": "51 St", "stop_lat": 40.757107, "stop_lon": -73.97192, "location_type": "0"},
-  "630S": {"stop_id": "630S", "stop_name": "51 St", "stop_lat": 40.757107, "stop_lon": -73.97192, "location_type": "0"},
-  "631": {"stop_id": 631, "stop_name": "Grand Central - 42 St", "stop_lat": 40.751776, "stop_lon": -73.976848, "location_type": 1},
-  "631N": {"stop_id": "631N", "stop_name": "Grand Central - 42 St", "stop_lat": 40.751776, "stop_lon": -73.976848, "location_type": "0"},
-  "631S": {"stop_id": "631S", "stop_name": "Grand Central - 42 St", "stop_lat": 40.751776, "stop_lon": -73.976848, "location_type": "0"},
-  "632": {"stop_id": 632, "stop_name": "33 St", "stop_lat": 40.746081, "stop_lon": -73.982076, "location_type": 1},
-  "632N": {"stop_id": "632N", "stop_name": "33 St", "stop_lat": 40.746081, "stop_lon": -73.982076, "location_type": "0"},
-  "632S": {"stop_id": "632S", "stop_name": "33 St", "stop_lat": 40.746081, "stop_lon": -73.982076, "location_type": "0"},
-  "633": {"stop_id": 633, "stop_name": "28 St", "stop_lat": 40.74307, "stop_lon": -73.984264, "location_type": 1},
-  "633N": {"stop_id": "633N", "stop_name": "28 St", "stop_lat": 40.74307, "stop_lon": -73.984264, "location_type": "0"},
-  "633S": {"stop_id": "633S", "stop_name": "28 St", "stop_lat": 40.74307, "stop_lon": -73.984264, "location_type": "0"},
-  "634": {"stop_id": 634, "stop_name": "23 St", "stop_lat": 40.739864, "stop_lon": -73.986599, "location_type": 1},
-  "634N": {"stop_id": "634N", "stop_name": "23 St", "stop_lat": 40.739864, "stop_lon": -73.986599, "location_type": "0"},
-  "634S": {"stop_id": "634S", "stop_name": "23 St", "stop_lat": 40.739864, "stop_lon": -73.986599, "location_type": "0"},
-  "635": {"stop_id": 635, "stop_name": "14 St - Union Sq", "stop_lat": 40.734673, "stop_lon": -73.989951, "location_type": 1},
-  "635N": {"stop_id": "635N", "stop_name": "14 St - Union Sq", "stop_lat": 40.734673, "stop_lon": -73.989951, "location_type": "0"},
-  "635S": {"stop_id": "635S", "stop_name": "14 St - Union Sq", "stop_lat": 40.734673, "stop_lon": -73.989951, "location_type": "0"},
-  "636": {"stop_id": 636, "stop_name": "Astor Pl", "stop_lat": 40.730054, "stop_lon": -73.99107, "location_type": 1},
-  "636N": {"stop_id": "636N", "stop_name": "Astor Pl", "stop_lat": 40.730054, "stop_lon": -73.99107, "location_type": "0"},
-  "636S": {"stop_id": "636S", "stop_name": "Astor Pl", "stop_lat": 40.730054, "stop_lon": -73.99107, "location_type": "0"},
-  "637": {"stop_id": 637, "stop_name": "Bleecker St", "stop_lat": 40.725915, "stop_lon": -73.994659, "location_type": 1},
-  "637N": {"stop_id": "637N", "stop_name": "Bleecker St", "stop_lat": 40.725915, "stop_lon": -73.994659, "location_type": "0"},
-  "637S": {"stop_id": "637S", "stop_name": "Bleecker St", "stop_lat": 40.725915, "stop_lon": -73.994659, "location_type": "0"},
-  "638": {"stop_id": 638, "stop_name": "Spring St", "stop_lat": 40.722301, "stop_lon": -73.997141, "location_type": 1},
-  "638N": {"stop_id": "638N", "stop_name": "Spring St", "stop_lat": 40.722301, "stop_lon": -73.997141, "location_type": "0"},
-  "638S": {"stop_id": "638S", "stop_name": "Spring St", "stop_lat": 40.722301, "stop_lon": -73.997141, "location_type": "0"},
-  "639": {"stop_id": 639, "stop_name": "Canal St", "stop_lat": 40.718803, "stop_lon": -74.000193, "location_type": 1},
-  "639N": {"stop_id": "639N", "stop_name": "Canal St", "stop_lat": 40.718803, "stop_lon": -74.000193, "location_type": "0"},
-  "639S": {"stop_id": "639S", "stop_name": "Canal St", "stop_lat": 40.718803, "stop_lon": -74.000193, "location_type": "0"},
-  "640": {"stop_id": 640, "stop_name": "Brooklyn Bridge - City Hall", "stop_lat": 40.713065, "stop_lon": -74.004131, "location_type": 1},
-  "640N": {"stop_id": "640N", "stop_name": "Brooklyn Bridge - City Hall", "stop_lat": 40.713065, "stop_lon": -74.004131, "location_type": "0"},
-  "640S": {"stop_id": "640S", "stop_name": "Brooklyn Bridge - City Hall", "stop_lat": 40.713065, "stop_lon": -74.004131, "location_type": "0"},
-  "701": {"stop_id": 701, "stop_name": "Flushing - Main St", "stop_lat": 40.7596, "stop_lon": -73.83003, "location_type": 1},
-  "701N": {"stop_id": "701N", "stop_name": "Flushing - Main St", "stop_lat": 40.7596, "stop_lon": -73.83003, "location_type": "0"},
-  "701S": {"stop_id": "701S", "stop_name": "Flushing - Main St", "stop_lat": 40.7596, "stop_lon": -73.83003, "location_type": "0"},
-  "702": {"stop_id": 702, "stop_name": "Mets - Willets Point", "stop_lat": 40.754622, "stop_lon": -73.845625, "location_type": 1},
-  "702N": {"stop_id": "702N", "stop_name": "Mets - Willets Point", "stop_lat": 40.754622, "stop_lon": -73.845625, "location_type": "0"},
-  "702S": {"stop_id": "702S", "stop_name": "Mets - Willets Point", "stop_lat": 40.754622, "stop_lon": -73.845625, "location_type": "0"},
-  "705": {"stop_id": 705, "stop_name": "111 St", "stop_lat": 40.75173, "stop_lon": -73.855334, "location_type": 1},
-  "705N": {"stop_id": "705N", "stop_name": "111 St", "stop_lat": 40.75173, "stop_lon": -73.855334, "location_type": "0"},
-  "705S": {"stop_id": "705S", "stop_name": "111 St", "stop_lat": 40.75173, "stop_lon": -73.855334, "location_type": "0"},
-  "706": {"stop_id": 706, "stop_name": "103 St - Corona Plaza", "stop_lat": 40.749865, "stop_lon": -73.8627, "location_type": 1},
-  "706N": {"stop_id": "706N", "stop_name": "103 St - Corona Plaza", "stop_lat": 40.749865, "stop_lon": -73.8627, "location_type": "0"},
-  "706S": {"stop_id": "706S", "stop_name": "103 St - Corona Plaza", "stop_lat": 40.749865, "stop_lon": -73.8627, "location_type": "0"},
-  "707": {"stop_id": 707, "stop_name": "Junction Blvd", "stop_lat": 40.749145, "stop_lon": -73.869527, "location_type": 1},
-  "707N": {"stop_id": "707N", "stop_name": "Junction Blvd", "stop_lat": 40.749145, "stop_lon": -73.869527, "location_type": "0"},
-  "707S": {"stop_id": "707S", "stop_name": "Junction Blvd", "stop_lat": 40.749145, "stop_lon": -73.869527, "location_type": "0"},
-  "708": {"stop_id": 708, "stop_name": "90 St - Elmhurst Av", "stop_lat": 40.748408, "stop_lon": -73.876613, "location_type": 1},
-  "708N": {"stop_id": "708N", "stop_name": "90 St - Elmhurst Av", "stop_lat": 40.748408, "stop_lon": -73.876613, "location_type": "0"},
-  "708S": {"stop_id": "708S", "stop_name": "90 St - Elmhurst Av", "stop_lat": 40.748408, "stop_lon": -73.876613, "location_type": "0"},
-  "709": {"stop_id": 709, "stop_name": "82 St - Jackson Hts", "stop_lat": 40.747659, "stop_lon": -73.883697, "location_type": 1},
-  "709N": {"stop_id": "709N", "stop_name": "82 St - Jackson Hts", "stop_lat": 40.747659, "stop_lon": -73.883697, "location_type": "0"},
-  "709S": {"stop_id": "709S", "stop_name": "82 St - Jackson Hts", "stop_lat": 40.747659, "stop_lon": -73.883697, "location_type": "0"},
-  "710": {"stop_id": 710, "stop_name": "74 St - Broadway", "stop_lat": 40.746848, "stop_lon": -73.891394, "location_type": 1},
-  "710N": {"stop_id": "710N", "stop_name": "74 St - Broadway", "stop_lat": 40.746848, "stop_lon": -73.891394, "location_type": "0"},
-  "710S": {"stop_id": "710S", "stop_name": "74 St - Broadway", "stop_lat": 40.746848, "stop_lon": -73.891394, "location_type": "0"},
-  "711": {"stop_id": 711, "stop_name": "69 St", "stop_lat": 40.746325, "stop_lon": -73.896403, "location_type": 1},
-  "711N": {"stop_id": "711N", "stop_name": "69 St", "stop_lat": 40.746325, "stop_lon": -73.896403, "location_type": "0"},
-  "711S": {"stop_id": "711S", "stop_name": "69 St", "stop_lat": 40.746325, "stop_lon": -73.896403, "location_type": "0"},
-  "712": {"stop_id": 712, "stop_name": "Woodside - 61 St", "stop_lat": 40.74563, "stop_lon": -73.902984, "location_type": 1},
-  "712N": {"stop_id": "712N", "stop_name": "Woodside - 61 St", "stop_lat": 40.74563, "stop_lon": -73.902984, "location_type": "0"},
-  "712S": {"stop_id": "712S", "stop_name": "Woodside - 61 St", "stop_lat": 40.74563, "stop_lon": -73.902984, "location_type": "0"},
-  "713": {"stop_id": 713, "stop_name": "52 St", "stop_lat": 40.744149, "stop_lon": -73.912549, "location_type": 1},
-  "713N": {"stop_id": "713N", "stop_name": "52 St", "stop_lat": 40.744149, "stop_lon": -73.912549, "location_type": "0"},
-  "713S": {"stop_id": "713S", "stop_name": "52 St", "stop_lat": 40.744149, "stop_lon": -73.912549, "location_type": "0"},
-  "714": {"stop_id": 714, "stop_name": "46 St", "stop_lat": 40.743132, "stop_lon": -73.918435, "location_type": 1},
-  "714N": {"stop_id": "714N", "stop_name": "46 St", "stop_lat": 40.743132, "stop_lon": -73.918435, "location_type": "0"},
-  "714S": {"stop_id": "714S", "stop_name": "46 St", "stop_lat": 40.743132, "stop_lon": -73.918435, "location_type": "0"},
-  "715": {"stop_id": 715, "stop_name": "40 St", "stop_lat": 40.743781, "stop_lon": -73.924016, "location_type": 1},
-  "715N": {"stop_id": "715N", "stop_name": "40 St", "stop_lat": 40.743781, "stop_lon": -73.924016, "location_type": "0"},
-  "715S": {"stop_id": "715S", "stop_name": "40 St", "stop_lat": 40.743781, "stop_lon": -73.924016, "location_type": "0"},
-  "716": {"stop_id": 716, "stop_name": "33 St", "stop_lat": 40.744587, "stop_lon": -73.930997, "location_type": 1},
-  "716N": {"stop_id": "716N", "stop_name": "33 St", "stop_lat": 40.744587, "stop_lon": -73.930997, "location_type": "0"},
-  "716S": {"stop_id": "716S", "stop_name": "33 St", "stop_lat": 40.744587, "stop_lon": -73.930997, "location_type": "0"},
-  "718": {"stop_id": 718, "stop_name": "Queensboro Plaza", "stop_lat": 40.750582, "stop_lon": -73.940202, "location_type": 1},
-  "718N": {"stop_id": "718N", "stop_name": "Queensboro Plaza", "stop_lat": 40.750582, "stop_lon": -73.940202, "location_type": "0"},
-  "718S": {"stop_id": "718S", "stop_name": "Queensboro Plaza", "stop_lat": 40.750582, "stop_lon": -73.940202, "location_type": "0"},
-  "719": {"stop_id": 719, "stop_name": "Court Sq", "stop_lat": 40.747023, "stop_lon": -73.945264, "location_type": 1},
-  "719N": {"stop_id": "719N", "stop_name": "Court Sq", "stop_lat": 40.747023, "stop_lon": -73.945264, "location_type": "0"},
-  "719S": {"stop_id": "719S", "stop_name": "Court Sq", "stop_lat": 40.747023, "stop_lon": -73.945264, "location_type": "0"},
-  "720": {"stop_id": 720, "stop_name": "Hunters Point Av", "stop_lat": 40.742216, "stop_lon": -73.948916, "location_type": 1},
-  "720N": {"stop_id": "720N", "stop_name": "Hunters Point Av", "stop_lat": 40.742216, "stop_lon": -73.948916, "location_type": "0"},
-  "720S": {"stop_id": "720S", "stop_name": "Hunters Point Av", "stop_lat": 40.742216, "stop_lon": -73.948916, "location_type": "0"},
-  "721": {"stop_id": 721, "stop_name": "Vernon Blvd - Jackson Av", "stop_lat": 40.742626, "stop_lon": -73.953581, "location_type": 1},
-  "721N": {"stop_id": "721N", "stop_name": "Vernon Blvd - Jackson Av", "stop_lat": 40.742626, "stop_lon": -73.953581, "location_type": "0"},
-  "721S": {"stop_id": "721S", "stop_name": "Vernon Blvd - Jackson Av", "stop_lat": 40.742626, "stop_lon": -73.953581, "location_type": "0"},
-  "723": {"stop_id": 723, "stop_name": "Grand Central - 42 St", "stop_lat": 40.751431, "stop_lon": -73.976041, "location_type": 1},
-  "723N": {"stop_id": "723N", "stop_name": "Grand Central - 42 St", "stop_lat": 40.751431, "stop_lon": -73.976041, "location_type": "0"},
-  "723S": {"stop_id": "723S", "stop_name": "Grand Central - 42 St", "stop_lat": 40.751431, "stop_lon": -73.976041, "location_type": "0"},
-  "724": {"stop_id": 724, "stop_name": "5 Av", "stop_lat": 40.753821, "stop_lon": -73.981963, "location_type": 1},
-  "724N": {"stop_id": "724N", "stop_name": "5 Av", "stop_lat": 40.753821, "stop_lon": -73.981963, "location_type": "0"},
-  "724S": {"stop_id": "724S", "stop_name": "5 Av", "stop_lat": 40.753821, "stop_lon": -73.981963, "location_type": "0"},
-  "725": {"stop_id": 725, "stop_name": "Times Sq - 42 St", "stop_lat": 40.755477, "stop_lon": -73.987691, "location_type": 1},
-  "725N": {"stop_id": "725N", "stop_name": "Times Sq - 42 St", "stop_lat": 40.755477, "stop_lon": -73.987691, "location_type": "0"},
-  "725S": {"stop_id": "725S", "stop_name": "Times Sq - 42 St", "stop_lat": 40.755477, "stop_lon": -73.987691, "location_type": "0"},
-  "726": {"stop_id": 726, "stop_name": "34 St - 11 Av", "stop_lat": 40.755882, "stop_lon": -74.00191, "location_type": 1},
-  "726N": {"stop_id": "726N", "stop_name": "34 St - 11 Av", "stop_lat": 40.755882, "stop_lon": -74.00191, "location_type": "0"},
-  "726S": {"stop_id": "726S", "stop_name": "34 St - 11 Av", "stop_lat": 40.755882, "stop_lon": -74.00191, "location_type": "0"},
-  "901": {"stop_id": 901, "stop_name": "Grand Central - 42 St", "stop_lat": 40.752769, "stop_lon": -73.979189, "location_type": 1},
-  "901N": {"stop_id": "901N", "stop_name": "Grand Central - 42 St", "stop_lat": 40.752769, "stop_lon": -73.979189, "location_type": "0"},
-  "901S": {"stop_id": "901S", "stop_name": "Grand Central - 42 St", "stop_lat": 40.752769, "stop_lon": -73.979189, "location_type": "0"},
-  "902": {"stop_id": 902, "stop_name": "Times Sq - 42 St", "stop_lat": 40.755983, "stop_lon": -73.986229, "location_type": 1},
-  "902N": {"stop_id": "902N", "stop_name": "Times Sq - 42 St", "stop_lat": 40.755983, "stop_lon": -73.986229, "location_type": "0"},
-  "902S": {"stop_id": "902S", "stop_name": "Times Sq - 42 St", "stop_lat": 40.755983, "stop_lon": -73.986229, "location_type": "0"},
-  "A02": {"stop_id": "A02", "stop_name": "Inwood - 207 St", "stop_lat": 40.868072, "stop_lon": -73.919899, "location_type": 1},
-  "A02N": {"stop_id": "A02N", "stop_name": "Inwood - 207 St", "stop_lat": 40.868072, "stop_lon": -73.919899, "location_type": "0"},
-  "A02S": {"stop_id": "A02S", "stop_name": "Inwood - 207 St", "stop_lat": 40.868072, "stop_lon": -73.919899, "location_type": "0"},
-  "A03": {"stop_id": "A03", "stop_name": "Dyckman St", "stop_lat": 40.865491, "stop_lon": -73.927271, "location_type": 1},
-  "A03N": {"stop_id": "A03N", "stop_name": "Dyckman St", "stop_lat": 40.865491, "stop_lon": -73.927271, "location_type": "0"},
-  "A03S": {"stop_id": "A03S", "stop_name": "Dyckman St", "stop_lat": 40.865491, "stop_lon": -73.927271, "location_type": "0"},
-  "A05": {"stop_id": "A05", "stop_name": "190 St", "stop_lat": 40.859022, "stop_lon": -73.93418, "location_type": 1},
-  "A05N": {"stop_id": "A05N", "stop_name": "190 St", "stop_lat": 40.859022, "stop_lon": -73.93418, "location_type": "0"},
-  "A05S": {"stop_id": "A05S", "stop_name": "190 St", "stop_lat": 40.859022, "stop_lon": -73.93418, "location_type": "0"},
-  "A06": {"stop_id": "A06", "stop_name": "181 St", "stop_lat": 40.851695, "stop_lon": -73.937969, "location_type": 1},
-  "A06N": {"stop_id": "A06N", "stop_name": "181 St", "stop_lat": 40.851695, "stop_lon": -73.937969, "location_type": "0"},
-  "A06S": {"stop_id": "A06S", "stop_name": "181 St", "stop_lat": 40.851695, "stop_lon": -73.937969, "location_type": "0"},
-  "A07": {"stop_id": "A07", "stop_name": "175 St", "stop_lat": 40.847391, "stop_lon": -73.939704, "location_type": 1},
-  "A07N": {"stop_id": "A07N", "stop_name": "175 St", "stop_lat": 40.847391, "stop_lon": -73.939704, "location_type": "0"},
-  "A07S": {"stop_id": "A07S", "stop_name": "175 St", "stop_lat": 40.847391, "stop_lon": -73.939704, "location_type": "0"},
-  "A09": {"stop_id": "A09", "stop_name": "168 St", "stop_lat": 40.840719, "stop_lon": -73.939561, "location_type": 1},
-  "A09N": {"stop_id": "A09N", "stop_name": "168 St", "stop_lat": 40.840719, "stop_lon": -73.939561, "location_type": "0"},
-  "A09S": {"stop_id": "A09S", "stop_name": "168 St", "stop_lat": 40.840719, "stop_lon": -73.939561, "location_type": "0"},
-  "A10": {"stop_id": "A10", "stop_name": "163 St - Amsterdam Av", "stop_lat": 40.836013, "stop_lon": -73.939892, "location_type": 1},
-  "A10N": {"stop_id": "A10N", "stop_name": "163 St - Amsterdam Av", "stop_lat": 40.836013, "stop_lon": -73.939892, "location_type": "0"},
-  "A10S": {"stop_id": "A10S", "stop_name": "163 St - Amsterdam Av", "stop_lat": 40.836013, "stop_lon": -73.939892, "location_type": "0"},
-  "A11": {"stop_id": "A11", "stop_name": "155 St", "stop_lat": 40.830518, "stop_lon": -73.941514, "location_type": 1},
-  "A11N": {"stop_id": "A11N", "stop_name": "155 St", "stop_lat": 40.830518, "stop_lon": -73.941514, "location_type": "0"},
-  "A11S": {"stop_id": "A11S", "stop_name": "155 St", "stop_lat": 40.830518, "stop_lon": -73.941514, "location_type": "0"},
-  "A12": {"stop_id": "A12", "stop_name": "145 St", "stop_lat": 40.824783, "stop_lon": -73.944216, "location_type": 1},
-  "A12N": {"stop_id": "A12N", "stop_name": "145 St", "stop_lat": 40.824783, "stop_lon": -73.944216, "location_type": "0"},
-  "A12S": {"stop_id": "A12S", "stop_name": "145 St", "stop_lat": 40.824783, "stop_lon": -73.944216, "location_type": "0"},
-  "A14": {"stop_id": "A14", "stop_name": "135 St", "stop_lat": 40.817894, "stop_lon": -73.947649, "location_type": 1},
-  "A14N": {"stop_id": "A14N", "stop_name": "135 St", "stop_lat": 40.817894, "stop_lon": -73.947649, "location_type": "0"},
-  "A14S": {"stop_id": "A14S", "stop_name": "135 St", "stop_lat": 40.817894, "stop_lon": -73.947649, "location_type": "0"},
-  "A15": {"stop_id": "A15", "stop_name": "125 St", "stop_lat": 40.811109, "stop_lon": -73.952343, "location_type": 1},
-  "A15N": {"stop_id": "A15N", "stop_name": "125 St", "stop_lat": 40.811109, "stop_lon": -73.952343, "location_type": "0"},
-  "A15S": {"stop_id": "A15S", "stop_name": "125 St", "stop_lat": 40.811109, "stop_lon": -73.952343, "location_type": "0"},
-  "A16": {"stop_id": "A16", "stop_name": "116 St", "stop_lat": 40.805085, "stop_lon": -73.954882, "location_type": 1},
-  "A16N": {"stop_id": "A16N", "stop_name": "116 St", "stop_lat": 40.805085, "stop_lon": -73.954882, "location_type": "0"},
-  "A16S": {"stop_id": "A16S", "stop_name": "116 St", "stop_lat": 40.805085, "stop_lon": -73.954882, "location_type": "0"},
-  "A17": {"stop_id": "A17", "stop_name": "Cathedral Pkwy (110 St)", "stop_lat": 40.800603, "stop_lon": -73.958161, "location_type": 1},
-  "A17N": {"stop_id": "A17N", "stop_name": "Cathedral Pkwy (110 St)", "stop_lat": 40.800603, "stop_lon": -73.958161, "location_type": "0"},
-  "A17S": {"stop_id": "A17S", "stop_name": "Cathedral Pkwy (110 St)", "stop_lat": 40.800603, "stop_lon": -73.958161, "location_type": "0"},
-  "A18": {"stop_id": "A18", "stop_name": "103 St", "stop_lat": 40.796092, "stop_lon": -73.961454, "location_type": 1},
-  "A18N": {"stop_id": "A18N", "stop_name": "103 St", "stop_lat": 40.796092, "stop_lon": -73.961454, "location_type": "0"},
-  "A18S": {"stop_id": "A18S", "stop_name": "103 St", "stop_lat": 40.796092, "stop_lon": -73.961454, "location_type": "0"},
-  "A19": {"stop_id": "A19", "stop_name": "96 St", "stop_lat": 40.791642, "stop_lon": -73.964696, "location_type": 1},
-  "A19N": {"stop_id": "A19N", "stop_name": "96 St", "stop_lat": 40.791642, "stop_lon": -73.964696, "location_type": "0"},
-  "A19S": {"stop_id": "A19S", "stop_name": "96 St", "stop_lat": 40.791642, "stop_lon": -73.964696, "location_type": "0"},
-  "A20": {"stop_id": "A20", "stop_name": "86 St", "stop_lat": 40.785868, "stop_lon": -73.968916, "location_type": 1},
-  "A20N": {"stop_id": "A20N", "stop_name": "86 St", "stop_lat": 40.785868, "stop_lon": -73.968916, "location_type": "0"},
-  "A20S": {"stop_id": "A20S", "stop_name": "86 St", "stop_lat": 40.785868, "stop_lon": -73.968916, "location_type": "0"},
-  "A21": {"stop_id": "A21", "stop_name": "81 St - Museum of Natural History", "stop_lat": 40.781433, "stop_lon": -73.972143, "location_type": 1},
-  "A21N": {"stop_id": "A21N", "stop_name": "81 St - Museum of Natural History", "stop_lat": 40.781433, "stop_lon": -73.972143, "location_type": "0"},
-  "A21S": {"stop_id": "A21S", "stop_name": "81 St - Museum of Natural History", "stop_lat": 40.781433, "stop_lon": -73.972143, "location_type": "0"},
-  "A22": {"stop_id": "A22", "stop_name": "72 St", "stop_lat": 40.775594, "stop_lon": -73.97641, "location_type": 1},
-  "A22N": {"stop_id": "A22N", "stop_name": "72 St", "stop_lat": 40.775594, "stop_lon": -73.97641, "location_type": "0"},
-  "A22S": {"stop_id": "A22S", "stop_name": "72 St", "stop_lat": 40.775594, "stop_lon": -73.97641, "location_type": "0"},
-  "A24": {"stop_id": "A24", "stop_name": "59 St - Columbus Circle", "stop_lat": 40.768296, "stop_lon": -73.981736, "location_type": 1},
-  "A24N": {"stop_id": "A24N", "stop_name": "59 St - Columbus Circle", "stop_lat": 40.768296, "stop_lon": -73.981736, "location_type": "0"},
-  "A24S": {"stop_id": "A24S", "stop_name": "59 St - Columbus Circle", "stop_lat": 40.768296, "stop_lon": -73.981736, "location_type": "0"},
-  "A25": {"stop_id": "A25", "stop_name": "50 St", "stop_lat": 40.762456, "stop_lon": -73.985984, "location_type": 1},
-  "A25N": {"stop_id": "A25N", "stop_name": "50 St", "stop_lat": 40.762456, "stop_lon": -73.985984, "location_type": "0"},
-  "A25S": {"stop_id": "A25S", "stop_name": "50 St", "stop_lat": 40.762456, "stop_lon": -73.985984, "location_type": "0"},
-  "A27": {"stop_id": "A27", "stop_name": "42 St - Port Authority Bus Terminal", "stop_lat": 40.757308, "stop_lon": -73.989735, "location_type": 1},
-  "A27N": {"stop_id": "A27N", "stop_name": "42 St - Port Authority Bus Terminal", "stop_lat": 40.757308, "stop_lon": -73.989735, "location_type": "0"},
-  "A27S": {"stop_id": "A27S", "stop_name": "42 St - Port Authority Bus Terminal", "stop_lat": 40.757308, "stop_lon": -73.989735, "location_type": "0"},
-  "A28": {"stop_id": "A28", "stop_name": "34 St - Penn Station", "stop_lat": 40.752287, "stop_lon": -73.993391, "location_type": 1},
-  "A28N": {"stop_id": "A28N", "stop_name": "34 St - Penn Station", "stop_lat": 40.752287, "stop_lon": -73.993391, "location_type": "0"},
-  "A28S": {"stop_id": "A28S", "stop_name": "34 St - Penn Station", "stop_lat": 40.752287, "stop_lon": -73.993391, "location_type": "0"},
-  "A30": {"stop_id": "A30", "stop_name": "23 St", "stop_lat": 40.745906, "stop_lon": -73.998041, "location_type": 1},
-  "A30N": {"stop_id": "A30N", "stop_name": "23 St", "stop_lat": 40.745906, "stop_lon": -73.998041, "location_type": "0"},
-  "A30S": {"stop_id": "A30S", "stop_name": "23 St", "stop_lat": 40.745906, "stop_lon": -73.998041, "location_type": "0"},
-  "A31": {"stop_id": "A31", "stop_name": "14 St", "stop_lat": 40.740893, "stop_lon": -74.00169, "location_type": 1},
-  "A31N": {"stop_id": "A31N", "stop_name": "14 St", "stop_lat": 40.740893, "stop_lon": -74.00169, "location_type": "0"},
-  "A31S": {"stop_id": "A31S", "stop_name": "14 St", "stop_lat": 40.740893, "stop_lon": -74.00169, "location_type": "0"},
-  "A32": {"stop_id": "A32", "stop_name": "W 4 St", "stop_lat": 40.732338, "stop_lon": -74.000495, "location_type": 1},
-  "A32N": {"stop_id": "A32N", "stop_name": "W 4 St", "stop_lat": 40.732338, "stop_lon": -74.000495, "location_type": "0"},
-  "A32S": {"stop_id": "A32S", "stop_name": "W 4 St", "stop_lat": 40.732338, "stop_lon": -74.000495, "location_type": "0"},
-  "A33": {"stop_id": "A33", "stop_name": "Spring St", "stop_lat": 40.726227, "stop_lon": -74.003739, "location_type": 1},
-  "A33N": {"stop_id": "A33N", "stop_name": "Spring St", "stop_lat": 40.726227, "stop_lon": -74.003739, "location_type": "0"},
-  "A33S": {"stop_id": "A33S", "stop_name": "Spring St", "stop_lat": 40.726227, "stop_lon": -74.003739, "location_type": "0"},
-  "A34": {"stop_id": "A34", "stop_name": "Canal St", "stop_lat": 40.720824, "stop_lon": -74.005229, "location_type": 1},
-  "A34N": {"stop_id": "A34N", "stop_name": "Canal St", "stop_lat": 40.720824, "stop_lon": -74.005229, "location_type": "0"},
-  "A34S": {"stop_id": "A34S", "stop_name": "Canal St", "stop_lat": 40.720824, "stop_lon": -74.005229, "location_type": "0"},
-  "A36": {"stop_id": "A36", "stop_name": "Chambers St", "stop_lat": 40.714111, "stop_lon": -74.008585, "location_type": 1},
-  "A36N": {"stop_id": "A36N", "stop_name": "Chambers St", "stop_lat": 40.714111, "stop_lon": -74.008585, "location_type": "0"},
-  "A36S": {"stop_id": "A36S", "stop_name": "Chambers St", "stop_lat": 40.714111, "stop_lon": -74.008585, "location_type": "0"},
-  "A38": {"stop_id": "A38", "stop_name": "Fulton St", "stop_lat": 40.710197, "stop_lon": -74.007691, "location_type": 1},
-  "A38N": {"stop_id": "A38N", "stop_name": "Fulton St", "stop_lat": 40.710197, "stop_lon": -74.007691, "location_type": "0"},
-  "A38S": {"stop_id": "A38S", "stop_name": "Fulton St", "stop_lat": 40.710197, "stop_lon": -74.007691, "location_type": "0"},
-  "A40": {"stop_id": "A40", "stop_name": "High St", "stop_lat": 40.699337, "stop_lon": -73.990531, "location_type": 1},
-  "A40N": {"stop_id": "A40N", "stop_name": "High St", "stop_lat": 40.699337, "stop_lon": -73.990531, "location_type": "0"},
-  "A40S": {"stop_id": "A40S", "stop_name": "High St", "stop_lat": 40.699337, "stop_lon": -73.990531, "location_type": "0"},
-  "A41": {"stop_id": "A41", "stop_name": "Jay St - MetroTech", "stop_lat": 40.692338, "stop_lon": -73.987342, "location_type": 1},
-  "A41N": {"stop_id": "A41N", "stop_name": "Jay St - MetroTech", "stop_lat": 40.692338, "stop_lon": -73.987342, "location_type": "0"},
-  "A41S": {"stop_id": "A41S", "stop_name": "Jay St - MetroTech", "stop_lat": 40.692338, "stop_lon": -73.987342, "location_type": "0"},
-  "A42": {"stop_id": "A42", "stop_name": "Hoyt - Schermerhorn Sts", "stop_lat": 40.688484, "stop_lon": -73.985001, "location_type": 1},
-  "A42N": {"stop_id": "A42N", "stop_name": "Hoyt - Schermerhorn Sts", "stop_lat": 40.688484, "stop_lon": -73.985001, "location_type": "0"},
-  "A42S": {"stop_id": "A42S", "stop_name": "Hoyt - Schermerhorn Sts", "stop_lat": 40.688484, "stop_lon": -73.985001, "location_type": "0"},
-  "A43": {"stop_id": "A43", "stop_name": "Lafayette Av", "stop_lat": 40.686113, "stop_lon": -73.973946, "location_type": 1},
-  "A43N": {"stop_id": "A43N", "stop_name": "Lafayette Av", "stop_lat": 40.686113, "stop_lon": -73.973946, "location_type": "0"},
-  "A43S": {"stop_id": "A43S", "stop_name": "Lafayette Av", "stop_lat": 40.686113, "stop_lon": -73.973946, "location_type": "0"},
-  "A44": {"stop_id": "A44", "stop_name": "Clinton - Washington Avs", "stop_lat": 40.683263, "stop_lon": -73.965838, "location_type": 1},
-  "A44N": {"stop_id": "A44N", "stop_name": "Clinton - Washington Avs", "stop_lat": 40.683263, "stop_lon": -73.965838, "location_type": "0"},
-  "A44S": {"stop_id": "A44S", "stop_name": "Clinton - Washington Avs", "stop_lat": 40.683263, "stop_lon": -73.965838, "location_type": "0"},
-  "A45": {"stop_id": "A45", "stop_name": "Franklin Av", "stop_lat": 40.68138, "stop_lon": -73.956848, "location_type": 1},
-  "A45N": {"stop_id": "A45N", "stop_name": "Franklin Av", "stop_lat": 40.68138, "stop_lon": -73.956848, "location_type": "0"},
-  "A45S": {"stop_id": "A45S", "stop_name": "Franklin Av", "stop_lat": 40.68138, "stop_lon": -73.956848, "location_type": "0"},
-  "A46": {"stop_id": "A46", "stop_name": "Nostrand Av", "stop_lat": 40.680438, "stop_lon": -73.950426, "location_type": 1},
-  "A46N": {"stop_id": "A46N", "stop_name": "Nostrand Av", "stop_lat": 40.680438, "stop_lon": -73.950426, "location_type": "0"},
-  "A46S": {"stop_id": "A46S", "stop_name": "Nostrand Av", "stop_lat": 40.680438, "stop_lon": -73.950426, "location_type": "0"},
-  "A47": {"stop_id": "A47", "stop_name": "Kingston - Throop Avs", "stop_lat": 40.679921, "stop_lon": -73.940858, "location_type": 1},
-  "A47N": {"stop_id": "A47N", "stop_name": "Kingston - Throop Avs", "stop_lat": 40.679921, "stop_lon": -73.940858, "location_type": "0"},
-  "A47S": {"stop_id": "A47S", "stop_name": "Kingston - Throop Avs", "stop_lat": 40.679921, "stop_lon": -73.940858, "location_type": "0"},
-  "A48": {"stop_id": "A48", "stop_name": "Utica Av", "stop_lat": 40.679364, "stop_lon": -73.930729, "location_type": 1},
-  "A48N": {"stop_id": "A48N", "stop_name": "Utica Av", "stop_lat": 40.679364, "stop_lon": -73.930729, "location_type": "0"},
-  "A48S": {"stop_id": "A48S", "stop_name": "Utica Av", "stop_lat": 40.679364, "stop_lon": -73.930729, "location_type": "0"},
-  "A49": {"stop_id": "A49", "stop_name": "Ralph Av", "stop_lat": 40.678822, "stop_lon": -73.920786, "location_type": 1},
-  "A49N": {"stop_id": "A49N", "stop_name": "Ralph Av", "stop_lat": 40.678822, "stop_lon": -73.920786, "location_type": "0"},
-  "A49S": {"stop_id": "A49S", "stop_name": "Ralph Av", "stop_lat": 40.678822, "stop_lon": -73.920786, "location_type": "0"},
-  "A50": {"stop_id": "A50", "stop_name": "Rockaway Av", "stop_lat": 40.67834, "stop_lon": -73.911946, "location_type": 1},
-  "A50N": {"stop_id": "A50N", "stop_name": "Rockaway Av", "stop_lat": 40.67834, "stop_lon": -73.911946, "location_type": "0"},
-  "A50S": {"stop_id": "A50S", "stop_name": "Rockaway Av", "stop_lat": 40.67834, "stop_lon": -73.911946, "location_type": "0"},
-  "A51": {"stop_id": "A51", "stop_name": "Broadway Jct", "stop_lat": 40.678334, "stop_lon": -73.905316, "location_type": 1},
-  "A51N": {"stop_id": "A51N", "stop_name": "Broadway Jct", "stop_lat": 40.678334, "stop_lon": -73.905316, "location_type": "0"},
-  "A51S": {"stop_id": "A51S", "stop_name": "Broadway Jct", "stop_lat": 40.678334, "stop_lon": -73.905316, "location_type": "0"},
-  "A52": {"stop_id": "A52", "stop_name": "Liberty Av", "stop_lat": 40.674542, "stop_lon": -73.896548, "location_type": 1},
-  "A52N": {"stop_id": "A52N", "stop_name": "Liberty Av", "stop_lat": 40.674542, "stop_lon": -73.896548, "location_type": "0"},
-  "A52S": {"stop_id": "A52S", "stop_name": "Liberty Av", "stop_lat": 40.674542, "stop_lon": -73.896548, "location_type": "0"},
-  "A53": {"stop_id": "A53", "stop_name": "Van Siclen Av", "stop_lat": 40.67271, "stop_lon": -73.890358, "location_type": 1},
-  "A53N": {"stop_id": "A53N", "stop_name": "Van Siclen Av", "stop_lat": 40.67271, "stop_lon": -73.890358, "location_type": "0"},
-  "A53S": {"stop_id": "A53S", "stop_name": "Van Siclen Av", "stop_lat": 40.67271, "stop_lon": -73.890358, "location_type": "0"},
-  "A54": {"stop_id": "A54", "stop_name": "Shepherd Av", "stop_lat": 40.67413, "stop_lon": -73.88075, "location_type": 1},
-  "A54N": {"stop_id": "A54N", "stop_name": "Shepherd Av", "stop_lat": 40.67413, "stop_lon": -73.88075, "location_type": "0"},
-  "A54S": {"stop_id": "A54S", "stop_name": "Shepherd Av", "stop_lat": 40.67413, "stop_lon": -73.88075, "location_type": "0"},
-  "A55": {"stop_id": "A55", "stop_name": "Euclid Av", "stop_lat": 40.675377, "stop_lon": -73.872106, "location_type": 1},
-  "A55N": {"stop_id": "A55N", "stop_name": "Euclid Av", "stop_lat": 40.675377, "stop_lon": -73.872106, "location_type": "0"},
-  "A55S": {"stop_id": "A55S", "stop_name": "Euclid Av", "stop_lat": 40.675377, "stop_lon": -73.872106, "location_type": "0"},
-  "A57": {"stop_id": "A57", "stop_name": "Grant Av", "stop_lat": 40.677044, "stop_lon": -73.86505, "location_type": 1},
-  "A57N": {"stop_id": "A57N", "stop_name": "Grant Av", "stop_lat": 40.677044, "stop_lon": -73.86505, "location_type": "0"},
-  "A57S": {"stop_id": "A57S", "stop_name": "Grant Av", "stop_lat": 40.677044, "stop_lon": -73.86505, "location_type": "0"},
-  "A59": {"stop_id": "A59", "stop_name": "80 St", "stop_lat": 40.679371, "stop_lon": -73.858992, "location_type": 1},
-  "A59N": {"stop_id": "A59N", "stop_name": "80 St", "stop_lat": 40.679371, "stop_lon": -73.858992, "location_type": "0"},
-  "A59S": {"stop_id": "A59S", "stop_name": "80 St", "stop_lat": 40.679371, "stop_lon": -73.858992, "location_type": "0"},
-  "A60": {"stop_id": "A60", "stop_name": "88 St", "stop_lat": 40.679843, "stop_lon": -73.85147, "location_type": 1},
-  "A60N": {"stop_id": "A60N", "stop_name": "88 St", "stop_lat": 40.679843, "stop_lon": -73.85147, "location_type": "0"},
-  "A60S": {"stop_id": "A60S", "stop_name": "88 St", "stop_lat": 40.679843, "stop_lon": -73.85147, "location_type": "0"},
-  "A61": {"stop_id": "A61", "stop_name": "Rockaway Blvd", "stop_lat": 40.680429, "stop_lon": -73.843853, "location_type": 1},
-  "A61N": {"stop_id": "A61N", "stop_name": "Rockaway Blvd", "stop_lat": 40.680429, "stop_lon": -73.843853, "location_type": "0"},
-  "A61S": {"stop_id": "A61S", "stop_name": "Rockaway Blvd", "stop_lat": 40.680429, "stop_lon": -73.843853, "location_type": "0"},
-  "A63": {"stop_id": "A63", "stop_name": "104 St", "stop_lat": 40.681711, "stop_lon": -73.837683, "location_type": 1},
-  "A63N": {"stop_id": "A63N", "stop_name": "104 St", "stop_lat": 40.681711, "stop_lon": -73.837683, "location_type": "0"},
-  "A63S": {"stop_id": "A63S", "stop_name": "104 St", "stop_lat": 40.681711, "stop_lon": -73.837683, "location_type": "0"},
-  "A64": {"stop_id": "A64", "stop_name": "111 St", "stop_lat": 40.684331, "stop_lon": -73.832163, "location_type": 1},
-  "A64N": {"stop_id": "A64N", "stop_name": "111 St", "stop_lat": 40.684331, "stop_lon": -73.832163, "location_type": "0"},
-  "A64S": {"stop_id": "A64S", "stop_name": "111 St", "stop_lat": 40.684331, "stop_lon": -73.832163, "location_type": "0"},
-  "A65": {"stop_id": "A65", "stop_name": "Ozone Park - Lefferts Blvd", "stop_lat": 40.685951, "stop_lon": -73.825798, "location_type": 1},
-  "A65N": {"stop_id": "A65N", "stop_name": "Ozone Park - Lefferts Blvd", "stop_lat": 40.685951, "stop_lon": -73.825798, "location_type": "0"},
-  "A65S": {"stop_id": "A65S", "stop_name": "Ozone Park - Lefferts Blvd", "stop_lat": 40.685951, "stop_lon": -73.825798, "location_type": "0"},
-  "B04": {"stop_id": "B04", "stop_name": "21 St - Queensbridge", "stop_lat": 40.754203, "stop_lon": -73.942836, "location_type": 1},
-  "B04N": {"stop_id": "B04N", "stop_name": "21 St - Queensbridge", "stop_lat": 40.754203, "stop_lon": -73.942836, "location_type": "0"},
-  "B04S": {"stop_id": "B04S", "stop_name": "21 St - Queensbridge", "stop_lat": 40.754203, "stop_lon": -73.942836, "location_type": "0"},
-  "B06": {"stop_id": "B06", "stop_name": "Roosevelt Island", "stop_lat": 40.759145, "stop_lon": -73.95326, "location_type": 1},
-  "B06N": {"stop_id": "B06N", "stop_name": "Roosevelt Island", "stop_lat": 40.759145, "stop_lon": -73.95326, "location_type": "0"},
-  "B06S": {"stop_id": "B06S", "stop_name": "Roosevelt Island", "stop_lat": 40.759145, "stop_lon": -73.95326, "location_type": "0"},
-  "B08": {"stop_id": "B08", "stop_name": "Lexington Av/63 St", "stop_lat": 40.764629, "stop_lon": -73.966113, "location_type": 1},
-  "B08N": {"stop_id": "B08N", "stop_name": "Lexington Av/63 St", "stop_lat": 40.764629, "stop_lon": -73.966113, "location_type": "0"},
-  "B08S": {"stop_id": "B08S", "stop_name": "Lexington Av/63 St", "stop_lat": 40.764629, "stop_lon": -73.966113, "location_type": "0"},
-  "B10": {"stop_id": "B10", "stop_name": "57 St", "stop_lat": 40.763972, "stop_lon": -73.97745, "location_type": 1},
-  "B10N": {"stop_id": "B10N", "stop_name": "57 St", "stop_lat": 40.763972, "stop_lon": -73.97745, "location_type": "0"},
-  "B10S": {"stop_id": "B10S", "stop_name": "57 St", "stop_lat": 40.763972, "stop_lon": -73.97745, "location_type": "0"},
-  "B12": {"stop_id": "B12", "stop_name": "9 Av", "stop_lat": 40.646292, "stop_lon": -73.994324, "location_type": 1},
-  "B12N": {"stop_id": "B12N", "stop_name": "9 Av", "stop_lat": 40.646292, "stop_lon": -73.994324, "location_type": "0"},
-  "B12S": {"stop_id": "B12S", "stop_name": "9 Av", "stop_lat": 40.646292, "stop_lon": -73.994324, "location_type": "0"},
-  "B13": {"stop_id": "B13", "stop_name": "Fort Hamilton Pkwy", "stop_lat": 40.640914, "stop_lon": -73.994304, "location_type": 1},
-  "B13N": {"stop_id": "B13N", "stop_name": "Fort Hamilton Pkwy", "stop_lat": 40.640914, "stop_lon": -73.994304, "location_type": "0"},
-  "B13S": {"stop_id": "B13S", "stop_name": "Fort Hamilton Pkwy", "stop_lat": 40.640914, "stop_lon": -73.994304, "location_type": "0"},
-  "B14": {"stop_id": "B14", "stop_name": "50 St", "stop_lat": 40.63626, "stop_lon": -73.994791, "location_type": 1},
-  "B14N": {"stop_id": "B14N", "stop_name": "50 St", "stop_lat": 40.63626, "stop_lon": -73.994791, "location_type": "0"},
-  "B14S": {"stop_id": "B14S", "stop_name": "50 St", "stop_lat": 40.63626, "stop_lon": -73.994791, "location_type": "0"},
-  "B15": {"stop_id": "B15", "stop_name": "55 St", "stop_lat": 40.631435, "stop_lon": -73.995476, "location_type": 1},
-  "B15N": {"stop_id": "B15N", "stop_name": "55 St", "stop_lat": 40.631435, "stop_lon": -73.995476, "location_type": "0"},
-  "B15S": {"stop_id": "B15S", "stop_name": "55 St", "stop_lat": 40.631435, "stop_lon": -73.995476, "location_type": "0"},
-  "B16": {"stop_id": "B16", "stop_name": "62 St", "stop_lat": 40.626472, "stop_lon": -73.996895, "location_type": 1},
-  "B16N": {"stop_id": "B16N", "stop_name": "62 St", "stop_lat": 40.626472, "stop_lon": -73.996895, "location_type": "0"},
-  "B16S": {"stop_id": "B16S", "stop_name": "62 St", "stop_lat": 40.626472, "stop_lon": -73.996895, "location_type": "0"},
-  "B17": {"stop_id": "B17", "stop_name": "71 St", "stop_lat": 40.619589, "stop_lon": -73.998864, "location_type": 1},
-  "B17N": {"stop_id": "B17N", "stop_name": "71 St", "stop_lat": 40.619589, "stop_lon": -73.998864, "location_type": "0"},
-  "B17S": {"stop_id": "B17S", "stop_name": "71 St", "stop_lat": 40.619589, "stop_lon": -73.998864, "location_type": "0"},
-  "B18": {"stop_id": "B18", "stop_name": "79 St", "stop_lat": 40.613501, "stop_lon": -74.00061, "location_type": 1},
-  "B18N": {"stop_id": "B18N", "stop_name": "79 St", "stop_lat": 40.613501, "stop_lon": -74.00061, "location_type": "0"},
-  "B18S": {"stop_id": "B18S", "stop_name": "79 St", "stop_lat": 40.613501, "stop_lon": -74.00061, "location_type": "0"},
-  "B19": {"stop_id": "B19", "stop_name": "18 Av", "stop_lat": 40.607954, "stop_lon": -74.001736, "location_type": 1},
-  "B19N": {"stop_id": "B19N", "stop_name": "18 Av", "stop_lat": 40.607954, "stop_lon": -74.001736, "location_type": "0"},
-  "B19S": {"stop_id": "B19S", "stop_name": "18 Av", "stop_lat": 40.607954, "stop_lon": -74.001736, "location_type": "0"},
-  "B20": {"stop_id": "B20", "stop_name": "20 Av", "stop_lat": 40.604556, "stop_lon": -73.998168, "location_type": 1},
-  "B20N": {"stop_id": "B20N", "stop_name": "20 Av", "stop_lat": 40.604556, "stop_lon": -73.998168, "location_type": "0"},
-  "B20S": {"stop_id": "B20S", "stop_name": "20 Av", "stop_lat": 40.604556, "stop_lon": -73.998168, "location_type": "0"},
-  "B21": {"stop_id": "B21", "stop_name": "Bay Pkwy", "stop_lat": 40.601875, "stop_lon": -73.993728, "location_type": 1},
-  "B21N": {"stop_id": "B21N", "stop_name": "Bay Pkwy", "stop_lat": 40.601875, "stop_lon": -73.993728, "location_type": "0"},
-  "B21S": {"stop_id": "B21S", "stop_name": "Bay Pkwy", "stop_lat": 40.601875, "stop_lon": -73.993728, "location_type": "0"},
-  "B22": {"stop_id": "B22", "stop_name": "25 Av", "stop_lat": 40.597704, "stop_lon": -73.986829, "location_type": 1},
-  "B22N": {"stop_id": "B22N", "stop_name": "25 Av", "stop_lat": 40.597704, "stop_lon": -73.986829, "location_type": "0"},
-  "B22S": {"stop_id": "B22S", "stop_name": "25 Av", "stop_lat": 40.597704, "stop_lon": -73.986829, "location_type": "0"},
-  "B23": {"stop_id": "B23", "stop_name": "Bay 50 St", "stop_lat": 40.588841, "stop_lon": -73.983765, "location_type": 1},
-  "B23N": {"stop_id": "B23N", "stop_name": "Bay 50 St", "stop_lat": 40.588841, "stop_lon": -73.983765, "location_type": "0"},
-  "B23S": {"stop_id": "B23S", "stop_name": "Bay 50 St", "stop_lat": 40.588841, "stop_lon": -73.983765, "location_type": "0"},
-  "D01": {"stop_id": "D01", "stop_name": "Norwood - 205 St", "stop_lat": 40.874811, "stop_lon": -73.878855, "location_type": 1},
-  "D01N": {"stop_id": "D01N", "stop_name": "Norwood - 205 St", "stop_lat": 40.874811, "stop_lon": -73.878855, "location_type": "0"},
-  "D01S": {"stop_id": "D01S", "stop_name": "Norwood - 205 St", "stop_lat": 40.874811, "stop_lon": -73.878855, "location_type": "0"},
-  "D03": {"stop_id": "D03", "stop_name": "Bedford Park Blvd", "stop_lat": 40.873244, "stop_lon": -73.887138, "location_type": 1},
-  "D03N": {"stop_id": "D03N", "stop_name": "Bedford Park Blvd", "stop_lat": 40.873244, "stop_lon": -73.887138, "location_type": "0"},
-  "D03S": {"stop_id": "D03S", "stop_name": "Bedford Park Blvd", "stop_lat": 40.873244, "stop_lon": -73.887138, "location_type": "0"},
-  "D04": {"stop_id": "D04", "stop_name": "Kingsbridge Rd", "stop_lat": 40.866978, "stop_lon": -73.893509, "location_type": 1},
-  "D04N": {"stop_id": "D04N", "stop_name": "Kingsbridge Rd", "stop_lat": 40.866978, "stop_lon": -73.893509, "location_type": "0"},
-  "D04S": {"stop_id": "D04S", "stop_name": "Kingsbridge Rd", "stop_lat": 40.866978, "stop_lon": -73.893509, "location_type": "0"},
-  "D05": {"stop_id": "D05", "stop_name": "Fordham Rd", "stop_lat": 40.861296, "stop_lon": -73.897749, "location_type": 1},
-  "D05N": {"stop_id": "D05N", "stop_name": "Fordham Rd", "stop_lat": 40.861296, "stop_lon": -73.897749, "location_type": "0"},
-  "D05S": {"stop_id": "D05S", "stop_name": "Fordham Rd", "stop_lat": 40.861296, "stop_lon": -73.897749, "location_type": "0"},
-  "D06": {"stop_id": "D06", "stop_name": "182-183 Sts", "stop_lat": 40.856093, "stop_lon": -73.900741, "location_type": 1},
-  "D06N": {"stop_id": "D06N", "stop_name": "182-183 Sts", "stop_lat": 40.856093, "stop_lon": -73.900741, "location_type": "0"},
-  "D06S": {"stop_id": "D06S", "stop_name": "182-183 Sts", "stop_lat": 40.856093, "stop_lon": -73.900741, "location_type": "0"},
-  "D07": {"stop_id": "D07", "stop_name": "Tremont Av", "stop_lat": 40.85041, "stop_lon": -73.905227, "location_type": 1},
-  "D07N": {"stop_id": "D07N", "stop_name": "Tremont Av", "stop_lat": 40.85041, "stop_lon": -73.905227, "location_type": "0"},
-  "D07S": {"stop_id": "D07S", "stop_name": "Tremont Av", "stop_lat": 40.85041, "stop_lon": -73.905227, "location_type": "0"},
-  "D08": {"stop_id": "D08", "stop_name": "174-175 Sts", "stop_lat": 40.8459, "stop_lon": -73.910136, "location_type": 1},
-  "D08N": {"stop_id": "D08N", "stop_name": "174-175 Sts", "stop_lat": 40.8459, "stop_lon": -73.910136, "location_type": "0"},
-  "D08S": {"stop_id": "D08S", "stop_name": "174-175 Sts", "stop_lat": 40.8459, "stop_lon": -73.910136, "location_type": "0"},
-  "D09": {"stop_id": "D09", "stop_name": "170 St", "stop_lat": 40.839306, "stop_lon": -73.9134, "location_type": 1},
-  "D09N": {"stop_id": "D09N", "stop_name": "170 St", "stop_lat": 40.839306, "stop_lon": -73.9134, "location_type": "0"},
-  "D09S": {"stop_id": "D09S", "stop_name": "170 St", "stop_lat": 40.839306, "stop_lon": -73.9134, "location_type": "0"},
-  "D10": {"stop_id": "D10", "stop_name": "167 St", "stop_lat": 40.833771, "stop_lon": -73.91844, "location_type": 1},
-  "D10N": {"stop_id": "D10N", "stop_name": "167 St", "stop_lat": 40.833771, "stop_lon": -73.91844, "location_type": "0"},
-  "D10S": {"stop_id": "D10S", "stop_name": "167 St", "stop_lat": 40.833771, "stop_lon": -73.91844, "location_type": "0"},
-  "D11": {"stop_id": "D11", "stop_name": "161 St - Yankee Stadium", "stop_lat": 40.827905, "stop_lon": -73.925651, "location_type": 1},
-  "D11N": {"stop_id": "D11N", "stop_name": "161 St - Yankee Stadium", "stop_lat": 40.827905, "stop_lon": -73.925651, "location_type": "0"},
-  "D11S": {"stop_id": "D11S", "stop_name": "161 St - Yankee Stadium", "stop_lat": 40.827905, "stop_lon": -73.925651, "location_type": "0"},
-  "D12": {"stop_id": "D12", "stop_name": "155 St", "stop_lat": 40.830135, "stop_lon": -73.938209, "location_type": 1},
-  "D12N": {"stop_id": "D12N", "stop_name": "155 St", "stop_lat": 40.830135, "stop_lon": -73.938209, "location_type": "0"},
-  "D12S": {"stop_id": "D12S", "stop_name": "155 St", "stop_lat": 40.830135, "stop_lon": -73.938209, "location_type": "0"},
-  "D13": {"stop_id": "D13", "stop_name": "145 St", "stop_lat": 40.824783, "stop_lon": -73.944216, "location_type": 1},
-  "D13N": {"stop_id": "D13N", "stop_name": "145 St", "stop_lat": 40.824783, "stop_lon": -73.944216, "location_type": "0"},
-  "D13S": {"stop_id": "D13S", "stop_name": "145 St", "stop_lat": 40.824783, "stop_lon": -73.944216, "location_type": "0"},
-  "D14": {"stop_id": "D14", "stop_name": "7 Av", "stop_lat": 40.762862, "stop_lon": -73.981637, "location_type": 1},
-  "D14N": {"stop_id": "D14N", "stop_name": "7 Av", "stop_lat": 40.762862, "stop_lon": -73.981637, "location_type": "0"},
-  "D14S": {"stop_id": "D14S", "stop_name": "7 Av", "stop_lat": 40.762862, "stop_lon": -73.981637, "location_type": "0"},
-  "D15": {"stop_id": "D15", "stop_name": "47-50 Sts - Rockefeller Ctr", "stop_lat": 40.758663, "stop_lon": -73.981329, "location_type": 1},
-  "D15N": {"stop_id": "D15N", "stop_name": "47-50 Sts - Rockefeller Ctr", "stop_lat": 40.758663, "stop_lon": -73.981329, "location_type": "0"},
-  "D15S": {"stop_id": "D15S", "stop_name": "47-50 Sts - Rockefeller Ctr", "stop_lat": 40.758663, "stop_lon": -73.981329, "location_type": "0"},
-  "D16": {"stop_id": "D16", "stop_name": "42 St - Bryant Pk", "stop_lat": 40.754222, "stop_lon": -73.984569, "location_type": 1},
-  "D16N": {"stop_id": "D16N", "stop_name": "42 St - Bryant Pk", "stop_lat": 40.754222, "stop_lon": -73.984569, "location_type": "0"},
-  "D16S": {"stop_id": "D16S", "stop_name": "42 St - Bryant Pk", "stop_lat": 40.754222, "stop_lon": -73.984569, "location_type": "0"},
-  "D17": {"stop_id": "D17", "stop_name": "34 St - Herald Sq", "stop_lat": 40.749719, "stop_lon": -73.987823, "location_type": 1},
-  "D17N": {"stop_id": "D17N", "stop_name": "34 St - Herald Sq", "stop_lat": 40.749719, "stop_lon": -73.987823, "location_type": "0"},
-  "D17S": {"stop_id": "D17S", "stop_name": "34 St - Herald Sq", "stop_lat": 40.749719, "stop_lon": -73.987823, "location_type": "0"},
-  "D18": {"stop_id": "D18", "stop_name": "23 St", "stop_lat": 40.742878, "stop_lon": -73.992821, "location_type": 1},
-  "D18N": {"stop_id": "D18N", "stop_name": "23 St", "stop_lat": 40.742878, "stop_lon": -73.992821, "location_type": "0"},
-  "D18S": {"stop_id": "D18S", "stop_name": "23 St", "stop_lat": 40.742878, "stop_lon": -73.992821, "location_type": "0"},
-  "D19": {"stop_id": "D19", "stop_name": "14 St", "stop_lat": 40.738228, "stop_lon": -73.996209, "location_type": 1},
-  "D19N": {"stop_id": "D19N", "stop_name": "14 St", "stop_lat": 40.738228, "stop_lon": -73.996209, "location_type": "0"},
-  "D19S": {"stop_id": "D19S", "stop_name": "14 St", "stop_lat": 40.738228, "stop_lon": -73.996209, "location_type": "0"},
-  "D20": {"stop_id": "D20", "stop_name": "W 4 St", "stop_lat": 40.732338, "stop_lon": -74.000495, "location_type": 1},
-  "D20N": {"stop_id": "D20N", "stop_name": "W 4 St", "stop_lat": 40.732338, "stop_lon": -74.000495, "location_type": "0"},
-  "D20S": {"stop_id": "D20S", "stop_name": "W 4 St", "stop_lat": 40.732338, "stop_lon": -74.000495, "location_type": "0"},
-  "D21": {"stop_id": "D21", "stop_name": "Broadway-Lafayette St", "stop_lat": 40.725297, "stop_lon": -73.996204, "location_type": 1},
-  "D21N": {"stop_id": "D21N", "stop_name": "Broadway-Lafayette St", "stop_lat": 40.725297, "stop_lon": -73.996204, "location_type": "0"},
-  "D21S": {"stop_id": "D21S", "stop_name": "Broadway-Lafayette St", "stop_lat": 40.725297, "stop_lon": -73.996204, "location_type": "0"},
-  "D22": {"stop_id": "D22", "stop_name": "Grand St", "stop_lat": 40.718267, "stop_lon": -73.993753, "location_type": 1},
-  "D22N": {"stop_id": "D22N", "stop_name": "Grand St", "stop_lat": 40.718267, "stop_lon": -73.993753, "location_type": "0"},
-  "D22S": {"stop_id": "D22S", "stop_name": "Grand St", "stop_lat": 40.718267, "stop_lon": -73.993753, "location_type": "0"},
-  "D24": {"stop_id": "D24", "stop_name": "Atlantic Av - Barclays Ctr", "stop_lat": 40.68446, "stop_lon": -73.97689, "location_type": 1},
-  "D24N": {"stop_id": "D24N", "stop_name": "Atlantic Av - Barclays Ctr", "stop_lat": 40.68446, "stop_lon": -73.97689, "location_type": "0"},
-  "D24S": {"stop_id": "D24S", "stop_name": "Atlantic Av - Barclays Ctr", "stop_lat": 40.68446, "stop_lon": -73.97689, "location_type": "0"},
-  "D25": {"stop_id": "D25", "stop_name": "7 Av", "stop_lat": 40.67705, "stop_lon": -73.972367, "location_type": 1},
-  "D25N": {"stop_id": "D25N", "stop_name": "7 Av", "stop_lat": 40.67705, "stop_lon": -73.972367, "location_type": "0"},
-  "D25S": {"stop_id": "D25S", "stop_name": "7 Av", "stop_lat": 40.67705, "stop_lon": -73.972367, "location_type": "0"},
-  "D26": {"stop_id": "D26", "stop_name": "Prospect Park", "stop_lat": 40.661614, "stop_lon": -73.962246, "location_type": 1},
-  "D26N": {"stop_id": "D26N", "stop_name": "Prospect Park", "stop_lat": 40.661614, "stop_lon": -73.962246, "location_type": "0"},
-  "D26S": {"stop_id": "D26S", "stop_name": "Prospect Park", "stop_lat": 40.661614, "stop_lon": -73.962246, "location_type": "0"},
-  "D27": {"stop_id": "D27", "stop_name": "Parkside Av", "stop_lat": 40.655292, "stop_lon": -73.961495, "location_type": 1},
-  "D27N": {"stop_id": "D27N", "stop_name": "Parkside Av", "stop_lat": 40.655292, "stop_lon": -73.961495, "location_type": "0"},
-  "D27S": {"stop_id": "D27S", "stop_name": "Parkside Av", "stop_lat": 40.655292, "stop_lon": -73.961495, "location_type": "0"},
-  "D28": {"stop_id": "D28", "stop_name": "Church Av", "stop_lat": 40.650527, "stop_lon": -73.962982, "location_type": 1},
-  "D28N": {"stop_id": "D28N", "stop_name": "Church Av", "stop_lat": 40.650527, "stop_lon": -73.962982, "location_type": "0"},
-  "D28S": {"stop_id": "D28S", "stop_name": "Church Av", "stop_lat": 40.650527, "stop_lon": -73.962982, "location_type": "0"},
-  "D29": {"stop_id": "D29", "stop_name": "Beverley Rd", "stop_lat": 40.644031, "stop_lon": -73.964492, "location_type": 1},
-  "D29N": {"stop_id": "D29N", "stop_name": "Beverley Rd", "stop_lat": 40.644031, "stop_lon": -73.964492, "location_type": "0"},
-  "D29S": {"stop_id": "D29S", "stop_name": "Beverley Rd", "stop_lat": 40.644031, "stop_lon": -73.964492, "location_type": "0"},
-  "D30": {"stop_id": "D30", "stop_name": "Cortelyou Rd", "stop_lat": 40.640927, "stop_lon": -73.963891, "location_type": 1},
-  "D30N": {"stop_id": "D30N", "stop_name": "Cortelyou Rd", "stop_lat": 40.640927, "stop_lon": -73.963891, "location_type": "0"},
-  "D30S": {"stop_id": "D30S", "stop_name": "Cortelyou Rd", "stop_lat": 40.640927, "stop_lon": -73.963891, "location_type": "0"},
-  "D31": {"stop_id": "D31", "stop_name": "Newkirk Plaza", "stop_lat": 40.635082, "stop_lon": -73.962793, "location_type": 1},
-  "D31N": {"stop_id": "D31N", "stop_name": "Newkirk Plaza", "stop_lat": 40.635082, "stop_lon": -73.962793, "location_type": "0"},
-  "D31S": {"stop_id": "D31S", "stop_name": "Newkirk Plaza", "stop_lat": 40.635082, "stop_lon": -73.962793, "location_type": "0"},
-  "D32": {"stop_id": "D32", "stop_name": "Avenue H", "stop_lat": 40.62927, "stop_lon": -73.961639, "location_type": 1},
-  "D32N": {"stop_id": "D32N", "stop_name": "Avenue H", "stop_lat": 40.62927, "stop_lon": -73.961639, "location_type": "0"},
-  "D32S": {"stop_id": "D32S", "stop_name": "Avenue H", "stop_lat": 40.62927, "stop_lon": -73.961639, "location_type": "0"},
-  "D33": {"stop_id": "D33", "stop_name": "Avenue J", "stop_lat": 40.625039, "stop_lon": -73.960803, "location_type": 1},
-  "D33N": {"stop_id": "D33N", "stop_name": "Avenue J", "stop_lat": 40.625039, "stop_lon": -73.960803, "location_type": "0"},
-  "D33S": {"stop_id": "D33S", "stop_name": "Avenue J", "stop_lat": 40.625039, "stop_lon": -73.960803, "location_type": "0"},
-  "D34": {"stop_id": "D34", "stop_name": "Avenue M", "stop_lat": 40.617618, "stop_lon": -73.959399, "location_type": 1},
-  "D34N": {"stop_id": "D34N", "stop_name": "Avenue M", "stop_lat": 40.617618, "stop_lon": -73.959399, "location_type": "0"},
-  "D34S": {"stop_id": "D34S", "stop_name": "Avenue M", "stop_lat": 40.617618, "stop_lon": -73.959399, "location_type": "0"},
-  "D35": {"stop_id": "D35", "stop_name": "Kings Hwy", "stop_lat": 40.60867, "stop_lon": -73.957734, "location_type": 1},
-  "D35N": {"stop_id": "D35N", "stop_name": "Kings Hwy", "stop_lat": 40.60867, "stop_lon": -73.957734, "location_type": "0"},
-  "D35S": {"stop_id": "D35S", "stop_name": "Kings Hwy", "stop_lat": 40.60867, "stop_lon": -73.957734, "location_type": "0"},
-  "D37": {"stop_id": "D37", "stop_name": "Avenue U", "stop_lat": 40.5993, "stop_lon": -73.955929, "location_type": 1},
-  "D37N": {"stop_id": "D37N", "stop_name": "Avenue U", "stop_lat": 40.5993, "stop_lon": -73.955929, "location_type": "0"},
-  "D37S": {"stop_id": "D37S", "stop_name": "Avenue U", "stop_lat": 40.5993, "stop_lon": -73.955929, "location_type": "0"},
-  "D38": {"stop_id": "D38", "stop_name": "Neck Rd", "stop_lat": 40.595246, "stop_lon": -73.955161, "location_type": 1},
-  "D38N": {"stop_id": "D38N", "stop_name": "Neck Rd", "stop_lat": 40.595246, "stop_lon": -73.955161, "location_type": "0"},
-  "D38S": {"stop_id": "D38S", "stop_name": "Neck Rd", "stop_lat": 40.595246, "stop_lon": -73.955161, "location_type": "0"},
-  "D39": {"stop_id": "D39", "stop_name": "Sheepshead Bay", "stop_lat": 40.586896, "stop_lon": -73.954155, "location_type": 1},
-  "D39N": {"stop_id": "D39N", "stop_name": "Sheepshead Bay", "stop_lat": 40.586896, "stop_lon": -73.954155, "location_type": "0"},
-  "D39S": {"stop_id": "D39S", "stop_name": "Sheepshead Bay", "stop_lat": 40.586896, "stop_lon": -73.954155, "location_type": "0"},
-  "D40": {"stop_id": "D40", "stop_name": "Brighton Beach", "stop_lat": 40.577621, "stop_lon": -73.961376, "location_type": 1},
-  "D40N": {"stop_id": "D40N", "stop_name": "Brighton Beach", "stop_lat": 40.577621, "stop_lon": -73.961376, "location_type": "0"},
-  "D40S": {"stop_id": "D40S", "stop_name": "Brighton Beach", "stop_lat": 40.577621, "stop_lon": -73.961376, "location_type": "0"},
-  "D41": {"stop_id": "D41", "stop_name": "Ocean Pkwy", "stop_lat": 40.576312, "stop_lon": -73.968501, "location_type": 1},
-  "D41N": {"stop_id": "D41N", "stop_name": "Ocean Pkwy", "stop_lat": 40.576312, "stop_lon": -73.968501, "location_type": "0"},
-  "D41S": {"stop_id": "D41S", "stop_name": "Ocean Pkwy", "stop_lat": 40.576312, "stop_lon": -73.968501, "location_type": "0"},
-  "D42": {"stop_id": "D42", "stop_name": "W 8 St - NY Aquarium", "stop_lat": 40.576127, "stop_lon": -73.975939, "location_type": 1},
-  "D42N": {"stop_id": "D42N", "stop_name": "W 8 St - NY Aquarium", "stop_lat": 40.576127, "stop_lon": -73.975939, "location_type": "0"},
-  "D42S": {"stop_id": "D42S", "stop_name": "W 8 St - NY Aquarium", "stop_lat": 40.576127, "stop_lon": -73.975939, "location_type": "0"},
-  "D43": {"stop_id": "D43", "stop_name": "Coney Island - Stillwell Av", "stop_lat": 40.577422, "stop_lon": -73.981233, "location_type": 1},
-  "D43N": {"stop_id": "D43N", "stop_name": "Coney Island - Stillwell Av", "stop_lat": 40.577422, "stop_lon": -73.981233, "location_type": "0"},
-  "D43S": {"stop_id": "D43S", "stop_name": "Coney Island - Stillwell Av", "stop_lat": 40.577422, "stop_lon": -73.981233, "location_type": "0"},
-  "E01": {"stop_id": "E01", "stop_name": "World Trade Center", "stop_lat": 40.712582, "stop_lon": -74.009781, "location_type": 1},
-  "E01N": {"stop_id": "E01N", "stop_name": "World Trade Center", "stop_lat": 40.712582, "stop_lon": -74.009781, "location_type": "0"},
-  "E01S": {"stop_id": "E01S", "stop_name": "World Trade Center", "stop_lat": 40.712582, "stop_lon": -74.009781, "location_type": "0"},
-  "F01": {"stop_id": "F01", "stop_name": "Jamaica - 179 St", "stop_lat": 40.712646, "stop_lon": -73.783817, "location_type": 1},
-  "F01N": {"stop_id": "F01N", "stop_name": "Jamaica - 179 St", "stop_lat": 40.712646, "stop_lon": -73.783817, "location_type": "0"},
-  "F01S": {"stop_id": "F01S", "stop_name": "Jamaica - 179 St", "stop_lat": 40.712646, "stop_lon": -73.783817, "location_type": "0"},
-  "F02": {"stop_id": "F02", "stop_name": "169 St", "stop_lat": 40.71047, "stop_lon": -73.793604, "location_type": 1},
-  "F02N": {"stop_id": "F02N", "stop_name": "169 St", "stop_lat": 40.71047, "stop_lon": -73.793604, "location_type": "0"},
-  "F02S": {"stop_id": "F02S", "stop_name": "169 St", "stop_lat": 40.71047, "stop_lon": -73.793604, "location_type": "0"},
-  "F03": {"stop_id": "F03", "stop_name": "Parsons Blvd", "stop_lat": 40.707564, "stop_lon": -73.803326, "location_type": 1},
-  "F03N": {"stop_id": "F03N", "stop_name": "Parsons Blvd", "stop_lat": 40.707564, "stop_lon": -73.803326, "location_type": "0"},
-  "F03S": {"stop_id": "F03S", "stop_name": "Parsons Blvd", "stop_lat": 40.707564, "stop_lon": -73.803326, "location_type": "0"},
-  "F04": {"stop_id": "F04", "stop_name": "Sutphin Blvd", "stop_lat": 40.70546, "stop_lon": -73.810708, "location_type": 1},
-  "F04N": {"stop_id": "F04N", "stop_name": "Sutphin Blvd", "stop_lat": 40.70546, "stop_lon": -73.810708, "location_type": "0"},
-  "F04S": {"stop_id": "F04S", "stop_name": "Sutphin Blvd", "stop_lat": 40.70546, "stop_lon": -73.810708, "location_type": "0"},
-  "F05": {"stop_id": "F05", "stop_name": "Briarwood - Van Wyck Blvd", "stop_lat": 40.709179, "stop_lon": -73.820574, "location_type": 1},
-  "F05N": {"stop_id": "F05N", "stop_name": "Briarwood - Van Wyck Blvd", "stop_lat": 40.709179, "stop_lon": -73.820574, "location_type": "0"},
-  "F05S": {"stop_id": "F05S", "stop_name": "Briarwood - Van Wyck Blvd", "stop_lat": 40.709179, "stop_lon": -73.820574, "location_type": "0"},
-  "F06": {"stop_id": "F06", "stop_name": "Kew Gardens - Union Tpke", "stop_lat": 40.714441, "stop_lon": -73.831008, "location_type": 1},
-  "F06N": {"stop_id": "F06N", "stop_name": "Kew Gardens - Union Tpke", "stop_lat": 40.714441, "stop_lon": -73.831008, "location_type": "0"},
-  "F06S": {"stop_id": "F06S", "stop_name": "Kew Gardens - Union Tpke", "stop_lat": 40.714441, "stop_lon": -73.831008, "location_type": "0"},
-  "F07": {"stop_id": "F07", "stop_name": "75 Av", "stop_lat": 40.718331, "stop_lon": -73.837324, "location_type": 1},
-  "F07N": {"stop_id": "F07N", "stop_name": "75 Av", "stop_lat": 40.718331, "stop_lon": -73.837324, "location_type": "0"},
-  "F07S": {"stop_id": "F07S", "stop_name": "75 Av", "stop_lat": 40.718331, "stop_lon": -73.837324, "location_type": "0"},
-  "F09": {"stop_id": "F09", "stop_name": "Court Sq", "stop_lat": 40.747846, "stop_lon": -73.946, "location_type": 1},
-  "F09N": {"stop_id": "F09N", "stop_name": "Court Sq", "stop_lat": 40.747846, "stop_lon": -73.946, "location_type": "0"},
-  "F09S": {"stop_id": "F09S", "stop_name": "Court Sq", "stop_lat": 40.747846, "stop_lon": -73.946, "location_type": "0"},
-  "F11": {"stop_id": "F11", "stop_name": "Lexington Av/53 St", "stop_lat": 40.757552, "stop_lon": -73.969055, "location_type": 1},
-  "F11N": {"stop_id": "F11N", "stop_name": "Lexington Av/53 St", "stop_lat": 40.757552, "stop_lon": -73.969055, "location_type": "0"},
-  "F11S": {"stop_id": "F11S", "stop_name": "Lexington Av/53 St", "stop_lat": 40.757552, "stop_lon": -73.969055, "location_type": "0"},
-  "F12": {"stop_id": "F12", "stop_name": "5 Av/53 St", "stop_lat": 40.760167, "stop_lon": -73.975224, "location_type": 1},
-  "F12N": {"stop_id": "F12N", "stop_name": "5 Av/53 St", "stop_lat": 40.760167, "stop_lon": -73.975224, "location_type": "0"},
-  "F12S": {"stop_id": "F12S", "stop_name": "5 Av/53 St", "stop_lat": 40.760167, "stop_lon": -73.975224, "location_type": "0"},
-  "F14": {"stop_id": "F14", "stop_name": "2 Av", "stop_lat": 40.723402, "stop_lon": -73.989938, "location_type": 1},
-  "F14N": {"stop_id": "F14N", "stop_name": "2 Av", "stop_lat": 40.723402, "stop_lon": -73.989938, "location_type": "0"},
-  "F14S": {"stop_id": "F14S", "stop_name": "2 Av", "stop_lat": 40.723402, "stop_lon": -73.989938, "location_type": "0"},
-  "F15": {"stop_id": "F15", "stop_name": "Delancey St", "stop_lat": 40.718611, "stop_lon": -73.988114, "location_type": 1},
-  "F15N": {"stop_id": "F15N", "stop_name": "Delancey St", "stop_lat": 40.718611, "stop_lon": -73.988114, "location_type": "0"},
-  "F15S": {"stop_id": "F15S", "stop_name": "Delancey St", "stop_lat": 40.718611, "stop_lon": -73.988114, "location_type": "0"},
-  "F16": {"stop_id": "F16", "stop_name": "East Broadway", "stop_lat": 40.713715, "stop_lon": -73.990173, "location_type": 1},
-  "F16N": {"stop_id": "F16N", "stop_name": "East Broadway", "stop_lat": 40.713715, "stop_lon": -73.990173, "location_type": "0"},
-  "F16S": {"stop_id": "F16S", "stop_name": "East Broadway", "stop_lat": 40.713715, "stop_lon": -73.990173, "location_type": "0"},
-  "F18": {"stop_id": "F18", "stop_name": "York St", "stop_lat": 40.701397, "stop_lon": -73.986751, "location_type": 1},
-  "F18N": {"stop_id": "F18N", "stop_name": "York St", "stop_lat": 40.701397, "stop_lon": -73.986751, "location_type": "0"},
-  "F18S": {"stop_id": "F18S", "stop_name": "York St", "stop_lat": 40.701397, "stop_lon": -73.986751, "location_type": "0"},
-  "F20": {"stop_id": "F20", "stop_name": "Bergen St", "stop_lat": 40.686145, "stop_lon": -73.990862, "location_type": 1},
-  "F20N": {"stop_id": "F20N", "stop_name": "Bergen St", "stop_lat": 40.686145, "stop_lon": -73.990862, "location_type": "0"},
-  "F20S": {"stop_id": "F20S", "stop_name": "Bergen St", "stop_lat": 40.686145, "stop_lon": -73.990862, "location_type": "0"},
-  "F21": {"stop_id": "F21", "stop_name": "Carroll St", "stop_lat": 40.680303, "stop_lon": -73.995048, "location_type": 1},
-  "F21N": {"stop_id": "F21N", "stop_name": "Carroll St", "stop_lat": 40.680303, "stop_lon": -73.995048, "location_type": "0"},
-  "F21S": {"stop_id": "F21S", "stop_name": "Carroll St", "stop_lat": 40.680303, "stop_lon": -73.995048, "location_type": "0"},
-  "F22": {"stop_id": "F22", "stop_name": "Smith - 9 Sts", "stop_lat": 40.67358, "stop_lon": -73.995959, "location_type": 1},
-  "F22N": {"stop_id": "F22N", "stop_name": "Smith - 9 Sts", "stop_lat": 40.67358, "stop_lon": -73.995959, "location_type": "0"},
-  "F22S": {"stop_id": "F22S", "stop_name": "Smith - 9 Sts", "stop_lat": 40.67358, "stop_lon": -73.995959, "location_type": "0"},
-  "F23": {"stop_id": "F23", "stop_name": "4 Av", "stop_lat": 40.670272, "stop_lon": -73.989779, "location_type": 1},
-  "F23N": {"stop_id": "F23N", "stop_name": "4 Av", "stop_lat": 40.670272, "stop_lon": -73.989779, "location_type": "0"},
-  "F23S": {"stop_id": "F23S", "stop_name": "4 Av", "stop_lat": 40.670272, "stop_lon": -73.989779, "location_type": "0"},
-  "F24": {"stop_id": "F24", "stop_name": "7 Av", "stop_lat": 40.666271, "stop_lon": -73.980305, "location_type": 1},
-  "F24N": {"stop_id": "F24N", "stop_name": "7 Av", "stop_lat": 40.666271, "stop_lon": -73.980305, "location_type": "0"},
-  "F24S": {"stop_id": "F24S", "stop_name": "7 Av", "stop_lat": 40.666271, "stop_lon": -73.980305, "location_type": "0"},
-  "F25": {"stop_id": "F25", "stop_name": "15 St - Prospect Park", "stop_lat": 40.660365, "stop_lon": -73.979493, "location_type": 1},
-  "F25N": {"stop_id": "F25N", "stop_name": "15 St - Prospect Park", "stop_lat": 40.660365, "stop_lon": -73.979493, "location_type": "0"},
-  "F25S": {"stop_id": "F25S", "stop_name": "15 St - Prospect Park", "stop_lat": 40.660365, "stop_lon": -73.979493, "location_type": "0"},
-  "F26": {"stop_id": "F26", "stop_name": "Fort Hamilton Pkwy", "stop_lat": 40.650782, "stop_lon": -73.975776, "location_type": 1},
-  "F26N": {"stop_id": "F26N", "stop_name": "Fort Hamilton Pkwy", "stop_lat": 40.650782, "stop_lon": -73.975776, "location_type": "0"},
-  "F26S": {"stop_id": "F26S", "stop_name": "Fort Hamilton Pkwy", "stop_lat": 40.650782, "stop_lon": -73.975776, "location_type": "0"},
-  "F27": {"stop_id": "F27", "stop_name": "Church Av", "stop_lat": 40.644041, "stop_lon": -73.979678, "location_type": 1},
-  "F27N": {"stop_id": "F27N", "stop_name": "Church Av", "stop_lat": 40.644041, "stop_lon": -73.979678, "location_type": "0"},
-  "F27S": {"stop_id": "F27S", "stop_name": "Church Av", "stop_lat": 40.644041, "stop_lon": -73.979678, "location_type": "0"},
-  "F29": {"stop_id": "F29", "stop_name": "Ditmas Av", "stop_lat": 40.636119, "stop_lon": -73.978172, "location_type": 1},
-  "F29N": {"stop_id": "F29N", "stop_name": "Ditmas Av", "stop_lat": 40.636119, "stop_lon": -73.978172, "location_type": "0"},
-  "F29S": {"stop_id": "F29S", "stop_name": "Ditmas Av", "stop_lat": 40.636119, "stop_lon": -73.978172, "location_type": "0"},
-  "F30": {"stop_id": "F30", "stop_name": "18 Av", "stop_lat": 40.629755, "stop_lon": -73.976971, "location_type": 1},
-  "F30N": {"stop_id": "F30N", "stop_name": "18 Av", "stop_lat": 40.629755, "stop_lon": -73.976971, "location_type": "0"},
-  "F30S": {"stop_id": "F30S", "stop_name": "18 Av", "stop_lat": 40.629755, "stop_lon": -73.976971, "location_type": "0"},
-  "F31": {"stop_id": "F31", "stop_name": "Avenue I", "stop_lat": 40.625322, "stop_lon": -73.976127, "location_type": 1},
-  "F31N": {"stop_id": "F31N", "stop_name": "Avenue I", "stop_lat": 40.625322, "stop_lon": -73.976127, "location_type": "0"},
-  "F31S": {"stop_id": "F31S", "stop_name": "Avenue I", "stop_lat": 40.625322, "stop_lon": -73.976127, "location_type": "0"},
-  "F32": {"stop_id": "F32", "stop_name": "Bay Pkwy", "stop_lat": 40.620769, "stop_lon": -73.975264, "location_type": 1},
-  "F32N": {"stop_id": "F32N", "stop_name": "Bay Pkwy", "stop_lat": 40.620769, "stop_lon": -73.975264, "location_type": "0"},
-  "F32S": {"stop_id": "F32S", "stop_name": "Bay Pkwy", "stop_lat": 40.620769, "stop_lon": -73.975264, "location_type": "0"},
-  "F33": {"stop_id": "F33", "stop_name": "Avenue N", "stop_lat": 40.61514, "stop_lon": -73.974197, "location_type": 1},
-  "F33N": {"stop_id": "F33N", "stop_name": "Avenue N", "stop_lat": 40.61514, "stop_lon": -73.974197, "location_type": "0"},
-  "F33S": {"stop_id": "F33S", "stop_name": "Avenue N", "stop_lat": 40.61514, "stop_lon": -73.974197, "location_type": "0"},
-  "F34": {"stop_id": "F34", "stop_name": "Avenue P", "stop_lat": 40.608944, "stop_lon": -73.973022, "location_type": 1},
-  "F34N": {"stop_id": "F34N", "stop_name": "Avenue P", "stop_lat": 40.608944, "stop_lon": -73.973022, "location_type": "0"},
-  "F34S": {"stop_id": "F34S", "stop_name": "Avenue P", "stop_lat": 40.608944, "stop_lon": -73.973022, "location_type": "0"},
-  "F35": {"stop_id": "F35", "stop_name": "Kings Hwy", "stop_lat": 40.603217, "stop_lon": -73.972361, "location_type": 1},
-  "F35N": {"stop_id": "F35N", "stop_name": "Kings Hwy", "stop_lat": 40.603217, "stop_lon": -73.972361, "location_type": "0"},
-  "F35S": {"stop_id": "F35S", "stop_name": "Kings Hwy", "stop_lat": 40.603217, "stop_lon": -73.972361, "location_type": "0"},
-  "F36": {"stop_id": "F36", "stop_name": "Avenue U", "stop_lat": 40.596063, "stop_lon": -73.973357, "location_type": 1},
-  "F36N": {"stop_id": "F36N", "stop_name": "Avenue U", "stop_lat": 40.596063, "stop_lon": -73.973357, "location_type": "0"},
-  "F36S": {"stop_id": "F36S", "stop_name": "Avenue U", "stop_lat": 40.596063, "stop_lon": -73.973357, "location_type": "0"},
-  "F38": {"stop_id": "F38", "stop_name": "Avenue X", "stop_lat": 40.58962, "stop_lon": -73.97425, "location_type": 1},
-  "F38N": {"stop_id": "F38N", "stop_name": "Avenue X", "stop_lat": 40.58962, "stop_lon": -73.97425, "location_type": "0"},
-  "F38S": {"stop_id": "F38S", "stop_name": "Avenue X", "stop_lat": 40.58962, "stop_lon": -73.97425, "location_type": "0"},
-  "F39": {"stop_id": "F39", "stop_name": "Neptune Av", "stop_lat": 40.581011, "stop_lon": -73.974574, "location_type": 1},
-  "F39N": {"stop_id": "F39N", "stop_name": "Neptune Av", "stop_lat": 40.581011, "stop_lon": -73.974574, "location_type": "0"},
-  "F39S": {"stop_id": "F39S", "stop_name": "Neptune Av", "stop_lat": 40.581011, "stop_lon": -73.974574, "location_type": "0"},
-  "G05": {"stop_id": "G05", "stop_name": "Jamaica Center - Parsons/Archer", "stop_lat": 40.702147, "stop_lon": -73.801109, "location_type": 1},
-  "G05N": {"stop_id": "G05N", "stop_name": "Jamaica Center - Parsons/Archer", "stop_lat": 40.702147, "stop_lon": -73.801109, "location_type": "0"},
-  "G05S": {"stop_id": "G05S", "stop_name": "Jamaica Center - Parsons/Archer", "stop_lat": 40.702147, "stop_lon": -73.801109, "location_type": "0"},
-  "G06": {"stop_id": "G06", "stop_name": "Sutphin Blvd - Archer Av - JFK Airport", "stop_lat": 40.700486, "stop_lon": -73.807969, "location_type": 1},
-  "G06N": {"stop_id": "G06N", "stop_name": "Sutphin Blvd - Archer Av - JFK Airport", "stop_lat": 40.700486, "stop_lon": -73.807969, "location_type": "0"},
-  "G06S": {"stop_id": "G06S", "stop_name": "Sutphin Blvd - Archer Av - JFK Airport", "stop_lat": 40.700486, "stop_lon": -73.807969, "location_type": "0"},
-  "G07": {"stop_id": "G07", "stop_name": "Jamaica - Van Wyck", "stop_lat": 40.702566, "stop_lon": -73.816859, "location_type": 1},
-  "G07N": {"stop_id": "G07N", "stop_name": "Jamaica - Van Wyck", "stop_lat": 40.702566, "stop_lon": -73.816859, "location_type": "0"},
-  "G07S": {"stop_id": "G07S", "stop_name": "Jamaica - Van Wyck", "stop_lat": 40.702566, "stop_lon": -73.816859, "location_type": "0"},
-  "G08": {"stop_id": "G08", "stop_name": "Forest Hills - 71 Av", "stop_lat": 40.721691, "stop_lon": -73.844521, "location_type": 1},
-  "G08N": {"stop_id": "G08N", "stop_name": "Forest Hills - 71 Av", "stop_lat": 40.721691, "stop_lon": -73.844521, "location_type": "0"},
-  "G08S": {"stop_id": "G08S", "stop_name": "Forest Hills - 71 Av", "stop_lat": 40.721691, "stop_lon": -73.844521, "location_type": "0"},
-  "G09": {"stop_id": "G09", "stop_name": "67 Av", "stop_lat": 40.726523, "stop_lon": -73.852719, "location_type": 1},
-  "G09N": {"stop_id": "G09N", "stop_name": "67 Av", "stop_lat": 40.726523, "stop_lon": -73.852719, "location_type": "0"},
-  "G09S": {"stop_id": "G09S", "stop_name": "67 Av", "stop_lat": 40.726523, "stop_lon": -73.852719, "location_type": "0"},
-  "G10": {"stop_id": "G10", "stop_name": "63 Dr - Rego Park", "stop_lat": 40.729846, "stop_lon": -73.861604, "location_type": 1},
-  "G10N": {"stop_id": "G10N", "stop_name": "63 Dr - Rego Park", "stop_lat": 40.729846, "stop_lon": -73.861604, "location_type": "0"},
-  "G10S": {"stop_id": "G10S", "stop_name": "63 Dr - Rego Park", "stop_lat": 40.729846, "stop_lon": -73.861604, "location_type": "0"},
-  "G11": {"stop_id": "G11", "stop_name": "Woodhaven Blvd", "stop_lat": 40.733106, "stop_lon": -73.869229, "location_type": 1},
-  "G11N": {"stop_id": "G11N", "stop_name": "Woodhaven Blvd", "stop_lat": 40.733106, "stop_lon": -73.869229, "location_type": "0"},
-  "G11S": {"stop_id": "G11S", "stop_name": "Woodhaven Blvd", "stop_lat": 40.733106, "stop_lon": -73.869229, "location_type": "0"},
-  "G12": {"stop_id": "G12", "stop_name": "Grand Av - Newtown", "stop_lat": 40.737015, "stop_lon": -73.877223, "location_type": 1},
-  "G12N": {"stop_id": "G12N", "stop_name": "Grand Av - Newtown", "stop_lat": 40.737015, "stop_lon": -73.877223, "location_type": "0"},
-  "G12S": {"stop_id": "G12S", "stop_name": "Grand Av - Newtown", "stop_lat": 40.737015, "stop_lon": -73.877223, "location_type": "0"},
-  "G13": {"stop_id": "G13", "stop_name": "Elmhurst Av", "stop_lat": 40.742454, "stop_lon": -73.882017, "location_type": 1},
-  "G13N": {"stop_id": "G13N", "stop_name": "Elmhurst Av", "stop_lat": 40.742454, "stop_lon": -73.882017, "location_type": "0"},
-  "G13S": {"stop_id": "G13S", "stop_name": "Elmhurst Av", "stop_lat": 40.742454, "stop_lon": -73.882017, "location_type": "0"},
-  "G14": {"stop_id": "G14", "stop_name": "Jackson Hts - Roosevelt Av", "stop_lat": 40.746644, "stop_lon": -73.891338, "location_type": 1},
-  "G14N": {"stop_id": "G14N", "stop_name": "Jackson Hts - Roosevelt Av", "stop_lat": 40.746644, "stop_lon": -73.891338, "location_type": "0"},
-  "G14S": {"stop_id": "G14S", "stop_name": "Jackson Hts - Roosevelt Av", "stop_lat": 40.746644, "stop_lon": -73.891338, "location_type": "0"},
-  "G15": {"stop_id": "G15", "stop_name": "65 St", "stop_lat": 40.749669, "stop_lon": -73.898453, "location_type": 1},
-  "G15N": {"stop_id": "G15N", "stop_name": "65 St", "stop_lat": 40.749669, "stop_lon": -73.898453, "location_type": "0"},
-  "G15S": {"stop_id": "G15S", "stop_name": "65 St", "stop_lat": 40.749669, "stop_lon": -73.898453, "location_type": "0"},
-  "G16": {"stop_id": "G16", "stop_name": "Northern Blvd", "stop_lat": 40.752885, "stop_lon": -73.906006, "location_type": 1},
-  "G16N": {"stop_id": "G16N", "stop_name": "Northern Blvd", "stop_lat": 40.752885, "stop_lon": -73.906006, "location_type": "0"},
-  "G16S": {"stop_id": "G16S", "stop_name": "Northern Blvd", "stop_lat": 40.752885, "stop_lon": -73.906006, "location_type": "0"},
-  "G18": {"stop_id": "G18", "stop_name": "46 St", "stop_lat": 40.756312, "stop_lon": -73.913333, "location_type": 1},
-  "G18N": {"stop_id": "G18N", "stop_name": "46 St", "stop_lat": 40.756312, "stop_lon": -73.913333, "location_type": "0"},
-  "G18S": {"stop_id": "G18S", "stop_name": "46 St", "stop_lat": 40.756312, "stop_lon": -73.913333, "location_type": "0"},
-  "G19": {"stop_id": "G19", "stop_name": "Steinway St", "stop_lat": 40.756879, "stop_lon": -73.92074, "location_type": 1},
-  "G19N": {"stop_id": "G19N", "stop_name": "Steinway St", "stop_lat": 40.756879, "stop_lon": -73.92074, "location_type": "0"},
-  "G19S": {"stop_id": "G19S", "stop_name": "Steinway St", "stop_lat": 40.756879, "stop_lon": -73.92074, "location_type": "0"},
-  "G20": {"stop_id": "G20", "stop_name": "36 St", "stop_lat": 40.752039, "stop_lon": -73.928781, "location_type": 1},
-  "G20N": {"stop_id": "G20N", "stop_name": "36 St", "stop_lat": 40.752039, "stop_lon": -73.928781, "location_type": "0"},
-  "G20S": {"stop_id": "G20S", "stop_name": "36 St", "stop_lat": 40.752039, "stop_lon": -73.928781, "location_type": "0"},
-  "G21": {"stop_id": "G21", "stop_name": "Queens Plaza", "stop_lat": 40.748973, "stop_lon": -73.937243, "location_type": 1},
-  "G21N": {"stop_id": "G21N", "stop_name": "Queens Plaza", "stop_lat": 40.748973, "stop_lon": -73.937243, "location_type": "0"},
-  "G21S": {"stop_id": "G21S", "stop_name": "Queens Plaza", "stop_lat": 40.748973, "stop_lon": -73.937243, "location_type": "0"},
-  "G22": {"stop_id": "G22", "stop_name": "Court Sq", "stop_lat": 40.746554, "stop_lon": -73.943832, "location_type": 1},
-  "G22N": {"stop_id": "G22N", "stop_name": "Court Sq", "stop_lat": 40.746554, "stop_lon": -73.943832, "location_type": "0"},
-  "G22S": {"stop_id": "G22S", "stop_name": "Court Sq", "stop_lat": 40.746554, "stop_lon": -73.943832, "location_type": "0"},
-  "G24": {"stop_id": "G24", "stop_name": "21 St", "stop_lat": 40.744065, "stop_lon": -73.949724, "location_type": 1},
-  "G24N": {"stop_id": "G24N", "stop_name": "21 St", "stop_lat": 40.744065, "stop_lon": -73.949724, "location_type": "0"},
-  "G24S": {"stop_id": "G24S", "stop_name": "21 St", "stop_lat": 40.744065, "stop_lon": -73.949724, "location_type": "0"},
-  "G26": {"stop_id": "G26", "stop_name": "Greenpoint Av", "stop_lat": 40.731352, "stop_lon": -73.954449, "location_type": 1},
-  "G26N": {"stop_id": "G26N", "stop_name": "Greenpoint Av", "stop_lat": 40.731352, "stop_lon": -73.954449, "location_type": "0"},
-  "G26S": {"stop_id": "G26S", "stop_name": "Greenpoint Av", "stop_lat": 40.731352, "stop_lon": -73.954449, "location_type": "0"},
-  "G28": {"stop_id": "G28", "stop_name": "Nassau Av", "stop_lat": 40.724635, "stop_lon": -73.951277, "location_type": 1},
-  "G28N": {"stop_id": "G28N", "stop_name": "Nassau Av", "stop_lat": 40.724635, "stop_lon": -73.951277, "location_type": "0"},
-  "G28S": {"stop_id": "G28S", "stop_name": "Nassau Av", "stop_lat": 40.724635, "stop_lon": -73.951277, "location_type": "0"},
-  "G29": {"stop_id": "G29", "stop_name": "Metropolitan Av", "stop_lat": 40.712792, "stop_lon": -73.951418, "location_type": 1},
-  "G29N": {"stop_id": "G29N", "stop_name": "Metropolitan Av", "stop_lat": 40.712792, "stop_lon": -73.951418, "location_type": "0"},
-  "G29S": {"stop_id": "G29S", "stop_name": "Metropolitan Av", "stop_lat": 40.712792, "stop_lon": -73.951418, "location_type": "0"},
-  "G30": {"stop_id": "G30", "stop_name": "Broadway", "stop_lat": 40.706092, "stop_lon": -73.950308, "location_type": 1},
-  "G30N": {"stop_id": "G30N", "stop_name": "Broadway", "stop_lat": 40.706092, "stop_lon": -73.950308, "location_type": "0"},
-  "G30S": {"stop_id": "G30S", "stop_name": "Broadway", "stop_lat": 40.706092, "stop_lon": -73.950308, "location_type": "0"},
-  "G31": {"stop_id": "G31", "stop_name": "Flushing Av", "stop_lat": 40.700377, "stop_lon": -73.950234, "location_type": 1},
-  "G31N": {"stop_id": "G31N", "stop_name": "Flushing Av", "stop_lat": 40.700377, "stop_lon": -73.950234, "location_type": "0"},
-  "G31S": {"stop_id": "G31S", "stop_name": "Flushing Av", "stop_lat": 40.700377, "stop_lon": -73.950234, "location_type": "0"},
-  "G32": {"stop_id": "G32", "stop_name": "Myrtle - Willoughby Avs", "stop_lat": 40.694568, "stop_lon": -73.949046, "location_type": 1},
-  "G32N": {"stop_id": "G32N", "stop_name": "Myrtle - Willoughby Avs", "stop_lat": 40.694568, "stop_lon": -73.949046, "location_type": "0"},
-  "G32S": {"stop_id": "G32S", "stop_name": "Myrtle - Willoughby Avs", "stop_lat": 40.694568, "stop_lon": -73.949046, "location_type": "0"},
-  "G33": {"stop_id": "G33", "stop_name": "Bedford - Nostrand Avs", "stop_lat": 40.689627, "stop_lon": -73.953522, "location_type": 1},
-  "G33N": {"stop_id": "G33N", "stop_name": "Bedford - Nostrand Avs", "stop_lat": 40.689627, "stop_lon": -73.953522, "location_type": "0"},
-  "G33S": {"stop_id": "G33S", "stop_name": "Bedford - Nostrand Avs", "stop_lat": 40.689627, "stop_lon": -73.953522, "location_type": "0"},
-  "G34": {"stop_id": "G34", "stop_name": "Classon Av", "stop_lat": 40.688873, "stop_lon": -73.96007, "location_type": 1},
-  "G34N": {"stop_id": "G34N", "stop_name": "Classon Av", "stop_lat": 40.688873, "stop_lon": -73.96007, "location_type": "0"},
-  "G34S": {"stop_id": "G34S", "stop_name": "Classon Av", "stop_lat": 40.688873, "stop_lon": -73.96007, "location_type": "0"},
-  "G35": {"stop_id": "G35", "stop_name": "Clinton - Washington Avs", "stop_lat": 40.688089, "stop_lon": -73.966839, "location_type": 1},
-  "G35N": {"stop_id": "G35N", "stop_name": "Clinton - Washington Avs", "stop_lat": 40.688089, "stop_lon": -73.966839, "location_type": "0"},
-  "G35S": {"stop_id": "G35S", "stop_name": "Clinton - Washington Avs", "stop_lat": 40.688089, "stop_lon": -73.966839, "location_type": "0"},
-  "G36": {"stop_id": "G36", "stop_name": "Fulton St", "stop_lat": 40.687119, "stop_lon": -73.975375, "location_type": 1},
-  "G36N": {"stop_id": "G36N", "stop_name": "Fulton St", "stop_lat": 40.687119, "stop_lon": -73.975375, "location_type": "0"},
-  "G36S": {"stop_id": "G36S", "stop_name": "Fulton St", "stop_lat": 40.687119, "stop_lon": -73.975375, "location_type": "0"},
-  "H01": {"stop_id": "H01", "stop_name": "Aqueduct Racetrack", "stop_lat": 40.668234, "stop_lon": -73.834058, "location_type": 1},
-  "H01N": {"stop_id": "H01N", "stop_name": "Aqueduct Racetrack", "stop_lat": 40.668234, "stop_lon": -73.834058, "location_type": "0"},
-  "H01S": {"stop_id": "H01S", "stop_name": "Aqueduct Racetrack", "stop_lat": 40.668234, "stop_lon": -73.834058, "location_type": "0"},
-  "H02": {"stop_id": "H02", "stop_name": "Aqueduct - N Conduit Av", "stop_lat": 40.668234, "stop_lon": -73.834058, "location_type": 1},
-  "H02N": {"stop_id": "H02N", "stop_name": "Aqueduct - N Conduit Av", "stop_lat": 40.668234, "stop_lon": -73.834058, "location_type": "0"},
-  "H02S": {"stop_id": "H02S", "stop_name": "Aqueduct - N Conduit Av", "stop_lat": 40.668234, "stop_lon": -73.834058, "location_type": "0"},
-  "H03": {"stop_id": "H03", "stop_name": "Howard Beach - JFK Airport", "stop_lat": 40.660476, "stop_lon": -73.830301, "location_type": 1},
-  "H03N": {"stop_id": "H03N", "stop_name": "Howard Beach - JFK Airport", "stop_lat": 40.660476, "stop_lon": -73.830301, "location_type": "0"},
-  "H03S": {"stop_id": "H03S", "stop_name": "Howard Beach - JFK Airport", "stop_lat": 40.660476, "stop_lon": -73.830301, "location_type": "0"},
-  "H04": {"stop_id": "H04", "stop_name": "Broad Channel", "stop_lat": 40.608382, "stop_lon": -73.815925, "location_type": 1},
-  "H04N": {"stop_id": "H04N", "stop_name": "Broad Channel", "stop_lat": 40.608382, "stop_lon": -73.815925, "location_type": "0"},
-  "H04S": {"stop_id": "H04S", "stop_name": "Broad Channel", "stop_lat": 40.608382, "stop_lon": -73.815925, "location_type": "0"},
-  "H06": {"stop_id": "H06", "stop_name": "Beach 67 St", "stop_lat": 40.590927, "stop_lon": -73.796924, "location_type": 1},
-  "H06N": {"stop_id": "H06N", "stop_name": "Beach 67 St", "stop_lat": 40.590927, "stop_lon": -73.796924, "location_type": "0"},
-  "H06S": {"stop_id": "H06S", "stop_name": "Beach 67 St", "stop_lat": 40.590927, "stop_lon": -73.796924, "location_type": "0"},
-  "H07": {"stop_id": "H07", "stop_name": "Beach 60 St", "stop_lat": 40.592374, "stop_lon": -73.788522, "location_type": 1},
-  "H07N": {"stop_id": "H07N", "stop_name": "Beach 60 St", "stop_lat": 40.592374, "stop_lon": -73.788522, "location_type": "0"},
-  "H07S": {"stop_id": "H07S", "stop_name": "Beach 60 St", "stop_lat": 40.592374, "stop_lon": -73.788522, "location_type": "0"},
-  "H08": {"stop_id": "H08", "stop_name": "Beach 44 St", "stop_lat": 40.592943, "stop_lon": -73.776013, "location_type": 1},
-  "H08N": {"stop_id": "H08N", "stop_name": "Beach 44 St", "stop_lat": 40.592943, "stop_lon": -73.776013, "location_type": "0"},
-  "H08S": {"stop_id": "H08S", "stop_name": "Beach 44 St", "stop_lat": 40.592943, "stop_lon": -73.776013, "location_type": "0"},
-  "H09": {"stop_id": "H09", "stop_name": "Beach 36 St", "stop_lat": 40.595398, "stop_lon": -73.768175, "location_type": 1},
-  "H09N": {"stop_id": "H09N", "stop_name": "Beach 36 St", "stop_lat": 40.595398, "stop_lon": -73.768175, "location_type": "0"},
-  "H09S": {"stop_id": "H09S", "stop_name": "Beach 36 St", "stop_lat": 40.595398, "stop_lon": -73.768175, "location_type": "0"},
-  "H10": {"stop_id": "H10", "stop_name": "Beach 25 St", "stop_lat": 40.600066, "stop_lon": -73.761353, "location_type": 1},
-  "H10N": {"stop_id": "H10N", "stop_name": "Beach 25 St", "stop_lat": 40.600066, "stop_lon": -73.761353, "location_type": "0"},
-  "H10S": {"stop_id": "H10S", "stop_name": "Beach 25 St", "stop_lat": 40.600066, "stop_lon": -73.761353, "location_type": "0"},
-  "H11": {"stop_id": "H11", "stop_name": "Far Rockaway - Mott Av", "stop_lat": 40.603995, "stop_lon": -73.755405, "location_type": 1},
-  "H11N": {"stop_id": "H11N", "stop_name": "Far Rockaway - Mott Av", "stop_lat": 40.603995, "stop_lon": -73.755405, "location_type": "0"},
-  "H11S": {"stop_id": "H11S", "stop_name": "Far Rockaway - Mott Av", "stop_lat": 40.603995, "stop_lon": -73.755405, "location_type": "0"},
-  "H12": {"stop_id": "H12", "stop_name": "Beach 90 St", "stop_lat": 40.588034, "stop_lon": -73.813641, "location_type": 1},
-  "H12N": {"stop_id": "H12N", "stop_name": "Beach 90 St", "stop_lat": 40.588034, "stop_lon": -73.813641, "location_type": "0"},
-  "H12S": {"stop_id": "H12S", "stop_name": "Beach 90 St", "stop_lat": 40.588034, "stop_lon": -73.813641, "location_type": "0"},
-  "H13": {"stop_id": "H13", "stop_name": "Beach 98 St", "stop_lat": 40.585307, "stop_lon": -73.820558, "location_type": 1},
-  "H13N": {"stop_id": "H13N", "stop_name": "Beach 98 St", "stop_lat": 40.585307, "stop_lon": -73.820558, "location_type": "0"},
-  "H13S": {"stop_id": "H13S", "stop_name": "Beach 98 St", "stop_lat": 40.585307, "stop_lon": -73.820558, "location_type": "0"},
-  "H14": {"stop_id": "H14", "stop_name": "Beach 105 St", "stop_lat": 40.583209, "stop_lon": -73.827559, "location_type": 1},
-  "H14N": {"stop_id": "H14N", "stop_name": "Beach 105 St", "stop_lat": 40.583209, "stop_lon": -73.827559, "location_type": "0"},
-  "H14S": {"stop_id": "H14S", "stop_name": "Beach 105 St", "stop_lat": 40.583209, "stop_lon": -73.827559, "location_type": "0"},
-  "H15": {"stop_id": "H15", "stop_name": "Rockaway Park - Beach 116 St", "stop_lat": 40.580903, "stop_lon": -73.835592, "location_type": 1},
-  "H15N": {"stop_id": "H15N", "stop_name": "Rockaway Park - Beach 116 St", "stop_lat": 40.580903, "stop_lon": -73.835592, "location_type": "0"},
-  "H15S": {"stop_id": "H15S", "stop_name": "Rockaway Park - Beach 116 St", "stop_lat": 40.580903, "stop_lon": -73.835592, "location_type": "0"},
-  "H19": {"stop_id": "H19", "stop_name": "Broad Channel", "stop_lat": 40.609014, "stop_lon": -73.816024, "location_type": 1},
-  "H19N": {"stop_id": "H19N", "stop_name": "Broad Channel", "stop_lat": 40.609014, "stop_lon": -73.816024, "location_type": "0"},
-  "H19S": {"stop_id": "H19S", "stop_name": "Broad Channel", "stop_lat": 40.609014, "stop_lon": -73.816024, "location_type": "0"},
-  "J12": {"stop_id": "J12", "stop_name": "121 St", "stop_lat": 40.700492, "stop_lon": -73.828294, "location_type": 1},
-  "J12N": {"stop_id": "J12N", "stop_name": "121 St", "stop_lat": 40.700492, "stop_lon": -73.828294, "location_type": "0"},
-  "J12S": {"stop_id": "J12S", "stop_name": "121 St", "stop_lat": 40.700492, "stop_lon": -73.828294, "location_type": "0"},
-  "J13": {"stop_id": "J13", "stop_name": "111 St", "stop_lat": 40.697418, "stop_lon": -73.836345, "location_type": 1},
-  "J13N": {"stop_id": "J13N", "stop_name": "111 St", "stop_lat": 40.697418, "stop_lon": -73.836345, "location_type": "0"},
-  "J13S": {"stop_id": "J13S", "stop_name": "111 St", "stop_lat": 40.697418, "stop_lon": -73.836345, "location_type": "0"},
-  "J14": {"stop_id": "J14", "stop_name": "104 St", "stop_lat": 40.695178, "stop_lon": -73.84433, "location_type": 1},
-  "J14N": {"stop_id": "J14N", "stop_name": "104 St", "stop_lat": 40.695178, "stop_lon": -73.84433, "location_type": "0"},
-  "J14S": {"stop_id": "J14S", "stop_name": "104 St", "stop_lat": 40.695178, "stop_lon": -73.84433, "location_type": "0"},
-  "J15": {"stop_id": "J15", "stop_name": "Woodhaven Blvd", "stop_lat": 40.693879, "stop_lon": -73.851576, "location_type": 1},
-  "J15N": {"stop_id": "J15N", "stop_name": "Woodhaven Blvd", "stop_lat": 40.693879, "stop_lon": -73.851576, "location_type": "0"},
-  "J15S": {"stop_id": "J15S", "stop_name": "Woodhaven Blvd", "stop_lat": 40.693879, "stop_lon": -73.851576, "location_type": "0"},
-  "J16": {"stop_id": "J16", "stop_name": "85 St - Forest Pkwy", "stop_lat": 40.692435, "stop_lon": -73.86001, "location_type": 1},
-  "J16N": {"stop_id": "J16N", "stop_name": "85 St - Forest Pkwy", "stop_lat": 40.692435, "stop_lon": -73.86001, "location_type": "0"},
-  "J16S": {"stop_id": "J16S", "stop_name": "85 St - Forest Pkwy", "stop_lat": 40.692435, "stop_lon": -73.86001, "location_type": "0"},
-  "J17": {"stop_id": "J17", "stop_name": "75 St", "stop_lat": 40.691324, "stop_lon": -73.867139, "location_type": 1},
-  "J17N": {"stop_id": "J17N", "stop_name": "75 St", "stop_lat": 40.691324, "stop_lon": -73.867139, "location_type": "0"},
-  "J17S": {"stop_id": "J17S", "stop_name": "75 St", "stop_lat": 40.691324, "stop_lon": -73.867139, "location_type": "0"},
-  "J19": {"stop_id": "J19", "stop_name": "Cypress Hills", "stop_lat": 40.689941, "stop_lon": -73.87255, "location_type": 1},
-  "J19N": {"stop_id": "J19N", "stop_name": "Cypress Hills", "stop_lat": 40.689941, "stop_lon": -73.87255, "location_type": "0"},
-  "J19S": {"stop_id": "J19S", "stop_name": "Cypress Hills", "stop_lat": 40.689941, "stop_lon": -73.87255, "location_type": "0"},
-  "J20": {"stop_id": "J20", "stop_name": "Crescent St", "stop_lat": 40.683194, "stop_lon": -73.873785, "location_type": 1},
-  "J20N": {"stop_id": "J20N", "stop_name": "Crescent St", "stop_lat": 40.683194, "stop_lon": -73.873785, "location_type": "0"},
-  "J20S": {"stop_id": "J20S", "stop_name": "Crescent St", "stop_lat": 40.683194, "stop_lon": -73.873785, "location_type": "0"},
-  "J21": {"stop_id": "J21", "stop_name": "Norwood Av", "stop_lat": 40.68141, "stop_lon": -73.880039, "location_type": 1},
-  "J21N": {"stop_id": "J21N", "stop_name": "Norwood Av", "stop_lat": 40.68141, "stop_lon": -73.880039, "location_type": "0"},
-  "J21S": {"stop_id": "J21S", "stop_name": "Norwood Av", "stop_lat": 40.68141, "stop_lon": -73.880039, "location_type": "0"},
-  "J22": {"stop_id": "J22", "stop_name": "Cleveland St", "stop_lat": 40.679947, "stop_lon": -73.884639, "location_type": 1},
-  "J22N": {"stop_id": "J22N", "stop_name": "Cleveland St", "stop_lat": 40.679947, "stop_lon": -73.884639, "location_type": "0"},
-  "J22S": {"stop_id": "J22S", "stop_name": "Cleveland St", "stop_lat": 40.679947, "stop_lon": -73.884639, "location_type": "0"},
-  "J23": {"stop_id": "J23", "stop_name": "Van Siclen Av", "stop_lat": 40.678024, "stop_lon": -73.891688, "location_type": 1},
-  "J23N": {"stop_id": "J23N", "stop_name": "Van Siclen Av", "stop_lat": 40.678024, "stop_lon": -73.891688, "location_type": "0"},
-  "J23S": {"stop_id": "J23S", "stop_name": "Van Siclen Av", "stop_lat": 40.678024, "stop_lon": -73.891688, "location_type": "0"},
-  "J24": {"stop_id": "J24", "stop_name": "Alabama Av", "stop_lat": 40.676992, "stop_lon": -73.898654, "location_type": 1},
-  "J24N": {"stop_id": "J24N", "stop_name": "Alabama Av", "stop_lat": 40.676992, "stop_lon": -73.898654, "location_type": "0"},
-  "J24S": {"stop_id": "J24S", "stop_name": "Alabama Av", "stop_lat": 40.676992, "stop_lon": -73.898654, "location_type": "0"},
-  "J27": {"stop_id": "J27", "stop_name": "Broadway Jct", "stop_lat": 40.679498, "stop_lon": -73.904512, "location_type": 1},
-  "J27N": {"stop_id": "J27N", "stop_name": "Broadway Jct", "stop_lat": 40.679498, "stop_lon": -73.904512, "location_type": "0"},
-  "J27S": {"stop_id": "J27S", "stop_name": "Broadway Jct", "stop_lat": 40.679498, "stop_lon": -73.904512, "location_type": "0"},
-  "J28": {"stop_id": "J28", "stop_name": "Chauncey St", "stop_lat": 40.682893, "stop_lon": -73.910456, "location_type": 1},
-  "J28N": {"stop_id": "J28N", "stop_name": "Chauncey St", "stop_lat": 40.682893, "stop_lon": -73.910456, "location_type": "0"},
-  "J28S": {"stop_id": "J28S", "stop_name": "Chauncey St", "stop_lat": 40.682893, "stop_lon": -73.910456, "location_type": "0"},
-  "J29": {"stop_id": "J29", "stop_name": "Halsey St", "stop_lat": 40.68637, "stop_lon": -73.916559, "location_type": 1},
-  "J29N": {"stop_id": "J29N", "stop_name": "Halsey St", "stop_lat": 40.68637, "stop_lon": -73.916559, "location_type": "0"},
-  "J29S": {"stop_id": "J29S", "stop_name": "Halsey St", "stop_lat": 40.68637, "stop_lon": -73.916559, "location_type": "0"},
-  "J30": {"stop_id": "J30", "stop_name": "Gates Av", "stop_lat": 40.68963, "stop_lon": -73.92227, "location_type": 1},
-  "J30N": {"stop_id": "J30N", "stop_name": "Gates Av", "stop_lat": 40.68963, "stop_lon": -73.92227, "location_type": "0"},
-  "J30S": {"stop_id": "J30S", "stop_name": "Gates Av", "stop_lat": 40.68963, "stop_lon": -73.92227, "location_type": "0"},
-  "J31": {"stop_id": "J31", "stop_name": "Kosciuszko St", "stop_lat": 40.693342, "stop_lon": -73.928814, "location_type": 1},
-  "J31N": {"stop_id": "J31N", "stop_name": "Kosciuszko St", "stop_lat": 40.693342, "stop_lon": -73.928814, "location_type": "0"},
-  "J31S": {"stop_id": "J31S", "stop_name": "Kosciuszko St", "stop_lat": 40.693342, "stop_lon": -73.928814, "location_type": "0"},
-  "L01": {"stop_id": "L01", "stop_name": "8 Av", "stop_lat": 40.739777, "stop_lon": -74.002578, "location_type": 1},
-  "L01N": {"stop_id": "L01N", "stop_name": "8 Av", "stop_lat": 40.739777, "stop_lon": -74.002578, "location_type": "0"},
-  "L01S": {"stop_id": "L01S", "stop_name": "8 Av", "stop_lat": 40.739777, "stop_lon": -74.002578, "location_type": "0"},
-  "L02": {"stop_id": "L02", "stop_name": "6 Av", "stop_lat": 40.737335, "stop_lon": -73.996786, "location_type": 1},
-  "L02N": {"stop_id": "L02N", "stop_name": "6 Av", "stop_lat": 40.737335, "stop_lon": -73.996786, "location_type": "0"},
-  "L02S": {"stop_id": "L02S", "stop_name": "6 Av", "stop_lat": 40.737335, "stop_lon": -73.996786, "location_type": "0"},
-  "L03": {"stop_id": "L03", "stop_name": "Union Sq - 14 St", "stop_lat": 40.734789, "stop_lon": -73.99073, "location_type": 1},
-  "L03N": {"stop_id": "L03N", "stop_name": "Union Sq - 14 St", "stop_lat": 40.734789, "stop_lon": -73.99073, "location_type": "0"},
-  "L03S": {"stop_id": "L03S", "stop_name": "Union Sq - 14 St", "stop_lat": 40.734789, "stop_lon": -73.99073, "location_type": "0"},
-  "L05": {"stop_id": "L05", "stop_name": "3 Av", "stop_lat": 40.732849, "stop_lon": -73.986122, "location_type": 1},
-  "L05N": {"stop_id": "L05N", "stop_name": "3 Av", "stop_lat": 40.732849, "stop_lon": -73.986122, "location_type": "0"},
-  "L05S": {"stop_id": "L05S", "stop_name": "3 Av", "stop_lat": 40.732849, "stop_lon": -73.986122, "location_type": "0"},
-  "L06": {"stop_id": "L06", "stop_name": "1 Av", "stop_lat": 40.730953, "stop_lon": -73.981628, "location_type": 1},
-  "L06N": {"stop_id": "L06N", "stop_name": "1 Av", "stop_lat": 40.730953, "stop_lon": -73.981628, "location_type": "0"},
-  "L06S": {"stop_id": "L06S", "stop_name": "1 Av", "stop_lat": 40.730953, "stop_lon": -73.981628, "location_type": "0"},
-  "L08": {"stop_id": "L08", "stop_name": "Bedford Av", "stop_lat": 40.717304, "stop_lon": -73.956872, "location_type": 1},
-  "L08N": {"stop_id": "L08N", "stop_name": "Bedford Av", "stop_lat": 40.717304, "stop_lon": -73.956872, "location_type": "0"},
-  "L08S": {"stop_id": "L08S", "stop_name": "Bedford Av", "stop_lat": 40.717304, "stop_lon": -73.956872, "location_type": "0"},
-  "L10": {"stop_id": "L10", "stop_name": "Lorimer St", "stop_lat": 40.714063, "stop_lon": -73.950275, "location_type": 1},
-  "L10N": {"stop_id": "L10N", "stop_name": "Lorimer St", "stop_lat": 40.714063, "stop_lon": -73.950275, "location_type": "0"},
-  "L10S": {"stop_id": "L10S", "stop_name": "Lorimer St", "stop_lat": 40.714063, "stop_lon": -73.950275, "location_type": "0"},
-  "L11": {"stop_id": "L11", "stop_name": "Graham Av", "stop_lat": 40.714565, "stop_lon": -73.944053, "location_type": 1},
-  "L11N": {"stop_id": "L11N", "stop_name": "Graham Av", "stop_lat": 40.714565, "stop_lon": -73.944053, "location_type": "0"},
-  "L11S": {"stop_id": "L11S", "stop_name": "Graham Av", "stop_lat": 40.714565, "stop_lon": -73.944053, "location_type": "0"},
-  "L12": {"stop_id": "L12", "stop_name": "Grand St", "stop_lat": 40.711926, "stop_lon": -73.94067, "location_type": 1},
-  "L12N": {"stop_id": "L12N", "stop_name": "Grand St", "stop_lat": 40.711926, "stop_lon": -73.94067, "location_type": "0"},
-  "L12S": {"stop_id": "L12S", "stop_name": "Grand St", "stop_lat": 40.711926, "stop_lon": -73.94067, "location_type": "0"},
-  "L13": {"stop_id": "L13", "stop_name": "Montrose Av", "stop_lat": 40.707739, "stop_lon": -73.93985, "location_type": 1},
-  "L13N": {"stop_id": "L13N", "stop_name": "Montrose Av", "stop_lat": 40.707739, "stop_lon": -73.93985, "location_type": "0"},
-  "L13S": {"stop_id": "L13S", "stop_name": "Montrose Av", "stop_lat": 40.707739, "stop_lon": -73.93985, "location_type": "0"},
-  "L14": {"stop_id": "L14", "stop_name": "Morgan Av", "stop_lat": 40.706152, "stop_lon": -73.933147, "location_type": 1},
-  "L14N": {"stop_id": "L14N", "stop_name": "Morgan Av", "stop_lat": 40.706152, "stop_lon": -73.933147, "location_type": "0"},
-  "L14S": {"stop_id": "L14S", "stop_name": "Morgan Av", "stop_lat": 40.706152, "stop_lon": -73.933147, "location_type": "0"},
-  "L15": {"stop_id": "L15", "stop_name": "Jefferson St", "stop_lat": 40.706607, "stop_lon": -73.922913, "location_type": 1},
-  "L15N": {"stop_id": "L15N", "stop_name": "Jefferson St", "stop_lat": 40.706607, "stop_lon": -73.922913, "location_type": "0"},
-  "L15S": {"stop_id": "L15S", "stop_name": "Jefferson St", "stop_lat": 40.706607, "stop_lon": -73.922913, "location_type": "0"},
-  "L16": {"stop_id": "L16", "stop_name": "DeKalb Av", "stop_lat": 40.703811, "stop_lon": -73.918425, "location_type": 1},
-  "L16N": {"stop_id": "L16N", "stop_name": "DeKalb Av", "stop_lat": 40.703811, "stop_lon": -73.918425, "location_type": "0"},
-  "L16S": {"stop_id": "L16S", "stop_name": "DeKalb Av", "stop_lat": 40.703811, "stop_lon": -73.918425, "location_type": "0"},
-  "L17": {"stop_id": "L17", "stop_name": "Myrtle - Wyckoff Avs", "stop_lat": 40.699814, "stop_lon": -73.911586, "location_type": 1},
-  "L17N": {"stop_id": "L17N", "stop_name": "Myrtle - Wyckoff Avs", "stop_lat": 40.699814, "stop_lon": -73.911586, "location_type": "0"},
-  "L17S": {"stop_id": "L17S", "stop_name": "Myrtle - Wyckoff Avs", "stop_lat": 40.699814, "stop_lon": -73.911586, "location_type": "0"},
-  "L19": {"stop_id": "L19", "stop_name": "Halsey St", "stop_lat": 40.695602, "stop_lon": -73.904084, "location_type": 1},
-  "L19N": {"stop_id": "L19N", "stop_name": "Halsey St", "stop_lat": 40.695602, "stop_lon": -73.904084, "location_type": "0"},
-  "L19S": {"stop_id": "L19S", "stop_name": "Halsey St", "stop_lat": 40.695602, "stop_lon": -73.904084, "location_type": "0"},
-  "L20": {"stop_id": "L20", "stop_name": "Wilson Av", "stop_lat": 40.688764, "stop_lon": -73.904046, "location_type": 1},
-  "L20N": {"stop_id": "L20N", "stop_name": "Wilson Av", "stop_lat": 40.688764, "stop_lon": -73.904046, "location_type": "0"},
-  "L20S": {"stop_id": "L20S", "stop_name": "Wilson Av", "stop_lat": 40.688764, "stop_lon": -73.904046, "location_type": "0"},
-  "L21": {"stop_id": "L21", "stop_name": "Bushwick Av - Aberdeen St", "stop_lat": 40.682829, "stop_lon": -73.905249, "location_type": 1},
-  "L21N": {"stop_id": "L21N", "stop_name": "Bushwick Av - Aberdeen St", "stop_lat": 40.682829, "stop_lon": -73.905249, "location_type": "0"},
-  "L21S": {"stop_id": "L21S", "stop_name": "Bushwick Av - Aberdeen St", "stop_lat": 40.682829, "stop_lon": -73.905249, "location_type": "0"},
-  "L22": {"stop_id": "L22", "stop_name": "Broadway Jct", "stop_lat": 40.678856, "stop_lon": -73.90324, "location_type": 1},
-  "L22N": {"stop_id": "L22N", "stop_name": "Broadway Jct", "stop_lat": 40.678856, "stop_lon": -73.90324, "location_type": "0"},
-  "L22S": {"stop_id": "L22S", "stop_name": "Broadway Jct", "stop_lat": 40.678856, "stop_lon": -73.90324, "location_type": "0"},
-  "L24": {"stop_id": "L24", "stop_name": "Atlantic Av", "stop_lat": 40.675345, "stop_lon": -73.903097, "location_type": 1},
-  "L24N": {"stop_id": "L24N", "stop_name": "Atlantic Av", "stop_lat": 40.675345, "stop_lon": -73.903097, "location_type": "0"},
-  "L24S": {"stop_id": "L24S", "stop_name": "Atlantic Av", "stop_lat": 40.675345, "stop_lon": -73.903097, "location_type": "0"},
-  "L25": {"stop_id": "L25", "stop_name": "Sutter Av", "stop_lat": 40.669367, "stop_lon": -73.901975, "location_type": 1},
-  "L25N": {"stop_id": "L25N", "stop_name": "Sutter Av", "stop_lat": 40.669367, "stop_lon": -73.901975, "location_type": "0"},
-  "L25S": {"stop_id": "L25S", "stop_name": "Sutter Av", "stop_lat": 40.669367, "stop_lon": -73.901975, "location_type": "0"},
-  "L26": {"stop_id": "L26", "stop_name": "Livonia Av", "stop_lat": 40.664038, "stop_lon": -73.900571, "location_type": 1},
-  "L26N": {"stop_id": "L26N", "stop_name": "Livonia Av", "stop_lat": 40.664038, "stop_lon": -73.900571, "location_type": "0"},
-  "L26S": {"stop_id": "L26S", "stop_name": "Livonia Av", "stop_lat": 40.664038, "stop_lon": -73.900571, "location_type": "0"},
-  "L27": {"stop_id": "L27", "stop_name": "New Lots Av", "stop_lat": 40.658733, "stop_lon": -73.899232, "location_type": 1},
-  "L27N": {"stop_id": "L27N", "stop_name": "New Lots Av", "stop_lat": 40.658733, "stop_lon": -73.899232, "location_type": "0"},
-  "L27S": {"stop_id": "L27S", "stop_name": "New Lots Av", "stop_lat": 40.658733, "stop_lon": -73.899232, "location_type": "0"},
-  "L28": {"stop_id": "L28", "stop_name": "E 105 St", "stop_lat": 40.650573, "stop_lon": -73.899485, "location_type": 1},
-  "L28N": {"stop_id": "L28N", "stop_name": "E 105 St", "stop_lat": 40.650573, "stop_lon": -73.899485, "location_type": "0"},
-  "L28S": {"stop_id": "L28S", "stop_name": "E 105 St", "stop_lat": 40.650573, "stop_lon": -73.899485, "location_type": "0"},
-  "L29": {"stop_id": "L29", "stop_name": "Canarsie - Rockaway Pkwy", "stop_lat": 40.646654, "stop_lon": -73.90185, "location_type": 1},
-  "L29N": {"stop_id": "L29N", "stop_name": "Canarsie - Rockaway Pkwy", "stop_lat": 40.646654, "stop_lon": -73.90185, "location_type": "0"},
-  "L29S": {"stop_id": "L29S", "stop_name": "Canarsie - Rockaway Pkwy", "stop_lat": 40.646654, "stop_lon": -73.90185, "location_type": "0"},
-  "M01": {"stop_id": "M01", "stop_name": "Middle Village - Metropolitan Av", "stop_lat": 40.711396, "stop_lon": -73.889601, "location_type": 1},
-  "M01N": {"stop_id": "M01N", "stop_name": "Middle Village - Metropolitan Av", "stop_lat": 40.711396, "stop_lon": -73.889601, "location_type": "0"},
-  "M01S": {"stop_id": "M01S", "stop_name": "Middle Village - Metropolitan Av", "stop_lat": 40.711396, "stop_lon": -73.889601, "location_type": "0"},
-  "M04": {"stop_id": "M04", "stop_name": "Fresh Pond Rd", "stop_lat": 40.706186, "stop_lon": -73.895877, "location_type": 1},
-  "M04N": {"stop_id": "M04N", "stop_name": "Fresh Pond Rd", "stop_lat": 40.706186, "stop_lon": -73.895877, "location_type": "0"},
-  "M04S": {"stop_id": "M04S", "stop_name": "Fresh Pond Rd", "stop_lat": 40.706186, "stop_lon": -73.895877, "location_type": "0"},
-  "M05": {"stop_id": "M05", "stop_name": "Forest Av", "stop_lat": 40.704423, "stop_lon": -73.903077, "location_type": 1},
-  "M05N": {"stop_id": "M05N", "stop_name": "Forest Av", "stop_lat": 40.704423, "stop_lon": -73.903077, "location_type": "0"},
-  "M05S": {"stop_id": "M05S", "stop_name": "Forest Av", "stop_lat": 40.704423, "stop_lon": -73.903077, "location_type": "0"},
-  "M06": {"stop_id": "M06", "stop_name": "Seneca Av", "stop_lat": 40.702762, "stop_lon": -73.90774, "location_type": 1},
-  "M06N": {"stop_id": "M06N", "stop_name": "Seneca Av", "stop_lat": 40.702762, "stop_lon": -73.90774, "location_type": "0"},
-  "M06S": {"stop_id": "M06S", "stop_name": "Seneca Av", "stop_lat": 40.702762, "stop_lon": -73.90774, "location_type": "0"},
-  "M08": {"stop_id": "M08", "stop_name": "Myrtle - Wyckoff Avs", "stop_lat": 40.69943, "stop_lon": -73.912385, "location_type": 1},
-  "M08N": {"stop_id": "M08N", "stop_name": "Myrtle - Wyckoff Avs", "stop_lat": 40.69943, "stop_lon": -73.912385, "location_type": "0"},
-  "M08S": {"stop_id": "M08S", "stop_name": "Myrtle - Wyckoff Avs", "stop_lat": 40.69943, "stop_lon": -73.912385, "location_type": "0"},
-  "M09": {"stop_id": "M09", "stop_name": "Knickerbocker Av", "stop_lat": 40.698664, "stop_lon": -73.919711, "location_type": 1},
-  "M09N": {"stop_id": "M09N", "stop_name": "Knickerbocker Av", "stop_lat": 40.698664, "stop_lon": -73.919711, "location_type": "0"},
-  "M09S": {"stop_id": "M09S", "stop_name": "Knickerbocker Av", "stop_lat": 40.698664, "stop_lon": -73.919711, "location_type": "0"},
-  "M10": {"stop_id": "M10", "stop_name": "Central Av", "stop_lat": 40.697857, "stop_lon": -73.927397, "location_type": 1},
-  "M10N": {"stop_id": "M10N", "stop_name": "Central Av", "stop_lat": 40.697857, "stop_lon": -73.927397, "location_type": "0"},
-  "M10S": {"stop_id": "M10S", "stop_name": "Central Av", "stop_lat": 40.697857, "stop_lon": -73.927397, "location_type": "0"},
-  "M11": {"stop_id": "M11", "stop_name": "Myrtle Av", "stop_lat": 40.697207, "stop_lon": -73.935657, "location_type": 1},
-  "M11N": {"stop_id": "M11N", "stop_name": "Myrtle Av", "stop_lat": 40.697207, "stop_lon": -73.935657, "location_type": "0"},
-  "M11S": {"stop_id": "M11S", "stop_name": "Myrtle Av", "stop_lat": 40.697207, "stop_lon": -73.935657, "location_type": "0"},
-  "M12": {"stop_id": "M12", "stop_name": "Flushing Av", "stop_lat": 40.70026, "stop_lon": -73.941126, "location_type": 1},
-  "M12N": {"stop_id": "M12N", "stop_name": "Flushing Av", "stop_lat": 40.70026, "stop_lon": -73.941126, "location_type": "0"},
-  "M12S": {"stop_id": "M12S", "stop_name": "Flushing Av", "stop_lat": 40.70026, "stop_lon": -73.941126, "location_type": "0"},
-  "M13": {"stop_id": "M13", "stop_name": "Lorimer St", "stop_lat": 40.703869, "stop_lon": -73.947408, "location_type": 1},
-  "M13N": {"stop_id": "M13N", "stop_name": "Lorimer St", "stop_lat": 40.703869, "stop_lon": -73.947408, "location_type": "0"},
-  "M13S": {"stop_id": "M13S", "stop_name": "Lorimer St", "stop_lat": 40.703869, "stop_lon": -73.947408, "location_type": "0"},
-  "M14": {"stop_id": "M14", "stop_name": "Hewes St", "stop_lat": 40.70687, "stop_lon": -73.953431, "location_type": 1},
-  "M14N": {"stop_id": "M14N", "stop_name": "Hewes St", "stop_lat": 40.70687, "stop_lon": -73.953431, "location_type": "0"},
-  "M14S": {"stop_id": "M14S", "stop_name": "Hewes St", "stop_lat": 40.70687, "stop_lon": -73.953431, "location_type": "0"},
-  "M16": {"stop_id": "M16", "stop_name": "Marcy Av", "stop_lat": 40.708359, "stop_lon": -73.957757, "location_type": 1},
-  "M16N": {"stop_id": "M16N", "stop_name": "Marcy Av", "stop_lat": 40.708359, "stop_lon": -73.957757, "location_type": "0"},
-  "M16S": {"stop_id": "M16S", "stop_name": "Marcy Av", "stop_lat": 40.708359, "stop_lon": -73.957757, "location_type": "0"},
-  "M18": {"stop_id": "M18", "stop_name": "Essex St", "stop_lat": 40.718315, "stop_lon": -73.987437, "location_type": 1},
-  "M18N": {"stop_id": "M18N", "stop_name": "Essex St", "stop_lat": 40.718315, "stop_lon": -73.987437, "location_type": "0"},
-  "M18S": {"stop_id": "M18S", "stop_name": "Essex St", "stop_lat": 40.718315, "stop_lon": -73.987437, "location_type": "0"},
-  "M19": {"stop_id": "M19", "stop_name": "Bowery", "stop_lat": 40.72028, "stop_lon": -73.993915, "location_type": 1},
-  "M19N": {"stop_id": "M19N", "stop_name": "Bowery", "stop_lat": 40.72028, "stop_lon": -73.993915, "location_type": "0"},
-  "M19S": {"stop_id": "M19S", "stop_name": "Bowery", "stop_lat": 40.72028, "stop_lon": -73.993915, "location_type": "0"},
-  "M20": {"stop_id": "M20", "stop_name": "Canal St", "stop_lat": 40.718092, "stop_lon": -73.999892, "location_type": 1},
-  "M20N": {"stop_id": "M20N", "stop_name": "Canal St", "stop_lat": 40.718092, "stop_lon": -73.999892, "location_type": "0"},
-  "M20S": {"stop_id": "M20S", "stop_name": "Canal St", "stop_lat": 40.718092, "stop_lon": -73.999892, "location_type": "0"},
-  "M21": {"stop_id": "M21", "stop_name": "Chambers St", "stop_lat": 40.713243, "stop_lon": -74.003401, "location_type": 1},
-  "M21N": {"stop_id": "M21N", "stop_name": "Chambers St", "stop_lat": 40.713243, "stop_lon": -74.003401, "location_type": "0"},
-  "M21S": {"stop_id": "M21S", "stop_name": "Chambers St", "stop_lat": 40.713243, "stop_lon": -74.003401, "location_type": "0"},
-  "M22": {"stop_id": "M22", "stop_name": "Fulton St", "stop_lat": 40.710374, "stop_lon": -74.007582, "location_type": 1},
-  "M22N": {"stop_id": "M22N", "stop_name": "Fulton St", "stop_lat": 40.710374, "stop_lon": -74.007582, "location_type": "0"},
-  "M22S": {"stop_id": "M22S", "stop_name": "Fulton St", "stop_lat": 40.710374, "stop_lon": -74.007582, "location_type": "0"},
-  "M23": {"stop_id": "M23", "stop_name": "Broad St", "stop_lat": 40.706476, "stop_lon": -74.011056, "location_type": 1},
-  "M23N": {"stop_id": "M23N", "stop_name": "Broad St", "stop_lat": 40.706476, "stop_lon": -74.011056, "location_type": "0"},
-  "M23S": {"stop_id": "M23S", "stop_name": "Broad St", "stop_lat": 40.706476, "stop_lon": -74.011056, "location_type": "0"},
-  "N02": {"stop_id": "N02", "stop_name": "8 Av", "stop_lat": 40.635064, "stop_lon": -74.011719, "location_type": 1},
-  "N02N": {"stop_id": "N02N", "stop_name": "8 Av", "stop_lat": 40.635064, "stop_lon": -74.011719, "location_type": "0"},
-  "N02S": {"stop_id": "N02S", "stop_name": "8 Av", "stop_lat": 40.635064, "stop_lon": -74.011719, "location_type": "0"},
-  "N03": {"stop_id": "N03", "stop_name": "Fort Hamilton Pkwy", "stop_lat": 40.631386, "stop_lon": -74.005351, "location_type": 1},
-  "N03N": {"stop_id": "N03N", "stop_name": "Fort Hamilton Pkwy", "stop_lat": 40.631386, "stop_lon": -74.005351, "location_type": "0"},
-  "N03S": {"stop_id": "N03S", "stop_name": "Fort Hamilton Pkwy", "stop_lat": 40.631386, "stop_lon": -74.005351, "location_type": "0"},
-  "N04": {"stop_id": "N04", "stop_name": "New Utrecht Av", "stop_lat": 40.624842, "stop_lon": -73.996353, "location_type": 1},
-  "N04N": {"stop_id": "N04N", "stop_name": "New Utrecht Av", "stop_lat": 40.624842, "stop_lon": -73.996353, "location_type": "0"},
-  "N04S": {"stop_id": "N04S", "stop_name": "New Utrecht Av", "stop_lat": 40.624842, "stop_lon": -73.996353, "location_type": "0"},
-  "N05": {"stop_id": "N05", "stop_name": "18 Av", "stop_lat": 40.620671, "stop_lon": -73.990414, "location_type": 1},
-  "N05N": {"stop_id": "N05N", "stop_name": "18 Av", "stop_lat": 40.620671, "stop_lon": -73.990414, "location_type": "0"},
-  "N05S": {"stop_id": "N05S", "stop_name": "18 Av", "stop_lat": 40.620671, "stop_lon": -73.990414, "location_type": "0"},
-  "N06": {"stop_id": "N06", "stop_name": "20 Av", "stop_lat": 40.61741, "stop_lon": -73.985026, "location_type": 1},
-  "N06N": {"stop_id": "N06N", "stop_name": "20 Av", "stop_lat": 40.61741, "stop_lon": -73.985026, "location_type": "0"},
-  "N06S": {"stop_id": "N06S", "stop_name": "20 Av", "stop_lat": 40.61741, "stop_lon": -73.985026, "location_type": "0"},
-  "N07": {"stop_id": "N07", "stop_name": "Bay Pkwy", "stop_lat": 40.611815, "stop_lon": -73.981848, "location_type": 1},
-  "N07N": {"stop_id": "N07N", "stop_name": "Bay Pkwy", "stop_lat": 40.611815, "stop_lon": -73.981848, "location_type": "0"},
-  "N07S": {"stop_id": "N07S", "stop_name": "Bay Pkwy", "stop_lat": 40.611815, "stop_lon": -73.981848, "location_type": "0"},
-  "N08": {"stop_id": "N08", "stop_name": "Kings Hwy", "stop_lat": 40.603923, "stop_lon": -73.980353, "location_type": 1},
-  "N08N": {"stop_id": "N08N", "stop_name": "Kings Hwy", "stop_lat": 40.603923, "stop_lon": -73.980353, "location_type": "0"},
-  "N08S": {"stop_id": "N08S", "stop_name": "Kings Hwy", "stop_lat": 40.603923, "stop_lon": -73.980353, "location_type": "0"},
-  "N09": {"stop_id": "N09", "stop_name": "Avenue U", "stop_lat": 40.597473, "stop_lon": -73.979137, "location_type": 1},
-  "N09N": {"stop_id": "N09N", "stop_name": "Avenue U", "stop_lat": 40.597473, "stop_lon": -73.979137, "location_type": "0"},
-  "N09S": {"stop_id": "N09S", "stop_name": "Avenue U", "stop_lat": 40.597473, "stop_lon": -73.979137, "location_type": "0"},
-  "N10": {"stop_id": "N10", "stop_name": "86 St", "stop_lat": 40.592721, "stop_lon": -73.97823, "location_type": 1},
-  "N10N": {"stop_id": "N10N", "stop_name": "86 St", "stop_lat": 40.592721, "stop_lon": -73.97823, "location_type": "0"},
-  "N10S": {"stop_id": "N10S", "stop_name": "86 St", "stop_lat": 40.592721, "stop_lon": -73.97823, "location_type": "0"},
-  "N12": {"stop_id": "N12", "stop_name": "S.B. Coney Island", "stop_lat": 40.577422, "stop_lon": -73.981233, "location_type": 1},
-  "N12N": {"stop_id": "N12N", "stop_name": "S.B. Coney Island", "stop_lat": 40.577422, "stop_lon": -73.981233, "location_type": "0"},
-  "N12S": {"stop_id": "N12S", "stop_name": "S.B. Coney Island", "stop_lat": 40.577422, "stop_lon": -73.981233, "location_type": "0"},
-  "Q01": {"stop_id": "Q01", "stop_name": "Canal St", "stop_lat": 40.718383, "stop_lon": -74.00046, "location_type": 1},
-  "Q01N": {"stop_id": "Q01N", "stop_name": "Canal St", "stop_lat": 40.718383, "stop_lon": -74.00046, "location_type": "0"},
-  "Q01S": {"stop_id": "Q01S", "stop_name": "Canal St", "stop_lat": 40.718383, "stop_lon": -74.00046, "location_type": "0"},
-  "Q03": {"stop_id": "Q03", "stop_name": "72 St", "stop_lat": 40.768799, "stop_lon": -73.958424, "location_type": 1},
-  "Q03N": {"stop_id": "Q03N", "stop_name": "72 St", "stop_lat": 40.768799, "stop_lon": -73.958424, "location_type": "0"},
-  "Q03S": {"stop_id": "Q03S", "stop_name": "72 St", "stop_lat": 40.768799, "stop_lon": -73.958424, "location_type": "0"},
-  "Q04": {"stop_id": "Q04", "stop_name": "86 St", "stop_lat": 40.777891, "stop_lon": -73.951787, "location_type": 1},
-  "Q04N": {"stop_id": "Q04N", "stop_name": "86 St", "stop_lat": 40.777891, "stop_lon": -73.951787, "location_type": "0"},
-  "Q04S": {"stop_id": "Q04S", "stop_name": "86 St", "stop_lat": 40.777891, "stop_lon": -73.951787, "location_type": "0"},
-  "Q05": {"stop_id": "Q05", "stop_name": "96 St", "stop_lat": 40.784318, "stop_lon": -73.947152, "location_type": 1},
-  "Q05N": {"stop_id": "Q05N", "stop_name": "96 St", "stop_lat": 40.784318, "stop_lon": -73.947152, "location_type": "0"},
-  "Q05S": {"stop_id": "Q05S", "stop_name": "96 St", "stop_lat": 40.784318, "stop_lon": -73.947152, "location_type": "0"},
-  "R01": {"stop_id": "R01", "stop_name": "Astoria - Ditmars Blvd", "stop_lat": 40.775036, "stop_lon": -73.912034, "location_type": 1},
-  "R01N": {"stop_id": "R01N", "stop_name": "Astoria - Ditmars Blvd", "stop_lat": 40.775036, "stop_lon": -73.912034, "location_type": "0"},
-  "R01S": {"stop_id": "R01S", "stop_name": "Astoria - Ditmars Blvd", "stop_lat": 40.775036, "stop_lon": -73.912034, "location_type": "0"},
-  "R03": {"stop_id": "R03", "stop_name": "Astoria Blvd", "stop_lat": 40.770258, "stop_lon": -73.917843, "location_type": 1},
-  "R03N": {"stop_id": "R03N", "stop_name": "Astoria Blvd", "stop_lat": 40.770258, "stop_lon": -73.917843, "location_type": "0"},
-  "R03S": {"stop_id": "R03S", "stop_name": "Astoria Blvd", "stop_lat": 40.770258, "stop_lon": -73.917843, "location_type": "0"},
-  "R04": {"stop_id": "R04", "stop_name": "30 Av", "stop_lat": 40.766779, "stop_lon": -73.921479, "location_type": 1},
-  "R04N": {"stop_id": "R04N", "stop_name": "30 Av", "stop_lat": 40.766779, "stop_lon": -73.921479, "location_type": "0"},
-  "R04S": {"stop_id": "R04S", "stop_name": "30 Av", "stop_lat": 40.766779, "stop_lon": -73.921479, "location_type": "0"},
-  "R05": {"stop_id": "R05", "stop_name": "Broadway", "stop_lat": 40.76182, "stop_lon": -73.925508, "location_type": 1},
-  "R05N": {"stop_id": "R05N", "stop_name": "Broadway", "stop_lat": 40.76182, "stop_lon": -73.925508, "location_type": "0"},
-  "R05S": {"stop_id": "R05S", "stop_name": "Broadway", "stop_lat": 40.76182, "stop_lon": -73.925508, "location_type": "0"},
-  "R06": {"stop_id": "R06", "stop_name": "36 Av", "stop_lat": 40.756804, "stop_lon": -73.929575, "location_type": 1},
-  "R06N": {"stop_id": "R06N", "stop_name": "36 Av", "stop_lat": 40.756804, "stop_lon": -73.929575, "location_type": "0"},
-  "R06S": {"stop_id": "R06S", "stop_name": "36 Av", "stop_lat": 40.756804, "stop_lon": -73.929575, "location_type": "0"},
-  "R08": {"stop_id": "R08", "stop_name": "39 Av", "stop_lat": 40.752882, "stop_lon": -73.932755, "location_type": 1},
-  "R08N": {"stop_id": "R08N", "stop_name": "39 Av", "stop_lat": 40.752882, "stop_lon": -73.932755, "location_type": "0"},
-  "R08S": {"stop_id": "R08S", "stop_name": "39 Av", "stop_lat": 40.752882, "stop_lon": -73.932755, "location_type": "0"},
-  "R09": {"stop_id": "R09", "stop_name": "Queensboro Plaza", "stop_lat": 40.750582, "stop_lon": -73.940202, "location_type": 1},
-  "R09N": {"stop_id": "R09N", "stop_name": "Queensboro Plaza", "stop_lat": 40.750582, "stop_lon": -73.940202, "location_type": "0"},
-  "R09S": {"stop_id": "R09S", "stop_name": "Queensboro Plaza", "stop_lat": 40.750582, "stop_lon": -73.940202, "location_type": "0"},
-  "R11": {"stop_id": "R11", "stop_name": "Lexington Av/59 St", "stop_lat": 40.76266, "stop_lon": -73.967258, "location_type": 1},
-  "R11N": {"stop_id": "R11N", "stop_name": "Lexington Av/59 St", "stop_lat": 40.76266, "stop_lon": -73.967258, "location_type": "0"},
-  "R11S": {"stop_id": "R11S", "stop_name": "Lexington Av/59 St", "stop_lat": 40.76266, "stop_lon": -73.967258, "location_type": "0"},
-  "R13": {"stop_id": "R13", "stop_name": "5 Av/59 St", "stop_lat": 40.764811, "stop_lon": -73.973347, "location_type": 1},
-  "R13N": {"stop_id": "R13N", "stop_name": "5 Av/59 St", "stop_lat": 40.764811, "stop_lon": -73.973347, "location_type": "0"},
-  "R13S": {"stop_id": "R13S", "stop_name": "5 Av/59 St", "stop_lat": 40.764811, "stop_lon": -73.973347, "location_type": "0"},
-  "R14": {"stop_id": "R14", "stop_name": "57 St - 7 Av", "stop_lat": 40.764664, "stop_lon": -73.980658, "location_type": 1},
-  "R14N": {"stop_id": "R14N", "stop_name": "57 St - 7 Av", "stop_lat": 40.764664, "stop_lon": -73.980658, "location_type": "0"},
-  "R14S": {"stop_id": "R14S", "stop_name": "57 St - 7 Av", "stop_lat": 40.764664, "stop_lon": -73.980658, "location_type": "0"},
-  "R15": {"stop_id": "R15", "stop_name": "49 St", "stop_lat": 40.759901, "stop_lon": -73.984139, "location_type": 1},
-  "R15N": {"stop_id": "R15N", "stop_name": "49 St", "stop_lat": 40.759901, "stop_lon": -73.984139, "location_type": "0"},
-  "R15S": {"stop_id": "R15S", "stop_name": "49 St", "stop_lat": 40.759901, "stop_lon": -73.984139, "location_type": "0"},
-  "R16": {"stop_id": "R16", "stop_name": "Times Sq - 42 St", "stop_lat": 40.754672, "stop_lon": -73.986754, "location_type": 1},
-  "R16N": {"stop_id": "R16N", "stop_name": "Times Sq - 42 St", "stop_lat": 40.754672, "stop_lon": -73.986754, "location_type": "0"},
-  "R16S": {"stop_id": "R16S", "stop_name": "Times Sq - 42 St", "stop_lat": 40.754672, "stop_lon": -73.986754, "location_type": "0"},
-  "R17": {"stop_id": "R17", "stop_name": "34 St - Herald Sq", "stop_lat": 40.749567, "stop_lon": -73.98795, "location_type": 1},
-  "R17N": {"stop_id": "R17N", "stop_name": "34 St - Herald Sq", "stop_lat": 40.749567, "stop_lon": -73.98795, "location_type": "0"},
-  "R17S": {"stop_id": "R17S", "stop_name": "34 St - Herald Sq", "stop_lat": 40.749567, "stop_lon": -73.98795, "location_type": "0"},
-  "R18": {"stop_id": "R18", "stop_name": "28 St", "stop_lat": 40.745494, "stop_lon": -73.988691, "location_type": 1},
-  "R18N": {"stop_id": "R18N", "stop_name": "28 St", "stop_lat": 40.745494, "stop_lon": -73.988691, "location_type": "0"},
-  "R18S": {"stop_id": "R18S", "stop_name": "28 St", "stop_lat": 40.745494, "stop_lon": -73.988691, "location_type": "0"},
-  "R19": {"stop_id": "R19", "stop_name": "23 St", "stop_lat": 40.741303, "stop_lon": -73.989344, "location_type": 1},
-  "R19N": {"stop_id": "R19N", "stop_name": "23 St", "stop_lat": 40.741303, "stop_lon": -73.989344, "location_type": "0"},
-  "R19S": {"stop_id": "R19S", "stop_name": "23 St", "stop_lat": 40.741303, "stop_lon": -73.989344, "location_type": "0"},
-  "R20": {"stop_id": "R20", "stop_name": "14 St - Union Sq", "stop_lat": 40.735736, "stop_lon": -73.990568, "location_type": 1},
-  "R20N": {"stop_id": "R20N", "stop_name": "14 St - Union Sq", "stop_lat": 40.735736, "stop_lon": -73.990568, "location_type": "0"},
-  "R20S": {"stop_id": "R20S", "stop_name": "14 St - Union Sq", "stop_lat": 40.735736, "stop_lon": -73.990568, "location_type": "0"},
-  "R21": {"stop_id": "R21", "stop_name": "8 St - NYU", "stop_lat": 40.730328, "stop_lon": -73.992629, "location_type": 1},
-  "R21N": {"stop_id": "R21N", "stop_name": "8 St - NYU", "stop_lat": 40.730328, "stop_lon": -73.992629, "location_type": "0"},
-  "R21S": {"stop_id": "R21S", "stop_name": "8 St - NYU", "stop_lat": 40.730328, "stop_lon": -73.992629, "location_type": "0"},
-  "R22": {"stop_id": "R22", "stop_name": "Prince St", "stop_lat": 40.724329, "stop_lon": -73.997702, "location_type": 1},
-  "R22N": {"stop_id": "R22N", "stop_name": "Prince St", "stop_lat": 40.724329, "stop_lon": -73.997702, "location_type": "0"},
-  "R22S": {"stop_id": "R22S", "stop_name": "Prince St", "stop_lat": 40.724329, "stop_lon": -73.997702, "location_type": "0"},
-  "R23": {"stop_id": "R23", "stop_name": "Canal St", "stop_lat": 40.719527, "stop_lon": -74.001775, "location_type": 1},
-  "R23N": {"stop_id": "R23N", "stop_name": "Canal St", "stop_lat": 40.719527, "stop_lon": -74.001775, "location_type": "0"},
-  "R23S": {"stop_id": "R23S", "stop_name": "Canal St", "stop_lat": 40.719527, "stop_lon": -74.001775, "location_type": "0"},
-  "R24": {"stop_id": "R24", "stop_name": "City Hall", "stop_lat": 40.713282, "stop_lon": -74.006978, "location_type": 1},
-  "R24N": {"stop_id": "R24N", "stop_name": "City Hall", "stop_lat": 40.713282, "stop_lon": -74.006978, "location_type": "0"},
-  "R24S": {"stop_id": "R24S", "stop_name": "City Hall", "stop_lat": 40.713282, "stop_lon": -74.006978, "location_type": "0"},
-  "R25": {"stop_id": "R25", "stop_name": "Cortlandt St", "stop_lat": 40.710668, "stop_lon": -74.011029, "location_type": 1},
-  "R25N": {"stop_id": "R25N", "stop_name": "Cortlandt St", "stop_lat": 40.710668, "stop_lon": -74.011029, "location_type": "0"},
-  "R25S": {"stop_id": "R25S", "stop_name": "Cortlandt St", "stop_lat": 40.710668, "stop_lon": -74.011029, "location_type": "0"},
-  "R26": {"stop_id": "R26", "stop_name": "Rector St", "stop_lat": 40.70722, "stop_lon": -74.013342, "location_type": 1},
-  "R26N": {"stop_id": "R26N", "stop_name": "Rector St", "stop_lat": 40.70722, "stop_lon": -74.013342, "location_type": "0"},
-  "R26S": {"stop_id": "R26S", "stop_name": "Rector St", "stop_lat": 40.70722, "stop_lon": -74.013342, "location_type": "0"},
-  "R27": {"stop_id": "R27", "stop_name": "Whitehall St", "stop_lat": 40.703087, "stop_lon": -74.012994, "location_type": 1},
-  "R27N": {"stop_id": "R27N", "stop_name": "Whitehall St", "stop_lat": 40.703087, "stop_lon": -74.012994, "location_type": "0"},
-  "R27S": {"stop_id": "R27S", "stop_name": "Whitehall St", "stop_lat": 40.703087, "stop_lon": -74.012994, "location_type": "0"},
-  "R28": {"stop_id": "R28", "stop_name": "Court St", "stop_lat": 40.6941, "stop_lon": -73.991777, "location_type": 1},
-  "R28N": {"stop_id": "R28N", "stop_name": "Court St", "stop_lat": 40.6941, "stop_lon": -73.991777, "location_type": "0"},
-  "R28S": {"stop_id": "R28S", "stop_name": "Court St", "stop_lat": 40.6941, "stop_lon": -73.991777, "location_type": "0"},
-  "R29": {"stop_id": "R29", "stop_name": "Jay St - MetroTech", "stop_lat": 40.69218, "stop_lon": -73.985942, "location_type": 1},
-  "R29N": {"stop_id": "R29N", "stop_name": "Jay St - MetroTech", "stop_lat": 40.69218, "stop_lon": -73.985942, "location_type": "0"},
-  "R29S": {"stop_id": "R29S", "stop_name": "Jay St - MetroTech", "stop_lat": 40.69218, "stop_lon": -73.985942, "location_type": "0"},
-  "R30": {"stop_id": "R30", "stop_name": "DeKalb Av", "stop_lat": 40.690635, "stop_lon": -73.981824, "location_type": 1},
-  "R30N": {"stop_id": "R30N", "stop_name": "DeKalb Av", "stop_lat": 40.690635, "stop_lon": -73.981824, "location_type": "0"},
-  "R30S": {"stop_id": "R30S", "stop_name": "DeKalb Av", "stop_lat": 40.690635, "stop_lon": -73.981824, "location_type": "0"},
-  "R31": {"stop_id": "R31", "stop_name": "Atlantic Av - Barclays Ctr", "stop_lat": 40.683666, "stop_lon": -73.97881, "location_type": 1},
-  "R31N": {"stop_id": "R31N", "stop_name": "Atlantic Av - Barclays Ctr", "stop_lat": 40.683666, "stop_lon": -73.97881, "location_type": "0"},
-  "R31S": {"stop_id": "R31S", "stop_name": "Atlantic Av - Barclays Ctr", "stop_lat": 40.683666, "stop_lon": -73.97881, "location_type": "0"},
-  "R32": {"stop_id": "R32", "stop_name": "Union St", "stop_lat": 40.677316, "stop_lon": -73.98311, "location_type": 1},
-  "R32N": {"stop_id": "R32N", "stop_name": "Union St", "stop_lat": 40.677316, "stop_lon": -73.98311, "location_type": "0"},
-  "R32S": {"stop_id": "R32S", "stop_name": "Union St", "stop_lat": 40.677316, "stop_lon": -73.98311, "location_type": "0"},
-  "R33": {"stop_id": "R33", "stop_name": "9 St", "stop_lat": 40.670847, "stop_lon": -73.988302, "location_type": 1},
-  "R33N": {"stop_id": "R33N", "stop_name": "9 St", "stop_lat": 40.670847, "stop_lon": -73.988302, "location_type": "0"},
-  "R33S": {"stop_id": "R33S", "stop_name": "9 St", "stop_lat": 40.670847, "stop_lon": -73.988302, "location_type": "0"},
-  "R34": {"stop_id": "R34", "stop_name": "Prospect Av", "stop_lat": 40.665414, "stop_lon": -73.992872, "location_type": 1},
-  "R34N": {"stop_id": "R34N", "stop_name": "Prospect Av", "stop_lat": 40.665414, "stop_lon": -73.992872, "location_type": "0"},
-  "R34S": {"stop_id": "R34S", "stop_name": "Prospect Av", "stop_lat": 40.665414, "stop_lon": -73.992872, "location_type": "0"},
-  "R35": {"stop_id": "R35", "stop_name": "25 St", "stop_lat": 40.660397, "stop_lon": -73.998091, "location_type": 1},
-  "R35N": {"stop_id": "R35N", "stop_name": "25 St", "stop_lat": 40.660397, "stop_lon": -73.998091, "location_type": "0"},
-  "R35S": {"stop_id": "R35S", "stop_name": "25 St", "stop_lat": 40.660397, "stop_lon": -73.998091, "location_type": "0"},
-  "R36": {"stop_id": "R36", "stop_name": "36 St", "stop_lat": 40.655144, "stop_lon": -74.003549, "location_type": 1},
-  "R36N": {"stop_id": "R36N", "stop_name": "36 St", "stop_lat": 40.655144, "stop_lon": -74.003549, "location_type": "0"},
-  "R36S": {"stop_id": "R36S", "stop_name": "36 St", "stop_lat": 40.655144, "stop_lon": -74.003549, "location_type": "0"},
-  "R39": {"stop_id": "R39", "stop_name": "45 St", "stop_lat": 40.648939, "stop_lon": -74.010006, "location_type": 1},
-  "R39N": {"stop_id": "R39N", "stop_name": "45 St", "stop_lat": 40.648939, "stop_lon": -74.010006, "location_type": "0"},
-  "R39S": {"stop_id": "R39S", "stop_name": "45 St", "stop_lat": 40.648939, "stop_lon": -74.010006, "location_type": "0"},
-  "R40": {"stop_id": "R40", "stop_name": "53 St", "stop_lat": 40.645069, "stop_lon": -74.014034, "location_type": 1},
-  "R40N": {"stop_id": "R40N", "stop_name": "53 St", "stop_lat": 40.645069, "stop_lon": -74.014034, "location_type": "0"},
-  "R40S": {"stop_id": "R40S", "stop_name": "53 St", "stop_lat": 40.645069, "stop_lon": -74.014034, "location_type": "0"},
-  "R41": {"stop_id": "R41", "stop_name": "59 St", "stop_lat": 40.641362, "stop_lon": -74.017881, "location_type": 1},
-  "R41N": {"stop_id": "R41N", "stop_name": "59 St", "stop_lat": 40.641362, "stop_lon": -74.017881, "location_type": "0"},
-  "R41S": {"stop_id": "R41S", "stop_name": "59 St", "stop_lat": 40.641362, "stop_lon": -74.017881, "location_type": "0"},
-  "R42": {"stop_id": "R42", "stop_name": "Bay Ridge Av", "stop_lat": 40.634967, "stop_lon": -74.023377, "location_type": 1},
-  "R42N": {"stop_id": "R42N", "stop_name": "Bay Ridge Av", "stop_lat": 40.634967, "stop_lon": -74.023377, "location_type": "0"},
-  "R42S": {"stop_id": "R42S", "stop_name": "Bay Ridge Av", "stop_lat": 40.634967, "stop_lon": -74.023377, "location_type": "0"},
-  "R43": {"stop_id": "R43", "stop_name": "77 St", "stop_lat": 40.629742, "stop_lon": -74.02551, "location_type": 1},
-  "R43N": {"stop_id": "R43N", "stop_name": "77 St", "stop_lat": 40.629742, "stop_lon": -74.02551, "location_type": "0"},
-  "R43S": {"stop_id": "R43S", "stop_name": "77 St", "stop_lat": 40.629742, "stop_lon": -74.02551, "location_type": "0"},
-  "R44": {"stop_id": "R44", "stop_name": "86 St", "stop_lat": 40.622687, "stop_lon": -74.028398, "location_type": 1},
-  "R44N": {"stop_id": "R44N", "stop_name": "86 St", "stop_lat": 40.622687, "stop_lon": -74.028398, "location_type": "0"},
-  "R44S": {"stop_id": "R44S", "stop_name": "86 St", "stop_lat": 40.622687, "stop_lon": -74.028398, "location_type": "0"},
-  "R45": {"stop_id": "R45", "stop_name": "Bay Ridge - 95 St", "stop_lat": 40.616622, "stop_lon": -74.030876, "location_type": 1},
-  "R45N": {"stop_id": "R45N", "stop_name": "Bay Ridge - 95 St", "stop_lat": 40.616622, "stop_lon": -74.030876, "location_type": "0"},
-  "R45S": {"stop_id": "R45S", "stop_name": "Bay Ridge - 95 St", "stop_lat": 40.616622, "stop_lon": -74.030876, "location_type": "0"},
-  "R60": {"stop_id": "R60", "stop_name": "Bay Ridge - 95 St", "stop_lat": 40.616622, "stop_lon": -74.030876, "location_type": 1},
-  "R60N": {"stop_id": "R60N", "stop_name": "Bay Ridge - 95 St", "stop_lat": 40.616622, "stop_lon": -74.030876, "location_type": "0"},
-  "R60S": {"stop_id": "R60S", "stop_name": "Bay Ridge - 95 St", "stop_lat": 40.616622, "stop_lon": -74.030876, "location_type": "0"},
-  "S01": {"stop_id": "S01", "stop_name": "Franklin Av", "stop_lat": 40.680596, "stop_lon": -73.955827, "location_type": 1},
-  "S01N": {"stop_id": "S01N", "stop_name": "Franklin Av", "stop_lat": 40.680596, "stop_lon": -73.955827, "location_type": "0"},
-  "S01S": {"stop_id": "S01S", "stop_name": "Franklin Av", "stop_lat": 40.680596, "stop_lon": -73.955827, "location_type": "0"},
-  "S03": {"stop_id": "S03", "stop_name": "Park Pl", "stop_lat": 40.674772, "stop_lon": -73.957624, "location_type": 1},
-  "S03N": {"stop_id": "S03N", "stop_name": "Park Pl", "stop_lat": 40.674772, "stop_lon": -73.957624, "location_type": "0"},
-  "S03S": {"stop_id": "S03S", "stop_name": "Park Pl", "stop_lat": 40.674772, "stop_lon": -73.957624, "location_type": "0"},
-  "S04": {"stop_id": "S04", "stop_name": "Botanic Garden", "stop_lat": 40.670343, "stop_lon": -73.959245, "location_type": 1},
-  "S04N": {"stop_id": "S04N", "stop_name": "Botanic Garden", "stop_lat": 40.670343, "stop_lon": -73.959245, "location_type": "0"},
-  "S04S": {"stop_id": "S04S", "stop_name": "Botanic Garden", "stop_lat": 40.670343, "stop_lon": -73.959245, "location_type": "0"},
-  "S09": {"stop_id": "S09", "stop_name": "Tottenville", "stop_lat": 40.512764, "stop_lon": -74.251961, "location_type": 1},
-  "S09N": {"stop_id": "S09N", "stop_name": "Tottenville", "stop_lat": 40.512764, "stop_lon": -74.251961, "location_type": "0"},
-  "S09S": {"stop_id": "S09S", "stop_name": "Tottenville", "stop_lat": 40.512764, "stop_lon": -74.251961, "location_type": "0"},
-  "S10": {"stop_id": "S10", "stop_name": "Atlantic", "stop_lat": 40.515401, "stop_lon": -74.245689, "location_type": 1},
-  "S10N": {"stop_id": "S10N", "stop_name": "Atlantic", "stop_lat": 40.515401, "stop_lon": -74.245689, "location_type": "0"},
-  "S10S": {"stop_id": "S10S", "stop_name": "Atlantic", "stop_lat": 40.515401, "stop_lon": -74.245689, "location_type": "0"},
-  "S11": {"stop_id": "S11", "stop_name": "Arthur Kill", "stop_lat": 40.516578, "stop_lon": -74.242096, "location_type": 1},
-  "S11N": {"stop_id": "S11N", "stop_name": "Arthur Kill", "stop_lat": 40.516578, "stop_lon": -74.242096, "location_type": "0"},
-  "S11S": {"stop_id": "S11S", "stop_name": "Arthur Kill", "stop_lat": 40.516578, "stop_lon": -74.242096, "location_type": "0"},
-  "S12": {"stop_id": "S12", "stop_name": "Nassau", "stop_lat": 40.517812, "stop_lon": -74.238373, "location_type": 1},
-  "S12N": {"stop_id": "S12N", "stop_name": "Nassau", "stop_lat": 40.517812, "stop_lon": -74.238373, "location_type": "0"},
-  "S12S": {"stop_id": "S12S", "stop_name": "Nassau", "stop_lat": 40.517812, "stop_lon": -74.238373, "location_type": "0"},
-  "S13": {"stop_id": "S13", "stop_name": "Richmond Valley", "stop_lat": 40.519631, "stop_lon": -74.229141, "location_type": 1},
-  "S13N": {"stop_id": "S13N", "stop_name": "Richmond Valley", "stop_lat": 40.519631, "stop_lon": -74.229141, "location_type": "0"},
-  "S13S": {"stop_id": "S13S", "stop_name": "Richmond Valley", "stop_lat": 40.519631, "stop_lon": -74.229141, "location_type": "0"},
-  "S14": {"stop_id": "S14", "stop_name": "Pleasant Plains", "stop_lat": 40.52241, "stop_lon": -74.217847, "location_type": 1},
-  "S14N": {"stop_id": "S14N", "stop_name": "Pleasant Plains", "stop_lat": 40.52241, "stop_lon": -74.217847, "location_type": "0"},
-  "S14S": {"stop_id": "S14S", "stop_name": "Pleasant Plains", "stop_lat": 40.52241, "stop_lon": -74.217847, "location_type": "0"},
-  "S15": {"stop_id": "S15", "stop_name": "Prince's Bay", "stop_lat": 40.525507, "stop_lon": -74.200064, "location_type": 1},
-  "S15N": {"stop_id": "S15N", "stop_name": "Prince's Bay", "stop_lat": 40.525507, "stop_lon": -74.200064, "location_type": "0"},
-  "S15S": {"stop_id": "S15S", "stop_name": "Prince's Bay", "stop_lat": 40.525507, "stop_lon": -74.200064, "location_type": "0"},
-  "S16": {"stop_id": "S16", "stop_name": "Huguenot", "stop_lat": 40.533674, "stop_lon": -74.191794, "location_type": 1},
-  "S16N": {"stop_id": "S16N", "stop_name": "Huguenot", "stop_lat": 40.533674, "stop_lon": -74.191794, "location_type": "0"},
-  "S16S": {"stop_id": "S16S", "stop_name": "Huguenot", "stop_lat": 40.533674, "stop_lon": -74.191794, "location_type": "0"},
-  "S17": {"stop_id": "S17", "stop_name": "Annadale", "stop_lat": 40.54046, "stop_lon": -74.178217, "location_type": 1},
-  "S17N": {"stop_id": "S17N", "stop_name": "Annadale", "stop_lat": 40.54046, "stop_lon": -74.178217, "location_type": "0"},
-  "S17S": {"stop_id": "S17S", "stop_name": "Annadale", "stop_lat": 40.54046, "stop_lon": -74.178217, "location_type": "0"},
-  "S18": {"stop_id": "S18", "stop_name": "Eltingville", "stop_lat": 40.544601, "stop_lon": -74.16457, "location_type": 1},
-  "S18N": {"stop_id": "S18N", "stop_name": "Eltingville", "stop_lat": 40.544601, "stop_lon": -74.16457, "location_type": "0"},
-  "S18S": {"stop_id": "S18S", "stop_name": "Eltingville", "stop_lat": 40.544601, "stop_lon": -74.16457, "location_type": "0"},
-  "S19": {"stop_id": "S19", "stop_name": "Great Kills", "stop_lat": 40.551231, "stop_lon": -74.151399, "location_type": 1},
-  "S19N": {"stop_id": "S19N", "stop_name": "Great Kills", "stop_lat": 40.551231, "stop_lon": -74.151399, "location_type": "0"},
-  "S19S": {"stop_id": "S19S", "stop_name": "Great Kills", "stop_lat": 40.551231, "stop_lon": -74.151399, "location_type": "0"},
-  "S20": {"stop_id": "S20", "stop_name": "Bay Terrace", "stop_lat": 40.5564, "stop_lon": -74.136907, "location_type": 1},
-  "S20N": {"stop_id": "S20N", "stop_name": "Bay Terrace", "stop_lat": 40.5564, "stop_lon": -74.136907, "location_type": "0"},
-  "S20S": {"stop_id": "S20S", "stop_name": "Bay Terrace", "stop_lat": 40.5564, "stop_lon": -74.136907, "location_type": "0"},
-  "S21": {"stop_id": "S21", "stop_name": "Oakwood Heights", "stop_lat": 40.56511, "stop_lon": -74.12632, "location_type": 1},
-  "S21N": {"stop_id": "S21N", "stop_name": "Oakwood Heights", "stop_lat": 40.56511, "stop_lon": -74.12632, "location_type": "0"},
-  "S21S": {"stop_id": "S21S", "stop_name": "Oakwood Heights", "stop_lat": 40.56511, "stop_lon": -74.12632, "location_type": "0"},
-  "S22": {"stop_id": "S22", "stop_name": "New Dorp", "stop_lat": 40.57348, "stop_lon": -74.11721, "location_type": 1},
-  "S22N": {"stop_id": "S22N", "stop_name": "New Dorp", "stop_lat": 40.57348, "stop_lon": -74.11721, "location_type": "0"},
-  "S22S": {"stop_id": "S22S", "stop_name": "New Dorp", "stop_lat": 40.57348, "stop_lon": -74.11721, "location_type": "0"},
-  "S23": {"stop_id": "S23", "stop_name": "Grant City", "stop_lat": 40.578965, "stop_lon": -74.109704, "location_type": 1},
-  "S23N": {"stop_id": "S23N", "stop_name": "Grant City", "stop_lat": 40.578965, "stop_lon": -74.109704, "location_type": "0"},
-  "S23S": {"stop_id": "S23S", "stop_name": "Grant City", "stop_lat": 40.578965, "stop_lon": -74.109704, "location_type": "0"},
-  "S24": {"stop_id": "S24", "stop_name": "Jefferson Av", "stop_lat": 40.583591, "stop_lon": -74.103338, "location_type": 1},
-  "S24N": {"stop_id": "S24N", "stop_name": "Jefferson Av", "stop_lat": 40.583591, "stop_lon": -74.103338, "location_type": "0"},
-  "S24S": {"stop_id": "S24S", "stop_name": "Jefferson Av", "stop_lat": 40.583591, "stop_lon": -74.103338, "location_type": "0"},
-  "S25": {"stop_id": "S25", "stop_name": "Dongan Hills", "stop_lat": 40.588849, "stop_lon": -74.09609, "location_type": 1},
-  "S25N": {"stop_id": "S25N", "stop_name": "Dongan Hills", "stop_lat": 40.588849, "stop_lon": -74.09609, "location_type": "0"},
-  "S25S": {"stop_id": "S25S", "stop_name": "Dongan Hills", "stop_lat": 40.588849, "stop_lon": -74.09609, "location_type": "0"},
-  "S26": {"stop_id": "S26", "stop_name": "Old Town", "stop_lat": 40.596612, "stop_lon": -74.087368, "location_type": 1},
-  "S26N": {"stop_id": "S26N", "stop_name": "Old Town", "stop_lat": 40.596612, "stop_lon": -74.087368, "location_type": "0"},
-  "S26S": {"stop_id": "S26S", "stop_name": "Old Town", "stop_lat": 40.596612, "stop_lon": -74.087368, "location_type": "0"},
-  "S27": {"stop_id": "S27", "stop_name": "Grasmere", "stop_lat": 40.603117, "stop_lon": -74.084087, "location_type": 1},
-  "S27N": {"stop_id": "S27N", "stop_name": "Grasmere", "stop_lat": 40.603117, "stop_lon": -74.084087, "location_type": "0"},
-  "S27S": {"stop_id": "S27S", "stop_name": "Grasmere", "stop_lat": 40.603117, "stop_lon": -74.084087, "location_type": "0"},
-  "S28": {"stop_id": "S28", "stop_name": "Clifton", "stop_lat": 40.621319, "stop_lon": -74.071402, "location_type": 1},
-  "S28N": {"stop_id": "S28N", "stop_name": "Clifton", "stop_lat": 40.621319, "stop_lon": -74.071402, "location_type": "0"},
-  "S28S": {"stop_id": "S28S", "stop_name": "Clifton", "stop_lat": 40.621319, "stop_lon": -74.071402, "location_type": "0"},
-  "S29": {"stop_id": "S29", "stop_name": "Stapleton", "stop_lat": 40.627915, "stop_lon": -74.075162, "location_type": 1},
-  "S29N": {"stop_id": "S29N", "stop_name": "Stapleton", "stop_lat": 40.627915, "stop_lon": -74.075162, "location_type": "0"},
-  "S29S": {"stop_id": "S29S", "stop_name": "Stapleton", "stop_lat": 40.627915, "stop_lon": -74.075162, "location_type": "0"},
-  "S30": {"stop_id": "S30", "stop_name": "Tompkinsville", "stop_lat": 40.636949, "stop_lon": -74.074835, "location_type": 1},
-  "S30N": {"stop_id": "S30N", "stop_name": "Tompkinsville", "stop_lat": 40.636949, "stop_lon": -74.074835, "location_type": "0"},
-  "S30S": {"stop_id": "S30S", "stop_name": "Tompkinsville", "stop_lat": 40.636949, "stop_lon": -74.074835, "location_type": "0"},
-  "S31": {"stop_id": "S31", "stop_name": "St George", "stop_lat": 40.643748, "stop_lon": -74.073643, "location_type": 1},
-  "S31N": {"stop_id": "S31N", "stop_name": "St George", "stop_lat": 40.643748, "stop_lon": -74.073643, "location_type": "0"},
-  "S31S": {"stop_id": "S31S", "stop_name": "St George", "stop_lat": 40.643748, "stop_lon": -74.073643, "location_type": "0"}
-}
+/*eslint-disable block-scoped-var, no-redeclare, no-control-regex, no-prototype-builtins*/
 
-/* harmony default export */ __webpack_exports__["default"] = (stations);
+
+var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "./node_modules/protobufjs/minimal.js");
+
+// Common aliases
+var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+
+// Exported root namespace
+var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
+
+$root.transit_realtime = (function() {
+
+    /**
+     * Namespace transit_realtime.
+     * @exports transit_realtime
+     * @namespace
+     */
+    var transit_realtime = {};
+
+    transit_realtime.FeedMessage = (function() {
+
+        /**
+         * Properties of a FeedMessage.
+         * @typedef transit_realtime.FeedMessage$Properties
+         * @type {Object}
+         * @property {transit_realtime.FeedHeader$Properties} header FeedMessage header.
+         * @property {Array.<transit_realtime.FeedEntity$Properties>} [entity] FeedMessage entity.
+         */
+
+        /**
+         * Constructs a new FeedMessage.
+         * @exports transit_realtime.FeedMessage
+         * @constructor
+         * @param {transit_realtime.FeedMessage$Properties=} [properties] Properties to set
+         */
+        function FeedMessage(properties) {
+            this.entity = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FeedMessage header.
+         * @type {transit_realtime.FeedHeader$Properties}
+         */
+        FeedMessage.prototype.header = null;
+
+        /**
+         * FeedMessage entity.
+         * @type {Array.<transit_realtime.FeedEntity$Properties>}
+         */
+        FeedMessage.prototype.entity = $util.emptyArray;
+
+        /**
+         * Creates a new FeedMessage instance using the specified properties.
+         * @param {transit_realtime.FeedMessage$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.FeedMessage} FeedMessage instance
+         */
+        FeedMessage.create = function create(properties) {
+            return new FeedMessage(properties);
+        };
+
+        /**
+         * Encodes the specified FeedMessage message. Does not implicitly {@link transit_realtime.FeedMessage.verify|verify} messages.
+         * @param {transit_realtime.FeedMessage$Properties} message FeedMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FeedMessage.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            $root.transit_realtime.FeedHeader.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.entity != null && message.entity.length)
+                for (var i = 0; i < message.entity.length; ++i)
+                    $root.transit_realtime.FeedEntity.encode(message.entity[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FeedMessage message, length delimited. Does not implicitly {@link transit_realtime.FeedMessage.verify|verify} messages.
+         * @param {transit_realtime.FeedMessage$Properties} message FeedMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FeedMessage.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FeedMessage message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.FeedMessage} FeedMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FeedMessage.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.FeedMessage();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.transit_realtime.FeedHeader.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    if (!(message.entity && message.entity.length))
+                        message.entity = [];
+                    message.entity.push($root.transit_realtime.FeedEntity.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("header"))
+                throw $util.ProtocolError("missing required 'header'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a FeedMessage message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.FeedMessage} FeedMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FeedMessage.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FeedMessage message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        FeedMessage.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            var error = $root.transit_realtime.FeedHeader.verify(message.header);
+            if (error)
+                return "header." + error;
+            if (message.entity != null && message.hasOwnProperty("entity")) {
+                if (!Array.isArray(message.entity))
+                    return "entity: array expected";
+                for (var i = 0; i < message.entity.length; ++i) {
+                    var error = $root.transit_realtime.FeedEntity.verify(message.entity[i]);
+                    if (error)
+                        return "entity." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FeedMessage message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.FeedMessage} FeedMessage
+         */
+        FeedMessage.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.FeedMessage)
+                return object;
+            var message = new $root.transit_realtime.FeedMessage();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".transit_realtime.FeedMessage.header: object expected");
+                message.header = $root.transit_realtime.FeedHeader.fromObject(object.header);
+            }
+            if (object.entity) {
+                if (!Array.isArray(object.entity))
+                    throw TypeError(".transit_realtime.FeedMessage.entity: array expected");
+                message.entity = [];
+                for (var i = 0; i < object.entity.length; ++i) {
+                    if (typeof object.entity[i] !== "object")
+                        throw TypeError(".transit_realtime.FeedMessage.entity: object expected");
+                    message.entity[i] = $root.transit_realtime.FeedEntity.fromObject(object.entity[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a FeedMessage message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.FeedMessage.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.FeedMessage} FeedMessage
+         */
+        FeedMessage.from = FeedMessage.fromObject;
+
+        /**
+         * Creates a plain object from a FeedMessage message. Also converts values to other types if specified.
+         * @param {transit_realtime.FeedMessage} message FeedMessage
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FeedMessage.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.entity = [];
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.transit_realtime.FeedHeader.toObject(message.header, options);
+            if (message.entity && message.entity.length) {
+                object.entity = [];
+                for (var j = 0; j < message.entity.length; ++j)
+                    object.entity[j] = $root.transit_realtime.FeedEntity.toObject(message.entity[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this FeedMessage message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FeedMessage.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this FeedMessage to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        FeedMessage.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return FeedMessage;
+    })();
+
+    transit_realtime.FeedHeader = (function() {
+
+        /**
+         * Properties of a FeedHeader.
+         * @typedef transit_realtime.FeedHeader$Properties
+         * @type {Object}
+         * @property {string} gtfsRealtimeVersion FeedHeader gtfsRealtimeVersion.
+         * @property {transit_realtime.FeedHeader.Incrementality} [incrementality] FeedHeader incrementality.
+         * @property {number|Long} [timestamp] FeedHeader timestamp.
+         */
+
+        /**
+         * Constructs a new FeedHeader.
+         * @exports transit_realtime.FeedHeader
+         * @constructor
+         * @param {transit_realtime.FeedHeader$Properties=} [properties] Properties to set
+         */
+        function FeedHeader(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FeedHeader gtfsRealtimeVersion.
+         * @type {string}
+         */
+        FeedHeader.prototype.gtfsRealtimeVersion = "";
+
+        /**
+         * FeedHeader incrementality.
+         * @type {transit_realtime.FeedHeader.Incrementality}
+         */
+        FeedHeader.prototype.incrementality = 0;
+
+        /**
+         * FeedHeader timestamp.
+         * @type {number|Long}
+         */
+        FeedHeader.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * Creates a new FeedHeader instance using the specified properties.
+         * @param {transit_realtime.FeedHeader$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.FeedHeader} FeedHeader instance
+         */
+        FeedHeader.create = function create(properties) {
+            return new FeedHeader(properties);
+        };
+
+        /**
+         * Encodes the specified FeedHeader message. Does not implicitly {@link transit_realtime.FeedHeader.verify|verify} messages.
+         * @param {transit_realtime.FeedHeader$Properties} message FeedHeader message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FeedHeader.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.gtfsRealtimeVersion);
+            if (message.incrementality != null && message.hasOwnProperty("incrementality"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.incrementality);
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.timestamp);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FeedHeader message, length delimited. Does not implicitly {@link transit_realtime.FeedHeader.verify|verify} messages.
+         * @param {transit_realtime.FeedHeader$Properties} message FeedHeader message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FeedHeader.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FeedHeader message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.FeedHeader} FeedHeader
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FeedHeader.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.FeedHeader();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.gtfsRealtimeVersion = reader.string();
+                    break;
+                case 2:
+                    message.incrementality = reader.uint32();
+                    break;
+                case 3:
+                    message.timestamp = reader.uint64();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("gtfsRealtimeVersion"))
+                throw $util.ProtocolError("missing required 'gtfsRealtimeVersion'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a FeedHeader message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.FeedHeader} FeedHeader
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FeedHeader.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FeedHeader message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        FeedHeader.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isString(message.gtfsRealtimeVersion))
+                return "gtfsRealtimeVersion: string expected";
+            if (message.incrementality != null && message.hasOwnProperty("incrementality"))
+                switch (message.incrementality) {
+                default:
+                    return "incrementality: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
+                    return "timestamp: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FeedHeader message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.FeedHeader} FeedHeader
+         */
+        FeedHeader.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.FeedHeader)
+                return object;
+            var message = new $root.transit_realtime.FeedHeader();
+            if (object.gtfsRealtimeVersion != null)
+                message.gtfsRealtimeVersion = String(object.gtfsRealtimeVersion);
+            switch (object.incrementality) {
+            case "FULL_DATASET":
+            case 0:
+                message.incrementality = 0;
+                break;
+            case "DIFFERENTIAL":
+            case 1:
+                message.incrementality = 1;
+                break;
+            }
+            if (object.timestamp != null)
+                if ($util.Long)
+                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = true;
+                else if (typeof object.timestamp === "string")
+                    message.timestamp = parseInt(object.timestamp, 10);
+                else if (typeof object.timestamp === "number")
+                    message.timestamp = object.timestamp;
+                else if (typeof object.timestamp === "object")
+                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a FeedHeader message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.FeedHeader.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.FeedHeader} FeedHeader
+         */
+        FeedHeader.from = FeedHeader.fromObject;
+
+        /**
+         * Creates a plain object from a FeedHeader message. Also converts values to other types if specified.
+         * @param {transit_realtime.FeedHeader} message FeedHeader
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FeedHeader.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.gtfsRealtimeVersion = "";
+                object.incrementality = options.enums === String ? "FULL_DATASET" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.timestamp = options.longs === String ? "0" : 0;
+            }
+            if (message.gtfsRealtimeVersion != null && message.hasOwnProperty("gtfsRealtimeVersion"))
+                object.gtfsRealtimeVersion = message.gtfsRealtimeVersion;
+            if (message.incrementality != null && message.hasOwnProperty("incrementality"))
+                object.incrementality = options.enums === String ? $root.transit_realtime.FeedHeader.Incrementality[message.incrementality] : message.incrementality;
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (typeof message.timestamp === "number")
+                    object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
+                else
+                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this FeedHeader message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FeedHeader.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this FeedHeader to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        FeedHeader.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Incrementality enum.
+         * @name Incrementality
+         * @memberof transit_realtime.FeedHeader
+         * @enum {number}
+         * @property {number} FULL_DATASET=0 FULL_DATASET value
+         * @property {number} DIFFERENTIAL=1 DIFFERENTIAL value
+         */
+        FeedHeader.Incrementality = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "FULL_DATASET"] = 0;
+            values[valuesById[1] = "DIFFERENTIAL"] = 1;
+            return values;
+        })();
+
+        return FeedHeader;
+    })();
+
+    transit_realtime.FeedEntity = (function() {
+
+        /**
+         * Properties of a FeedEntity.
+         * @typedef transit_realtime.FeedEntity$Properties
+         * @type {Object}
+         * @property {string} id FeedEntity id.
+         * @property {boolean} [isDeleted] FeedEntity isDeleted.
+         * @property {transit_realtime.TripUpdate$Properties} [tripUpdate] FeedEntity tripUpdate.
+         * @property {transit_realtime.VehiclePosition$Properties} [vehicle] FeedEntity vehicle.
+         * @property {transit_realtime.Alert$Properties} [alert] FeedEntity alert.
+         */
+
+        /**
+         * Constructs a new FeedEntity.
+         * @exports transit_realtime.FeedEntity
+         * @constructor
+         * @param {transit_realtime.FeedEntity$Properties=} [properties] Properties to set
+         */
+        function FeedEntity(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FeedEntity id.
+         * @type {string}
+         */
+        FeedEntity.prototype.id = "";
+
+        /**
+         * FeedEntity isDeleted.
+         * @type {boolean}
+         */
+        FeedEntity.prototype.isDeleted = false;
+
+        /**
+         * FeedEntity tripUpdate.
+         * @type {(transit_realtime.TripUpdate$Properties|null)}
+         */
+        FeedEntity.prototype.tripUpdate = null;
+
+        /**
+         * FeedEntity vehicle.
+         * @type {(transit_realtime.VehiclePosition$Properties|null)}
+         */
+        FeedEntity.prototype.vehicle = null;
+
+        /**
+         * FeedEntity alert.
+         * @type {(transit_realtime.Alert$Properties|null)}
+         */
+        FeedEntity.prototype.alert = null;
+
+        /**
+         * Creates a new FeedEntity instance using the specified properties.
+         * @param {transit_realtime.FeedEntity$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.FeedEntity} FeedEntity instance
+         */
+        FeedEntity.create = function create(properties) {
+            return new FeedEntity(properties);
+        };
+
+        /**
+         * Encodes the specified FeedEntity message. Does not implicitly {@link transit_realtime.FeedEntity.verify|verify} messages.
+         * @param {transit_realtime.FeedEntity$Properties} message FeedEntity message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FeedEntity.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+            if (message.isDeleted != null && message.hasOwnProperty("isDeleted"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.isDeleted);
+            if (message.tripUpdate != null && message.hasOwnProperty("tripUpdate"))
+                $root.transit_realtime.TripUpdate.encode(message.tripUpdate, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
+                $root.transit_realtime.VehiclePosition.encode(message.vehicle, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.alert != null && message.hasOwnProperty("alert"))
+                $root.transit_realtime.Alert.encode(message.alert, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FeedEntity message, length delimited. Does not implicitly {@link transit_realtime.FeedEntity.verify|verify} messages.
+         * @param {transit_realtime.FeedEntity$Properties} message FeedEntity message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FeedEntity.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FeedEntity message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.FeedEntity} FeedEntity
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FeedEntity.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.FeedEntity();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.id = reader.string();
+                    break;
+                case 2:
+                    message.isDeleted = reader.bool();
+                    break;
+                case 3:
+                    message.tripUpdate = $root.transit_realtime.TripUpdate.decode(reader, reader.uint32());
+                    break;
+                case 4:
+                    message.vehicle = $root.transit_realtime.VehiclePosition.decode(reader, reader.uint32());
+                    break;
+                case 5:
+                    message.alert = $root.transit_realtime.Alert.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("id"))
+                throw $util.ProtocolError("missing required 'id'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a FeedEntity message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.FeedEntity} FeedEntity
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FeedEntity.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FeedEntity message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        FeedEntity.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isString(message.id))
+                return "id: string expected";
+            if (message.isDeleted != null && message.hasOwnProperty("isDeleted"))
+                if (typeof message.isDeleted !== "boolean")
+                    return "isDeleted: boolean expected";
+            if (message.tripUpdate != null && message.hasOwnProperty("tripUpdate")) {
+                var error = $root.transit_realtime.TripUpdate.verify(message.tripUpdate);
+                if (error)
+                    return "tripUpdate." + error;
+            }
+            if (message.vehicle != null && message.hasOwnProperty("vehicle")) {
+                var error = $root.transit_realtime.VehiclePosition.verify(message.vehicle);
+                if (error)
+                    return "vehicle." + error;
+            }
+            if (message.alert != null && message.hasOwnProperty("alert")) {
+                var error = $root.transit_realtime.Alert.verify(message.alert);
+                if (error)
+                    return "alert." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FeedEntity message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.FeedEntity} FeedEntity
+         */
+        FeedEntity.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.FeedEntity)
+                return object;
+            var message = new $root.transit_realtime.FeedEntity();
+            if (object.id != null)
+                message.id = String(object.id);
+            if (object.isDeleted != null)
+                message.isDeleted = Boolean(object.isDeleted);
+            if (object.tripUpdate != null) {
+                if (typeof object.tripUpdate !== "object")
+                    throw TypeError(".transit_realtime.FeedEntity.tripUpdate: object expected");
+                message.tripUpdate = $root.transit_realtime.TripUpdate.fromObject(object.tripUpdate);
+            }
+            if (object.vehicle != null) {
+                if (typeof object.vehicle !== "object")
+                    throw TypeError(".transit_realtime.FeedEntity.vehicle: object expected");
+                message.vehicle = $root.transit_realtime.VehiclePosition.fromObject(object.vehicle);
+            }
+            if (object.alert != null) {
+                if (typeof object.alert !== "object")
+                    throw TypeError(".transit_realtime.FeedEntity.alert: object expected");
+                message.alert = $root.transit_realtime.Alert.fromObject(object.alert);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a FeedEntity message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.FeedEntity.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.FeedEntity} FeedEntity
+         */
+        FeedEntity.from = FeedEntity.fromObject;
+
+        /**
+         * Creates a plain object from a FeedEntity message. Also converts values to other types if specified.
+         * @param {transit_realtime.FeedEntity} message FeedEntity
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FeedEntity.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.id = "";
+                object.isDeleted = false;
+                object.tripUpdate = null;
+                object.vehicle = null;
+                object.alert = null;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            if (message.isDeleted != null && message.hasOwnProperty("isDeleted"))
+                object.isDeleted = message.isDeleted;
+            if (message.tripUpdate != null && message.hasOwnProperty("tripUpdate"))
+                object.tripUpdate = $root.transit_realtime.TripUpdate.toObject(message.tripUpdate, options);
+            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
+                object.vehicle = $root.transit_realtime.VehiclePosition.toObject(message.vehicle, options);
+            if (message.alert != null && message.hasOwnProperty("alert"))
+                object.alert = $root.transit_realtime.Alert.toObject(message.alert, options);
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this FeedEntity message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FeedEntity.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this FeedEntity to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        FeedEntity.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return FeedEntity;
+    })();
+
+    transit_realtime.TripUpdate = (function() {
+
+        /**
+         * Properties of a TripUpdate.
+         * @typedef transit_realtime.TripUpdate$Properties
+         * @type {Object}
+         * @property {transit_realtime.TripDescriptor$Properties} trip TripUpdate trip.
+         * @property {transit_realtime.VehicleDescriptor$Properties} [vehicle] TripUpdate vehicle.
+         * @property {Array.<transit_realtime.TripUpdate.StopTimeUpdate$Properties>} [stopTimeUpdate] TripUpdate stopTimeUpdate.
+         * @property {number|Long} [timestamp] TripUpdate timestamp.
+         * @property {number} [delay] TripUpdate delay.
+         */
+
+        /**
+         * Constructs a new TripUpdate.
+         * @exports transit_realtime.TripUpdate
+         * @constructor
+         * @param {transit_realtime.TripUpdate$Properties=} [properties] Properties to set
+         */
+        function TripUpdate(properties) {
+            this.stopTimeUpdate = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * TripUpdate trip.
+         * @type {transit_realtime.TripDescriptor$Properties}
+         */
+        TripUpdate.prototype.trip = null;
+
+        /**
+         * TripUpdate vehicle.
+         * @type {(transit_realtime.VehicleDescriptor$Properties|null)}
+         */
+        TripUpdate.prototype.vehicle = null;
+
+        /**
+         * TripUpdate stopTimeUpdate.
+         * @type {Array.<transit_realtime.TripUpdate.StopTimeUpdate$Properties>}
+         */
+        TripUpdate.prototype.stopTimeUpdate = $util.emptyArray;
+
+        /**
+         * TripUpdate timestamp.
+         * @type {number|Long}
+         */
+        TripUpdate.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * TripUpdate delay.
+         * @type {number}
+         */
+        TripUpdate.prototype.delay = 0;
+
+        /**
+         * Creates a new TripUpdate instance using the specified properties.
+         * @param {transit_realtime.TripUpdate$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.TripUpdate} TripUpdate instance
+         */
+        TripUpdate.create = function create(properties) {
+            return new TripUpdate(properties);
+        };
+
+        /**
+         * Encodes the specified TripUpdate message. Does not implicitly {@link transit_realtime.TripUpdate.verify|verify} messages.
+         * @param {transit_realtime.TripUpdate$Properties} message TripUpdate message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TripUpdate.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            $root.transit_realtime.TripDescriptor.encode(message.trip, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.stopTimeUpdate != null && message.stopTimeUpdate.length)
+                for (var i = 0; i < message.stopTimeUpdate.length; ++i)
+                    $root.transit_realtime.TripUpdate.StopTimeUpdate.encode(message.stopTimeUpdate[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
+                $root.transit_realtime.VehicleDescriptor.encode(message.vehicle, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                writer.uint32(/* id 4, wireType 0 =*/32).uint64(message.timestamp);
+            if (message.delay != null && message.hasOwnProperty("delay"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.delay);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified TripUpdate message, length delimited. Does not implicitly {@link transit_realtime.TripUpdate.verify|verify} messages.
+         * @param {transit_realtime.TripUpdate$Properties} message TripUpdate message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TripUpdate.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a TripUpdate message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.TripUpdate} TripUpdate
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TripUpdate.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripUpdate();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.trip = $root.transit_realtime.TripDescriptor.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    message.vehicle = $root.transit_realtime.VehicleDescriptor.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    if (!(message.stopTimeUpdate && message.stopTimeUpdate.length))
+                        message.stopTimeUpdate = [];
+                    message.stopTimeUpdate.push($root.transit_realtime.TripUpdate.StopTimeUpdate.decode(reader, reader.uint32()));
+                    break;
+                case 4:
+                    message.timestamp = reader.uint64();
+                    break;
+                case 5:
+                    message.delay = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("trip"))
+                throw $util.ProtocolError("missing required 'trip'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a TripUpdate message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.TripUpdate} TripUpdate
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TripUpdate.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a TripUpdate message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        TripUpdate.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            var error = $root.transit_realtime.TripDescriptor.verify(message.trip);
+            if (error)
+                return "trip." + error;
+            if (message.vehicle != null && message.hasOwnProperty("vehicle")) {
+                var error = $root.transit_realtime.VehicleDescriptor.verify(message.vehicle);
+                if (error)
+                    return "vehicle." + error;
+            }
+            if (message.stopTimeUpdate != null && message.hasOwnProperty("stopTimeUpdate")) {
+                if (!Array.isArray(message.stopTimeUpdate))
+                    return "stopTimeUpdate: array expected";
+                for (var i = 0; i < message.stopTimeUpdate.length; ++i) {
+                    var error = $root.transit_realtime.TripUpdate.StopTimeUpdate.verify(message.stopTimeUpdate[i]);
+                    if (error)
+                        return "stopTimeUpdate." + error;
+                }
+            }
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
+                    return "timestamp: integer|Long expected";
+            if (message.delay != null && message.hasOwnProperty("delay"))
+                if (!$util.isInteger(message.delay))
+                    return "delay: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a TripUpdate message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.TripUpdate} TripUpdate
+         */
+        TripUpdate.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.TripUpdate)
+                return object;
+            var message = new $root.transit_realtime.TripUpdate();
+            if (object.trip != null) {
+                if (typeof object.trip !== "object")
+                    throw TypeError(".transit_realtime.TripUpdate.trip: object expected");
+                message.trip = $root.transit_realtime.TripDescriptor.fromObject(object.trip);
+            }
+            if (object.vehicle != null) {
+                if (typeof object.vehicle !== "object")
+                    throw TypeError(".transit_realtime.TripUpdate.vehicle: object expected");
+                message.vehicle = $root.transit_realtime.VehicleDescriptor.fromObject(object.vehicle);
+            }
+            if (object.stopTimeUpdate) {
+                if (!Array.isArray(object.stopTimeUpdate))
+                    throw TypeError(".transit_realtime.TripUpdate.stopTimeUpdate: array expected");
+                message.stopTimeUpdate = [];
+                for (var i = 0; i < object.stopTimeUpdate.length; ++i) {
+                    if (typeof object.stopTimeUpdate[i] !== "object")
+                        throw TypeError(".transit_realtime.TripUpdate.stopTimeUpdate: object expected");
+                    message.stopTimeUpdate[i] = $root.transit_realtime.TripUpdate.StopTimeUpdate.fromObject(object.stopTimeUpdate[i]);
+                }
+            }
+            if (object.timestamp != null)
+                if ($util.Long)
+                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = true;
+                else if (typeof object.timestamp === "string")
+                    message.timestamp = parseInt(object.timestamp, 10);
+                else if (typeof object.timestamp === "number")
+                    message.timestamp = object.timestamp;
+                else if (typeof object.timestamp === "object")
+                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
+            if (object.delay != null)
+                message.delay = object.delay | 0;
+            return message;
+        };
+
+        /**
+         * Creates a TripUpdate message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.TripUpdate.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.TripUpdate} TripUpdate
+         */
+        TripUpdate.from = TripUpdate.fromObject;
+
+        /**
+         * Creates a plain object from a TripUpdate message. Also converts values to other types if specified.
+         * @param {transit_realtime.TripUpdate} message TripUpdate
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TripUpdate.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.stopTimeUpdate = [];
+            if (options.defaults) {
+                object.trip = null;
+                object.vehicle = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.timestamp = options.longs === String ? "0" : 0;
+                object.delay = 0;
+            }
+            if (message.trip != null && message.hasOwnProperty("trip"))
+                object.trip = $root.transit_realtime.TripDescriptor.toObject(message.trip, options);
+            if (message.stopTimeUpdate && message.stopTimeUpdate.length) {
+                object.stopTimeUpdate = [];
+                for (var j = 0; j < message.stopTimeUpdate.length; ++j)
+                    object.stopTimeUpdate[j] = $root.transit_realtime.TripUpdate.StopTimeUpdate.toObject(message.stopTimeUpdate[j], options);
+            }
+            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
+                object.vehicle = $root.transit_realtime.VehicleDescriptor.toObject(message.vehicle, options);
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (typeof message.timestamp === "number")
+                    object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
+                else
+                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
+            if (message.delay != null && message.hasOwnProperty("delay"))
+                object.delay = message.delay;
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this TripUpdate message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TripUpdate.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this TripUpdate to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        TripUpdate.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        TripUpdate.StopTimeEvent = (function() {
+
+            /**
+             * Properties of a StopTimeEvent.
+             * @typedef transit_realtime.TripUpdate.StopTimeEvent$Properties
+             * @type {Object}
+             * @property {number} [delay] StopTimeEvent delay.
+             * @property {number|Long} [time] StopTimeEvent time.
+             * @property {number} [uncertainty] StopTimeEvent uncertainty.
+             */
+
+            /**
+             * Constructs a new StopTimeEvent.
+             * @exports transit_realtime.TripUpdate.StopTimeEvent
+             * @constructor
+             * @param {transit_realtime.TripUpdate.StopTimeEvent$Properties=} [properties] Properties to set
+             */
+            function StopTimeEvent(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * StopTimeEvent delay.
+             * @type {number}
+             */
+            StopTimeEvent.prototype.delay = 0;
+
+            /**
+             * StopTimeEvent time.
+             * @type {number|Long}
+             */
+            StopTimeEvent.prototype.time = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * StopTimeEvent uncertainty.
+             * @type {number}
+             */
+            StopTimeEvent.prototype.uncertainty = 0;
+
+            /**
+             * Creates a new StopTimeEvent instance using the specified properties.
+             * @param {transit_realtime.TripUpdate.StopTimeEvent$Properties=} [properties] Properties to set
+             * @returns {transit_realtime.TripUpdate.StopTimeEvent} StopTimeEvent instance
+             */
+            StopTimeEvent.create = function create(properties) {
+                return new StopTimeEvent(properties);
+            };
+
+            /**
+             * Encodes the specified StopTimeEvent message. Does not implicitly {@link transit_realtime.TripUpdate.StopTimeEvent.verify|verify} messages.
+             * @param {transit_realtime.TripUpdate.StopTimeEvent$Properties} message StopTimeEvent message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StopTimeEvent.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.delay != null && message.hasOwnProperty("delay"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.delay);
+                if (message.time != null && message.hasOwnProperty("time"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.time);
+                if (message.uncertainty != null && message.hasOwnProperty("uncertainty"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.uncertainty);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified StopTimeEvent message, length delimited. Does not implicitly {@link transit_realtime.TripUpdate.StopTimeEvent.verify|verify} messages.
+             * @param {transit_realtime.TripUpdate.StopTimeEvent$Properties} message StopTimeEvent message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StopTimeEvent.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a StopTimeEvent message from the specified reader or buffer.
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {transit_realtime.TripUpdate.StopTimeEvent} StopTimeEvent
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StopTimeEvent.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripUpdate.StopTimeEvent();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.delay = reader.int32();
+                        break;
+                    case 2:
+                        message.time = reader.int64();
+                        break;
+                    case 3:
+                        message.uncertainty = reader.int32();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a StopTimeEvent message from the specified reader or buffer, length delimited.
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {transit_realtime.TripUpdate.StopTimeEvent} StopTimeEvent
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StopTimeEvent.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a StopTimeEvent message.
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {?string} `null` if valid, otherwise the reason why it is not
+             */
+            StopTimeEvent.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.delay != null && message.hasOwnProperty("delay"))
+                    if (!$util.isInteger(message.delay))
+                        return "delay: integer expected";
+                if (message.time != null && message.hasOwnProperty("time"))
+                    if (!$util.isInteger(message.time) && !(message.time && $util.isInteger(message.time.low) && $util.isInteger(message.time.high)))
+                        return "time: integer|Long expected";
+                if (message.uncertainty != null && message.hasOwnProperty("uncertainty"))
+                    if (!$util.isInteger(message.uncertainty))
+                        return "uncertainty: integer expected";
+                return null;
+            };
+
+            /**
+             * Creates a StopTimeEvent message from a plain object. Also converts values to their respective internal types.
+             * @param {Object.<string,*>} object Plain object
+             * @returns {transit_realtime.TripUpdate.StopTimeEvent} StopTimeEvent
+             */
+            StopTimeEvent.fromObject = function fromObject(object) {
+                if (object instanceof $root.transit_realtime.TripUpdate.StopTimeEvent)
+                    return object;
+                var message = new $root.transit_realtime.TripUpdate.StopTimeEvent();
+                if (object.delay != null)
+                    message.delay = object.delay | 0;
+                if (object.time != null)
+                    if ($util.Long)
+                        (message.time = $util.Long.fromValue(object.time)).unsigned = false;
+                    else if (typeof object.time === "string")
+                        message.time = parseInt(object.time, 10);
+                    else if (typeof object.time === "number")
+                        message.time = object.time;
+                    else if (typeof object.time === "object")
+                        message.time = new $util.LongBits(object.time.low >>> 0, object.time.high >>> 0).toNumber();
+                if (object.uncertainty != null)
+                    message.uncertainty = object.uncertainty | 0;
+                return message;
+            };
+
+            /**
+             * Creates a StopTimeEvent message from a plain object. Also converts values to their respective internal types.
+             * This is an alias of {@link transit_realtime.TripUpdate.StopTimeEvent.fromObject}.
+             * @function
+             * @param {Object.<string,*>} object Plain object
+             * @returns {transit_realtime.TripUpdate.StopTimeEvent} StopTimeEvent
+             */
+            StopTimeEvent.from = StopTimeEvent.fromObject;
+
+            /**
+             * Creates a plain object from a StopTimeEvent message. Also converts values to other types if specified.
+             * @param {transit_realtime.TripUpdate.StopTimeEvent} message StopTimeEvent
+             * @param {$protobuf.ConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            StopTimeEvent.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.delay = 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.time = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.time = options.longs === String ? "0" : 0;
+                    object.uncertainty = 0;
+                }
+                if (message.delay != null && message.hasOwnProperty("delay"))
+                    object.delay = message.delay;
+                if (message.time != null && message.hasOwnProperty("time"))
+                    if (typeof message.time === "number")
+                        object.time = options.longs === String ? String(message.time) : message.time;
+                    else
+                        object.time = options.longs === String ? $util.Long.prototype.toString.call(message.time) : options.longs === Number ? new $util.LongBits(message.time.low >>> 0, message.time.high >>> 0).toNumber() : message.time;
+                if (message.uncertainty != null && message.hasOwnProperty("uncertainty"))
+                    object.uncertainty = message.uncertainty;
+                return object;
+            };
+
+            /**
+             * Creates a plain object from this StopTimeEvent message. Also converts values to other types if specified.
+             * @param {$protobuf.ConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            StopTimeEvent.prototype.toObject = function toObject(options) {
+                return this.constructor.toObject(this, options);
+            };
+
+            /**
+             * Converts this StopTimeEvent to JSON.
+             * @returns {Object.<string,*>} JSON object
+             */
+            StopTimeEvent.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return StopTimeEvent;
+        })();
+
+        TripUpdate.StopTimeUpdate = (function() {
+
+            /**
+             * Properties of a StopTimeUpdate.
+             * @typedef transit_realtime.TripUpdate.StopTimeUpdate$Properties
+             * @type {Object}
+             * @property {number} [stopSequence] StopTimeUpdate stopSequence.
+             * @property {string} [stopId] StopTimeUpdate stopId.
+             * @property {transit_realtime.TripUpdate.StopTimeEvent$Properties} [arrival] StopTimeUpdate arrival.
+             * @property {transit_realtime.TripUpdate.StopTimeEvent$Properties} [departure] StopTimeUpdate departure.
+             * @property {transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship} [scheduleRelationship] StopTimeUpdate scheduleRelationship.
+             */
+
+            /**
+             * Constructs a new StopTimeUpdate.
+             * @exports transit_realtime.TripUpdate.StopTimeUpdate
+             * @constructor
+             * @param {transit_realtime.TripUpdate.StopTimeUpdate$Properties=} [properties] Properties to set
+             */
+            function StopTimeUpdate(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * StopTimeUpdate stopSequence.
+             * @type {number}
+             */
+            StopTimeUpdate.prototype.stopSequence = 0;
+
+            /**
+             * StopTimeUpdate stopId.
+             * @type {string}
+             */
+            StopTimeUpdate.prototype.stopId = "";
+
+            /**
+             * StopTimeUpdate arrival.
+             * @type {(transit_realtime.TripUpdate.StopTimeEvent$Properties|null)}
+             */
+            StopTimeUpdate.prototype.arrival = null;
+
+            /**
+             * StopTimeUpdate departure.
+             * @type {(transit_realtime.TripUpdate.StopTimeEvent$Properties|null)}
+             */
+            StopTimeUpdate.prototype.departure = null;
+
+            /**
+             * StopTimeUpdate scheduleRelationship.
+             * @type {transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship}
+             */
+            StopTimeUpdate.prototype.scheduleRelationship = 0;
+
+            /**
+             * Creates a new StopTimeUpdate instance using the specified properties.
+             * @param {transit_realtime.TripUpdate.StopTimeUpdate$Properties=} [properties] Properties to set
+             * @returns {transit_realtime.TripUpdate.StopTimeUpdate} StopTimeUpdate instance
+             */
+            StopTimeUpdate.create = function create(properties) {
+                return new StopTimeUpdate(properties);
+            };
+
+            /**
+             * Encodes the specified StopTimeUpdate message. Does not implicitly {@link transit_realtime.TripUpdate.StopTimeUpdate.verify|verify} messages.
+             * @param {transit_realtime.TripUpdate.StopTimeUpdate$Properties} message StopTimeUpdate message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StopTimeUpdate.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.stopSequence);
+                if (message.arrival != null && message.hasOwnProperty("arrival"))
+                    $root.transit_realtime.TripUpdate.StopTimeEvent.encode(message.arrival, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.departure != null && message.hasOwnProperty("departure"))
+                    $root.transit_realtime.TripUpdate.StopTimeEvent.encode(message.departure, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                if (message.stopId != null && message.hasOwnProperty("stopId"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.stopId);
+                if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.scheduleRelationship);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified StopTimeUpdate message, length delimited. Does not implicitly {@link transit_realtime.TripUpdate.StopTimeUpdate.verify|verify} messages.
+             * @param {transit_realtime.TripUpdate.StopTimeUpdate$Properties} message StopTimeUpdate message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StopTimeUpdate.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a StopTimeUpdate message from the specified reader or buffer.
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {transit_realtime.TripUpdate.StopTimeUpdate} StopTimeUpdate
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StopTimeUpdate.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripUpdate.StopTimeUpdate();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.stopSequence = reader.uint32();
+                        break;
+                    case 4:
+                        message.stopId = reader.string();
+                        break;
+                    case 2:
+                        message.arrival = $root.transit_realtime.TripUpdate.StopTimeEvent.decode(reader, reader.uint32());
+                        break;
+                    case 3:
+                        message.departure = $root.transit_realtime.TripUpdate.StopTimeEvent.decode(reader, reader.uint32());
+                        break;
+                    case 5:
+                        message.scheduleRelationship = reader.uint32();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a StopTimeUpdate message from the specified reader or buffer, length delimited.
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {transit_realtime.TripUpdate.StopTimeUpdate} StopTimeUpdate
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StopTimeUpdate.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a StopTimeUpdate message.
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {?string} `null` if valid, otherwise the reason why it is not
+             */
+            StopTimeUpdate.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
+                    if (!$util.isInteger(message.stopSequence))
+                        return "stopSequence: integer expected";
+                if (message.stopId != null && message.hasOwnProperty("stopId"))
+                    if (!$util.isString(message.stopId))
+                        return "stopId: string expected";
+                if (message.arrival != null && message.hasOwnProperty("arrival")) {
+                    var error = $root.transit_realtime.TripUpdate.StopTimeEvent.verify(message.arrival);
+                    if (error)
+                        return "arrival." + error;
+                }
+                if (message.departure != null && message.hasOwnProperty("departure")) {
+                    var error = $root.transit_realtime.TripUpdate.StopTimeEvent.verify(message.departure);
+                    if (error)
+                        return "departure." + error;
+                }
+                if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
+                    switch (message.scheduleRelationship) {
+                    default:
+                        return "scheduleRelationship: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                        break;
+                    }
+                return null;
+            };
+
+            /**
+             * Creates a StopTimeUpdate message from a plain object. Also converts values to their respective internal types.
+             * @param {Object.<string,*>} object Plain object
+             * @returns {transit_realtime.TripUpdate.StopTimeUpdate} StopTimeUpdate
+             */
+            StopTimeUpdate.fromObject = function fromObject(object) {
+                if (object instanceof $root.transit_realtime.TripUpdate.StopTimeUpdate)
+                    return object;
+                var message = new $root.transit_realtime.TripUpdate.StopTimeUpdate();
+                if (object.stopSequence != null)
+                    message.stopSequence = object.stopSequence >>> 0;
+                if (object.stopId != null)
+                    message.stopId = String(object.stopId);
+                if (object.arrival != null) {
+                    if (typeof object.arrival !== "object")
+                        throw TypeError(".transit_realtime.TripUpdate.StopTimeUpdate.arrival: object expected");
+                    message.arrival = $root.transit_realtime.TripUpdate.StopTimeEvent.fromObject(object.arrival);
+                }
+                if (object.departure != null) {
+                    if (typeof object.departure !== "object")
+                        throw TypeError(".transit_realtime.TripUpdate.StopTimeUpdate.departure: object expected");
+                    message.departure = $root.transit_realtime.TripUpdate.StopTimeEvent.fromObject(object.departure);
+                }
+                switch (object.scheduleRelationship) {
+                case "SCHEDULED":
+                case 0:
+                    message.scheduleRelationship = 0;
+                    break;
+                case "SKIPPED":
+                case 1:
+                    message.scheduleRelationship = 1;
+                    break;
+                case "NO_DATA":
+                case 2:
+                    message.scheduleRelationship = 2;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a StopTimeUpdate message from a plain object. Also converts values to their respective internal types.
+             * This is an alias of {@link transit_realtime.TripUpdate.StopTimeUpdate.fromObject}.
+             * @function
+             * @param {Object.<string,*>} object Plain object
+             * @returns {transit_realtime.TripUpdate.StopTimeUpdate} StopTimeUpdate
+             */
+            StopTimeUpdate.from = StopTimeUpdate.fromObject;
+
+            /**
+             * Creates a plain object from a StopTimeUpdate message. Also converts values to other types if specified.
+             * @param {transit_realtime.TripUpdate.StopTimeUpdate} message StopTimeUpdate
+             * @param {$protobuf.ConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            StopTimeUpdate.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.stopSequence = 0;
+                    object.arrival = null;
+                    object.departure = null;
+                    object.stopId = "";
+                    object.scheduleRelationship = options.enums === String ? "SCHEDULED" : 0;
+                }
+                if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
+                    object.stopSequence = message.stopSequence;
+                if (message.arrival != null && message.hasOwnProperty("arrival"))
+                    object.arrival = $root.transit_realtime.TripUpdate.StopTimeEvent.toObject(message.arrival, options);
+                if (message.departure != null && message.hasOwnProperty("departure"))
+                    object.departure = $root.transit_realtime.TripUpdate.StopTimeEvent.toObject(message.departure, options);
+                if (message.stopId != null && message.hasOwnProperty("stopId"))
+                    object.stopId = message.stopId;
+                if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
+                    object.scheduleRelationship = options.enums === String ? $root.transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship[message.scheduleRelationship] : message.scheduleRelationship;
+                return object;
+            };
+
+            /**
+             * Creates a plain object from this StopTimeUpdate message. Also converts values to other types if specified.
+             * @param {$protobuf.ConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            StopTimeUpdate.prototype.toObject = function toObject(options) {
+                return this.constructor.toObject(this, options);
+            };
+
+            /**
+             * Converts this StopTimeUpdate to JSON.
+             * @returns {Object.<string,*>} JSON object
+             */
+            StopTimeUpdate.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * ScheduleRelationship enum.
+             * @name ScheduleRelationship
+             * @memberof transit_realtime.TripUpdate.StopTimeUpdate
+             * @enum {number}
+             * @property {number} SCHEDULED=0 SCHEDULED value
+             * @property {number} SKIPPED=1 SKIPPED value
+             * @property {number} NO_DATA=2 NO_DATA value
+             */
+            StopTimeUpdate.ScheduleRelationship = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "SCHEDULED"] = 0;
+                values[valuesById[1] = "SKIPPED"] = 1;
+                values[valuesById[2] = "NO_DATA"] = 2;
+                return values;
+            })();
+
+            return StopTimeUpdate;
+        })();
+
+        return TripUpdate;
+    })();
+
+    transit_realtime.VehiclePosition = (function() {
+
+        /**
+         * Properties of a VehiclePosition.
+         * @typedef transit_realtime.VehiclePosition$Properties
+         * @type {Object}
+         * @property {transit_realtime.TripDescriptor$Properties} [trip] VehiclePosition trip.
+         * @property {transit_realtime.VehicleDescriptor$Properties} [vehicle] VehiclePosition vehicle.
+         * @property {transit_realtime.Position$Properties} [position] VehiclePosition position.
+         * @property {number} [currentStopSequence] VehiclePosition currentStopSequence.
+         * @property {string} [stopId] VehiclePosition stopId.
+         * @property {transit_realtime.VehiclePosition.VehicleStopStatus} [currentStatus] VehiclePosition currentStatus.
+         * @property {number|Long} [timestamp] VehiclePosition timestamp.
+         * @property {transit_realtime.VehiclePosition.CongestionLevel} [congestionLevel] VehiclePosition congestionLevel.
+         * @property {transit_realtime.VehiclePosition.OccupancyStatus} [occupancyStatus] VehiclePosition occupancyStatus.
+         */
+
+        /**
+         * Constructs a new VehiclePosition.
+         * @exports transit_realtime.VehiclePosition
+         * @constructor
+         * @param {transit_realtime.VehiclePosition$Properties=} [properties] Properties to set
+         */
+        function VehiclePosition(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * VehiclePosition trip.
+         * @type {(transit_realtime.TripDescriptor$Properties|null)}
+         */
+        VehiclePosition.prototype.trip = null;
+
+        /**
+         * VehiclePosition vehicle.
+         * @type {(transit_realtime.VehicleDescriptor$Properties|null)}
+         */
+        VehiclePosition.prototype.vehicle = null;
+
+        /**
+         * VehiclePosition position.
+         * @type {(transit_realtime.Position$Properties|null)}
+         */
+        VehiclePosition.prototype.position = null;
+
+        /**
+         * VehiclePosition currentStopSequence.
+         * @type {number}
+         */
+        VehiclePosition.prototype.currentStopSequence = 0;
+
+        /**
+         * VehiclePosition stopId.
+         * @type {string}
+         */
+        VehiclePosition.prototype.stopId = "";
+
+        /**
+         * VehiclePosition currentStatus.
+         * @type {transit_realtime.VehiclePosition.VehicleStopStatus}
+         */
+        VehiclePosition.prototype.currentStatus = 2;
+
+        /**
+         * VehiclePosition timestamp.
+         * @type {number|Long}
+         */
+        VehiclePosition.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * VehiclePosition congestionLevel.
+         * @type {transit_realtime.VehiclePosition.CongestionLevel}
+         */
+        VehiclePosition.prototype.congestionLevel = 0;
+
+        /**
+         * VehiclePosition occupancyStatus.
+         * @type {transit_realtime.VehiclePosition.OccupancyStatus}
+         */
+        VehiclePosition.prototype.occupancyStatus = 0;
+
+        /**
+         * Creates a new VehiclePosition instance using the specified properties.
+         * @param {transit_realtime.VehiclePosition$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.VehiclePosition} VehiclePosition instance
+         */
+        VehiclePosition.create = function create(properties) {
+            return new VehiclePosition(properties);
+        };
+
+        /**
+         * Encodes the specified VehiclePosition message. Does not implicitly {@link transit_realtime.VehiclePosition.verify|verify} messages.
+         * @param {transit_realtime.VehiclePosition$Properties} message VehiclePosition message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        VehiclePosition.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.trip != null && message.hasOwnProperty("trip"))
+                $root.transit_realtime.TripDescriptor.encode(message.trip, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.position != null && message.hasOwnProperty("position"))
+                $root.transit_realtime.Position.encode(message.position, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.currentStopSequence != null && message.hasOwnProperty("currentStopSequence"))
+                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.currentStopSequence);
+            if (message.currentStatus != null && message.hasOwnProperty("currentStatus"))
+                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.currentStatus);
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                writer.uint32(/* id 5, wireType 0 =*/40).uint64(message.timestamp);
+            if (message.congestionLevel != null && message.hasOwnProperty("congestionLevel"))
+                writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.congestionLevel);
+            if (message.stopId != null && message.hasOwnProperty("stopId"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.stopId);
+            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
+                $root.transit_realtime.VehicleDescriptor.encode(message.vehicle, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+            if (message.occupancyStatus != null && message.hasOwnProperty("occupancyStatus"))
+                writer.uint32(/* id 9, wireType 0 =*/72).uint32(message.occupancyStatus);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified VehiclePosition message, length delimited. Does not implicitly {@link transit_realtime.VehiclePosition.verify|verify} messages.
+         * @param {transit_realtime.VehiclePosition$Properties} message VehiclePosition message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        VehiclePosition.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a VehiclePosition message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.VehiclePosition} VehiclePosition
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        VehiclePosition.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.VehiclePosition();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.trip = $root.transit_realtime.TripDescriptor.decode(reader, reader.uint32());
+                    break;
+                case 8:
+                    message.vehicle = $root.transit_realtime.VehicleDescriptor.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.position = $root.transit_realtime.Position.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    message.currentStopSequence = reader.uint32();
+                    break;
+                case 7:
+                    message.stopId = reader.string();
+                    break;
+                case 4:
+                    message.currentStatus = reader.uint32();
+                    break;
+                case 5:
+                    message.timestamp = reader.uint64();
+                    break;
+                case 6:
+                    message.congestionLevel = reader.uint32();
+                    break;
+                case 9:
+                    message.occupancyStatus = reader.uint32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a VehiclePosition message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.VehiclePosition} VehiclePosition
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        VehiclePosition.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a VehiclePosition message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        VehiclePosition.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.trip != null && message.hasOwnProperty("trip")) {
+                var error = $root.transit_realtime.TripDescriptor.verify(message.trip);
+                if (error)
+                    return "trip." + error;
+            }
+            if (message.vehicle != null && message.hasOwnProperty("vehicle")) {
+                var error = $root.transit_realtime.VehicleDescriptor.verify(message.vehicle);
+                if (error)
+                    return "vehicle." + error;
+            }
+            if (message.position != null && message.hasOwnProperty("position")) {
+                var error = $root.transit_realtime.Position.verify(message.position);
+                if (error)
+                    return "position." + error;
+            }
+            if (message.currentStopSequence != null && message.hasOwnProperty("currentStopSequence"))
+                if (!$util.isInteger(message.currentStopSequence))
+                    return "currentStopSequence: integer expected";
+            if (message.stopId != null && message.hasOwnProperty("stopId"))
+                if (!$util.isString(message.stopId))
+                    return "stopId: string expected";
+            if (message.currentStatus != null && message.hasOwnProperty("currentStatus"))
+                switch (message.currentStatus) {
+                default:
+                    return "currentStatus: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
+                    return "timestamp: integer|Long expected";
+            if (message.congestionLevel != null && message.hasOwnProperty("congestionLevel"))
+                switch (message.congestionLevel) {
+                default:
+                    return "congestionLevel: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    break;
+                }
+            if (message.occupancyStatus != null && message.hasOwnProperty("occupancyStatus"))
+                switch (message.occupancyStatus) {
+                default:
+                    return "occupancyStatus: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a VehiclePosition message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.VehiclePosition} VehiclePosition
+         */
+        VehiclePosition.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.VehiclePosition)
+                return object;
+            var message = new $root.transit_realtime.VehiclePosition();
+            if (object.trip != null) {
+                if (typeof object.trip !== "object")
+                    throw TypeError(".transit_realtime.VehiclePosition.trip: object expected");
+                message.trip = $root.transit_realtime.TripDescriptor.fromObject(object.trip);
+            }
+            if (object.vehicle != null) {
+                if (typeof object.vehicle !== "object")
+                    throw TypeError(".transit_realtime.VehiclePosition.vehicle: object expected");
+                message.vehicle = $root.transit_realtime.VehicleDescriptor.fromObject(object.vehicle);
+            }
+            if (object.position != null) {
+                if (typeof object.position !== "object")
+                    throw TypeError(".transit_realtime.VehiclePosition.position: object expected");
+                message.position = $root.transit_realtime.Position.fromObject(object.position);
+            }
+            if (object.currentStopSequence != null)
+                message.currentStopSequence = object.currentStopSequence >>> 0;
+            if (object.stopId != null)
+                message.stopId = String(object.stopId);
+            switch (object.currentStatus) {
+            case "INCOMING_AT":
+            case 0:
+                message.currentStatus = 0;
+                break;
+            case "STOPPED_AT":
+            case 1:
+                message.currentStatus = 1;
+                break;
+            case "IN_TRANSIT_TO":
+            case 2:
+                message.currentStatus = 2;
+                break;
+            }
+            if (object.timestamp != null)
+                if ($util.Long)
+                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = true;
+                else if (typeof object.timestamp === "string")
+                    message.timestamp = parseInt(object.timestamp, 10);
+                else if (typeof object.timestamp === "number")
+                    message.timestamp = object.timestamp;
+                else if (typeof object.timestamp === "object")
+                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
+            switch (object.congestionLevel) {
+            case "UNKNOWN_CONGESTION_LEVEL":
+            case 0:
+                message.congestionLevel = 0;
+                break;
+            case "RUNNING_SMOOTHLY":
+            case 1:
+                message.congestionLevel = 1;
+                break;
+            case "STOP_AND_GO":
+            case 2:
+                message.congestionLevel = 2;
+                break;
+            case "CONGESTION":
+            case 3:
+                message.congestionLevel = 3;
+                break;
+            case "SEVERE_CONGESTION":
+            case 4:
+                message.congestionLevel = 4;
+                break;
+            }
+            switch (object.occupancyStatus) {
+            case "EMPTY":
+            case 0:
+                message.occupancyStatus = 0;
+                break;
+            case "MANY_SEATS_AVAILABLE":
+            case 1:
+                message.occupancyStatus = 1;
+                break;
+            case "FEW_SEATS_AVAILABLE":
+            case 2:
+                message.occupancyStatus = 2;
+                break;
+            case "STANDING_ROOM_ONLY":
+            case 3:
+                message.occupancyStatus = 3;
+                break;
+            case "CRUSHED_STANDING_ROOM_ONLY":
+            case 4:
+                message.occupancyStatus = 4;
+                break;
+            case "FULL":
+            case 5:
+                message.occupancyStatus = 5;
+                break;
+            case "NOT_ACCEPTING_PASSENGERS":
+            case 6:
+                message.occupancyStatus = 6;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a VehiclePosition message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.VehiclePosition.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.VehiclePosition} VehiclePosition
+         */
+        VehiclePosition.from = VehiclePosition.fromObject;
+
+        /**
+         * Creates a plain object from a VehiclePosition message. Also converts values to other types if specified.
+         * @param {transit_realtime.VehiclePosition} message VehiclePosition
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        VehiclePosition.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.trip = null;
+                object.position = null;
+                object.currentStopSequence = 0;
+                object.currentStatus = options.enums === String ? "IN_TRANSIT_TO" : 2;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.timestamp = options.longs === String ? "0" : 0;
+                object.congestionLevel = options.enums === String ? "UNKNOWN_CONGESTION_LEVEL" : 0;
+                object.stopId = "";
+                object.vehicle = null;
+                object.occupancyStatus = options.enums === String ? "EMPTY" : 0;
+            }
+            if (message.trip != null && message.hasOwnProperty("trip"))
+                object.trip = $root.transit_realtime.TripDescriptor.toObject(message.trip, options);
+            if (message.position != null && message.hasOwnProperty("position"))
+                object.position = $root.transit_realtime.Position.toObject(message.position, options);
+            if (message.currentStopSequence != null && message.hasOwnProperty("currentStopSequence"))
+                object.currentStopSequence = message.currentStopSequence;
+            if (message.currentStatus != null && message.hasOwnProperty("currentStatus"))
+                object.currentStatus = options.enums === String ? $root.transit_realtime.VehiclePosition.VehicleStopStatus[message.currentStatus] : message.currentStatus;
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (typeof message.timestamp === "number")
+                    object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
+                else
+                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
+            if (message.congestionLevel != null && message.hasOwnProperty("congestionLevel"))
+                object.congestionLevel = options.enums === String ? $root.transit_realtime.VehiclePosition.CongestionLevel[message.congestionLevel] : message.congestionLevel;
+            if (message.stopId != null && message.hasOwnProperty("stopId"))
+                object.stopId = message.stopId;
+            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
+                object.vehicle = $root.transit_realtime.VehicleDescriptor.toObject(message.vehicle, options);
+            if (message.occupancyStatus != null && message.hasOwnProperty("occupancyStatus"))
+                object.occupancyStatus = options.enums === String ? $root.transit_realtime.VehiclePosition.OccupancyStatus[message.occupancyStatus] : message.occupancyStatus;
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this VehiclePosition message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        VehiclePosition.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this VehiclePosition to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        VehiclePosition.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * VehicleStopStatus enum.
+         * @name VehicleStopStatus
+         * @memberof transit_realtime.VehiclePosition
+         * @enum {number}
+         * @property {number} INCOMING_AT=0 INCOMING_AT value
+         * @property {number} STOPPED_AT=1 STOPPED_AT value
+         * @property {number} IN_TRANSIT_TO=2 IN_TRANSIT_TO value
+         */
+        VehiclePosition.VehicleStopStatus = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "INCOMING_AT"] = 0;
+            values[valuesById[1] = "STOPPED_AT"] = 1;
+            values[valuesById[2] = "IN_TRANSIT_TO"] = 2;
+            return values;
+        })();
+
+        /**
+         * CongestionLevel enum.
+         * @name CongestionLevel
+         * @memberof transit_realtime.VehiclePosition
+         * @enum {number}
+         * @property {number} UNKNOWN_CONGESTION_LEVEL=0 UNKNOWN_CONGESTION_LEVEL value
+         * @property {number} RUNNING_SMOOTHLY=1 RUNNING_SMOOTHLY value
+         * @property {number} STOP_AND_GO=2 STOP_AND_GO value
+         * @property {number} CONGESTION=3 CONGESTION value
+         * @property {number} SEVERE_CONGESTION=4 SEVERE_CONGESTION value
+         */
+        VehiclePosition.CongestionLevel = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN_CONGESTION_LEVEL"] = 0;
+            values[valuesById[1] = "RUNNING_SMOOTHLY"] = 1;
+            values[valuesById[2] = "STOP_AND_GO"] = 2;
+            values[valuesById[3] = "CONGESTION"] = 3;
+            values[valuesById[4] = "SEVERE_CONGESTION"] = 4;
+            return values;
+        })();
+
+        /**
+         * OccupancyStatus enum.
+         * @name OccupancyStatus
+         * @memberof transit_realtime.VehiclePosition
+         * @enum {number}
+         * @property {number} EMPTY=0 EMPTY value
+         * @property {number} MANY_SEATS_AVAILABLE=1 MANY_SEATS_AVAILABLE value
+         * @property {number} FEW_SEATS_AVAILABLE=2 FEW_SEATS_AVAILABLE value
+         * @property {number} STANDING_ROOM_ONLY=3 STANDING_ROOM_ONLY value
+         * @property {number} CRUSHED_STANDING_ROOM_ONLY=4 CRUSHED_STANDING_ROOM_ONLY value
+         * @property {number} FULL=5 FULL value
+         * @property {number} NOT_ACCEPTING_PASSENGERS=6 NOT_ACCEPTING_PASSENGERS value
+         */
+        VehiclePosition.OccupancyStatus = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "EMPTY"] = 0;
+            values[valuesById[1] = "MANY_SEATS_AVAILABLE"] = 1;
+            values[valuesById[2] = "FEW_SEATS_AVAILABLE"] = 2;
+            values[valuesById[3] = "STANDING_ROOM_ONLY"] = 3;
+            values[valuesById[4] = "CRUSHED_STANDING_ROOM_ONLY"] = 4;
+            values[valuesById[5] = "FULL"] = 5;
+            values[valuesById[6] = "NOT_ACCEPTING_PASSENGERS"] = 6;
+            return values;
+        })();
+
+        return VehiclePosition;
+    })();
+
+    transit_realtime.Alert = (function() {
+
+        /**
+         * Properties of an Alert.
+         * @typedef transit_realtime.Alert$Properties
+         * @type {Object}
+         * @property {Array.<transit_realtime.TimeRange$Properties>} [activePeriod] Alert activePeriod.
+         * @property {Array.<transit_realtime.EntitySelector$Properties>} [informedEntity] Alert informedEntity.
+         * @property {transit_realtime.Alert.Cause} [cause] Alert cause.
+         * @property {transit_realtime.Alert.Effect} [effect] Alert effect.
+         * @property {transit_realtime.TranslatedString$Properties} [url] Alert url.
+         * @property {transit_realtime.TranslatedString$Properties} [headerText] Alert headerText.
+         * @property {transit_realtime.TranslatedString$Properties} [descriptionText] Alert descriptionText.
+         */
+
+        /**
+         * Constructs a new Alert.
+         * @exports transit_realtime.Alert
+         * @constructor
+         * @param {transit_realtime.Alert$Properties=} [properties] Properties to set
+         */
+        function Alert(properties) {
+            this.activePeriod = [];
+            this.informedEntity = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Alert activePeriod.
+         * @type {Array.<transit_realtime.TimeRange$Properties>}
+         */
+        Alert.prototype.activePeriod = $util.emptyArray;
+
+        /**
+         * Alert informedEntity.
+         * @type {Array.<transit_realtime.EntitySelector$Properties>}
+         */
+        Alert.prototype.informedEntity = $util.emptyArray;
+
+        /**
+         * Alert cause.
+         * @type {transit_realtime.Alert.Cause}
+         */
+        Alert.prototype.cause = 1;
+
+        /**
+         * Alert effect.
+         * @type {transit_realtime.Alert.Effect}
+         */
+        Alert.prototype.effect = 8;
+
+        /**
+         * Alert url.
+         * @type {(transit_realtime.TranslatedString$Properties|null)}
+         */
+        Alert.prototype.url = null;
+
+        /**
+         * Alert headerText.
+         * @type {(transit_realtime.TranslatedString$Properties|null)}
+         */
+        Alert.prototype.headerText = null;
+
+        /**
+         * Alert descriptionText.
+         * @type {(transit_realtime.TranslatedString$Properties|null)}
+         */
+        Alert.prototype.descriptionText = null;
+
+        /**
+         * Creates a new Alert instance using the specified properties.
+         * @param {transit_realtime.Alert$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.Alert} Alert instance
+         */
+        Alert.create = function create(properties) {
+            return new Alert(properties);
+        };
+
+        /**
+         * Encodes the specified Alert message. Does not implicitly {@link transit_realtime.Alert.verify|verify} messages.
+         * @param {transit_realtime.Alert$Properties} message Alert message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Alert.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.activePeriod != null && message.activePeriod.length)
+                for (var i = 0; i < message.activePeriod.length; ++i)
+                    $root.transit_realtime.TimeRange.encode(message.activePeriod[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.informedEntity != null && message.informedEntity.length)
+                for (var i = 0; i < message.informedEntity.length; ++i)
+                    $root.transit_realtime.EntitySelector.encode(message.informedEntity[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            if (message.cause != null && message.hasOwnProperty("cause"))
+                writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.cause);
+            if (message.effect != null && message.hasOwnProperty("effect"))
+                writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.effect);
+            if (message.url != null && message.hasOwnProperty("url"))
+                $root.transit_realtime.TranslatedString.encode(message.url, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+            if (message.headerText != null && message.hasOwnProperty("headerText"))
+                $root.transit_realtime.TranslatedString.encode(message.headerText, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+            if (message.descriptionText != null && message.hasOwnProperty("descriptionText"))
+                $root.transit_realtime.TranslatedString.encode(message.descriptionText, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Alert message, length delimited. Does not implicitly {@link transit_realtime.Alert.verify|verify} messages.
+         * @param {transit_realtime.Alert$Properties} message Alert message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Alert.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an Alert message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.Alert} Alert
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Alert.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.Alert();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    if (!(message.activePeriod && message.activePeriod.length))
+                        message.activePeriod = [];
+                    message.activePeriod.push($root.transit_realtime.TimeRange.decode(reader, reader.uint32()));
+                    break;
+                case 5:
+                    if (!(message.informedEntity && message.informedEntity.length))
+                        message.informedEntity = [];
+                    message.informedEntity.push($root.transit_realtime.EntitySelector.decode(reader, reader.uint32()));
+                    break;
+                case 6:
+                    message.cause = reader.uint32();
+                    break;
+                case 7:
+                    message.effect = reader.uint32();
+                    break;
+                case 8:
+                    message.url = $root.transit_realtime.TranslatedString.decode(reader, reader.uint32());
+                    break;
+                case 10:
+                    message.headerText = $root.transit_realtime.TranslatedString.decode(reader, reader.uint32());
+                    break;
+                case 11:
+                    message.descriptionText = $root.transit_realtime.TranslatedString.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an Alert message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.Alert} Alert
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Alert.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an Alert message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        Alert.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.activePeriod != null && message.hasOwnProperty("activePeriod")) {
+                if (!Array.isArray(message.activePeriod))
+                    return "activePeriod: array expected";
+                for (var i = 0; i < message.activePeriod.length; ++i) {
+                    var error = $root.transit_realtime.TimeRange.verify(message.activePeriod[i]);
+                    if (error)
+                        return "activePeriod." + error;
+                }
+            }
+            if (message.informedEntity != null && message.hasOwnProperty("informedEntity")) {
+                if (!Array.isArray(message.informedEntity))
+                    return "informedEntity: array expected";
+                for (var i = 0; i < message.informedEntity.length; ++i) {
+                    var error = $root.transit_realtime.EntitySelector.verify(message.informedEntity[i]);
+                    if (error)
+                        return "informedEntity." + error;
+                }
+            }
+            if (message.cause != null && message.hasOwnProperty("cause"))
+                switch (message.cause) {
+                default:
+                    return "cause: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                    break;
+                }
+            if (message.effect != null && message.hasOwnProperty("effect"))
+                switch (message.effect) {
+                default:
+                    return "effect: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    break;
+                }
+            if (message.url != null && message.hasOwnProperty("url")) {
+                var error = $root.transit_realtime.TranslatedString.verify(message.url);
+                if (error)
+                    return "url." + error;
+            }
+            if (message.headerText != null && message.hasOwnProperty("headerText")) {
+                var error = $root.transit_realtime.TranslatedString.verify(message.headerText);
+                if (error)
+                    return "headerText." + error;
+            }
+            if (message.descriptionText != null && message.hasOwnProperty("descriptionText")) {
+                var error = $root.transit_realtime.TranslatedString.verify(message.descriptionText);
+                if (error)
+                    return "descriptionText." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates an Alert message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.Alert} Alert
+         */
+        Alert.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.Alert)
+                return object;
+            var message = new $root.transit_realtime.Alert();
+            if (object.activePeriod) {
+                if (!Array.isArray(object.activePeriod))
+                    throw TypeError(".transit_realtime.Alert.activePeriod: array expected");
+                message.activePeriod = [];
+                for (var i = 0; i < object.activePeriod.length; ++i) {
+                    if (typeof object.activePeriod[i] !== "object")
+                        throw TypeError(".transit_realtime.Alert.activePeriod: object expected");
+                    message.activePeriod[i] = $root.transit_realtime.TimeRange.fromObject(object.activePeriod[i]);
+                }
+            }
+            if (object.informedEntity) {
+                if (!Array.isArray(object.informedEntity))
+                    throw TypeError(".transit_realtime.Alert.informedEntity: array expected");
+                message.informedEntity = [];
+                for (var i = 0; i < object.informedEntity.length; ++i) {
+                    if (typeof object.informedEntity[i] !== "object")
+                        throw TypeError(".transit_realtime.Alert.informedEntity: object expected");
+                    message.informedEntity[i] = $root.transit_realtime.EntitySelector.fromObject(object.informedEntity[i]);
+                }
+            }
+            switch (object.cause) {
+            case "UNKNOWN_CAUSE":
+            case 1:
+                message.cause = 1;
+                break;
+            case "OTHER_CAUSE":
+            case 2:
+                message.cause = 2;
+                break;
+            case "TECHNICAL_PROBLEM":
+            case 3:
+                message.cause = 3;
+                break;
+            case "STRIKE":
+            case 4:
+                message.cause = 4;
+                break;
+            case "DEMONSTRATION":
+            case 5:
+                message.cause = 5;
+                break;
+            case "ACCIDENT":
+            case 6:
+                message.cause = 6;
+                break;
+            case "HOLIDAY":
+            case 7:
+                message.cause = 7;
+                break;
+            case "WEATHER":
+            case 8:
+                message.cause = 8;
+                break;
+            case "MAINTENANCE":
+            case 9:
+                message.cause = 9;
+                break;
+            case "CONSTRUCTION":
+            case 10:
+                message.cause = 10;
+                break;
+            case "POLICE_ACTIVITY":
+            case 11:
+                message.cause = 11;
+                break;
+            case "MEDICAL_EMERGENCY":
+            case 12:
+                message.cause = 12;
+                break;
+            }
+            switch (object.effect) {
+            case "NO_SERVICE":
+            case 1:
+                message.effect = 1;
+                break;
+            case "REDUCED_SERVICE":
+            case 2:
+                message.effect = 2;
+                break;
+            case "SIGNIFICANT_DELAYS":
+            case 3:
+                message.effect = 3;
+                break;
+            case "DETOUR":
+            case 4:
+                message.effect = 4;
+                break;
+            case "ADDITIONAL_SERVICE":
+            case 5:
+                message.effect = 5;
+                break;
+            case "MODIFIED_SERVICE":
+            case 6:
+                message.effect = 6;
+                break;
+            case "OTHER_EFFECT":
+            case 7:
+                message.effect = 7;
+                break;
+            case "UNKNOWN_EFFECT":
+            case 8:
+                message.effect = 8;
+                break;
+            case "STOP_MOVED":
+            case 9:
+                message.effect = 9;
+                break;
+            }
+            if (object.url != null) {
+                if (typeof object.url !== "object")
+                    throw TypeError(".transit_realtime.Alert.url: object expected");
+                message.url = $root.transit_realtime.TranslatedString.fromObject(object.url);
+            }
+            if (object.headerText != null) {
+                if (typeof object.headerText !== "object")
+                    throw TypeError(".transit_realtime.Alert.headerText: object expected");
+                message.headerText = $root.transit_realtime.TranslatedString.fromObject(object.headerText);
+            }
+            if (object.descriptionText != null) {
+                if (typeof object.descriptionText !== "object")
+                    throw TypeError(".transit_realtime.Alert.descriptionText: object expected");
+                message.descriptionText = $root.transit_realtime.TranslatedString.fromObject(object.descriptionText);
+            }
+            return message;
+        };
+
+        /**
+         * Creates an Alert message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.Alert.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.Alert} Alert
+         */
+        Alert.from = Alert.fromObject;
+
+        /**
+         * Creates a plain object from an Alert message. Also converts values to other types if specified.
+         * @param {transit_realtime.Alert} message Alert
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Alert.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.activePeriod = [];
+                object.informedEntity = [];
+            }
+            if (options.defaults) {
+                object.cause = options.enums === String ? "UNKNOWN_CAUSE" : 1;
+                object.effect = options.enums === String ? "UNKNOWN_EFFECT" : 8;
+                object.url = null;
+                object.headerText = null;
+                object.descriptionText = null;
+            }
+            if (message.activePeriod && message.activePeriod.length) {
+                object.activePeriod = [];
+                for (var j = 0; j < message.activePeriod.length; ++j)
+                    object.activePeriod[j] = $root.transit_realtime.TimeRange.toObject(message.activePeriod[j], options);
+            }
+            if (message.informedEntity && message.informedEntity.length) {
+                object.informedEntity = [];
+                for (var j = 0; j < message.informedEntity.length; ++j)
+                    object.informedEntity[j] = $root.transit_realtime.EntitySelector.toObject(message.informedEntity[j], options);
+            }
+            if (message.cause != null && message.hasOwnProperty("cause"))
+                object.cause = options.enums === String ? $root.transit_realtime.Alert.Cause[message.cause] : message.cause;
+            if (message.effect != null && message.hasOwnProperty("effect"))
+                object.effect = options.enums === String ? $root.transit_realtime.Alert.Effect[message.effect] : message.effect;
+            if (message.url != null && message.hasOwnProperty("url"))
+                object.url = $root.transit_realtime.TranslatedString.toObject(message.url, options);
+            if (message.headerText != null && message.hasOwnProperty("headerText"))
+                object.headerText = $root.transit_realtime.TranslatedString.toObject(message.headerText, options);
+            if (message.descriptionText != null && message.hasOwnProperty("descriptionText"))
+                object.descriptionText = $root.transit_realtime.TranslatedString.toObject(message.descriptionText, options);
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this Alert message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Alert.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this Alert to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        Alert.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Cause enum.
+         * @name Cause
+         * @memberof transit_realtime.Alert
+         * @enum {number}
+         * @property {number} UNKNOWN_CAUSE=1 UNKNOWN_CAUSE value
+         * @property {number} OTHER_CAUSE=2 OTHER_CAUSE value
+         * @property {number} TECHNICAL_PROBLEM=3 TECHNICAL_PROBLEM value
+         * @property {number} STRIKE=4 STRIKE value
+         * @property {number} DEMONSTRATION=5 DEMONSTRATION value
+         * @property {number} ACCIDENT=6 ACCIDENT value
+         * @property {number} HOLIDAY=7 HOLIDAY value
+         * @property {number} WEATHER=8 WEATHER value
+         * @property {number} MAINTENANCE=9 MAINTENANCE value
+         * @property {number} CONSTRUCTION=10 CONSTRUCTION value
+         * @property {number} POLICE_ACTIVITY=11 POLICE_ACTIVITY value
+         * @property {number} MEDICAL_EMERGENCY=12 MEDICAL_EMERGENCY value
+         */
+        Alert.Cause = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[1] = "UNKNOWN_CAUSE"] = 1;
+            values[valuesById[2] = "OTHER_CAUSE"] = 2;
+            values[valuesById[3] = "TECHNICAL_PROBLEM"] = 3;
+            values[valuesById[4] = "STRIKE"] = 4;
+            values[valuesById[5] = "DEMONSTRATION"] = 5;
+            values[valuesById[6] = "ACCIDENT"] = 6;
+            values[valuesById[7] = "HOLIDAY"] = 7;
+            values[valuesById[8] = "WEATHER"] = 8;
+            values[valuesById[9] = "MAINTENANCE"] = 9;
+            values[valuesById[10] = "CONSTRUCTION"] = 10;
+            values[valuesById[11] = "POLICE_ACTIVITY"] = 11;
+            values[valuesById[12] = "MEDICAL_EMERGENCY"] = 12;
+            return values;
+        })();
+
+        /**
+         * Effect enum.
+         * @name Effect
+         * @memberof transit_realtime.Alert
+         * @enum {number}
+         * @property {number} NO_SERVICE=1 NO_SERVICE value
+         * @property {number} REDUCED_SERVICE=2 REDUCED_SERVICE value
+         * @property {number} SIGNIFICANT_DELAYS=3 SIGNIFICANT_DELAYS value
+         * @property {number} DETOUR=4 DETOUR value
+         * @property {number} ADDITIONAL_SERVICE=5 ADDITIONAL_SERVICE value
+         * @property {number} MODIFIED_SERVICE=6 MODIFIED_SERVICE value
+         * @property {number} OTHER_EFFECT=7 OTHER_EFFECT value
+         * @property {number} UNKNOWN_EFFECT=8 UNKNOWN_EFFECT value
+         * @property {number} STOP_MOVED=9 STOP_MOVED value
+         */
+        Alert.Effect = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[1] = "NO_SERVICE"] = 1;
+            values[valuesById[2] = "REDUCED_SERVICE"] = 2;
+            values[valuesById[3] = "SIGNIFICANT_DELAYS"] = 3;
+            values[valuesById[4] = "DETOUR"] = 4;
+            values[valuesById[5] = "ADDITIONAL_SERVICE"] = 5;
+            values[valuesById[6] = "MODIFIED_SERVICE"] = 6;
+            values[valuesById[7] = "OTHER_EFFECT"] = 7;
+            values[valuesById[8] = "UNKNOWN_EFFECT"] = 8;
+            values[valuesById[9] = "STOP_MOVED"] = 9;
+            return values;
+        })();
+
+        return Alert;
+    })();
+
+    transit_realtime.TimeRange = (function() {
+
+        /**
+         * Properties of a TimeRange.
+         * @typedef transit_realtime.TimeRange$Properties
+         * @type {Object}
+         * @property {number|Long} [start] TimeRange start.
+         * @property {number|Long} [end] TimeRange end.
+         */
+
+        /**
+         * Constructs a new TimeRange.
+         * @exports transit_realtime.TimeRange
+         * @constructor
+         * @param {transit_realtime.TimeRange$Properties=} [properties] Properties to set
+         */
+        function TimeRange(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * TimeRange start.
+         * @type {number|Long}
+         */
+        TimeRange.prototype.start = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * TimeRange end.
+         * @type {number|Long}
+         */
+        TimeRange.prototype.end = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * Creates a new TimeRange instance using the specified properties.
+         * @param {transit_realtime.TimeRange$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.TimeRange} TimeRange instance
+         */
+        TimeRange.create = function create(properties) {
+            return new TimeRange(properties);
+        };
+
+        /**
+         * Encodes the specified TimeRange message. Does not implicitly {@link transit_realtime.TimeRange.verify|verify} messages.
+         * @param {transit_realtime.TimeRange$Properties} message TimeRange message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TimeRange.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.start != null && message.hasOwnProperty("start"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.start);
+            if (message.end != null && message.hasOwnProperty("end"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.end);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified TimeRange message, length delimited. Does not implicitly {@link transit_realtime.TimeRange.verify|verify} messages.
+         * @param {transit_realtime.TimeRange$Properties} message TimeRange message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TimeRange.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a TimeRange message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.TimeRange} TimeRange
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TimeRange.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TimeRange();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.start = reader.uint64();
+                    break;
+                case 2:
+                    message.end = reader.uint64();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a TimeRange message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.TimeRange} TimeRange
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TimeRange.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a TimeRange message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        TimeRange.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.start != null && message.hasOwnProperty("start"))
+                if (!$util.isInteger(message.start) && !(message.start && $util.isInteger(message.start.low) && $util.isInteger(message.start.high)))
+                    return "start: integer|Long expected";
+            if (message.end != null && message.hasOwnProperty("end"))
+                if (!$util.isInteger(message.end) && !(message.end && $util.isInteger(message.end.low) && $util.isInteger(message.end.high)))
+                    return "end: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a TimeRange message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.TimeRange} TimeRange
+         */
+        TimeRange.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.TimeRange)
+                return object;
+            var message = new $root.transit_realtime.TimeRange();
+            if (object.start != null)
+                if ($util.Long)
+                    (message.start = $util.Long.fromValue(object.start)).unsigned = true;
+                else if (typeof object.start === "string")
+                    message.start = parseInt(object.start, 10);
+                else if (typeof object.start === "number")
+                    message.start = object.start;
+                else if (typeof object.start === "object")
+                    message.start = new $util.LongBits(object.start.low >>> 0, object.start.high >>> 0).toNumber(true);
+            if (object.end != null)
+                if ($util.Long)
+                    (message.end = $util.Long.fromValue(object.end)).unsigned = true;
+                else if (typeof object.end === "string")
+                    message.end = parseInt(object.end, 10);
+                else if (typeof object.end === "number")
+                    message.end = object.end;
+                else if (typeof object.end === "object")
+                    message.end = new $util.LongBits(object.end.low >>> 0, object.end.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a TimeRange message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.TimeRange.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.TimeRange} TimeRange
+         */
+        TimeRange.from = TimeRange.fromObject;
+
+        /**
+         * Creates a plain object from a TimeRange message. Also converts values to other types if specified.
+         * @param {transit_realtime.TimeRange} message TimeRange
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TimeRange.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.start = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.start = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.end = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.end = options.longs === String ? "0" : 0;
+            }
+            if (message.start != null && message.hasOwnProperty("start"))
+                if (typeof message.start === "number")
+                    object.start = options.longs === String ? String(message.start) : message.start;
+                else
+                    object.start = options.longs === String ? $util.Long.prototype.toString.call(message.start) : options.longs === Number ? new $util.LongBits(message.start.low >>> 0, message.start.high >>> 0).toNumber(true) : message.start;
+            if (message.end != null && message.hasOwnProperty("end"))
+                if (typeof message.end === "number")
+                    object.end = options.longs === String ? String(message.end) : message.end;
+                else
+                    object.end = options.longs === String ? $util.Long.prototype.toString.call(message.end) : options.longs === Number ? new $util.LongBits(message.end.low >>> 0, message.end.high >>> 0).toNumber(true) : message.end;
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this TimeRange message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TimeRange.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this TimeRange to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        TimeRange.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return TimeRange;
+    })();
+
+    transit_realtime.Position = (function() {
+
+        /**
+         * Properties of a Position.
+         * @typedef transit_realtime.Position$Properties
+         * @type {Object}
+         * @property {number} latitude Position latitude.
+         * @property {number} longitude Position longitude.
+         * @property {number} [bearing] Position bearing.
+         * @property {number} [odometer] Position odometer.
+         * @property {number} [speed] Position speed.
+         */
+
+        /**
+         * Constructs a new Position.
+         * @exports transit_realtime.Position
+         * @constructor
+         * @param {transit_realtime.Position$Properties=} [properties] Properties to set
+         */
+        function Position(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Position latitude.
+         * @type {number}
+         */
+        Position.prototype.latitude = 0;
+
+        /**
+         * Position longitude.
+         * @type {number}
+         */
+        Position.prototype.longitude = 0;
+
+        /**
+         * Position bearing.
+         * @type {number}
+         */
+        Position.prototype.bearing = 0;
+
+        /**
+         * Position odometer.
+         * @type {number}
+         */
+        Position.prototype.odometer = 0;
+
+        /**
+         * Position speed.
+         * @type {number}
+         */
+        Position.prototype.speed = 0;
+
+        /**
+         * Creates a new Position instance using the specified properties.
+         * @param {transit_realtime.Position$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.Position} Position instance
+         */
+        Position.create = function create(properties) {
+            return new Position(properties);
+        };
+
+        /**
+         * Encodes the specified Position message. Does not implicitly {@link transit_realtime.Position.verify|verify} messages.
+         * @param {transit_realtime.Position$Properties} message Position message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Position.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 5 =*/13).float(message.latitude);
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.longitude);
+            if (message.bearing != null && message.hasOwnProperty("bearing"))
+                writer.uint32(/* id 3, wireType 5 =*/29).float(message.bearing);
+            if (message.odometer != null && message.hasOwnProperty("odometer"))
+                writer.uint32(/* id 4, wireType 1 =*/33).double(message.odometer);
+            if (message.speed != null && message.hasOwnProperty("speed"))
+                writer.uint32(/* id 5, wireType 5 =*/45).float(message.speed);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Position message, length delimited. Does not implicitly {@link transit_realtime.Position.verify|verify} messages.
+         * @param {transit_realtime.Position$Properties} message Position message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Position.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Position message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.Position} Position
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Position.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.Position();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.latitude = reader.float();
+                    break;
+                case 2:
+                    message.longitude = reader.float();
+                    break;
+                case 3:
+                    message.bearing = reader.float();
+                    break;
+                case 4:
+                    message.odometer = reader.double();
+                    break;
+                case 5:
+                    message.speed = reader.float();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("latitude"))
+                throw $util.ProtocolError("missing required 'latitude'", { instance: message });
+            if (!message.hasOwnProperty("longitude"))
+                throw $util.ProtocolError("missing required 'longitude'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a Position message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.Position} Position
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Position.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Position message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        Position.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (typeof message.latitude !== "number")
+                return "latitude: number expected";
+            if (typeof message.longitude !== "number")
+                return "longitude: number expected";
+            if (message.bearing != null && message.hasOwnProperty("bearing"))
+                if (typeof message.bearing !== "number")
+                    return "bearing: number expected";
+            if (message.odometer != null && message.hasOwnProperty("odometer"))
+                if (typeof message.odometer !== "number")
+                    return "odometer: number expected";
+            if (message.speed != null && message.hasOwnProperty("speed"))
+                if (typeof message.speed !== "number")
+                    return "speed: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a Position message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.Position} Position
+         */
+        Position.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.Position)
+                return object;
+            var message = new $root.transit_realtime.Position();
+            if (object.latitude != null)
+                message.latitude = Number(object.latitude);
+            if (object.longitude != null)
+                message.longitude = Number(object.longitude);
+            if (object.bearing != null)
+                message.bearing = Number(object.bearing);
+            if (object.odometer != null)
+                message.odometer = Number(object.odometer);
+            if (object.speed != null)
+                message.speed = Number(object.speed);
+            return message;
+        };
+
+        /**
+         * Creates a Position message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.Position.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.Position} Position
+         */
+        Position.from = Position.fromObject;
+
+        /**
+         * Creates a plain object from a Position message. Also converts values to other types if specified.
+         * @param {transit_realtime.Position} message Position
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Position.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.latitude = 0;
+                object.longitude = 0;
+                object.bearing = 0;
+                object.odometer = 0;
+                object.speed = 0;
+            }
+            if (message.latitude != null && message.hasOwnProperty("latitude"))
+                object.latitude = message.latitude;
+            if (message.longitude != null && message.hasOwnProperty("longitude"))
+                object.longitude = message.longitude;
+            if (message.bearing != null && message.hasOwnProperty("bearing"))
+                object.bearing = message.bearing;
+            if (message.odometer != null && message.hasOwnProperty("odometer"))
+                object.odometer = message.odometer;
+            if (message.speed != null && message.hasOwnProperty("speed"))
+                object.speed = message.speed;
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this Position message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Position.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this Position to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        Position.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Position;
+    })();
+
+    transit_realtime.TripDescriptor = (function() {
+
+        /**
+         * Properties of a TripDescriptor.
+         * @typedef transit_realtime.TripDescriptor$Properties
+         * @type {Object}
+         * @property {string} [tripId] TripDescriptor tripId.
+         * @property {string} [routeId] TripDescriptor routeId.
+         * @property {number} [directionId] TripDescriptor directionId.
+         * @property {string} [startTime] TripDescriptor startTime.
+         * @property {string} [startDate] TripDescriptor startDate.
+         * @property {transit_realtime.TripDescriptor.ScheduleRelationship} [scheduleRelationship] TripDescriptor scheduleRelationship.
+         */
+
+        /**
+         * Constructs a new TripDescriptor.
+         * @exports transit_realtime.TripDescriptor
+         * @constructor
+         * @param {transit_realtime.TripDescriptor$Properties=} [properties] Properties to set
+         */
+        function TripDescriptor(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * TripDescriptor tripId.
+         * @type {string}
+         */
+        TripDescriptor.prototype.tripId = "";
+
+        /**
+         * TripDescriptor routeId.
+         * @type {string}
+         */
+        TripDescriptor.prototype.routeId = "";
+
+        /**
+         * TripDescriptor directionId.
+         * @type {number}
+         */
+        TripDescriptor.prototype.directionId = 0;
+
+        /**
+         * TripDescriptor startTime.
+         * @type {string}
+         */
+        TripDescriptor.prototype.startTime = "";
+
+        /**
+         * TripDescriptor startDate.
+         * @type {string}
+         */
+        TripDescriptor.prototype.startDate = "";
+
+        /**
+         * TripDescriptor scheduleRelationship.
+         * @type {transit_realtime.TripDescriptor.ScheduleRelationship}
+         */
+        TripDescriptor.prototype.scheduleRelationship = 0;
+
+        /**
+         * Creates a new TripDescriptor instance using the specified properties.
+         * @param {transit_realtime.TripDescriptor$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.TripDescriptor} TripDescriptor instance
+         */
+        TripDescriptor.create = function create(properties) {
+            return new TripDescriptor(properties);
+        };
+
+        /**
+         * Encodes the specified TripDescriptor message. Does not implicitly {@link transit_realtime.TripDescriptor.verify|verify} messages.
+         * @param {transit_realtime.TripDescriptor$Properties} message TripDescriptor message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TripDescriptor.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.tripId != null && message.hasOwnProperty("tripId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.tripId);
+            if (message.startTime != null && message.hasOwnProperty("startTime"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.startTime);
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.startDate);
+            if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
+                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.scheduleRelationship);
+            if (message.routeId != null && message.hasOwnProperty("routeId"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.routeId);
+            if (message.directionId != null && message.hasOwnProperty("directionId"))
+                writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.directionId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified TripDescriptor message, length delimited. Does not implicitly {@link transit_realtime.TripDescriptor.verify|verify} messages.
+         * @param {transit_realtime.TripDescriptor$Properties} message TripDescriptor message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TripDescriptor.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a TripDescriptor message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.TripDescriptor} TripDescriptor
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TripDescriptor.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripDescriptor();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.tripId = reader.string();
+                    break;
+                case 5:
+                    message.routeId = reader.string();
+                    break;
+                case 6:
+                    message.directionId = reader.uint32();
+                    break;
+                case 2:
+                    message.startTime = reader.string();
+                    break;
+                case 3:
+                    message.startDate = reader.string();
+                    break;
+                case 4:
+                    message.scheduleRelationship = reader.uint32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a TripDescriptor message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.TripDescriptor} TripDescriptor
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TripDescriptor.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a TripDescriptor message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        TripDescriptor.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.tripId != null && message.hasOwnProperty("tripId"))
+                if (!$util.isString(message.tripId))
+                    return "tripId: string expected";
+            if (message.routeId != null && message.hasOwnProperty("routeId"))
+                if (!$util.isString(message.routeId))
+                    return "routeId: string expected";
+            if (message.directionId != null && message.hasOwnProperty("directionId"))
+                if (!$util.isInteger(message.directionId))
+                    return "directionId: integer expected";
+            if (message.startTime != null && message.hasOwnProperty("startTime"))
+                if (!$util.isString(message.startTime))
+                    return "startTime: string expected";
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                if (!$util.isString(message.startDate))
+                    return "startDate: string expected";
+            if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
+                switch (message.scheduleRelationship) {
+                default:
+                    return "scheduleRelationship: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a TripDescriptor message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.TripDescriptor} TripDescriptor
+         */
+        TripDescriptor.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.TripDescriptor)
+                return object;
+            var message = new $root.transit_realtime.TripDescriptor();
+            if (object.tripId != null)
+                message.tripId = String(object.tripId);
+            if (object.routeId != null)
+                message.routeId = String(object.routeId);
+            if (object.directionId != null)
+                message.directionId = object.directionId >>> 0;
+            if (object.startTime != null)
+                message.startTime = String(object.startTime);
+            if (object.startDate != null)
+                message.startDate = String(object.startDate);
+            switch (object.scheduleRelationship) {
+            case "SCHEDULED":
+            case 0:
+                message.scheduleRelationship = 0;
+                break;
+            case "ADDED":
+            case 1:
+                message.scheduleRelationship = 1;
+                break;
+            case "UNSCHEDULED":
+            case 2:
+                message.scheduleRelationship = 2;
+                break;
+            case "CANCELED":
+            case 3:
+                message.scheduleRelationship = 3;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a TripDescriptor message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.TripDescriptor.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.TripDescriptor} TripDescriptor
+         */
+        TripDescriptor.from = TripDescriptor.fromObject;
+
+        /**
+         * Creates a plain object from a TripDescriptor message. Also converts values to other types if specified.
+         * @param {transit_realtime.TripDescriptor} message TripDescriptor
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TripDescriptor.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.tripId = "";
+                object.startTime = "";
+                object.startDate = "";
+                object.scheduleRelationship = options.enums === String ? "SCHEDULED" : 0;
+                object.routeId = "";
+                object.directionId = 0;
+            }
+            if (message.tripId != null && message.hasOwnProperty("tripId"))
+                object.tripId = message.tripId;
+            if (message.startTime != null && message.hasOwnProperty("startTime"))
+                object.startTime = message.startTime;
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                object.startDate = message.startDate;
+            if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
+                object.scheduleRelationship = options.enums === String ? $root.transit_realtime.TripDescriptor.ScheduleRelationship[message.scheduleRelationship] : message.scheduleRelationship;
+            if (message.routeId != null && message.hasOwnProperty("routeId"))
+                object.routeId = message.routeId;
+            if (message.directionId != null && message.hasOwnProperty("directionId"))
+                object.directionId = message.directionId;
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this TripDescriptor message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TripDescriptor.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this TripDescriptor to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        TripDescriptor.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * ScheduleRelationship enum.
+         * @name ScheduleRelationship
+         * @memberof transit_realtime.TripDescriptor
+         * @enum {number}
+         * @property {number} SCHEDULED=0 SCHEDULED value
+         * @property {number} ADDED=1 ADDED value
+         * @property {number} UNSCHEDULED=2 UNSCHEDULED value
+         * @property {number} CANCELED=3 CANCELED value
+         */
+        TripDescriptor.ScheduleRelationship = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "SCHEDULED"] = 0;
+            values[valuesById[1] = "ADDED"] = 1;
+            values[valuesById[2] = "UNSCHEDULED"] = 2;
+            values[valuesById[3] = "CANCELED"] = 3;
+            return values;
+        })();
+
+        return TripDescriptor;
+    })();
+
+    transit_realtime.VehicleDescriptor = (function() {
+
+        /**
+         * Properties of a VehicleDescriptor.
+         * @typedef transit_realtime.VehicleDescriptor$Properties
+         * @type {Object}
+         * @property {string} [id] VehicleDescriptor id.
+         * @property {string} [label] VehicleDescriptor label.
+         * @property {string} [licensePlate] VehicleDescriptor licensePlate.
+         */
+
+        /**
+         * Constructs a new VehicleDescriptor.
+         * @exports transit_realtime.VehicleDescriptor
+         * @constructor
+         * @param {transit_realtime.VehicleDescriptor$Properties=} [properties] Properties to set
+         */
+        function VehicleDescriptor(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * VehicleDescriptor id.
+         * @type {string}
+         */
+        VehicleDescriptor.prototype.id = "";
+
+        /**
+         * VehicleDescriptor label.
+         * @type {string}
+         */
+        VehicleDescriptor.prototype.label = "";
+
+        /**
+         * VehicleDescriptor licensePlate.
+         * @type {string}
+         */
+        VehicleDescriptor.prototype.licensePlate = "";
+
+        /**
+         * Creates a new VehicleDescriptor instance using the specified properties.
+         * @param {transit_realtime.VehicleDescriptor$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.VehicleDescriptor} VehicleDescriptor instance
+         */
+        VehicleDescriptor.create = function create(properties) {
+            return new VehicleDescriptor(properties);
+        };
+
+        /**
+         * Encodes the specified VehicleDescriptor message. Does not implicitly {@link transit_realtime.VehicleDescriptor.verify|verify} messages.
+         * @param {transit_realtime.VehicleDescriptor$Properties} message VehicleDescriptor message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        VehicleDescriptor.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && message.hasOwnProperty("id"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+            if (message.label != null && message.hasOwnProperty("label"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.label);
+            if (message.licensePlate != null && message.hasOwnProperty("licensePlate"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.licensePlate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified VehicleDescriptor message, length delimited. Does not implicitly {@link transit_realtime.VehicleDescriptor.verify|verify} messages.
+         * @param {transit_realtime.VehicleDescriptor$Properties} message VehicleDescriptor message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        VehicleDescriptor.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a VehicleDescriptor message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.VehicleDescriptor} VehicleDescriptor
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        VehicleDescriptor.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.VehicleDescriptor();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.id = reader.string();
+                    break;
+                case 2:
+                    message.label = reader.string();
+                    break;
+                case 3:
+                    message.licensePlate = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a VehicleDescriptor message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.VehicleDescriptor} VehicleDescriptor
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        VehicleDescriptor.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a VehicleDescriptor message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        VehicleDescriptor.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
+            if (message.label != null && message.hasOwnProperty("label"))
+                if (!$util.isString(message.label))
+                    return "label: string expected";
+            if (message.licensePlate != null && message.hasOwnProperty("licensePlate"))
+                if (!$util.isString(message.licensePlate))
+                    return "licensePlate: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a VehicleDescriptor message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.VehicleDescriptor} VehicleDescriptor
+         */
+        VehicleDescriptor.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.VehicleDescriptor)
+                return object;
+            var message = new $root.transit_realtime.VehicleDescriptor();
+            if (object.id != null)
+                message.id = String(object.id);
+            if (object.label != null)
+                message.label = String(object.label);
+            if (object.licensePlate != null)
+                message.licensePlate = String(object.licensePlate);
+            return message;
+        };
+
+        /**
+         * Creates a VehicleDescriptor message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.VehicleDescriptor.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.VehicleDescriptor} VehicleDescriptor
+         */
+        VehicleDescriptor.from = VehicleDescriptor.fromObject;
+
+        /**
+         * Creates a plain object from a VehicleDescriptor message. Also converts values to other types if specified.
+         * @param {transit_realtime.VehicleDescriptor} message VehicleDescriptor
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        VehicleDescriptor.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.id = "";
+                object.label = "";
+                object.licensePlate = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            if (message.label != null && message.hasOwnProperty("label"))
+                object.label = message.label;
+            if (message.licensePlate != null && message.hasOwnProperty("licensePlate"))
+                object.licensePlate = message.licensePlate;
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this VehicleDescriptor message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        VehicleDescriptor.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this VehicleDescriptor to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        VehicleDescriptor.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return VehicleDescriptor;
+    })();
+
+    transit_realtime.EntitySelector = (function() {
+
+        /**
+         * Properties of an EntitySelector.
+         * @typedef transit_realtime.EntitySelector$Properties
+         * @type {Object}
+         * @property {string} [agencyId] EntitySelector agencyId.
+         * @property {string} [routeId] EntitySelector routeId.
+         * @property {number} [routeType] EntitySelector routeType.
+         * @property {transit_realtime.TripDescriptor$Properties} [trip] EntitySelector trip.
+         * @property {string} [stopId] EntitySelector stopId.
+         */
+
+        /**
+         * Constructs a new EntitySelector.
+         * @exports transit_realtime.EntitySelector
+         * @constructor
+         * @param {transit_realtime.EntitySelector$Properties=} [properties] Properties to set
+         */
+        function EntitySelector(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * EntitySelector agencyId.
+         * @type {string}
+         */
+        EntitySelector.prototype.agencyId = "";
+
+        /**
+         * EntitySelector routeId.
+         * @type {string}
+         */
+        EntitySelector.prototype.routeId = "";
+
+        /**
+         * EntitySelector routeType.
+         * @type {number}
+         */
+        EntitySelector.prototype.routeType = 0;
+
+        /**
+         * EntitySelector trip.
+         * @type {(transit_realtime.TripDescriptor$Properties|null)}
+         */
+        EntitySelector.prototype.trip = null;
+
+        /**
+         * EntitySelector stopId.
+         * @type {string}
+         */
+        EntitySelector.prototype.stopId = "";
+
+        /**
+         * Creates a new EntitySelector instance using the specified properties.
+         * @param {transit_realtime.EntitySelector$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.EntitySelector} EntitySelector instance
+         */
+        EntitySelector.create = function create(properties) {
+            return new EntitySelector(properties);
+        };
+
+        /**
+         * Encodes the specified EntitySelector message. Does not implicitly {@link transit_realtime.EntitySelector.verify|verify} messages.
+         * @param {transit_realtime.EntitySelector$Properties} message EntitySelector message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        EntitySelector.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.agencyId != null && message.hasOwnProperty("agencyId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.agencyId);
+            if (message.routeId != null && message.hasOwnProperty("routeId"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.routeId);
+            if (message.routeType != null && message.hasOwnProperty("routeType"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.routeType);
+            if (message.trip != null && message.hasOwnProperty("trip"))
+                $root.transit_realtime.TripDescriptor.encode(message.trip, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.stopId != null && message.hasOwnProperty("stopId"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.stopId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified EntitySelector message, length delimited. Does not implicitly {@link transit_realtime.EntitySelector.verify|verify} messages.
+         * @param {transit_realtime.EntitySelector$Properties} message EntitySelector message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        EntitySelector.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an EntitySelector message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.EntitySelector} EntitySelector
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        EntitySelector.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.EntitySelector();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.agencyId = reader.string();
+                    break;
+                case 2:
+                    message.routeId = reader.string();
+                    break;
+                case 3:
+                    message.routeType = reader.int32();
+                    break;
+                case 4:
+                    message.trip = $root.transit_realtime.TripDescriptor.decode(reader, reader.uint32());
+                    break;
+                case 5:
+                    message.stopId = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an EntitySelector message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.EntitySelector} EntitySelector
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        EntitySelector.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an EntitySelector message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        EntitySelector.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.agencyId != null && message.hasOwnProperty("agencyId"))
+                if (!$util.isString(message.agencyId))
+                    return "agencyId: string expected";
+            if (message.routeId != null && message.hasOwnProperty("routeId"))
+                if (!$util.isString(message.routeId))
+                    return "routeId: string expected";
+            if (message.routeType != null && message.hasOwnProperty("routeType"))
+                if (!$util.isInteger(message.routeType))
+                    return "routeType: integer expected";
+            if (message.trip != null && message.hasOwnProperty("trip")) {
+                var error = $root.transit_realtime.TripDescriptor.verify(message.trip);
+                if (error)
+                    return "trip." + error;
+            }
+            if (message.stopId != null && message.hasOwnProperty("stopId"))
+                if (!$util.isString(message.stopId))
+                    return "stopId: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an EntitySelector message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.EntitySelector} EntitySelector
+         */
+        EntitySelector.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.EntitySelector)
+                return object;
+            var message = new $root.transit_realtime.EntitySelector();
+            if (object.agencyId != null)
+                message.agencyId = String(object.agencyId);
+            if (object.routeId != null)
+                message.routeId = String(object.routeId);
+            if (object.routeType != null)
+                message.routeType = object.routeType | 0;
+            if (object.trip != null) {
+                if (typeof object.trip !== "object")
+                    throw TypeError(".transit_realtime.EntitySelector.trip: object expected");
+                message.trip = $root.transit_realtime.TripDescriptor.fromObject(object.trip);
+            }
+            if (object.stopId != null)
+                message.stopId = String(object.stopId);
+            return message;
+        };
+
+        /**
+         * Creates an EntitySelector message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.EntitySelector.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.EntitySelector} EntitySelector
+         */
+        EntitySelector.from = EntitySelector.fromObject;
+
+        /**
+         * Creates a plain object from an EntitySelector message. Also converts values to other types if specified.
+         * @param {transit_realtime.EntitySelector} message EntitySelector
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        EntitySelector.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.agencyId = "";
+                object.routeId = "";
+                object.routeType = 0;
+                object.trip = null;
+                object.stopId = "";
+            }
+            if (message.agencyId != null && message.hasOwnProperty("agencyId"))
+                object.agencyId = message.agencyId;
+            if (message.routeId != null && message.hasOwnProperty("routeId"))
+                object.routeId = message.routeId;
+            if (message.routeType != null && message.hasOwnProperty("routeType"))
+                object.routeType = message.routeType;
+            if (message.trip != null && message.hasOwnProperty("trip"))
+                object.trip = $root.transit_realtime.TripDescriptor.toObject(message.trip, options);
+            if (message.stopId != null && message.hasOwnProperty("stopId"))
+                object.stopId = message.stopId;
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this EntitySelector message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        EntitySelector.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this EntitySelector to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        EntitySelector.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return EntitySelector;
+    })();
+
+    transit_realtime.TranslatedString = (function() {
+
+        /**
+         * Properties of a TranslatedString.
+         * @typedef transit_realtime.TranslatedString$Properties
+         * @type {Object}
+         * @property {Array.<transit_realtime.TranslatedString.Translation$Properties>} [translation] TranslatedString translation.
+         */
+
+        /**
+         * Constructs a new TranslatedString.
+         * @exports transit_realtime.TranslatedString
+         * @constructor
+         * @param {transit_realtime.TranslatedString$Properties=} [properties] Properties to set
+         */
+        function TranslatedString(properties) {
+            this.translation = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * TranslatedString translation.
+         * @type {Array.<transit_realtime.TranslatedString.Translation$Properties>}
+         */
+        TranslatedString.prototype.translation = $util.emptyArray;
+
+        /**
+         * Creates a new TranslatedString instance using the specified properties.
+         * @param {transit_realtime.TranslatedString$Properties=} [properties] Properties to set
+         * @returns {transit_realtime.TranslatedString} TranslatedString instance
+         */
+        TranslatedString.create = function create(properties) {
+            return new TranslatedString(properties);
+        };
+
+        /**
+         * Encodes the specified TranslatedString message. Does not implicitly {@link transit_realtime.TranslatedString.verify|verify} messages.
+         * @param {transit_realtime.TranslatedString$Properties} message TranslatedString message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TranslatedString.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.translation != null && message.translation.length)
+                for (var i = 0; i < message.translation.length; ++i)
+                    $root.transit_realtime.TranslatedString.Translation.encode(message.translation[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified TranslatedString message, length delimited. Does not implicitly {@link transit_realtime.TranslatedString.verify|verify} messages.
+         * @param {transit_realtime.TranslatedString$Properties} message TranslatedString message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TranslatedString.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a TranslatedString message from the specified reader or buffer.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {transit_realtime.TranslatedString} TranslatedString
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TranslatedString.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TranslatedString();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    if (!(message.translation && message.translation.length))
+                        message.translation = [];
+                    message.translation.push($root.transit_realtime.TranslatedString.Translation.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a TranslatedString message from the specified reader or buffer, length delimited.
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {transit_realtime.TranslatedString} TranslatedString
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TranslatedString.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a TranslatedString message.
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {?string} `null` if valid, otherwise the reason why it is not
+         */
+        TranslatedString.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.translation != null && message.hasOwnProperty("translation")) {
+                if (!Array.isArray(message.translation))
+                    return "translation: array expected";
+                for (var i = 0; i < message.translation.length; ++i) {
+                    var error = $root.transit_realtime.TranslatedString.Translation.verify(message.translation[i]);
+                    if (error)
+                        return "translation." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a TranslatedString message from a plain object. Also converts values to their respective internal types.
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.TranslatedString} TranslatedString
+         */
+        TranslatedString.fromObject = function fromObject(object) {
+            if (object instanceof $root.transit_realtime.TranslatedString)
+                return object;
+            var message = new $root.transit_realtime.TranslatedString();
+            if (object.translation) {
+                if (!Array.isArray(object.translation))
+                    throw TypeError(".transit_realtime.TranslatedString.translation: array expected");
+                message.translation = [];
+                for (var i = 0; i < object.translation.length; ++i) {
+                    if (typeof object.translation[i] !== "object")
+                        throw TypeError(".transit_realtime.TranslatedString.translation: object expected");
+                    message.translation[i] = $root.transit_realtime.TranslatedString.Translation.fromObject(object.translation[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a TranslatedString message from a plain object. Also converts values to their respective internal types.
+         * This is an alias of {@link transit_realtime.TranslatedString.fromObject}.
+         * @function
+         * @param {Object.<string,*>} object Plain object
+         * @returns {transit_realtime.TranslatedString} TranslatedString
+         */
+        TranslatedString.from = TranslatedString.fromObject;
+
+        /**
+         * Creates a plain object from a TranslatedString message. Also converts values to other types if specified.
+         * @param {transit_realtime.TranslatedString} message TranslatedString
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TranslatedString.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.translation = [];
+            if (message.translation && message.translation.length) {
+                object.translation = [];
+                for (var j = 0; j < message.translation.length; ++j)
+                    object.translation[j] = $root.transit_realtime.TranslatedString.Translation.toObject(message.translation[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Creates a plain object from this TranslatedString message. Also converts values to other types if specified.
+         * @param {$protobuf.ConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TranslatedString.prototype.toObject = function toObject(options) {
+            return this.constructor.toObject(this, options);
+        };
+
+        /**
+         * Converts this TranslatedString to JSON.
+         * @returns {Object.<string,*>} JSON object
+         */
+        TranslatedString.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        TranslatedString.Translation = (function() {
+
+            /**
+             * Properties of a Translation.
+             * @typedef transit_realtime.TranslatedString.Translation$Properties
+             * @type {Object}
+             * @property {string} text Translation text.
+             * @property {string} [language] Translation language.
+             */
+
+            /**
+             * Constructs a new Translation.
+             * @exports transit_realtime.TranslatedString.Translation
+             * @constructor
+             * @param {transit_realtime.TranslatedString.Translation$Properties=} [properties] Properties to set
+             */
+            function Translation(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Translation text.
+             * @type {string}
+             */
+            Translation.prototype.text = "";
+
+            /**
+             * Translation language.
+             * @type {string}
+             */
+            Translation.prototype.language = "";
+
+            /**
+             * Creates a new Translation instance using the specified properties.
+             * @param {transit_realtime.TranslatedString.Translation$Properties=} [properties] Properties to set
+             * @returns {transit_realtime.TranslatedString.Translation} Translation instance
+             */
+            Translation.create = function create(properties) {
+                return new Translation(properties);
+            };
+
+            /**
+             * Encodes the specified Translation message. Does not implicitly {@link transit_realtime.TranslatedString.Translation.verify|verify} messages.
+             * @param {transit_realtime.TranslatedString.Translation$Properties} message Translation message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Translation.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
+                if (message.language != null && message.hasOwnProperty("language"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.language);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified Translation message, length delimited. Does not implicitly {@link transit_realtime.TranslatedString.Translation.verify|verify} messages.
+             * @param {transit_realtime.TranslatedString.Translation$Properties} message Translation message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Translation.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a Translation message from the specified reader or buffer.
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {transit_realtime.TranslatedString.Translation} Translation
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Translation.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TranslatedString.Translation();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.text = reader.string();
+                        break;
+                    case 2:
+                        message.language = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                if (!message.hasOwnProperty("text"))
+                    throw $util.ProtocolError("missing required 'text'", { instance: message });
+                return message;
+            };
+
+            /**
+             * Decodes a Translation message from the specified reader or buffer, length delimited.
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {transit_realtime.TranslatedString.Translation} Translation
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Translation.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a Translation message.
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {?string} `null` if valid, otherwise the reason why it is not
+             */
+            Translation.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (!$util.isString(message.text))
+                    return "text: string expected";
+                if (message.language != null && message.hasOwnProperty("language"))
+                    if (!$util.isString(message.language))
+                        return "language: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a Translation message from a plain object. Also converts values to their respective internal types.
+             * @param {Object.<string,*>} object Plain object
+             * @returns {transit_realtime.TranslatedString.Translation} Translation
+             */
+            Translation.fromObject = function fromObject(object) {
+                if (object instanceof $root.transit_realtime.TranslatedString.Translation)
+                    return object;
+                var message = new $root.transit_realtime.TranslatedString.Translation();
+                if (object.text != null)
+                    message.text = String(object.text);
+                if (object.language != null)
+                    message.language = String(object.language);
+                return message;
+            };
+
+            /**
+             * Creates a Translation message from a plain object. Also converts values to their respective internal types.
+             * This is an alias of {@link transit_realtime.TranslatedString.Translation.fromObject}.
+             * @function
+             * @param {Object.<string,*>} object Plain object
+             * @returns {transit_realtime.TranslatedString.Translation} Translation
+             */
+            Translation.from = Translation.fromObject;
+
+            /**
+             * Creates a plain object from a Translation message. Also converts values to other types if specified.
+             * @param {transit_realtime.TranslatedString.Translation} message Translation
+             * @param {$protobuf.ConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Translation.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.text = "";
+                    object.language = "";
+                }
+                if (message.text != null && message.hasOwnProperty("text"))
+                    object.text = message.text;
+                if (message.language != null && message.hasOwnProperty("language"))
+                    object.language = message.language;
+                return object;
+            };
+
+            /**
+             * Creates a plain object from this Translation message. Also converts values to other types if specified.
+             * @param {$protobuf.ConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Translation.prototype.toObject = function toObject(options) {
+                return this.constructor.toObject(this, options);
+            };
+
+            /**
+             * Converts this Translation to JSON.
+             * @returns {Object.<string,*>} JSON object
+             */
+            Translation.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return Translation;
+        })();
+
+        return TranslatedString;
+    })();
+
+    return transit_realtime;
+})();
+
+module.exports = $root;
 
 
 /***/ }),
@@ -69855,7 +72635,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
 /* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ "./src/store.js");
-/* harmony import */ var _data_group_stations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/group_stations */ "./data/group_stations.js");
+/* harmony import */ var _util_group_stations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/group_stations */ "./util/group_stations.js");
 
 
 
@@ -69885,7 +72665,8 @@ document.addEventListener('DOMContentLoaded', () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMap", function() { return initMap; });
-/* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
+/* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
+var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_0__});
 
 
 function initMap() {
@@ -69952,9 +72733,9 @@ function initMap() {
 
 function markStations(map) {
   const image = 'https://cdn3.iconfinder.com/data/icons/map/500/communication-256.png';
-  Object.keys(_data_stations__WEBPACK_IMPORTED_MODULE_0__["default"]).forEach((id) => {
+  Object.keys(_data_stations_json__WEBPACK_IMPORTED_MODULE_0__).forEach((id) => {
     new google.maps.Marker({
-      position: {lat: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][id].stop_lat, lng: _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][id].stop_lon},
+      position: {lat: _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[id].stop_lat, lng: _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[id].stop_lon},
       map: map,
       icon: {
         url: image,
@@ -69962,16 +72743,6 @@ function markStations(map) {
       }
     });
   })
-
-  // return new google.maps.Polyline({
-  //   path: [
-  //
-  //   ],
-  //   icons: [],
-  //   strokeColor: '#ffa500',
-  //   strokeWeight: 1,
-  //   map: map
-  // });
 }
 
 
@@ -69989,8 +72760,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/gtfs-realtime */ "./util/gtfs-realtime.js");
-/* harmony import */ var _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../gtfs-realtime */ "./gtfs-realtime.js");
+/* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
 /* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
 
@@ -70025,7 +72796,7 @@ function requestMta(store, req) {
   request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       Object(_page_setup__WEBPACK_IMPORTED_MODULE_3__["updateTime"])();
-      const feed = _util_gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
+      const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
       store.setupTrains(Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed));
     } else {
       // setup a condition to break out of loop
@@ -70170,13 +72941,14 @@ function toggleClass(element) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Store; });
 /* harmony import */ var _src_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/train */ "./src/train.js");
-/* harmony import */ var _mta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mta */ "./src/mta.js");
-/* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
+/* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
+var _data_stations_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_1__});
+/* harmony import */ var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/subway_routes.json */ "./data/subway_routes.json");
+var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/Object.assign({}, _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__, {"default": _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__});
+/* harmony import */ var _mta__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mta */ "./src/mta.js");
 
 
-// import { sortRoute, sortOffRoute } from '../util/data_utils';
-// import { groupStations } from '../data/group_stations';
-// import routes from '../data/subway_routes.json';
+
 
 
 class Store {
@@ -70191,7 +72963,8 @@ class Store {
 
   start() {
     requestAnimationFrame(this.animate.bind(this));
-    Object(_mta__WEBPACK_IMPORTED_MODULE_1__["fetchMtaData"])(this);
+    Object(_mta__WEBPACK_IMPORTED_MODULE_3__["fetchMtaData"])(this);
+    this.setupStaticRoutes();
   }
 
   setupTrains(feed) {
@@ -70206,8 +72979,6 @@ class Store {
       } else if (!this.state.trains[trainId]) {
         const train = new _src_train__WEBPACK_IMPORTED_MODULE_0__["default"](this.state.map, feed[trainId], trainId);
         this.state.trains[trainId] = train;
-        const stops = feed[trainId].tripUpdate.stopTimeUpdate;
-        this.setRoute(train, stops);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -70218,66 +72989,37 @@ class Store {
         return;
       }
     });
-    this.createRoutes();
   }
 
-  setRoute(train, stops) {
-    const existingRoute = this.state.routes[train.trainLabel];
-
-    if (!existingRoute) {
-      this.state.routes[train.trainLabel] = [];
-      stops.forEach((stop) => {
-        this.state.routes[train.trainLabel].push(stop.stopId.slice(0, 3));
-      })
-    } else {
-      const newRoute = stops.map((stop) => {
-        return stop.stopId.slice(0, 3);
-      })
-      // this.mergeRoutes(existingRoute, newRoute)
-    }
+  setupStaticRoutes() {
+    Object.keys(_data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__).forEach((route) => {
+      const subwayRoute = [];
+      _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__[route].forEach((stationName) => {
+        Object.keys(_data_stations_json__WEBPACK_IMPORTED_MODULE_1__).forEach((stationId) => {
+          if (stationId[0] === route && _data_stations_json__WEBPACK_IMPORTED_MODULE_1__[stationId].name === stationName) {
+            const stationLatLng = new Object();
+            stationLatLng.lat = _data_stations_json__WEBPACK_IMPORTED_MODULE_1__[stationId].lat;
+            stationLatLng.lng = _data_stations_json__WEBPACK_IMPORTED_MODULE_1__[stationId].lng;
+            subwayRoute.push(stationLatLng);
+          }
+        });
+      });
+      this.state.routes[route] = subwayRoute;
+    });
+    this.setupPolylines();
   }
 
-  //
-  // mergeRoutes(existingRoute, newRoute) {
-  //   let mergedRoute;
-  //   let newStops;
-  //   if (existingRoute.length >== newRoute.length) {
-  //     mergedRoute = existingRoute;
-  //
-  //   } else {
-  //     mergedRoute = newRoute;
-  //   }
-  //
-  //   const newStops = existingRoute - newRoute;
-  //   if (existingRoute.length == 0) {
-  //     return newRoute;
-  //   } else if (newRoute.length == 0) {
-  //     return existingRoute;
-  //   }
-  //
-  //   console.log(newStops);
-  //
-  //   newRoute.forEach((stop) => {
-  //
-  //   });
-  // }
-
-  createRoutes() {
-    Object.values(this.state.routes).forEach((routeStations) => {
-      const route = routeStations.map((stationId) => {
-        const latLng = {};
-        latLng.lat = _data_stations__WEBPACK_IMPORTED_MODULE_2__["default"][stationId].stop_lat;
-        latLng.lng = _data_stations__WEBPACK_IMPORTED_MODULE_2__["default"][stationId].stop_lon;
-        return latLng;
-      })
-      new google.maps.Polyline({
-        path: route,
+  setupPolylines() {
+    Object.keys(this.state.routes).forEach((route) => {
+      const polylineRoute = new google.maps.Polyline({
+        path: this.state.routes[route],
         // icons: [{
         //   icon: lineSymbol,
         //   offset: '100%'
         // }],
         map: this.state.map
       });
+      this.state.polyLines[route] = polylineRoute;
     });
   }
 
@@ -70315,8 +73057,8 @@ __webpack_require__.r(__webpack_exports__);
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
 var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__});
-/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
-/* harmony import */ var _util_train_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/train_utils */ "./util/train_utils.js");
+/* harmony import */ var _util_train_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/train_utils */ "./util/train_utils.js");
+/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
 
 
 
@@ -70373,23 +73115,23 @@ class Train {
 
     if (!previousStop && nextStop) {
       this.nextStationTime = nextStop.arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(nextStop.stopId);
+      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getStationById"])(nextStop.stopId);
       this.nextStation = this.prevStation;
       this.status = "idle";
     } else if (previousStop && nextStop) {
       this.prevStationTime = previousStop.departure.time;
       this.nextStationTime = nextStop.arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(previousStop.stopId);
-      this.nextStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(nextStop.stopId);
+      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getStationById"])(previousStop.stopId);
+      this.nextStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getStationById"])(nextStop.stopId);
       this.status = "inTransit";
     } else if (previousStop && !nextStop) {
       this.prevStationTime = previousStop.arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(previousStop.stopId);
+      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getStationById"])(previousStop.stopId);
       this.nextStation = this.prevStation;
       this.status = "lastStop"
     } else if (!previousStop && !nextStop) {
       this.prevStationTime = stops[0].arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(stops[0].stopId);
+      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getStationById"])(stops[0].stopId);
       this.nextStation = this.prevStation;
       this.status = "idle"
     }
@@ -70398,24 +73140,24 @@ class Train {
   setRenderState() {
     let vehicleTimePos;
     if (this.status === "inTransit") {
-      const from = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getLatLng"])(this.prevStation);
-      const to = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getLatLng"])(this.nextStation);
-      const tr = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_3__["timeRatio"])(this.prevStationTime, this.nextStationTime)
+      const from = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getLatLng"])(this.prevStation);
+      const to = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getLatLng"])(this.nextStation);
+      const tr = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["timeRatio"])(this.prevStationTime, this.nextStationTime)
       if (tr >= 0) {
-        vehicleTimePos = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_3__["interpolate"])(from, to, tr);
+        vehicleTimePos = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["interpolate"])(from, to, tr);
       } else {
         vehicleTimePos = to;
       }
       this.nextPos = to;
     } else if (this.status === "lastStop" || this.status === "idle") {
-      vehicleTimePos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getLatLng"])(this.prevStation);
+      vehicleTimePos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getLatLng"])(this.prevStation);
     }
     this.pos = vehicleTimePos;
   }
 
   setVelocity() {
     if (this.status === "inTransit") {
-      const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_3__["getVelocity"])(this.nextPos, this.pos, this.nextStationTime);
+      const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["getVelocity"])(this.nextPos, this.pos, this.nextStationTime);
       this.velocity = [newVelocity[0], newVelocity[1]];
     }
   }
@@ -70464,11 +73206,11 @@ class Train {
   }
 
   updateRenderState() {
-    this.nextPos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["getLatLng"])(this.nextStation);
+    this.nextPos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getLatLng"])(this.nextStation);
   }
 
   updateVelocity() {
-    const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_3__["getVelocity"])(this.nextPos, this.marker.getPosition().toJSON(), this.nextStationTime);
+    const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["getVelocity"])(this.nextPos, this.marker.getPosition().toJSON(), this.nextStationTime);
     this.velocity = [newVelocity[0], newVelocity[1]];
   }
 
@@ -70510,7 +73252,7 @@ class Train {
 /*!****************************!*\
   !*** ./util/data_utils.js ***!
   \****************************/
-/*! exports provided: parseFeed, getStationById, getLatLng, sortRoute, sortOffRoute */
+/*! exports provided: parseFeed, getStationById, getLatLng */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70518,9 +73260,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStationById", function() { return getStationById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatLng", function() { return getLatLng; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortRoute", function() { return sortRoute; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortOffRoute", function() { return sortOffRoute; });
-/* harmony import */ var _data_stations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations */ "./data/stations.js");
+/* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
+var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_0__});
 
 
 function parseFeed(feed) {
@@ -70539,7 +73280,7 @@ function parseFeed(feed) {
 };
 
 function getStationById(stationId) {
-  let station = _data_stations__WEBPACK_IMPORTED_MODULE_0__["default"][stationId];
+  let station = _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[stationId];
 
   // placeholder station
   if (station === undefined) station = {"stop_id": 101, "stop_name": "Van Cortlandt Park - 242 St", "stop_lat": 40.889248, "stop_lon": -73.898583, "location_type": 1};
@@ -70550,4325 +73291,37 @@ function getLatLng(station) {
   return { lat: station.stop_lat, lng: station.stop_lon };
 }
 
-function sortRoute(route) {
-  // console.log(route);
-}
-
-function sortOffRoute(route) {
-  // console.log(route);
-}
-
 
 /***/ }),
 
-/***/ "./util/gtfs-realtime.js":
-/*!*******************************!*\
-  !*** ./util/gtfs-realtime.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./util/group_stations.js":
+/*!********************************!*\
+  !*** ./util/group_stations.js ***!
+  \********************************/
+/*! exports provided: groupStations */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/*eslint-disable block-scoped-var, no-redeclare, no-control-regex, no-prototype-builtins*/
-
-
-var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "./node_modules/protobufjs/minimal.js");
-
-// Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
-
-// Exported root namespace
-var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
-
-$root.transit_realtime = (function() {
-
-    /**
-     * Namespace transit_realtime.
-     * @exports transit_realtime
-     * @namespace
-     */
-    var transit_realtime = {};
-
-    transit_realtime.FeedMessage = (function() {
-
-        /**
-         * Properties of a FeedMessage.
-         * @typedef transit_realtime.FeedMessage$Properties
-         * @type {Object}
-         * @property {transit_realtime.FeedHeader$Properties} header FeedMessage header.
-         * @property {Array.<transit_realtime.FeedEntity$Properties>} [entity] FeedMessage entity.
-         */
-
-        /**
-         * Constructs a new FeedMessage.
-         * @exports transit_realtime.FeedMessage
-         * @constructor
-         * @param {transit_realtime.FeedMessage$Properties=} [properties] Properties to set
-         */
-        function FeedMessage(properties) {
-            this.entity = [];
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * FeedMessage header.
-         * @type {transit_realtime.FeedHeader$Properties}
-         */
-        FeedMessage.prototype.header = null;
-
-        /**
-         * FeedMessage entity.
-         * @type {Array.<transit_realtime.FeedEntity$Properties>}
-         */
-        FeedMessage.prototype.entity = $util.emptyArray;
-
-        /**
-         * Creates a new FeedMessage instance using the specified properties.
-         * @param {transit_realtime.FeedMessage$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.FeedMessage} FeedMessage instance
-         */
-        FeedMessage.create = function create(properties) {
-            return new FeedMessage(properties);
-        };
-
-        /**
-         * Encodes the specified FeedMessage message. Does not implicitly {@link transit_realtime.FeedMessage.verify|verify} messages.
-         * @param {transit_realtime.FeedMessage$Properties} message FeedMessage message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        FeedMessage.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            $root.transit_realtime.FeedHeader.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.entity != null && message.entity.length)
-                for (var i = 0; i < message.entity.length; ++i)
-                    $root.transit_realtime.FeedEntity.encode(message.entity[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-            return writer;
-        };
-
-        /**
-         * Encodes the specified FeedMessage message, length delimited. Does not implicitly {@link transit_realtime.FeedMessage.verify|verify} messages.
-         * @param {transit_realtime.FeedMessage$Properties} message FeedMessage message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        FeedMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a FeedMessage message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.FeedMessage} FeedMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        FeedMessage.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.FeedMessage();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.header = $root.transit_realtime.FeedHeader.decode(reader, reader.uint32());
-                    break;
-                case 2:
-                    if (!(message.entity && message.entity.length))
-                        message.entity = [];
-                    message.entity.push($root.transit_realtime.FeedEntity.decode(reader, reader.uint32()));
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            if (!message.hasOwnProperty("header"))
-                throw $util.ProtocolError("missing required 'header'", { instance: message });
-            return message;
-        };
-
-        /**
-         * Decodes a FeedMessage message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.FeedMessage} FeedMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        FeedMessage.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a FeedMessage message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        FeedMessage.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            var error = $root.transit_realtime.FeedHeader.verify(message.header);
-            if (error)
-                return "header." + error;
-            if (message.entity != null && message.hasOwnProperty("entity")) {
-                if (!Array.isArray(message.entity))
-                    return "entity: array expected";
-                for (var i = 0; i < message.entity.length; ++i) {
-                    var error = $root.transit_realtime.FeedEntity.verify(message.entity[i]);
-                    if (error)
-                        return "entity." + error;
-                }
-            }
-            return null;
-        };
-
-        /**
-         * Creates a FeedMessage message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.FeedMessage} FeedMessage
-         */
-        FeedMessage.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.FeedMessage)
-                return object;
-            var message = new $root.transit_realtime.FeedMessage();
-            if (object.header != null) {
-                if (typeof object.header !== "object")
-                    throw TypeError(".transit_realtime.FeedMessage.header: object expected");
-                message.header = $root.transit_realtime.FeedHeader.fromObject(object.header);
-            }
-            if (object.entity) {
-                if (!Array.isArray(object.entity))
-                    throw TypeError(".transit_realtime.FeedMessage.entity: array expected");
-                message.entity = [];
-                for (var i = 0; i < object.entity.length; ++i) {
-                    if (typeof object.entity[i] !== "object")
-                        throw TypeError(".transit_realtime.FeedMessage.entity: object expected");
-                    message.entity[i] = $root.transit_realtime.FeedEntity.fromObject(object.entity[i]);
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Creates a FeedMessage message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.FeedMessage.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.FeedMessage} FeedMessage
-         */
-        FeedMessage.from = FeedMessage.fromObject;
-
-        /**
-         * Creates a plain object from a FeedMessage message. Also converts values to other types if specified.
-         * @param {transit_realtime.FeedMessage} message FeedMessage
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        FeedMessage.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.arrays || options.defaults)
-                object.entity = [];
-            if (options.defaults)
-                object.header = null;
-            if (message.header != null && message.hasOwnProperty("header"))
-                object.header = $root.transit_realtime.FeedHeader.toObject(message.header, options);
-            if (message.entity && message.entity.length) {
-                object.entity = [];
-                for (var j = 0; j < message.entity.length; ++j)
-                    object.entity[j] = $root.transit_realtime.FeedEntity.toObject(message.entity[j], options);
-            }
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this FeedMessage message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        FeedMessage.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this FeedMessage to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        FeedMessage.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return FeedMessage;
-    })();
-
-    transit_realtime.FeedHeader = (function() {
-
-        /**
-         * Properties of a FeedHeader.
-         * @typedef transit_realtime.FeedHeader$Properties
-         * @type {Object}
-         * @property {string} gtfsRealtimeVersion FeedHeader gtfsRealtimeVersion.
-         * @property {transit_realtime.FeedHeader.Incrementality} [incrementality] FeedHeader incrementality.
-         * @property {number|Long} [timestamp] FeedHeader timestamp.
-         */
-
-        /**
-         * Constructs a new FeedHeader.
-         * @exports transit_realtime.FeedHeader
-         * @constructor
-         * @param {transit_realtime.FeedHeader$Properties=} [properties] Properties to set
-         */
-        function FeedHeader(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * FeedHeader gtfsRealtimeVersion.
-         * @type {string}
-         */
-        FeedHeader.prototype.gtfsRealtimeVersion = "";
-
-        /**
-         * FeedHeader incrementality.
-         * @type {transit_realtime.FeedHeader.Incrementality}
-         */
-        FeedHeader.prototype.incrementality = 0;
-
-        /**
-         * FeedHeader timestamp.
-         * @type {number|Long}
-         */
-        FeedHeader.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
-
-        /**
-         * Creates a new FeedHeader instance using the specified properties.
-         * @param {transit_realtime.FeedHeader$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.FeedHeader} FeedHeader instance
-         */
-        FeedHeader.create = function create(properties) {
-            return new FeedHeader(properties);
-        };
-
-        /**
-         * Encodes the specified FeedHeader message. Does not implicitly {@link transit_realtime.FeedHeader.verify|verify} messages.
-         * @param {transit_realtime.FeedHeader$Properties} message FeedHeader message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        FeedHeader.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 2 =*/10).string(message.gtfsRealtimeVersion);
-            if (message.incrementality != null && message.hasOwnProperty("incrementality"))
-                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.incrementality);
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.timestamp);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified FeedHeader message, length delimited. Does not implicitly {@link transit_realtime.FeedHeader.verify|verify} messages.
-         * @param {transit_realtime.FeedHeader$Properties} message FeedHeader message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        FeedHeader.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a FeedHeader message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.FeedHeader} FeedHeader
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        FeedHeader.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.FeedHeader();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.gtfsRealtimeVersion = reader.string();
-                    break;
-                case 2:
-                    message.incrementality = reader.uint32();
-                    break;
-                case 3:
-                    message.timestamp = reader.uint64();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            if (!message.hasOwnProperty("gtfsRealtimeVersion"))
-                throw $util.ProtocolError("missing required 'gtfsRealtimeVersion'", { instance: message });
-            return message;
-        };
-
-        /**
-         * Decodes a FeedHeader message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.FeedHeader} FeedHeader
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        FeedHeader.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a FeedHeader message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        FeedHeader.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (!$util.isString(message.gtfsRealtimeVersion))
-                return "gtfsRealtimeVersion: string expected";
-            if (message.incrementality != null && message.hasOwnProperty("incrementality"))
-                switch (message.incrementality) {
-                default:
-                    return "incrementality: enum value expected";
-                case 0:
-                case 1:
-                    break;
-                }
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
-                    return "timestamp: integer|Long expected";
-            return null;
-        };
-
-        /**
-         * Creates a FeedHeader message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.FeedHeader} FeedHeader
-         */
-        FeedHeader.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.FeedHeader)
-                return object;
-            var message = new $root.transit_realtime.FeedHeader();
-            if (object.gtfsRealtimeVersion != null)
-                message.gtfsRealtimeVersion = String(object.gtfsRealtimeVersion);
-            switch (object.incrementality) {
-            case "FULL_DATASET":
-            case 0:
-                message.incrementality = 0;
-                break;
-            case "DIFFERENTIAL":
-            case 1:
-                message.incrementality = 1;
-                break;
-            }
-            if (object.timestamp != null)
-                if ($util.Long)
-                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = true;
-                else if (typeof object.timestamp === "string")
-                    message.timestamp = parseInt(object.timestamp, 10);
-                else if (typeof object.timestamp === "number")
-                    message.timestamp = object.timestamp;
-                else if (typeof object.timestamp === "object")
-                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
-            return message;
-        };
-
-        /**
-         * Creates a FeedHeader message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.FeedHeader.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.FeedHeader} FeedHeader
-         */
-        FeedHeader.from = FeedHeader.fromObject;
-
-        /**
-         * Creates a plain object from a FeedHeader message. Also converts values to other types if specified.
-         * @param {transit_realtime.FeedHeader} message FeedHeader
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        FeedHeader.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.gtfsRealtimeVersion = "";
-                object.incrementality = options.enums === String ? "FULL_DATASET" : 0;
-                if ($util.Long) {
-                    var long = new $util.Long(0, 0, true);
-                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                } else
-                    object.timestamp = options.longs === String ? "0" : 0;
-            }
-            if (message.gtfsRealtimeVersion != null && message.hasOwnProperty("gtfsRealtimeVersion"))
-                object.gtfsRealtimeVersion = message.gtfsRealtimeVersion;
-            if (message.incrementality != null && message.hasOwnProperty("incrementality"))
-                object.incrementality = options.enums === String ? $root.transit_realtime.FeedHeader.Incrementality[message.incrementality] : message.incrementality;
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                if (typeof message.timestamp === "number")
-                    object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
-                else
-                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this FeedHeader message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        FeedHeader.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this FeedHeader to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        FeedHeader.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Incrementality enum.
-         * @name Incrementality
-         * @memberof transit_realtime.FeedHeader
-         * @enum {number}
-         * @property {number} FULL_DATASET=0 FULL_DATASET value
-         * @property {number} DIFFERENTIAL=1 DIFFERENTIAL value
-         */
-        FeedHeader.Incrementality = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "FULL_DATASET"] = 0;
-            values[valuesById[1] = "DIFFERENTIAL"] = 1;
-            return values;
-        })();
-
-        return FeedHeader;
-    })();
-
-    transit_realtime.FeedEntity = (function() {
-
-        /**
-         * Properties of a FeedEntity.
-         * @typedef transit_realtime.FeedEntity$Properties
-         * @type {Object}
-         * @property {string} id FeedEntity id.
-         * @property {boolean} [isDeleted] FeedEntity isDeleted.
-         * @property {transit_realtime.TripUpdate$Properties} [tripUpdate] FeedEntity tripUpdate.
-         * @property {transit_realtime.VehiclePosition$Properties} [vehicle] FeedEntity vehicle.
-         * @property {transit_realtime.Alert$Properties} [alert] FeedEntity alert.
-         */
-
-        /**
-         * Constructs a new FeedEntity.
-         * @exports transit_realtime.FeedEntity
-         * @constructor
-         * @param {transit_realtime.FeedEntity$Properties=} [properties] Properties to set
-         */
-        function FeedEntity(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * FeedEntity id.
-         * @type {string}
-         */
-        FeedEntity.prototype.id = "";
-
-        /**
-         * FeedEntity isDeleted.
-         * @type {boolean}
-         */
-        FeedEntity.prototype.isDeleted = false;
-
-        /**
-         * FeedEntity tripUpdate.
-         * @type {(transit_realtime.TripUpdate$Properties|null)}
-         */
-        FeedEntity.prototype.tripUpdate = null;
-
-        /**
-         * FeedEntity vehicle.
-         * @type {(transit_realtime.VehiclePosition$Properties|null)}
-         */
-        FeedEntity.prototype.vehicle = null;
-
-        /**
-         * FeedEntity alert.
-         * @type {(transit_realtime.Alert$Properties|null)}
-         */
-        FeedEntity.prototype.alert = null;
-
-        /**
-         * Creates a new FeedEntity instance using the specified properties.
-         * @param {transit_realtime.FeedEntity$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.FeedEntity} FeedEntity instance
-         */
-        FeedEntity.create = function create(properties) {
-            return new FeedEntity(properties);
-        };
-
-        /**
-         * Encodes the specified FeedEntity message. Does not implicitly {@link transit_realtime.FeedEntity.verify|verify} messages.
-         * @param {transit_realtime.FeedEntity$Properties} message FeedEntity message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        FeedEntity.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-            if (message.isDeleted != null && message.hasOwnProperty("isDeleted"))
-                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.isDeleted);
-            if (message.tripUpdate != null && message.hasOwnProperty("tripUpdate"))
-                $root.transit_realtime.TripUpdate.encode(message.tripUpdate, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
-                $root.transit_realtime.VehiclePosition.encode(message.vehicle, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-            if (message.alert != null && message.hasOwnProperty("alert"))
-                $root.transit_realtime.Alert.encode(message.alert, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-            return writer;
-        };
-
-        /**
-         * Encodes the specified FeedEntity message, length delimited. Does not implicitly {@link transit_realtime.FeedEntity.verify|verify} messages.
-         * @param {transit_realtime.FeedEntity$Properties} message FeedEntity message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        FeedEntity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a FeedEntity message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.FeedEntity} FeedEntity
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        FeedEntity.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.FeedEntity();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.id = reader.string();
-                    break;
-                case 2:
-                    message.isDeleted = reader.bool();
-                    break;
-                case 3:
-                    message.tripUpdate = $root.transit_realtime.TripUpdate.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.vehicle = $root.transit_realtime.VehiclePosition.decode(reader, reader.uint32());
-                    break;
-                case 5:
-                    message.alert = $root.transit_realtime.Alert.decode(reader, reader.uint32());
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            if (!message.hasOwnProperty("id"))
-                throw $util.ProtocolError("missing required 'id'", { instance: message });
-            return message;
-        };
-
-        /**
-         * Decodes a FeedEntity message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.FeedEntity} FeedEntity
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        FeedEntity.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a FeedEntity message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        FeedEntity.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (!$util.isString(message.id))
-                return "id: string expected";
-            if (message.isDeleted != null && message.hasOwnProperty("isDeleted"))
-                if (typeof message.isDeleted !== "boolean")
-                    return "isDeleted: boolean expected";
-            if (message.tripUpdate != null && message.hasOwnProperty("tripUpdate")) {
-                var error = $root.transit_realtime.TripUpdate.verify(message.tripUpdate);
-                if (error)
-                    return "tripUpdate." + error;
-            }
-            if (message.vehicle != null && message.hasOwnProperty("vehicle")) {
-                var error = $root.transit_realtime.VehiclePosition.verify(message.vehicle);
-                if (error)
-                    return "vehicle." + error;
-            }
-            if (message.alert != null && message.hasOwnProperty("alert")) {
-                var error = $root.transit_realtime.Alert.verify(message.alert);
-                if (error)
-                    return "alert." + error;
-            }
-            return null;
-        };
-
-        /**
-         * Creates a FeedEntity message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.FeedEntity} FeedEntity
-         */
-        FeedEntity.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.FeedEntity)
-                return object;
-            var message = new $root.transit_realtime.FeedEntity();
-            if (object.id != null)
-                message.id = String(object.id);
-            if (object.isDeleted != null)
-                message.isDeleted = Boolean(object.isDeleted);
-            if (object.tripUpdate != null) {
-                if (typeof object.tripUpdate !== "object")
-                    throw TypeError(".transit_realtime.FeedEntity.tripUpdate: object expected");
-                message.tripUpdate = $root.transit_realtime.TripUpdate.fromObject(object.tripUpdate);
-            }
-            if (object.vehicle != null) {
-                if (typeof object.vehicle !== "object")
-                    throw TypeError(".transit_realtime.FeedEntity.vehicle: object expected");
-                message.vehicle = $root.transit_realtime.VehiclePosition.fromObject(object.vehicle);
-            }
-            if (object.alert != null) {
-                if (typeof object.alert !== "object")
-                    throw TypeError(".transit_realtime.FeedEntity.alert: object expected");
-                message.alert = $root.transit_realtime.Alert.fromObject(object.alert);
-            }
-            return message;
-        };
-
-        /**
-         * Creates a FeedEntity message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.FeedEntity.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.FeedEntity} FeedEntity
-         */
-        FeedEntity.from = FeedEntity.fromObject;
-
-        /**
-         * Creates a plain object from a FeedEntity message. Also converts values to other types if specified.
-         * @param {transit_realtime.FeedEntity} message FeedEntity
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        FeedEntity.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.id = "";
-                object.isDeleted = false;
-                object.tripUpdate = null;
-                object.vehicle = null;
-                object.alert = null;
-            }
-            if (message.id != null && message.hasOwnProperty("id"))
-                object.id = message.id;
-            if (message.isDeleted != null && message.hasOwnProperty("isDeleted"))
-                object.isDeleted = message.isDeleted;
-            if (message.tripUpdate != null && message.hasOwnProperty("tripUpdate"))
-                object.tripUpdate = $root.transit_realtime.TripUpdate.toObject(message.tripUpdate, options);
-            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
-                object.vehicle = $root.transit_realtime.VehiclePosition.toObject(message.vehicle, options);
-            if (message.alert != null && message.hasOwnProperty("alert"))
-                object.alert = $root.transit_realtime.Alert.toObject(message.alert, options);
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this FeedEntity message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        FeedEntity.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this FeedEntity to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        FeedEntity.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return FeedEntity;
-    })();
-
-    transit_realtime.TripUpdate = (function() {
-
-        /**
-         * Properties of a TripUpdate.
-         * @typedef transit_realtime.TripUpdate$Properties
-         * @type {Object}
-         * @property {transit_realtime.TripDescriptor$Properties} trip TripUpdate trip.
-         * @property {transit_realtime.VehicleDescriptor$Properties} [vehicle] TripUpdate vehicle.
-         * @property {Array.<transit_realtime.TripUpdate.StopTimeUpdate$Properties>} [stopTimeUpdate] TripUpdate stopTimeUpdate.
-         * @property {number|Long} [timestamp] TripUpdate timestamp.
-         * @property {number} [delay] TripUpdate delay.
-         */
-
-        /**
-         * Constructs a new TripUpdate.
-         * @exports transit_realtime.TripUpdate
-         * @constructor
-         * @param {transit_realtime.TripUpdate$Properties=} [properties] Properties to set
-         */
-        function TripUpdate(properties) {
-            this.stopTimeUpdate = [];
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * TripUpdate trip.
-         * @type {transit_realtime.TripDescriptor$Properties}
-         */
-        TripUpdate.prototype.trip = null;
-
-        /**
-         * TripUpdate vehicle.
-         * @type {(transit_realtime.VehicleDescriptor$Properties|null)}
-         */
-        TripUpdate.prototype.vehicle = null;
-
-        /**
-         * TripUpdate stopTimeUpdate.
-         * @type {Array.<transit_realtime.TripUpdate.StopTimeUpdate$Properties>}
-         */
-        TripUpdate.prototype.stopTimeUpdate = $util.emptyArray;
-
-        /**
-         * TripUpdate timestamp.
-         * @type {number|Long}
-         */
-        TripUpdate.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
-
-        /**
-         * TripUpdate delay.
-         * @type {number}
-         */
-        TripUpdate.prototype.delay = 0;
-
-        /**
-         * Creates a new TripUpdate instance using the specified properties.
-         * @param {transit_realtime.TripUpdate$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.TripUpdate} TripUpdate instance
-         */
-        TripUpdate.create = function create(properties) {
-            return new TripUpdate(properties);
-        };
-
-        /**
-         * Encodes the specified TripUpdate message. Does not implicitly {@link transit_realtime.TripUpdate.verify|verify} messages.
-         * @param {transit_realtime.TripUpdate$Properties} message TripUpdate message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        TripUpdate.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            $root.transit_realtime.TripDescriptor.encode(message.trip, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.stopTimeUpdate != null && message.stopTimeUpdate.length)
-                for (var i = 0; i < message.stopTimeUpdate.length; ++i)
-                    $root.transit_realtime.TripUpdate.StopTimeUpdate.encode(message.stopTimeUpdate[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
-                $root.transit_realtime.VehicleDescriptor.encode(message.vehicle, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                writer.uint32(/* id 4, wireType 0 =*/32).uint64(message.timestamp);
-            if (message.delay != null && message.hasOwnProperty("delay"))
-                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.delay);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified TripUpdate message, length delimited. Does not implicitly {@link transit_realtime.TripUpdate.verify|verify} messages.
-         * @param {transit_realtime.TripUpdate$Properties} message TripUpdate message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        TripUpdate.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a TripUpdate message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.TripUpdate} TripUpdate
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        TripUpdate.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripUpdate();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.trip = $root.transit_realtime.TripDescriptor.decode(reader, reader.uint32());
-                    break;
-                case 3:
-                    message.vehicle = $root.transit_realtime.VehicleDescriptor.decode(reader, reader.uint32());
-                    break;
-                case 2:
-                    if (!(message.stopTimeUpdate && message.stopTimeUpdate.length))
-                        message.stopTimeUpdate = [];
-                    message.stopTimeUpdate.push($root.transit_realtime.TripUpdate.StopTimeUpdate.decode(reader, reader.uint32()));
-                    break;
-                case 4:
-                    message.timestamp = reader.uint64();
-                    break;
-                case 5:
-                    message.delay = reader.int32();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            if (!message.hasOwnProperty("trip"))
-                throw $util.ProtocolError("missing required 'trip'", { instance: message });
-            return message;
-        };
-
-        /**
-         * Decodes a TripUpdate message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.TripUpdate} TripUpdate
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        TripUpdate.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a TripUpdate message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        TripUpdate.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            var error = $root.transit_realtime.TripDescriptor.verify(message.trip);
-            if (error)
-                return "trip." + error;
-            if (message.vehicle != null && message.hasOwnProperty("vehicle")) {
-                var error = $root.transit_realtime.VehicleDescriptor.verify(message.vehicle);
-                if (error)
-                    return "vehicle." + error;
-            }
-            if (message.stopTimeUpdate != null && message.hasOwnProperty("stopTimeUpdate")) {
-                if (!Array.isArray(message.stopTimeUpdate))
-                    return "stopTimeUpdate: array expected";
-                for (var i = 0; i < message.stopTimeUpdate.length; ++i) {
-                    var error = $root.transit_realtime.TripUpdate.StopTimeUpdate.verify(message.stopTimeUpdate[i]);
-                    if (error)
-                        return "stopTimeUpdate." + error;
-                }
-            }
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
-                    return "timestamp: integer|Long expected";
-            if (message.delay != null && message.hasOwnProperty("delay"))
-                if (!$util.isInteger(message.delay))
-                    return "delay: integer expected";
-            return null;
-        };
-
-        /**
-         * Creates a TripUpdate message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.TripUpdate} TripUpdate
-         */
-        TripUpdate.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.TripUpdate)
-                return object;
-            var message = new $root.transit_realtime.TripUpdate();
-            if (object.trip != null) {
-                if (typeof object.trip !== "object")
-                    throw TypeError(".transit_realtime.TripUpdate.trip: object expected");
-                message.trip = $root.transit_realtime.TripDescriptor.fromObject(object.trip);
-            }
-            if (object.vehicle != null) {
-                if (typeof object.vehicle !== "object")
-                    throw TypeError(".transit_realtime.TripUpdate.vehicle: object expected");
-                message.vehicle = $root.transit_realtime.VehicleDescriptor.fromObject(object.vehicle);
-            }
-            if (object.stopTimeUpdate) {
-                if (!Array.isArray(object.stopTimeUpdate))
-                    throw TypeError(".transit_realtime.TripUpdate.stopTimeUpdate: array expected");
-                message.stopTimeUpdate = [];
-                for (var i = 0; i < object.stopTimeUpdate.length; ++i) {
-                    if (typeof object.stopTimeUpdate[i] !== "object")
-                        throw TypeError(".transit_realtime.TripUpdate.stopTimeUpdate: object expected");
-                    message.stopTimeUpdate[i] = $root.transit_realtime.TripUpdate.StopTimeUpdate.fromObject(object.stopTimeUpdate[i]);
-                }
-            }
-            if (object.timestamp != null)
-                if ($util.Long)
-                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = true;
-                else if (typeof object.timestamp === "string")
-                    message.timestamp = parseInt(object.timestamp, 10);
-                else if (typeof object.timestamp === "number")
-                    message.timestamp = object.timestamp;
-                else if (typeof object.timestamp === "object")
-                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
-            if (object.delay != null)
-                message.delay = object.delay | 0;
-            return message;
-        };
-
-        /**
-         * Creates a TripUpdate message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.TripUpdate.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.TripUpdate} TripUpdate
-         */
-        TripUpdate.from = TripUpdate.fromObject;
-
-        /**
-         * Creates a plain object from a TripUpdate message. Also converts values to other types if specified.
-         * @param {transit_realtime.TripUpdate} message TripUpdate
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        TripUpdate.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.arrays || options.defaults)
-                object.stopTimeUpdate = [];
-            if (options.defaults) {
-                object.trip = null;
-                object.vehicle = null;
-                if ($util.Long) {
-                    var long = new $util.Long(0, 0, true);
-                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                } else
-                    object.timestamp = options.longs === String ? "0" : 0;
-                object.delay = 0;
-            }
-            if (message.trip != null && message.hasOwnProperty("trip"))
-                object.trip = $root.transit_realtime.TripDescriptor.toObject(message.trip, options);
-            if (message.stopTimeUpdate && message.stopTimeUpdate.length) {
-                object.stopTimeUpdate = [];
-                for (var j = 0; j < message.stopTimeUpdate.length; ++j)
-                    object.stopTimeUpdate[j] = $root.transit_realtime.TripUpdate.StopTimeUpdate.toObject(message.stopTimeUpdate[j], options);
-            }
-            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
-                object.vehicle = $root.transit_realtime.VehicleDescriptor.toObject(message.vehicle, options);
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                if (typeof message.timestamp === "number")
-                    object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
-                else
-                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
-            if (message.delay != null && message.hasOwnProperty("delay"))
-                object.delay = message.delay;
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this TripUpdate message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        TripUpdate.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this TripUpdate to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        TripUpdate.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        TripUpdate.StopTimeEvent = (function() {
-
-            /**
-             * Properties of a StopTimeEvent.
-             * @typedef transit_realtime.TripUpdate.StopTimeEvent$Properties
-             * @type {Object}
-             * @property {number} [delay] StopTimeEvent delay.
-             * @property {number|Long} [time] StopTimeEvent time.
-             * @property {number} [uncertainty] StopTimeEvent uncertainty.
-             */
-
-            /**
-             * Constructs a new StopTimeEvent.
-             * @exports transit_realtime.TripUpdate.StopTimeEvent
-             * @constructor
-             * @param {transit_realtime.TripUpdate.StopTimeEvent$Properties=} [properties] Properties to set
-             */
-            function StopTimeEvent(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * StopTimeEvent delay.
-             * @type {number}
-             */
-            StopTimeEvent.prototype.delay = 0;
-
-            /**
-             * StopTimeEvent time.
-             * @type {number|Long}
-             */
-            StopTimeEvent.prototype.time = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-            /**
-             * StopTimeEvent uncertainty.
-             * @type {number}
-             */
-            StopTimeEvent.prototype.uncertainty = 0;
-
-            /**
-             * Creates a new StopTimeEvent instance using the specified properties.
-             * @param {transit_realtime.TripUpdate.StopTimeEvent$Properties=} [properties] Properties to set
-             * @returns {transit_realtime.TripUpdate.StopTimeEvent} StopTimeEvent instance
-             */
-            StopTimeEvent.create = function create(properties) {
-                return new StopTimeEvent(properties);
-            };
-
-            /**
-             * Encodes the specified StopTimeEvent message. Does not implicitly {@link transit_realtime.TripUpdate.StopTimeEvent.verify|verify} messages.
-             * @param {transit_realtime.TripUpdate.StopTimeEvent$Properties} message StopTimeEvent message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            StopTimeEvent.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.delay != null && message.hasOwnProperty("delay"))
-                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.delay);
-                if (message.time != null && message.hasOwnProperty("time"))
-                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.time);
-                if (message.uncertainty != null && message.hasOwnProperty("uncertainty"))
-                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.uncertainty);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified StopTimeEvent message, length delimited. Does not implicitly {@link transit_realtime.TripUpdate.StopTimeEvent.verify|verify} messages.
-             * @param {transit_realtime.TripUpdate.StopTimeEvent$Properties} message StopTimeEvent message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            StopTimeEvent.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a StopTimeEvent message from the specified reader or buffer.
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {transit_realtime.TripUpdate.StopTimeEvent} StopTimeEvent
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            StopTimeEvent.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripUpdate.StopTimeEvent();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1:
-                        message.delay = reader.int32();
-                        break;
-                    case 2:
-                        message.time = reader.int64();
-                        break;
-                    case 3:
-                        message.uncertainty = reader.int32();
-                        break;
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a StopTimeEvent message from the specified reader or buffer, length delimited.
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {transit_realtime.TripUpdate.StopTimeEvent} StopTimeEvent
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            StopTimeEvent.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a StopTimeEvent message.
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {?string} `null` if valid, otherwise the reason why it is not
-             */
-            StopTimeEvent.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.delay != null && message.hasOwnProperty("delay"))
-                    if (!$util.isInteger(message.delay))
-                        return "delay: integer expected";
-                if (message.time != null && message.hasOwnProperty("time"))
-                    if (!$util.isInteger(message.time) && !(message.time && $util.isInteger(message.time.low) && $util.isInteger(message.time.high)))
-                        return "time: integer|Long expected";
-                if (message.uncertainty != null && message.hasOwnProperty("uncertainty"))
-                    if (!$util.isInteger(message.uncertainty))
-                        return "uncertainty: integer expected";
-                return null;
-            };
-
-            /**
-             * Creates a StopTimeEvent message from a plain object. Also converts values to their respective internal types.
-             * @param {Object.<string,*>} object Plain object
-             * @returns {transit_realtime.TripUpdate.StopTimeEvent} StopTimeEvent
-             */
-            StopTimeEvent.fromObject = function fromObject(object) {
-                if (object instanceof $root.transit_realtime.TripUpdate.StopTimeEvent)
-                    return object;
-                var message = new $root.transit_realtime.TripUpdate.StopTimeEvent();
-                if (object.delay != null)
-                    message.delay = object.delay | 0;
-                if (object.time != null)
-                    if ($util.Long)
-                        (message.time = $util.Long.fromValue(object.time)).unsigned = false;
-                    else if (typeof object.time === "string")
-                        message.time = parseInt(object.time, 10);
-                    else if (typeof object.time === "number")
-                        message.time = object.time;
-                    else if (typeof object.time === "object")
-                        message.time = new $util.LongBits(object.time.low >>> 0, object.time.high >>> 0).toNumber();
-                if (object.uncertainty != null)
-                    message.uncertainty = object.uncertainty | 0;
-                return message;
-            };
-
-            /**
-             * Creates a StopTimeEvent message from a plain object. Also converts values to their respective internal types.
-             * This is an alias of {@link transit_realtime.TripUpdate.StopTimeEvent.fromObject}.
-             * @function
-             * @param {Object.<string,*>} object Plain object
-             * @returns {transit_realtime.TripUpdate.StopTimeEvent} StopTimeEvent
-             */
-            StopTimeEvent.from = StopTimeEvent.fromObject;
-
-            /**
-             * Creates a plain object from a StopTimeEvent message. Also converts values to other types if specified.
-             * @param {transit_realtime.TripUpdate.StopTimeEvent} message StopTimeEvent
-             * @param {$protobuf.ConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            StopTimeEvent.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults) {
-                    object.delay = 0;
-                    if ($util.Long) {
-                        var long = new $util.Long(0, 0, false);
-                        object.time = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                    } else
-                        object.time = options.longs === String ? "0" : 0;
-                    object.uncertainty = 0;
-                }
-                if (message.delay != null && message.hasOwnProperty("delay"))
-                    object.delay = message.delay;
-                if (message.time != null && message.hasOwnProperty("time"))
-                    if (typeof message.time === "number")
-                        object.time = options.longs === String ? String(message.time) : message.time;
-                    else
-                        object.time = options.longs === String ? $util.Long.prototype.toString.call(message.time) : options.longs === Number ? new $util.LongBits(message.time.low >>> 0, message.time.high >>> 0).toNumber() : message.time;
-                if (message.uncertainty != null && message.hasOwnProperty("uncertainty"))
-                    object.uncertainty = message.uncertainty;
-                return object;
-            };
-
-            /**
-             * Creates a plain object from this StopTimeEvent message. Also converts values to other types if specified.
-             * @param {$protobuf.ConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            StopTimeEvent.prototype.toObject = function toObject(options) {
-                return this.constructor.toObject(this, options);
-            };
-
-            /**
-             * Converts this StopTimeEvent to JSON.
-             * @returns {Object.<string,*>} JSON object
-             */
-            StopTimeEvent.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            return StopTimeEvent;
-        })();
-
-        TripUpdate.StopTimeUpdate = (function() {
-
-            /**
-             * Properties of a StopTimeUpdate.
-             * @typedef transit_realtime.TripUpdate.StopTimeUpdate$Properties
-             * @type {Object}
-             * @property {number} [stopSequence] StopTimeUpdate stopSequence.
-             * @property {string} [stopId] StopTimeUpdate stopId.
-             * @property {transit_realtime.TripUpdate.StopTimeEvent$Properties} [arrival] StopTimeUpdate arrival.
-             * @property {transit_realtime.TripUpdate.StopTimeEvent$Properties} [departure] StopTimeUpdate departure.
-             * @property {transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship} [scheduleRelationship] StopTimeUpdate scheduleRelationship.
-             */
-
-            /**
-             * Constructs a new StopTimeUpdate.
-             * @exports transit_realtime.TripUpdate.StopTimeUpdate
-             * @constructor
-             * @param {transit_realtime.TripUpdate.StopTimeUpdate$Properties=} [properties] Properties to set
-             */
-            function StopTimeUpdate(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * StopTimeUpdate stopSequence.
-             * @type {number}
-             */
-            StopTimeUpdate.prototype.stopSequence = 0;
-
-            /**
-             * StopTimeUpdate stopId.
-             * @type {string}
-             */
-            StopTimeUpdate.prototype.stopId = "";
-
-            /**
-             * StopTimeUpdate arrival.
-             * @type {(transit_realtime.TripUpdate.StopTimeEvent$Properties|null)}
-             */
-            StopTimeUpdate.prototype.arrival = null;
-
-            /**
-             * StopTimeUpdate departure.
-             * @type {(transit_realtime.TripUpdate.StopTimeEvent$Properties|null)}
-             */
-            StopTimeUpdate.prototype.departure = null;
-
-            /**
-             * StopTimeUpdate scheduleRelationship.
-             * @type {transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship}
-             */
-            StopTimeUpdate.prototype.scheduleRelationship = 0;
-
-            /**
-             * Creates a new StopTimeUpdate instance using the specified properties.
-             * @param {transit_realtime.TripUpdate.StopTimeUpdate$Properties=} [properties] Properties to set
-             * @returns {transit_realtime.TripUpdate.StopTimeUpdate} StopTimeUpdate instance
-             */
-            StopTimeUpdate.create = function create(properties) {
-                return new StopTimeUpdate(properties);
-            };
-
-            /**
-             * Encodes the specified StopTimeUpdate message. Does not implicitly {@link transit_realtime.TripUpdate.StopTimeUpdate.verify|verify} messages.
-             * @param {transit_realtime.TripUpdate.StopTimeUpdate$Properties} message StopTimeUpdate message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            StopTimeUpdate.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
-                    writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.stopSequence);
-                if (message.arrival != null && message.hasOwnProperty("arrival"))
-                    $root.transit_realtime.TripUpdate.StopTimeEvent.encode(message.arrival, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.departure != null && message.hasOwnProperty("departure"))
-                    $root.transit_realtime.TripUpdate.StopTimeEvent.encode(message.departure, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                if (message.stopId != null && message.hasOwnProperty("stopId"))
-                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.stopId);
-                if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
-                    writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.scheduleRelationship);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified StopTimeUpdate message, length delimited. Does not implicitly {@link transit_realtime.TripUpdate.StopTimeUpdate.verify|verify} messages.
-             * @param {transit_realtime.TripUpdate.StopTimeUpdate$Properties} message StopTimeUpdate message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            StopTimeUpdate.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a StopTimeUpdate message from the specified reader or buffer.
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {transit_realtime.TripUpdate.StopTimeUpdate} StopTimeUpdate
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            StopTimeUpdate.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripUpdate.StopTimeUpdate();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1:
-                        message.stopSequence = reader.uint32();
-                        break;
-                    case 4:
-                        message.stopId = reader.string();
-                        break;
-                    case 2:
-                        message.arrival = $root.transit_realtime.TripUpdate.StopTimeEvent.decode(reader, reader.uint32());
-                        break;
-                    case 3:
-                        message.departure = $root.transit_realtime.TripUpdate.StopTimeEvent.decode(reader, reader.uint32());
-                        break;
-                    case 5:
-                        message.scheduleRelationship = reader.uint32();
-                        break;
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a StopTimeUpdate message from the specified reader or buffer, length delimited.
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {transit_realtime.TripUpdate.StopTimeUpdate} StopTimeUpdate
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            StopTimeUpdate.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a StopTimeUpdate message.
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {?string} `null` if valid, otherwise the reason why it is not
-             */
-            StopTimeUpdate.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
-                    if (!$util.isInteger(message.stopSequence))
-                        return "stopSequence: integer expected";
-                if (message.stopId != null && message.hasOwnProperty("stopId"))
-                    if (!$util.isString(message.stopId))
-                        return "stopId: string expected";
-                if (message.arrival != null && message.hasOwnProperty("arrival")) {
-                    var error = $root.transit_realtime.TripUpdate.StopTimeEvent.verify(message.arrival);
-                    if (error)
-                        return "arrival." + error;
-                }
-                if (message.departure != null && message.hasOwnProperty("departure")) {
-                    var error = $root.transit_realtime.TripUpdate.StopTimeEvent.verify(message.departure);
-                    if (error)
-                        return "departure." + error;
-                }
-                if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
-                    switch (message.scheduleRelationship) {
-                    default:
-                        return "scheduleRelationship: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                        break;
-                    }
-                return null;
-            };
-
-            /**
-             * Creates a StopTimeUpdate message from a plain object. Also converts values to their respective internal types.
-             * @param {Object.<string,*>} object Plain object
-             * @returns {transit_realtime.TripUpdate.StopTimeUpdate} StopTimeUpdate
-             */
-            StopTimeUpdate.fromObject = function fromObject(object) {
-                if (object instanceof $root.transit_realtime.TripUpdate.StopTimeUpdate)
-                    return object;
-                var message = new $root.transit_realtime.TripUpdate.StopTimeUpdate();
-                if (object.stopSequence != null)
-                    message.stopSequence = object.stopSequence >>> 0;
-                if (object.stopId != null)
-                    message.stopId = String(object.stopId);
-                if (object.arrival != null) {
-                    if (typeof object.arrival !== "object")
-                        throw TypeError(".transit_realtime.TripUpdate.StopTimeUpdate.arrival: object expected");
-                    message.arrival = $root.transit_realtime.TripUpdate.StopTimeEvent.fromObject(object.arrival);
-                }
-                if (object.departure != null) {
-                    if (typeof object.departure !== "object")
-                        throw TypeError(".transit_realtime.TripUpdate.StopTimeUpdate.departure: object expected");
-                    message.departure = $root.transit_realtime.TripUpdate.StopTimeEvent.fromObject(object.departure);
-                }
-                switch (object.scheduleRelationship) {
-                case "SCHEDULED":
-                case 0:
-                    message.scheduleRelationship = 0;
-                    break;
-                case "SKIPPED":
-                case 1:
-                    message.scheduleRelationship = 1;
-                    break;
-                case "NO_DATA":
-                case 2:
-                    message.scheduleRelationship = 2;
-                    break;
-                }
-                return message;
-            };
-
-            /**
-             * Creates a StopTimeUpdate message from a plain object. Also converts values to their respective internal types.
-             * This is an alias of {@link transit_realtime.TripUpdate.StopTimeUpdate.fromObject}.
-             * @function
-             * @param {Object.<string,*>} object Plain object
-             * @returns {transit_realtime.TripUpdate.StopTimeUpdate} StopTimeUpdate
-             */
-            StopTimeUpdate.from = StopTimeUpdate.fromObject;
-
-            /**
-             * Creates a plain object from a StopTimeUpdate message. Also converts values to other types if specified.
-             * @param {transit_realtime.TripUpdate.StopTimeUpdate} message StopTimeUpdate
-             * @param {$protobuf.ConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            StopTimeUpdate.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults) {
-                    object.stopSequence = 0;
-                    object.arrival = null;
-                    object.departure = null;
-                    object.stopId = "";
-                    object.scheduleRelationship = options.enums === String ? "SCHEDULED" : 0;
-                }
-                if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
-                    object.stopSequence = message.stopSequence;
-                if (message.arrival != null && message.hasOwnProperty("arrival"))
-                    object.arrival = $root.transit_realtime.TripUpdate.StopTimeEvent.toObject(message.arrival, options);
-                if (message.departure != null && message.hasOwnProperty("departure"))
-                    object.departure = $root.transit_realtime.TripUpdate.StopTimeEvent.toObject(message.departure, options);
-                if (message.stopId != null && message.hasOwnProperty("stopId"))
-                    object.stopId = message.stopId;
-                if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
-                    object.scheduleRelationship = options.enums === String ? $root.transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship[message.scheduleRelationship] : message.scheduleRelationship;
-                return object;
-            };
-
-            /**
-             * Creates a plain object from this StopTimeUpdate message. Also converts values to other types if specified.
-             * @param {$protobuf.ConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            StopTimeUpdate.prototype.toObject = function toObject(options) {
-                return this.constructor.toObject(this, options);
-            };
-
-            /**
-             * Converts this StopTimeUpdate to JSON.
-             * @returns {Object.<string,*>} JSON object
-             */
-            StopTimeUpdate.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            /**
-             * ScheduleRelationship enum.
-             * @name ScheduleRelationship
-             * @memberof transit_realtime.TripUpdate.StopTimeUpdate
-             * @enum {number}
-             * @property {number} SCHEDULED=0 SCHEDULED value
-             * @property {number} SKIPPED=1 SKIPPED value
-             * @property {number} NO_DATA=2 NO_DATA value
-             */
-            StopTimeUpdate.ScheduleRelationship = (function() {
-                var valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "SCHEDULED"] = 0;
-                values[valuesById[1] = "SKIPPED"] = 1;
-                values[valuesById[2] = "NO_DATA"] = 2;
-                return values;
-            })();
-
-            return StopTimeUpdate;
-        })();
-
-        return TripUpdate;
-    })();
-
-    transit_realtime.VehiclePosition = (function() {
-
-        /**
-         * Properties of a VehiclePosition.
-         * @typedef transit_realtime.VehiclePosition$Properties
-         * @type {Object}
-         * @property {transit_realtime.TripDescriptor$Properties} [trip] VehiclePosition trip.
-         * @property {transit_realtime.VehicleDescriptor$Properties} [vehicle] VehiclePosition vehicle.
-         * @property {transit_realtime.Position$Properties} [position] VehiclePosition position.
-         * @property {number} [currentStopSequence] VehiclePosition currentStopSequence.
-         * @property {string} [stopId] VehiclePosition stopId.
-         * @property {transit_realtime.VehiclePosition.VehicleStopStatus} [currentStatus] VehiclePosition currentStatus.
-         * @property {number|Long} [timestamp] VehiclePosition timestamp.
-         * @property {transit_realtime.VehiclePosition.CongestionLevel} [congestionLevel] VehiclePosition congestionLevel.
-         * @property {transit_realtime.VehiclePosition.OccupancyStatus} [occupancyStatus] VehiclePosition occupancyStatus.
-         */
-
-        /**
-         * Constructs a new VehiclePosition.
-         * @exports transit_realtime.VehiclePosition
-         * @constructor
-         * @param {transit_realtime.VehiclePosition$Properties=} [properties] Properties to set
-         */
-        function VehiclePosition(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * VehiclePosition trip.
-         * @type {(transit_realtime.TripDescriptor$Properties|null)}
-         */
-        VehiclePosition.prototype.trip = null;
-
-        /**
-         * VehiclePosition vehicle.
-         * @type {(transit_realtime.VehicleDescriptor$Properties|null)}
-         */
-        VehiclePosition.prototype.vehicle = null;
-
-        /**
-         * VehiclePosition position.
-         * @type {(transit_realtime.Position$Properties|null)}
-         */
-        VehiclePosition.prototype.position = null;
-
-        /**
-         * VehiclePosition currentStopSequence.
-         * @type {number}
-         */
-        VehiclePosition.prototype.currentStopSequence = 0;
-
-        /**
-         * VehiclePosition stopId.
-         * @type {string}
-         */
-        VehiclePosition.prototype.stopId = "";
-
-        /**
-         * VehiclePosition currentStatus.
-         * @type {transit_realtime.VehiclePosition.VehicleStopStatus}
-         */
-        VehiclePosition.prototype.currentStatus = 2;
-
-        /**
-         * VehiclePosition timestamp.
-         * @type {number|Long}
-         */
-        VehiclePosition.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
-
-        /**
-         * VehiclePosition congestionLevel.
-         * @type {transit_realtime.VehiclePosition.CongestionLevel}
-         */
-        VehiclePosition.prototype.congestionLevel = 0;
-
-        /**
-         * VehiclePosition occupancyStatus.
-         * @type {transit_realtime.VehiclePosition.OccupancyStatus}
-         */
-        VehiclePosition.prototype.occupancyStatus = 0;
-
-        /**
-         * Creates a new VehiclePosition instance using the specified properties.
-         * @param {transit_realtime.VehiclePosition$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.VehiclePosition} VehiclePosition instance
-         */
-        VehiclePosition.create = function create(properties) {
-            return new VehiclePosition(properties);
-        };
-
-        /**
-         * Encodes the specified VehiclePosition message. Does not implicitly {@link transit_realtime.VehiclePosition.verify|verify} messages.
-         * @param {transit_realtime.VehiclePosition$Properties} message VehiclePosition message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        VehiclePosition.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.trip != null && message.hasOwnProperty("trip"))
-                $root.transit_realtime.TripDescriptor.encode(message.trip, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.position != null && message.hasOwnProperty("position"))
-                $root.transit_realtime.Position.encode(message.position, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-            if (message.currentStopSequence != null && message.hasOwnProperty("currentStopSequence"))
-                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.currentStopSequence);
-            if (message.currentStatus != null && message.hasOwnProperty("currentStatus"))
-                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.currentStatus);
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                writer.uint32(/* id 5, wireType 0 =*/40).uint64(message.timestamp);
-            if (message.congestionLevel != null && message.hasOwnProperty("congestionLevel"))
-                writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.congestionLevel);
-            if (message.stopId != null && message.hasOwnProperty("stopId"))
-                writer.uint32(/* id 7, wireType 2 =*/58).string(message.stopId);
-            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
-                $root.transit_realtime.VehicleDescriptor.encode(message.vehicle, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
-            if (message.occupancyStatus != null && message.hasOwnProperty("occupancyStatus"))
-                writer.uint32(/* id 9, wireType 0 =*/72).uint32(message.occupancyStatus);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified VehiclePosition message, length delimited. Does not implicitly {@link transit_realtime.VehiclePosition.verify|verify} messages.
-         * @param {transit_realtime.VehiclePosition$Properties} message VehiclePosition message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        VehiclePosition.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a VehiclePosition message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.VehiclePosition} VehiclePosition
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        VehiclePosition.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.VehiclePosition();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.trip = $root.transit_realtime.TripDescriptor.decode(reader, reader.uint32());
-                    break;
-                case 8:
-                    message.vehicle = $root.transit_realtime.VehicleDescriptor.decode(reader, reader.uint32());
-                    break;
-                case 2:
-                    message.position = $root.transit_realtime.Position.decode(reader, reader.uint32());
-                    break;
-                case 3:
-                    message.currentStopSequence = reader.uint32();
-                    break;
-                case 7:
-                    message.stopId = reader.string();
-                    break;
-                case 4:
-                    message.currentStatus = reader.uint32();
-                    break;
-                case 5:
-                    message.timestamp = reader.uint64();
-                    break;
-                case 6:
-                    message.congestionLevel = reader.uint32();
-                    break;
-                case 9:
-                    message.occupancyStatus = reader.uint32();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a VehiclePosition message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.VehiclePosition} VehiclePosition
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        VehiclePosition.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a VehiclePosition message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        VehiclePosition.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.trip != null && message.hasOwnProperty("trip")) {
-                var error = $root.transit_realtime.TripDescriptor.verify(message.trip);
-                if (error)
-                    return "trip." + error;
-            }
-            if (message.vehicle != null && message.hasOwnProperty("vehicle")) {
-                var error = $root.transit_realtime.VehicleDescriptor.verify(message.vehicle);
-                if (error)
-                    return "vehicle." + error;
-            }
-            if (message.position != null && message.hasOwnProperty("position")) {
-                var error = $root.transit_realtime.Position.verify(message.position);
-                if (error)
-                    return "position." + error;
-            }
-            if (message.currentStopSequence != null && message.hasOwnProperty("currentStopSequence"))
-                if (!$util.isInteger(message.currentStopSequence))
-                    return "currentStopSequence: integer expected";
-            if (message.stopId != null && message.hasOwnProperty("stopId"))
-                if (!$util.isString(message.stopId))
-                    return "stopId: string expected";
-            if (message.currentStatus != null && message.hasOwnProperty("currentStatus"))
-                switch (message.currentStatus) {
-                default:
-                    return "currentStatus: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                    break;
-                }
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
-                    return "timestamp: integer|Long expected";
-            if (message.congestionLevel != null && message.hasOwnProperty("congestionLevel"))
-                switch (message.congestionLevel) {
-                default:
-                    return "congestionLevel: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                    break;
-                }
-            if (message.occupancyStatus != null && message.hasOwnProperty("occupancyStatus"))
-                switch (message.occupancyStatus) {
-                default:
-                    return "occupancyStatus: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                    break;
-                }
-            return null;
-        };
-
-        /**
-         * Creates a VehiclePosition message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.VehiclePosition} VehiclePosition
-         */
-        VehiclePosition.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.VehiclePosition)
-                return object;
-            var message = new $root.transit_realtime.VehiclePosition();
-            if (object.trip != null) {
-                if (typeof object.trip !== "object")
-                    throw TypeError(".transit_realtime.VehiclePosition.trip: object expected");
-                message.trip = $root.transit_realtime.TripDescriptor.fromObject(object.trip);
-            }
-            if (object.vehicle != null) {
-                if (typeof object.vehicle !== "object")
-                    throw TypeError(".transit_realtime.VehiclePosition.vehicle: object expected");
-                message.vehicle = $root.transit_realtime.VehicleDescriptor.fromObject(object.vehicle);
-            }
-            if (object.position != null) {
-                if (typeof object.position !== "object")
-                    throw TypeError(".transit_realtime.VehiclePosition.position: object expected");
-                message.position = $root.transit_realtime.Position.fromObject(object.position);
-            }
-            if (object.currentStopSequence != null)
-                message.currentStopSequence = object.currentStopSequence >>> 0;
-            if (object.stopId != null)
-                message.stopId = String(object.stopId);
-            switch (object.currentStatus) {
-            case "INCOMING_AT":
-            case 0:
-                message.currentStatus = 0;
-                break;
-            case "STOPPED_AT":
-            case 1:
-                message.currentStatus = 1;
-                break;
-            case "IN_TRANSIT_TO":
-            case 2:
-                message.currentStatus = 2;
-                break;
-            }
-            if (object.timestamp != null)
-                if ($util.Long)
-                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = true;
-                else if (typeof object.timestamp === "string")
-                    message.timestamp = parseInt(object.timestamp, 10);
-                else if (typeof object.timestamp === "number")
-                    message.timestamp = object.timestamp;
-                else if (typeof object.timestamp === "object")
-                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
-            switch (object.congestionLevel) {
-            case "UNKNOWN_CONGESTION_LEVEL":
-            case 0:
-                message.congestionLevel = 0;
-                break;
-            case "RUNNING_SMOOTHLY":
-            case 1:
-                message.congestionLevel = 1;
-                break;
-            case "STOP_AND_GO":
-            case 2:
-                message.congestionLevel = 2;
-                break;
-            case "CONGESTION":
-            case 3:
-                message.congestionLevel = 3;
-                break;
-            case "SEVERE_CONGESTION":
-            case 4:
-                message.congestionLevel = 4;
-                break;
-            }
-            switch (object.occupancyStatus) {
-            case "EMPTY":
-            case 0:
-                message.occupancyStatus = 0;
-                break;
-            case "MANY_SEATS_AVAILABLE":
-            case 1:
-                message.occupancyStatus = 1;
-                break;
-            case "FEW_SEATS_AVAILABLE":
-            case 2:
-                message.occupancyStatus = 2;
-                break;
-            case "STANDING_ROOM_ONLY":
-            case 3:
-                message.occupancyStatus = 3;
-                break;
-            case "CRUSHED_STANDING_ROOM_ONLY":
-            case 4:
-                message.occupancyStatus = 4;
-                break;
-            case "FULL":
-            case 5:
-                message.occupancyStatus = 5;
-                break;
-            case "NOT_ACCEPTING_PASSENGERS":
-            case 6:
-                message.occupancyStatus = 6;
-                break;
-            }
-            return message;
-        };
-
-        /**
-         * Creates a VehiclePosition message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.VehiclePosition.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.VehiclePosition} VehiclePosition
-         */
-        VehiclePosition.from = VehiclePosition.fromObject;
-
-        /**
-         * Creates a plain object from a VehiclePosition message. Also converts values to other types if specified.
-         * @param {transit_realtime.VehiclePosition} message VehiclePosition
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        VehiclePosition.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.trip = null;
-                object.position = null;
-                object.currentStopSequence = 0;
-                object.currentStatus = options.enums === String ? "IN_TRANSIT_TO" : 2;
-                if ($util.Long) {
-                    var long = new $util.Long(0, 0, true);
-                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                } else
-                    object.timestamp = options.longs === String ? "0" : 0;
-                object.congestionLevel = options.enums === String ? "UNKNOWN_CONGESTION_LEVEL" : 0;
-                object.stopId = "";
-                object.vehicle = null;
-                object.occupancyStatus = options.enums === String ? "EMPTY" : 0;
-            }
-            if (message.trip != null && message.hasOwnProperty("trip"))
-                object.trip = $root.transit_realtime.TripDescriptor.toObject(message.trip, options);
-            if (message.position != null && message.hasOwnProperty("position"))
-                object.position = $root.transit_realtime.Position.toObject(message.position, options);
-            if (message.currentStopSequence != null && message.hasOwnProperty("currentStopSequence"))
-                object.currentStopSequence = message.currentStopSequence;
-            if (message.currentStatus != null && message.hasOwnProperty("currentStatus"))
-                object.currentStatus = options.enums === String ? $root.transit_realtime.VehiclePosition.VehicleStopStatus[message.currentStatus] : message.currentStatus;
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                if (typeof message.timestamp === "number")
-                    object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
-                else
-                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
-            if (message.congestionLevel != null && message.hasOwnProperty("congestionLevel"))
-                object.congestionLevel = options.enums === String ? $root.transit_realtime.VehiclePosition.CongestionLevel[message.congestionLevel] : message.congestionLevel;
-            if (message.stopId != null && message.hasOwnProperty("stopId"))
-                object.stopId = message.stopId;
-            if (message.vehicle != null && message.hasOwnProperty("vehicle"))
-                object.vehicle = $root.transit_realtime.VehicleDescriptor.toObject(message.vehicle, options);
-            if (message.occupancyStatus != null && message.hasOwnProperty("occupancyStatus"))
-                object.occupancyStatus = options.enums === String ? $root.transit_realtime.VehiclePosition.OccupancyStatus[message.occupancyStatus] : message.occupancyStatus;
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this VehiclePosition message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        VehiclePosition.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this VehiclePosition to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        VehiclePosition.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * VehicleStopStatus enum.
-         * @name VehicleStopStatus
-         * @memberof transit_realtime.VehiclePosition
-         * @enum {number}
-         * @property {number} INCOMING_AT=0 INCOMING_AT value
-         * @property {number} STOPPED_AT=1 STOPPED_AT value
-         * @property {number} IN_TRANSIT_TO=2 IN_TRANSIT_TO value
-         */
-        VehiclePosition.VehicleStopStatus = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "INCOMING_AT"] = 0;
-            values[valuesById[1] = "STOPPED_AT"] = 1;
-            values[valuesById[2] = "IN_TRANSIT_TO"] = 2;
-            return values;
-        })();
-
-        /**
-         * CongestionLevel enum.
-         * @name CongestionLevel
-         * @memberof transit_realtime.VehiclePosition
-         * @enum {number}
-         * @property {number} UNKNOWN_CONGESTION_LEVEL=0 UNKNOWN_CONGESTION_LEVEL value
-         * @property {number} RUNNING_SMOOTHLY=1 RUNNING_SMOOTHLY value
-         * @property {number} STOP_AND_GO=2 STOP_AND_GO value
-         * @property {number} CONGESTION=3 CONGESTION value
-         * @property {number} SEVERE_CONGESTION=4 SEVERE_CONGESTION value
-         */
-        VehiclePosition.CongestionLevel = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "UNKNOWN_CONGESTION_LEVEL"] = 0;
-            values[valuesById[1] = "RUNNING_SMOOTHLY"] = 1;
-            values[valuesById[2] = "STOP_AND_GO"] = 2;
-            values[valuesById[3] = "CONGESTION"] = 3;
-            values[valuesById[4] = "SEVERE_CONGESTION"] = 4;
-            return values;
-        })();
-
-        /**
-         * OccupancyStatus enum.
-         * @name OccupancyStatus
-         * @memberof transit_realtime.VehiclePosition
-         * @enum {number}
-         * @property {number} EMPTY=0 EMPTY value
-         * @property {number} MANY_SEATS_AVAILABLE=1 MANY_SEATS_AVAILABLE value
-         * @property {number} FEW_SEATS_AVAILABLE=2 FEW_SEATS_AVAILABLE value
-         * @property {number} STANDING_ROOM_ONLY=3 STANDING_ROOM_ONLY value
-         * @property {number} CRUSHED_STANDING_ROOM_ONLY=4 CRUSHED_STANDING_ROOM_ONLY value
-         * @property {number} FULL=5 FULL value
-         * @property {number} NOT_ACCEPTING_PASSENGERS=6 NOT_ACCEPTING_PASSENGERS value
-         */
-        VehiclePosition.OccupancyStatus = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "EMPTY"] = 0;
-            values[valuesById[1] = "MANY_SEATS_AVAILABLE"] = 1;
-            values[valuesById[2] = "FEW_SEATS_AVAILABLE"] = 2;
-            values[valuesById[3] = "STANDING_ROOM_ONLY"] = 3;
-            values[valuesById[4] = "CRUSHED_STANDING_ROOM_ONLY"] = 4;
-            values[valuesById[5] = "FULL"] = 5;
-            values[valuesById[6] = "NOT_ACCEPTING_PASSENGERS"] = 6;
-            return values;
-        })();
-
-        return VehiclePosition;
-    })();
-
-    transit_realtime.Alert = (function() {
-
-        /**
-         * Properties of an Alert.
-         * @typedef transit_realtime.Alert$Properties
-         * @type {Object}
-         * @property {Array.<transit_realtime.TimeRange$Properties>} [activePeriod] Alert activePeriod.
-         * @property {Array.<transit_realtime.EntitySelector$Properties>} [informedEntity] Alert informedEntity.
-         * @property {transit_realtime.Alert.Cause} [cause] Alert cause.
-         * @property {transit_realtime.Alert.Effect} [effect] Alert effect.
-         * @property {transit_realtime.TranslatedString$Properties} [url] Alert url.
-         * @property {transit_realtime.TranslatedString$Properties} [headerText] Alert headerText.
-         * @property {transit_realtime.TranslatedString$Properties} [descriptionText] Alert descriptionText.
-         */
-
-        /**
-         * Constructs a new Alert.
-         * @exports transit_realtime.Alert
-         * @constructor
-         * @param {transit_realtime.Alert$Properties=} [properties] Properties to set
-         */
-        function Alert(properties) {
-            this.activePeriod = [];
-            this.informedEntity = [];
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * Alert activePeriod.
-         * @type {Array.<transit_realtime.TimeRange$Properties>}
-         */
-        Alert.prototype.activePeriod = $util.emptyArray;
-
-        /**
-         * Alert informedEntity.
-         * @type {Array.<transit_realtime.EntitySelector$Properties>}
-         */
-        Alert.prototype.informedEntity = $util.emptyArray;
-
-        /**
-         * Alert cause.
-         * @type {transit_realtime.Alert.Cause}
-         */
-        Alert.prototype.cause = 1;
-
-        /**
-         * Alert effect.
-         * @type {transit_realtime.Alert.Effect}
-         */
-        Alert.prototype.effect = 8;
-
-        /**
-         * Alert url.
-         * @type {(transit_realtime.TranslatedString$Properties|null)}
-         */
-        Alert.prototype.url = null;
-
-        /**
-         * Alert headerText.
-         * @type {(transit_realtime.TranslatedString$Properties|null)}
-         */
-        Alert.prototype.headerText = null;
-
-        /**
-         * Alert descriptionText.
-         * @type {(transit_realtime.TranslatedString$Properties|null)}
-         */
-        Alert.prototype.descriptionText = null;
-
-        /**
-         * Creates a new Alert instance using the specified properties.
-         * @param {transit_realtime.Alert$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.Alert} Alert instance
-         */
-        Alert.create = function create(properties) {
-            return new Alert(properties);
-        };
-
-        /**
-         * Encodes the specified Alert message. Does not implicitly {@link transit_realtime.Alert.verify|verify} messages.
-         * @param {transit_realtime.Alert$Properties} message Alert message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Alert.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.activePeriod != null && message.activePeriod.length)
-                for (var i = 0; i < message.activePeriod.length; ++i)
-                    $root.transit_realtime.TimeRange.encode(message.activePeriod[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.informedEntity != null && message.informedEntity.length)
-                for (var i = 0; i < message.informedEntity.length; ++i)
-                    $root.transit_realtime.EntitySelector.encode(message.informedEntity[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-            if (message.cause != null && message.hasOwnProperty("cause"))
-                writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.cause);
-            if (message.effect != null && message.hasOwnProperty("effect"))
-                writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.effect);
-            if (message.url != null && message.hasOwnProperty("url"))
-                $root.transit_realtime.TranslatedString.encode(message.url, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
-            if (message.headerText != null && message.hasOwnProperty("headerText"))
-                $root.transit_realtime.TranslatedString.encode(message.headerText, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
-            if (message.descriptionText != null && message.hasOwnProperty("descriptionText"))
-                $root.transit_realtime.TranslatedString.encode(message.descriptionText, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
-            return writer;
-        };
-
-        /**
-         * Encodes the specified Alert message, length delimited. Does not implicitly {@link transit_realtime.Alert.verify|verify} messages.
-         * @param {transit_realtime.Alert$Properties} message Alert message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Alert.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes an Alert message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.Alert} Alert
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Alert.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.Alert();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    if (!(message.activePeriod && message.activePeriod.length))
-                        message.activePeriod = [];
-                    message.activePeriod.push($root.transit_realtime.TimeRange.decode(reader, reader.uint32()));
-                    break;
-                case 5:
-                    if (!(message.informedEntity && message.informedEntity.length))
-                        message.informedEntity = [];
-                    message.informedEntity.push($root.transit_realtime.EntitySelector.decode(reader, reader.uint32()));
-                    break;
-                case 6:
-                    message.cause = reader.uint32();
-                    break;
-                case 7:
-                    message.effect = reader.uint32();
-                    break;
-                case 8:
-                    message.url = $root.transit_realtime.TranslatedString.decode(reader, reader.uint32());
-                    break;
-                case 10:
-                    message.headerText = $root.transit_realtime.TranslatedString.decode(reader, reader.uint32());
-                    break;
-                case 11:
-                    message.descriptionText = $root.transit_realtime.TranslatedString.decode(reader, reader.uint32());
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes an Alert message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.Alert} Alert
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Alert.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies an Alert message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        Alert.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.activePeriod != null && message.hasOwnProperty("activePeriod")) {
-                if (!Array.isArray(message.activePeriod))
-                    return "activePeriod: array expected";
-                for (var i = 0; i < message.activePeriod.length; ++i) {
-                    var error = $root.transit_realtime.TimeRange.verify(message.activePeriod[i]);
-                    if (error)
-                        return "activePeriod." + error;
-                }
-            }
-            if (message.informedEntity != null && message.hasOwnProperty("informedEntity")) {
-                if (!Array.isArray(message.informedEntity))
-                    return "informedEntity: array expected";
-                for (var i = 0; i < message.informedEntity.length; ++i) {
-                    var error = $root.transit_realtime.EntitySelector.verify(message.informedEntity[i]);
-                    if (error)
-                        return "informedEntity." + error;
-                }
-            }
-            if (message.cause != null && message.hasOwnProperty("cause"))
-                switch (message.cause) {
-                default:
-                    return "cause: enum value expected";
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                    break;
-                }
-            if (message.effect != null && message.hasOwnProperty("effect"))
-                switch (message.effect) {
-                default:
-                    return "effect: enum value expected";
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                    break;
-                }
-            if (message.url != null && message.hasOwnProperty("url")) {
-                var error = $root.transit_realtime.TranslatedString.verify(message.url);
-                if (error)
-                    return "url." + error;
-            }
-            if (message.headerText != null && message.hasOwnProperty("headerText")) {
-                var error = $root.transit_realtime.TranslatedString.verify(message.headerText);
-                if (error)
-                    return "headerText." + error;
-            }
-            if (message.descriptionText != null && message.hasOwnProperty("descriptionText")) {
-                var error = $root.transit_realtime.TranslatedString.verify(message.descriptionText);
-                if (error)
-                    return "descriptionText." + error;
-            }
-            return null;
-        };
-
-        /**
-         * Creates an Alert message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.Alert} Alert
-         */
-        Alert.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.Alert)
-                return object;
-            var message = new $root.transit_realtime.Alert();
-            if (object.activePeriod) {
-                if (!Array.isArray(object.activePeriod))
-                    throw TypeError(".transit_realtime.Alert.activePeriod: array expected");
-                message.activePeriod = [];
-                for (var i = 0; i < object.activePeriod.length; ++i) {
-                    if (typeof object.activePeriod[i] !== "object")
-                        throw TypeError(".transit_realtime.Alert.activePeriod: object expected");
-                    message.activePeriod[i] = $root.transit_realtime.TimeRange.fromObject(object.activePeriod[i]);
-                }
-            }
-            if (object.informedEntity) {
-                if (!Array.isArray(object.informedEntity))
-                    throw TypeError(".transit_realtime.Alert.informedEntity: array expected");
-                message.informedEntity = [];
-                for (var i = 0; i < object.informedEntity.length; ++i) {
-                    if (typeof object.informedEntity[i] !== "object")
-                        throw TypeError(".transit_realtime.Alert.informedEntity: object expected");
-                    message.informedEntity[i] = $root.transit_realtime.EntitySelector.fromObject(object.informedEntity[i]);
-                }
-            }
-            switch (object.cause) {
-            case "UNKNOWN_CAUSE":
-            case 1:
-                message.cause = 1;
-                break;
-            case "OTHER_CAUSE":
-            case 2:
-                message.cause = 2;
-                break;
-            case "TECHNICAL_PROBLEM":
-            case 3:
-                message.cause = 3;
-                break;
-            case "STRIKE":
-            case 4:
-                message.cause = 4;
-                break;
-            case "DEMONSTRATION":
-            case 5:
-                message.cause = 5;
-                break;
-            case "ACCIDENT":
-            case 6:
-                message.cause = 6;
-                break;
-            case "HOLIDAY":
-            case 7:
-                message.cause = 7;
-                break;
-            case "WEATHER":
-            case 8:
-                message.cause = 8;
-                break;
-            case "MAINTENANCE":
-            case 9:
-                message.cause = 9;
-                break;
-            case "CONSTRUCTION":
-            case 10:
-                message.cause = 10;
-                break;
-            case "POLICE_ACTIVITY":
-            case 11:
-                message.cause = 11;
-                break;
-            case "MEDICAL_EMERGENCY":
-            case 12:
-                message.cause = 12;
-                break;
-            }
-            switch (object.effect) {
-            case "NO_SERVICE":
-            case 1:
-                message.effect = 1;
-                break;
-            case "REDUCED_SERVICE":
-            case 2:
-                message.effect = 2;
-                break;
-            case "SIGNIFICANT_DELAYS":
-            case 3:
-                message.effect = 3;
-                break;
-            case "DETOUR":
-            case 4:
-                message.effect = 4;
-                break;
-            case "ADDITIONAL_SERVICE":
-            case 5:
-                message.effect = 5;
-                break;
-            case "MODIFIED_SERVICE":
-            case 6:
-                message.effect = 6;
-                break;
-            case "OTHER_EFFECT":
-            case 7:
-                message.effect = 7;
-                break;
-            case "UNKNOWN_EFFECT":
-            case 8:
-                message.effect = 8;
-                break;
-            case "STOP_MOVED":
-            case 9:
-                message.effect = 9;
-                break;
-            }
-            if (object.url != null) {
-                if (typeof object.url !== "object")
-                    throw TypeError(".transit_realtime.Alert.url: object expected");
-                message.url = $root.transit_realtime.TranslatedString.fromObject(object.url);
-            }
-            if (object.headerText != null) {
-                if (typeof object.headerText !== "object")
-                    throw TypeError(".transit_realtime.Alert.headerText: object expected");
-                message.headerText = $root.transit_realtime.TranslatedString.fromObject(object.headerText);
-            }
-            if (object.descriptionText != null) {
-                if (typeof object.descriptionText !== "object")
-                    throw TypeError(".transit_realtime.Alert.descriptionText: object expected");
-                message.descriptionText = $root.transit_realtime.TranslatedString.fromObject(object.descriptionText);
-            }
-            return message;
-        };
-
-        /**
-         * Creates an Alert message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.Alert.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.Alert} Alert
-         */
-        Alert.from = Alert.fromObject;
-
-        /**
-         * Creates a plain object from an Alert message. Also converts values to other types if specified.
-         * @param {transit_realtime.Alert} message Alert
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        Alert.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.arrays || options.defaults) {
-                object.activePeriod = [];
-                object.informedEntity = [];
-            }
-            if (options.defaults) {
-                object.cause = options.enums === String ? "UNKNOWN_CAUSE" : 1;
-                object.effect = options.enums === String ? "UNKNOWN_EFFECT" : 8;
-                object.url = null;
-                object.headerText = null;
-                object.descriptionText = null;
-            }
-            if (message.activePeriod && message.activePeriod.length) {
-                object.activePeriod = [];
-                for (var j = 0; j < message.activePeriod.length; ++j)
-                    object.activePeriod[j] = $root.transit_realtime.TimeRange.toObject(message.activePeriod[j], options);
-            }
-            if (message.informedEntity && message.informedEntity.length) {
-                object.informedEntity = [];
-                for (var j = 0; j < message.informedEntity.length; ++j)
-                    object.informedEntity[j] = $root.transit_realtime.EntitySelector.toObject(message.informedEntity[j], options);
-            }
-            if (message.cause != null && message.hasOwnProperty("cause"))
-                object.cause = options.enums === String ? $root.transit_realtime.Alert.Cause[message.cause] : message.cause;
-            if (message.effect != null && message.hasOwnProperty("effect"))
-                object.effect = options.enums === String ? $root.transit_realtime.Alert.Effect[message.effect] : message.effect;
-            if (message.url != null && message.hasOwnProperty("url"))
-                object.url = $root.transit_realtime.TranslatedString.toObject(message.url, options);
-            if (message.headerText != null && message.hasOwnProperty("headerText"))
-                object.headerText = $root.transit_realtime.TranslatedString.toObject(message.headerText, options);
-            if (message.descriptionText != null && message.hasOwnProperty("descriptionText"))
-                object.descriptionText = $root.transit_realtime.TranslatedString.toObject(message.descriptionText, options);
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this Alert message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        Alert.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this Alert to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        Alert.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Cause enum.
-         * @name Cause
-         * @memberof transit_realtime.Alert
-         * @enum {number}
-         * @property {number} UNKNOWN_CAUSE=1 UNKNOWN_CAUSE value
-         * @property {number} OTHER_CAUSE=2 OTHER_CAUSE value
-         * @property {number} TECHNICAL_PROBLEM=3 TECHNICAL_PROBLEM value
-         * @property {number} STRIKE=4 STRIKE value
-         * @property {number} DEMONSTRATION=5 DEMONSTRATION value
-         * @property {number} ACCIDENT=6 ACCIDENT value
-         * @property {number} HOLIDAY=7 HOLIDAY value
-         * @property {number} WEATHER=8 WEATHER value
-         * @property {number} MAINTENANCE=9 MAINTENANCE value
-         * @property {number} CONSTRUCTION=10 CONSTRUCTION value
-         * @property {number} POLICE_ACTIVITY=11 POLICE_ACTIVITY value
-         * @property {number} MEDICAL_EMERGENCY=12 MEDICAL_EMERGENCY value
-         */
-        Alert.Cause = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[1] = "UNKNOWN_CAUSE"] = 1;
-            values[valuesById[2] = "OTHER_CAUSE"] = 2;
-            values[valuesById[3] = "TECHNICAL_PROBLEM"] = 3;
-            values[valuesById[4] = "STRIKE"] = 4;
-            values[valuesById[5] = "DEMONSTRATION"] = 5;
-            values[valuesById[6] = "ACCIDENT"] = 6;
-            values[valuesById[7] = "HOLIDAY"] = 7;
-            values[valuesById[8] = "WEATHER"] = 8;
-            values[valuesById[9] = "MAINTENANCE"] = 9;
-            values[valuesById[10] = "CONSTRUCTION"] = 10;
-            values[valuesById[11] = "POLICE_ACTIVITY"] = 11;
-            values[valuesById[12] = "MEDICAL_EMERGENCY"] = 12;
-            return values;
-        })();
-
-        /**
-         * Effect enum.
-         * @name Effect
-         * @memberof transit_realtime.Alert
-         * @enum {number}
-         * @property {number} NO_SERVICE=1 NO_SERVICE value
-         * @property {number} REDUCED_SERVICE=2 REDUCED_SERVICE value
-         * @property {number} SIGNIFICANT_DELAYS=3 SIGNIFICANT_DELAYS value
-         * @property {number} DETOUR=4 DETOUR value
-         * @property {number} ADDITIONAL_SERVICE=5 ADDITIONAL_SERVICE value
-         * @property {number} MODIFIED_SERVICE=6 MODIFIED_SERVICE value
-         * @property {number} OTHER_EFFECT=7 OTHER_EFFECT value
-         * @property {number} UNKNOWN_EFFECT=8 UNKNOWN_EFFECT value
-         * @property {number} STOP_MOVED=9 STOP_MOVED value
-         */
-        Alert.Effect = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[1] = "NO_SERVICE"] = 1;
-            values[valuesById[2] = "REDUCED_SERVICE"] = 2;
-            values[valuesById[3] = "SIGNIFICANT_DELAYS"] = 3;
-            values[valuesById[4] = "DETOUR"] = 4;
-            values[valuesById[5] = "ADDITIONAL_SERVICE"] = 5;
-            values[valuesById[6] = "MODIFIED_SERVICE"] = 6;
-            values[valuesById[7] = "OTHER_EFFECT"] = 7;
-            values[valuesById[8] = "UNKNOWN_EFFECT"] = 8;
-            values[valuesById[9] = "STOP_MOVED"] = 9;
-            return values;
-        })();
-
-        return Alert;
-    })();
-
-    transit_realtime.TimeRange = (function() {
-
-        /**
-         * Properties of a TimeRange.
-         * @typedef transit_realtime.TimeRange$Properties
-         * @type {Object}
-         * @property {number|Long} [start] TimeRange start.
-         * @property {number|Long} [end] TimeRange end.
-         */
-
-        /**
-         * Constructs a new TimeRange.
-         * @exports transit_realtime.TimeRange
-         * @constructor
-         * @param {transit_realtime.TimeRange$Properties=} [properties] Properties to set
-         */
-        function TimeRange(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * TimeRange start.
-         * @type {number|Long}
-         */
-        TimeRange.prototype.start = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
-
-        /**
-         * TimeRange end.
-         * @type {number|Long}
-         */
-        TimeRange.prototype.end = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
-
-        /**
-         * Creates a new TimeRange instance using the specified properties.
-         * @param {transit_realtime.TimeRange$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.TimeRange} TimeRange instance
-         */
-        TimeRange.create = function create(properties) {
-            return new TimeRange(properties);
-        };
-
-        /**
-         * Encodes the specified TimeRange message. Does not implicitly {@link transit_realtime.TimeRange.verify|verify} messages.
-         * @param {transit_realtime.TimeRange$Properties} message TimeRange message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        TimeRange.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.start != null && message.hasOwnProperty("start"))
-                writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.start);
-            if (message.end != null && message.hasOwnProperty("end"))
-                writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.end);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified TimeRange message, length delimited. Does not implicitly {@link transit_realtime.TimeRange.verify|verify} messages.
-         * @param {transit_realtime.TimeRange$Properties} message TimeRange message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        TimeRange.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a TimeRange message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.TimeRange} TimeRange
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        TimeRange.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TimeRange();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.start = reader.uint64();
-                    break;
-                case 2:
-                    message.end = reader.uint64();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a TimeRange message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.TimeRange} TimeRange
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        TimeRange.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a TimeRange message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        TimeRange.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.start != null && message.hasOwnProperty("start"))
-                if (!$util.isInteger(message.start) && !(message.start && $util.isInteger(message.start.low) && $util.isInteger(message.start.high)))
-                    return "start: integer|Long expected";
-            if (message.end != null && message.hasOwnProperty("end"))
-                if (!$util.isInteger(message.end) && !(message.end && $util.isInteger(message.end.low) && $util.isInteger(message.end.high)))
-                    return "end: integer|Long expected";
-            return null;
-        };
-
-        /**
-         * Creates a TimeRange message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.TimeRange} TimeRange
-         */
-        TimeRange.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.TimeRange)
-                return object;
-            var message = new $root.transit_realtime.TimeRange();
-            if (object.start != null)
-                if ($util.Long)
-                    (message.start = $util.Long.fromValue(object.start)).unsigned = true;
-                else if (typeof object.start === "string")
-                    message.start = parseInt(object.start, 10);
-                else if (typeof object.start === "number")
-                    message.start = object.start;
-                else if (typeof object.start === "object")
-                    message.start = new $util.LongBits(object.start.low >>> 0, object.start.high >>> 0).toNumber(true);
-            if (object.end != null)
-                if ($util.Long)
-                    (message.end = $util.Long.fromValue(object.end)).unsigned = true;
-                else if (typeof object.end === "string")
-                    message.end = parseInt(object.end, 10);
-                else if (typeof object.end === "number")
-                    message.end = object.end;
-                else if (typeof object.end === "object")
-                    message.end = new $util.LongBits(object.end.low >>> 0, object.end.high >>> 0).toNumber(true);
-            return message;
-        };
-
-        /**
-         * Creates a TimeRange message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.TimeRange.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.TimeRange} TimeRange
-         */
-        TimeRange.from = TimeRange.fromObject;
-
-        /**
-         * Creates a plain object from a TimeRange message. Also converts values to other types if specified.
-         * @param {transit_realtime.TimeRange} message TimeRange
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        TimeRange.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                if ($util.Long) {
-                    var long = new $util.Long(0, 0, true);
-                    object.start = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                } else
-                    object.start = options.longs === String ? "0" : 0;
-                if ($util.Long) {
-                    var long = new $util.Long(0, 0, true);
-                    object.end = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                } else
-                    object.end = options.longs === String ? "0" : 0;
-            }
-            if (message.start != null && message.hasOwnProperty("start"))
-                if (typeof message.start === "number")
-                    object.start = options.longs === String ? String(message.start) : message.start;
-                else
-                    object.start = options.longs === String ? $util.Long.prototype.toString.call(message.start) : options.longs === Number ? new $util.LongBits(message.start.low >>> 0, message.start.high >>> 0).toNumber(true) : message.start;
-            if (message.end != null && message.hasOwnProperty("end"))
-                if (typeof message.end === "number")
-                    object.end = options.longs === String ? String(message.end) : message.end;
-                else
-                    object.end = options.longs === String ? $util.Long.prototype.toString.call(message.end) : options.longs === Number ? new $util.LongBits(message.end.low >>> 0, message.end.high >>> 0).toNumber(true) : message.end;
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this TimeRange message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        TimeRange.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this TimeRange to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        TimeRange.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return TimeRange;
-    })();
-
-    transit_realtime.Position = (function() {
-
-        /**
-         * Properties of a Position.
-         * @typedef transit_realtime.Position$Properties
-         * @type {Object}
-         * @property {number} latitude Position latitude.
-         * @property {number} longitude Position longitude.
-         * @property {number} [bearing] Position bearing.
-         * @property {number} [odometer] Position odometer.
-         * @property {number} [speed] Position speed.
-         */
-
-        /**
-         * Constructs a new Position.
-         * @exports transit_realtime.Position
-         * @constructor
-         * @param {transit_realtime.Position$Properties=} [properties] Properties to set
-         */
-        function Position(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * Position latitude.
-         * @type {number}
-         */
-        Position.prototype.latitude = 0;
-
-        /**
-         * Position longitude.
-         * @type {number}
-         */
-        Position.prototype.longitude = 0;
-
-        /**
-         * Position bearing.
-         * @type {number}
-         */
-        Position.prototype.bearing = 0;
-
-        /**
-         * Position odometer.
-         * @type {number}
-         */
-        Position.prototype.odometer = 0;
-
-        /**
-         * Position speed.
-         * @type {number}
-         */
-        Position.prototype.speed = 0;
-
-        /**
-         * Creates a new Position instance using the specified properties.
-         * @param {transit_realtime.Position$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.Position} Position instance
-         */
-        Position.create = function create(properties) {
-            return new Position(properties);
-        };
-
-        /**
-         * Encodes the specified Position message. Does not implicitly {@link transit_realtime.Position.verify|verify} messages.
-         * @param {transit_realtime.Position$Properties} message Position message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Position.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 5 =*/13).float(message.latitude);
-            writer.uint32(/* id 2, wireType 5 =*/21).float(message.longitude);
-            if (message.bearing != null && message.hasOwnProperty("bearing"))
-                writer.uint32(/* id 3, wireType 5 =*/29).float(message.bearing);
-            if (message.odometer != null && message.hasOwnProperty("odometer"))
-                writer.uint32(/* id 4, wireType 1 =*/33).double(message.odometer);
-            if (message.speed != null && message.hasOwnProperty("speed"))
-                writer.uint32(/* id 5, wireType 5 =*/45).float(message.speed);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified Position message, length delimited. Does not implicitly {@link transit_realtime.Position.verify|verify} messages.
-         * @param {transit_realtime.Position$Properties} message Position message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Position.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a Position message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.Position} Position
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Position.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.Position();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.latitude = reader.float();
-                    break;
-                case 2:
-                    message.longitude = reader.float();
-                    break;
-                case 3:
-                    message.bearing = reader.float();
-                    break;
-                case 4:
-                    message.odometer = reader.double();
-                    break;
-                case 5:
-                    message.speed = reader.float();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            if (!message.hasOwnProperty("latitude"))
-                throw $util.ProtocolError("missing required 'latitude'", { instance: message });
-            if (!message.hasOwnProperty("longitude"))
-                throw $util.ProtocolError("missing required 'longitude'", { instance: message });
-            return message;
-        };
-
-        /**
-         * Decodes a Position message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.Position} Position
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Position.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a Position message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        Position.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (typeof message.latitude !== "number")
-                return "latitude: number expected";
-            if (typeof message.longitude !== "number")
-                return "longitude: number expected";
-            if (message.bearing != null && message.hasOwnProperty("bearing"))
-                if (typeof message.bearing !== "number")
-                    return "bearing: number expected";
-            if (message.odometer != null && message.hasOwnProperty("odometer"))
-                if (typeof message.odometer !== "number")
-                    return "odometer: number expected";
-            if (message.speed != null && message.hasOwnProperty("speed"))
-                if (typeof message.speed !== "number")
-                    return "speed: number expected";
-            return null;
-        };
-
-        /**
-         * Creates a Position message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.Position} Position
-         */
-        Position.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.Position)
-                return object;
-            var message = new $root.transit_realtime.Position();
-            if (object.latitude != null)
-                message.latitude = Number(object.latitude);
-            if (object.longitude != null)
-                message.longitude = Number(object.longitude);
-            if (object.bearing != null)
-                message.bearing = Number(object.bearing);
-            if (object.odometer != null)
-                message.odometer = Number(object.odometer);
-            if (object.speed != null)
-                message.speed = Number(object.speed);
-            return message;
-        };
-
-        /**
-         * Creates a Position message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.Position.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.Position} Position
-         */
-        Position.from = Position.fromObject;
-
-        /**
-         * Creates a plain object from a Position message. Also converts values to other types if specified.
-         * @param {transit_realtime.Position} message Position
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        Position.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.latitude = 0;
-                object.longitude = 0;
-                object.bearing = 0;
-                object.odometer = 0;
-                object.speed = 0;
-            }
-            if (message.latitude != null && message.hasOwnProperty("latitude"))
-                object.latitude = message.latitude;
-            if (message.longitude != null && message.hasOwnProperty("longitude"))
-                object.longitude = message.longitude;
-            if (message.bearing != null && message.hasOwnProperty("bearing"))
-                object.bearing = message.bearing;
-            if (message.odometer != null && message.hasOwnProperty("odometer"))
-                object.odometer = message.odometer;
-            if (message.speed != null && message.hasOwnProperty("speed"))
-                object.speed = message.speed;
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this Position message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        Position.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this Position to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        Position.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return Position;
-    })();
-
-    transit_realtime.TripDescriptor = (function() {
-
-        /**
-         * Properties of a TripDescriptor.
-         * @typedef transit_realtime.TripDescriptor$Properties
-         * @type {Object}
-         * @property {string} [tripId] TripDescriptor tripId.
-         * @property {string} [routeId] TripDescriptor routeId.
-         * @property {number} [directionId] TripDescriptor directionId.
-         * @property {string} [startTime] TripDescriptor startTime.
-         * @property {string} [startDate] TripDescriptor startDate.
-         * @property {transit_realtime.TripDescriptor.ScheduleRelationship} [scheduleRelationship] TripDescriptor scheduleRelationship.
-         */
-
-        /**
-         * Constructs a new TripDescriptor.
-         * @exports transit_realtime.TripDescriptor
-         * @constructor
-         * @param {transit_realtime.TripDescriptor$Properties=} [properties] Properties to set
-         */
-        function TripDescriptor(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * TripDescriptor tripId.
-         * @type {string}
-         */
-        TripDescriptor.prototype.tripId = "";
-
-        /**
-         * TripDescriptor routeId.
-         * @type {string}
-         */
-        TripDescriptor.prototype.routeId = "";
-
-        /**
-         * TripDescriptor directionId.
-         * @type {number}
-         */
-        TripDescriptor.prototype.directionId = 0;
-
-        /**
-         * TripDescriptor startTime.
-         * @type {string}
-         */
-        TripDescriptor.prototype.startTime = "";
-
-        /**
-         * TripDescriptor startDate.
-         * @type {string}
-         */
-        TripDescriptor.prototype.startDate = "";
-
-        /**
-         * TripDescriptor scheduleRelationship.
-         * @type {transit_realtime.TripDescriptor.ScheduleRelationship}
-         */
-        TripDescriptor.prototype.scheduleRelationship = 0;
-
-        /**
-         * Creates a new TripDescriptor instance using the specified properties.
-         * @param {transit_realtime.TripDescriptor$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.TripDescriptor} TripDescriptor instance
-         */
-        TripDescriptor.create = function create(properties) {
-            return new TripDescriptor(properties);
-        };
-
-        /**
-         * Encodes the specified TripDescriptor message. Does not implicitly {@link transit_realtime.TripDescriptor.verify|verify} messages.
-         * @param {transit_realtime.TripDescriptor$Properties} message TripDescriptor message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        TripDescriptor.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.tripId != null && message.hasOwnProperty("tripId"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.tripId);
-            if (message.startTime != null && message.hasOwnProperty("startTime"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.startTime);
-            if (message.startDate != null && message.hasOwnProperty("startDate"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.startDate);
-            if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
-                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.scheduleRelationship);
-            if (message.routeId != null && message.hasOwnProperty("routeId"))
-                writer.uint32(/* id 5, wireType 2 =*/42).string(message.routeId);
-            if (message.directionId != null && message.hasOwnProperty("directionId"))
-                writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.directionId);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified TripDescriptor message, length delimited. Does not implicitly {@link transit_realtime.TripDescriptor.verify|verify} messages.
-         * @param {transit_realtime.TripDescriptor$Properties} message TripDescriptor message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        TripDescriptor.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a TripDescriptor message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.TripDescriptor} TripDescriptor
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        TripDescriptor.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripDescriptor();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.tripId = reader.string();
-                    break;
-                case 5:
-                    message.routeId = reader.string();
-                    break;
-                case 6:
-                    message.directionId = reader.uint32();
-                    break;
-                case 2:
-                    message.startTime = reader.string();
-                    break;
-                case 3:
-                    message.startDate = reader.string();
-                    break;
-                case 4:
-                    message.scheduleRelationship = reader.uint32();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a TripDescriptor message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.TripDescriptor} TripDescriptor
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        TripDescriptor.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a TripDescriptor message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        TripDescriptor.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.tripId != null && message.hasOwnProperty("tripId"))
-                if (!$util.isString(message.tripId))
-                    return "tripId: string expected";
-            if (message.routeId != null && message.hasOwnProperty("routeId"))
-                if (!$util.isString(message.routeId))
-                    return "routeId: string expected";
-            if (message.directionId != null && message.hasOwnProperty("directionId"))
-                if (!$util.isInteger(message.directionId))
-                    return "directionId: integer expected";
-            if (message.startTime != null && message.hasOwnProperty("startTime"))
-                if (!$util.isString(message.startTime))
-                    return "startTime: string expected";
-            if (message.startDate != null && message.hasOwnProperty("startDate"))
-                if (!$util.isString(message.startDate))
-                    return "startDate: string expected";
-            if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
-                switch (message.scheduleRelationship) {
-                default:
-                    return "scheduleRelationship: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                    break;
-                }
-            return null;
-        };
-
-        /**
-         * Creates a TripDescriptor message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.TripDescriptor} TripDescriptor
-         */
-        TripDescriptor.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.TripDescriptor)
-                return object;
-            var message = new $root.transit_realtime.TripDescriptor();
-            if (object.tripId != null)
-                message.tripId = String(object.tripId);
-            if (object.routeId != null)
-                message.routeId = String(object.routeId);
-            if (object.directionId != null)
-                message.directionId = object.directionId >>> 0;
-            if (object.startTime != null)
-                message.startTime = String(object.startTime);
-            if (object.startDate != null)
-                message.startDate = String(object.startDate);
-            switch (object.scheduleRelationship) {
-            case "SCHEDULED":
-            case 0:
-                message.scheduleRelationship = 0;
-                break;
-            case "ADDED":
-            case 1:
-                message.scheduleRelationship = 1;
-                break;
-            case "UNSCHEDULED":
-            case 2:
-                message.scheduleRelationship = 2;
-                break;
-            case "CANCELED":
-            case 3:
-                message.scheduleRelationship = 3;
-                break;
-            }
-            return message;
-        };
-
-        /**
-         * Creates a TripDescriptor message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.TripDescriptor.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.TripDescriptor} TripDescriptor
-         */
-        TripDescriptor.from = TripDescriptor.fromObject;
-
-        /**
-         * Creates a plain object from a TripDescriptor message. Also converts values to other types if specified.
-         * @param {transit_realtime.TripDescriptor} message TripDescriptor
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        TripDescriptor.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.tripId = "";
-                object.startTime = "";
-                object.startDate = "";
-                object.scheduleRelationship = options.enums === String ? "SCHEDULED" : 0;
-                object.routeId = "";
-                object.directionId = 0;
-            }
-            if (message.tripId != null && message.hasOwnProperty("tripId"))
-                object.tripId = message.tripId;
-            if (message.startTime != null && message.hasOwnProperty("startTime"))
-                object.startTime = message.startTime;
-            if (message.startDate != null && message.hasOwnProperty("startDate"))
-                object.startDate = message.startDate;
-            if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
-                object.scheduleRelationship = options.enums === String ? $root.transit_realtime.TripDescriptor.ScheduleRelationship[message.scheduleRelationship] : message.scheduleRelationship;
-            if (message.routeId != null && message.hasOwnProperty("routeId"))
-                object.routeId = message.routeId;
-            if (message.directionId != null && message.hasOwnProperty("directionId"))
-                object.directionId = message.directionId;
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this TripDescriptor message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        TripDescriptor.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this TripDescriptor to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        TripDescriptor.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * ScheduleRelationship enum.
-         * @name ScheduleRelationship
-         * @memberof transit_realtime.TripDescriptor
-         * @enum {number}
-         * @property {number} SCHEDULED=0 SCHEDULED value
-         * @property {number} ADDED=1 ADDED value
-         * @property {number} UNSCHEDULED=2 UNSCHEDULED value
-         * @property {number} CANCELED=3 CANCELED value
-         */
-        TripDescriptor.ScheduleRelationship = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "SCHEDULED"] = 0;
-            values[valuesById[1] = "ADDED"] = 1;
-            values[valuesById[2] = "UNSCHEDULED"] = 2;
-            values[valuesById[3] = "CANCELED"] = 3;
-            return values;
-        })();
-
-        return TripDescriptor;
-    })();
-
-    transit_realtime.VehicleDescriptor = (function() {
-
-        /**
-         * Properties of a VehicleDescriptor.
-         * @typedef transit_realtime.VehicleDescriptor$Properties
-         * @type {Object}
-         * @property {string} [id] VehicleDescriptor id.
-         * @property {string} [label] VehicleDescriptor label.
-         * @property {string} [licensePlate] VehicleDescriptor licensePlate.
-         */
-
-        /**
-         * Constructs a new VehicleDescriptor.
-         * @exports transit_realtime.VehicleDescriptor
-         * @constructor
-         * @param {transit_realtime.VehicleDescriptor$Properties=} [properties] Properties to set
-         */
-        function VehicleDescriptor(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * VehicleDescriptor id.
-         * @type {string}
-         */
-        VehicleDescriptor.prototype.id = "";
-
-        /**
-         * VehicleDescriptor label.
-         * @type {string}
-         */
-        VehicleDescriptor.prototype.label = "";
-
-        /**
-         * VehicleDescriptor licensePlate.
-         * @type {string}
-         */
-        VehicleDescriptor.prototype.licensePlate = "";
-
-        /**
-         * Creates a new VehicleDescriptor instance using the specified properties.
-         * @param {transit_realtime.VehicleDescriptor$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.VehicleDescriptor} VehicleDescriptor instance
-         */
-        VehicleDescriptor.create = function create(properties) {
-            return new VehicleDescriptor(properties);
-        };
-
-        /**
-         * Encodes the specified VehicleDescriptor message. Does not implicitly {@link transit_realtime.VehicleDescriptor.verify|verify} messages.
-         * @param {transit_realtime.VehicleDescriptor$Properties} message VehicleDescriptor message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        VehicleDescriptor.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.id != null && message.hasOwnProperty("id"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-            if (message.label != null && message.hasOwnProperty("label"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.label);
-            if (message.licensePlate != null && message.hasOwnProperty("licensePlate"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.licensePlate);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified VehicleDescriptor message, length delimited. Does not implicitly {@link transit_realtime.VehicleDescriptor.verify|verify} messages.
-         * @param {transit_realtime.VehicleDescriptor$Properties} message VehicleDescriptor message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        VehicleDescriptor.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a VehicleDescriptor message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.VehicleDescriptor} VehicleDescriptor
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        VehicleDescriptor.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.VehicleDescriptor();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.id = reader.string();
-                    break;
-                case 2:
-                    message.label = reader.string();
-                    break;
-                case 3:
-                    message.licensePlate = reader.string();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a VehicleDescriptor message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.VehicleDescriptor} VehicleDescriptor
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        VehicleDescriptor.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a VehicleDescriptor message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        VehicleDescriptor.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.id != null && message.hasOwnProperty("id"))
-                if (!$util.isString(message.id))
-                    return "id: string expected";
-            if (message.label != null && message.hasOwnProperty("label"))
-                if (!$util.isString(message.label))
-                    return "label: string expected";
-            if (message.licensePlate != null && message.hasOwnProperty("licensePlate"))
-                if (!$util.isString(message.licensePlate))
-                    return "licensePlate: string expected";
-            return null;
-        };
-
-        /**
-         * Creates a VehicleDescriptor message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.VehicleDescriptor} VehicleDescriptor
-         */
-        VehicleDescriptor.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.VehicleDescriptor)
-                return object;
-            var message = new $root.transit_realtime.VehicleDescriptor();
-            if (object.id != null)
-                message.id = String(object.id);
-            if (object.label != null)
-                message.label = String(object.label);
-            if (object.licensePlate != null)
-                message.licensePlate = String(object.licensePlate);
-            return message;
-        };
-
-        /**
-         * Creates a VehicleDescriptor message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.VehicleDescriptor.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.VehicleDescriptor} VehicleDescriptor
-         */
-        VehicleDescriptor.from = VehicleDescriptor.fromObject;
-
-        /**
-         * Creates a plain object from a VehicleDescriptor message. Also converts values to other types if specified.
-         * @param {transit_realtime.VehicleDescriptor} message VehicleDescriptor
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        VehicleDescriptor.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.id = "";
-                object.label = "";
-                object.licensePlate = "";
-            }
-            if (message.id != null && message.hasOwnProperty("id"))
-                object.id = message.id;
-            if (message.label != null && message.hasOwnProperty("label"))
-                object.label = message.label;
-            if (message.licensePlate != null && message.hasOwnProperty("licensePlate"))
-                object.licensePlate = message.licensePlate;
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this VehicleDescriptor message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        VehicleDescriptor.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this VehicleDescriptor to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        VehicleDescriptor.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return VehicleDescriptor;
-    })();
-
-    transit_realtime.EntitySelector = (function() {
-
-        /**
-         * Properties of an EntitySelector.
-         * @typedef transit_realtime.EntitySelector$Properties
-         * @type {Object}
-         * @property {string} [agencyId] EntitySelector agencyId.
-         * @property {string} [routeId] EntitySelector routeId.
-         * @property {number} [routeType] EntitySelector routeType.
-         * @property {transit_realtime.TripDescriptor$Properties} [trip] EntitySelector trip.
-         * @property {string} [stopId] EntitySelector stopId.
-         */
-
-        /**
-         * Constructs a new EntitySelector.
-         * @exports transit_realtime.EntitySelector
-         * @constructor
-         * @param {transit_realtime.EntitySelector$Properties=} [properties] Properties to set
-         */
-        function EntitySelector(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * EntitySelector agencyId.
-         * @type {string}
-         */
-        EntitySelector.prototype.agencyId = "";
-
-        /**
-         * EntitySelector routeId.
-         * @type {string}
-         */
-        EntitySelector.prototype.routeId = "";
-
-        /**
-         * EntitySelector routeType.
-         * @type {number}
-         */
-        EntitySelector.prototype.routeType = 0;
-
-        /**
-         * EntitySelector trip.
-         * @type {(transit_realtime.TripDescriptor$Properties|null)}
-         */
-        EntitySelector.prototype.trip = null;
-
-        /**
-         * EntitySelector stopId.
-         * @type {string}
-         */
-        EntitySelector.prototype.stopId = "";
-
-        /**
-         * Creates a new EntitySelector instance using the specified properties.
-         * @param {transit_realtime.EntitySelector$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.EntitySelector} EntitySelector instance
-         */
-        EntitySelector.create = function create(properties) {
-            return new EntitySelector(properties);
-        };
-
-        /**
-         * Encodes the specified EntitySelector message. Does not implicitly {@link transit_realtime.EntitySelector.verify|verify} messages.
-         * @param {transit_realtime.EntitySelector$Properties} message EntitySelector message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        EntitySelector.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.agencyId != null && message.hasOwnProperty("agencyId"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.agencyId);
-            if (message.routeId != null && message.hasOwnProperty("routeId"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.routeId);
-            if (message.routeType != null && message.hasOwnProperty("routeType"))
-                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.routeType);
-            if (message.trip != null && message.hasOwnProperty("trip"))
-                $root.transit_realtime.TripDescriptor.encode(message.trip, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-            if (message.stopId != null && message.hasOwnProperty("stopId"))
-                writer.uint32(/* id 5, wireType 2 =*/42).string(message.stopId);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified EntitySelector message, length delimited. Does not implicitly {@link transit_realtime.EntitySelector.verify|verify} messages.
-         * @param {transit_realtime.EntitySelector$Properties} message EntitySelector message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        EntitySelector.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes an EntitySelector message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.EntitySelector} EntitySelector
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        EntitySelector.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.EntitySelector();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.agencyId = reader.string();
-                    break;
-                case 2:
-                    message.routeId = reader.string();
-                    break;
-                case 3:
-                    message.routeType = reader.int32();
-                    break;
-                case 4:
-                    message.trip = $root.transit_realtime.TripDescriptor.decode(reader, reader.uint32());
-                    break;
-                case 5:
-                    message.stopId = reader.string();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes an EntitySelector message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.EntitySelector} EntitySelector
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        EntitySelector.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies an EntitySelector message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        EntitySelector.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.agencyId != null && message.hasOwnProperty("agencyId"))
-                if (!$util.isString(message.agencyId))
-                    return "agencyId: string expected";
-            if (message.routeId != null && message.hasOwnProperty("routeId"))
-                if (!$util.isString(message.routeId))
-                    return "routeId: string expected";
-            if (message.routeType != null && message.hasOwnProperty("routeType"))
-                if (!$util.isInteger(message.routeType))
-                    return "routeType: integer expected";
-            if (message.trip != null && message.hasOwnProperty("trip")) {
-                var error = $root.transit_realtime.TripDescriptor.verify(message.trip);
-                if (error)
-                    return "trip." + error;
-            }
-            if (message.stopId != null && message.hasOwnProperty("stopId"))
-                if (!$util.isString(message.stopId))
-                    return "stopId: string expected";
-            return null;
-        };
-
-        /**
-         * Creates an EntitySelector message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.EntitySelector} EntitySelector
-         */
-        EntitySelector.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.EntitySelector)
-                return object;
-            var message = new $root.transit_realtime.EntitySelector();
-            if (object.agencyId != null)
-                message.agencyId = String(object.agencyId);
-            if (object.routeId != null)
-                message.routeId = String(object.routeId);
-            if (object.routeType != null)
-                message.routeType = object.routeType | 0;
-            if (object.trip != null) {
-                if (typeof object.trip !== "object")
-                    throw TypeError(".transit_realtime.EntitySelector.trip: object expected");
-                message.trip = $root.transit_realtime.TripDescriptor.fromObject(object.trip);
-            }
-            if (object.stopId != null)
-                message.stopId = String(object.stopId);
-            return message;
-        };
-
-        /**
-         * Creates an EntitySelector message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.EntitySelector.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.EntitySelector} EntitySelector
-         */
-        EntitySelector.from = EntitySelector.fromObject;
-
-        /**
-         * Creates a plain object from an EntitySelector message. Also converts values to other types if specified.
-         * @param {transit_realtime.EntitySelector} message EntitySelector
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        EntitySelector.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.agencyId = "";
-                object.routeId = "";
-                object.routeType = 0;
-                object.trip = null;
-                object.stopId = "";
-            }
-            if (message.agencyId != null && message.hasOwnProperty("agencyId"))
-                object.agencyId = message.agencyId;
-            if (message.routeId != null && message.hasOwnProperty("routeId"))
-                object.routeId = message.routeId;
-            if (message.routeType != null && message.hasOwnProperty("routeType"))
-                object.routeType = message.routeType;
-            if (message.trip != null && message.hasOwnProperty("trip"))
-                object.trip = $root.transit_realtime.TripDescriptor.toObject(message.trip, options);
-            if (message.stopId != null && message.hasOwnProperty("stopId"))
-                object.stopId = message.stopId;
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this EntitySelector message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        EntitySelector.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this EntitySelector to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        EntitySelector.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return EntitySelector;
-    })();
-
-    transit_realtime.TranslatedString = (function() {
-
-        /**
-         * Properties of a TranslatedString.
-         * @typedef transit_realtime.TranslatedString$Properties
-         * @type {Object}
-         * @property {Array.<transit_realtime.TranslatedString.Translation$Properties>} [translation] TranslatedString translation.
-         */
-
-        /**
-         * Constructs a new TranslatedString.
-         * @exports transit_realtime.TranslatedString
-         * @constructor
-         * @param {transit_realtime.TranslatedString$Properties=} [properties] Properties to set
-         */
-        function TranslatedString(properties) {
-            this.translation = [];
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * TranslatedString translation.
-         * @type {Array.<transit_realtime.TranslatedString.Translation$Properties>}
-         */
-        TranslatedString.prototype.translation = $util.emptyArray;
-
-        /**
-         * Creates a new TranslatedString instance using the specified properties.
-         * @param {transit_realtime.TranslatedString$Properties=} [properties] Properties to set
-         * @returns {transit_realtime.TranslatedString} TranslatedString instance
-         */
-        TranslatedString.create = function create(properties) {
-            return new TranslatedString(properties);
-        };
-
-        /**
-         * Encodes the specified TranslatedString message. Does not implicitly {@link transit_realtime.TranslatedString.verify|verify} messages.
-         * @param {transit_realtime.TranslatedString$Properties} message TranslatedString message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        TranslatedString.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.translation != null && message.translation.length)
-                for (var i = 0; i < message.translation.length; ++i)
-                    $root.transit_realtime.TranslatedString.Translation.encode(message.translation[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            return writer;
-        };
-
-        /**
-         * Encodes the specified TranslatedString message, length delimited. Does not implicitly {@link transit_realtime.TranslatedString.verify|verify} messages.
-         * @param {transit_realtime.TranslatedString$Properties} message TranslatedString message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        TranslatedString.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a TranslatedString message from the specified reader or buffer.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {transit_realtime.TranslatedString} TranslatedString
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        TranslatedString.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TranslatedString();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    if (!(message.translation && message.translation.length))
-                        message.translation = [];
-                    message.translation.push($root.transit_realtime.TranslatedString.Translation.decode(reader, reader.uint32()));
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a TranslatedString message from the specified reader or buffer, length delimited.
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {transit_realtime.TranslatedString} TranslatedString
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        TranslatedString.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a TranslatedString message.
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {?string} `null` if valid, otherwise the reason why it is not
-         */
-        TranslatedString.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.translation != null && message.hasOwnProperty("translation")) {
-                if (!Array.isArray(message.translation))
-                    return "translation: array expected";
-                for (var i = 0; i < message.translation.length; ++i) {
-                    var error = $root.transit_realtime.TranslatedString.Translation.verify(message.translation[i]);
-                    if (error)
-                        return "translation." + error;
-                }
-            }
-            return null;
-        };
-
-        /**
-         * Creates a TranslatedString message from a plain object. Also converts values to their respective internal types.
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.TranslatedString} TranslatedString
-         */
-        TranslatedString.fromObject = function fromObject(object) {
-            if (object instanceof $root.transit_realtime.TranslatedString)
-                return object;
-            var message = new $root.transit_realtime.TranslatedString();
-            if (object.translation) {
-                if (!Array.isArray(object.translation))
-                    throw TypeError(".transit_realtime.TranslatedString.translation: array expected");
-                message.translation = [];
-                for (var i = 0; i < object.translation.length; ++i) {
-                    if (typeof object.translation[i] !== "object")
-                        throw TypeError(".transit_realtime.TranslatedString.translation: object expected");
-                    message.translation[i] = $root.transit_realtime.TranslatedString.Translation.fromObject(object.translation[i]);
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Creates a TranslatedString message from a plain object. Also converts values to their respective internal types.
-         * This is an alias of {@link transit_realtime.TranslatedString.fromObject}.
-         * @function
-         * @param {Object.<string,*>} object Plain object
-         * @returns {transit_realtime.TranslatedString} TranslatedString
-         */
-        TranslatedString.from = TranslatedString.fromObject;
-
-        /**
-         * Creates a plain object from a TranslatedString message. Also converts values to other types if specified.
-         * @param {transit_realtime.TranslatedString} message TranslatedString
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        TranslatedString.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.arrays || options.defaults)
-                object.translation = [];
-            if (message.translation && message.translation.length) {
-                object.translation = [];
-                for (var j = 0; j < message.translation.length; ++j)
-                    object.translation[j] = $root.transit_realtime.TranslatedString.Translation.toObject(message.translation[j], options);
-            }
-            return object;
-        };
-
-        /**
-         * Creates a plain object from this TranslatedString message. Also converts values to other types if specified.
-         * @param {$protobuf.ConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        TranslatedString.prototype.toObject = function toObject(options) {
-            return this.constructor.toObject(this, options);
-        };
-
-        /**
-         * Converts this TranslatedString to JSON.
-         * @returns {Object.<string,*>} JSON object
-         */
-        TranslatedString.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        TranslatedString.Translation = (function() {
-
-            /**
-             * Properties of a Translation.
-             * @typedef transit_realtime.TranslatedString.Translation$Properties
-             * @type {Object}
-             * @property {string} text Translation text.
-             * @property {string} [language] Translation language.
-             */
-
-            /**
-             * Constructs a new Translation.
-             * @exports transit_realtime.TranslatedString.Translation
-             * @constructor
-             * @param {transit_realtime.TranslatedString.Translation$Properties=} [properties] Properties to set
-             */
-            function Translation(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * Translation text.
-             * @type {string}
-             */
-            Translation.prototype.text = "";
-
-            /**
-             * Translation language.
-             * @type {string}
-             */
-            Translation.prototype.language = "";
-
-            /**
-             * Creates a new Translation instance using the specified properties.
-             * @param {transit_realtime.TranslatedString.Translation$Properties=} [properties] Properties to set
-             * @returns {transit_realtime.TranslatedString.Translation} Translation instance
-             */
-            Translation.create = function create(properties) {
-                return new Translation(properties);
-            };
-
-            /**
-             * Encodes the specified Translation message. Does not implicitly {@link transit_realtime.TranslatedString.Translation.verify|verify} messages.
-             * @param {transit_realtime.TranslatedString.Translation$Properties} message Translation message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Translation.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
-                if (message.language != null && message.hasOwnProperty("language"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.language);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified Translation message, length delimited. Does not implicitly {@link transit_realtime.TranslatedString.Translation.verify|verify} messages.
-             * @param {transit_realtime.TranslatedString.Translation$Properties} message Translation message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Translation.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a Translation message from the specified reader or buffer.
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {transit_realtime.TranslatedString.Translation} Translation
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Translation.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TranslatedString.Translation();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1:
-                        message.text = reader.string();
-                        break;
-                    case 2:
-                        message.language = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                if (!message.hasOwnProperty("text"))
-                    throw $util.ProtocolError("missing required 'text'", { instance: message });
-                return message;
-            };
-
-            /**
-             * Decodes a Translation message from the specified reader or buffer, length delimited.
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {transit_realtime.TranslatedString.Translation} Translation
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Translation.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a Translation message.
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {?string} `null` if valid, otherwise the reason why it is not
-             */
-            Translation.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (!$util.isString(message.text))
-                    return "text: string expected";
-                if (message.language != null && message.hasOwnProperty("language"))
-                    if (!$util.isString(message.language))
-                        return "language: string expected";
-                return null;
-            };
-
-            /**
-             * Creates a Translation message from a plain object. Also converts values to their respective internal types.
-             * @param {Object.<string,*>} object Plain object
-             * @returns {transit_realtime.TranslatedString.Translation} Translation
-             */
-            Translation.fromObject = function fromObject(object) {
-                if (object instanceof $root.transit_realtime.TranslatedString.Translation)
-                    return object;
-                var message = new $root.transit_realtime.TranslatedString.Translation();
-                if (object.text != null)
-                    message.text = String(object.text);
-                if (object.language != null)
-                    message.language = String(object.language);
-                return message;
-            };
-
-            /**
-             * Creates a Translation message from a plain object. Also converts values to their respective internal types.
-             * This is an alias of {@link transit_realtime.TranslatedString.Translation.fromObject}.
-             * @function
-             * @param {Object.<string,*>} object Plain object
-             * @returns {transit_realtime.TranslatedString.Translation} Translation
-             */
-            Translation.from = Translation.fromObject;
-
-            /**
-             * Creates a plain object from a Translation message. Also converts values to other types if specified.
-             * @param {transit_realtime.TranslatedString.Translation} message Translation
-             * @param {$protobuf.ConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            Translation.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults) {
-                    object.text = "";
-                    object.language = "";
-                }
-                if (message.text != null && message.hasOwnProperty("text"))
-                    object.text = message.text;
-                if (message.language != null && message.hasOwnProperty("language"))
-                    object.language = message.language;
-                return object;
-            };
-
-            /**
-             * Creates a plain object from this Translation message. Also converts values to other types if specified.
-             * @param {$protobuf.ConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            Translation.prototype.toObject = function toObject(options) {
-                return this.constructor.toObject(this, options);
-            };
-
-            /**
-             * Converts this Translation to JSON.
-             * @returns {Object.<string,*>} JSON object
-             */
-            Translation.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            return Translation;
-        })();
-
-        return TranslatedString;
-    })();
-
-    return transit_realtime;
-})();
-
-module.exports = $root;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupStations", function() { return groupStations; });
+/* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
+var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_0__});
+
+
+function groupStations() {
+  const groupedStations = {};
+  Object.keys(_data_stations_json__WEBPACK_IMPORTED_MODULE_0__).forEach((stop_id) => {
+    const stationName = _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[stop_id].stop_name;
+    stop_id = stop_id.slice(0, 3);
+    if (groupedStations[stationName]) {
+      groupedStations[stationName].add(stop_id);
+    } else {
+      groupedStations[stationName] = new Set();
+      groupedStations[stationName].add(stop_id);
+    }
+  })
+  return groupedStations;
+};
 
 
 /***/ }),

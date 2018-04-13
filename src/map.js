@@ -1,4 +1,4 @@
-import stations from '../data/stations';
+import stations from '../data/stations.json';
 
 export function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
@@ -74,14 +74,4 @@ function markStations(map) {
       }
     });
   })
-
-  // return new google.maps.Polyline({
-  //   path: [
-  //
-  //   ],
-  //   icons: [],
-  //   strokeColor: '#ffa500',
-  //   strokeWeight: 1,
-  //   map: map
-  // });
 }

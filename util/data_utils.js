@@ -1,4 +1,4 @@
-import stations from '../data/stations';
+import stations from '../data/stations.json';
 
 export function parseFeed(feed) {
   let trainFeeds = {};
@@ -25,12 +25,4 @@ export function getStationById(stationId) {
 
 export function getLatLng(station) {
   return { lat: station.stop_lat, lng: station.stop_lon };
-}
-
-export function sortRoute(route) {
-  // console.log(route);
-}
-
-export function sortOffRoute(route) {
-  // console.log(route);
 }

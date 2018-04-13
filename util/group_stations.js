@@ -1,4 +1,4 @@
-import stations from './stations';
+import stations from '../data/stations.json';
 
 export function groupStations() {
   const groupedStations = {};
