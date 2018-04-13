@@ -72635,6 +72635,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
 /* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ "./src/store.js");
+/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
+
 
 
 
@@ -72645,6 +72647,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const store = new _store__WEBPACK_IMPORTED_MODULE_2__["default"](map);
   store.start();
   window.store = store;
+  window.fetchMtaData = _request_mta__WEBPACK_IMPORTED_MODULE_3__["fetchMtaData"];
   // const fetch = setInterval(() => fetchMtaData(store), 20000);
   Object(_page_setup__WEBPACK_IMPORTED_MODULE_1__["setupTrainIcons"])(store.state);
   // setupToggleButtons();
@@ -72937,8 +72940,8 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Store; });
-/* harmony import */ var _src_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/train */ "./src/train.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Store; });
+/* harmony import */ var _src_train2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/train2 */ "./src/train2.js");
 /* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
 var _data_stations_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_1__});
 /* harmony import */ var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/subway_routes.json */ "./data/subway_routes.json");
@@ -72963,9 +72966,9 @@ class Store {
   }
 
   start() {
-    requestAnimationFrame(this.animate.bind(this));
-    Object(_request_mta__WEBPACK_IMPORTED_MODULE_3__["fetchMtaData"])(this);
     this.setupStaticRoutes();
+    Object(_request_mta__WEBPACK_IMPORTED_MODULE_3__["fetchMtaData"])(this);
+    // requestAnimationFrame(this.animate.bind(this));
   }
 
   setupTrains(feed) {
@@ -72975,10 +72978,10 @@ class Store {
       if (!(feed[trainId].tripUpdate) || (!feed[trainId].vehicle)) {
         return;
 
-      // create a new train instance if new vehicleUpdate and tripUpdate
+      // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        const train = new _src_train__WEBPACK_IMPORTED_MODULE_0__["default"](this.state.map, feed[trainId], trainId);
+        const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](this.state.routes[trainId[7]], this.state.polylines[trainId[7]], feed[trainId]);
         this.state.trains[trainId] = train;
 
       // if the train instance already exist in the store, update the train
@@ -73008,7 +73011,6 @@ class Store {
       this.state.routes[line] = route;
     });
     this.setupPolylines();
-    console.log(this.state.polylines);
   }
 
   setupPolylines() {
@@ -73046,209 +73048,38 @@ class Store {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
-/***/ "./src/train.js":
-/*!**********************!*\
-  !*** ./src/train.js ***!
-  \**********************/
+/***/ "./src/train2.js":
+/*!***********************!*\
+  !*** ./src/train2.js ***!
+  \***********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
-/* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
-var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
-/* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
-var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__});
-/* harmony import */ var _util_train_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/train_utils */ "./util/train_utils.js");
-/* harmony import */ var _util_data_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/data_utils */ "./util/data_utils.js");
-
-
-
-
-
 class Train {
-  constructor(map, feed, trainId) {
-    this.trainLabel = trainId[7];
+  constructor(route, polyline, feed) {
+    this.route = route;
+    this.polyline = polyline;
+    this.feed = feed;
 
-    // vehicle state - based on realtime
-    this.vehicleTime;
-    this.prevStationTime;
-    this.nextStationTime;
-    this.prevStationPos;
-    this.nextStationPos;
-    this.status;
-
-    // marker state - based on estimation
-    this.marker = null;
-    this.pos;
-    this.nextPos;
-    this.velocity = [0, 0];
-
-    this.setStates(feed);
-    this.setRenderState();
-    this.setVelocity();
-    this.setMarker(map);
+    this.symbol = this.createSymbol();
   }
 
-  update(feed) {
-    this.setStates(feed);
-    this.updateRenderState();
-    this.updateVelocity();
-  }
-
-  setStates(feed) {
-    const stops = feed.tripUpdate.stopTimeUpdate;
-
-    this.vehicleTime = feed.vehicle ? feed.vehicle.timestamp : 0;
-
-    let previousStop;
-    let nextStop;
-    for (let i = 0; i < stops.length; i++) {
-      const stop = stops[i];
-      if (stop.departure && this.vehicleTime >= stop.departure.time) {
-        previousStop = stop;
-      } else if (stop.arrival && this.vehicleTime <= stop.arrival.time) {
-        nextStop = stop;
-        break;
-      }
-    }
-
-    // add train delays if vehicleTime is << current time(new Date)
-
-    if (!previousStop && nextStop) {
-      this.nextStationTime = nextStop.arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getStationById"])(nextStop.stopId);
-      this.nextStation = this.prevStation;
-      this.status = "idle";
-    } else if (previousStop && nextStop) {
-      this.prevStationTime = previousStop.departure.time;
-      this.nextStationTime = nextStop.arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getStationById"])(previousStop.stopId);
-      this.nextStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getStationById"])(nextStop.stopId);
-      this.status = "inTransit";
-    } else if (previousStop && !nextStop) {
-      this.prevStationTime = previousStop.arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getStationById"])(previousStop.stopId);
-      this.nextStation = this.prevStation;
-      this.status = "lastStop"
-    } else if (!previousStop && !nextStop) {
-      this.prevStationTime = stops[0].arrival.time;
-      this.prevStation = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getStationById"])(stops[0].stopId);
-      this.nextStation = this.prevStation;
-      this.status = "idle"
-    }
-  }
-
-  setRenderState() {
-    let vehicleTimePos;
-    if (this.status === "inTransit") {
-      const from = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getLatLng"])(this.prevStation);
-      const to = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getLatLng"])(this.nextStation);
-      const tr = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["timeRatio"])(this.prevStationTime, this.nextStationTime)
-      if (tr >= 0) {
-        vehicleTimePos = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["interpolate"])(from, to, tr);
-      } else {
-        vehicleTimePos = to;
-      }
-      this.nextPos = to;
-    } else if (this.status === "lastStop" || this.status === "idle") {
-      vehicleTimePos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getLatLng"])(this.prevStation);
-    }
-    this.pos = vehicleTimePos;
-  }
-
-  setVelocity() {
-    if (this.status === "inTransit") {
-      const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["getVelocity"])(this.nextPos, this.pos, this.nextStationTime);
-      this.velocity = [newVelocity[0], newVelocity[1]];
-    }
-  }
-
-  setMarker(map) {
-    const trainColor = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__[this.trainLabel].trainColor;
-    const labelColor = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__[this.trainLabel].labelColor;
-    const point = new google.maps.Point(30, 16);
-
-    let rotation;
-    if (this.pos && this.nextPos) {
-      const p1 = new google.maps.LatLng(this.pos.lat, this.pos.lng);
-      const p2 = new google.maps.LatLng(this.nextPos.lat, this.nextPos.lng);
-      rotation = google.maps.geometry.spherical.computeHeading(p1, p2) + 90;
-    } else {
-      rotation = 90;
-    }
-
-    const trainSymbol = {
+  createSymbol() {
+    const lineSymbol = {
       path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
-      rotation: rotation,
+      scale: .5,
       strokeColor: '#43464B',
       strokeWeight: 1,
-      fillColor: trainColor,
       fillOpacity: 1,
-      labelOrigin: point,
-      scale: .5
     };
 
-    const trainLabel = {
-      text: this.trainLabel,
-      color: labelColor,
-      fontSize: "12px",
-      fontWeight: "700"
-    };
-
-    this.marker = new google.maps.Marker({
-      position: {
-        lat: this.pos.lat,
-        lng: this.pos.lng
-      },
-      map: null,
-      icon: trainSymbol,
-      label: trainLabel
-    });
-  }
-
-  updateRenderState() {
-    this.nextPos = Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_3__["getLatLng"])(this.nextStation);
-  }
-
-  updateVelocity() {
-    const newVelocity = Object(_util_train_utils__WEBPACK_IMPORTED_MODULE_2__["getVelocity"])(this.nextPos, this.marker.getPosition().toJSON(), this.nextStationTime);
-    this.velocity = [newVelocity[0], newVelocity[1]];
-  }
-
-  setStep(timeDelta) {
-    // timeDelta is number of milliseconds since last move
-    // if the computer is busy the time delta will be larger
-    // velocity of object is how far it should move in 1/60th of a second
-    if (this.status != "inTransit") return;
-    const velocityScale = timeDelta / (1000 / 60);
-    const offsetLat = this.velocity[0] * velocityScale;
-    const offsetLng = this.velocity[1] * velocityScale;
-    const mapLat = this.marker.getPosition().toJSON().lat + offsetLat;
-    const mapLng = this.marker.getPosition().toJSON().lng + offsetLng;
-    const stepPosition = { lat: mapLat, lng: mapLng };
-
-    this.stepPosition = stepPosition;
-  }
-
-  step() {
-    this.marker.setPosition(this.stepPosition);
-    this.pos = this.stepPosition;
-  }
-
-  toggleMarker(map) {
-    let toggle;
-    if (this.marker.map) {
-      toggle = null;
-    } else {
-      toggle = map;
-    }
-    this.marker.setMap(toggle);
+    return lineSymbol;
   }
 }
 
@@ -73296,43 +73127,6 @@ function getStationById(stationId) {
 
 function getLatLng(station) {
   return { lat: station.stop_lat, lng: station.stop_lon };
-}
-
-
-/***/ }),
-
-/***/ "./util/train_utils.js":
-/*!*****************************!*\
-  !*** ./util/train_utils.js ***!
-  \*****************************/
-/*! exports provided: timeRatio, interpolate, getVelocity */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeRatio", function() { return timeRatio; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getVelocity", function() { return getVelocity; });
-function timeRatio(timeFrom, timeTo) {
-  const routeTime = (timeTo - timeFrom) * 1000;
-  const currentTime = (timeTo * 1000) - new Date();
-  // if currentTime is negative train has passed the station
-  return (currentTime / routeTime);
-}
-
-function interpolate(from, to, r) {
-  const lat = from.lat + (to.lat - from.lat) * r;
-  const lng = from.lng + (to.lng - from.lng) * r;
-  return { lat: lat, lng: lng };
-}
-
-function getVelocity(toStation, currentPos, timeOfArrival) {
-  const dLat = toStation.lat - currentPos.lat;
-  const dLng = toStation.lng - currentPos.lng;
-  const disp = [dLat, dLng];
-  const t = (timeOfArrival * 1000) - new Date();
-  const v = [(disp[0] / t), (disp[1] / t)];
-  return v;
 }
 
 

@@ -1,4 +1,4 @@
-import Train from '../src/train';
+import Train from '../src/train2';
 import stations from '../data/stations.json';
 import subwayRoutes from '../data/subway_routes.json';
 import { fetchMtaData } from './request_mta';
@@ -15,9 +15,9 @@ export default class Store {
   }
 
   start() {
-    requestAnimationFrame(this.animate.bind(this));
-    fetchMtaData(this);
     this.setupStaticRoutes();
+    fetchMtaData(this);
+    // requestAnimationFrame(this.animate.bind(this));
   }
 
   setupTrains(feed) {
@@ -27,10 +27,10 @@ export default class Store {
       if (!(feed[trainId].tripUpdate) || (!feed[trainId].vehicle)) {
         return;
 
-      // create a new train instance if new vehicleUpdate and tripUpdate
+      // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        const train = new Train(this.state.map, feed[trainId], trainId);
+        const train = new Train(this.state.routes[trainId[7]], this.state.polylines[trainId[7]], feed[trainId]);
         this.state.trains[trainId] = train;
 
       // if the train instance already exist in the store, update the train
@@ -60,7 +60,6 @@ export default class Store {
       this.state.routes[line] = route;
     });
     this.setupPolylines();
-    console.log(this.state.polylines);
   }
 
   setupPolylines() {
