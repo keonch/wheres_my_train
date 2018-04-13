@@ -3,15 +3,13 @@ import stations from '../data/stations.json';
 import subwayRoutes from '../data/subway_routes.json';
 import { fetchMtaData } from './mta';
 
-import abc from '../data/abc.json';
-
 export default class Store {
   constructor(map) {
     this.state = {
       map: map,
       trains: {},
       routes: {},
-      polyLines: {}
+      polylines: {}
     }
   }
 
@@ -46,26 +44,23 @@ export default class Store {
   }
 
   setupStaticRoutes() {
-    
+    Object.keys(subwayRoutes).forEach((line) => {
+      const route = [];
+      subwayRoutes[line].forEach((stationName) => {
+        Object.values(stations).forEach((station) => {
+          if (station.name === stationName && station.trains.includes(line)) {
+            const stationLatLng = new Object();
+            stationLatLng.lat = station.lat;
+            stationLatLng.lng = station.lng;
+            route.push(stationLatLng);
+          }
+        });
+      });
+      this.state.routes[line] = route;
+    });
+    this.setupPolylines();
+    console.log(this.state.polylines);
   }
-
-  // setupStaticRoutes() {
-  //   Object.keys(subwayRoutes).forEach((route) => {
-  //     const subwayRoute = [];
-  //     subwayRoutes[route].forEach((stationName) => {
-  //       Object.keys(stations).forEach((stationId) => {
-  //         if (stationId[0] === route && stations[stationId].name === stationName) {
-  //           const stationLatLng = new Object();
-  //           stationLatLng.lat = stations[stationId].lat;
-  //           stationLatLng.lng = stations[stationId].lng;
-  //           subwayRoute.push(stationLatLng);
-  //         }
-  //       });
-  //     });
-  //     this.state.routes[route] = subwayRoute;
-  //   });
-  //   this.setupPolylines();
-  // }
 
   setupPolylines() {
     Object.keys(this.state.routes).forEach((route) => {
@@ -77,7 +72,7 @@ export default class Store {
         // }],
         map: this.state.map
       });
-      this.state.polyLines[route] = polylineRoute;
+      this.state.polylines[route] = polylineRoute;
     });
   }
 
