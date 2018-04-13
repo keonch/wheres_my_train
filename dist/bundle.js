@@ -72671,79 +72671,14 @@ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Ob
 
 
 function initMap() {
-  const map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.7, lng: -73.96},
-    zoom: 12,
-    styles: [
-      {
-        featureType: "poi",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }]
-      },
-      {
-        featureType: "water",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }]
-      },
-      {
-        featureType: "road",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }]
-      },
-      {
-        elementType: 'geometry',
-        stylers: [{color: '#7F7F7F'}]
-        // stylers: [{color: '#f5f5f5'}]
-      },
-      {
-        featureType: 'administrative.all',
-        elementType: 'labels.text.stroke',
-        stylers: [{visibility: "off"}]
-      },
-      {
-        featureType: 'administrative.all',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#ffffff'}]
-      },
-      {
-        featureType: 'administrative.neighborhood',
-        elementType: 'labels.text.fill',
-        stylers: [{visibility: "off"}]
-      },
-      {
-        featureType: 'transit.line',
-        elementType: 'geometry',
-        // stylers: [{color: '#494949'}]
-        stylers: [{ visibility: "off" }]
-      },
-      {
-        featureType: 'transit.station',
-        stylers: [{ visibility: "off" }]
-      },
-      {
-        featureType: 'water',
-        elementType: 'geometry',
-        // stylers: [{color: '#c9c9c9'}]
-        stylers: [{color: '#062d3f'}]
-      }
-    ]
-  });
-  // markStations(map);
-  return map;
-}
-
-function markStations(map) {
-  const image = 'https://cdn3.iconfinder.com/data/icons/map/500/communication-256.png';
-  Object.keys(_data_stations_json__WEBPACK_IMPORTED_MODULE_0__).forEach((id) => {
-    new google.maps.Marker({
-      position: {lat: _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[id].stop_lat, lng: _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[id].stop_lon},
-      map: map,
-      icon: {
-        url: image,
-        scaledSize: new google.maps.Size(5, 5)
-      }
-    });
-  })
+  var mymap = L.map(document.getElementById('map')).setView([51.505, -0.09], 13);
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1Ijoia2VvbmNoOTEiLCJhIjoiY2pmeWxlYXJtMWp3dzJxbjEzN2ZuMmtyeSJ9.bRpTj14kt1-MvRzLZOwEzg'
+  }).addTo(mymap);
+  return mymap;
 }
 
 
@@ -72963,8 +72898,6 @@ class Store {
       routes: {},
       polylines: {}
     }
-    window.polylines = this.state.polylines;
-
   }
 
   start() {
@@ -72985,7 +72918,7 @@ class Store {
       } else if (!this.state.trains[trainId]) {
         const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](feed[trainId]);
         this.state.trains[trainId] = train;
-        this.setIcon(trainId);
+        // this.setIcon(trainId);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -73013,27 +72946,7 @@ class Store {
       });
       this.state.routes[line] = route;
     });
-    this.setupPolylines();
   }
-
-  setupPolylines() {
-    Object.keys(this.state.routes).forEach((route) => {
-      const trainColor = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_4__[route].trainColor;
-      const polylineRoute = new google.maps.Polyline({
-        path: this.state.routes[route],
-        // icons: [{
-        //   icon: lineSymbol,
-        //   offset: '100%'
-        // }],
-        strokeColor: trainColor,
-        strokeOpacity: 1.0,
-        strokeWeight: 1,
-        map: this.state.map
-      });
-      this.state.polylines[route] = polylineRoute;
-    });
-  }
-
 }
 
 
@@ -73062,7 +72975,7 @@ class Train {
       scale: .5,
       strokeColor: '#43464B',
       strokeWeight: 1,
-      fillOpacity: 1,
+      fillOpacity: 1
     };
 
     return lineSymbol;

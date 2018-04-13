@@ -12,8 +12,6 @@ export default class Store {
       routes: {},
       polylines: {}
     }
-    window.polylines = this.state.polylines;
-
   }
 
   start() {
@@ -34,7 +32,7 @@ export default class Store {
       } else if (!this.state.trains[trainId]) {
         const train = new Train(feed[trainId]);
         this.state.trains[trainId] = train;
-        this.setIcon(trainId);
+        // this.setIcon(trainId);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -62,25 +60,5 @@ export default class Store {
       });
       this.state.routes[line] = route;
     });
-    this.setupPolylines();
   }
-
-  setupPolylines() {
-    Object.keys(this.state.routes).forEach((route) => {
-      const trainColor = trainColors[route].trainColor;
-      const polylineRoute = new google.maps.Polyline({
-        path: this.state.routes[route],
-        // icons: [{
-        //   icon: lineSymbol,
-        //   offset: '100%'
-        // }],
-        strokeColor: trainColor,
-        strokeOpacity: 1.0,
-        strokeWeight: 1,
-        map: this.state.map
-      });
-      this.state.polylines[route] = polylineRoute;
-    });
-  }
-
 }

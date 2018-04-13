@@ -11,7 +11,7 @@ export default class Train {
       scale: .5,
       strokeColor: '#43464B',
       strokeWeight: 1,
-      fillOpacity: 1,
+      fillOpacity: 1
     };
 
     return lineSymbol;
