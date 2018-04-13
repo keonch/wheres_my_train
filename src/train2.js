@@ -1,7 +1,5 @@
 export default class Train {
-  constructor(route, polyline, feed) {
-    this.route = route;
-    this.polyline = polyline;
+  constructor(feed) {
     this.feed = feed;
 
     this.symbol = this.createSymbol();

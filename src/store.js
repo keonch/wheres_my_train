@@ -12,6 +12,8 @@ export default class Store {
       routes: {},
       polylines: {}
     }
+    window.polylines = this.state.polylines;
+
   }
 
   start() {
@@ -30,8 +32,9 @@ export default class Store {
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        const train = new Train(this.state.routes[trainId[7]], this.state.polylines[trainId[7]], feed[trainId]);
+        const train = new Train(feed[trainId]);
         this.state.trains[trainId] = train;
+        this.setIcon(trainId);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -80,19 +83,4 @@ export default class Store {
     });
   }
 
-  animate(time) {
-    const timeDelta = time - this.lastTime;
-
-    Object.keys(this.state.trains).forEach((trainId) => {
-      this.state.trains[trainId].setStep(timeDelta);
-    });
-
-    Object.keys(this.state.trains).forEach((trainId) => {
-      this.state.trains[trainId].step();
-    });
-
-    this.lastTime = time;
-
-    requestAnimationFrame(this.animate.bind(this));
-  }
 }
