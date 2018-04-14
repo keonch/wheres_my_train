@@ -60,7 +60,7 @@ export default class Store {
       this.state.routes[line] = route;
     });
     this.setupPolylines();
-    let animatedMarker = L.animatedMarker(this.state.polylines['1'].getLatLngs());
+    const animatedMarker = L.animatedMarker(this.state.polylines['1'].getLatLngs());
     this.state.map.addLayer(animatedMarker);
   }
 
