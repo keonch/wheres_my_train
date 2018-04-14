@@ -75167,8 +75167,10 @@ class Store {
       this.state.routes[line] = route;
     });
     this.setupPolylines();
-    const animatedMarker = L.animatedMarker(this.state.polylines['1'].getLatLngs());
-    this.state.map.addLayer(animatedMarker);
+    // const animatedMarker = L.animatedMarker(this.state.polylines['1'].getLatLngs());
+    // this.state.map.addLayer(animatedMarker);
+    const myMovingMarker = L.Marker.movingMarker(this.state.polylines['1'].getLatLngs(), [20000]).addTo(this.state.map);
+    myMovingMarker.start();
   }
 
   setupPolylines() {
