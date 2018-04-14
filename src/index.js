@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupTime();
   const map = initMap();
   const store = new Store(map);
-  store.start();
+
   window.store = store;
   window.fetchMtaData = fetchMtaData;
   // const fetch = setInterval(() => fetchMtaData(store), 20000);

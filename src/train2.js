@@ -1,19 +1,20 @@
 export default class Train {
-  constructor(feed) {
+  constructor(feed, polyline) {
     this.feed = feed;
+    this.polyline = polyline;
 
-    this.symbol = this.createSymbol();
+    this.marker = this.createMarker();
   }
 
-  createSymbol() {
-    const lineSymbol = {
-      path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
-      scale: .5,
-      strokeColor: '#43464B',
-      strokeWeight: 1,
-      fillOpacity: 1
-    };
-
-    return lineSymbol;
+  createMarker() {
+    const trainIcon = L.icon({
+      iconUrl: 'assets/images/train.png',
+      iconSize: [22, 49],
+      iconAnchor: [18, 40]
+    });
+    const marker = new L.Marker.movingMarker(this.polyline, [30000]);
+    marker.setIcon(trainIcon);
+    marker.setRotationAngle(20);
+    return marker;
   }
 }

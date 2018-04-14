@@ -2,7 +2,6 @@ import Train from '../src/train2';
 import trainColors from '../assets/train_colors.json';
 import stations from '../data/stations.json';
 import subwayRoutes from '../data/subway_routes.json';
-import { fetchMtaData } from './request_mta';
 
 export default class Store {
   constructor(map) {
@@ -12,11 +11,7 @@ export default class Store {
       routes: {},
       polylines: {}
     }
-  }
-
-  start() {
     this.setupStaticRoutes();
-    fetchMtaData(this);
   }
 
   setupTrains(feed) {
@@ -31,7 +26,6 @@ export default class Store {
       } else if (!this.state.trains[trainId]) {
         const train = new Train(feed[trainId]);
         this.state.trains[trainId] = train;
-        // this.setIcon(trainId);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -60,10 +54,11 @@ export default class Store {
       this.state.routes[line] = route;
     });
     this.setupPolylines();
-    // const animatedMarker = L.animatedMarker(this.state.polylines['1'].getLatLngs());
-    // this.state.map.addLayer(animatedMarker);
-    const myMovingMarker = L.Marker.movingMarker(this.state.polylines['1'].getLatLngs(), [20000]).addTo(this.state.map);
-    myMovingMarker.start();
+
+    const train = new Train("feed", this.state.polylines['1'].getLatLngs());
+    // const myMovingMarker = L.Marker.movingMarker(this.state.polylines['1'].getLatLngs(), [20000]).addTo(this.state.map);
+    train.marker.addTo(this.state.map);
+    train.marker.start();
   }
 
   setupPolylines() {

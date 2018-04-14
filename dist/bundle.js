@@ -74866,7 +74866,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Object(_page_setup__WEBPACK_IMPORTED_MODULE_1__["setupTime"])();
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
   const store = new _store__WEBPACK_IMPORTED_MODULE_2__["default"](map);
-  store.start();
+
   window.store = store;
   window.fetchMtaData = _request_mta__WEBPACK_IMPORTED_MODULE_3__["fetchMtaData"];
   // const fetch = setInterval(() => fetchMtaData(store), 20000);
@@ -75104,8 +75104,6 @@ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE
 var _data_stations_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_2__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_2__});
 /* harmony import */ var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/subway_routes.json */ "./data/subway_routes.json");
 var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/Object.assign({}, _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__, {"default": _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__});
-/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
-
 
 
 
@@ -75119,11 +75117,7 @@ class Store {
       routes: {},
       polylines: {}
     }
-  }
-
-  start() {
     this.setupStaticRoutes();
-    Object(_request_mta__WEBPACK_IMPORTED_MODULE_4__["fetchMtaData"])(this);
   }
 
   setupTrains(feed) {
@@ -75138,7 +75132,6 @@ class Store {
       } else if (!this.state.trains[trainId]) {
         const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](feed[trainId]);
         this.state.trains[trainId] = train;
-        // this.setIcon(trainId);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -75167,10 +75160,11 @@ class Store {
       this.state.routes[line] = route;
     });
     this.setupPolylines();
-    // const animatedMarker = L.animatedMarker(this.state.polylines['1'].getLatLngs());
-    // this.state.map.addLayer(animatedMarker);
-    const myMovingMarker = L.Marker.movingMarker(this.state.polylines['1'].getLatLngs(), [20000]).addTo(this.state.map);
-    myMovingMarker.start();
+
+    const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"]("feed", this.state.polylines['1'].getLatLngs());
+    // const myMovingMarker = L.Marker.movingMarker(this.state.polylines['1'].getLatLngs(), [20000]).addTo(this.state.map);
+    train.marker.addTo(this.state.map);
+    train.marker.start();
   }
 
   setupPolylines() {
@@ -75203,22 +75197,23 @@ class Store {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 class Train {
-  constructor(feed) {
+  constructor(feed, polyline) {
     this.feed = feed;
+    this.polyline = polyline;
 
-    this.symbol = this.createSymbol();
+    this.marker = this.createMarker();
   }
 
-  createSymbol() {
-    const lineSymbol = {
-      path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
-      scale: .5,
-      strokeColor: '#43464B',
-      strokeWeight: 1,
-      fillOpacity: 1
-    };
-
-    return lineSymbol;
+  createMarker() {
+    const trainIcon = L.icon({
+      iconUrl: 'assets/images/train.png',
+      iconSize: [22, 49],
+      iconAnchor: [18, 40]
+    });
+    const marker = new L.Marker.movingMarker(this.polyline, [30000]);
+    marker.setIcon(trainIcon);
+    marker.setRotationAngle(20);
+    return marker;
   }
 }
 
