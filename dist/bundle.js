@@ -72946,19 +72946,21 @@ class Store {
       this.state.routes[line] = route;
     });
     this.setupPolylines();
+    let animatedMarker = L.animatedMarker(this.state.polylines['1'].getLatLngs());
+    this.state.map.addLayer(animatedMarker);
   }
 
   setupPolylines() {
     Object.keys(this.state.routes).forEach((line) => {
       const route = this.state.routes[line];
-      const trainColor = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__[line].trainColor;
-      const firstpolyline = new L.Polyline(route, {
-        color: trainColor,
-        weight: 2,
+      const polyline = new L.Polyline(route, {
+        color: 'grey',
+        weight: 3,
         opacity: 0.8,
         smoothFactor: 1
       });
-      firstpolyline.addTo(this.state.map);
+      this.state.polylines[line] = polyline;
+      polyline.addTo(this.state.map);
     });
   }
 
