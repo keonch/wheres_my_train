@@ -72671,7 +72671,7 @@ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Ob
 
 
 function initMap() {
-  var mymap = L.map(document.getElementById('map')).setView([51.505, -0.09], 13);
+  const mymap = L.map(document.getElementById('map')).setView([40.7, -73.96], 12);
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
@@ -72877,13 +72877,13 @@ function requestMta(store, req) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Store; });
 /* harmony import */ var _src_train2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/train2 */ "./src/train2.js");
-/* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
-var _data_stations_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_1__});
-/* harmony import */ var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/subway_routes.json */ "./data/subway_routes.json");
-var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/Object.assign({}, _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__, {"default": _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__});
-/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
-/* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
-var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_4__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_4__});
+/* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
+var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__});
+/* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
+var _data_stations_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_2__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_2__});
+/* harmony import */ var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/subway_routes.json */ "./data/subway_routes.json");
+var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/Object.assign({}, _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__, {"default": _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__});
+/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
 
 
 
@@ -72902,8 +72902,7 @@ class Store {
 
   start() {
     this.setupStaticRoutes();
-    Object(_request_mta__WEBPACK_IMPORTED_MODULE_3__["fetchMtaData"])(this);
-    // requestAnimationFrame(this.animate.bind(this));
+    Object(_request_mta__WEBPACK_IMPORTED_MODULE_4__["fetchMtaData"])(this);
   }
 
   setupTrains(feed) {
@@ -72932,10 +72931,10 @@ class Store {
   }
 
   setupStaticRoutes() {
-    Object.keys(_data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__).forEach((line) => {
+    Object.keys(_data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__).forEach((line) => {
       const route = [];
-      _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_2__[line].forEach((stationName) => {
-        Object.values(_data_stations_json__WEBPACK_IMPORTED_MODULE_1__).forEach((station) => {
+      _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__[line].forEach((stationName) => {
+        Object.values(_data_stations_json__WEBPACK_IMPORTED_MODULE_2__).forEach((station) => {
           if (station.name === stationName && station.trains.includes(line)) {
             const stationLatLng = new Object();
             stationLatLng.lat = station.lat;
@@ -72946,7 +72945,23 @@ class Store {
       });
       this.state.routes[line] = route;
     });
+    this.setupPolylines();
   }
+
+  setupPolylines() {
+    Object.keys(this.state.routes).forEach((line) => {
+      const route = this.state.routes[line];
+      const trainColor = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__[line].trainColor;
+      const firstpolyline = new L.Polyline(route, {
+        color: trainColor,
+        weight: 2,
+        opacity: 0.8,
+        smoothFactor: 1
+      });
+      firstpolyline.addTo(this.state.map);
+    });
+  }
+
 }
 
 

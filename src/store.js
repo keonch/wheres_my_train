@@ -1,8 +1,8 @@
 import Train from '../src/train2';
+import trainColors from '../assets/train_colors.json';
 import stations from '../data/stations.json';
 import subwayRoutes from '../data/subway_routes.json';
 import { fetchMtaData } from './request_mta';
-import trainColors from '../assets/train_colors.json';
 
 export default class Store {
   constructor(map) {
@@ -17,7 +17,6 @@ export default class Store {
   start() {
     this.setupStaticRoutes();
     fetchMtaData(this);
-    // requestAnimationFrame(this.animate.bind(this));
   }
 
   setupTrains(feed) {
@@ -60,5 +59,21 @@ export default class Store {
       });
       this.state.routes[line] = route;
     });
+    this.setupPolylines();
   }
+
+  setupPolylines() {
+    Object.keys(this.state.routes).forEach((line) => {
+      const route = this.state.routes[line];
+      const trainColor = trainColors[line].trainColor;
+      const firstpolyline = new L.Polyline(route, {
+        color: trainColor,
+        weight: 2,
+        opacity: 0.8,
+        smoothFactor: 1
+      });
+      firstpolyline.addTo(this.state.map);
+    });
+  }
+
 }
