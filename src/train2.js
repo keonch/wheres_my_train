@@ -43,14 +43,19 @@ export default class Train {
     this.status = 'idle'
   }
 
-  createMarker() {
+  createMarker(path, t) {
+    if (path.length === 0) {
+      console.log(this.label);
+      return;
+    }
+    if (path.length === 0) return;
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
     const marker = new L.Marker.movingMarker(path, [t]);
 
     const trainIcon = L.icon({
       iconUrl: 'assets/images/train.png',
-      iconSize: [22, 49],
+      iconSize: [15, 35],
       iconAnchor: [18, 40]
     });
 
@@ -60,6 +65,6 @@ export default class Train {
   }
 }
 
-// const train = new Train("feed", this.state.polylines['1'].getLatLngs());
+
 // train.marker.addTo(this.state.map);
 // train.marker.start();

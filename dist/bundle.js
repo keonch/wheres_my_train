@@ -75,10 +75,10 @@
 /*!**********************************!*\
   !*** ./assets/train_colors.json ***!
   \**********************************/
-/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, B, C, D, E, F, H, J, L, M, N, Q, R, W, Z, S, G, default */
+/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, B, C, D, E, F, H, J, L, M, N, Q, R, W, Z, SI, G, S, default */
 /***/ (function(module) {
 
-module.exports = {"1":{"trainColor":"#B70000","labelColor":"#ffffff"},"2":{"trainColor":"#B70000","labelColor":"#ffffff"},"3":{"trainColor":"#B70000","labelColor":"#ffffff"},"4":{"trainColor":"#006600","labelColor":"#ffffff"},"5":{"trainColor":"#006600","labelColor":"#ffffff"},"6":{"trainColor":"#006600","labelColor":"#ffffff"},"7":{"trainColor":"#660066","labelColor":"#ffffff"},"A":{"trainColor":"#00008E","labelColor":"#ffffff"},"B":{"trainColor":"#CC8400","labelColor":"#ffffff"},"C":{"trainColor":"#00008E","labelColor":"#ffffff"},"D":{"trainColor":"#CC8400","labelColor":"#ffffff"},"E":{"trainColor":"#00008E","labelColor":"#ffffff"},"F":{"trainColor":"#CC8400","labelColor":"#ffffff"},"H":{"trainColor":"#00008E","labelColor":"#ffffff"},"J":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"L":{"trainColor":"#BFBFBF","labelColor":"#ffffff"},"M":{"trainColor":"#CC8400","labelColor":"#ffffff"},"N":{"trainColor":"#CCCC00","labelColor":"#000000"},"Q":{"trainColor":"#CCCC00","labelColor":"#000000"},"R":{"trainColor":"#CCCC00","labelColor":"#000000"},"W":{"trainColor":"#CCCC00","labelColor":"#000000"},"Z":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"S":{"trainColor":"#0000CE","labelColor":"#ffffff"},"G":{"trainColor":"#59B759","labelColor":"#ffffff"}};
+module.exports = {"1":{"trainColor":"#B70000","labelColor":"#ffffff"},"2":{"trainColor":"#B70000","labelColor":"#ffffff"},"3":{"trainColor":"#B70000","labelColor":"#ffffff"},"4":{"trainColor":"#006600","labelColor":"#ffffff"},"5":{"trainColor":"#006600","labelColor":"#ffffff"},"6":{"trainColor":"#006600","labelColor":"#ffffff"},"7":{"trainColor":"#660066","labelColor":"#ffffff"},"A":{"trainColor":"#00008E","labelColor":"#ffffff"},"B":{"trainColor":"#CC8400","labelColor":"#ffffff"},"C":{"trainColor":"#00008E","labelColor":"#ffffff"},"D":{"trainColor":"#CC8400","labelColor":"#ffffff"},"E":{"trainColor":"#00008E","labelColor":"#ffffff"},"F":{"trainColor":"#CC8400","labelColor":"#ffffff"},"H":{"trainColor":"#00008E","labelColor":"#ffffff"},"J":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"L":{"trainColor":"#BFBFBF","labelColor":"#ffffff"},"M":{"trainColor":"#CC8400","labelColor":"#ffffff"},"N":{"trainColor":"#CCCC00","labelColor":"#000000"},"Q":{"trainColor":"#CCCC00","labelColor":"#000000"},"R":{"trainColor":"#CCCC00","labelColor":"#000000"},"W":{"trainColor":"#CCCC00","labelColor":"#000000"},"Z":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"SI":{"trainColor":"#0000CE","labelColor":"#ffffff"},"G":{"trainColor":"#59B759","labelColor":"#ffffff"},"S":{"trainColor":"gray","labelColor":"ffffff"}};
 
 /***/ }),
 
@@ -74966,8 +74966,8 @@ function checkTime(i) {
 function setupTrainIcons(state) {
   const iconDiv = document.getElementById('train-icons');
   const rows = {
-    row1: ["A", "C", "E", "B", "D", "F", "M", "7"],
-    row2: ["1", "2", "3", "4", "5", "6", "L"],
+    row1: ["A", "C", "E", "B", "D", "F", "M", "L"],
+    row2: ["1", "2", "3", "4", "5", "6", "7"],
     row3: ["N", "Q", "R", "W", "G", "J", "Z", "S"]
   }
 
@@ -75105,7 +75105,7 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Store; });
 /* harmony import */ var _src_train2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/train2 */ "./src/train2.js");
 /* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
 var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__});
@@ -75127,28 +75127,6 @@ class Store {
       polylines: {}
     }
     this.setupStaticRoutes();
-  }
-
-  setupTrains(feed) {
-    const latestFeedTrainId = Object.keys(feed).forEach((trainId) => {
-      // if train feed does not include vehicleUpdate OR tripUpdate the
-      // train is not assigned a route hence no instance of the train is made
-      if (!(feed[trainId].tripUpdate) || (!feed[trainId].vehicle)) {
-        return;
-
-      // create a new train object if new vehicleUpdate and tripUpdate
-      // data is received but does not exist in the store
-      } else if (!this.state.trains[trainId]) {
-        const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](feed[trainId]);
-        this.state.trains[trainId] = train;
-
-      // if the train instance already exist in the store, update the train
-      // with new set of data received
-      // } else if (this.state.trains[trainId]) {
-      //   this.state.trains[trainId].update(feed[trainId]);
-      }
-    });
-    console.log(this.state.trains);
   }
 
   setupStaticRoutes() {
@@ -75176,8 +75154,9 @@ class Store {
   setupPolylines() {
     Object.keys(this.state.routes).forEach((line) => {
       const route = this.state.routes[line];
+      const color = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__[line].trainColor;
       const polyline = new L.Polyline(route, {
-        color: 'grey',
+        color: color,
         weight: 1.5,
         opacity: 0.8,
         smoothFactor: 1
@@ -75187,9 +75166,71 @@ class Store {
     });
   }
 
+  // invoked when received 200 response
+  setupTrains(feed) {
+    const latestFeedTrainId = Object.keys(feed).forEach((trainId) => {
+      // if train feed does not include vehicleUpdate OR tripUpdate the
+      // train is not assigned a route hence no instance of the train is made
+      if (!(feed[trainId].tripUpdate) || (!feed[trainId].vehicle)) {
+        return;
+
+        // create a new train object if new vehicleUpdate and tripUpdate
+        // data is received but does not exist in the store
+      } else if (!this.state.trains[trainId] && trainId[7] !== 'H') {
+        const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](feed[trainId]);
+        if (train.status === 'inTransit') {
+          const path = this.getPath(train);
+          const t = Math.floor(train.timeDifference / path.length);
+          train.createMarker(path, t);
+        }
+        this.state.trains[trainId] = train;
+        // if the train instance already exist in the store, update the train
+        // with new set of data received
+        // } else if (this.state.trains[trainId]) {
+        //   this.state.trains[trainId].update(feed[trainId]);
+
+        if (this.state.trains[trainId].marker) {
+          this.state.trains[trainId].marker.addTo(this.state.map);
+        }
+      }
+    });
+  }
+
+  getPath(train) {
+    const route = this.state.routes[train.label];
+    const path = [];
+
+    if (train.direction === 'S') {
+      for (let i = 0; i < route.length; i++) {
+        if (route[i].id === train.prevStop) {
+          path.push([route[i].lat, route[i].lng]);
+          let j = i + 1;
+          while (j < route.length) {
+            path.push([route[j].lat, route[j].lng]);
+            if (route[j].id === train.nextStop) break;
+            j++;
+          }
+          break;
+        }
+      }
+    } else if (train.direction === 'N') {
+      for (let i = route.length - 1; i >= 0; i--) {
+        if (route[i].id === train.prevStop) {
+          path.push([route[i].lat, route[i].lng]);
+          let j = i - 1;
+          while (j >= 0) {
+            path.push([route[j].lat, route[j].lng]);
+            if (route[j].id === train.nextStop) break;
+            j--;
+          }
+          break;
+        }
+      }
+    }
+    return path;
+  }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -75202,7 +75243,7 @@ class Store {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 // =============== this.status ================
 // standby => train is at starting station
 // inTransit => train is moving
@@ -75248,14 +75289,19 @@ class Train {
     this.status = 'idle'
   }
 
-  createMarker() {
+  createMarker(path, t) {
+    if (path.length === 0) {
+      console.log(this.label);
+      return;
+    }
+    if (path.length === 0) return;
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
     const marker = new L.Marker.movingMarker(path, [t]);
 
     const trainIcon = L.icon({
       iconUrl: 'assets/images/train.png',
-      iconSize: [22, 49],
+      iconSize: [15, 35],
       iconAnchor: [18, 40]
     });
 
@@ -75265,10 +75311,11 @@ class Train {
   }
 }
 
-// const train = new Train("feed", this.state.polylines['1'].getLatLngs());
+
 // train.marker.addTo(this.state.map);
 // train.marker.start();
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

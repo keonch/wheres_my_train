@@ -14,28 +14,6 @@ export default class Store {
     this.setupStaticRoutes();
   }
 
-  setupTrains(feed) {
-    const latestFeedTrainId = Object.keys(feed).forEach((trainId) => {
-      // if train feed does not include vehicleUpdate OR tripUpdate the
-      // train is not assigned a route hence no instance of the train is made
-      if (!(feed[trainId].tripUpdate) || (!feed[trainId].vehicle)) {
-        return;
-
-      // create a new train object if new vehicleUpdate and tripUpdate
-      // data is received but does not exist in the store
-      } else if (!this.state.trains[trainId]) {
-        const train = new Train(feed[trainId]);
-        this.state.trains[trainId] = train;
-
-      // if the train instance already exist in the store, update the train
-      // with new set of data received
-      // } else if (this.state.trains[trainId]) {
-      //   this.state.trains[trainId].update(feed[trainId]);
-      }
-    });
-    console.log(this.state.trains);
-  }
-
   setupStaticRoutes() {
     Object.keys(subwayRoutes).forEach((line) => {
       const route = [];
@@ -61,8 +39,9 @@ export default class Store {
   setupPolylines() {
     Object.keys(this.state.routes).forEach((line) => {
       const route = this.state.routes[line];
+      const color = trainColors[line].trainColor;
       const polyline = new L.Polyline(route, {
-        color: 'grey',
+        color: color,
         weight: 1.5,
         opacity: 0.8,
         smoothFactor: 1
@@ -72,4 +51,67 @@ export default class Store {
     });
   }
 
+  // invoked when received 200 response
+  setupTrains(feed) {
+    const latestFeedTrainId = Object.keys(feed).forEach((trainId) => {
+      // if train feed does not include vehicleUpdate OR tripUpdate the
+      // train is not assigned a route hence no instance of the train is made
+      if (!(feed[trainId].tripUpdate) || (!feed[trainId].vehicle)) {
+        return;
+
+        // create a new train object if new vehicleUpdate and tripUpdate
+        // data is received but does not exist in the store
+      } else if (!this.state.trains[trainId] && trainId[7] !== 'H') {
+        const train = new Train(feed[trainId]);
+        if (train.status === 'inTransit') {
+          const path = this.getPath(train);
+          const t = Math.floor(train.timeDifference / path.length);
+          train.createMarker(path, t);
+        }
+        this.state.trains[trainId] = train;
+        // if the train instance already exist in the store, update the train
+        // with new set of data received
+        // } else if (this.state.trains[trainId]) {
+        //   this.state.trains[trainId].update(feed[trainId]);
+
+        if (this.state.trains[trainId].marker) {
+          this.state.trains[trainId].marker.addTo(this.state.map);
+        }
+      }
+    });
+  }
+
+  getPath(train) {
+    const route = this.state.routes[train.label];
+    const path = [];
+
+    if (train.direction === 'S') {
+      for (let i = 0; i < route.length; i++) {
+        if (route[i].id === train.prevStop) {
+          path.push([route[i].lat, route[i].lng]);
+          let j = i + 1;
+          while (j < route.length) {
+            path.push([route[j].lat, route[j].lng]);
+            if (route[j].id === train.nextStop) break;
+            j++;
+          }
+          break;
+        }
+      }
+    } else if (train.direction === 'N') {
+      for (let i = route.length - 1; i >= 0; i--) {
+        if (route[i].id === train.prevStop) {
+          path.push([route[i].lat, route[i].lng]);
+          let j = i - 1;
+          while (j >= 0) {
+            path.push([route[j].lat, route[j].lng]);
+            if (route[j].id === train.nextStop) break;
+            j--;
+          }
+          break;
+        }
+      }
+    }
+    return path;
+  }
 }

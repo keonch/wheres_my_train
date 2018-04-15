@@ -87,12 +87,16 @@
     "trainColor": "#660066",
     "labelColor": "#ffffff"
   },
-  "S": {
+  "SI": {
     "trainColor": "#0000CE",
     "labelColor": "#ffffff"
   },
   "G": {
     "trainColor": "#59B759",
     "labelColor": "#ffffff"
+  },
+  "S": {
+    "trainColor": "gray",
+    "labelColor": "ffffff"
   }
 }
