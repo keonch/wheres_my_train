@@ -24,7 +24,6 @@ export default class Store {
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        const line = trainId[7];
         const train = new Train(feed[trainId]);
         this.state.trains[trainId] = train;
 
