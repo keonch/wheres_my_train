@@ -30,24 +30,26 @@ export default class Store {
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
-      } else if (this.state.trains[trainId]) {
-        this.state.trains[trainId].update(feed[trainId]);
-
-      } else {
-        return;
+      // } else if (this.state.trains[trainId]) {
+      //   this.state.trains[trainId].update(feed[trainId]);
       }
     });
+    console.log(this.state.trains);
   }
 
   setupStaticRoutes() {
     Object.keys(subwayRoutes).forEach((line) => {
       const route = [];
       subwayRoutes[line].forEach((stationName) => {
-        Object.values(stations).forEach((station) => {
-          if (station.name === stationName && station.trains.includes(line)) {
+        Object.keys(stations).forEach((stopId) => {
+          if (
+            stations[stopId].name === stationName &&
+            stations[stopId].trains.includes(line)
+          ) {
             const stationLatLng = new Object();
-            stationLatLng.lat = station.lat;
-            stationLatLng.lng = station.lng;
+            stationLatLng.id = stopId
+            stationLatLng.lat = stations[stopId].lat;
+            stationLatLng.lng = stations[stopId].lng;
             route.push(stationLatLng);
           }
         });
@@ -62,7 +64,7 @@ export default class Store {
       const route = this.state.routes[line];
       const polyline = new L.Polyline(route, {
         color: 'grey',
-        weight: 3,
+        weight: 1.5,
         opacity: 0.8,
         smoothFactor: 1
       });

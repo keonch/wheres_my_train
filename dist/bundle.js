@@ -74967,7 +74967,7 @@ function setupTrainIcons(state) {
   const iconDiv = document.getElementById('train-icons');
   const rows = {
     row1: ["A", "C", "E", "B", "D", "F", "M", "7"],
-    // row2: ["1", "2", "3", "4", "5", "6", "L"],
+    row2: ["1", "2", "3", "4", "5", "6", "L"],
     row3: ["N", "Q", "R", "W", "G", "J", "Z", "S"]
   }
 
@@ -75105,7 +75105,7 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Store; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Store; });
 /* harmony import */ var _src_train2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/train2 */ "./src/train2.js");
 /* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
 var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__});
@@ -75145,24 +75145,26 @@ class Store {
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
-      } else if (this.state.trains[trainId]) {
-        this.state.trains[trainId].update(feed[trainId]);
-
-      } else {
-        return;
+      // } else if (this.state.trains[trainId]) {
+      //   this.state.trains[trainId].update(feed[trainId]);
       }
     });
+    console.log(this.state.trains);
   }
 
   setupStaticRoutes() {
     Object.keys(_data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__).forEach((line) => {
       const route = [];
       _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__[line].forEach((stationName) => {
-        Object.values(_data_stations_json__WEBPACK_IMPORTED_MODULE_2__).forEach((station) => {
-          if (station.name === stationName && station.trains.includes(line)) {
+        Object.keys(_data_stations_json__WEBPACK_IMPORTED_MODULE_2__).forEach((stopId) => {
+          if (
+            _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].name === stationName &&
+            _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].trains.includes(line)
+          ) {
             const stationLatLng = new Object();
-            stationLatLng.lat = station.lat;
-            stationLatLng.lng = station.lng;
+            stationLatLng.id = stopId
+            stationLatLng.lat = _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].lat;
+            stationLatLng.lng = _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].lng;
             route.push(stationLatLng);
           }
         });
@@ -75177,7 +75179,7 @@ class Store {
       const route = this.state.routes[line];
       const polyline = new L.Polyline(route, {
         color: 'grey',
-        weight: 3,
+        weight: 1.5,
         opacity: 0.8,
         smoothFactor: 1
       });
@@ -75188,6 +75190,7 @@ class Store {
 
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -75210,28 +75213,32 @@ __webpack_require__.r(__webpack_exports__);
 class Train {
   constructor(feed) {
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
-    this.staticRoute = staticRoute;
-    this.setStops();
-    this.createMarker();
+    this.vehicle = feed.vehicle;
+    this.setup();
+    // this.createMarker();
   }
 
-  setStops() {
+  // setup prevStop, nextStop, timeDifference, status, direction
+  setup() {
     const currentTime = new Date();
-    this.prevStop = feedRoute[0];
+    this.prevStop = this.feedRoute[0];
+    this.direction = this.vehicle.trip.tripId.slice(-1);
 
     // if train has yet arrived at its first stop, it is on standby
     const firstStopTime =
       this.feedRoute[0].arrival ||
       this.feedRoute[0].departure;
-    if (firstStopTime.time > currentTime) {
-      this.nextStop = feedRoute[0];
+    if (firstStopTime.time * 1000 > currentTime) {
+      this.nextStop = this.feedRoute[0];
       this.status = 'standby'
       return;
     }
 
     for (let i = 1; i < this.feedRoute.length; i++) {
-      if (this.feedRoute[i].arrival.time > currentTime) {
+      const arrivalTime = this.feedRoute[i].arrival.time * 1000;
+      if (arrivalTime > currentTime) {
         this.nextStop = this.feedRoute[i];
+        this.timeDifference = arrivalTime - currentTime;
         this.status = 'inTransit';
         return;
       }

@@ -7,28 +7,32 @@
 export default class Train {
   constructor(feed) {
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
-    this.staticRoute = staticRoute;
-    this.setStops();
-    this.createMarker();
+    this.vehicle = feed.vehicle;
+    this.setup();
+    // this.createMarker();
   }
 
-  setStops() {
+  // setup prevStop, nextStop, timeDifference, status, direction
+  setup() {
     const currentTime = new Date();
-    this.prevStop = feedRoute[0];
+    this.prevStop = this.feedRoute[0];
+    this.direction = this.vehicle.trip.tripId.slice(-1);
 
     // if train has yet arrived at its first stop, it is on standby
     const firstStopTime =
       this.feedRoute[0].arrival ||
       this.feedRoute[0].departure;
-    if (firstStopTime.time > currentTime) {
-      this.nextStop = feedRoute[0];
+    if (firstStopTime.time * 1000 > currentTime) {
+      this.nextStop = this.feedRoute[0];
       this.status = 'standby'
       return;
     }
 
     for (let i = 1; i < this.feedRoute.length; i++) {
-      if (this.feedRoute[i].arrival.time > currentTime) {
+      const arrivalTime = this.feedRoute[i].arrival.time * 1000;
+      if (arrivalTime > currentTime) {
         this.nextStop = this.feedRoute[i];
+        this.timeDifference = arrivalTime - currentTime;
         this.status = 'inTransit';
         return;
       }
