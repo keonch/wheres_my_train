@@ -46,7 +46,7 @@ export function setupTrainIcons(state) {
   const rows = {
     row1: ["A", "C", "E", "B", "D", "F", "M", "L"],
     row2: ["1", "2", "3", "4", "5", "6", "7"],
-    row3: ["N", "Q", "R", "W", "G", "J", "Z", "S"]
+    row3: ["N", "Q", "R", "W", "G", "J", "Z", "SIR"]
   }
 
   Object.values(rows).forEach((row, idx) => {

@@ -4,6 +4,8 @@
 // idle => train has reached its last stop
 // ============================================
 
+import trainIcons from '../assets/train_icons.json';
+
 export default class Train {
   constructor(feed) {
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
@@ -45,22 +47,20 @@ export default class Train {
 
   createMarker(path, t) {
     if (path.length === 0) {
-      console.log(this.label);
-      return;
+      path = [[0,0]];
     }
-    if (path.length === 0) return;
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
     const marker = new L.Marker.movingMarker(path, [t]);
 
     const trainIcon = L.icon({
-      iconUrl: 'assets/images/train.png',
-      iconSize: [15, 35],
-      iconAnchor: [18, 40]
+      iconUrl: trainIcons[this.label],
+      iconSize: [25, 25],
+      iconAnchor: [12, 12]
     });
 
     marker.setIcon(trainIcon);
-    marker.setRotationAngle(20);
+    // marker.setRotationAngle(20);
     this.marker = marker;
   }
 }

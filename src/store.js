@@ -63,11 +63,7 @@ export default class Store {
         // data is received but does not exist in the store
       } else if (!this.state.trains[trainId] && trainId[7] !== 'H') {
         const train = new Train(feed[trainId]);
-        if (train.status === 'inTransit') {
-          const path = this.getPath(train);
-          const t = Math.floor(train.timeDifference / path.length);
-          train.createMarker(path, t);
-        }
+        const path = this.setMarker(train);
         this.state.trains[trainId] = train;
         // if the train instance already exist in the store, update the train
         // with new set of data received
@@ -75,43 +71,35 @@ export default class Store {
         //   this.state.trains[trainId].update(feed[trainId]);
 
         if (this.state.trains[trainId].marker) {
-          this.state.trains[trainId].marker.addTo(this.state.map);
+          this.state.trains[trainId].marker.addTo(this.state.map).start();
         }
       }
     });
   }
 
-  getPath(train) {
+  setMarker(train) {
+    if (train.status !== 'inTransit') return;
+
     const route = this.state.routes[train.label];
     const path = [];
-
     if (train.direction === 'S') {
       for (let i = 0; i < route.length; i++) {
-        if (route[i].id === train.prevStop) {
+        if (route[i].id === this.nextStop) {
+          path.push([route[i - 1].lat, route[i - 1].lng]);
           path.push([route[i].lat, route[i].lng]);
-          let j = i + 1;
-          while (j < route.length) {
-            path.push([route[j].lat, route[j].lng]);
-            if (route[j].id === train.nextStop) break;
-            j++;
-          }
-          break;
         }
       }
     } else if (train.direction === 'N') {
       for (let i = route.length - 1; i >= 0; i--) {
-        if (route[i].id === train.prevStop) {
+        if (route[i].id === train.nextStop) {
+          path.push([route[i + 1].lat, route[i + 1].lng]);
           path.push([route[i].lat, route[i].lng]);
-          let j = i - 1;
-          while (j >= 0) {
-            path.push([route[j].lat, route[j].lng]);
-            if (route[j].id === train.nextStop) break;
-            j--;
-          }
-          break;
         }
       }
     }
-    return path;
+
+    const t = Math.floor(train.timeDifference / path.length);
+    
+    train.createMarker(path, t);
   }
 }

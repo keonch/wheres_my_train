@@ -86,10 +86,10 @@ module.exports = {"1":{"trainColor":"#B70000","labelColor":"#ffffff"},"2":{"trai
 /*!*********************************!*\
   !*** ./assets/train_icons.json ***!
   \*********************************/
-/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, C, E, H, B, D, F, M, J, Z, L, N, Q, R, W, S, G, default */
+/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, C, E, H, B, D, F, M, J, Z, L, N, Q, R, W, SIR, G, default */
 /***/ (function(module) {
 
-module.exports = {"1":"assets/images/NYCS-bull-trans-1.svg","2":"assets/images/NYCS-bull-trans-2.svg","3":"assets/images/NYCS-bull-trans-3.svg","4":"assets/images/NYCS-bull-trans-4.svg","5":"assets/images/NYCS-bull-trans-5.svg","6":"assets/images/NYCS-bull-trans-6.svg","7":"assets/images/NYCS-bull-trans-7.svg","A":"assets/images/NYCS-bull-trans-A.svg","C":"assets/images/NYCS-bull-trans-C.svg","E":"assets/images/NYCS-bull-trans-E.svg","H":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/NYCS-bull-trans-H.svg/600px-NYCS-bull-trans-H.svg.png","B":"assets/images/NYCS-bull-trans-B.svg","D":"assets/images/NYCS-bull-trans-D.svg","F":"assets/images/NYCS-bull-trans-F.svg","M":"assets/images/NYCS-bull-trans-M.svg","J":"assets/images/NYCS-bull-trans-J.svg","Z":"assets/images/NYCS-bull-trans-Z.svg","L":"assets/images/NYCS-bull-trans-L.svg","N":"assets/images/NYCS-bull-trans-N.svg","Q":"assets/images/NYCS-bull-trans-Q.svg","R":"assets/images/NYCS-bull-trans-R.svg","W":"assets/images/NYCS-bull-trans-W.svg","S":"assets/images/sir.png","G":"assets/images/NYCS-bull-trans-G.svg"};
+module.exports = {"1":"assets/images/NYCS-bull-trans-1.svg","2":"assets/images/NYCS-bull-trans-2.svg","3":"assets/images/NYCS-bull-trans-3.svg","4":"assets/images/NYCS-bull-trans-4.svg","5":"assets/images/NYCS-bull-trans-5.svg","6":"assets/images/NYCS-bull-trans-6.svg","7":"assets/images/NYCS-bull-trans-7.svg","A":"assets/images/NYCS-bull-trans-A.svg","C":"assets/images/NYCS-bull-trans-C.svg","E":"assets/images/NYCS-bull-trans-E.svg","H":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/NYCS-bull-trans-H.svg/600px-NYCS-bull-trans-H.svg.png","B":"assets/images/NYCS-bull-trans-B.svg","D":"assets/images/NYCS-bull-trans-D.svg","F":"assets/images/NYCS-bull-trans-F.svg","M":"assets/images/NYCS-bull-trans-M.svg","J":"assets/images/NYCS-bull-trans-J.svg","Z":"assets/images/NYCS-bull-trans-Z.svg","L":"assets/images/NYCS-bull-trans-L.svg","N":"assets/images/NYCS-bull-trans-N.svg","Q":"assets/images/NYCS-bull-trans-Q.svg","R":"assets/images/NYCS-bull-trans-R.svg","W":"assets/images/NYCS-bull-trans-W.svg","SIR":"assets/images/NYCS-bull-trans-SIR.png","G":"assets/images/NYCS-bull-trans-G.svg"};
 
 /***/ }),
 
@@ -74968,7 +74968,7 @@ function setupTrainIcons(state) {
   const rows = {
     row1: ["A", "C", "E", "B", "D", "F", "M", "L"],
     row2: ["1", "2", "3", "4", "5", "6", "7"],
-    row3: ["N", "Q", "R", "W", "G", "J", "Z", "S"]
+    row3: ["N", "Q", "R", "W", "G", "J", "Z", "SIR"]
   }
 
   Object.values(rows).forEach((row, idx) => {
@@ -75178,11 +75178,7 @@ class Store {
         // data is received but does not exist in the store
       } else if (!this.state.trains[trainId] && trainId[7] !== 'H') {
         const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](feed[trainId]);
-        if (train.status === 'inTransit') {
-          const path = this.getPath(train);
-          const t = Math.floor(train.timeDifference / path.length);
-          train.createMarker(path, t);
-        }
+        const path = this.setMarker(train);
         this.state.trains[trainId] = train;
         // if the train instance already exist in the store, update the train
         // with new set of data received
@@ -75190,44 +75186,36 @@ class Store {
         //   this.state.trains[trainId].update(feed[trainId]);
 
         if (this.state.trains[trainId].marker) {
-          this.state.trains[trainId].marker.addTo(this.state.map);
+          this.state.trains[trainId].marker.addTo(this.state.map).start();
         }
       }
     });
   }
 
-  getPath(train) {
+  setMarker(train) {
+    if (train.status !== 'inTransit') return;
+
     const route = this.state.routes[train.label];
     const path = [];
-
     if (train.direction === 'S') {
       for (let i = 0; i < route.length; i++) {
-        if (route[i].id === train.prevStop) {
+        if (route[i].id === this.nextStop) {
+          path.push([route[i - 1].lat, route[i - 1].lng]);
           path.push([route[i].lat, route[i].lng]);
-          let j = i + 1;
-          while (j < route.length) {
-            path.push([route[j].lat, route[j].lng]);
-            if (route[j].id === train.nextStop) break;
-            j++;
-          }
-          break;
         }
       }
     } else if (train.direction === 'N') {
       for (let i = route.length - 1; i >= 0; i--) {
-        if (route[i].id === train.prevStop) {
+        if (route[i].id === train.nextStop) {
+          path.push([route[i + 1].lat, route[i + 1].lng]);
           path.push([route[i].lat, route[i].lng]);
-          let j = i - 1;
-          while (j >= 0) {
-            path.push([route[j].lat, route[j].lng]);
-            if (route[j].id === train.nextStop) break;
-            j--;
-          }
-          break;
         }
       }
     }
-    return path;
+
+    const t = Math.floor(train.timeDifference / path.length);
+    
+    train.createMarker(path, t);
   }
 }
 
@@ -75243,12 +75231,16 @@ class Store {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
+var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 // =============== this.status ================
 // standby => train is at starting station
 // inTransit => train is moving
 // idle => train has reached its last stop
 // ============================================
+
+
 
 class Train {
   constructor(feed) {
@@ -75291,22 +75283,20 @@ class Train {
 
   createMarker(path, t) {
     if (path.length === 0) {
-      console.log(this.label);
-      return;
+      path = [[0,0]];
     }
-    if (path.length === 0) return;
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
     const marker = new L.Marker.movingMarker(path, [t]);
 
     const trainIcon = L.icon({
-      iconUrl: 'assets/images/train.png',
-      iconSize: [15, 35],
-      iconAnchor: [18, 40]
+      iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.label],
+      iconSize: [25, 25],
+      iconAnchor: [12, 12]
     });
 
     marker.setIcon(trainIcon);
-    marker.setRotationAngle(20);
+    // marker.setRotationAngle(20);
     this.marker = marker;
   }
 }
@@ -75315,7 +75305,6 @@ class Train {
 // train.marker.addTo(this.state.map);
 // train.marker.start();
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
