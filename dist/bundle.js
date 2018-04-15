@@ -75050,14 +75050,23 @@ __webpack_require__.r(__webpack_exports__);
 
 function fetchMtaData(store) {
   const urls = [
+    // 1, 2, 3, 4, 5, 6, S lines
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=1',
+    // A, C, E, H, S(Franklin Ave. Shuttle) lines
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=26',
+    // N, Q, R, W lines
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=16',
+    // B, D, F, N lines
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=21',
+    // L line
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=2',
+    // SIR line
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=11',
+    // G line
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=31',
+    // J Z lines
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=36',
+    // 7 Line
     'https://crossorigin.me/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=51'
   ];
 
@@ -75130,6 +75139,7 @@ class Store {
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
+        const line = trainId[7];
         const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](feed[trainId]);
         this.state.trains[trainId] = train;
 
@@ -75160,11 +75170,6 @@ class Store {
       this.state.routes[line] = route;
     });
     this.setupPolylines();
-
-    const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"]("feed", this.state.polylines['1'].getLatLngs());
-    // const myMovingMarker = L.Marker.movingMarker(this.state.polylines['1'].getLatLngs(), [20000]).addTo(this.state.map);
-    train.marker.addTo(this.state.map);
-    train.marker.start();
   }
 
   setupPolylines() {
@@ -75196,26 +75201,59 @@ class Store {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
-class Train {
-  constructor(feed, polyline) {
-    this.feed = feed;
-    this.polyline = polyline;
+// ====== this.status =======
+// standby => train is at starting station
+// inTransit => train is moving
 
-    this.marker = this.createMarker();
+class Train {
+  constructor(feed) {
+    this.feedRoute = feed.tripUpdate.stopTimeUpdate;
+    this.staticRoute = staticRoute;
+    this.setStops();
+    this.createMarker();
+  }
+
+  setStops() {
+    const currentTime = new Date();
+
+    // if train has yet arrived at its first stop, it is in standby
+    const firstStopTime =
+      this.feedRoute[0].arrival ||
+      this.feedRoute[0].departure;
+    if (firstStopTime.time > currentTime) {
+      this.prevStop = feedRoute[0];
+      this.nextStop = feedRoute[0];
+      this.status = 'standby'
+      return;
+    }
+
+    for (let i = 0; i < this.feedRoute.length; i++) {
+      if (this.feedRoute[i]) {
+
+      }
+    }
   }
 
   createMarker() {
+    // t is the train's travel time between from and to a station (ms)
+    // path is an array of stations between FROM and TO destination of a train
+    const marker = new L.Marker.movingMarker(path, [t]);
+
     const trainIcon = L.icon({
       iconUrl: 'assets/images/train.png',
       iconSize: [22, 49],
       iconAnchor: [18, 40]
     });
-    const marker = new L.Marker.movingMarker(this.polyline, [30000]);
+
     marker.setIcon(trainIcon);
     marker.setRotationAngle(20);
-    return marker;
+    this.marker = marker;
   }
 }
+
+// const train = new Train("feed", this.state.polylines['1'].getLatLngs());
+// train.marker.addTo(this.state.map);
+// train.marker.start();
 
 
 /***/ }),

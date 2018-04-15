@@ -6,6 +6,7 @@ import { getStationById, getLatLng } from '../util/data_utils';
 export default class Train {
   constructor(map, feed, trainId) {
     this.trainLabel = trainId[7];
+    this.stops = feed.tripUpdate.stopTimeUpdate;
 
     // vehicle state - based on realtime
     this.vehicleTime;
@@ -21,27 +22,23 @@ export default class Train {
     this.nextPos;
     this.velocity = [0, 0];
 
-    this.setStates(feed);
+    this.setStates();
     this.setRenderState();
     this.setVelocity();
     this.setMarker(map);
   }
 
   update(feed) {
-    this.setStates(feed);
+    this.setStates();
     this.updateRenderState();
     this.updateVelocity();
   }
 
-  setStates(feed) {
-    const stops = feed.tripUpdate.stopTimeUpdate;
-
-    this.vehicleTime = feed.vehicle ? feed.vehicle.timestamp : 0;
-
+  setStates() {
     let previousStop;
     let nextStop;
-    for (let i = 0; i < stops.length; i++) {
-      const stop = stops[i];
+    for (let i = 0; i < this.stops.length; i++) {
+      const stop = this.stops[i];
       if (stop.departure && this.vehicleTime >= stop.departure.time) {
         previousStop = stop;
       } else if (stop.arrival && this.vehicleTime <= stop.arrival.time) {
@@ -69,8 +66,8 @@ export default class Train {
       this.nextStation = this.prevStation;
       this.status = "lastStop"
     } else if (!previousStop && !nextStop) {
-      this.prevStationTime = stops[0].arrival.time;
-      this.prevStation = getStationById(stops[0].stopId);
+      this.prevStationTime = this.stops[0].arrival.time;
+      this.prevStation = getStationById(this.stops[0].stopId);
       this.nextStation = this.prevStation;
       this.status = "idle"
     }
