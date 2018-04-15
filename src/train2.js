@@ -1,6 +1,8 @@
-// ====== this.status =======
+// =============== this.status ================
 // standby => train is at starting station
 // inTransit => train is moving
+// idle => train has reached its last stop
+// ============================================
 
 export default class Train {
   constructor(feed) {
@@ -12,23 +14,29 @@ export default class Train {
 
   setStops() {
     const currentTime = new Date();
+    this.prevStop = feedRoute[0];
 
-    // if train has yet arrived at its first stop, it is in standby
+    // if train has yet arrived at its first stop, it is on standby
     const firstStopTime =
       this.feedRoute[0].arrival ||
       this.feedRoute[0].departure;
     if (firstStopTime.time > currentTime) {
-      this.prevStop = feedRoute[0];
       this.nextStop = feedRoute[0];
       this.status = 'standby'
       return;
     }
 
-    for (let i = 0; i < this.feedRoute.length; i++) {
-      if (this.feedRoute[i]) {
-
+    for (let i = 1; i < this.feedRoute.length; i++) {
+      if (this.feedRoute[i].arrival.time > currentTime) {
+        this.nextStop = this.feedRoute[i];
+        this.status = 'inTransit';
+        return;
       }
     }
+
+    this.prevStop = this.feedRoute[this.feedRoute.length - 1];
+    this.nextStop = null;
+    this.status = 'idle'
   }
 
   createMarker() {
