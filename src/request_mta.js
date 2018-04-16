@@ -36,7 +36,7 @@ export function fetchMtaData(store) {
 }
 
 function requestMta(store, req) {
-  console.log("fetching...");
+  console.log(`requesting ${req.url}`);
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       updateTime();

@@ -7,18 +7,22 @@
 import trainIcons from '../assets/train_icons.json';
 
 export default class Train {
-  constructor(id, feed) {
+  constructor(id) {
     this.line = id.split(".")[0].split("_").slice(-1)[0];
-    this.direction = id.split(".").slice(-1)[0];
-
-    this.setup(feed);
+    this.direction = id.split(".").slice(-1)[0][0];
   }
 
-  setup() {
+  async setup(route, feed) {
+    this.staticRoute = route;
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
-    
     const currentTime = new Date();
 
+    for (let i = 0; i < this.feedRoute.length; i++) {
+      const arrivalTime = this.feedRoute[i].arrival.time * 1000;
+      if (arrivalTime ) {
+
+      }
+    }
     // if train has yet arrived at its first stop, it is on standby
     const firstStopTime = this.feedRoute[0].arrival || this.feedRoute[0].departure;
     if (firstStopTime.time * 1000 > currentTime) {
