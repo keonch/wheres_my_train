@@ -86,10 +86,10 @@ module.exports = {"1":{"trainColor":"#B70000","labelColor":"#ffffff"},"2":{"trai
 /*!*********************************!*\
   !*** ./assets/train_icons.json ***!
   \*********************************/
-/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, C, E, H, B, D, F, M, J, Z, L, N, Q, R, W, SIR, G, default */
+/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, C, E, B, D, F, M, J, Z, L, N, Q, R, W, SI, G, H, S, default */
 /***/ (function(module) {
 
-module.exports = {"1":"assets/images/NYCS-bull-trans-1.svg","2":"assets/images/NYCS-bull-trans-2.svg","3":"assets/images/NYCS-bull-trans-3.svg","4":"assets/images/NYCS-bull-trans-4.svg","5":"assets/images/NYCS-bull-trans-5.svg","6":"assets/images/NYCS-bull-trans-6.svg","7":"assets/images/NYCS-bull-trans-7.svg","A":"assets/images/NYCS-bull-trans-A.svg","C":"assets/images/NYCS-bull-trans-C.svg","E":"assets/images/NYCS-bull-trans-E.svg","H":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/NYCS-bull-trans-H.svg/600px-NYCS-bull-trans-H.svg.png","B":"assets/images/NYCS-bull-trans-B.svg","D":"assets/images/NYCS-bull-trans-D.svg","F":"assets/images/NYCS-bull-trans-F.svg","M":"assets/images/NYCS-bull-trans-M.svg","J":"assets/images/NYCS-bull-trans-J.svg","Z":"assets/images/NYCS-bull-trans-Z.svg","L":"assets/images/NYCS-bull-trans-L.svg","N":"assets/images/NYCS-bull-trans-N.svg","Q":"assets/images/NYCS-bull-trans-Q.svg","R":"assets/images/NYCS-bull-trans-R.svg","W":"assets/images/NYCS-bull-trans-W.svg","SIR":"assets/images/NYCS-bull-trans-SIR.png","G":"assets/images/NYCS-bull-trans-G.svg"};
+module.exports = {"1":"assets/images/NYCS-bull-trans-1.svg","2":"assets/images/NYCS-bull-trans-2.svg","3":"assets/images/NYCS-bull-trans-3.svg","4":"assets/images/NYCS-bull-trans-4.svg","5":"assets/images/NYCS-bull-trans-5.svg","6":"assets/images/NYCS-bull-trans-6.svg","7":"assets/images/NYCS-bull-trans-7.svg","A":"assets/images/NYCS-bull-trans-A.svg","C":"assets/images/NYCS-bull-trans-C.svg","E":"assets/images/NYCS-bull-trans-E.svg","B":"assets/images/NYCS-bull-trans-B.svg","D":"assets/images/NYCS-bull-trans-D.svg","F":"assets/images/NYCS-bull-trans-F.svg","M":"assets/images/NYCS-bull-trans-M.svg","J":"assets/images/NYCS-bull-trans-J.svg","Z":"assets/images/NYCS-bull-trans-Z.svg","L":"assets/images/NYCS-bull-trans-L.svg","N":"assets/images/NYCS-bull-trans-N.svg","Q":"assets/images/NYCS-bull-trans-Q.svg","R":"assets/images/NYCS-bull-trans-R.svg","W":"assets/images/NYCS-bull-trans-W.svg","SI":"assets/images/NYCS-bull-trans-SIR.png","G":"assets/images/NYCS-bull-trans-G.svg","H":"assets/images/NYCS-bull-trans-H.svg","S":"assets/images/NYCS-bull-trans-S.svg"};
 
 /***/ }),
 
@@ -74844,6 +74844,138 @@ function extend() {
 
 /***/ }),
 
+/***/ "./src/app.js":
+/*!********************!*\
+  !*** ./src/app.js ***!
+  \********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return App; });
+/* harmony import */ var _src_train2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/train2 */ "./src/train2.js");
+/* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
+var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__});
+/* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
+var _data_stations_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_2__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_2__});
+/* harmony import */ var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/subway_routes.json */ "./data/subway_routes.json");
+var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/Object.assign({}, _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__, {"default": _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__});
+
+
+
+
+
+class App {
+  constructor(map) {
+    this.state = {
+      map: map,
+      trains: {},
+      routes: {},
+      polylines: {}
+    }
+    this.setupStaticRoutes();
+    this.setupPolylines();
+  }
+
+  setupStaticRoutes() {
+    Object.keys(_data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__).forEach((line) => {
+      const route = [];
+      _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__[line].forEach((stationName) => {
+        Object.keys(_data_stations_json__WEBPACK_IMPORTED_MODULE_2__).forEach((stopId) => {
+          if (
+            _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].name === stationName &&
+            _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].trains.includes(line)
+          ) {
+            const stationLatLng = new Object();
+            stationLatLng.id = stopId
+            stationLatLng.lat = _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].lat;
+            stationLatLng.lng = _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].lng;
+            route.push(stationLatLng);
+          }
+        });
+      });
+      this.state.routes[line] = route;
+    });
+  }
+
+  setupPolylines() {
+    Object.keys(this.state.routes).forEach((line) => {
+      const route = this.state.routes[line];
+      const color = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__[line].trainColor;
+      const polyline = new L.Polyline(route, {
+        color: color,
+        weight: 3,
+        opacity: 0.8,
+        smoothFactor: 1
+      });
+      this.state.polylines[line] = polyline;
+      polyline.addTo(this.state.map);
+    });
+  }
+
+  setupTrains(feed) {
+    const latestFeedTrainId = Object.keys(feed).forEach((trainId) => {
+      // if train feed does not include tripUpdate the
+      // train is not assigned a route hence no instance of the train is made
+      if (!feed[trainId].tripUpdate) {
+        console.log("unassigned");
+
+      // create a new train object if new vehicleUpdate and tripUpdate
+      // data is received but does not exist in the store
+      } else if (!this.state.trains[trainId]) {
+        const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, feed[trainId]);
+        this.setMarker(train);
+        this.state.trains[trainId] = train;
+
+      // if the train instance already exist in the store, update the train
+      // with new set of data received
+      // } else if (this.state.trains[trainId]) {
+      //   this.state.trains[trainId].update(feed[trainId]);
+      }
+    });
+  }
+
+  // create a marker on map only if train is active
+  setMarker(train) {
+    const route = this.state.routes[train.line];
+
+    if (train.status !== 'active') return;
+
+    const path = [];
+    if (train.direction === 'S') {
+      for (let i = 0; i < route.length; i++) {
+        if (route[i].id === train.nextStop) {
+          path.push([route[i - 1].lat, route[i - 1].lng]);
+          path.push([route[i].lat, route[i].lng]);
+        }
+      }
+    } else if (train.direction === 'N') {
+      for (let i = route.length - 1; i >= 0; i--) {
+        if (route[i].id === train.nextStop) {
+          path.push([route[i + 1].lat, route[i + 1].lng]);
+          path.push([route[i].lat, route[i].lng]);
+        }
+      }
+    }
+
+    if (path.length === 0) return;
+
+    const t = Math.floor(train.timeDifference / path.length);
+
+    train.createMarker(path, t);
+    train.marker.addTo(this.state.map);
+    train.startMoving();
+    train.marker.on('end', function() {
+      train.marker.setOpacity(.5);
+    });
+  }
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -74855,7 +74987,7 @@ function extend() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
 /* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ "./src/store.js");
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app */ "./src/app.js");
 /* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
 
 
@@ -74865,13 +74997,15 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener('DOMContentLoaded', () => {
   Object(_page_setup__WEBPACK_IMPORTED_MODULE_1__["setupTime"])();
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
-  const store = new _store__WEBPACK_IMPORTED_MODULE_2__["default"](map);
+  const app = new _app__WEBPACK_IMPORTED_MODULE_2__["default"](map);
+  Object(_request_mta__WEBPACK_IMPORTED_MODULE_3__["fetchMtaData"])(app);
 
-  window.store = store;
+  window.app = app;
   window.fetchMtaData = _request_mta__WEBPACK_IMPORTED_MODULE_3__["fetchMtaData"];
-  // const fetch = setInterval(() => fetchMtaData(store), 20000);
-  Object(_page_setup__WEBPACK_IMPORTED_MODULE_1__["setupTrainIcons"])(store.state);
+  // const fetch = setInterval(() => fetchMtaData(app), 20000);
+  Object(_page_setup__WEBPACK_IMPORTED_MODULE_1__["setupTrainIcons"])(app.state);
   // setupToggleButtons();
+
 });
 
 
@@ -74967,8 +75101,8 @@ function setupTrainIcons(state) {
   const iconDiv = document.getElementById('train-icons');
   const rows = {
     row1: ["A", "C", "E", "B", "D", "F", "M", "L"],
-    row2: ["1", "2", "3", "4", "5", "6", "7"],
-    row3: ["N", "Q", "R", "W", "G", "J", "Z", "SIR"]
+    row2: ["1", "2", "3", "4", "5", "6", "7", "S"],
+    row3: ["N", "Q", "R", "W", "G", "J", "Z", "SI"]
   }
 
   Object.values(rows).forEach((row, idx) => {
@@ -75036,7 +75170,7 @@ function toggleClass(element) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMtaData", function() { return fetchMtaData; });
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../gtfs-realtime */ "./gtfs-realtime.js");
@@ -75081,144 +75215,21 @@ function fetchMtaData(store) {
 }
 
 function requestMta(store, req) {
+  console.log("fetching...");
   request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       Object(_page_setup__WEBPACK_IMPORTED_MODULE_3__["updateTime"])();
       const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
       store.setupTrains(Object(_util_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed));
     } else {
+      console.log(error);
       // setup a condition to break out of loop
       window.setTimeout(() => requestMta(store, req), 3000);
     }
   });
 }
 
-
-/***/ }),
-
-/***/ "./src/store.js":
-/*!**********************!*\
-  !*** ./src/store.js ***!
-  \**********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Store; });
-/* harmony import */ var _src_train2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/train2 */ "./src/train2.js");
-/* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
-var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__});
-/* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
-var _data_stations_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_2__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_2__});
-/* harmony import */ var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/subway_routes.json */ "./data/subway_routes.json");
-var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/Object.assign({}, _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__, {"default": _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__});
-
-
-
-
-
-class Store {
-  constructor(map) {
-    this.state = {
-      map: map,
-      trains: {},
-      routes: {},
-      polylines: {}
-    }
-    this.setupStaticRoutes();
-  }
-
-  setupStaticRoutes() {
-    Object.keys(_data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__).forEach((line) => {
-      const route = [];
-      _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3__[line].forEach((stationName) => {
-        Object.keys(_data_stations_json__WEBPACK_IMPORTED_MODULE_2__).forEach((stopId) => {
-          if (
-            _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].name === stationName &&
-            _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].trains.includes(line)
-          ) {
-            const stationLatLng = new Object();
-            stationLatLng.id = stopId
-            stationLatLng.lat = _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].lat;
-            stationLatLng.lng = _data_stations_json__WEBPACK_IMPORTED_MODULE_2__[stopId].lng;
-            route.push(stationLatLng);
-          }
-        });
-      });
-      this.state.routes[line] = route;
-    });
-    this.setupPolylines();
-  }
-
-  setupPolylines() {
-    Object.keys(this.state.routes).forEach((line) => {
-      const route = this.state.routes[line];
-      const color = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__[line].trainColor;
-      const polyline = new L.Polyline(route, {
-        color: color,
-        weight: 1.5,
-        opacity: 0.8,
-        smoothFactor: 1
-      });
-      this.state.polylines[line] = polyline;
-      polyline.addTo(this.state.map);
-    });
-  }
-
-  // invoked when received 200 response
-  setupTrains(feed) {
-    const latestFeedTrainId = Object.keys(feed).forEach((trainId) => {
-      // if train feed does not include vehicleUpdate OR tripUpdate the
-      // train is not assigned a route hence no instance of the train is made
-      if (!(feed[trainId].tripUpdate) || (!feed[trainId].vehicle)) {
-        return;
-
-        // create a new train object if new vehicleUpdate and tripUpdate
-        // data is received but does not exist in the store
-      } else if (!this.state.trains[trainId] && trainId[7] !== 'H') {
-        const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](feed[trainId]);
-        const path = this.setMarker(train);
-        this.state.trains[trainId] = train;
-        // if the train instance already exist in the store, update the train
-        // with new set of data received
-        // } else if (this.state.trains[trainId]) {
-        //   this.state.trains[trainId].update(feed[trainId]);
-
-        if (this.state.trains[trainId].marker) {
-          this.state.trains[trainId].marker.addTo(this.state.map).start();
-        }
-      }
-    });
-  }
-
-  setMarker(train) {
-    if (train.status !== 'inTransit') return;
-
-    const route = this.state.routes[train.label];
-    const path = [];
-    if (train.direction === 'S') {
-      for (let i = 0; i < route.length; i++) {
-        if (route[i].id === this.nextStop) {
-          path.push([route[i - 1].lat, route[i - 1].lng]);
-          path.push([route[i].lat, route[i].lng]);
-        }
-      }
-    } else if (train.direction === 'N') {
-      for (let i = route.length - 1; i >= 0; i--) {
-        if (route[i].id === train.nextStop) {
-          path.push([route[i + 1].lat, route[i + 1].lng]);
-          path.push([route[i].lat, route[i].lng]);
-        }
-      }
-    }
-
-    const t = Math.floor(train.timeDifference / path.length);
-    
-    train.createMarker(path, t);
-  }
-}
-
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -75236,30 +75247,27 @@ __webpack_require__.r(__webpack_exports__);
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 // =============== this.status ================
 // standby => train is at starting station
-// inTransit => train is moving
+// active => train is currently in transit (has prevStop and nextStop)
 // idle => train has reached its last stop
 // ============================================
 
 
 
 class Train {
-  constructor(feed) {
-    this.feedRoute = feed.tripUpdate.stopTimeUpdate;
-    this.label = feed.vehicle.trip.routeId;
-    this.direction = feed.vehicle.trip.tripId[10];
-    this.setup();
-    // this.createMarker();
+  constructor(id, feed) {
+    this.line = id.split(".")[0].split("_").slice(-1)[0];
+    this.direction = id.split(".").slice(-1)[0];
+
+    this.setup(feed);
   }
 
-  // setup prevStop, nextStop, timeDifference, status
   setup() {
+    this.feedRoute = feed.tripUpdate.stopTimeUpdate;
+    
     const currentTime = new Date();
-    this.prevStop = this.feedRoute[0].stopId.slice(0, -1);
 
     // if train has yet arrived at its first stop, it is on standby
-    const firstStopTime =
-      this.feedRoute[0].arrival ||
-      this.feedRoute[0].departure;
+    const firstStopTime = this.feedRoute[0].arrival || this.feedRoute[0].departure;
     if (firstStopTime.time * 1000 > currentTime) {
       this.nextStop = this.feedRoute[0].stopId.slice(0, -1);
       this.status = 'standby'
@@ -75271,7 +75279,7 @@ class Train {
       if (arrivalTime > currentTime) {
         this.nextStop = this.feedRoute[i].stopId.slice(0, -1);
         this.timeDifference = arrivalTime - currentTime;
-        this.status = 'inTransit';
+        this.status = 'active';
         return;
       }
     }
@@ -75282,22 +75290,20 @@ class Train {
   }
 
   createMarker(path, t) {
-    if (path.length === 0) {
-      path = [[0,0]];
-    }
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
     const marker = new L.Marker.movingMarker(path, [t]);
-
     const trainIcon = L.icon({
-      iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.label],
+      iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
       iconSize: [25, 25],
       iconAnchor: [12, 12]
     });
-
     marker.setIcon(trainIcon);
-    // marker.setRotationAngle(20);
     this.marker = marker;
+  }
+
+  startMoving() {
+    this.marker.start();
   }
 }
 

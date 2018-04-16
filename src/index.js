@@ -1,16 +1,18 @@
 import { initMap } from './map';
 import { setupTime, setupTrainIcons, setupToggleButtons } from './page_setup';
-import Store from './store';
+import App from './app';
 import { fetchMtaData } from './request_mta';
 
 document.addEventListener('DOMContentLoaded', () => {
   setupTime();
   const map = initMap();
-  const store = new Store(map);
+  const app = new App(map);
+  fetchMtaData(app);
 
-  window.store = store;
+  window.app = app;
   window.fetchMtaData = fetchMtaData;
-  // const fetch = setInterval(() => fetchMtaData(store), 20000);
-  setupTrainIcons(store.state);
+  // const fetch = setInterval(() => fetchMtaData(app), 20000);
+  setupTrainIcons(app.state);
   // setupToggleButtons();
+
 });

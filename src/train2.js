@@ -1,29 +1,26 @@
 // =============== this.status ================
 // standby => train is at starting station
-// inTransit => train is moving
+// active => train is currently in transit (has prevStop and nextStop)
 // idle => train has reached its last stop
 // ============================================
 
 import trainIcons from '../assets/train_icons.json';
 
 export default class Train {
-  constructor(feed) {
-    this.feedRoute = feed.tripUpdate.stopTimeUpdate;
-    this.label = feed.vehicle.trip.routeId;
-    this.direction = feed.vehicle.trip.tripId[10];
-    this.setup();
-    // this.createMarker();
+  constructor(id, feed) {
+    this.line = id.split(".")[0].split("_").slice(-1)[0];
+    this.direction = id.split(".").slice(-1)[0];
+
+    this.setup(feed);
   }
 
-  // setup prevStop, nextStop, timeDifference, status
   setup() {
+    this.feedRoute = feed.tripUpdate.stopTimeUpdate;
+    
     const currentTime = new Date();
-    this.prevStop = this.feedRoute[0].stopId.slice(0, -1);
 
     // if train has yet arrived at its first stop, it is on standby
-    const firstStopTime =
-      this.feedRoute[0].arrival ||
-      this.feedRoute[0].departure;
+    const firstStopTime = this.feedRoute[0].arrival || this.feedRoute[0].departure;
     if (firstStopTime.time * 1000 > currentTime) {
       this.nextStop = this.feedRoute[0].stopId.slice(0, -1);
       this.status = 'standby'
@@ -35,7 +32,7 @@ export default class Train {
       if (arrivalTime > currentTime) {
         this.nextStop = this.feedRoute[i].stopId.slice(0, -1);
         this.timeDifference = arrivalTime - currentTime;
-        this.status = 'inTransit';
+        this.status = 'active';
         return;
       }
     }
@@ -46,22 +43,20 @@ export default class Train {
   }
 
   createMarker(path, t) {
-    if (path.length === 0) {
-      path = [[0,0]];
-    }
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
     const marker = new L.Marker.movingMarker(path, [t]);
-
     const trainIcon = L.icon({
-      iconUrl: trainIcons[this.label],
+      iconUrl: trainIcons[this.line],
       iconSize: [25, 25],
       iconAnchor: [12, 12]
     });
-
     marker.setIcon(trainIcon);
-    // marker.setRotationAngle(20);
     this.marker = marker;
+  }
+
+  startMoving() {
+    this.marker.start();
   }
 }
 

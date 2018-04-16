@@ -2,7 +2,6 @@
   "A": "assets/images/NYCS-bull-trans-A.svg",
   "C": "assets/images/NYCS-bull-trans-C.svg",
   "E": "assets/images/NYCS-bull-trans-E.svg",
-  "H": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/NYCS-bull-trans-H.svg/600px-NYCS-bull-trans-H.svg.png",
   "B": "assets/images/NYCS-bull-trans-B.svg",
   "D": "assets/images/NYCS-bull-trans-D.svg",
   "F": "assets/images/NYCS-bull-trans-F.svg",
@@ -21,6 +20,8 @@
   "5": "assets/images/NYCS-bull-trans-5.svg",
   "6": "assets/images/NYCS-bull-trans-6.svg",
   "7": "assets/images/NYCS-bull-trans-7.svg",
-  "SIR": "assets/images/NYCS-bull-trans-SIR.png",
-  "G": "assets/images/NYCS-bull-trans-G.svg"
+  "SI": "assets/images/NYCS-bull-trans-SIR.png",
+  "G": "assets/images/NYCS-bull-trans-G.svg",
+  "H": "assets/images/NYCS-bull-trans-H.svg",
+  "S": "assets/images/NYCS-bull-trans-S.svg"
 }
