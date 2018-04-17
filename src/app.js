@@ -63,9 +63,9 @@ export default class App {
       } else if (!this.state.trains[trainId]) {
         const train = new Train(trainId);
         const route = this.state.routes[train.line];
-        train.setup(route, feed[trainId]);
-        // this.setMarker(train);
-        // this.state.trains[trainId] = train;
+        train.setup(route, feed[trainId]).then(train => {
+            this.state.trains[trainId] = train;
+        });
 
       // if the train instance already exist in the store, update the train
       // with new set of data received

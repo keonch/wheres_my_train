@@ -1,5 +1,3 @@
-import stations from '../data/stations.json';
-
 export function parseFeed(feed) {
   let trainFeeds = {};
   feed.entity.forEach((e) => {
@@ -15,14 +13,10 @@ export function parseFeed(feed) {
   return trainFeeds;
 };
 
-export function getStationById(stationId) {
-  let station = stations[stationId];
+export function getFeedCase(feed) {
+  if (!feed.vehicle) {
+    return 'no vehicle';
+  } else if (true) {
 
-  // placeholder station
-  if (station === undefined) station = {"stop_id": 101, "stop_name": "Van Cortlandt Park - 242 St", "stop_lat": 40.889248, "stop_lon": -73.898583, "location_type": 1};
-  return station;
-}
-
-export function getLatLng(station) {
-  return { lat: station.stop_lat, lng: station.stop_lon };
+  }
 }

@@ -1,6 +1,6 @@
 import request from 'request';
 import GtfsRealtimeBindings from '../gtfs-realtime';
-import { parseFeed } from '../util/data_utils';
+import { parseFeed } from '../utils/data_utils';
 import { updateTime } from './page_setup';
 
 export function fetchMtaData(store) {

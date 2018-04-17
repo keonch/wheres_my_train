@@ -1,5 +1,5 @@
 // =============== this.status ================
-// standby => train is at starting station
+// awaiting => train is waiting to leave its origin station
 // active => train is currently in transit (has prevStop and nextStop)
 // idle => train has reached its last stop
 // ============================================
@@ -13,37 +13,70 @@ export default class Train {
   }
 
   async setup(route, feed) {
-    this.staticRoute = route;
+    this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
-    const currentTime = new Date();
+
+    switch (this.getFeedCase(feed)) {
+      // if train has no vehicle movement, it is at its origin station
+      case 'no vehicle':
+        this.setAwaiting();
+        break;
+
+      case 'at origin':
+        this.setAwaiting();
+        break;
+
+      case ''
+      default:
+    }
+  }
+
+  getFeedCase(feed) {
+    if (!feed.vehicle) return 'no vehicle';
+
+    const firstStopTime = this.feedRoute[0].arrival || this.feedRoute[0].departure;
+    const vehicleTime = feed.vehicle.timestamp;
+    if (
+      firstStopTime.time * 1000 >= vehicleTime &&
+      this.feedRoute[0].stopId.slice(0, -1) === this.staticRoute[0].id
+    ) {
+      return 'at origin';
+    }
+
+    
+  }
 
     for (let i = 0; i < this.feedRoute.length; i++) {
-      const arrivalTime = this.feedRoute[i].arrival.time * 1000;
-      if (arrivalTime ) {
-
+      let arrivalTime;
+      if (i === 0) {
+        arrivalTime = firstStopTime.time * 1000;
+      } else {
+        arrivalTime = this.feedRoute[i].arrival.time * 1000;
       }
-    }
-    // if train has yet arrived at its first stop, it is on standby
-    const firstStopTime = this.feedRoute[0].arrival || this.feedRoute[0].departure;
-    if (firstStopTime.time * 1000 > currentTime) {
-      this.nextStop = this.feedRoute[0].stopId.slice(0, -1);
-      this.status = 'standby'
-      return;
-    }
 
-    for (let i = 1; i < this.feedRoute.length; i++) {
-      const arrivalTime = this.feedRoute[i].arrival.time * 1000;
-      if (arrivalTime > currentTime) {
+      if (arrivalTime > this.vehicleTime) {
         this.nextStop = this.feedRoute[i].stopId.slice(0, -1);
         this.timeDifference = arrivalTime - currentTime;
-        this.status = 'active';
-        return;
+        return this.setActive();
       }
     }
+  }
 
-    this.prevStop = this.feedRoute[this.feedRoute.length - 1].stopId.slice(0, -1);
-    this.nextStop = null;
-    this.status = 'idle'
+  setAwaiting() {
+    const station = this.staticRoute[0];
+    this.marker = this.createMarker([station.lat, station.lng], 0);
+    this.status = 'awaiting';
+  }
+
+  setActive() {
+    const path = [];
+    for (let i = 0; i < this.staticRoute.length; i++) {
+      if (this.staticRoute[i].id === this.nextStop) {
+
+      }
+    }
+    this.marker = this.createMarker(path, this.timeDifference);
+    this.status = 'active';
   }
 
   createMarker(path, t) {
@@ -56,14 +89,10 @@ export default class Train {
       iconAnchor: [12, 12]
     });
     marker.setIcon(trainIcon);
-    this.marker = marker;
+    return marker;
   }
 
   startMoving() {
     this.marker.start();
   }
 }
-
-
-// train.marker.addTo(this.state.map);
-// train.marker.start();
