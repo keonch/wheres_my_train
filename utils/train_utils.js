@@ -19,3 +19,7 @@ export function getVelocity(toStation, currentPos, timeOfArrival) {
   const v = [(disp[0] / t), (disp[1] / t)];
   return v;
 }
+
+export function getLatLng(station) {
+  return [station.lat, station.lng];
+}

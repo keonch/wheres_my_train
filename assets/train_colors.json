@@ -83,6 +83,10 @@
     "trainColor": "#006600",
     "labelColor": "#ffffff"
   },
+  "6X": {
+    "trainColor": "#006600",
+    "labelColor": "#ffffff"
+  },
   "7": {
     "trainColor": "#660066",
     "labelColor": "#ffffff"

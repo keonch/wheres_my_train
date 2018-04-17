@@ -75,10 +75,10 @@
 /*!**********************************!*\
   !*** ./assets/train_colors.json ***!
   \**********************************/
-/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, B, C, D, E, F, H, J, L, M, N, Q, R, W, Z, SI, G, GS, default */
+/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, B, C, D, E, F, H, J, L, M, N, Q, R, W, Z, 6X, SI, G, GS, default */
 /***/ (function(module) {
 
-module.exports = {"1":{"trainColor":"#B70000","labelColor":"#ffffff"},"2":{"trainColor":"#B70000","labelColor":"#ffffff"},"3":{"trainColor":"#B70000","labelColor":"#ffffff"},"4":{"trainColor":"#006600","labelColor":"#ffffff"},"5":{"trainColor":"#006600","labelColor":"#ffffff"},"6":{"trainColor":"#006600","labelColor":"#ffffff"},"7":{"trainColor":"#660066","labelColor":"#ffffff"},"A":{"trainColor":"#00008E","labelColor":"#ffffff"},"B":{"trainColor":"#CC8400","labelColor":"#ffffff"},"C":{"trainColor":"#00008E","labelColor":"#ffffff"},"D":{"trainColor":"#CC8400","labelColor":"#ffffff"},"E":{"trainColor":"#00008E","labelColor":"#ffffff"},"F":{"trainColor":"#CC8400","labelColor":"#ffffff"},"H":{"trainColor":"#00008E","labelColor":"#ffffff"},"J":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"L":{"trainColor":"#BFBFBF","labelColor":"#ffffff"},"M":{"trainColor":"#CC8400","labelColor":"#ffffff"},"N":{"trainColor":"#CCCC00","labelColor":"#000000"},"Q":{"trainColor":"#CCCC00","labelColor":"#000000"},"R":{"trainColor":"#CCCC00","labelColor":"#000000"},"W":{"trainColor":"#CCCC00","labelColor":"#000000"},"Z":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"SI":{"trainColor":"#0000CE","labelColor":"#ffffff"},"G":{"trainColor":"#59B759","labelColor":"#ffffff"},"GS":{"trainColor":"gray","labelColor":"ffffff"}};
+module.exports = {"1":{"trainColor":"#B70000","labelColor":"#ffffff"},"2":{"trainColor":"#B70000","labelColor":"#ffffff"},"3":{"trainColor":"#B70000","labelColor":"#ffffff"},"4":{"trainColor":"#006600","labelColor":"#ffffff"},"5":{"trainColor":"#006600","labelColor":"#ffffff"},"6":{"trainColor":"#006600","labelColor":"#ffffff"},"7":{"trainColor":"#660066","labelColor":"#ffffff"},"A":{"trainColor":"#00008E","labelColor":"#ffffff"},"B":{"trainColor":"#CC8400","labelColor":"#ffffff"},"C":{"trainColor":"#00008E","labelColor":"#ffffff"},"D":{"trainColor":"#CC8400","labelColor":"#ffffff"},"E":{"trainColor":"#00008E","labelColor":"#ffffff"},"F":{"trainColor":"#CC8400","labelColor":"#ffffff"},"H":{"trainColor":"#00008E","labelColor":"#ffffff"},"J":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"L":{"trainColor":"#BFBFBF","labelColor":"#ffffff"},"M":{"trainColor":"#CC8400","labelColor":"#ffffff"},"N":{"trainColor":"#CCCC00","labelColor":"#000000"},"Q":{"trainColor":"#CCCC00","labelColor":"#000000"},"R":{"trainColor":"#CCCC00","labelColor":"#000000"},"W":{"trainColor":"#CCCC00","labelColor":"#000000"},"Z":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"6X":{"trainColor":"#006600","labelColor":"#ffffff"},"SI":{"trainColor":"#0000CE","labelColor":"#ffffff"},"G":{"trainColor":"#59B759","labelColor":"#ffffff"},"GS":{"trainColor":"gray","labelColor":"ffffff"}};
 
 /***/ }),
 
@@ -74926,9 +74926,10 @@ class App {
       } else if (!this.state.trains[trainId]) {
         const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](trainId);
         const route = this.state.routes[train.line];
-        train.setup(route, feed[trainId]).then(train => {
-            this.state.trains[trainId] = train;
-        });
+        train.setup(route, feed[trainId]);
+        console.log(train);
+        train.marker.addTo(this.state.map);
+        // this.state.trains[trainId] = train;
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -75220,6 +75221,7 @@ function requestMta(store, req) {
   console.log(`requesting ${req.url}`);
   request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
+      console.log('200 OK');
       Object(_page_setup__WEBPACK_IMPORTED_MODULE_3__["updateTime"])();
       const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_1___default.a.transit_realtime.FeedMessage.decode(body);
       store.setupTrains(Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeed"])(feed));
@@ -75240,9 +75242,134 @@ function requestMta(store, req) {
   !*** ./src/train2.js ***!
   \***********************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (30:6)\nYou may need an appropriate loader to handle this file type.\n| \n|       case ''\n|       default:\n|     }\n|   }");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
+var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
+/* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
+// =============== this.status ================
+// awaiting => train is waiting to leave its origin station
+// active => train is currently in transit (has prevStop and nextStop)
+// idle => train has reached its last stop
+// ============================================
+
+
+
+
+class Train {
+  constructor(id) {
+    this.line = id.split(".")[0].split("_").slice(-1)[0];
+    this.direction = id.split(".").slice(-1)[0][0];
+  }
+
+  setup(route, feed) {
+    console.log(route);
+    this.staticRoute = this.direction === 'S' ? route : route.reverse();
+    this.feedRoute = feed.tripUpdate.stopTimeUpdate;
+
+    switch (this.getFeedCase(feed)) {
+      // if train has no vehicle movement, it is at its origin station
+      case 'no vehicle':
+        this.status = 'standby';
+        this.setMarkerAtOrigin();
+        break;
+
+      case 'at origin':
+        this.vehicleTime = feed.vehicle.timestamp * 1000;
+        this.status = 'standby';
+        this.setMarkerAtOrigin();
+        break;
+
+      case 'at last stop':
+        this.vehicleTime = feed.vehicle.timestamp * 1000;
+        this.status = 'idle';
+        this.setMarkerAtFinal();
+        break;
+
+      case 'active':
+        this.vehicleTime = feed.vehicle.timestamp * 1000;
+        this.status = 'active';
+        this.setActiveMarker();
+        break;
+    }
+  }
+
+  getFeedCase(feed) {
+    if (!feed.vehicle) return 'no vehicle';
+    const feedFirstStopTime = this.feedRoute[0].departure.time * 1000;
+    const feedLastStopTime = this.feedRoute[this.feedRoute.length - 1].arrival.time * 1000;
+    const vehicleTime = feed.vehicle.timestamp;
+
+    if (vehicleTime <= feedFirstStopTime && this.feedRoute[0].stopId.slice(0, -1) === this.staticRoute[0].id) {
+      return 'at origin';
+    } else if (vehicleTime >= feedLastStopTime) {
+      return 'at last stop';
+    } else {
+      return 'active';
+    }
+  }
+
+  setMarkerAtOrigin() {
+    const firstStop = this.staticRoute[0];
+    console.log('active marker');
+    console.log(firstStop);
+    this.createMarker([[firstStop.lat, firstStop.lng]], 0);
+  }
+
+  setMarkerAtFinal() {
+    const lastStop = this.staticRoute[this.staticRoute.length - 1];
+    console.log('active marker');
+    console.log(lastStop);
+    this.createMarker([[lastStop.lat, lastStop.lng]], 0);
+  }
+
+  setActiveMarker() {
+    const path = [];
+    for (let i = 0; i < this.feedRoute.length; i++) {
+      const station = this.feedRoute[i];
+      const stationTime = station.arrival || station.departure;
+
+      if (this.vehicleTime <= stationTime.time * 1000) {
+        for (let j = 1; j < this.staticRoute.length; j++) {
+          if (this.staticRoute[j].id === station.stopId.slice(0, -1)) {
+            this.prevStop = this.staticRoute[j - 1];
+            this.nextStop = this.staticRoute[j];
+            path.push([this.prevStop.lat, this.prevStop.lng]);
+            path.push([this.nextStop.lat, this.nextStop.lng]);
+            this.timeDifference = (stationTime.time * 1000) - this.vehicleTime;
+            console.log('active marker');
+            console.log(path);
+            console.log(this.timeDifference);
+            this.createMarker(path, this.timeDifference);
+            return;
+          }
+        }
+      }
+    }
+  }
+
+  createMarker(path, t) {
+    // t is the train's travel time between from and to a station (ms)
+    // path is an array of stations between FROM and TO destination of a train
+    const marker = new L.Marker.movingMarker(path, [t]);
+    const trainIcon = L.icon({
+      iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
+      iconSize: [25, 25],
+      iconAnchor: [12, 12]
+    });
+    marker.setIcon(trainIcon);
+    this.marker = marker;
+  }
+
+  moveMarker() {
+    this.marker.start();
+  }
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -75250,13 +75377,12 @@ throw new Error("Module parse failed: Unexpected token (30:6)\nYou may need an a
 /*!*****************************!*\
   !*** ./utils/data_utils.js ***!
   \*****************************/
-/*! exports provided: parseFeed, getFeedCase */
+/*! exports provided: parseFeed */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFeedCase", function() { return getFeedCase; });
 function parseFeed(feed) {
   let trainFeeds = {};
   feed.entity.forEach((e) => {
@@ -75272,12 +75398,46 @@ function parseFeed(feed) {
   return trainFeeds;
 };
 
-function getFeedCase(feed) {
-  if (!feed.vehicle) {
-    return 'no vehicle';
-  } else if (true) {
 
-  }
+/***/ }),
+
+/***/ "./utils/train_utils.js":
+/*!******************************!*\
+  !*** ./utils/train_utils.js ***!
+  \******************************/
+/*! exports provided: timeRatio, interpolate, getVelocity, getLatLng */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeRatio", function() { return timeRatio; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getVelocity", function() { return getVelocity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatLng", function() { return getLatLng; });
+function timeRatio(timeFrom, timeTo) {
+  const routeTime = (timeTo - timeFrom) * 1000;
+  const currentTime = (timeTo * 1000) - new Date();
+  // if currentTime is negative train has passed the station
+  return (currentTime / routeTime);
+}
+
+function interpolate(from, to, r) {
+  const lat = from.lat + (to.lat - from.lat) * r;
+  const lng = from.lng + (to.lng - from.lng) * r;
+  return { lat: lat, lng: lng };
+}
+
+function getVelocity(toStation, currentPos, timeOfArrival) {
+  const dLat = toStation.lat - currentPos.lat;
+  const dLng = toStation.lng - currentPos.lng;
+  const disp = [dLat, dLng];
+  const t = (timeOfArrival * 1000) - new Date();
+  const v = [(disp[0] / t), (disp[1] / t)];
+  return v;
+}
+
+function getLatLng(station) {
+  return [station.lat, station.lng];
 }
 
 

@@ -39,6 +39,7 @@ function requestMta(store, req) {
   console.log(`requesting ${req.url}`);
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
+      console.log('200 OK');
       updateTime();
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
       store.setupTrains(parseFeed(feed));

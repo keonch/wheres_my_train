@@ -12,11 +12,3 @@ export function parseFeed(feed) {
   });
   return trainFeeds;
 };
-
-export function getFeedCase(feed) {
-  if (!feed.vehicle) {
-    return 'no vehicle';
-  } else if (true) {
-
-  }
-}
