@@ -14,7 +14,6 @@ export default class Train {
   }
 
   setup(route, feed) {
-    console.log(route);
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
 
@@ -47,13 +46,17 @@ export default class Train {
 
   getFeedCase(feed) {
     if (!feed.vehicle) return 'no vehicle';
-    const feedFirstStopTime = this.feedRoute[0].departure.time * 1000;
-    const feedLastStopTime = this.feedRoute[this.feedRoute.length - 1].arrival.time * 1000;
+    const feedFirstStopTime =
+      this.feedRoute[0].departure ||
+      this.feedRoute[0].arrival;
+    const feedLastStopTime =
+      this.feedRoute[this.feedRoute.length - 1].arrival ||
+      this.feedRoute[this.feedRoute.length - 1].departure;
     const vehicleTime = feed.vehicle.timestamp;
 
-    if (vehicleTime <= feedFirstStopTime && this.feedRoute[0].stopId.slice(0, -1) === this.staticRoute[0].id) {
+    if (vehicleTime <= feedFirstStopTime.time * 1000 && this.feedRoute[0].stopId.slice(0, -1) === this.staticRoute[0].id) {
       return 'at origin';
-    } else if (vehicleTime >= feedLastStopTime) {
+    } else if (vehicleTime >= feedLastStopTime.time * 1000) {
       return 'at last stop';
     } else {
       return 'active';
@@ -62,16 +65,12 @@ export default class Train {
 
   setMarkerAtOrigin() {
     const firstStop = this.staticRoute[0];
-    console.log('active marker');
-    console.log(firstStop);
-    this.createMarker([[firstStop.lat, firstStop.lng]], 0);
+    this.createMarker([[firstStop.lat, firstStop.lng], [firstStop.lat, firstStop.lng]], 0);
   }
 
   setMarkerAtFinal() {
     const lastStop = this.staticRoute[this.staticRoute.length - 1];
-    console.log('active marker');
-    console.log(lastStop);
-    this.createMarker([[lastStop.lat, lastStop.lng]], 0);
+    this.createMarker([[lastStop.lat, lastStop.lng], [lastStop.lat, lastStop.lng]], 0);
   }
 
   setActiveMarker() {
@@ -88,9 +87,6 @@ export default class Train {
             path.push([this.prevStop.lat, this.prevStop.lng]);
             path.push([this.nextStop.lat, this.nextStop.lng]);
             this.timeDifference = (stationTime.time * 1000) - this.vehicleTime;
-            console.log('active marker');
-            console.log(path);
-            console.log(this.timeDifference);
             this.createMarker(path, this.timeDifference);
             return;
           }
