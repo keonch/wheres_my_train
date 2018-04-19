@@ -12,7 +12,8 @@ import {
 } from '../utils/train_utils';
 
 export default class Train {
-  constructor(line, direction) {
+  constructor(id, line, direction) {
+    this.id = id;
     this.line = line;
     this.direction = direction;
   }
@@ -124,28 +125,24 @@ export default class Train {
     this.marker = marker;
   }
 
-  start() {
+  start(update) {
     this.marker.start();
 
     if (this.status === 'active') {
       this.marker.addEventListener('end', () => {
-        this.update();
+
       });
 
     } else if (this.status === 'standby') {
-      setTimeout(() => this.update(), this.countdown);
+      setTimeout(() => update('from standby'), this.countdown);
 
     } else if (this.status === 'idle') {
       this.marker.setOpacity(.5);
-      setTimeout(() => this.update(), 60000);
+      const action = {};
+      action.type = 'delete';
+      action.trainId = this.id;
+      action.line = this.line;
+      setTimeout(() => update(action), 60000);
     }
-  }
-
-  async eventListener() {
-    return await this.update();
-  }
-
-  update() {
-    return 'ready'
   }
 }

@@ -74876,6 +74876,7 @@ class App {
     }
     this.setupStaticRoutes();
     this.setupPolylines();
+    this.update = this.update.bind(this);
   }
 
   setupStaticRoutes() {
@@ -74941,11 +74942,11 @@ class App {
     const direction = id.slice(-1)[0][0];
     const route = this.state.routes[line];
 
-    const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](line, direction);
+    const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction);
     train.setup(route, feed);
     train.marker.addTo(this.state.map);
-    train.start();
-    this.awaitResponse(train);
+    train.start(this.update);
+
     console.log('THIS HAS PASSED THE AWAITRESPONSE');
     this.state.trains[train.line] = Object.assign({},
       this.state.trains[train.line],
@@ -74953,10 +74954,15 @@ class App {
     );
   }
 
-  async awaitResponse(train) {
-    await train.eventListener();
-    console.log('ITS WORKING');
-    return;
+  update(action) {
+    if (action.type === 'delete') {
+      console.log(this.state.trains[line]);
+      console.log(`deleting ${action.trainId}`);
+      delete this.state.trains.line[trainId];
+      console.log(this.state.trains[line]);
+    } else {
+      console.log('not deleted');
+    }
   }
 }
 
@@ -75245,7 +75251,8 @@ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE_
 
 
 class Train {
-  constructor(line, direction) {
+  constructor(id, line, direction) {
+    this.id = id;
     this.line = line;
     this.direction = direction;
   }
@@ -75357,29 +75364,25 @@ class Train {
     this.marker = marker;
   }
 
-  start() {
+  start(update) {
     this.marker.start();
 
     if (this.status === 'active') {
       this.marker.addEventListener('end', () => {
-        this.update();
+
       });
 
     } else if (this.status === 'standby') {
-      setTimeout(() => this.update(), this.countdown);
+      setTimeout(() => update('from standby'), this.countdown);
 
     } else if (this.status === 'idle') {
       this.marker.setOpacity(.5);
-      setTimeout(() => this.update(), 60000);
+      const action = {};
+      action.type = 'delete';
+      action.trainId = this.id;
+      action.line = this.line;
+      setTimeout(() => update(action), 60000);
     }
-  }
-
-  async eventListener() {
-    return await this.update();
-  }
-
-  update() {
-    return 'ready'
   }
 }
 

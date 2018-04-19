@@ -13,6 +13,7 @@ export default class App {
     }
     this.setupStaticRoutes();
     this.setupPolylines();
+    this.update = this.update.bind(this);
   }
 
   setupStaticRoutes() {
@@ -78,11 +79,11 @@ export default class App {
     const direction = id.slice(-1)[0][0];
     const route = this.state.routes[line];
 
-    const train = new Train(line, direction);
+    const train = new Train(trainId, line, direction);
     train.setup(route, feed);
     train.marker.addTo(this.state.map);
-    train.start();
-    this.awaitResponse(train);
+    train.start(this.update);
+
     console.log('THIS HAS PASSED THE AWAITRESPONSE');
     this.state.trains[train.line] = Object.assign({},
       this.state.trains[train.line],
@@ -90,9 +91,14 @@ export default class App {
     );
   }
 
-  async awaitResponse(train) {
-    await train.eventListener();
-    console.log('ITS WORKING');
-    return;
+  update(action) {
+    if (action.type === 'delete') {
+      console.log(this.state.trains[line]);
+      console.log(`deleting ${action.trainId}`);
+      delete this.state.trains.line[trainId];
+      console.log(this.state.trains[line]);
+    } else {
+      console.log('not deleted');
+    }
   }
 }
