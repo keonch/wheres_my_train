@@ -74924,12 +74924,15 @@ class App {
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](trainId);
-        const route = this.state.routes[train.line];
-        this.setupTrainMarker(train, route, feed[trainId]).then(marker => {
-          marker.addTo(this.state.map);
+        this.createTrain(trainId, feed[trainId])
+        .then((train) => {
+          train.marker.addTo(this.state.map);
           train.start();
-          this.state.trains[trainId] = train;
+          this.state.trains[train.line] = Object.assign(
+            {},
+            { trainId: train },
+            this.state.trains[train.line]
+          );
         }).catch(error => {
           console.log(error);
           console.log(trainId);
@@ -74945,11 +74948,16 @@ class App {
     });
   }
 
-  async setupTrainMarker(train, route, feed) {
-    const marker = await train.setup(route, feed);
-    return marker;
-  }
+  async createTrain(trainId, feed) {
+    const id = trainId.split(".");
+    const line = id[0].split("_").slice(-1)[0];
+    const direction = id.slice(-1)[0][0];
+    const route = this.state.routes[line];
 
+    const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](line, direction);
+
+    return await train.setup(route, feed);
+  }
 }
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
@@ -75223,12 +75231,12 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
 // =============== this.status ================
-// awaiting => train is waiting to leave its origin station
+// standby => train is waiting to leave its origin station
 // active => train is currently in transit (has prevStop and nextStop)
 // idle => train has reached its last stop
 // ============================================
@@ -75236,65 +75244,61 @@ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE_
 
 
 
+
 class Train {
-  constructor(id) {
-    this.line = id.split(".")[0].split("_").slice(-1)[0];
-    this.direction = id.split(".").slice(-1)[0][0];
+  constructor(line, direction) {
+    this.line = line;
+    this.direction = direction;
   }
 
   setup(route, feed) {
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
 
-    switch (this.getFeedCase(feed)) {
-      // if train has no vehicle movement, it is at its origin station
-      case 'no vehicle':
-        this.status = 'standby';
-        this.setMarkerAtOrigin();
-        break;
+    this.setStatus(feed);
 
-      case 'at origin':
-        this.vehicleTime = feed.vehicle.timestamp * 1000;
-        this.status = 'standby';
-        this.setMarkerAtOrigin();
+    switch (this.status) {
+      case 'standby':
+        this.nextStop = this.staticRoute[0];
+        this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop)], 0);
         break;
-
-      case 'at last stop':
-        this.vehicleTime = feed.vehicle.timestamp * 1000;
-        this.status = 'idle';
+      case 'idle':
         this.setMarkerAtFinal();
         break;
-
       case 'active':
-        this.vehicleTime = feed.vehicle.timestamp * 1000;
-        this.status = 'active';
         this.setActiveMarker();
         break;
     }
-    return this.marker;
+
+    return this;
   }
 
-  getFeedCase(feed) {
-    if (!feed.vehicle) return 'no vehicle';
-    const feedFirstStopTime =
-      this.feedRoute[0].departure ||
-      this.feedRoute[0].arrival;
-    const feedLastStopTime =
-      this.feedRoute[this.feedRoute.length - 1].arrival ||
-      this.feedRoute[this.feedRoute.length - 1].departure;
-    const vehicleTime = feed.vehicle.timestamp;
-    if (vehicleTime <= feedFirstStopTime.time * 1000 && this.feedRoute[0].stopId.slice(0, -1) === this.staticRoute[0].id) {
+  setStatus(feed) {
+    // if train has no vehicle movement, it is at its origin station
+    if (!feed.vehicle) this.status = 'standby';
+
+    this.vehicleTime = feed.vehicle.timestamp * 1000;
+
+    const firstStationTime = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getStationTime"])(this.feedRoute[0]);
+    const lastStationTime = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getStationTime"])(this.feedRoute[this.feedRoute.length - 1]);
+
+    if (
+      this.vehicleTime <= firstStationTime &&
+      this.feedRoute[0].stopId.slice(0, -1) === this.staticRoute[0].id
+    ) {
+      this.nextStop = this.staticRoute[0];
+      this.countdown = firstStationTime - new Date();
       return 'at origin';
-    } else if (vehicleTime >= feedLastStopTime.time * 1000) {
+
+    } else if (this.vehicleTime >= lastStationTime) {
       return 'at last stop';
+
     } else {
       return 'active';
     }
   }
 
   setMarkerAtOrigin() {
-    const firstStop = this.staticRoute[0];
-    this.createMarker([[firstStop.lat, firstStop.lng], [firstStop.lat, firstStop.lng]], 0);
   }
 
   setMarkerAtFinal() {
@@ -75353,18 +75357,32 @@ class Train {
 
   start() {
     this.marker.start();
-    this.setMarkerHandler();
-  }
 
-  setMarkerHandler() {
     if (this.status === 'active') {
       this.marker.addEventListener('end', () => {
-        
+        this.update();
       });
+
+    } else if (this.status === 'standby') {
+      this.setCountdown();
+
+    } else if (this.status === 'idle') {
+      this.marker.setOpacity(.5);
+      setTimeout(() => { this.fire('ended') }, 10000);
     }
+  }
+
+  update() {
+    console.log('active marker ended');
+  };
+
+  setCountdown() {
+    const currentTime = new Date();
+    const countdown = this.nextStop
   }
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -75400,12 +75418,14 @@ function parseFeed(feed) {
 /*!******************************!*\
   !*** ./utils/train_utils.js ***!
   \******************************/
-/*! exports provided: interpolate */
+/*! exports provided: interpolate, getLatLng, getStationTime */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatLng", function() { return getLatLng; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStationTime", function() { return getStationTime; });
 function interpolate(from, to, fromTime, toTime) {
   const r = timeRatio(fromTime, toTime);
   const lat = from.lat + (to.lat - from.lat) * r;
@@ -75418,6 +75438,15 @@ function timeRatio(fromTime, toTime) {
   const currentTime = (toTime) - new Date();
   // if currentTime is negative train has passed the station
   return (currentTime / routeTime);
+}
+
+function getLatLng(station) {
+  return [station.lat, station.lng];
+}
+
+function getStationTime(station) {
+  const stationEntity = station.arrival || station.departure;
+  return stationEntity.time * 1000;
 }
 
 // export function getVelocity(toStation, currentPos, timeOfArrival) {

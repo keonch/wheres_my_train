@@ -1,71 +1,67 @@
 // =============== this.status ================
-// awaiting => train is waiting to leave its origin station
+// standby => train is waiting to leave its origin station
 // active => train is currently in transit (has prevStop and nextStop)
 // idle => train has reached its last stop
 // ============================================
 
 import trainIcons from '../assets/train_icons.json';
 import { interpolate } from '../utils/train_utils';
+import { getLatLng, getStationTime } from '../utils/train_utils';
 
 export default class Train {
-  constructor(id) {
-    this.line = id.split(".")[0].split("_").slice(-1)[0];
-    this.direction = id.split(".").slice(-1)[0][0];
+  constructor(line, direction) {
+    this.line = line;
+    this.direction = direction;
   }
 
   setup(route, feed) {
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
 
-    switch (this.getFeedCase(feed)) {
-      // if train has no vehicle movement, it is at its origin station
-      case 'no vehicle':
-        this.status = 'standby';
-        this.setMarkerAtOrigin();
-        break;
+    this.setStatus(feed);
 
-      case 'at origin':
-        this.vehicleTime = feed.vehicle.timestamp * 1000;
-        this.status = 'standby';
-        this.setMarkerAtOrigin();
+    switch (this.status) {
+      case 'standby':
+        this.nextStop = this.staticRoute[0];
+        this.createMarker([getLatLng(this.nextStop)], 0);
         break;
-
-      case 'at last stop':
-        this.vehicleTime = feed.vehicle.timestamp * 1000;
-        this.status = 'idle';
+      case 'idle':
         this.setMarkerAtFinal();
         break;
-
       case 'active':
-        this.vehicleTime = feed.vehicle.timestamp * 1000;
-        this.status = 'active';
         this.setActiveMarker();
         break;
     }
-    return this.marker;
+
+    return this;
   }
 
-  getFeedCase(feed) {
-    if (!feed.vehicle) return 'no vehicle';
-    const feedFirstStopTime =
-      this.feedRoute[0].departure ||
-      this.feedRoute[0].arrival;
-    const feedLastStopTime =
-      this.feedRoute[this.feedRoute.length - 1].arrival ||
-      this.feedRoute[this.feedRoute.length - 1].departure;
-    const vehicleTime = feed.vehicle.timestamp;
-    if (vehicleTime <= feedFirstStopTime.time * 1000 && this.feedRoute[0].stopId.slice(0, -1) === this.staticRoute[0].id) {
+  setStatus(feed) {
+    // if train has no vehicle movement, it is at its origin station
+    if (!feed.vehicle) this.status = 'standby';
+
+    this.vehicleTime = feed.vehicle.timestamp * 1000;
+
+    const firstStationTime = getStationTime(this.feedRoute[0]);
+    const lastStationTime = getStationTime(this.feedRoute[this.feedRoute.length - 1]);
+
+    if (
+      this.vehicleTime <= firstStationTime &&
+      this.feedRoute[0].stopId.slice(0, -1) === this.staticRoute[0].id
+    ) {
+      this.nextStop = this.staticRoute[0];
+      this.countdown = firstStationTime - new Date();
       return 'at origin';
-    } else if (vehicleTime >= feedLastStopTime.time * 1000) {
+
+    } else if (this.vehicleTime >= lastStationTime) {
       return 'at last stop';
+
     } else {
       return 'active';
     }
   }
 
   setMarkerAtOrigin() {
-    const firstStop = this.staticRoute[0];
-    this.createMarker([[firstStop.lat, firstStop.lng], [firstStop.lat, firstStop.lng]], 0);
   }
 
   setMarkerAtFinal() {
@@ -124,14 +120,27 @@ export default class Train {
 
   start() {
     this.marker.start();
-    this.setMarkerHandler();
-  }
 
-  setMarkerHandler() {
     if (this.status === 'active') {
       this.marker.addEventListener('end', () => {
-        
+        this.update();
       });
+
+    } else if (this.status === 'standby') {
+      this.setCountdown();
+
+    } else if (this.status === 'idle') {
+      this.marker.setOpacity(.5);
+      setTimeout(() => { this.fire('ended') }, 10000);
     }
+  }
+
+  update() {
+    console.log('active marker ended');
+  };
+
+  setCountdown() {
+    const currentTime = new Date();
+    const countdown = this.nextStop
   }
 }

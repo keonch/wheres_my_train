@@ -61,12 +61,15 @@ export default class App {
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        const train = new Train(trainId);
-        const route = this.state.routes[train.line];
-        this.setupTrainMarker(train, route, feed[trainId]).then(marker => {
-          marker.addTo(this.state.map);
+        this.createTrain(trainId, feed[trainId])
+        .then((train) => {
+          train.marker.addTo(this.state.map);
           train.start();
-          this.state.trains[trainId] = train;
+          this.state.trains[train.line] = Object.assign(
+            {},
+            { trainId: train },
+            this.state.trains[train.line]
+          );
         }).catch(error => {
           console.log(error);
           console.log(trainId);
@@ -82,9 +85,14 @@ export default class App {
     });
   }
 
-  async setupTrainMarker(train, route, feed) {
-    const marker = await train.setup(route, feed);
-    return marker;
-  }
+  async createTrain(trainId, feed) {
+    const id = trainId.split(".");
+    const line = id[0].split("_").slice(-1)[0];
+    const direction = id.slice(-1)[0][0];
+    const route = this.state.routes[line];
 
+    const train = new Train(line, direction);
+
+    return await train.setup(route, feed);
+  }
 }

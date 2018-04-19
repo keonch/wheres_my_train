@@ -12,6 +12,15 @@ function timeRatio(fromTime, toTime) {
   return (currentTime / routeTime);
 }
 
+export function getLatLng(station) {
+  return [station.lat, station.lng];
+}
+
+export function getStationTime(station) {
+  const stationEntity = station.arrival || station.departure;
+  return stationEntity.time * 1000;
+}
+
 // export function getVelocity(toStation, currentPos, timeOfArrival) {
 //   const dLat = toStation.lat - currentPos.lat;
 //   const dLng = toStation.lng - currentPos.lng;
