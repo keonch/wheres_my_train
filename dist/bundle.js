@@ -74930,7 +74930,6 @@ class App {
           marker.addTo(this.state.map);
           train.start();
           this.state.trains[trainId] = train;
-          if (train.status === 'active') this.setListener(trainId);
         }).catch(error => {
           console.log(error);
           console.log(trainId);
@@ -74951,12 +74950,6 @@ class App {
     return marker;
   }
 
-  setListener(trainId) {
-    const marker = this.state.trains[trainId].marker;
-    marker.addEventListener('end', () => {
-      marker.setOpacity(.5);
-    });
-  }
 }
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
@@ -75359,7 +75352,16 @@ class Train {
   }
 
   start() {
-    
+    this.marker.start();
+    this.setMarkerHandler();
+  }
+
+  setMarkerHandler() {
+    if (this.status === 'active') {
+      this.marker.addEventListener('end', () => {
+        
+      });
+    }
   }
 }
 

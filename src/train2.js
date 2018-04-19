@@ -123,6 +123,15 @@ export default class Train {
   }
 
   start() {
-    
+    this.marker.start();
+    this.setMarkerHandler();
+  }
+
+  setMarkerHandler() {
+    if (this.status === 'active') {
+      this.marker.addEventListener('end', () => {
+        
+      });
+    }
   }
 }
