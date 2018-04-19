@@ -74916,9 +74916,9 @@ class App {
 
   setupFeed(feed) {
     Object.keys(feed).forEach((trainId) => {
-      // if train feed does not include tripUpdate the
+      // if train feed does not include tripUpdate or vehicleUpdate the
       // train is not assigned a route hence no instance of the train is made
-      if (!feed[trainId].tripUpdate) {
+      if (!feed[trainId].tripUpdate || !feed[trainId].vehicle) {
         console.log("unassigned");
 
       // create a new train object if new vehicleUpdate and tripUpdate
@@ -75244,16 +75244,18 @@ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE_
 
 
 
-
 class Train {
   constructor(line, direction) {
     this.line = line;
     this.direction = direction;
+
+    this.startCountdown = this.startCountdown.bind.this;
   }
 
   setup(route, feed) {
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
+    this.vehicleTime = feed.vehicle.timestamp * 1000;
 
     this.setStatus(feed);
 
@@ -75263,7 +75265,8 @@ class Train {
         this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop)], 0);
         break;
       case 'idle':
-        this.setMarkerAtFinal();
+        this.nextStop = this.staticRoute[this.staticRoute.length - 1];
+        this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop)], 0);
         break;
       case 'active':
         this.setActiveMarker();
@@ -75274,59 +75277,51 @@ class Train {
   }
 
   setStatus(feed) {
-    // if train has no vehicle movement, it is at its origin station
-    if (!feed.vehicle) this.status = 'standby';
-
-    this.vehicleTime = feed.vehicle.timestamp * 1000;
-
     const firstStationTime = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getStationTime"])(this.feedRoute[0]);
     const lastStationTime = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getStationTime"])(this.feedRoute[this.feedRoute.length - 1]);
+    const currentTime = new Date();
 
     if (
-      this.vehicleTime <= firstStationTime &&
-      this.feedRoute[0].stopId.slice(0, -1) === this.staticRoute[0].id
+      firstStationTime >= currentTime &&
+      this.staticRoute[0].id === this.feedRoute[0].stopId.slice(0, -1)
     ) {
-      this.nextStop = this.staticRoute[0];
-      this.countdown = firstStationTime - new Date();
-      return 'at origin';
+      this.countdown = firstStationTime - currentTime;
+      this.status = 'standby';
 
-    } else if (this.vehicleTime >= lastStationTime) {
-      return 'at last stop';
+    } else if (
+      this.vehicleTime >= lastStationTime ||
+      currentTime >= lastStationTime
+    ) {
+      this.status = 'idle';
 
     } else {
-      return 'active';
+      this.status = 'active';
     }
-  }
-
-  setMarkerAtOrigin() {
-  }
-
-  setMarkerAtFinal() {
-    const lastStop = this.staticRoute[this.staticRoute.length - 1];
-    this.createMarker([[lastStop.lat, lastStop.lng], [lastStop.lat, lastStop.lng]], 0);
   }
 
   setActiveMarker() {
     const path = [];
+    const currentTime = new Date();
+
     for (let i = 0; i < this.feedRoute.length; i++) {
       const station = this.feedRoute[i];
-      const stationEntity = station.arrival || station.departure;
-      const stationTime = stationEntity.time * 1000;
+      const stationTime = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getStationTime"])(station);
 
-      if (this.vehicleTime <= stationTime) {
+      if (currentTime < stationTime) {
+        // this.vehicleTime <= stationTime &&
 
         for (let j = 1; j < this.staticRoute.length; j++) {
 
           if (this.staticRoute[j].id === station.stopId.slice(0, -1)) {
-            this.prevStop = this.staticRoute[j - 1];
             this.nextStop = this.staticRoute[j];
+            this.prevStop = this.staticRoute[j - 1];
 
             // implement interpolation
             // const currentPos = interpolate(this.prevStop, this.nextStop, this.vehicleTime, stationTime);
 
-            path.push([this.prevStop.lat, this.prevStop.lng]);
-            path.push([this.nextStop.lat, this.nextStop.lng]);
-            this.timeDifference = (stationTime) - this.vehicleTime;
+            path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop));
+            path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop));
+            this.timeDifference = stationTime - currentTime;
             this.createMarker(path, this.timeDifference);
             return;
           }
@@ -75364,7 +75359,7 @@ class Train {
       });
 
     } else if (this.status === 'standby') {
-      this.setCountdown();
+      this.startCountdown();
 
     } else if (this.status === 'idle') {
       this.marker.setOpacity(.5);
@@ -75373,12 +75368,11 @@ class Train {
   }
 
   update() {
-    console.log('active marker ended');
-  };
+    console.log(`${this.line} just made its next stop`);
+  }
 
-  setCountdown() {
-    const currentTime = new Date();
-    const countdown = this.nextStop
+  startCountdown() {
+    setTimeout(() => this.update(), this.countdown);
   }
 }
 

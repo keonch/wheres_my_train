@@ -53,9 +53,9 @@ export default class App {
 
   setupFeed(feed) {
     Object.keys(feed).forEach((trainId) => {
-      // if train feed does not include tripUpdate the
+      // if train feed does not include tripUpdate or vehicleUpdate the
       // train is not assigned a route hence no instance of the train is made
-      if (!feed[trainId].tripUpdate) {
+      if (!feed[trainId].tripUpdate || !feed[trainId].vehicle) {
         console.log("unassigned");
 
       // create a new train object if new vehicleUpdate and tripUpdate
