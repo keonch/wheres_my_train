@@ -78,7 +78,7 @@
 /*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, B, C, D, E, F, H, J, L, M, N, Q, R, W, Z, 6X, SI, G, GS, SS, S, default */
 /***/ (function(module) {
 
-module.exports = {"1":{"trainColor":"#B70000","labelColor":"#ffffff"},"2":{"trainColor":"#B70000","labelColor":"#ffffff"},"3":{"trainColor":"#B70000","labelColor":"#ffffff"},"4":{"trainColor":"#006600","labelColor":"#ffffff"},"5":{"trainColor":"#006600","labelColor":"#ffffff"},"6":{"trainColor":"#006600","labelColor":"#ffffff"},"7":{"trainColor":"#660066","labelColor":"#ffffff"},"A":{"trainColor":"#00008E","labelColor":"#ffffff"},"B":{"trainColor":"#CC8400","labelColor":"#ffffff"},"C":{"trainColor":"#00008E","labelColor":"#ffffff"},"D":{"trainColor":"#CC8400","labelColor":"#ffffff"},"E":{"trainColor":"#00008E","labelColor":"#ffffff"},"F":{"trainColor":"#CC8400","labelColor":"#ffffff"},"H":{"trainColor":"#00008E","labelColor":"#ffffff"},"J":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"L":{"trainColor":"#BFBFBF","labelColor":"#ffffff"},"M":{"trainColor":"#CC8400","labelColor":"#ffffff"},"N":{"trainColor":"#CCCC00","labelColor":"#000000"},"Q":{"trainColor":"#CCCC00","labelColor":"#000000"},"R":{"trainColor":"#CCCC00","labelColor":"#000000"},"W":{"trainColor":"#CCCC00","labelColor":"#000000"},"Z":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"6X":{"trainColor":"#006600","labelColor":"#ffffff"},"SI":{"trainColor":"#0000CE","labelColor":"#ffffff"},"G":{"trainColor":"#59B759","labelColor":"#ffffff"},"GS":{"trainColor":"gray","labelColor":"ffffff"},"SS":{"trainColor":"#000052","labelColor":"ffffff"},"S":{"trainColor":"gray","labelColor":"ffffff"}};
+module.exports = {"1":{"trainColor":"#B70000","labelColor":"#ffffff"},"2":{"trainColor":"#B70000","labelColor":"#ffffff"},"3":{"trainColor":"#B70000","labelColor":"#ffffff"},"4":{"trainColor":"#006600","labelColor":"#ffffff"},"5":{"trainColor":"#006600","labelColor":"#ffffff"},"6":{"trainColor":"#006600","labelColor":"#ffffff"},"7":{"trainColor":"#660066","labelColor":"#ffffff"},"A":{"trainColor":"#00008E","labelColor":"#ffffff"},"B":{"trainColor":"#CC8400","labelColor":"#ffffff"},"C":{"trainColor":"#00008E","labelColor":"#ffffff"},"D":{"trainColor":"#CC8400","labelColor":"#ffffff"},"E":{"trainColor":"#00008E","labelColor":"#ffffff"},"F":{"trainColor":"#CC8400","labelColor":"#ffffff"},"H":{"trainColor":"#00008E","labelColor":"#ffffff"},"J":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"L":{"trainColor":"#BFBFBF","labelColor":"#ffffff"},"M":{"trainColor":"#CC8400","labelColor":"#ffffff"},"N":{"trainColor":"#CCCC00","labelColor":"#000000"},"Q":{"trainColor":"#FCCC0A","labelColor":"#000000"},"R":{"trainColor":"#CCCC00","labelColor":"#000000"},"W":{"trainColor":"#CCCC00","labelColor":"#000000"},"Z":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"6X":{"trainColor":"#006600","labelColor":"#ffffff"},"SI":{"trainColor":"#0000CE","labelColor":"#ffffff"},"G":{"trainColor":"#59B759","labelColor":"#ffffff"},"GS":{"trainColor":"gray","labelColor":"ffffff"},"SS":{"trainColor":"#000052","labelColor":"ffffff"},"S":{"trainColor":"gray","labelColor":"ffffff"}};
 
 /***/ }),
 
@@ -74919,25 +74919,26 @@ class App {
       // if train feed does not include tripUpdate or vehicleUpdate the
       // train is not assigned a route hence no instance of the train is made
       if (!feed[trainId].tripUpdate || !feed[trainId].vehicle) {
-        console.log("unassigned");
+        console.log("Unassigned");
+        console.log(feed[trainId].tripUpdate);
 
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        this.createTrain(trainId, feed[trainId])
-        .then((train) => {
+        const train = this.createTrain(trainId, feed[trainId]);
+        
+        // .then((train) => {
           train.marker.addTo(this.state.map);
           train.start();
-          this.state.trains[train.line] = Object.assign(
-            {},
-            { trainId: train },
-            this.state.trains[train.line]
+          this.state.trains[train.line] = Object.assign({},
+            this.state.trains[train.line],
+            { [trainId]: train }
           );
-        }).catch(error => {
-          console.log(error);
-          console.log(trainId);
-          console.log(feed[trainId]);
-        });
+        // }).catch(error => {
+        //   console.log(error);
+        //   console.log(trainId);
+        //   console.log(feed[trainId]);
+        // });
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -74945,18 +74946,19 @@ class App {
         console.log('update train');
         // this.state.trains[trainId].update(feed[trainId]);
       }
+      console.log('end of iteration');
     });
   }
 
-  async createTrain(trainId, feed) {
+  createTrain(trainId, feed) {
     const id = trainId.split(".");
     const line = id[0].split("_").slice(-1)[0];
     const direction = id.slice(-1)[0][0];
     const route = this.state.routes[line];
 
     const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](line, direction);
-
-    return await train.setup(route, feed);
+    return train.setup(route, feed);
+    // return await train.setup(route, feed);
   }
 }
 
@@ -75248,25 +75250,25 @@ class Train {
   constructor(line, direction) {
     this.line = line;
     this.direction = direction;
-
-    this.startCountdown = this.startCountdown.bind.this;
   }
 
   setup(route, feed) {
+    console.log('setting up');
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
     this.vehicleTime = feed.vehicle.timestamp * 1000;
-
     this.setStatus(feed);
 
     switch (this.status) {
       case 'standby':
+        this.prevStop = this.staticRoute[0];
         this.nextStop = this.staticRoute[0];
-        this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop)], 0);
+        this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop), Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop)], 1);
         break;
       case 'idle':
+        this.prevStop = this.staticRoute[this.staticRoute.length - 1];
         this.nextStop = this.staticRoute[this.staticRoute.length - 1];
-        this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop)], 0);
+        this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop), _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"][this.nextStop]], 1);
         break;
       case 'active':
         this.setActiveMarker();
@@ -75333,7 +75335,7 @@ class Train {
     // station has not been found in its staic route
     // use Dijktra's algorithm to determine distances between stations
     // merge it's route with static route
-    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [0]);
+    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
     this.status = 'reroute';
   }
 
@@ -75359,20 +75361,15 @@ class Train {
       });
 
     } else if (this.status === 'standby') {
-      this.startCountdown();
+      setTimeout(() => this.update(), this.countdown);
 
     } else if (this.status === 'idle') {
       this.marker.setOpacity(.5);
-      setTimeout(() => { this.fire('ended') }, 10000);
+      setTimeout(() => this.update(), 60000);
     }
   }
 
   update() {
-    console.log(`${this.line} just made its next stop`);
-  }
-
-  startCountdown() {
-    setTimeout(() => this.update(), this.countdown);
   }
 }
 

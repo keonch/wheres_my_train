@@ -56,25 +56,26 @@ export default class App {
       // if train feed does not include tripUpdate or vehicleUpdate the
       // train is not assigned a route hence no instance of the train is made
       if (!feed[trainId].tripUpdate || !feed[trainId].vehicle) {
-        console.log("unassigned");
+        console.log("Unassigned");
+        console.log(feed[trainId].tripUpdate);
 
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        this.createTrain(trainId, feed[trainId])
-        .then((train) => {
+        const train = this.createTrain(trainId, feed[trainId]);
+        
+        // .then((train) => {
           train.marker.addTo(this.state.map);
           train.start();
-          this.state.trains[train.line] = Object.assign(
-            {},
-            { trainId: train },
-            this.state.trains[train.line]
+          this.state.trains[train.line] = Object.assign({},
+            this.state.trains[train.line],
+            { [trainId]: train }
           );
-        }).catch(error => {
-          console.log(error);
-          console.log(trainId);
-          console.log(feed[trainId]);
-        });
+        // }).catch(error => {
+        //   console.log(error);
+        //   console.log(trainId);
+        //   console.log(feed[trainId]);
+        // });
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -82,17 +83,18 @@ export default class App {
         console.log('update train');
         // this.state.trains[trainId].update(feed[trainId]);
       }
+      console.log('end of iteration');
     });
   }
 
-  async createTrain(trainId, feed) {
+  createTrain(trainId, feed) {
     const id = trainId.split(".");
     const line = id[0].split("_").slice(-1)[0];
     const direction = id.slice(-1)[0][0];
     const route = this.state.routes[line];
 
     const train = new Train(line, direction);
-
-    return await train.setup(route, feed);
+    return train.setup(route, feed);
+    // return await train.setup(route, feed);
   }
 }

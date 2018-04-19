@@ -15,25 +15,25 @@ export default class Train {
   constructor(line, direction) {
     this.line = line;
     this.direction = direction;
-
-    this.startCountdown = this.startCountdown.bind.this;
   }
 
   setup(route, feed) {
+    console.log('setting up');
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
     this.vehicleTime = feed.vehicle.timestamp * 1000;
-
     this.setStatus(feed);
 
     switch (this.status) {
       case 'standby':
+        this.prevStop = this.staticRoute[0];
         this.nextStop = this.staticRoute[0];
-        this.createMarker([getLatLng(this.nextStop)], 0);
+        this.createMarker([getLatLng(this.prevStop), getLatLng(this.nextStop)], 1);
         break;
       case 'idle':
+        this.prevStop = this.staticRoute[this.staticRoute.length - 1];
         this.nextStop = this.staticRoute[this.staticRoute.length - 1];
-        this.createMarker([getLatLng(this.nextStop)], 0);
+        this.createMarker([getLatLng(this.prevStop), getLatLng[this.nextStop]], 1);
         break;
       case 'active':
         this.setActiveMarker();
@@ -100,7 +100,7 @@ export default class Train {
     // station has not been found in its staic route
     // use Dijktra's algorithm to determine distances between stations
     // merge it's route with static route
-    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [0]);
+    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
     this.status = 'reroute';
   }
 
@@ -126,19 +126,14 @@ export default class Train {
       });
 
     } else if (this.status === 'standby') {
-      this.startCountdown();
+      setTimeout(() => this.update(), this.countdown);
 
     } else if (this.status === 'idle') {
       this.marker.setOpacity(.5);
-      setTimeout(() => { this.fire('ended') }, 10000);
+      setTimeout(() => this.update(), 60000);
     }
   }
 
   update() {
-    console.log(`${this.line} just made its next stop`);
-  }
-
-  startCountdown() {
-    setTimeout(() => this.update(), this.countdown);
   }
 }
