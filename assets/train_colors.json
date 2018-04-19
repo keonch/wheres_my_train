@@ -104,6 +104,10 @@
     "labelColor": "ffffff"
   },
   "SS": {
+    "trainColor": "#000052",
+    "labelColor": "ffffff"
+  },
+  "S": {
     "trainColor": "gray",
     "labelColor": "ffffff"
   }

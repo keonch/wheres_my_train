@@ -42,7 +42,7 @@ function requestMta(store, req) {
       console.log('200 OK');
       updateTime();
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
-      store.setupTrains(parseFeed(feed));
+      store.setupFeed(parseFeed(feed));
     } else {
       console.log(error);
       // setup a condition to break out of loop

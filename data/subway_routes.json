@@ -354,9 +354,10 @@
     "Grand Central - 42 St",
     "Times Sq - 42 St"
   ],
-  "SS": [
-    "Grand Central - 42 St",
-    "Times Sq - 42 St"
+  "S": [
+    "Franklin Av",
+    "Park Pl",
+    "Botanic Garden"
   ],
   "A": [
     "Inwood - 207 St",
@@ -410,9 +411,7 @@
     "80 St",
     "88 St",
     "Rockaway Blvd",
-    "104 St",
-    "111 St",
-    "Ozone Park - Lefferts Blvd",
+
     "Aqueduct Racetrack",
     "Aqueduct - N Conduit Av",
     "Howard Beach - JFK Airport",
@@ -422,12 +421,16 @@
     "Beach 44 St",
     "Beach 36 St",
     "Beach 25 St",
-    "Far Rockaway - Mott Av",
-    "Broad Channel",
+    "Far Rockaway - Mott Av"
+  ],
+  "H": [
     "Beach 90 St",
-    "Beach 98 St",
-    "Beach 105 St",
-    "Rockaway Park - Beach 116 St"
+    "Beach 67 St",
+    "Beach 60 St",
+    "Beach 44 St",
+    "Beach 36 St",
+    "Beach 25 St",
+    "Far Rockaway - Mott Av"
   ],
   "C": [
     "168 St",
@@ -955,6 +958,31 @@
     "Whitehall St"
   ],
   "SI": [
+    "Tottenville",
+    "Atlantic",
+    "Arthur Kill",
+    "Nassau",
+    "Richmond Valley",
+    "Pleasant Plains",
+    "Prince's Bay",
+    "Huguenot",
+    "Annadale",
+    "Eltingville",
+    "Great Kills",
+    "Bay Terrace",
+    "Oakwood Heights",
+    "New Dorp",
+    "Grant City",
+    "Jefferson Av",
+    "Dongan Hills",
+    "Old Town",
+    "Grasmere",
+    "Clifton",
+    "Stapleton",
+    "Tompkinsville",
+    "St George"
+  ],
+  "SS": [
     "Tottenville",
     "Atlantic",
     "Arthur Kill",

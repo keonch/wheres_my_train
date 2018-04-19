@@ -5,7 +5,7 @@
 // ============================================
 
 import trainIcons from '../assets/train_icons.json';
-import { getLatLng } from '../utils/train_utils';
+import { interpolate } from '../utils/train_utils';
 
 export default class Train {
   constructor(id) {
@@ -42,6 +42,7 @@ export default class Train {
         this.setActiveMarker();
         break;
     }
+    return this.marker;
   }
 
   getFeedCase(feed) {
@@ -53,7 +54,6 @@ export default class Train {
       this.feedRoute[this.feedRoute.length - 1].arrival ||
       this.feedRoute[this.feedRoute.length - 1].departure;
     const vehicleTime = feed.vehicle.timestamp;
-
     if (vehicleTime <= feedFirstStopTime.time * 1000 && this.feedRoute[0].stopId.slice(0, -1) === this.staticRoute[0].id) {
       return 'at origin';
     } else if (vehicleTime >= feedLastStopTime.time * 1000) {
@@ -77,22 +77,36 @@ export default class Train {
     const path = [];
     for (let i = 0; i < this.feedRoute.length; i++) {
       const station = this.feedRoute[i];
-      const stationTime = station.arrival || station.departure;
+      const stationEntity = station.arrival || station.departure;
+      const stationTime = stationEntity.time * 1000;
 
-      if (this.vehicleTime <= stationTime.time * 1000) {
+      if (this.vehicleTime <= stationTime) {
+
         for (let j = 1; j < this.staticRoute.length; j++) {
+
           if (this.staticRoute[j].id === station.stopId.slice(0, -1)) {
             this.prevStop = this.staticRoute[j - 1];
             this.nextStop = this.staticRoute[j];
+
+            // implement interpolation
+            // const currentPos = interpolate(this.prevStop, this.nextStop, this.vehicleTime, stationTime);
+
             path.push([this.prevStop.lat, this.prevStop.lng]);
             path.push([this.nextStop.lat, this.nextStop.lng]);
-            this.timeDifference = (stationTime.time * 1000) - this.vehicleTime;
+            this.timeDifference = (stationTime) - this.vehicleTime;
             this.createMarker(path, this.timeDifference);
             return;
           }
         }
       }
     }
+
+    // placeholder for when train is off static route
+    // station has not been found in its staic route
+    // use Dijktra's algorithm to determine distances between stations
+    // merge it's route with static route
+    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [0]);
+    this.status = 'reroute';
   }
 
   createMarker(path, t) {
@@ -108,7 +122,7 @@ export default class Train {
     this.marker = marker;
   }
 
-  moveMarker() {
-    this.marker.start();
+  start() {
+    
   }
 }

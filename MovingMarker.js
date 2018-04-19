@@ -17,7 +17,7 @@ L.Marker.MovingMarker = L.Marker.extend({
     },
 
     options: {
-        autostart: true,
+        autostart: false,
         loop: false,
     },
 

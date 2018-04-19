@@ -51,8 +51,8 @@ export default class App {
     });
   }
 
-  setupTrains(feed) {
-    const latestFeedTrainId = Object.keys(feed).forEach((trainId) => {
+  setupFeed(feed) {
+    Object.keys(feed).forEach((trainId) => {
       // if train feed does not include tripUpdate the
       // train is not assigned a route hence no instance of the train is made
       if (!feed[trainId].tripUpdate) {
@@ -63,50 +63,35 @@ export default class App {
       } else if (!this.state.trains[trainId]) {
         const train = new Train(trainId);
         const route = this.state.routes[train.line];
-        train.setup(route, feed[trainId]);
-        train.marker.addTo(this.state.map);
-        // this.state.trains[trainId] = train;
+        this.setupTrainMarker(train, route, feed[trainId]).then(marker => {
+          marker.addTo(this.state.map);
+          train.start();
+          this.state.trains[trainId] = train;
+          if (train.status === 'active') this.setListener(trainId);
+        }).catch(error => {
+          console.log(error);
+          console.log(trainId);
+          console.log(feed[trainId]);
+        });
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
-      // } else if (this.state.trains[trainId]) {
-      //   this.state.trains[trainId].update(feed[trainId]);
+      } else if (this.state.trains[trainId]) {
+        console.log('update train');
+        // this.state.trains[trainId].update(feed[trainId]);
       }
     });
   }
 
-  // create a marker on map only if train is active
-  setMarker(train) {
-    const route = this.state.routes[train.line];
+  async setupTrainMarker(train, route, feed) {
+    const marker = await train.setup(route, feed);
+    return marker;
+  }
 
-    if (train.status !== 'active') return;
-
-    const path = [];
-    if (train.direction === 'S') {
-      for (let i = 0; i < route.length; i++) {
-        if (route[i].id === train.nextStop) {
-          path.push([route[i - 1].lat, route[i - 1].lng]);
-          path.push([route[i].lat, route[i].lng]);
-        }
-      }
-    } else if (train.direction === 'N') {
-      for (let i = route.length - 1; i >= 0; i--) {
-        if (route[i].id === train.nextStop) {
-          path.push([route[i + 1].lat, route[i + 1].lng]);
-          path.push([route[i].lat, route[i].lng]);
-        }
-      }
-    }
-
-    if (path.length === 0) return;
-
-    const t = Math.floor(train.timeDifference / path.length);
-
-    train.createMarker(path, t);
-    train.marker.addTo(this.state.map);
-    train.startMoving();
-    train.marker.on('end', function() {
-      train.marker.setOpacity(.5);
+  setListener(trainId) {
+    const marker = this.state.trains[trainId].marker;
+    marker.addEventListener('end', () => {
+      marker.setOpacity(.5);
     });
   }
 }
