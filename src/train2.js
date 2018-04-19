@@ -18,7 +18,6 @@ export default class Train {
   }
 
   setup(route, feed) {
-    console.log('setting up');
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
     this.vehicleTime = feed.vehicle.timestamp * 1000;
@@ -33,14 +32,12 @@ export default class Train {
       case 'idle':
         this.prevStop = this.staticRoute[this.staticRoute.length - 1];
         this.nextStop = this.staticRoute[this.staticRoute.length - 1];
-        this.createMarker([getLatLng(this.prevStop), getLatLng[this.nextStop]], 1);
+        this.createMarker([getLatLng(this.prevStop), getLatLng(this.nextStop)], 1);
         break;
       case 'active':
         this.setActiveMarker();
         break;
     }
-
-    return this;
   }
 
   setStatus(feed) {
@@ -67,8 +64,14 @@ export default class Train {
   }
 
   setActiveMarker() {
-    const path = [];
     const currentTime = new Date();
+
+    if (getStationTime(this.feedRoute[0]) > currentTime) {
+      this.generateInitialRoute();
+      return;
+    }
+// =====================================================================
+    const path = [];
 
     for (let i = 0; i < this.feedRoute.length; i++) {
       const station = this.feedRoute[i];
@@ -104,6 +107,10 @@ export default class Train {
     this.status = 'reroute';
   }
 
+  generateInitialRoute() {
+    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
+  }
+
   createMarker(path, t) {
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
@@ -134,6 +141,11 @@ export default class Train {
     }
   }
 
+  async eventListener() {
+    return await this.update();
+  }
+
   update() {
+    return 'ready'
   }
 }

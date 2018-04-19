@@ -78,7 +78,7 @@
 /*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, B, C, D, E, F, H, J, L, M, N, Q, R, W, Z, 6X, SI, G, GS, SS, S, default */
 /***/ (function(module) {
 
-module.exports = {"1":{"trainColor":"#B70000","labelColor":"#ffffff"},"2":{"trainColor":"#B70000","labelColor":"#ffffff"},"3":{"trainColor":"#B70000","labelColor":"#ffffff"},"4":{"trainColor":"#006600","labelColor":"#ffffff"},"5":{"trainColor":"#006600","labelColor":"#ffffff"},"6":{"trainColor":"#006600","labelColor":"#ffffff"},"7":{"trainColor":"#660066","labelColor":"#ffffff"},"A":{"trainColor":"#00008E","labelColor":"#ffffff"},"B":{"trainColor":"#CC8400","labelColor":"#ffffff"},"C":{"trainColor":"#00008E","labelColor":"#ffffff"},"D":{"trainColor":"#CC8400","labelColor":"#ffffff"},"E":{"trainColor":"#00008E","labelColor":"#ffffff"},"F":{"trainColor":"#CC8400","labelColor":"#ffffff"},"H":{"trainColor":"#00008E","labelColor":"#ffffff"},"J":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"L":{"trainColor":"#BFBFBF","labelColor":"#ffffff"},"M":{"trainColor":"#CC8400","labelColor":"#ffffff"},"N":{"trainColor":"#CCCC00","labelColor":"#000000"},"Q":{"trainColor":"#FCCC0A","labelColor":"#000000"},"R":{"trainColor":"#CCCC00","labelColor":"#000000"},"W":{"trainColor":"#CCCC00","labelColor":"#000000"},"Z":{"trainColor":"#5B3B00","labelColor":"#ffffff"},"6X":{"trainColor":"#006600","labelColor":"#ffffff"},"SI":{"trainColor":"#0000CE","labelColor":"#ffffff"},"G":{"trainColor":"#59B759","labelColor":"#ffffff"},"GS":{"trainColor":"gray","labelColor":"ffffff"},"SS":{"trainColor":"#000052","labelColor":"ffffff"},"S":{"trainColor":"gray","labelColor":"ffffff"}};
+module.exports = {"1":{"trainColor":"#EE352E","labelColor":"#ffffff"},"2":{"trainColor":"#EE352E","labelColor":"#ffffff"},"3":{"trainColor":"#EE352E","labelColor":"#ffffff"},"4":{"trainColor":"#00933C","labelColor":"#ffffff"},"5":{"trainColor":"#00933C","labelColor":"#ffffff"},"6":{"trainColor":"#00933C","labelColor":"#ffffff"},"7":{"trainColor":"#B933AD","labelColor":"#ffffff"},"A":{"trainColor":"#2850AD","labelColor":"#ffffff"},"B":{"trainColor":"#FF6319","labelColor":"#ffffff"},"C":{"trainColor":"#2850AD","labelColor":"#ffffff"},"D":{"trainColor":"#FF6319","labelColor":"#ffffff"},"E":{"trainColor":"#2850AD","labelColor":"#ffffff"},"F":{"trainColor":"#FF6319","labelColor":"#ffffff"},"H":{"trainColor":"#2850AD","labelColor":"#ffffff"},"J":{"trainColor":"#963","labelColor":"#ffffff"},"L":{"trainColor":"#A7A9AC","labelColor":"#ffffff"},"M":{"trainColor":"#FF6319","labelColor":"#ffffff"},"N":{"trainColor":"#FCCC0A","labelColor":"#000000"},"Q":{"trainColor":"#FCCC0A","labelColor":"#000000"},"R":{"trainColor":"#FCCC0A","labelColor":"#000000"},"W":{"trainColor":"#FCCC0A","labelColor":"#000000"},"Z":{"trainColor":"#963","labelColor":"#ffffff"},"6X":{"trainColor":"#006600","labelColor":"#ffffff"},"SI":{"trainColor":"#000052","labelColor":"#ffffff"},"G":{"trainColor":"#6CBE45","labelColor":"#ffffff"},"GS":{"trainColor":"808183","labelColor":"ffffff"},"SS":{"trainColor":"#000052","labelColor":"ffffff"},"S":{"trainColor":"808183","labelColor":"ffffff"}};
 
 /***/ }),
 
@@ -74920,25 +74920,11 @@ class App {
       // train is not assigned a route hence no instance of the train is made
       if (!feed[trainId].tripUpdate || !feed[trainId].vehicle) {
         console.log("Unassigned");
-        console.log(feed[trainId].tripUpdate);
 
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        const train = this.createTrain(trainId, feed[trainId]);
-        
-        // .then((train) => {
-          train.marker.addTo(this.state.map);
-          train.start();
-          this.state.trains[train.line] = Object.assign({},
-            this.state.trains[train.line],
-            { [trainId]: train }
-          );
-        // }).catch(error => {
-        //   console.log(error);
-        //   console.log(trainId);
-        //   console.log(feed[trainId]);
-        // });
+        setTimeout(() => this.createTrain(trainId, feed[trainId]), 0);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -74946,7 +74932,6 @@ class App {
         console.log('update train');
         // this.state.trains[trainId].update(feed[trainId]);
       }
-      console.log('end of iteration');
     });
   }
 
@@ -74957,8 +74942,21 @@ class App {
     const route = this.state.routes[line];
 
     const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](line, direction);
-    return train.setup(route, feed);
-    // return await train.setup(route, feed);
+    train.setup(route, feed);
+    train.marker.addTo(this.state.map);
+    train.start();
+    this.awaitResponse(train);
+    console.log('THIS HAS PASSED THE AWAITRESPONSE');
+    this.state.trains[train.line] = Object.assign({},
+      this.state.trains[train.line],
+      { [trainId]: train }
+    );
+  }
+
+  async awaitResponse(train) {
+    await train.eventListener();
+    console.log('ITS WORKING');
+    return;
   }
 }
 
@@ -75233,7 +75231,7 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
@@ -75253,7 +75251,6 @@ class Train {
   }
 
   setup(route, feed) {
-    console.log('setting up');
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = feed.tripUpdate.stopTimeUpdate;
     this.vehicleTime = feed.vehicle.timestamp * 1000;
@@ -75268,14 +75265,12 @@ class Train {
       case 'idle':
         this.prevStop = this.staticRoute[this.staticRoute.length - 1];
         this.nextStop = this.staticRoute[this.staticRoute.length - 1];
-        this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop), _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"][this.nextStop]], 1);
+        this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop), Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop)], 1);
         break;
       case 'active':
         this.setActiveMarker();
         break;
     }
-
-    return this;
   }
 
   setStatus(feed) {
@@ -75302,8 +75297,14 @@ class Train {
   }
 
   setActiveMarker() {
-    const path = [];
     const currentTime = new Date();
+
+    if (Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getStationTime"])(this.feedRoute[0]) > currentTime) {
+      this.generateInitialRoute();
+      return;
+    }
+// =====================================================================
+    const path = [];
 
     for (let i = 0; i < this.feedRoute.length; i++) {
       const station = this.feedRoute[i];
@@ -75339,6 +75340,10 @@ class Train {
     this.status = 'reroute';
   }
 
+  generateInitialRoute() {
+    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
+  }
+
   createMarker(path, t) {
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
@@ -75369,11 +75374,15 @@ class Train {
     }
   }
 
+  async eventListener() {
+    return await this.update();
+  }
+
   update() {
+    return 'ready'
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

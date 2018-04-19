@@ -57,25 +57,11 @@ export default class App {
       // train is not assigned a route hence no instance of the train is made
       if (!feed[trainId].tripUpdate || !feed[trainId].vehicle) {
         console.log("Unassigned");
-        console.log(feed[trainId].tripUpdate);
 
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        const train = this.createTrain(trainId, feed[trainId]);
-        
-        // .then((train) => {
-          train.marker.addTo(this.state.map);
-          train.start();
-          this.state.trains[train.line] = Object.assign({},
-            this.state.trains[train.line],
-            { [trainId]: train }
-          );
-        // }).catch(error => {
-        //   console.log(error);
-        //   console.log(trainId);
-        //   console.log(feed[trainId]);
-        // });
+        setTimeout(() => this.createTrain(trainId, feed[trainId]), 0);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -83,7 +69,6 @@ export default class App {
         console.log('update train');
         // this.state.trains[trainId].update(feed[trainId]);
       }
-      console.log('end of iteration');
     });
   }
 
@@ -94,7 +79,20 @@ export default class App {
     const route = this.state.routes[line];
 
     const train = new Train(line, direction);
-    return train.setup(route, feed);
-    // return await train.setup(route, feed);
+    train.setup(route, feed);
+    train.marker.addTo(this.state.map);
+    train.start();
+    this.awaitResponse(train);
+    console.log('THIS HAS PASSED THE AWAITRESPONSE');
+    this.state.trains[train.line] = Object.assign({},
+      this.state.trains[train.line],
+      { [trainId]: train }
+    );
+  }
+
+  async awaitResponse(train) {
+    await train.eventListener();
+    console.log('ITS WORKING');
+    return;
   }
 }

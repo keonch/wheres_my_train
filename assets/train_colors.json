@@ -1,46 +1,46 @@
 {
   "A": {
-    "trainColor": "#00008E",
+    "trainColor": "#2850AD",
     "labelColor": "#ffffff"
   },
   "B": {
-    "trainColor": "#CC8400",
+    "trainColor": "#FF6319",
     "labelColor": "#ffffff"
   },
   "C": {
-    "trainColor": "#00008E",
+    "trainColor": "#2850AD",
     "labelColor": "#ffffff"
   },
   "D": {
-    "trainColor": "#CC8400",
+    "trainColor": "#FF6319",
     "labelColor": "#ffffff"
   },
   "E": {
-    "trainColor": "#00008E",
+    "trainColor": "#2850AD",
     "labelColor": "#ffffff"
   },
   "F": {
-    "trainColor": "#CC8400",
+    "trainColor": "#FF6319",
     "labelColor": "#ffffff"
   },
   "H": {
-    "trainColor": "#00008E",
+    "trainColor": "#2850AD",
     "labelColor": "#ffffff"
   },
   "J": {
-    "trainColor": "#5B3B00",
+    "trainColor": "#963",
     "labelColor": "#ffffff"
   },
   "L": {
-    "trainColor": "#BFBFBF",
+    "trainColor": "#A7A9AC",
     "labelColor": "#ffffff"
   },
   "M": {
-    "trainColor": "#CC8400",
+    "trainColor": "#FF6319",
     "labelColor": "#ffffff"
   },
   "N": {
-    "trainColor": "#CCCC00",
+    "trainColor": "#FCCC0A",
     "labelColor": "#000000"
   },
   "Q": {
@@ -48,39 +48,39 @@
     "labelColor": "#000000"
   },
   "R": {
-    "trainColor": "#CCCC00",
+    "trainColor": "#FCCC0A",
     "labelColor": "#000000"
   },
   "W": {
-    "trainColor": "#CCCC00",
+    "trainColor": "#FCCC0A",
     "labelColor": "#000000"
   },
   "Z": {
-    "trainColor": "#5B3B00",
+    "trainColor": "#963",
     "labelColor": "#ffffff"
   },
   "1": {
-    "trainColor": "#B70000",
+    "trainColor": "#EE352E",
     "labelColor": "#ffffff"
   },
   "2": {
-    "trainColor": "#B70000",
+    "trainColor": "#EE352E",
     "labelColor": "#ffffff"
   },
   "3": {
-    "trainColor": "#B70000",
+    "trainColor": "#EE352E",
     "labelColor": "#ffffff"
   },
   "4": {
-    "trainColor": "#006600",
+    "trainColor": "#00933C",
     "labelColor": "#ffffff"
   },
   "5": {
-    "trainColor": "#006600",
+    "trainColor": "#00933C",
     "labelColor": "#ffffff"
   },
   "6": {
-    "trainColor": "#006600",
+    "trainColor": "#00933C",
     "labelColor": "#ffffff"
   },
   "6X": {
@@ -88,19 +88,19 @@
     "labelColor": "#ffffff"
   },
   "7": {
-    "trainColor": "#660066",
+    "trainColor": "#B933AD",
     "labelColor": "#ffffff"
   },
   "SI": {
-    "trainColor": "#0000CE",
+    "trainColor": "#000052",
     "labelColor": "#ffffff"
   },
   "G": {
-    "trainColor": "#59B759",
+    "trainColor": "#6CBE45",
     "labelColor": "#ffffff"
   },
   "GS": {
-    "trainColor": "gray",
+    "trainColor": "808183",
     "labelColor": "ffffff"
   },
   "SS": {
@@ -108,7 +108,7 @@
     "labelColor": "ffffff"
   },
   "S": {
-    "trainColor": "gray",
+    "trainColor": "808183",
     "labelColor": "ffffff"
   }
 }
