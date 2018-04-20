@@ -74946,8 +74946,7 @@ class App {
     train.setup(route, feed);
     train.marker.addTo(this.state.map);
     train.start(this.update);
-
-    console.log('THIS HAS PASSED THE AWAITRESPONSE');
+    console.log(this.state.trains[train.line]);
     this.state.trains[train.line] = Object.assign({},
       this.state.trains[train.line],
       { [trainId]: train }
@@ -74956,12 +74955,9 @@ class App {
 
   update(action) {
     if (action.type === 'delete') {
-      console.log(this.state.trains[line]);
-      console.log(`deleting ${action.trainId}`);
-      delete this.state.trains.line[trainId];
-      console.log(this.state.trains[line]);
+      this.state.trains[action.line][action.trainId].marker.remove();
+      delete this.state.trains[action.line][action.trainId];
     } else {
-      console.log('not deleted');
     }
   }
 }
