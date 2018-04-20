@@ -83,7 +83,6 @@ export default class App {
     train.setup(route, feed);
     train.marker.addTo(this.state.map);
     train.start(this.update);
-    console.log(this.state.trains[train.line]);
     this.state.trains[train.line] = Object.assign({},
       this.state.trains[train.line],
       { [trainId]: train }

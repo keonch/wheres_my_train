@@ -127,6 +127,7 @@ export default class Train {
 
   start(update) {
     this.marker.start();
+    const action = {};
 
     if (this.status === 'active') {
       this.marker.addEventListener('end', () => {
@@ -134,11 +135,13 @@ export default class Train {
       });
 
     } else if (this.status === 'standby') {
+      action.type = 'standby';
+      action.trainId = this.id;
+      action.line = this.line;
       setTimeout(() => update('from standby'), this.countdown);
 
     } else if (this.status === 'idle') {
       this.marker.setOpacity(.5);
-      const action = {};
       action.type = 'delete';
       action.trainId = this.id;
       action.line = this.line;
