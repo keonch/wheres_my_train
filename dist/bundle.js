@@ -74785,7 +74785,7 @@ class App {
       const countdown = train.firstStationTime - new Date();
       setTimeout(() => {
         train.status = 'active';
-        this.updateRoute(train);
+        this.updateTrain(train);
       }, countdown);
 
     } else if (train.status === 'reroute') {
@@ -75239,6 +75239,7 @@ class Train {
     // check if train has reached its final stop
     if (this.nextStop.id === this.staticRoute[this.staticRoute.length - 1].id) {
       this.status = 'idle';
+      console.log('ending');
       this.marker.fire('end');
     }
 

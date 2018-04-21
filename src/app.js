@@ -98,7 +98,7 @@ export default class App {
       const countdown = train.firstStationTime - new Date();
       setTimeout(() => {
         train.status = 'active';
-        this.updateRoute(train);
+        this.updateTrain(train);
       }, countdown);
 
     } else if (train.status === 'reroute') {
