@@ -21,11 +21,6 @@ export function getStationTime(station) {
   return stationEntity.time * 1000;
 }
 
-// export function getVelocity(toStation, currentPos, timeOfArrival) {
-//   const dLat = toStation.lat - currentPos.lat;
-//   const dLng = toStation.lng - currentPos.lng;
-//   const disp = [dLat, dLng];
-//   const t = (timeOfArrival * 1000) - new Date();
-//   const v = [(disp[0] / t), (disp[1] / t)];
-//   return v;
-// }
+export function mergeRoutes(staticRoute, feedRoute) {
+
+}

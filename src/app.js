@@ -103,9 +103,12 @@ export default class App {
       setTimeout(() => this.deleteTrain(train), 60000);
 
     } else if (train.status === 'standby') {
-      const countdown = train.firstStationTime - new Date();
+      const countdown = train.departureTime - new Date();
       setTimeout(() => {
         train.status = 'active';
+        train.marker.remove();
+        train.setMarkerParams();
+        train.createActiveMarker();
         this.updateTrain(train);
       }, countdown);
 
@@ -113,7 +116,7 @@ export default class App {
       this.deleteTrain(train);
 
     } else if (train.status === 'active') {
-      train.updatePath();
+      train.marker.start();
     }
   }
 

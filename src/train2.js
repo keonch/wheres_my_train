@@ -8,7 +8,8 @@ import trainIcons from '../assets/train_icons.json';
 import {
   interpolate,
   getLatLng,
-  getStationTime
+  getStationTime,
+  mergeRoutes
 } from '../utils/train_utils';
 
 export default class Train {
@@ -16,48 +17,26 @@ export default class Train {
     this.id = id;
     this.line = line;
     this.direction = direction;
-    this.setup(route, feed);
-  }
-
-  setup(route, feed) {
-    this.staticRoute = this.direction === 'S' ? route : route.reverse();
-    this.feedRoute = feed.tripUpdate.stopTimeUpdate;
     this.vehicleTime = feed.vehicle.timestamp * 1000;
-    this.setStatus(feed);
-
-    switch (this.status) {
-      case 'standby':
-        this.prevStop = this.staticRoute[0];
-        this.nextStop = this.staticRoute[0];
-        this.createMarker([getLatLng(this.prevStop), getLatLng(this.nextStop)], 1);
-        break;
-      case 'idle':
-        this.prevStop = this.staticRoute[this.staticRoute.length - 1];
-        this.nextStop = this.staticRoute[this.staticRoute.length - 1];
-        this.createMarker([getLatLng(this.prevStop), getLatLng(this.nextStop)], 1);
-        break;
-      case 'active':
-        this.setActiveMarker();
-        break;
-    }
+    
+    this.setRoute(route, feed.tripUpdate.stopTimeUpdate)
+    this.setStatus();
+    this.setMarker();
   }
 
-  setStatus(feed) {
-    const firstStationTime = getStationTime(this.feedRoute[0]);
-    const lastStationTime = getStationTime(this.feedRoute[this.feedRoute.length - 1]);
+  setRoute(route, feedRoute) {
+    const staticRoute = this.direction === 'S' ? route : route.reverse();
+    this.route = mergeRoutes(staticRoute, feedRoute);
+  }
+
+  setStatus() {
     const currentTime = new Date();
 
-    if (
-      firstStationTime >= currentTime &&
-      this.staticRoute[0].id === this.feedRoute[0].stopId.slice(0, -1)
-    ) {
-      this.firstStationTime = firstStationTime;
+    if (this.route[0].time >= currentTime) {
+      this.departureTime = this.route[0].time;
       this.status = 'standby';
 
-    } else if (
-      this.vehicleTime >= lastStationTime ||
-      currentTime >= lastStationTime
-    ) {
+    } else if (this.route[this.route.length - 1].time <= currentTime) {
       this.status = 'idle';
 
     } else {
@@ -65,45 +44,37 @@ export default class Train {
     }
   }
 
-  setActiveMarker() {
-    const path = [];
-    const currentTime = new Date();
-
-    for (let i = 0; i < this.feedRoute.length; i++) {
-      const station = this.feedRoute[i];
-      const stationTime = getStationTime(station);
-
-      if (currentTime < stationTime) {
-        // this.vehicleTime <= stationTime &&
-
-        for (let j = 1; j < this.staticRoute.length; j++) {
-
-          if (this.staticRoute[j].id === station.stopId.slice(0, -1)) {
-            this.nextStop = this.staticRoute[j];
-            this.prevStop = this.staticRoute[j - 1];
-
-            // implement interpolation
-            // const currentPos = interpolate(this.prevStop, this.nextStop, this.vehicleTime, stationTime);
-
-            path.push(getLatLng(this.prevStop));
-            path.push(getLatLng(this.nextStop));
-            this.timeDifference = stationTime - currentTime;
-            this.createMarker(path, this.timeDifference);
-            return;
-          }
-        }
-      }
+  setMarker() {
+    switch (this.status) {
+      case 'standby':
+      this.stop = this.staticRoute[0];
+      this.marker = L.Marker(getLatLng(this.stop));
+      break;
+      case 'idle':
+      this.stop = this.staticRoute[this.staticRoute.length - 1];
+      this.marker = L.Marker(getLatLng(this.stop));
+      break;
+      case 'active':
+      this.setMarkerParams();
+      this.createActiveMarker(this.path, this.pathTime);
+      break;
     }
-
-    // placeholder for when train is off static route
-    // station has not been found in its staic route
-    // use Dijktra's algorithm to determine distances between stations
-    // merge it's route with static route
-    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
-    this.status = 'reroute';
   }
 
-  createMarker(path, t) {
+  setMarkerParams() {
+    const path = [];
+    const pathTime = [];
+    const currentTime = new Date();
+
+    this.route.forEach((station) => {
+      const stationTime = station.time;
+      if (stationTime >= this.vehicleTime) {
+        station.path
+      }
+    });
+  }
+
+  createActiveMarker(path, t) {
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
     const marker = new L.Marker.movingMarker(path, [t]);
@@ -116,40 +87,38 @@ export default class Train {
     this.marker = marker;
   }
 
-  updatePath() {
-    // check if train has reached its final stop
-    if (this.nextStop.id === this.staticRoute[this.staticRoute.length - 1].id) {
-      this.status = 'idle';
-      this.marker.fire('end');
-    }
-
-    const currentTime = new Date();
-
-    for (let i = 0; i < this.feedRoute.length; i++) {
-      const station = this.feedRoute[i];
-      const stationTime = getStationTime(station);
-
-      if (currentTime < stationTime) {
-        // this.vehicleTime <= stationTime &&
-
-        for (let j = 1; j < this.staticRoute.length; j++) {
-
-          if (this.staticRoute[j].id === station.stopId.slice(0, -1)) {
-            this.nextStop = this.staticRoute[j];
-            this.prevStop = this.staticRoute[j - 1];
-
-            // implement interpolation
-            // const currentPos = interpolate(this.prevStop, this.nextStop, this.vehicleTime, stationTime);
-
-            this.timeDifference = stationTime - currentTime;
-            this.marker.addLatLng(getLatLng(this.nextStop), this.timeDifference);
-            this.marker.start();
-            return;
-          }
-        }
-      }
-    }
-    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
-    this.status = 'reroute';
-  }
+  // const path = [];
+  // const currentTime = new Date();
+  //
+  // for (let i = 0; i < this.feedRoute.length; i++) {
+  //   const station = this.feedRoute[i];
+  //   const stationTime = getStationTime(station);
+  //
+  //   if (currentTime < stationTime) {
+  //     // this.vehicleTime <= stationTime &&
+  //
+  //     for (let j = 1; j < this.staticRoute.length; j++) {
+  //
+  //       if (this.staticRoute[j].id === station.stopId.slice(0, -1)) {
+  //         this.nextStop = this.staticRoute[j];
+  //         this.prevStop = this.staticRoute[j - 1];
+  //
+  //         // implement interpolation
+  //         // const currentPos = interpolate(this.prevStop, this.nextStop, this.vehicleTime, stationTime);
+  //
+  //         path.push(getLatLng(this.prevStop));
+  //         path.push(getLatLng(this.nextStop));
+  //         this.timeDifference = stationTime - currentTime;
+  //         this.createMarker(path, this.timeDifference);
+  //         return;
+  //       }
+  //     }
+  //   }
+  // }
+  // placeholder for when train is off static route
+  // station has not been found in its staic route
+  // use Dijktra's algorithm to determine distances between stations
+  // merge it's route with static route
+  // this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
+  // this.status = 'reroute';
 }
