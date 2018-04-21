@@ -32,7 +32,6 @@ export default class Train {
   setRoute(route, feedRoute) {
     const staticRoute = this.direction === 'S' ? route : route.reverse();
     this.route = mergeRoutes(staticRoute, feedRoute);
-    console.log(this.route);
   }
 
   setStatus() {
@@ -76,7 +75,6 @@ export default class Train {
         addPath = true;
       }
     }
-    console.log(path);
   }
 
   createActiveMarker(params) {

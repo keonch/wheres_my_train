@@ -23,6 +23,8 @@ export function getStationTime(station) {
 
 export function mergeRoutes(staticRoute, feedRoute) {
   let route = staticRoute;
+  console.log(staticRoute);
+  console.log(feedRoute);
   feedRoute.forEach((station) => {
     let stationFound = false;
     for (let i = 0; i < route.length; i++) {
@@ -38,6 +40,5 @@ export function mergeRoutes(staticRoute, feedRoute) {
 }
 
 function mergeStation(route, staticRoute, station) {
-  console.log('merging station');
   return route;
 }

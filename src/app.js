@@ -52,32 +52,36 @@ export default class App {
   }
 
   setupFeed(trainFeeds) {
-    trainFeeds.forEach((trainFeed) => {
-      if (!this.state.trains[trainFeed.id]) {
-        setTimeout(() => this.setTrain(this.createTrain(trainFeed)), 0);
+    console.log(trainFeeds);
+    Object.keys(trainFeeds).forEach((id) => {
+      if (!trainFeeds[id].vehicleTime || !trainFeeds[id].feedRoute) {
+        console.log('unassigned');
 
-      } else if (this.state.trains[trainId]) {
+      } else if (!this.state.trains[id]) {
+        this.setTrain(id, trainFeeds[id]);
+
+      } else if (this.state.trains[id]) {
         console.log('update train');
       }
     });
   }
 
-  createTrain(feed) {
-    const id = feed.id;
+  setTrain(id, feed) {
+    setTimeout(() => {
+      const train = this.createTrain(id, feed);
+      this.state.trains[train.line] = Object.assign({},
+        this.state.trains[train.line],
+        { [train.id]: train }
+      );
+      this.state.trains[train.line].marker.addTo(this.state.map);
+    })
+  }
+
+  createTrain(id, feed) {
     const line = id.split(".")[0].split("_").slice(-1)[0];
     const direction = id.split(".").slice(-1)[0][0];
     const route = this.state.routes[line];
     return new Train(id, line, direction, route, feed);
-    // this.getTrainById(trainId).marker.addEventListener('end', () => this.updateTrain(train));
-    // this.getTrainById(trainId).marker.start();
-  }
-
-  setTrain(train) {
-    this.state.trains[train.line] = Object.assign({},
-      this.state.trains[train.line],
-      { [train.id]: train }
-    );
-    this.state.trains[train.line].marker.addTo(this.state.map);
   }
 
   updateTrain(train) {

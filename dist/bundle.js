@@ -74739,32 +74739,36 @@ class App {
   }
 
   setupFeed(trainFeeds) {
-    trainFeeds.forEach((trainFeed) => {
-      if (!this.state.trains[trainFeed.id]) {
-        setTimeout(() => this.setTrain(this.createTrain(trainFeed)), 0);
+    console.log(trainFeeds);
+    Object.keys(trainFeeds).forEach((id) => {
+      if (!trainFeeds[id].vehicleTime || !trainFeeds[id].feedRoute) {
+        console.log('unassigned');
 
-      } else if (this.state.trains[trainId]) {
+      } else if (!this.state.trains[id]) {
+        this.setTrain(id, trainFeeds[id]);
+
+      } else if (this.state.trains[id]) {
         console.log('update train');
       }
     });
   }
 
-  createTrain(feed) {
-    const id = feed.id;
+  setTrain(id, feed) {
+    setTimeout(() => {
+      const train = this.createTrain(id, feed);
+      this.state.trains[train.line] = Object.assign({},
+        this.state.trains[train.line],
+        { [train.id]: train }
+      );
+      this.state.trains[train.line].marker.addTo(this.state.map);
+    })
+  }
+
+  createTrain(id, feed) {
     const line = id.split(".")[0].split("_").slice(-1)[0];
     const direction = id.split(".").slice(-1)[0][0];
     const route = this.state.routes[line];
     return new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](id, line, direction, route, feed);
-    // this.getTrainById(trainId).marker.addEventListener('end', () => this.updateTrain(train));
-    // this.getTrainById(trainId).marker.start();
-  }
-
-  setTrain(train) {
-    this.state.trains[train.line] = Object.assign({},
-      this.state.trains[train.line],
-      { [train.id]: train }
-    );
-    this.state.trains[train.line].marker.addTo(this.state.map);
   }
 
   updateTrain(train) {
@@ -75111,7 +75115,7 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
@@ -75144,7 +75148,6 @@ class Train {
   setRoute(route, feedRoute) {
     const staticRoute = this.direction === 'S' ? route : route.reverse();
     this.route = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["mergeRoutes"])(staticRoute, feedRoute);
-    console.log(this.route);
   }
 
   setStatus() {
@@ -75188,7 +75191,6 @@ class Train {
         addPath = true;
       }
     }
-    console.log(path);
   }
 
   createActiveMarker(params) {
@@ -75240,7 +75242,6 @@ class Train {
   // this.status = 'reroute';
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -75255,15 +75256,18 @@ class Train {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 function parseFeed(feed) {
-  return feed.entity.map((e) => {
-    if (e.vehicle && e.tripUpdate) {
-      const trainFeed = {};
-      trainFeed.id = e.vehicle.trip.tripId;
-      trainFeed.feedRoute = e.tripUpdate.stopTimeUpdate;
-      trainFeed.vehicleTime = e.vehicle.timestamp * 1000;
-      return trainFeed;
+  let trainFeeds = {};
+  feed.entity.forEach((e) => {
+    let tripId;
+    if (e.vehicle) {
+      tripId = e.vehicle.trip.tripId;
+      trainFeeds[tripId] = Object.assign({}, trainFeeds[tripId],{vehicleTime: e.vehicle.timestamp});
+    } else if (e.tripUpdate) {
+      tripId = e.tripUpdate.trip.tripId;
+      trainFeeds[tripId] = Object.assign({}, trainFeeds[tripId],{feedRoute: e.tripUpdate.stopTimeUpdate});
     }
   });
+  return trainFeeds;
 };
 
 
@@ -75307,6 +75311,8 @@ function getStationTime(station) {
 
 function mergeRoutes(staticRoute, feedRoute) {
   let route = staticRoute;
+  console.log(staticRoute);
+  console.log(feedRoute);
   feedRoute.forEach((station) => {
     let stationFound = false;
     for (let i = 0; i < route.length; i++) {
@@ -75322,7 +75328,6 @@ function mergeRoutes(staticRoute, feedRoute) {
 }
 
 function mergeStation(route, staticRoute, station) {
-  console.log('merging station');
   return route;
 }
 
