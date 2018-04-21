@@ -85,26 +85,27 @@ export default class App {
       this.state.trains[train.line],
       { [trainId]: train }
     );
-    train.marker.addEventListener('end', () => this.updateRoute(train));
+    train.marker.addEventListener('end', () => this.updateTrain(train));
     train.marker.start();
   }
 
-  updateRoute(train) {
+  updateTrain(train) {
     if (train.status === 'idle') {
       train.marker.setOpacity(.4);
       setTimeout(() => this.deleteTrain(train), 60000);
 
     } else if (train.status === 'standby') {
+      const countdown = train.firstStationTime - new Date();
       setTimeout(() => {
         train.status = 'active';
         this.updateRoute(train);
-      }, train.countdown);
+      }, countdown);
 
     } else if (train.status === 'reroute') {
       this.deleteTrain(train);
 
-    } else {
-
+    } else if (train.status === 'active') {
+      train.updatePath();
     }
   }
 

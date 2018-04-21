@@ -74772,26 +74772,27 @@ class App {
       this.state.trains[train.line],
       { [trainId]: train }
     );
-    train.marker.addEventListener('end', () => this.updateRoute(train));
+    train.marker.addEventListener('end', () => this.updateTrain(train));
     train.marker.start();
   }
 
-  updateRoute(train) {
+  updateTrain(train) {
     if (train.status === 'idle') {
       train.marker.setOpacity(.4);
       setTimeout(() => this.deleteTrain(train), 60000);
 
     } else if (train.status === 'standby') {
+      const countdown = train.firstStationTime - new Date();
       setTimeout(() => {
         train.status = 'active';
         this.updateRoute(train);
-      }, train.countdown);
+      }, countdown);
 
     } else if (train.status === 'reroute') {
       this.deleteTrain(train);
 
-    } else {
-
+    } else if (train.status === 'active') {
+      train.updatePath();
     }
   }
 
@@ -75117,7 +75118,7 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
@@ -75169,7 +75170,7 @@ class Train {
       firstStationTime >= currentTime &&
       this.staticRoute[0].id === this.feedRoute[0].stopId.slice(0, -1)
     ) {
-      this.countdown = firstStationTime - currentTime;
+      this.firstStationTime = firstStationTime;
       this.status = 'standby';
 
     } else if (
@@ -75233,8 +75234,21 @@ class Train {
     marker.setIcon(trainIcon);
     this.marker = marker;
   }
+
+  updatePath() {
+    // check if train has reached its final stop
+    if (this.nextStop.id === this.staticRoute[this.staticRoute.length - 1].id) {
+      this.status = 'idle';
+      this.marker.fire('end');
+    }
+
+    const path = [];
+    const currentTime = new Date();
+    console.log('updatePath');
+  }
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

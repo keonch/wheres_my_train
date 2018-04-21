@@ -50,7 +50,7 @@ export default class Train {
       firstStationTime >= currentTime &&
       this.staticRoute[0].id === this.feedRoute[0].stopId.slice(0, -1)
     ) {
-      this.countdown = firstStationTime - currentTime;
+      this.firstStationTime = firstStationTime;
       this.status = 'standby';
 
     } else if (
@@ -113,5 +113,17 @@ export default class Train {
     });
     marker.setIcon(trainIcon);
     this.marker = marker;
+  }
+
+  updatePath() {
+    // check if train has reached its final stop
+    if (this.nextStop.id === this.staticRoute[this.staticRoute.length - 1].id) {
+      this.status = 'idle';
+      this.marker.fire('end');
+    }
+
+    const path = [];
+    const currentTime = new Date();
+    console.log('updatePath');
   }
 }
