@@ -13,7 +13,6 @@ export default class App {
     }
     this.setupStaticRoutes();
     this.setupPolylines();
-    this.update = this.update.bind(this);
   }
 
   setupStaticRoutes() {
@@ -82,18 +81,35 @@ export default class App {
     const train = new Train(trainId, line, direction);
     train.setup(route, feed);
     train.marker.addTo(this.state.map);
-    train.start(this.update);
     this.state.trains[train.line] = Object.assign({},
       this.state.trains[train.line],
       { [trainId]: train }
     );
+    train.marker.addEventListener('end', () => this.updateRoute(train));
+    train.marker.start();
   }
 
-  update(action) {
-    if (action.type === 'delete') {
-      this.state.trains[action.line][action.trainId].marker.remove();
-      delete this.state.trains[action.line][action.trainId];
+  updateRoute(train) {
+    if (train.status === 'idle') {
+      train.marker.setOpacity(.4);
+      setTimeout(() => this.deleteTrain(train), 60000);
+
+    } else if (train.status === 'standby') {
+      setTimeout(() => {
+        train.status = 'active';
+        this.updateRoute(train);
+      }, train.countdown);
+
+    } else if (train.status === 'reroute') {
+      this.deleteTrain(train);
+
     } else {
+
     }
+  }
+
+  deleteTrain(train) {
+    this.state.trains[train.line][train.id].marker.remove();
+    delete this.state.trains[train.line][train.id];
   }
 }

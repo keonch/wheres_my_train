@@ -65,14 +65,8 @@ export default class Train {
   }
 
   setActiveMarker() {
-    const currentTime = new Date();
-
-    if (getStationTime(this.feedRoute[0]) > currentTime) {
-      this.generateInitialRoute();
-      return;
-    }
-// =====================================================================
     const path = [];
+    const currentTime = new Date();
 
     for (let i = 0; i < this.feedRoute.length; i++) {
       const station = this.feedRoute[i];
@@ -108,10 +102,6 @@ export default class Train {
     this.status = 'reroute';
   }
 
-  generateInitialRoute() {
-    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
-  }
-
   createMarker(path, t) {
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
@@ -123,29 +113,5 @@ export default class Train {
     });
     marker.setIcon(trainIcon);
     this.marker = marker;
-  }
-
-  start(update) {
-    this.marker.start();
-    const action = {};
-
-    if (this.status === 'active') {
-      this.marker.addEventListener('end', () => {
-
-      });
-
-    } else if (this.status === 'standby') {
-      action.type = 'standby';
-      action.trainId = this.id;
-      action.line = this.line;
-      setTimeout(() => update('from standby'), this.countdown);
-
-    } else if (this.status === 'idle') {
-      this.marker.setOpacity(.5);
-      action.type = 'delete';
-      action.trainId = this.id;
-      action.line = this.line;
-      setTimeout(() => update(action), 60000);
-    }
   }
 }
