@@ -51,50 +51,33 @@ export default class App {
     });
   }
 
-  setupFeed(feed) {
-    Object.keys(feed).forEach((trainId) => {
-      // if train feed does not include tripUpdate or vehicleUpdate the
-      // train is not assigned a route hence no instance of the train is made
-      if (!feed[trainId].tripUpdate || !feed[trainId].vehicle) {
-        console.log("Unassigned");
+  setupFeed(trainFeeds) {
+    trainFeeds.forEach((trainFeed) => {
+      if (!this.state.trains[trainFeed.id]) {
+        setTimeout(() => this.setTrain(this.createTrain(trainFeed)), 0);
 
-      // create a new train object if new vehicleUpdate and tripUpdate
-      // data is received but does not exist in the store
-      } else if (!this.state.trains[trainId]) {
-        setTimeout(() => this.createTrain(trainId, feed[trainId]), 0);
-
-      // if the train instance already exist in the store, update the train
-      // with new set of data received
       } else if (this.state.trains[trainId]) {
         console.log('update train');
-        // this.state.trains[trainId].update(feed[trainId]);
       }
     });
   }
 
-  createTrain(trainId, feed) {
-    const id = trainId.split(".");
-    const line = id[0].split("_").slice(-1)[0];
-    const direction = id.slice(-1)[0][0];
+  createTrain(feed) {
+    const id = feed.id;
+    const line = id.split(".")[0].split("_").slice(-1)[0];
+    const direction = id.split(".").slice(-1)[0][0];
     const route = this.state.routes[line];
-
-    const train = new Train(trainId, line, direction, route, feed);
-    this.setTrain(trainId, train);
-    this.getTrainById(trainId).marker.addTo(this.state.map);
-    this.getTrainById(trainId).marker.addEventListener('end', () => this.updateTrain(train));
-    this.getTrainById(trainId).marker.start();
+    return new Train(id, line, direction, route, feed);
+    // this.getTrainById(trainId).marker.addEventListener('end', () => this.updateTrain(train));
+    // this.getTrainById(trainId).marker.start();
   }
 
-  setTrain(trainId, train) {
+  setTrain(train) {
     this.state.trains[train.line] = Object.assign({},
       this.state.trains[train.line],
-      { [trainId]: train }
+      { [train.id]: train }
     );
-  }
-
-  getTrainById(trainId) {
-    const line = trainId.split(".")[0].split("_").slice(-1)[0];
-    return this.state.trains[line][trainId];
+    this.state.trains[train.line].marker.addTo(this.state.map);
   }
 
   updateTrain(train) {
@@ -103,12 +86,11 @@ export default class App {
       setTimeout(() => this.deleteTrain(train), 60000);
 
     } else if (train.status === 'standby') {
-      const countdown = train.departureTime - new Date();
+      const countdown = train.route[0].time - new Date();
       setTimeout(() => {
         train.status = 'active';
         train.marker.remove();
-        train.setMarkerParams();
-        train.createActiveMarker();
+        train.setMarker();
         this.updateTrain(train);
       }, countdown);
 

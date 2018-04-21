@@ -74738,50 +74738,33 @@ class App {
     });
   }
 
-  setupFeed(feed) {
-    Object.keys(feed).forEach((trainId) => {
-      // if train feed does not include tripUpdate or vehicleUpdate the
-      // train is not assigned a route hence no instance of the train is made
-      if (!feed[trainId].tripUpdate || !feed[trainId].vehicle) {
-        console.log("Unassigned");
+  setupFeed(trainFeeds) {
+    trainFeeds.forEach((trainFeed) => {
+      if (!this.state.trains[trainFeed.id]) {
+        setTimeout(() => this.setTrain(this.createTrain(trainFeed)), 0);
 
-      // create a new train object if new vehicleUpdate and tripUpdate
-      // data is received but does not exist in the store
-      } else if (!this.state.trains[trainId]) {
-        setTimeout(() => this.createTrain(trainId, feed[trainId]), 0);
-
-      // if the train instance already exist in the store, update the train
-      // with new set of data received
       } else if (this.state.trains[trainId]) {
         console.log('update train');
-        // this.state.trains[trainId].update(feed[trainId]);
       }
     });
   }
 
-  createTrain(trainId, feed) {
-    const id = trainId.split(".");
-    const line = id[0].split("_").slice(-1)[0];
-    const direction = id.slice(-1)[0][0];
+  createTrain(feed) {
+    const id = feed.id;
+    const line = id.split(".")[0].split("_").slice(-1)[0];
+    const direction = id.split(".").slice(-1)[0][0];
     const route = this.state.routes[line];
-
-    const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction, route, feed);
-    this.setTrain(trainId, train);
-    this.getTrainById(trainId).marker.addTo(this.state.map);
-    this.getTrainById(trainId).marker.addEventListener('end', () => this.updateTrain(train));
-    this.getTrainById(trainId).marker.start();
+    return new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](id, line, direction, route, feed);
+    // this.getTrainById(trainId).marker.addEventListener('end', () => this.updateTrain(train));
+    // this.getTrainById(trainId).marker.start();
   }
 
-  setTrain(trainId, train) {
+  setTrain(train) {
     this.state.trains[train.line] = Object.assign({},
       this.state.trains[train.line],
-      { [trainId]: train }
+      { [train.id]: train }
     );
-  }
-
-  getTrainById(trainId) {
-    const line = trainId.split(".")[0].split("_").slice(-1)[0];
-    return this.state.trains[line][trainId];
+    this.state.trains[train.line].marker.addTo(this.state.map);
   }
 
   updateTrain(train) {
@@ -74790,12 +74773,11 @@ class App {
       setTimeout(() => this.deleteTrain(train), 60000);
 
     } else if (train.status === 'standby') {
-      const countdown = train.departureTime - new Date();
+      const countdown = train.route[0].time - new Date();
       setTimeout(() => {
         train.status = 'active';
         train.marker.remove();
-        train.setMarkerParams();
-        train.createActiveMarker();
+        train.setMarker();
         this.updateTrain(train);
       }, countdown);
 
@@ -75129,7 +75111,7 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
@@ -75147,28 +75129,30 @@ class Train {
     this.id = id;
     this.line = line;
     this.direction = direction;
-    this.vehicleTime = feed.vehicle.timestamp * 1000;
-    
-    this.setRoute(route, feed.tripUpdate.stopTimeUpdate)
+    this.vehicleTime = feed.vehicleTime;
+
+    // set this.route (merged from static and feed routes)
+    this.setRoute(route, feed.feedRoute)
+
+    // set this.status (initial status of train)
     this.setStatus();
+
+    // set this.marker (static or active depending on train status)
     this.setMarker();
   }
 
   setRoute(route, feedRoute) {
     const staticRoute = this.direction === 'S' ? route : route.reverse();
     this.route = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["mergeRoutes"])(staticRoute, feedRoute);
+    console.log(this.route);
   }
 
   setStatus() {
     const currentTime = new Date();
-
     if (this.route[0].time >= currentTime) {
-      this.departureTime = this.route[0].time;
       this.status = 'standby';
-
     } else if (this.route[this.route.length - 1].time <= currentTime) {
       this.status = 'idle';
-
     } else {
       this.status = 'active';
     }
@@ -75177,44 +75161,47 @@ class Train {
   setMarker() {
     switch (this.status) {
       case 'standby':
-      this.stop = this.staticRoute[0];
-      this.marker = L.Marker(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.stop));
-      break;
+        this.marker = L.Marker(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.route[0]));
+        break;
       case 'idle':
-      this.stop = this.staticRoute[this.staticRoute.length - 1];
-      this.marker = L.Marker(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.stop));
-      break;
+        this.marker = L.Marker(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.route[this.route.length - 1]));
+        break;
       case 'active':
-      this.setMarkerParams();
-      this.createActiveMarker(this.path, this.pathTime);
-      break;
+        const params = this.getMarkerParams();
+        this.marker = this.createActiveMarker(params);
+        break;
     }
   }
 
-  setMarkerParams() {
+  getMarkerParams() {
     const path = [];
     const pathTime = [];
     const currentTime = new Date();
 
-    this.route.forEach((station) => {
-      const stationTime = station.time;
-      if (stationTime >= this.vehicleTime) {
-        station.path
+    let addPath = false;
+    for (let i = 1; i < this.route.length; i++) {
+      if (this.route[i].time >= currentTime && addPath) {
+        path.push(this.route[i].latLng);
+      } else if (this.route[i].time >= currentTime) {
+        path.push(this.route[i - 1].latLng);
+        path.push(this.route[i].latLng);
+        addPath = true;
       }
-    });
+    }
+    console.log(path);
   }
 
-  createActiveMarker(path, t) {
+  createActiveMarker(params) {
     // t is the train's travel time between from and to a station (ms)
     // path is an array of stations between FROM and TO destination of a train
-    const marker = new L.Marker.movingMarker(path, [t]);
+    const marker = new L.Marker.movingMarker(params.path, params.pathTime);
     const trainIcon = L.icon({
       iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
       iconSize: [25, 25],
       iconAnchor: [12, 12]
     });
     marker.setIcon(trainIcon);
-    this.marker = marker;
+    return marker;
   }
 
   // const path = [];
@@ -75253,6 +75240,7 @@ class Train {
   // this.status = 'reroute';
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -75267,18 +75255,15 @@ class Train {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 function parseFeed(feed) {
-  let trainFeeds = {};
-  feed.entity.forEach((e) => {
-    let tripId;
-    if (e.vehicle) {
-      tripId = e.vehicle.trip.tripId;
-      trainFeeds[tripId] = Object.assign({}, trainFeeds[tripId],{vehicle: e.vehicle});
-    } else if (e.tripUpdate) {
-      tripId = e.tripUpdate.trip.tripId;
-      trainFeeds[tripId] = Object.assign({}, trainFeeds[tripId],{tripUpdate: e.tripUpdate});
+  return feed.entity.map((e) => {
+    if (e.vehicle && e.tripUpdate) {
+      const trainFeed = {};
+      trainFeed.id = e.vehicle.trip.tripId;
+      trainFeed.feedRoute = e.tripUpdate.stopTimeUpdate;
+      trainFeed.vehicleTime = e.vehicle.timestamp * 1000;
+      return trainFeed;
     }
   });
-  return trainFeeds;
 };
 
 
@@ -75293,7 +75278,7 @@ function parseFeed(feed) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatLng", function() { return getLatLng; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStationTime", function() { return getStationTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeRoutes", function() { return mergeRoutes; });
@@ -75321,9 +75306,27 @@ function getStationTime(station) {
 }
 
 function mergeRoutes(staticRoute, feedRoute) {
-
+  let route = staticRoute;
+  feedRoute.forEach((station) => {
+    let stationFound = false;
+    for (let i = 0; i < route.length; i++) {
+      if (station.id === route[i].id) {
+        stationFound = true;
+        route[i].time = station.time;
+        break;
+      }
+    }
+    if (!stationFound) route = mergeStation(route, staticRoute, station);
+  })
+  return route;
 }
 
+function mergeStation(route, staticRoute, station) {
+  console.log('merging station');
+  return route;
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
