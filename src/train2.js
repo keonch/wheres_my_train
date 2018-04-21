@@ -12,10 +12,11 @@ import {
 } from '../utils/train_utils';
 
 export default class Train {
-  constructor(id, line, direction) {
+  constructor(id, line, direction, route, feed) {
     this.id = id;
     this.line = line;
     this.direction = direction;
+    this.setup(route, feed);
   }
 
   setup(route, feed) {
@@ -119,12 +120,36 @@ export default class Train {
     // check if train has reached its final stop
     if (this.nextStop.id === this.staticRoute[this.staticRoute.length - 1].id) {
       this.status = 'idle';
-      console.log('ending');
       this.marker.fire('end');
     }
 
-    const path = [];
     const currentTime = new Date();
-    console.log('updatePath');
+
+    for (let i = 0; i < this.feedRoute.length; i++) {
+      const station = this.feedRoute[i];
+      const stationTime = getStationTime(station);
+
+      if (currentTime < stationTime) {
+        // this.vehicleTime <= stationTime &&
+
+        for (let j = 1; j < this.staticRoute.length; j++) {
+
+          if (this.staticRoute[j].id === station.stopId.slice(0, -1)) {
+            this.nextStop = this.staticRoute[j];
+            this.prevStop = this.staticRoute[j - 1];
+
+            // implement interpolation
+            // const currentPos = interpolate(this.prevStop, this.nextStop, this.vehicleTime, stationTime);
+
+            this.timeDifference = stationTime - currentTime;
+            this.marker.addLatLng(getLatLng(this.nextStop), this.timeDifference);
+            this.marker.start();
+            return;
+          }
+        }
+      }
+    }
+    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
+    this.status = 'reroute';
   }
 }

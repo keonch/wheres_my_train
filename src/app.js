@@ -78,15 +78,23 @@ export default class App {
     const direction = id.slice(-1)[0][0];
     const route = this.state.routes[line];
 
-    const train = new Train(trainId, line, direction);
-    train.setup(route, feed);
-    train.marker.addTo(this.state.map);
+    const train = new Train(trainId, line, direction, route, feed);
+    this.setTrain(trainId, train);
+    this.getTrainById(trainId).marker.addTo(this.state.map);
+    this.getTrainById(trainId).marker.addEventListener('end', () => this.updateTrain(train));
+    this.getTrainById(trainId).marker.start();
+  }
+
+  setTrain(trainId, train) {
     this.state.trains[train.line] = Object.assign({},
       this.state.trains[train.line],
       { [trainId]: train }
     );
-    train.marker.addEventListener('end', () => this.updateTrain(train));
-    train.marker.start();
+  }
+
+  getTrainById(trainId) {
+    const line = trainId.split(".")[0].split("_").slice(-1)[0];
+    return this.state.trains[line][trainId];
   }
 
   updateTrain(train) {

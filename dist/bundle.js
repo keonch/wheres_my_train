@@ -74765,15 +74765,23 @@ class App {
     const direction = id.slice(-1)[0][0];
     const route = this.state.routes[line];
 
-    const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction);
-    train.setup(route, feed);
-    train.marker.addTo(this.state.map);
+    const train = new _src_train2__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction, route, feed);
+    this.setTrain(trainId, train);
+    this.getTrainById(trainId).marker.addTo(this.state.map);
+    this.getTrainById(trainId).marker.addEventListener('end', () => this.updateTrain(train));
+    this.getTrainById(trainId).marker.start();
+  }
+
+  setTrain(trainId, train) {
     this.state.trains[train.line] = Object.assign({},
       this.state.trains[train.line],
       { [trainId]: train }
     );
-    train.marker.addEventListener('end', () => this.updateTrain(train));
-    train.marker.start();
+  }
+
+  getTrainById(trainId) {
+    const line = trainId.split(".")[0].split("_").slice(-1)[0];
+    return this.state.trains[line][trainId];
   }
 
   updateTrain(train) {
@@ -75118,7 +75126,7 @@ function requestMta(store, req) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
@@ -75132,10 +75140,11 @@ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE_
 
 
 class Train {
-  constructor(id, line, direction) {
+  constructor(id, line, direction, route, feed) {
     this.id = id;
     this.line = line;
     this.direction = direction;
+    this.setup(route, feed);
   }
 
   setup(route, feed) {
@@ -75239,17 +75248,40 @@ class Train {
     // check if train has reached its final stop
     if (this.nextStop.id === this.staticRoute[this.staticRoute.length - 1].id) {
       this.status = 'idle';
-      console.log('ending');
       this.marker.fire('end');
     }
 
-    const path = [];
     const currentTime = new Date();
-    console.log('updatePath');
+
+    for (let i = 0; i < this.feedRoute.length; i++) {
+      const station = this.feedRoute[i];
+      const stationTime = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getStationTime"])(station);
+
+      if (currentTime < stationTime) {
+        // this.vehicleTime <= stationTime &&
+
+        for (let j = 1; j < this.staticRoute.length; j++) {
+
+          if (this.staticRoute[j].id === station.stopId.slice(0, -1)) {
+            this.nextStop = this.staticRoute[j];
+            this.prevStop = this.staticRoute[j - 1];
+
+            // implement interpolation
+            // const currentPos = interpolate(this.prevStop, this.nextStop, this.vehicleTime, stationTime);
+
+            this.timeDifference = stationTime - currentTime;
+            this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop), this.timeDifference);
+            this.marker.start();
+            return;
+          }
+        }
+      }
+    }
+    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
+    this.status = 'reroute';
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
