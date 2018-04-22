@@ -18,7 +18,7 @@ export function parseFeedRoute(feedRoute) {
     const stationTime = feedStation.arrival || feedStation.departure;
     return {
       id: feedStation.stopId.slice(0, -1),
-      time: stationTime.time
+      time: stationTime.time * 1000
     }
   })
 };

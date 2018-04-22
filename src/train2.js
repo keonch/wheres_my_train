@@ -21,7 +21,7 @@ export default class Train {
     this.vehicleTime = feed.vehicleTime;
 
     // set this.route (merged from static and feed routes)
-    this.setRoute(route, feed.feedRoute)
+    this.setRoute(route, feed.feedRoute);
 
     // set this.status (initial status of train)
     this.setStatus();

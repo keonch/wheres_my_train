@@ -75138,7 +75138,7 @@ class Train {
     this.vehicleTime = feed.vehicleTime;
 
     // set this.route (merged from static and feed routes)
-    this.setRoute(route, feed.feedRoute)
+    this.setRoute(route, feed.feedRoute);
 
     // set this.status (initial status of train)
     this.setStatus();
@@ -75279,7 +75279,7 @@ function parseFeedRoute(feedRoute) {
     const stationTime = feedStation.arrival || feedStation.departure;
     return {
       id: feedStation.stopId.slice(0, -1),
-      time: stationTime.time
+      time: stationTime.time * 1000
     }
   })
 };
@@ -75291,14 +75291,13 @@ function parseFeedRoute(feedRoute) {
 /*!******************************!*\
   !*** ./utils/train_utils.js ***!
   \******************************/
-/*! exports provided: interpolate, getLatLng, getStationTime, mergeRoutes */
+/*! exports provided: interpolate, getLatLng, mergeRoutes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatLng", function() { return getLatLng; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStationTime", function() { return getStationTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeRoutes", function() { return mergeRoutes; });
 /* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
 var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_0__});
@@ -75322,48 +75321,49 @@ function getLatLng(station) {
   return [station.lat, station.lng];
 }
 
-function getStationTime(station) {
-  const stationEntity = station.arrival || station.departure;
-  return stationEntity.time * 1000;
-}
-
 function mergeRoutes(staticRoute, feedRoute) {
   let route = staticRoute;
 
-  feedRoute.forEach((station) => {
-    let stationFound = false;
-    
+  feedRoute.forEach((feedStation) => {
+    let isIncluded = false;
+
     for (let i = 0; i < route.length; i++) {
-      if (station.id === route[i].id) {
-        stationFound = true;
-        route[i] = Object.assign({}, route[i], { time: station.time });
+      if (feedStation.id === route[i].id) {
+        isIncluded = true;
+        route[i] = Object.assign({}, route[i], { time: feedStation.time });
         break;
       }
     };
 
-    if (!stationFound) {
-      const test = _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[station.stopId.slice(0, -1)];
-      const idx = mergeStation(route, station);
-      const abc = {
-        id: station.stopId.slice(0, -1),
-        lat: test.lat,
-        lng: 'ABCABC',
-        time: getStationTime(station)
-      };
-      route.splice(idx, 0, abc);
+    if (!isIncluded) {
+      const station = {};
+      station.id = feedStation.id;
+      station.lat = _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[feedStation.id].lat;
+      station.lng = _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[feedStation.id].lng;
+      station.time = feedStation.time;
+      route = mergeStation(route, station);
     };
   });
 
-  console.log(route);
   return route;
 }
 
 function mergeStation(route, station) {
-  const idx = 1;
-  return idx;
+  let shortest;
+  let secondShortest;
+
+  route.forEach((routeStation) => {
+    const d = getDistance(getLatLng(routeStation), getLatLng(station));
+  });
+  
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
+function getDistance(station1, station2) {
+  const lat = station1.lat - station2.lat;
+  const lng = station1.lng - station2.lng;
+  return Math.sqrt((lat * lat) + (lng * lng));
+}
+
 
 /***/ }),
 
