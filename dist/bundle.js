@@ -74700,6 +74700,7 @@ class App {
     }
     this.setupStaticRoutes();
     this.setupPolylines();
+    this.update = this.update.bind(this);
   }
 
   setupStaticRoutes() {
@@ -74792,10 +74793,11 @@ class App {
     switch (action.type) {
       case 'delete':
         train.marker.setOpacity(.4);
-        setTimeout(() => this.deleteTrain(train), 60000)
+        setTimeout(() => this.deleteTrain(train), 60000);
         break;
 
       case 'update':
+      console.log('updating');
         train.updatePath();
         train.marker.start();
         break;
@@ -74805,9 +74807,10 @@ class App {
           train.updatePath();
           train.marker.start();
         }, train.countdown);
+        break;
 
       case 'A':
-        train.marker.bindPopup("I am a green leaf.");
+        train.marker.bindPopup('REROUTE');
         break;
     }
   }
@@ -75254,11 +75257,12 @@ class Train {
 
     // placeholder for trains with off routes
     // merge routes
-    this.status = 'reroute needed'
+    this.status = 'reroute'
     this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
   }
 
   generateInitialRoute() {
+    this.status = 'reroute'
     this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
   }
 
@@ -75283,25 +75287,25 @@ class Train {
           type: 'countdown',
           id: this.id,
           line: this.line
-        }
+        };
       case 'idle':
         return {
           type: 'delete',
           id: this.id,
           line: this.line
-        }
+        };
       case 'active':
         return {
           type: 'update',
           id: this.id,
           line: this.line
-        }
+        };
       default:
         return {
           type: 'A',
           id: this.id,
           line: this.line
-        }
+        };
     }
   }
 
@@ -75313,6 +75317,7 @@ class Train {
       this.status = 'idle';
       this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop), 0);
       return;
+
     } else if (
       this.staticRouteIndex !== this.staticRoute.length - 1 &&
       this.feedRouteIndex === this.feedRoute.length - 1
@@ -75320,11 +75325,12 @@ class Train {
       this.status = 'need update';
       this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop), 0);
       return;
+
     } else if (
       this.staticRouteIndex === this.staticRoute.length - 1 &&
       this.feedRouteIndex !== this.feedRoute.length - 1
     ) {
-      this.status = 'need reroute';
+      this.status = 'reroute';
       this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop), 0);
       return;
     }
@@ -75353,7 +75359,7 @@ class Train {
       }
       // next station in feedRoute is not found in staticRoute and needs rerouting
       // placeholder for trains with off routes
-      this.status = 'reroute needed';
+      this.status = 'reroute';
       this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop), 0);
       return;
     }

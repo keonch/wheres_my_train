@@ -13,6 +13,7 @@ export default class App {
     }
     this.setupStaticRoutes();
     this.setupPolylines();
+    this.update = this.update.bind(this);
   }
 
   setupStaticRoutes() {
@@ -105,10 +106,11 @@ export default class App {
     switch (action.type) {
       case 'delete':
         train.marker.setOpacity(.4);
-        setTimeout(() => this.deleteTrain(train), 60000)
+        setTimeout(() => this.deleteTrain(train), 60000);
         break;
 
       case 'update':
+      console.log('updating');
         train.updatePath();
         train.marker.start();
         break;
@@ -118,9 +120,10 @@ export default class App {
           train.updatePath();
           train.marker.start();
         }, train.countdown);
+        break;
 
       case 'A':
-        train.marker.bindPopup("I am a green leaf.");
+        train.marker.bindPopup('REROUTE');
         break;
     }
   }

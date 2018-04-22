@@ -94,11 +94,12 @@ export default class Train {
 
     // placeholder for trains with off routes
     // merge routes
-    this.status = 'reroute needed'
+    this.status = 'reroute'
     this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
   }
 
   generateInitialRoute() {
+    this.status = 'reroute'
     this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
   }
 
@@ -123,25 +124,25 @@ export default class Train {
           type: 'countdown',
           id: this.id,
           line: this.line
-        }
+        };
       case 'idle':
         return {
           type: 'delete',
           id: this.id,
           line: this.line
-        }
+        };
       case 'active':
         return {
           type: 'update',
           id: this.id,
           line: this.line
-        }
+        };
       default:
         return {
           type: 'A',
           id: this.id,
           line: this.line
-        }
+        };
     }
   }
 
@@ -153,6 +154,7 @@ export default class Train {
       this.status = 'idle';
       this.marker.addLatLng(getLatLng(this.nextStop), 0);
       return;
+
     } else if (
       this.staticRouteIndex !== this.staticRoute.length - 1 &&
       this.feedRouteIndex === this.feedRoute.length - 1
@@ -160,11 +162,12 @@ export default class Train {
       this.status = 'need update';
       this.marker.addLatLng(getLatLng(this.nextStop), 0);
       return;
+
     } else if (
       this.staticRouteIndex === this.staticRoute.length - 1 &&
       this.feedRouteIndex !== this.feedRoute.length - 1
     ) {
-      this.status = 'need reroute';
+      this.status = 'reroute';
       this.marker.addLatLng(getLatLng(this.nextStop), 0);
       return;
     }
@@ -193,7 +196,7 @@ export default class Train {
       }
       // next station in feedRoute is not found in staticRoute and needs rerouting
       // placeholder for trains with off routes
-      this.status = 'reroute needed';
+      this.status = 'reroute';
       this.marker.addLatLng(getLatLng(this.nextStop), 0);
       return;
     }
