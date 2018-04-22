@@ -11,6 +11,7 @@ import {
   getStationTime,
   mergeRoutes
 } from '../utils/train_utils';
+import { parseFeedRoute } from '../utils/data_utils';
 
 export default class Train {
   constructor(id, line, direction, route, feed) {
@@ -31,7 +32,8 @@ export default class Train {
 
   setRoute(route, feedRoute) {
     const staticRoute = this.direction === 'S' ? route : route.reverse();
-    this.route = mergeRoutes(staticRoute, feedRoute);
+    const parsedFeedRoute = parseFeedRoute(feedRoute);
+    this.route = mergeRoutes(staticRoute, parsedFeedRoute);
   }
 
   setStatus() {
