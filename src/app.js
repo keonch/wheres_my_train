@@ -1,4 +1,4 @@
-import Train from '../src/train2';
+import Train from '../src/train';
 import trainColors from '../assets/train_colors.json';
 import stations from '../data/stations.json';
 import subwayRoutes from '../data/subway_routes.json';
@@ -51,17 +51,19 @@ export default class App {
     });
   }
 
-  setupFeed(trainFeeds) {
+  setupFeed(feed) {
     Object.keys(feed).forEach((trainId) => {
       // if train feed does not include tripUpdate or vehicleUpdate the
       // train is not assigned a route hence no instance of the train is made
-      if (!feed[trainId].tripUpdate || !feed[trainId].vehicle) {
+      if (!feed[trainId].feedRoute || !feed[trainId].vehicleTime) {
         console.log("Unassigned");
 
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
       } else if (!this.state.trains[trainId]) {
-        setTimeout(() => this.createTrain(trainId, feed[trainId]), 0);
+        setTimeout(() => {
+          this.setupTrain(trainId, feed[trainId]);
+        }, 0);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
@@ -69,30 +71,45 @@ export default class App {
         console.log('update train');
         // this.state.trains[trainId].update(feed[trainId]);
       }
+      console.log('finish iteration');
     });
+  }
+
+  setupTrain(trainId, feed) {
+    const train = this.createTrain(trainId, feed);
+    const route = this.state.routes[train.line];
+    train.setup(route, feed);
+    train.marker.addTo(this.state.map);
+    this.state.trains[train.line] = Object.assign({},
+      this.state.trains[train.line],
+      { [trainId]: train }
+    );
+    this.setListener(train);
+    train.marker.start();
   }
 
   createTrain(trainId, feed) {
     const id = trainId.split(".");
     const line = id[0].split("_").slice(-1)[0];
     const direction = id.slice(-1)[0][0];
-    const route = this.state.routes[line];
+    return new Train(trainId, line, direction);
+  }
 
-    const train = new Train(trainId, line, direction);
-    train.setup(route, feed);
-    train.marker.addTo(this.state.map);
-    train.start(this.update);
-    console.log(this.state.trains[train.line]);
-    this.state.trains[train.line] = Object.assign({},
-      this.state.trains[train.line],
-      { [trainId]: train }
-    );
+  setListener(train) {
+    train.marker.addEventListener('end', () => {
+      const action = train.getAction();
+      this.updateTrain(action);
+    });
   }
 
   updateTrain(action) {
     if (action.type === 'delete') {
-      this.deleteTrain(action.line, action.trainId)
-    } else {
+      console.log(action);
+      console.log(this.state.trains[action.line][action.id]);
+      this.state.trains[action.line][action.id].marker.remove();
+      delete this.state.trains[action.line][action.id];
+    } else if (action.type === 'update') {
+      console.log('updating');
     }
   }
 
@@ -118,8 +135,4 @@ export default class App {
   //   }
   // }
 
-  deleteTrain(line, id) {
-    this.state.trains[line][id].marker.remove();
-    delete this.state.trains[line][id];
-  }
 }

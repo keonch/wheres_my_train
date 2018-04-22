@@ -1,182 +1,195 @@
+// =============== this.status ================
+// standby => train is waiting to leave its origin station
+// active => train is currently in transit (has prevStop and nextStop)
+// idle => train has reached its last stop
+// ============================================
+
 import trainIcons from '../assets/train_icons.json';
-import trainColors from '../assets/train_colors.json';
-import { getVelocity, timeRatio, interpolate } from '../util/train_utils';
-import { getStationById, getLatLng } from '../util/data_utils';
+import {
+  getLatLng
+} from '../utils/train_utils';
+import {
+  parseFeedRoute,
+  getStationById
+} from '../utils/data_utils';
 
 export default class Train {
-  constructor(map, feed, trainId) {
-    this.trainLabel = trainId[7];
-    this.stops = feed.tripUpdate.stopTimeUpdate;
-
-    // vehicle state - based on realtime
-    this.vehicleTime;
-    this.prevStationTime;
-    this.nextStationTime;
-    this.prevStationPos;
-    this.nextStationPos;
-    this.status;
-
-    // marker state - based on estimation
-    this.marker = null;
-    this.pos;
-    this.nextPos;
-    this.velocity = [0, 0];
-
-    this.setStates();
-    this.setRenderState();
-    this.setVelocity();
-    this.setMarker(map);
+  constructor(id, line, direction) {
+    this.id = id;
+    this.line = line;
+    this.direction = direction;
   }
 
-  update(feed) {
-    this.setStates();
-    this.updateRenderState();
-    this.updateVelocity();
-  }
+  setup(route, feed) {
+    this.staticRoute = this.direction === 'S' ? route : route.reverse();
+    this.feedRoute = parseFeedRoute(feed.feedRoute);
+    this.vehicleTime = feed.vehicleTime;
+    this.setStatus(feed);
 
-  setStates() {
-    let previousStop;
-    let nextStop;
-    for (let i = 0; i < this.stops.length; i++) {
-      const stop = this.stops[i];
-      if (stop.departure && this.vehicleTime >= stop.departure.time) {
-        previousStop = stop;
-      } else if (stop.arrival && this.vehicleTime <= stop.arrival.time) {
-        nextStop = stop;
+    switch (this.status) {
+      case 'standby':
+        this.prevStop = this.staticRoute[0];
+        this.nextStop = this.staticRoute[0];
+
+        this.createMarker([getLatLng(this.prevStop), getLatLng(this.nextStop)], [0]);
         break;
-      }
-    }
-
-    // add train delays if vehicleTime is << current time(new Date)
-
-    if (!previousStop && nextStop) {
-      this.nextStationTime = nextStop.arrival.time;
-      this.prevStation = getStationById(nextStop.stopId);
-      this.nextStation = this.prevStation;
-      this.status = "idle";
-    } else if (previousStop && nextStop) {
-      this.prevStationTime = previousStop.departure.time;
-      this.nextStationTime = nextStop.arrival.time;
-      this.prevStation = getStationById(previousStop.stopId);
-      this.nextStation = getStationById(nextStop.stopId);
-      this.status = "inTransit";
-    } else if (previousStop && !nextStop) {
-      this.prevStationTime = previousStop.arrival.time;
-      this.prevStation = getStationById(previousStop.stopId);
-      this.nextStation = this.prevStation;
-      this.status = "lastStop"
-    } else if (!previousStop && !nextStop) {
-      this.prevStationTime = this.stops[0].arrival.time;
-      this.prevStation = getStationById(this.stops[0].stopId);
-      this.nextStation = this.prevStation;
-      this.status = "idle"
+      case 'idle':
+        this.prevStop = getStationById(this.feedRoute[this.feedRoute.length - 1].id);
+        this.nextStop = getStationById(this.feedRoute[this.feedRoute.length - 1].id);
+        this.createMarker([getLatLng(this.prevStop), getLatLng(this.nextStop)], [0]);
+        break;
+      case 'active':
+        this.setActiveMarker();
+        break;
     }
   }
 
-  setRenderState() {
-    let vehicleTimePos;
-    if (this.status === "inTransit") {
-      const from = getLatLng(this.prevStation);
-      const to = getLatLng(this.nextStation);
-      const tr = timeRatio(this.prevStationTime, this.nextStationTime)
-      if (tr >= 0) {
-        vehicleTimePos = interpolate(from, to, tr);
-      } else {
-        vehicleTimePos = to;
-      }
-      this.nextPos = to;
-    } else if (this.status === "lastStop" || this.status === "idle") {
-      vehicleTimePos = getLatLng(this.prevStation);
-    }
-    this.pos = vehicleTimePos;
-  }
+  setStatus(feed) {
+    this.updateTime = new Date();
 
-  setVelocity() {
-    if (this.status === "inTransit") {
-      const newVelocity = getVelocity(this.nextPos, this.pos, this.nextStationTime);
-      this.velocity = [newVelocity[0], newVelocity[1]];
-    }
-  }
+    if (this.feedRoute[0].time >= this.updateTime && this.staticRoute[0].id === this.feedRoute[0].id) {
+      this.status = 'standby';
 
-  setMarker(map) {
-    const trainColor = trainColors[this.trainLabel].trainColor;
-    const labelColor = trainColors[this.trainLabel].labelColor;
-    const point = new google.maps.Point(30, 16);
+    } else if (this.updateTime >= this.feedRoute[this.feedRoute.length - 1].time) {
+      this.status = 'idle';
 
-    let rotation;
-    if (this.pos && this.nextPos) {
-      const p1 = new google.maps.LatLng(this.pos.lat, this.pos.lng);
-      const p2 = new google.maps.LatLng(this.nextPos.lat, this.nextPos.lng);
-      rotation = google.maps.geometry.spherical.computeHeading(p1, p2) + 90;
     } else {
-      rotation = 90;
+      this.status = 'active';
+    }
+  }
+
+  setActiveMarker() {
+    if (this.feedRoute[0].time > this.updateTime) {
+      this.generateInitialRoute();
+      return;
     }
 
-    const trainSymbol = {
-      path: 'M64 8 Q64 0 56 0 L8 0 Q0 0 0 8 L0 24 Q0 32 6 32 L56 32 Q64 32 64 24 Z',
-      rotation: rotation,
-      strokeColor: '#43464B',
-      strokeWeight: 1,
-      fillColor: trainColor,
-      fillOpacity: 1,
-      labelOrigin: point,
-      scale: .5
-    };
+    const path = [];
 
-    const trainLabel = {
-      text: this.trainLabel,
-      color: labelColor,
-      fontSize: "12px",
-      fontWeight: "700"
-    };
+    for (let i = 0; i < this.feedRoute.length; i++) {
+      const station = this.feedRoute[i];
 
-    this.marker = new google.maps.Marker({
-      position: {
-        lat: this.pos.lat,
-        lng: this.pos.lng
-      },
-      map: null,
-      icon: trainSymbol,
-      label: trainLabel
+      if (this.updateTime < station.time) {
+
+        for (let j = 1; j < this.staticRoute.length; j++) {
+
+          if (this.staticRoute[j].id === station.id) {
+            this.nextStop = this.staticRoute[j];
+            this.prevStop = this.staticRoute[j - 1];
+
+            // implement interpolation
+            // const currentPos = interpolate(this.prevStop, this.nextStop, this.vehicleTime, stationTime);
+
+            path.push(getLatLng(this.prevStop));
+            path.push(getLatLng(this.nextStop));
+            const duration = station.time - this.updateTime;
+            this.createMarker(path, [duration]);
+            return;
+          }
+        }
+      }
+    }
+
+    // placeholder for trains with off routes
+    // merge routes
+    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
+  }
+
+  generateInitialRoute() {
+    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
+  }
+
+  createMarker(path, t) {
+    // t is the train's travel time between from and to a station (ms)
+    // path is an array of stations between FROM and TO destination of a train
+    const marker = new L.Marker.movingMarker(path, t);
+    const trainIcon = L.icon({
+      iconUrl: trainIcons[this.line],
+      iconSize: [25, 25],
+      iconAnchor: [12, 12]
     });
+    marker.setIcon(trainIcon);
+    this.marker = marker;
   }
 
-  updateRenderState() {
-    this.nextPos = getLatLng(this.nextStation);
-  }
-
-  updateVelocity() {
-    const newVelocity = getVelocity(this.nextPos, this.marker.getPosition().toJSON(), this.nextStationTime);
-    this.velocity = [newVelocity[0], newVelocity[1]];
-  }
-
-  setStep(timeDelta) {
-    // timeDelta is number of milliseconds since last move
-    // if the computer is busy the time delta will be larger
-    // velocity of object is how far it should move in 1/60th of a second
-    if (this.status != "inTransit") return;
-    const velocityScale = timeDelta / (1000 / 60);
-    const offsetLat = this.velocity[0] * velocityScale;
-    const offsetLng = this.velocity[1] * velocityScale;
-    const mapLat = this.marker.getPosition().toJSON().lat + offsetLat;
-    const mapLng = this.marker.getPosition().toJSON().lng + offsetLng;
-    const stepPosition = { lat: mapLat, lng: mapLng };
-
-    this.stepPosition = stepPosition;
-  }
-
-  step() {
-    this.marker.setPosition(this.stepPosition);
-    this.pos = this.stepPosition;
-  }
-
-  toggleMarker(map) {
-    let toggle;
-    if (this.marker.map) {
-      toggle = null;
-    } else {
-      toggle = map;
+// =====================================================================
+  getAction() {
+    switch (this.status) {
+      case 'standby':
+        return {
+          type: 'update',
+          id: this.id,
+          line: this.line
+        }
+      case 'idle':
+        return {
+          type: 'delete',
+          id: this.id,
+          line: this.line
+        }
+      case 'active':
+        return {
+          type: 'update',
+          id: this.id,
+          line: this.line
+        }
     }
-    this.marker.setMap(toggle);
   }
+
+  // getMarkerParams() {
+  //   if (this.status === 'standby') {
+  //     return {
+  //       path: [getLatLng(this.route[0]), getLatLng(this.route[0])],
+  //       pathTime: [0] }
+  //   } else if (this.status === 'idle') {
+  //     return {
+  //       path: [getLatLng(this.route[this.route.length - 1]), getLatLng(this.route[this.route.length - 1])],
+  //       pathTime: [0] }
+  //   }
+  //   const path = [];
+  //   const pathTime = [];
+  //   const currentTime = new Date();
+  //
+  //   let addPath = false;
+  //   let durationSum = 0;
+  //   const timelessStations = [];
+  //
+  //   for (let i = 1; i < this.route.length; i++) {
+  //     const station = this.route[i];
+  //
+  //     // begin adding stations when time is ahead of currentTime
+  //     if (station.time >= currentTime && !addPath) {
+  //       path.push(getLatLng(this.route[i - 1]));
+  //       path.push(getLatLng(station));
+  //       const duration = station.time - currentTime;
+  //       pathTime.push(duration);
+  //       durationSum += duration;
+  //       addPath = true;
+  //
+  //       // continue to add stations
+  //     } else if (station.time >= currentTime && timelessStations.length === 0) {
+  //       path.push(getLatLng(station));
+  //       const duration = station.time - currentTime - durationSum;
+  //       pathTime.push(duration);
+  //       durationSum += duration;
+  //
+  //       // queue the stations without time to divide duration of the next timed station
+  //     } else if (!station.time && addPath) {
+  //       timelessStations.push(station);
+  //
+  //       // if timeless stations are queued before a timed station, divide the duration to each timeless station then push
+  //     } else if (station.time >= currentTime && timelessStations.length > 0) {
+  //       const duration = station.time - currentTime - durationSum;
+  //       const subDurations = duration / (timelessStations.length + 1);
+  //       timelessStations.forEach((station) => {
+  //         path.push(getLatLng(station));
+  //         pathTime.push(subDurations);
+  //       });
+  //       path.push(getLatLng(station));
+  //       pathTime.push(subDurations);
+  //       durationSum += duration;
+  //     }
+  //   }
+  //   return { path: path, pathTime: pathTime };
+  // }
 }
