@@ -110,6 +110,17 @@ export default class App {
 
       case 'update':
         train.updatePath();
+        train.marker.start();
+        break;
+
+      case 'countdown':
+        setTimeout(() => {
+          train.updatePath();
+          train.marker.start();
+        }, train.countdown);
+
+      case 'A':
+        train.marker.bindPopup("I am a green leaf.");
         break;
     }
   }
