@@ -96,21 +96,27 @@ export default class App {
   }
 
   setListener(train) {
-    train.marker.addEventListener('end', () => {
-      const action = train.getAction();
-      this.updateTrain(action);
-    });
+    train.marker.addEventListener('end', () => this.update(train.getAction()));
   }
 
-  updateTrain(action) {
-    if (action.type === 'delete') {
-      console.log(action);
-      console.log(this.state.trains[action.line][action.id]);
-      this.state.trains[action.line][action.id].marker.remove();
-      delete this.state.trains[action.line][action.id];
-    } else if (action.type === 'update') {
-      console.log('updating');
+  update(action) {
+    const train = this.state.trains[action.line][action.id];
+
+    switch (action.type) {
+      case 'delete':
+        train.marker.setOpacity(.4);
+        setTimeout(() => this.deleteTrain(train), 60000)
+        break;
+
+      case 'update':
+        train.updatePath();
+        break;
     }
+  }
+
+  deleteTrain(train) {
+    train.marker.remove();
+    delete this.state.trains[train.line][train.id];
   }
 
   // updateTrain(train) {

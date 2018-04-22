@@ -82,8 +82,8 @@ export default class Train {
 
             path.push(getLatLng(this.prevStop));
             path.push(getLatLng(this.nextStop));
-            const duration = station.time - this.updateTime;
-            this.createMarker(path, [duration]);
+            this.duration = station.time - this.updateTime;
+            this.createMarker(path, [this.duration]);
             return;
           }
         }
@@ -134,6 +134,45 @@ export default class Train {
           line: this.line
         }
     }
+  }
+
+  updatePath() {
+    if (this.nextStop.id === this.feedRoute[this.feedRoute.length - 1].id) {
+      this.status = 'idle';
+      this.marker.addLatLng(getLatLng(this.nextStop), 0);
+      return;
+    }
+
+    this.prevStop = this.nextStop;
+    this.updateTime += this.duration;
+
+    for (let i = 0; i < this.feedRoute.length; i++) {
+      const station = this.feedRoute[i];
+
+      if (this.updateTime < station.time) {
+
+        for (let j = 1; j < this.staticRoute.length; j++) {
+
+          if (this.staticRoute[j].id === station.id) {
+            this.nextStop = this.staticRoute[j];
+            this.prevStop = this.staticRoute[j - 1];
+
+            // implement interpolation
+            // const currentPos = interpolate(this.prevStop, this.nextStop, this.vehicleTime, stationTime);
+
+            path.push(getLatLng(this.prevStop));
+            path.push(getLatLng(this.nextStop));
+            const duration = station.time - this.updateTime;
+            this.createMarker(path, [duration]);
+            return;
+          }
+        }
+      }
+    }
+
+    // placeholder for trains with off routes
+    // merge routes
+    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
   }
 
   // getMarkerParams() {
