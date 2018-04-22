@@ -13,12 +13,12 @@ export function parseFeed(feed) {
   return trainFeeds;
 };
 
-export function parseFeedRoute(feedRoute) {
-  return feedRoute.map((feedStation) => {
-    const stationTime = feedStation.arrival || feedStation.departure;
-    return {
-      id: feedStation.stopId.slice(0, -1),
-      time: stationTime.time * 1000
-    }
-  })
-};
+// export function parseFeedRoute(feedRoute) {
+//   return feedRoute.map((feedStation) => {
+//     const stationTime = feedStation.arrival || feedStation.departure;
+//     return {
+//       id: feedStation.stopId.slice(0, -1),
+//       time: stationTime.time * 1000
+//     }
+//   })
+// };

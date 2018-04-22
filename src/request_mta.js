@@ -3,50 +3,6 @@ import GtfsRealtimeBindings from '../gtfs-realtime';
 import { parseFeed } from '../utils/data_utils';
 import { updateTime } from './page_setup';
 
-// export function fetchMtaData(store) {
-//   // This is a sample server that supports CORS.
-//   var url = 'http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=16';
-//
-//   var xhr = createCORSRequest('GET', url);
-//   if (!xhr) {
-//     alert('CORS not supported');
-//     return;
-//   }
-//
-//   // Response handlers.
-//   xhr.onload = function() {
-//     var text = xhr.responseText;
-//     var title = getTitle(text);
-//     alert('Response from CORS request to ' + url + ': ' + title);
-//   };
-//
-//   xhr.onerror = function() {
-//     alert('Woops, there was an error making the request.');
-//   };
-//
-//   console.log('sending request');
-//   console.log(xhr);
-//   xhr.send();
-// }
-// function createCORSRequest(method, url) {
-//   var xhr = new XMLHttpRequest();
-//   if ("withCredentials" in xhr) {
-//     // XHR for Chrome/Firefox/Opera/Safari.
-//     xhr.open(method, url, true);
-//   } else if (typeof XDomainRequest != "undefined") {
-//     // XDomainRequest for IE.
-//     xhr = new XDomainRequest();
-//     xhr.open(method, url);
-//   } else {
-//     // CORS not supported.
-//     xhr = null;
-//   }
-//   return xhr;
-// }
-//
-// function getTitle(text) {
-//   return text.match('<title>(.*)?</title>')[1];
-// }
 export function fetchMtaData(store) {
   const urls = [
     // 1, 2, 3, 4, 5, 6, S lines
@@ -95,3 +51,48 @@ function requestMta(store, req) {
     }
   });
 }
+
+// export function fetchMtaData(store) {
+//   // This is a sample server that supports CORS.
+//   var url = 'http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=16';
+//
+//   var xhr = createCORSRequest('GET', url);
+//   if (!xhr) {
+//     alert('CORS not supported');
+//     return;
+//   }
+//
+//   // Response handlers.
+//   xhr.onload = function() {
+//     var text = xhr.responseText;
+//     var title = getTitle(text);
+//     alert('Response from CORS request to ' + url + ': ' + title);
+//   };
+//
+//   xhr.onerror = function() {
+//     alert('Woops, there was an error making the request.');
+//   };
+//
+//   console.log('sending request');
+//   console.log(xhr);
+//   xhr.send();
+// }
+// function createCORSRequest(method, url) {
+//   var xhr = new XMLHttpRequest();
+//   if ("withCredentials" in xhr) {
+//     // XHR for Chrome/Firefox/Opera/Safari.
+//     xhr.open(method, url, true);
+//   } else if (typeof XDomainRequest != "undefined") {
+//     // XDomainRequest for IE.
+//     xhr = new XDomainRequest();
+//     xhr.open(method, url);
+//   } else {
+//     // CORS not supported.
+//     xhr = null;
+//   }
+//   return xhr;
+// }
+//
+// function getTitle(text) {
+//   return text.match('<title>(.*)?</title>')[1];
+// }
