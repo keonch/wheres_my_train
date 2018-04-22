@@ -32,14 +32,14 @@ export function mergeRoutes(staticRoute, feedRoute) {
       }
     };
 
-    if (!isIncluded) {
-      const station = {};
-      station.id = feedStation.id;
-      station.lat = stations[feedStation.id].lat;
-      station.lng = stations[feedStation.id].lng;
-      station.time = feedStation.time;
-      route = mergeStation(route, station);
-    };
+    // if (!isIncluded) {
+    //   const station = {};
+    //   station.id = feedStation.id;
+    //   station.lat = stations[feedStation.id].lat;
+    //   station.lng = stations[feedStation.id].lng;
+    //   station.time = feedStation.time;
+    //   route = mergeStation(route, station);
+    // };
   });
 
   return route;
@@ -52,7 +52,8 @@ function mergeStation(route, station) {
   route.forEach((routeStation) => {
     const d = getDistance(getLatLng(routeStation), getLatLng(station));
   });
-  
+
+
 }
 
 function getDistance(station1, station2) {

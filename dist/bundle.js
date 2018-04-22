@@ -75185,15 +75185,46 @@ class Train {
     const currentTime = new Date();
 
     let addPath = false;
+    let durationSum = 0;
+    const timelessStations = [];
+
     for (let i = 1; i < this.route.length; i++) {
-      if (this.route[i].time >= currentTime && addPath) {
-        path.push(this.route[i].latLng);
-      } else if (this.route[i].time >= currentTime) {
-        path.push(this.route[i - 1].latLng);
-        path.push(this.route[i].latLng);
+      const station = this.route[i];
+
+      // begin adding stations when time is ahead of currentTime
+      if (station.time >= currentTime && !addPath) {
+        path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.route[i - 1]));
+        path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(station));
+        const duration = station.time - currentTime;
+        pathTime.push(duration);
+        durationSum += duration;
         addPath = true;
+
+        // continue to add stations
+      } else if (station.time >= currentTime && timelessStations.length === 0) {
+        path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(station));
+        const duration = station.time - currentTime - durationSum;
+        pathTime.push(duration);
+        durationSum += duration;
+
+        // queue the stations without time to divide duration of the next timed station
+      } else if (!station.time && addPath) {
+        timelessStations.push(station);
+
+        // if timeless stations are queued before a timed station, divide the duration to each timeless station then push
+      } else if (station.time >= currentTime && timelessStations.length > 0) {
+        const duration = station.time - currentTime - durationSum;
+        const subDurations = duration / (timelessStations.length + 1);
+        timelessStations.forEach((station) => {
+          path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(station));
+          pathTime.push(subDurations);
+        });
+        path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(station));
+        pathTime.push(subDurations);
+        durationSum += duration;
       }
     }
+    return { path: path, pathTime: pathTime };
   }
 
   createActiveMarker(params) {
@@ -75335,14 +75366,14 @@ function mergeRoutes(staticRoute, feedRoute) {
       }
     };
 
-    if (!isIncluded) {
-      const station = {};
-      station.id = feedStation.id;
-      station.lat = _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[feedStation.id].lat;
-      station.lng = _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[feedStation.id].lng;
-      station.time = feedStation.time;
-      route = mergeStation(route, station);
-    };
+    // if (!isIncluded) {
+    //   const station = {};
+    //   station.id = feedStation.id;
+    //   station.lat = stations[feedStation.id].lat;
+    //   station.lng = stations[feedStation.id].lng;
+    //   station.time = feedStation.time;
+    //   route = mergeStation(route, station);
+    // };
   });
 
   return route;
@@ -75355,7 +75386,8 @@ function mergeStation(route, station) {
   route.forEach((routeStation) => {
     const d = getDistance(getLatLng(routeStation), getLatLng(station));
   });
-  
+
+
 }
 
 function getDistance(station1, station2) {
