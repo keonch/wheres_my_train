@@ -74744,7 +74744,6 @@ class App {
       // if train feed does not include tripUpdate or vehicleUpdate the
       // train is not assigned a route hence no instance of the train is made
       if (!feed[trainId].feedRoute || !feed[trainId].vehicleTime) {
-        console.log("Unassigned");
 
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
@@ -74759,13 +74758,11 @@ class App {
         console.log('update train');
         // this.state.trains[trainId].update(feed[trainId]);
       }
-      console.log('finish iteration');
     });
   }
 
   setupTrain(trainId, feed) {
     const train = this.createTrain(trainId, feed);
-    const route = this.state.routes[train.line];
     train.setup(route, feed);
     train.marker.addTo(this.state.map);
     this.state.trains[train.line] = Object.assign({},
@@ -74780,7 +74777,8 @@ class App {
     const id = trainId.split(".");
     const line = id[0].split("_").slice(-1)[0];
     const direction = id.slice(-1)[0][0];
-    return new _src_train__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction);
+    const route = this.state.routes[line];
+    return new _src_train__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction, route, feed);
   }
 
   setListener(train) {
@@ -74797,7 +74795,6 @@ class App {
         break;
 
       case 'update':
-      console.log('updating');
         train.updatePath();
         train.marker.start();
         break;
@@ -74806,7 +74803,7 @@ class App {
         setTimeout(() => {
           train.updatePath();
           train.marker.start();
-        }, train.countdown);
+        }, train.feedRoute[0].time - train.updateTime);
         break;
 
       case 'A':
@@ -75166,51 +75163,34 @@ __webpack_require__.r(__webpack_exports__);
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
 /* harmony import */ var _utils_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/data_utils */ "./utils/data_utils.js");
-// =============== this.status ================
+// =========================== this.status ============================
 // standby => train is waiting to leave its origin station
-// active => train is currently in transit (has prevStop and nextStop)
 // idle => train has reached its last stop
-// ============================================
+// active => train is currently in transit
+// ====================================================================
 
 
 
 
 
 class Train {
-  constructor(id, line, direction) {
+  constructor(id, line, direction, route, feed) {
     this.id = id;
     this.line = line;
     this.direction = direction;
-  }
-
-  setup(route, feed) {
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeedRoute"])(feed.feedRoute);
     this.vehicleTime = feed.vehicleTime;
     this.updateTime = new Date();
-    this.setStatus(feed);
-
-    switch (this.status) {
-      case 'standby':
-        this.prevStop = this.staticRoute[0];
-        this.nextStop = this.staticRoute[0];
-        this.countdown = this.feedRoute[0].time - this.updateTime;
-
-        this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop), Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop)], [0]);
-        break;
-      case 'idle':
-        this.prevStop = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(this.feedRoute[this.feedRoute.length - 1].id);
-        this.nextStop = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(this.feedRoute[this.feedRoute.length - 1].id);
-        this.createMarker([Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop), Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop)], [0]);
-        break;
-      case 'active':
-        this.setActiveMarker();
-        break;
-    }
+    this.path = [];
+    this.durations = [];
+    this.marker;
+    this.setStatus();
+    this.setMarker();
   }
 
-  setStatus(feed) {
-    if (this.feedRoute[0].time >= this.updateTime && this.staticRoute[0].id === this.feedRoute[0].id) {
+  setStatus() {
+    if (this.staticRoute[0].id === this.feedRoute[0].id && this.feedRoute[0].time >= this.updateTime) {
       this.status = 'standby';
 
     } else if (this.updateTime >= this.feedRoute[this.feedRoute.length - 1].time) {
@@ -75221,13 +75201,33 @@ class Train {
     }
   }
 
-  setActiveMarker() {
+  setMarker() {
+    this.setParams();
+    this.marker = this.createMarker();
+  }
+
+  setParams() {
+    switch (this.status) {
+      case 'standby':
+        this.path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[0]));
+        this.durations.push(0);
+        break;
+      case 'idle':
+        const lastFeedStation = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(this.feedRoute[this.feedRoute.length - 1]);
+        this.path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(lastFeedStation));
+        this.durations.push(0);
+        break;
+      case 'active':
+        this.setActiveParams();
+        break;
+    }
+  }
+
+  setActiveParams() {
     if (this.feedRoute[0].time > this.updateTime) {
       this.generateInitialRoute();
       return;
     }
-
-    const path = [];
 
     for (let i = 0; i < this.feedRoute.length; i++) {
       const station = this.feedRoute[i];
@@ -75237,18 +75237,13 @@ class Train {
         for (let j = 1; j < this.staticRoute.length; j++) {
 
           if (this.staticRoute[j].id === station.id) {
-            this.nextStop = this.staticRoute[j];
-            this.prevStop = this.staticRoute[j - 1];
             this.feedRouteIndex = i;
             this.staticRouteIndex = j;
 
-            // implement interpolation
-            // const currentPos = interpolate(this.prevStop, this.nextStop, this.vehicleTime, stationTime);
-
-            path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop));
-            path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop));
-            this.duration = station.time - this.updateTime;
-            this.createMarker(path, [this.duration]);
+            path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[j-1]));
+            path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[j]));
+            this.durations.push(station.time - this.updateTime);
+            this.createMarker(path);
             return;
           }
         }
@@ -75266,17 +75261,17 @@ class Train {
     this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
   }
 
-  createMarker(path, t) {
-    // t is the train's travel time between from and to a station (ms)
-    // path is an array of stations between FROM and TO destination of a train
-    const marker = new L.Marker.movingMarker(path, t);
+  createMarker() {
+    if (this.path.length === 0) return;
+    const path = this.path.length === 1 ? [this.path[0], this.path[0]] : this.path;
+    const marker = new L.Marker.movingMarker(path, this.durations);
     const trainIcon = L.icon({
       iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
       iconSize: [25, 25],
       iconAnchor: [12, 12]
     });
     marker.setIcon(trainIcon);
-    this.marker = marker;
+    return marker;
   }
 
 // =====================================================================

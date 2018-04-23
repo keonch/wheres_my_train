@@ -57,7 +57,6 @@ export default class App {
       // if train feed does not include tripUpdate or vehicleUpdate the
       // train is not assigned a route hence no instance of the train is made
       if (!feed[trainId].feedRoute || !feed[trainId].vehicleTime) {
-        console.log("Unassigned");
 
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
@@ -72,13 +71,11 @@ export default class App {
         console.log('update train');
         // this.state.trains[trainId].update(feed[trainId]);
       }
-      console.log('finish iteration');
     });
   }
 
   setupTrain(trainId, feed) {
     const train = this.createTrain(trainId, feed);
-    const route = this.state.routes[train.line];
     train.setup(route, feed);
     train.marker.addTo(this.state.map);
     this.state.trains[train.line] = Object.assign({},
@@ -93,7 +90,8 @@ export default class App {
     const id = trainId.split(".");
     const line = id[0].split("_").slice(-1)[0];
     const direction = id.slice(-1)[0][0];
-    return new Train(trainId, line, direction);
+    const route = this.state.routes[line];
+    return new Train(trainId, line, direction, route, feed);
   }
 
   setListener(train) {
@@ -110,7 +108,6 @@ export default class App {
         break;
 
       case 'update':
-      console.log('updating');
         train.updatePath();
         train.marker.start();
         break;
@@ -119,7 +116,7 @@ export default class App {
         setTimeout(() => {
           train.updatePath();
           train.marker.start();
-        }, train.countdown);
+        }, train.feedRoute[0].time - train.updateTime);
         break;
 
       case 'A':
