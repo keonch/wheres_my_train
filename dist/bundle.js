@@ -74692,14 +74692,14 @@ var _data_subway_routes_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE_
 
 class App {
   constructor(map) {
-    this.state = {
-      map: map,
-      trains: {},
-      routes: {},
-      polylines: {}
-    }
+    this.map = map;
+    this.trains = {};
+    this.routes = {};
+    this.polylines = {};
+
     this.setupStaticRoutes();
     this.setupPolylines();
+
     this.update = this.update.bind(this);
   }
 
@@ -74720,13 +74720,13 @@ class App {
           }
         });
       });
-      this.state.routes[line] = route;
+      this.routes[line] = route;
     });
   }
 
   setupPolylines() {
-    Object.keys(this.state.routes).forEach((line) => {
-      const route = this.state.routes[line];
+    Object.keys(this.routes).forEach((line) => {
+      const route = this.routes[line];
       const color = _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_1__[line].trainColor;
       const polyline = new L.Polyline(route, {
         color: color,
@@ -74734,8 +74734,8 @@ class App {
         opacity: 0.8,
         smoothFactor: 1
       });
-      this.state.polylines[line] = polyline;
-      polyline.addTo(this.state.map);
+      this.polylines[line] = polyline;
+      polyline.addTo(this.map);
     });
   }
 
@@ -74747,25 +74747,25 @@ class App {
 
       // create a new train object if new vehicleUpdate and tripUpdate
       // data is received but does not exist in the store
-      } else if (!this.state.trains[trainId]) {
+      } else if (!this.trains[trainId]) {
         setTimeout(() => {
           this.setupTrain(trainId, feed[trainId]);
         }, 0);
 
       // if the train instance already exist in the store, update the train
       // with new set of data received
-      } else if (this.state.trains[trainId]) {
+      } else if (this.trains[trainId]) {
         console.log('update train');
-        // this.state.trains[trainId].update(feed[trainId]);
+        // this.trains[trainId].update(feed[trainId]);
       }
     });
   }
 
   setupTrain(trainId, feed) {
     const train = this.makeTrain(trainId, feed);
-    train.marker.addTo(this.state.map);
-    this.state.trains[train.line] = Object.assign({},
-      this.state.trains[train.line],
+    train.marker.addTo(this.map);
+    this.trains[train.line] = Object.assign({},
+      this.trains[train.line],
       { [trainId]: train }
     );
     this.setListener(train);
@@ -74776,7 +74776,7 @@ class App {
     const id = trainId.split(".");
     const line = id[0].split("_").slice(-1)[0];
     const direction = id.slice(-1)[0][0];
-    const route = this.state.routes[line];
+    const route = this.routes[line];
     return new _src_train__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction, route, feed);
   }
 
@@ -74791,30 +74791,29 @@ class App {
         break;
 
       case 'update':
-        this.state.trains[line][id].updatePath();
-        this.state.trains[line][id].marker.start();
+        this.trains[action.line][action.id].updatePath();
+        this.trains[action.line][action.id].marker.start();
         break;
 
       case 'countdown':
-        // const countdown = train.feedRoute[0].time - train.updateTime;
-        // setTimeout(() => {
-          // train.updatePath();
-          // train.marker.start();
-        // }, countdown);
-        console.log('countdown');
+        const startTime = this.trains[action.line][action.id].feedRoute[0].time;
+        const updateTime = this.trains[action.line][action.id].updateTime;
+        const countdown = startTime - updateTime;
+        setTimeout(() => {
+          train.updatePath();
+          train.marker.start();
+        }, countdown);
         break;
 
       case 'A':
-        // train.marker.bindPopup('REROUTE');
-        console.log('A');
+        this.trains[action.line][action.id].marker.bindPopup('REROUTE');
         break;
     }
   }
 
   deleteTrain(line, id) {
-    console.log('deleting');
-    this.state.trains[line][id].marker.remove();
-    delete this.state.trains[line][id];
+    this.trains[line][id].marker.remove();
+    delete this.trains[line][id];
   }
 
   // updateTrain(train) {
