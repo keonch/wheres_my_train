@@ -75,8 +75,7 @@ export default class App {
   }
 
   setupTrain(trainId, feed) {
-    const train = this.createTrain(trainId, feed);
-    train.setup(route, feed);
+    const train = this.makeTrain(trainId, feed);
     train.marker.addTo(this.state.map);
     this.state.trains[train.line] = Object.assign({},
       this.state.trains[train.line],
@@ -86,7 +85,7 @@ export default class App {
     train.marker.start();
   }
 
-  createTrain(trainId, feed) {
+  makeTrain(trainId, feed) {
     const id = trainId.split(".");
     const line = id[0].split("_").slice(-1)[0];
     const direction = id.slice(-1)[0][0];
@@ -99,35 +98,36 @@ export default class App {
   }
 
   update(action) {
-    const train = this.state.trains[action.line][action.id];
-
     switch (action.type) {
       case 'delete':
-        train.marker.setOpacity(.4);
-        setTimeout(() => this.deleteTrain(train), 60000);
+        setTimeout(() => this.deleteTrain(action.line, action.id), 60000);
         break;
 
       case 'update':
-        train.updatePath();
-        train.marker.start();
+        this.state.trains[line][id].updatePath();
+        this.state.trains[line][id].marker.start();
         break;
 
       case 'countdown':
-        setTimeout(() => {
-          train.updatePath();
-          train.marker.start();
-        }, train.feedRoute[0].time - train.updateTime);
+        // const countdown = train.feedRoute[0].time - train.updateTime;
+        // setTimeout(() => {
+          // train.updatePath();
+          // train.marker.start();
+        // }, countdown);
+        console.log('countdown');
         break;
 
       case 'A':
-        train.marker.bindPopup('REROUTE');
+        // train.marker.bindPopup('REROUTE');
+        console.log('A');
         break;
     }
   }
 
-  deleteTrain(train) {
-    train.marker.remove();
-    delete this.state.trains[train.line][train.id];
+  deleteTrain(line, id) {
+    console.log('deleting');
+    this.state.trains[line][id].marker.remove();
+    delete this.state.trains[line][id];
   }
 
   // updateTrain(train) {

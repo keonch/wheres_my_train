@@ -13,9 +13,9 @@ export default class Train {
     this.id = id;
     this.line = line;
     this.direction = direction;
+    this.originTime = id.split(".")[0].split("_")[0];
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = parseFeedRoute(feed.feedRoute);
-    this.vehicleTime = feed.vehicleTime;
     this.updateTime = new Date();
     this.path = [];
     this.durations = [];
@@ -48,7 +48,7 @@ export default class Train {
         this.durations.push(0);
         break;
       case 'idle':
-        const lastFeedStation = getStationById(this.feedRoute[this.feedRoute.length - 1]);
+        const lastFeedStation = getStationById(this.feedRoute[this.feedRoute.length - 1].id);
         this.path.push(getLatLng(lastFeedStation));
         this.durations.push(0);
         break;
@@ -59,46 +59,37 @@ export default class Train {
   }
 
   setActiveParams() {
-    if (this.feedRoute[0].time > this.updateTime) {
-      this.generateInitialRoute();
-      return;
-    }
-
     for (let i = 0; i < this.feedRoute.length; i++) {
-      const station = this.feedRoute[i];
+      const feedStation = this.feedRoute[i];
 
-      if (this.updateTime < station.time) {
+      if (feedStation.time > this.updateTime) {
 
         for (let j = 1; j < this.staticRoute.length; j++) {
 
-          if (this.staticRoute[j].id === station.id) {
+          if (this.staticRoute[j].id === feedStation.id) {
             this.feedRouteIndex = i;
             this.staticRouteIndex = j;
-
-            path.push(getLatLng(this.staticRoute[j-1]));
-            path.push(getLatLng(this.staticRoute[j]));
-            this.durations.push(station.time - this.updateTime);
-            this.createMarker(path);
+            this.path.push(getLatLng(this.staticRoute[j-1]));
+            this.path.push(getLatLng(this.staticRoute[j]));
+            this.durations.push(feedStation.time - this.updateTime);
             return;
           }
         }
       }
     }
-
-    // placeholder for trains with off routes
-    // merge routes
-    this.status = 'reroute'
-    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
-  }
-
-  generateInitialRoute() {
-    this.status = 'reroute'
-    this.marker = new L.Marker.movingMarker([[0,0],[0,0]], [1]);
   }
 
   createMarker() {
-    if (this.path.length === 0) return;
-    const path = this.path.length === 1 ? [this.path[0], this.path[0]] : this.path;
+    if (this.durations.length === 0) {
+      return new L.Marker.movingMarker([[0,0],[0,0]], [1]);
+    }
+    let path;
+    if (this.path.length === 1) {
+      path = [this.path[0], this.path[0]];
+    } else {
+      path = this.path;
+    }
+
     const marker = new L.Marker.movingMarker(path, this.durations);
     const trainIcon = L.icon({
       iconUrl: trainIcons[this.line],
@@ -140,60 +131,60 @@ export default class Train {
   }
 
   updatePath() {
-    if (
-      this.staticRouteIndex === this.staticRoute.length - 1 &&
-      this.feedRouteIndex === this.feedRoute.length - 1
-    ) {
-      this.status = 'idle';
-      this.marker.addLatLng(getLatLng(this.nextStop), 0);
-      return;
-
-    } else if (
-      this.staticRouteIndex !== this.staticRoute.length - 1 &&
-      this.feedRouteIndex === this.feedRoute.length - 1
-    ) {
-      this.status = 'need update';
-      this.marker.addLatLng(getLatLng(this.nextStop), 0);
-      return;
-
-    } else if (
-      this.staticRouteIndex === this.staticRoute.length - 1 &&
-      this.feedRouteIndex !== this.feedRoute.length - 1
-    ) {
-      this.status = 'reroute';
-      this.marker.addLatLng(getLatLng(this.nextStop), 0);
-      return;
-    }
-
-    for (let i = this.feedRouteIndex + 1; i < this.feedRoute.length; i++) {
-      const station = this.feedRoute[i];
-      const unmatchedStaticStations = [];
-
-      for (let j = this.staticRouteIndex + 1; j < this.staticRoute.length; j++) {
-
-        if (this.staticRoute[j].id === station.id) {
-          const duration = station.time - this.updateTime - this.duration;
-          const subduration = duration / (unmatchedStaticStations.length + 1);
-          this.duration += duration;
-          this.prevStop = this.nextStop;
-          this.nextStop = this.staticRoute[j];
-          unmatchedStaticStations.forEach((staticStation) => {
-            this.marker.addLatLng(getLatLng(staticStation), subduration);
-          })
-          this.marker.addLatLng(getLatLng(this.nextStop), subduration);
-          return;
-
-        } else {
-          unmatchedStaticStations.push(this.staticRoute[j]);
-        }
-      }
-      // next station in feedRoute is not found in staticRoute and needs rerouting
-      // placeholder for trains with off routes
-      this.status = 'reroute';
-      this.marker.addLatLng(getLatLng(this.nextStop), 0);
-      return;
-    }
-  }
+  //   if (
+  //     this.staticRouteIndex === this.staticRoute.length - 1 &&
+  //     this.feedRouteIndex === this.feedRoute.length - 1
+  //   ) {
+  //     this.status = 'idle';
+  //     this.marker.addLatLng(getLatLng(this.nextStop), 0);
+  //     return;
+  //
+  //   } else if (
+  //     this.staticRouteIndex !== this.staticRoute.length - 1 &&
+  //     this.feedRouteIndex === this.feedRoute.length - 1
+  //   ) {
+  //     this.status = 'need update';
+  //     this.marker.addLatLng(getLatLng(this.nextStop), 0);
+  //     return;
+  //
+  //   } else if (
+  //     this.staticRouteIndex === this.staticRoute.length - 1 &&
+  //     this.feedRouteIndex !== this.feedRoute.length - 1
+  //   ) {
+  //     this.status = 'reroute';
+  //     this.marker.addLatLng(getLatLng(this.nextStop), 0);
+  //     return;
+  //   }
+  //
+  //   for (let i = this.feedRouteIndex + 1; i < this.feedRoute.length; i++) {
+  //     const station = this.feedRoute[i];
+  //     const unmatchedStaticStations = [];
+  //
+  //     for (let j = this.staticRouteIndex + 1; j < this.staticRoute.length; j++) {
+  //
+  //       if (this.staticRoute[j].id === station.id) {
+  //         const duration = station.time - this.updateTime - this.duration;
+  //         const subduration = duration / (unmatchedStaticStations.length + 1);
+  //         this.duration += duration;
+  //         this.prevStop = this.nextStop;
+  //         this.nextStop = this.staticRoute[j];
+  //         unmatchedStaticStations.forEach((staticStation) => {
+  //           this.marker.addLatLng(getLatLng(staticStation), subduration);
+  //         })
+  //         this.marker.addLatLng(getLatLng(this.nextStop), subduration);
+  //         return;
+  //
+  //       } else {
+  //         unmatchedStaticStations.push(this.staticRoute[j]);
+  //       }
+  //     }
+  //     // next station in feedRoute is not found in staticRoute and needs rerouting
+  //     // placeholder for trains with off routes
+  //     this.status = 'reroute';
+  //     this.marker.addLatLng(getLatLng(this.nextStop), 0);
+  //     return;
+  //   }
+  // }
 
   // getMarkerParams() {
   //   if (this.status === 'standby') {
@@ -250,5 +241,6 @@ export default class Train {
   //     }
   //   }
   //   return { path: path, pathTime: pathTime };
-  // }
+  console.log('hi');
+  }
 }
