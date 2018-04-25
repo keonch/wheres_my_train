@@ -15,53 +15,68 @@ export default class Train {
     this.direction = direction;
     this.originTime = id.split(".")[0].split("_")[0];
     this.updateTime = new Date();
+
     this.staticRoute = this.direction === 'S' ? route : route.reverse();
     this.feedRoute = parseFeedRoute(feed.feedRoute);
+
     this.staticRouteIndex = 0;
     this.feedRouteIndex = 0;
-    this.path = [];
-    this.durations = [];
-    this.marker;
+    this.durationSum = 0;
+
     this.setStatus();
-    this.setMarker();
+    this.makeMarker();
   }
 
   setStatus() {
     if (this.staticRoute[0].id === this.feedRoute[0].id && this.feedRoute[0].time >= this.updateTime) {
       this.status = 'standby';
-
     } else if (this.updateTime >= this.feedRoute[this.feedRoute.length - 1].time) {
       this.status = 'idle';
-
     } else {
       this.status = 'active';
     }
   }
 
-  setMarker() {
-    this.setParams();
-    this.marker = this.makeMarker();
-  }
+  makeMarker() {
+    let path;
 
-  setParams() {
     switch (this.status) {
       case 'active':
         this.setActiveParams();
+        path = [
+          getLatLng(this.staticRoute[this.staticRouteIndex - 1]),
+          getLatLng(this.staticRoute[this.staticRouteIndex])
+        ]
         break;
-
       case 'standby':
-        this.path.push(getLatLng(this.staticRoute[0]));
-        this.path.push(getLatLng(this.staticRoute[0]));
-        this.durations.push(0);
+        path = [
+          getLatLng(this.staticRoute[0]),
+          getLatLng(this.staticRoute[0])
+        ]
         break;
-
       case 'idle':
-        const lastFeedStation = getStationById(this.feedRoute[this.feedRoute.length - 1].id);
-        this.path.push(getLatLng(lastFeedStation));
-        this.path.push(getLatLng(lastFeedStation));
-        this.durations.push(0);
+        path = [
+          getLatLng(this.feedRoute[this.feedRoute.length - 1]),
+          getLatLng(this.feedRoute[this.feedRoute.length - 1])
+        ]
         break;
     }
+
+    // case when an off route station is found
+    if (this.status === 'offroute') {
+      path = [
+        getLatLng(this.feedRoute[this.feedRouteIndex]),
+        getLatLng(this.feedRoute[this.feedRouteIndex])
+      ]
+    }
+
+    this.marker = new L.Marker.movingMarker(path, [this.durationSum]);
+    const trainIcon = L.icon({
+      iconUrl: trainIcons[this.line],
+      iconSize: [25, 25],
+      iconAnchor: [12, 12]
+    });
+    this.marker.setIcon(trainIcon);
   }
 
   setActiveParams() {
@@ -75,9 +90,7 @@ export default class Train {
           if (this.staticRoute[j].id === feedStation.id) {
             this.feedRouteIndex = i;
             this.staticRouteIndex = j;
-            this.path.push(getLatLng(this.staticRoute[j-1]));
-            this.path.push(getLatLng(this.staticRoute[j]));
-            this.durations.push(feedStation.time - this.updateTime);
+            this.durationSum += feedStation.time - this.updateTime;
             return;
           }
         }
@@ -85,33 +98,18 @@ export default class Train {
         // station from feed is not found in its static route therefore
         // it is off route
         this.status = 'offroute';
-        const offrouteStation = getStationById(feedStation.id);
-        this.path.push(getLatLng(offrouteStation));
-        this.path.push(getLatLng(offrouteStation));
-        this.durations.push(0);
+        this.feedRouteIndex = i;
         return;
       }
     }
   }
 
-  makeMarker() {
-    const marker = new L.Marker.movingMarker(this.path, this.durations);
-    const trainIcon = L.icon({
-      iconUrl: trainIcons[this.line],
-      iconSize: [25, 25],
-      iconAnchor: [12, 12]
-    });
-    marker.setIcon(trainIcon);
-    return marker;
-  }
-
-  update() {
+  setNextPath() {
     if (this.feedRouteIndex === this.feedRoute.length - 1) {
       console.log('reached its last stop');
       this.status = 'idle';
-      const finalStop = this.feedRoute[this.feedRouteIndex];
-      const finalStopLatLng = getLatLng(getStationById(finalStop.id));
-      this.marker.addLatLng(finalStopLatLng), 0);
+      const latLng = getLatLng(this.feedRoute[this.feedRouteIndex]);
+      this.marker.addLatLng(latLng, 0);
       return;
 
     } else if (
@@ -120,19 +118,18 @@ export default class Train {
     ) {
       console.log('last stop is off route');
       this.status = 'offroute';
-      const nextStop = this.feedRoute[this.feedRouteIndex];
-      const nextStopLatLng = getLatLng(getStationById(nextStop.id));
-      this.marker.addLatLng(nextStopLatLng, 0);
+      const latLng = getLatLng(this.feedRoute[this.feedRouteIndex]);
+      this.marker.addLatLng(latLng, 0);
       return;
     }
 
     const nextStop = this.feedRoute[this.feedRouteIndex + 1];
     const unmatchedStaticStations = [];
 
-    for (let i = this.staticRouteIndex + 1; j < this.staticRoute.length; j++) {
+    for (let i = this.staticRouteIndex + 1; i < this.staticRoute.length; i++) {
 
-      if (this.staticRoute[j].id === nextStop.id) {
-        const duration = nextStop.time - this.updateTime - this.duration;
+      if (this.staticRoute[i].id === nextStop.id) {
+        const duration = nextStop.time - this.updateTime - this.durationSum;
         const subduration = duration / (unmatchedStaticStations.length + 1);
         this.duration += duration;
         this.prevStop = this.nextStop;

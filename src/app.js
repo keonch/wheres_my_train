@@ -103,7 +103,7 @@ export default class App {
         const countdown = startTime - updateTime;
         setTimeout(() => {
           train.setNextPath();
-          // this.train[status.line][status.id].marker.start();
+          train.marker.start();
         }, countdown);
         break;
 

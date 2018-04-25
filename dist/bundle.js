@@ -111,7 +111,7 @@ module.exports = {"101":{"name":"Van Cortlandt Park - 242 St","borough":"Bx","tr
 /*! exports provided: 1, 2, 3, 4, 5, 6, 7, 6X, GS, S, A, H, C, E, B, D, F, M, G, J, Z, L, N, Q, R, W, SI, SS, default */
 /***/ (function(module) {
 
-module.exports = {"1":["Van Cortlandt Park - 242 St","238 St","231 St","Marble Hill - 225 St","215 St","207 St","Dyckman St","191 St","181 St","168 St - Washington Hts","157 St","145 St","137 St - City College","125 St","116 St - Columbia University","Cathedral Pkwy","103 St","96 St","86 St","79 St","72 St","66 St - Lincoln Center","59 St - Columbus Circle","50 St","Times Sq - 42 St","34 St - Penn Station","28 St","23 St","18 St","14 St","Christopher St - Sheridan Sq","Houston St","Canal St","Franklin St","Chambers St","Cortlandt St","Rector St","South Ferry Loop","South Ferry"],"2":["Wakefield - 241 St","Nereid Av","233 St","225 St","219 St","Gun Hill Rd","Burke Av","Allerton Av","Pelham Pkwy","Bronx Park East","E 180 St","West Farms Sq - E Tremont Av","174 St","Freeman St","Simpson St","Intervale Av","Prospect Av","Jackson Av","3 Av - 149 St","149 St - Grand Concourse","135 St","125 St","116 St","Central Park North (110 St)","96 St","86 St","79 St","72 St","66 St - Lincoln Center","59 St - Columbus Circle","50 St","Times Sq - 42 St","34 St - Penn Station","28 St","23 St","18 St","14 St","Christopher St - Sheridan Sq","Houston St","Canal St","Franklin St","Chambers St","Park Pl","Fulton St","Wall St","Clark St","Borough Hall","Hoyt St","Nevins St","Atlantic Av - Barclays Ctr","Bergen St","Grand Army Plaza","Eastern Pkwy - Brooklyn Museum","Franklin Av","President St","Sterling St","Winthrop St","Church Av","Beverly Rd","Newkirk Av","Flatbush Av - Brooklyn College"],"3":["Harlem - 148 St","145 St","135 St","125 St","116 St","Central Park North (110 St)","96 St","72 St","Times Sq - 42 St","34 St - Penn Station","14 St","Chambers St","Park Pl","Fulton St","Wall St","Clark St","Borough Hall","Hoyt St","Nevins St","Atlantic Av - Barclays Ctr","Bergen St","Grand Army Plaza","Eastern Pkwy - Brooklyn Museum","Franklin Av","Nostrand Av","Kingston Av","Crown Hts - Utica Av","Sutter Av - Rutland Rd","Saratoga Av","Rockaway Av","Junius St","Pennsylvania Av","Van Siclen Av","New Lots Av"],"4":["Woodlawn","Mosholu Pkwy","Bedford Park Blvd - Lehman College","Kingsbridge Rd","Fordham Rd","183 St","Burnside Av","176 St","Mt Eden Av","170 St","167 St","161 St - Yankee Stadium","149 St - Grand Concourse","138 St - Grand Concourse","125 St","116 St","110 St","103 St","96 St","86 St","77 St","68 St - Hunter College","59 St","51 St","Grand Central - 42 St","33 St","28 St","23 St","14 St - Union Sq","Astor Pl","Bleecker St","Spring St","Canal St","Brooklyn Bridge - City Hall","Fulton St","Wall St","Bowling Green","Borough Hall","Hoyt St","Nevins St","Atlantic Av - Barclays Ctr","Bergen St","Grand Army Plaza","Eastern Pkwy - Brooklyn Museum","Franklin Av","Nostrand Av","Kingston - Throop Avs","Crown Hts - Utica Av","Sutter Av - Rutland Rd","Saratoga Av","Rockaway Av","Junius St","Pennsylvania Av","Van Siclen Av","New Lots Av"],"5":["Eastchester - Dyre Av","Baychester Av","Gun Hill Rd","Pelham Pkwy","Morris Park","E 180 St","West Farms Sq - E Tremont Av","174 St","Freeman St","Simpson St","Intervale Av","Prospect Av","Jackson Av","3 Av - 149 St","149 St - Grand Concourse","138 St - Grand Concourse","125 St","86 St","59 St","Grand Central - 42 St","14 St - Union Sq","Brooklyn Bridge - City Hall","Fulton St","Wall St","Bowling Green","Borough Hall","Nevins St","Atlantic Av - Barclays Ctr","Franklin Av","President St","Sterling St","Winthrop St","Church Av","Beverly Rd","Newkirk Av","Flatbush Av - Brooklyn College"],"6":["Pelham Bay Park","Buhre Av","Middletown Rd","Westchester Sq - E Tremont Av","Zerega Av","Castle Hill Av","Parkchester","St Lawrence Av","Morrison Av- Sound View","Elder Av","Whitlock Av","Hunts Point Av","Longwood Av","E 149 St","E 143 St - St Mary's St","Cypress Av","Brook Av","3 Av - 138 St","125 St","116 St","110 St","103 St","96 St","86 St","77 St","68 St - Hunter College","59 St","51 St","Grand Central - 42 St","33 St","28 St","23 St","14 St - Union Sq","Astor Pl","Bleecker St","Spring St","Canal St","Brooklyn Bridge - City Hall"],"7":["hewes - Main St","Mets - Willets Point","111 St","103 St - Corona Plaza","Junction Blvd","90 St - Elmhurst Av","82 St - Jackson Hts","74 St - Broadway","69 St","Woodside - 61 St","52 St","46 St","40 St","33 St","Queensboro Plaza","Court Sq","Hunters Point Av","Vernon Blvd - Jackson Av","Grand Central - 42 St","5 Av","Times Sq - 42 St","34 St - 11 Av"],"6X":["Pelham Bay Park","Buhre Av","Middletown Rd","Westchester Sq - E Tremont Av","Zerega Av","Castle Hill Av","Parkchester","St Lawrence Av","Morrison Av- Sound View","Elder Av","Whitlock Av","Hunts Point Av","Longwood Av","E 149 St","E 143 St - St Mary's St","Cypress Av","Brook Av","3 Av - 138 St","125 St","116 St","110 St","103 St","96 St","86 St","77 St","68 St - Hunter College","59 St","51 St","Grand Central - 42 St","33 St","28 St","23 St","14 St - Union Sq","Astor Pl","Bleecker St","Spring St","Canal St","Brooklyn Bridge - City Hall"],"GS":["Grand Central - 42 St","Times Sq - 42 St"],"S":["Franklin Av","Park Pl","Botanic Garden"],"A":["Inwood - 207 St","Dyckman St","190 St","181 St","175 St","168 St","163 St - Amsterdam Av","155 St","145 St","135 St","125 St","116 St","Cathedral Pkwy (110 St)","103 St","96 St","86 St","81 St - Museum of Natural History","72 St","59 St - Columbus Circle","50 St","42 St - Port Authority Bus Terminal","34 St - Penn Station","23 St","14 St","W 4 St","Spring St","Canal St","Chambers St","Fulton St","High St","Jay St - MetroTech","Hoyt - Schermerhorn Sts","Lafayette Av","Clinton - Washington Avs","Franklin Av","Nostrand Av","Kingston - Throop Avs","Utica Av","Ralph Av","Rockaway Av","Broadway Jct","Liberty Av","Van Siclen Av","Shepherd Av","Euclid Av","Grant Av","80 St","88 St","Rockaway Blvd","Aqueduct Racetrack","Aqueduct - N Conduit Av","Howard Beach - JFK Airport","Broad Channel","Beach 67 St","Beach 60 St","Beach 44 St","Beach 36 St","Beach 25 St","Far Rockaway - Mott Av"],"H":["Beach 90 St","Beach 67 St","Beach 60 St","Beach 44 St","Beach 36 St","Beach 25 St","Far Rockaway - Mott Av"],"C":["168 St","163 St - Amsterdam Av","155 St","145 St","135 St","125 St","116 St","Cathedral Pkwy (110 St)","103 St","96 St","86 St","81 St - Museum of Natural History","72 St","59 St - Columbus Circle","50 St","42 St - Port Authority Bus Terminal","34 St - Penn Station","23 St","14 St","W 4 St","Spring St","Canal St","Chambers St","Fulton St","High St","Jay St - MetroTech","Hoyt - Schermerhorn Sts","Lafayette Av","Clinton - Washington Avs","Franklin Av","Nostrand Av","Kingston - Throop Avs","Utica Av","Ralph Av","Rockaway Av","Broadway Jct","Liberty Av","Van Siclen Av","Shepherd Av","Euclid Av"],"E":["Jamaica Center - Parsons/Archer","Sutphin Blvd - Archer Av - JFK Airport","Jamaica - Van Wyck","Briarwood - Van Wyck Blvd","Kew Gardens - Union Tpke","75 Av","Forest Hills - 71 Av","67 Av","63 Dr - Rego Park","Woodhaven Blvd","Grand Av - Newtown","Elmhurst Av","Jackson Hts - Roosevelt Av","65 St","Northern Blvd","46 St","Steinway St","36 St","Queens Plaza","Court Sq","Lexington Av/53 St","5 Av/53 St","7 Av","50 St","42 St - Port Authority Bus Terminal","34 St - Penn Station","23 St","14 St","W 4 St","Spring St","Canal St","World Trade Center"],"B":["Bedford Park Blvd","Kingsbridge Rd","Fordham Rd","182-183 Sts","Tremont Av","174-175 Sts","170 St","167 St","161 St - Yankee Stadium","155 St","145 St","125 St","116 St","Cathedral Pkwy (110 St)","103 St","96 St","86 St","81 St - Museum of Natural History","72 St","59 St - Columbus Circle","7 Av","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","23 St","14 St","W 4 St","Broadway-Lafayette St","Grand St","DeKalb Av","Atlantic Av - Barclays Ctr","7 Av B","Prospect Park","Church Av","Newkirk Plaza","Kings Hwy","Sheepshead Bay","Brighton Beach"],"D":["Norwood - 205 St","Bedford Park Blvd","Kingsbridge Rd","Fordham Rd","182-183 Sts","Tremont Av","174-175 Sts","170 St","167 St","161 St - Yankee Stadium","155 St","145 St","125 St","59 St - Columbus Circle","7 Av","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","W 4 St","Broadway-Lafayette St","Grand St","DeKalb Av","Atlantic Av - Barclays Ctr","Union St","9 St","Prospect Av","25 St","36 St","9 Av","Fort Hamilton Pkwy","50 St","55 St","62 St","71 St","79 St","18 Av","20 Av","Bay Pkwy","25 Av","Bay 50 St","Coney Island - Stillwell Av"],"F":["Jamaica - 179 St","169 St","Parsons Blvd","Sutphin Blvd","Briarwood - Van Wyck Blvd","Kew Gardens - Union Tpke","75 Av","Forest Hills - 71 Av","Jackson Hts - Roosevelt Av","21 St - Queensbridge","Roosevelt Island","Lexington Av/63 St","57 St","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","23 St","14 St","W 4 St","Broadway-Lafayette St","2 Av","Delancey St","East Broadway","York St","Jay St - MetroTech","Bergen St","Carroll St","Smith - 9 Sts","4 Av","7 Av","15 St - Prospect Park","Fort Hamilton Pkwy","Church Av","Ditmas Av","18 Av","Avenue I","Bay Pkwy","Avenue N","Avenue P","Kings Hwy","Avenue U","Avenue X","Neptune Av","W 8 St - NY Aquarium","Coney Island - Stillwell Av"],"M":["Forest Hills - 71 Av","67 Av","63 Dr - Rego Park","Woodhaven Blvd","Grand Av - Newtown","Elmhurst Av","Jackson Hts - Roosevelt Av","65 St","Northern Blvd","46 St","Steinway St","36 St Q","Queens Plaza","Court Sq","Lexington Av/53 St","5 Av/53 St","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","23 St","14 St","W 4 St","Broadway-Lafayette St","Essex St","Marcy Av","Hewes St","Lorimer St","Flushing Av","Myrtle Av","Central Av","Knickerbocker Av","Myrtle - Wyckoff Avs","Seneca Av","Forest Av","Fresh Pond Rd","Middle Village - Metropolitan Av"],"G":["Court Sq","21 St","Greenpoint Av","Nassau Av","Metropolitan Av","Broadway","Flushing Av","Myrtle - Willoughby Avs","Bedford - Nostrand Avs","Classon Av","Clinton - Washington Avs","Fulton St","Hoyt St","Bergen St","Carroll St","Smith - 9 Sts","4 Av","7 Av","15 St - Prospect Park","Fort Hamilton Pkwy","Church Av"],"J":["Jamaica Center - Parsons/Archer","Sutphin Blvd - Archer Av - JFK Airport","121 St","111 St","104 St","Woodhaven Blvd","85 St - Forest Pkwy","75 St","Cypress Hills","Crescent St","Norwood Av","Cleveland St","Van Siclen Av","Alabama Av","Broadway Jct","Chauncey St","Halsey St","Gates Av","Kosciuszko St","Myrtle Av","Flushing Av","Lorimer St","Hewes St","Marcy Av","Essex St","Bowery","Canal St","Chambers St","Fulton St","Broad St"],"Z":["Jamaica Center - Parsons/Archer","Sutphin Blvd - Archer Av - JFK Airport","121 St","104 St","Woodhaven Blvd","75 St","Crescent St","Norwood Av","Van Siclen Av","Alabama Av","Broadway Jct","Gates Av","Myrtle Av","Marcy Av","Essex St","Bowery","Canal St","Chambers St","Fulton St","Broad St"],"L":["8 Av","6 Av","Union Sq - 14 St","3 Av","1 Av","Bedford Av","Lorimer St","Graham Av","Grand St","Montrose Av","Morgan Av","Jefferson St","DeKalb Av","Myrtle - Wyckoff Avs","Halsey St","Wilson Av","Bushwick Av - Aberdeen St","Broadway Jct","Atlantic Av","Sutter Av","Livonia Av","New Lots Av","E 105 St","Canarsie - Rockaway Pkwy"],"N":["Astoria - Ditmars Blvd","Astoria Blvd","30 Av","Broadway","36 Av","39 Av","Queensboro Plaza","Lexington Av/59 St","5 Av/59 St","57 St - 7 Av","49 St","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","City Hall","Cortlandt St","Rector St","Whitehall St","Court St","Jay St - MetroTech","DeKalb Av","Atlantic Av - Barclays Ctr","Union St","9 St","Prospect Av","25 St","36 St","45 St","53 St","59 St","8 Av","Fort Hamilton Pkwy","New Utrecht Av","18 Av","20 Av","Bay Pkwy","Kings Hwy","Avenue U","86 St","S.B. Coney Island"],"Q":["96 St","86 St","72 St","Lexington Av/59 St","57 St - 7 Av","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","DeKalb Av","Atlantic Av - Barclays Ctr","7 Av B","Prospect Park","Parkside Av","Church Av","Beverley Rd","Cortelyou Rd","Newkirk Plaza","Avenue H","Avenue J","Avenue M","Kings Hwy","Avenue U","Neck Rd","Sheepshead Bay","Brighton Beach","Ocean Pkwy","W 8 St - NY Aquarium","Coney Island - Stillwell Av"],"R":["Forest Hills - 71 Av","67 Av","63 Dr - Rego Park","Woodhaven Blvd","Grand Av - Newtown","Elmhurst Av","Jackson Hts - Roosevelt Av","65 St","Northern Blvd","46 St","Steinway St","36 St Q","Queens Plaza","Lexington Av/59 St","5 Av/59 St","57 St - 7 Av","49 St","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","City Hall","Cortlandt St","Rector St","Whitehall St","Court St","Jay St - MetroTech","DeKalb Av","Atlantic Av - Barclays Ctr","Union St","9 St","Prospect Av","25 St","36 St","45 St","53 St","59 St","Bay Ridge Av","77 St","86 St","Bay Ridge - 95 St"],"W":["Astoria - Ditmars Blvd","Astoria Blvd","30 Av","Broadway","36 Av","39 Av","Queensboro Plaza","Lexington Av/59 St","5 Av/59 St","57 St - 7 Av","49 St","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","City Hall","Cortlandt St","Rector St","Whitehall St"],"SI":["Tottenville","Atlantic","Arthur Kill","Nassau","Richmond Valley","Pleasant Plains","Prince's Bay","Huguenot","Annadale","Eltingville","Great Kills","Bay Terrace","Oakwood Heights","New Dorp","Grant City","Jefferson Av","Dongan Hills","Old Town","Grasmere","Clifton","Stapleton","Tompkinsville","St George"],"SS":["Tottenville","Atlantic","Arthur Kill","Nassau","Richmond Valley","Pleasant Plains","Prince's Bay","Huguenot","Annadale","Eltingville","Great Kills","Bay Terrace","Oakwood Heights","New Dorp","Grant City","Jefferson Av","Dongan Hills","Old Town","Grasmere","Clifton","Stapleton","Tompkinsville","St George"]};
+module.exports = {"1":["Van Cortlandt Park - 242 St","238 St","231 St","Marble Hill - 225 St","215 St","207 St","Dyckman St","191 St","181 St","168 St - Washington Hts","157 St","145 St","137 St - City College","125 St","116 St - Columbia University","Cathedral Pkwy","103 St","96 St","86 St","79 St","72 St","66 St - Lincoln Center","59 St - Columbus Circle","50 St","Times Sq - 42 St","34 St - Penn Station","28 St","23 St","18 St","14 St","Christopher St - Sheridan Sq","Houston St","Canal St","Franklin St","Chambers St","Cortlandt St","Rector St","South Ferry Loop","South Ferry"],"2":["Wakefield - 241 St","Nereid Av","233 St","225 St","219 St","Gun Hill Rd","Burke Av","Allerton Av","Pelham Pkwy","Bronx Park East","E 180 St","West Farms Sq - E Tremont Av","174 St","Freeman St","Simpson St","Intervale Av","Prospect Av","Jackson Av","3 Av - 149 St","149 St - Grand Concourse","135 St","125 St","116 St","Central Park North (110 St)","96 St","86 St","79 St","72 St","66 St - Lincoln Center","59 St - Columbus Circle","50 St","Times Sq - 42 St","34 St - Penn Station","28 St","23 St","18 St","14 St","Christopher St - Sheridan Sq","Houston St","Canal St","Franklin St","Chambers St","Park Pl","Fulton St","Wall St","Clark St","Borough Hall","Hoyt St","Nevins St","Atlantic Av - Barclays Ctr","Bergen St","Grand Army Plaza","Eastern Pkwy - Brooklyn Museum","Franklin Av","President St","Sterling St","Winthrop St","Church Av","Beverly Rd","Newkirk Av","Flatbush Av - Brooklyn College"],"3":["Harlem - 148 St","145 St","135 St","125 St","116 St","Central Park North (110 St)","96 St","72 St","Times Sq - 42 St","34 St - Penn Station","14 St","Chambers St","Park Pl","Fulton St","Wall St","Clark St","Borough Hall","Hoyt St","Nevins St","Atlantic Av - Barclays Ctr","Bergen St","Grand Army Plaza","Eastern Pkwy - Brooklyn Museum","Franklin Av","Nostrand Av","Kingston Av","Crown Hts - Utica Av","Sutter Av - Rutland Rd","Saratoga Av","Rockaway Av","Junius St","Pennsylvania Av","Van Siclen Av","New Lots Av"],"4":["Woodlawn","Mosholu Pkwy","Bedford Park Blvd - Lehman College","Kingsbridge Rd","Fordham Rd","183 St","Burnside Av","176 St","Mt Eden Av","170 St","167 St","161 St - Yankee Stadium","149 St - Grand Concourse","138 St - Grand Concourse","125 St","116 St","110 St","103 St","96 St","86 St","77 St","68 St - Hunter College","59 St","51 St","Grand Central - 42 St","33 St","28 St","23 St","14 St - Union Sq","Astor Pl","Bleecker St","Spring St","Canal St","Brooklyn Bridge - City Hall","Fulton St","Wall St","Bowling Green","Borough Hall","Hoyt St","Nevins St","Atlantic Av - Barclays Ctr","Bergen St","Grand Army Plaza","Eastern Pkwy - Brooklyn Museum","Franklin Av","Nostrand Av","Kingston - Throop Avs","Crown Hts - Utica Av","Sutter Av - Rutland Rd","Saratoga Av","Rockaway Av","Junius St","Pennsylvania Av","Van Siclen Av","New Lots Av"],"5":["Eastchester - Dyre Av","Baychester Av","Gun Hill Rd","Pelham Pkwy","Morris Park","E 180 St","West Farms Sq - E Tremont Av","174 St","Freeman St","Simpson St","Intervale Av","Prospect Av","Jackson Av","3 Av - 149 St","149 St - Grand Concourse","138 St - Grand Concourse","125 St","86 St","59 St","Grand Central - 42 St","14 St - Union Sq","Brooklyn Bridge - City Hall","Fulton St","Wall St","Bowling Green","Borough Hall","Nevins St","Atlantic Av - Barclays Ctr","Franklin Av","President St","Sterling St","Winthrop St","Church Av","Beverly Rd","Newkirk Av","Flatbush Av - Brooklyn College"],"6":["Pelham Bay Park","Buhre Av","Middletown Rd","Westchester Sq - E Tremont Av","Zerega Av","Castle Hill Av","Parkchester","St Lawrence Av","Morrison Av- Sound View","Elder Av","Whitlock Av","Hunts Point Av","Longwood Av","E 149 St","E 143 St - St Mary's St","Cypress Av","Brook Av","3 Av - 138 St","125 St","116 St","110 St","103 St","96 St","86 St","77 St","68 St - Hunter College","59 St","51 St","Grand Central - 42 St","33 St","28 St","23 St","14 St - Union Sq","Astor Pl","Bleecker St","Spring St","Canal St","Brooklyn Bridge - City Hall"],"7":["Flushing - Main St","Mets - Willets Point","111 St","103 St - Corona Plaza","Junction Blvd","90 St - Elmhurst Av","82 St - Jackson Hts","74 St - Broadway","69 St","Woodside - 61 St","52 St","46 St","40 St","33 St","Queensboro Plaza","Court Sq","Hunters Point Av","Vernon Blvd - Jackson Av","Grand Central - 42 St","5 Av","Times Sq - 42 St","34 St - 11 Av"],"6X":["Pelham Bay Park","Buhre Av","Middletown Rd","Westchester Sq - E Tremont Av","Zerega Av","Castle Hill Av","Parkchester","St Lawrence Av","Morrison Av- Sound View","Elder Av","Whitlock Av","Hunts Point Av","Longwood Av","E 149 St","E 143 St - St Mary's St","Cypress Av","Brook Av","3 Av - 138 St","125 St","116 St","110 St","103 St","96 St","86 St","77 St","68 St - Hunter College","59 St","51 St","Grand Central - 42 St","33 St","28 St","23 St","14 St - Union Sq","Astor Pl","Bleecker St","Spring St","Canal St","Brooklyn Bridge - City Hall"],"GS":["Grand Central - 42 St","Times Sq - 42 St"],"S":["Franklin Av","Park Pl","Botanic Garden"],"A":["Inwood - 207 St","Dyckman St","190 St","181 St","175 St","168 St","163 St - Amsterdam Av","155 St","145 St","135 St","125 St","116 St","Cathedral Pkwy (110 St)","103 St","96 St","86 St","81 St - Museum of Natural History","72 St","59 St - Columbus Circle","50 St","42 St - Port Authority Bus Terminal","34 St - Penn Station","23 St","14 St","W 4 St","Spring St","Canal St","Chambers St","Fulton St","High St","Jay St - MetroTech","Hoyt - Schermerhorn Sts","Lafayette Av","Clinton - Washington Avs","Franklin Av","Nostrand Av","Kingston - Throop Avs","Utica Av","Ralph Av","Rockaway Av","Broadway Jct","Liberty Av","Van Siclen Av","Shepherd Av","Euclid Av","Grant Av","80 St","88 St","Rockaway Blvd","Aqueduct Racetrack","Aqueduct - N Conduit Av","Howard Beach - JFK Airport","Broad Channel","Beach 67 St","Beach 60 St","Beach 44 St","Beach 36 St","Beach 25 St","Far Rockaway - Mott Av"],"H":["Beach 90 St","Beach 67 St","Beach 60 St","Beach 44 St","Beach 36 St","Beach 25 St","Far Rockaway - Mott Av"],"C":["168 St","163 St - Amsterdam Av","155 St","145 St","135 St","125 St","116 St","Cathedral Pkwy (110 St)","103 St","96 St","86 St","81 St - Museum of Natural History","72 St","59 St - Columbus Circle","50 St","42 St - Port Authority Bus Terminal","34 St - Penn Station","23 St","14 St","W 4 St","Spring St","Canal St","Chambers St","Fulton St","High St","Jay St - MetroTech","Hoyt - Schermerhorn Sts","Lafayette Av","Clinton - Washington Avs","Franklin Av","Nostrand Av","Kingston - Throop Avs","Utica Av","Ralph Av","Rockaway Av","Broadway Jct","Liberty Av","Van Siclen Av","Shepherd Av","Euclid Av"],"E":["Jamaica Center - Parsons/Archer","Sutphin Blvd - Archer Av - JFK Airport","Jamaica - Van Wyck","Briarwood - Van Wyck Blvd","Kew Gardens - Union Tpke","75 Av","Forest Hills - 71 Av","67 Av","63 Dr - Rego Park","Woodhaven Blvd","Grand Av - Newtown","Elmhurst Av","Jackson Hts - Roosevelt Av","65 St","Northern Blvd","46 St","Steinway St","36 St","Queens Plaza","Court Sq","Lexington Av/53 St","5 Av/53 St","7 Av","50 St","42 St - Port Authority Bus Terminal","34 St - Penn Station","23 St","14 St","W 4 St","Spring St","Canal St","World Trade Center"],"B":["Bedford Park Blvd","Kingsbridge Rd","Fordham Rd","182-183 Sts","Tremont Av","174-175 Sts","170 St","167 St","161 St - Yankee Stadium","155 St","145 St","125 St","116 St","Cathedral Pkwy (110 St)","103 St","96 St","86 St","81 St - Museum of Natural History","72 St","59 St - Columbus Circle","7 Av","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","23 St","14 St","W 4 St","Broadway-Lafayette St","Grand St","DeKalb Av","Atlantic Av - Barclays Ctr","7 Av B","Prospect Park","Church Av","Newkirk Plaza","Kings Hwy","Sheepshead Bay","Brighton Beach"],"D":["Norwood - 205 St","Bedford Park Blvd","Kingsbridge Rd","Fordham Rd","182-183 Sts","Tremont Av","174-175 Sts","170 St","167 St","161 St - Yankee Stadium","155 St","145 St","125 St","59 St - Columbus Circle","7 Av","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","W 4 St","Broadway-Lafayette St","Grand St","DeKalb Av","Atlantic Av - Barclays Ctr","Union St","9 St","Prospect Av","25 St","36 St","9 Av","Fort Hamilton Pkwy","50 St","55 St","62 St","71 St","79 St","18 Av","20 Av","Bay Pkwy","25 Av","Bay 50 St","Coney Island - Stillwell Av"],"F":["Jamaica - 179 St","169 St","Parsons Blvd","Sutphin Blvd","Briarwood - Van Wyck Blvd","Kew Gardens - Union Tpke","75 Av","Forest Hills - 71 Av","Jackson Hts - Roosevelt Av","21 St - Queensbridge","Roosevelt Island","Lexington Av/63 St","57 St","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","23 St","14 St","W 4 St","Broadway-Lafayette St","2 Av","Delancey St","East Broadway","York St","Jay St - MetroTech","Bergen St","Carroll St","Smith - 9 Sts","4 Av","7 Av","15 St - Prospect Park","Fort Hamilton Pkwy","Church Av","Ditmas Av","18 Av","Avenue I","Bay Pkwy","Avenue N","Avenue P","Kings Hwy","Avenue U","Avenue X","Neptune Av","W 8 St - NY Aquarium","Coney Island - Stillwell Av"],"M":["Forest Hills - 71 Av","67 Av","63 Dr - Rego Park","Woodhaven Blvd","Grand Av - Newtown","Elmhurst Av","Jackson Hts - Roosevelt Av","65 St","Northern Blvd","46 St","Steinway St","36 St Q","Queens Plaza","Court Sq","Lexington Av/53 St","5 Av/53 St","47-50 Sts - Rockefeller Ctr","42 St - Bryant Pk","34 St - Herald Sq","23 St","14 St","W 4 St","Broadway-Lafayette St","Essex St","Marcy Av","Hewes St","Lorimer St","Flushing Av","Myrtle Av","Central Av","Knickerbocker Av","Myrtle - Wyckoff Avs","Seneca Av","Forest Av","Fresh Pond Rd","Middle Village - Metropolitan Av"],"G":["Court Sq","21 St","Greenpoint Av","Nassau Av","Metropolitan Av","Broadway","Flushing Av","Myrtle - Willoughby Avs","Bedford - Nostrand Avs","Classon Av","Clinton - Washington Avs","Fulton St","Hoyt St","Bergen St","Carroll St","Smith - 9 Sts","4 Av","7 Av","15 St - Prospect Park","Fort Hamilton Pkwy","Church Av"],"J":["Jamaica Center - Parsons/Archer","Sutphin Blvd - Archer Av - JFK Airport","121 St","111 St","104 St","Woodhaven Blvd","85 St - Forest Pkwy","75 St","Cypress Hills","Crescent St","Norwood Av","Cleveland St","Van Siclen Av","Alabama Av","Broadway Jct","Chauncey St","Halsey St","Gates Av","Kosciuszko St","Myrtle Av","Flushing Av","Lorimer St","Hewes St","Marcy Av","Essex St","Bowery","Canal St","Chambers St","Fulton St","Broad St"],"Z":["Jamaica Center - Parsons/Archer","Sutphin Blvd - Archer Av - JFK Airport","121 St","104 St","Woodhaven Blvd","75 St","Crescent St","Norwood Av","Van Siclen Av","Alabama Av","Broadway Jct","Gates Av","Myrtle Av","Marcy Av","Essex St","Bowery","Canal St","Chambers St","Fulton St","Broad St"],"L":["8 Av","6 Av","Union Sq - 14 St","3 Av","1 Av","Bedford Av","Lorimer St","Graham Av","Grand St","Montrose Av","Morgan Av","Jefferson St","DeKalb Av","Myrtle - Wyckoff Avs","Halsey St","Wilson Av","Bushwick Av - Aberdeen St","Broadway Jct","Atlantic Av","Sutter Av","Livonia Av","New Lots Av","E 105 St","Canarsie - Rockaway Pkwy"],"N":["Astoria - Ditmars Blvd","Astoria Blvd","30 Av","Broadway","36 Av","39 Av","Queensboro Plaza","Lexington Av/59 St","5 Av/59 St","57 St - 7 Av","49 St","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","City Hall","Cortlandt St","Rector St","Whitehall St","Court St","Jay St - MetroTech","DeKalb Av","Atlantic Av - Barclays Ctr","Union St","9 St","Prospect Av","25 St","36 St","45 St","53 St","59 St","8 Av","Fort Hamilton Pkwy","New Utrecht Av","18 Av","20 Av","Bay Pkwy","Kings Hwy","Avenue U","86 St","S.B. Coney Island"],"Q":["96 St","86 St","72 St","Lexington Av/59 St","57 St - 7 Av","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","DeKalb Av","Atlantic Av - Barclays Ctr","7 Av B","Prospect Park","Parkside Av","Church Av","Beverley Rd","Cortelyou Rd","Newkirk Plaza","Avenue H","Avenue J","Avenue M","Kings Hwy","Avenue U","Neck Rd","Sheepshead Bay","Brighton Beach","Ocean Pkwy","W 8 St - NY Aquarium","Coney Island - Stillwell Av"],"R":["Forest Hills - 71 Av","67 Av","63 Dr - Rego Park","Woodhaven Blvd","Grand Av - Newtown","Elmhurst Av","Jackson Hts - Roosevelt Av","65 St","Northern Blvd","46 St","Steinway St","36 St Q","Queens Plaza","Lexington Av/59 St","5 Av/59 St","57 St - 7 Av","49 St","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","City Hall","Cortlandt St","Rector St","Whitehall St","Court St","Jay St - MetroTech","DeKalb Av","Atlantic Av - Barclays Ctr","Union St","9 St","Prospect Av","25 St","36 St","45 St","53 St","59 St","Bay Ridge Av","77 St","86 St","Bay Ridge - 95 St"],"W":["Astoria - Ditmars Blvd","Astoria Blvd","30 Av","Broadway","36 Av","39 Av","Queensboro Plaza","Lexington Av/59 St","5 Av/59 St","57 St - 7 Av","49 St","Times Sq - 42 St","34 St - Herald Sq","28 St","23 St","14 St - Union Sq","8 St - NYU","Prince St","Canal St","City Hall","Cortlandt St","Rector St","Whitehall St"],"SI":["Tottenville","Atlantic","Arthur Kill","Nassau","Richmond Valley","Pleasant Plains","Prince's Bay","Huguenot","Annadale","Eltingville","Great Kills","Bay Terrace","Oakwood Heights","New Dorp","Grant City","Jefferson Av","Dongan Hills","Old Town","Grasmere","Clifton","Stapleton","Tompkinsville","St George"],"SS":["Tottenville","Atlantic","Arthur Kill","Nassau","Richmond Valley","Pleasant Plains","Prince's Bay","Huguenot","Annadale","Eltingville","Great Kills","Bay Terrace","Oakwood Heights","New Dorp","Grant City","Jefferson Av","Dongan Hills","Old Town","Grasmere","Clifton","Stapleton","Tompkinsville","St George"]};
 
 /***/ }),
 
@@ -74790,7 +74790,7 @@ class App {
         const countdown = startTime - updateTime;
         setTimeout(() => {
           train.setNextPath();
-          // this.train[status.line][status.id].marker.start();
+          train.marker.start();
         }, countdown);
         break;
 
@@ -75124,9 +75124,170 @@ function requestMta(store, req) {
   !*** ./src/train.js ***!
   \**********************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (114:47)\nYou may need an appropriate loader to handle this file type.\n|       const finalStop = this.feedRoute[this.feedRouteIndex];\n|       const finalStopLatLng = getLatLng(getStationById(finalStop.id));\n|       this.marker.addLatLng(finalStopLatLng), 0);\n|       return;\n| ");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
+var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
+/* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
+/* harmony import */ var _utils_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/data_utils */ "./utils/data_utils.js");
+// =========================== this.status ============================
+// standby => train is waiting to leave its origin station
+// idle => train has reached its last stop
+// active => train is currently in transit
+// ====================================================================
+
+
+
+
+
+class Train {
+  constructor(id, line, direction, route, feed) {
+    this.id = id;
+    this.line = line;
+    this.direction = direction;
+    this.originTime = id.split(".")[0].split("_")[0];
+    this.updateTime = new Date();
+
+    this.staticRoute = this.direction === 'S' ? route : route.reverse();
+    this.feedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeedRoute"])(feed.feedRoute);
+
+    this.staticRouteIndex = 0;
+    this.feedRouteIndex = 0;
+    this.durationSum = 0;
+
+    this.setStatus();
+    this.makeMarker();
+  }
+
+  setStatus() {
+    if (this.staticRoute[0].id === this.feedRoute[0].id && this.feedRoute[0].time >= this.updateTime) {
+      this.status = 'standby';
+    } else if (this.updateTime >= this.feedRoute[this.feedRoute.length - 1].time) {
+      this.status = 'idle';
+    } else {
+      this.status = 'active';
+    }
+  }
+
+  makeMarker() {
+    let path;
+
+    switch (this.status) {
+      case 'active':
+        this.setActiveParams();
+        path = [
+          Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[this.staticRouteIndex - 1]),
+          Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[this.staticRouteIndex])
+        ]
+        break;
+      case 'standby':
+        path = [
+          Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[0]),
+          Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[0])
+        ]
+        break;
+      case 'idle':
+        path = [
+          Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[this.feedRoute.length - 1]),
+          Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[this.feedRoute.length - 1])
+        ]
+        break;
+    }
+
+    // case when an off route station is found
+    if (this.status === 'offroute') {
+      path = [
+        Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[this.feedRouteIndex]),
+        Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[this.feedRouteIndex])
+      ]
+    }
+
+    this.marker = new L.Marker.movingMarker(path, [this.durationSum]);
+    const trainIcon = L.icon({
+      iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
+      iconSize: [25, 25],
+      iconAnchor: [12, 12]
+    });
+    this.marker.setIcon(trainIcon);
+  }
+
+  setActiveParams() {
+    for (let i = 0; i < this.feedRoute.length; i++) {
+      const feedStation = this.feedRoute[i];
+
+      if (feedStation.time > this.updateTime) {
+
+        for (let j = 1; j < this.staticRoute.length; j++) {
+
+          if (this.staticRoute[j].id === feedStation.id) {
+            this.feedRouteIndex = i;
+            this.staticRouteIndex = j;
+            this.durationSum += feedStation.time - this.updateTime;
+            return;
+          }
+        }
+
+        // station from feed is not found in its static route therefore
+        // it is off route
+        this.status = 'offroute';
+        this.feedRouteIndex = i;
+        return;
+      }
+    }
+  }
+
+  setNextPath() {
+    if (this.feedRouteIndex === this.feedRoute.length - 1) {
+      console.log('reached its last stop');
+      this.status = 'idle';
+      const latLng = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[this.feedRouteIndex]);
+      this.marker.addLatLng(latLng, 0);
+      return;
+
+    } else if (
+      this.staticRouteIndex === this.staticRoute.length - 1 &&
+      this.feedRouteIndex !== this.feedRoute.length - 1
+    ) {
+      console.log('last stop is off route');
+      this.status = 'offroute';
+      const latLng = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[this.feedRouteIndex]);
+      this.marker.addLatLng(latLng, 0);
+      return;
+    }
+
+    const nextStop = this.feedRoute[this.feedRouteIndex + 1];
+    const unmatchedStaticStations = [];
+
+    for (let i = this.staticRouteIndex + 1; i < this.staticRoute.length; i++) {
+
+      if (this.staticRoute[i].id === nextStop.id) {
+        const duration = nextStop.time - this.updateTime - this.durationSum;
+        const subduration = duration / (unmatchedStaticStations.length + 1);
+        this.duration += duration;
+        this.prevStop = this.nextStop;
+        this.nextStop = this.staticRoute[j];
+        unmatchedStaticStations.forEach((staticStation) => {
+          this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(staticStation), subduration);
+        })
+        this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop), subduration);
+        return;
+
+      } else {
+        unmatchedStaticStations.push(this.staticRoute[j]);
+      }
+    }
+    // next station in feedRoute is not found in staticRoute and needs rerouting
+    // placeholder for trains with off routes
+    this.status = 'offroute';
+    this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop), 0);
+    return;
+  }
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -75181,6 +75342,87 @@ function getStationLatLng(stationId) {
     lng: _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[stationId].lng
   }
 }
+
+
+/***/ }),
+
+/***/ "./utils/train_utils.js":
+/*!******************************!*\
+  !*** ./utils/train_utils.js ***!
+  \******************************/
+/*! exports provided: interpolate, getLatLng */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatLng", function() { return getLatLng; });
+function interpolate(from, to, fromTime, toTime) {
+  const r = timeRatio(fromTime, toTime);
+  const lat = from.lat + (to.lat - from.lat) * r;
+  const lng = from.lng + (to.lng - from.lng) * r;
+  return [lat, lng];
+}
+
+function timeRatio(fromTime, toTime) {
+  const routeTime = toTime - fromTime;
+  const currentTime = (toTime) - new Date();
+  // if currentTime is negative train has passed the station
+  return (currentTime / routeTime);
+}
+
+function getLatLng(station) {
+  return [station.lat, station.lng];
+}
+
+// export function getStationTime(station) {
+//   const stationEntity = station.arrival || station.departure;
+//   return stationEntity.time * 1000;
+// }
+
+// export function mergeRoutes(staticRoute, feedRoute) {
+//   let route = staticRoute;
+//
+//   feedRoute.forEach((feedStation) => {
+//     let isIncluded = false;
+//
+//     for (let i = 0; i < route.length; i++) {
+//       if (feedStation.id === route[i].id) {
+//         isIncluded = true;
+//         route[i] = Object.assign({}, route[i], { time: feedStation.time });
+//         break;
+//       }
+//     };
+//
+//     // if (!isIncluded) {
+//     //   const station = {};
+//     //   station.id = feedStation.id;
+//     //   station.lat = stations[feedStation.id].lat;
+//     //   station.lng = stations[feedStation.id].lng;
+//     //   station.time = feedStation.time;
+//     //   route = mergeStation(route, station);
+//     // };
+//   });
+//
+//   return route;
+// }
+//
+// function mergeStation(route, station) {
+//   let shortest;
+//   let secondShortest;
+//
+//   route.forEach((routeStation) => {
+//     const d = getDistance(getLatLng(routeStation), getLatLng(station));
+//   });
+//
+//
+// }
+//
+// function getDistance(station1, station2) {
+//   const lat = station1.lat - station2.lat;
+//   const lng = station1.lng - station2.lng;
+//   return Math.sqrt((lat * lat) + (lng * lng));
+// }
 
 
 /***/ }),
