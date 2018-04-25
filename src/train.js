@@ -43,6 +43,9 @@ export default class Train {
 
   setParams() {
     switch (this.status) {
+      case 'active':
+        this.setActiveParams();
+        break;
       case 'standby':
         this.path.push(getLatLng(this.staticRoute[0]));
         this.durations.push(0);
@@ -51,9 +54,6 @@ export default class Train {
         const lastFeedStation = getStationById(this.feedRoute[this.feedRoute.length - 1].id);
         this.path.push(getLatLng(lastFeedStation));
         this.durations.push(0);
-        break;
-      case 'active':
-        this.setActiveParams();
         break;
     }
   }
@@ -81,8 +81,10 @@ export default class Train {
 
   createMarker() {
     if (this.durations.length === 0) {
+      this.status = 'reroute'
       return new L.Marker.movingMarker([[0,0],[0,0]], [1]);
     }
+    
     let path;
     if (this.path.length === 1) {
       path = [this.path[0], this.path[0]];
@@ -101,33 +103,12 @@ export default class Train {
   }
 
 // =====================================================================
-  getAction() {
-    switch (this.status) {
-      case 'standby':
-        return {
-          type: 'countdown',
-          id: this.id,
-          line: this.line
-        };
-      case 'idle':
-        return {
-          type: 'delete',
-          id: this.id,
-          line: this.line
-        };
-      case 'active':
-        return {
-          type: 'update',
-          id: this.id,
-          line: this.line
-        };
-      default:
-        return {
-          type: 'A',
-          id: this.id,
-          line: this.line
-        };
-    }
+  getStatus() {
+    return {
+      type: this.status,
+      id: this.id,
+      line: this.line
+    };
   }
 
   updatePath() {

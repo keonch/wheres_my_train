@@ -74749,7 +74749,7 @@ class App {
       // data is received but does not exist in the store
       } else if (!this.trains[trainId]) {
         setTimeout(() => {
-          this.setupTrain(trainId, feed[trainId]);
+          this.makeTrain(trainId, feed[trainId]);
         }, 0);
 
       // if the train instance already exist in the store, update the train
@@ -74761,52 +74761,45 @@ class App {
     });
   }
 
-  setupTrain(trainId, feed) {
-    const train = this.makeTrain(trainId, feed);
-    train.marker.addTo(this.map);
-    this.trains[train.line] = Object.assign({},
-      this.trains[train.line],
-      { [trainId]: train }
-    );
-    this.setListener(train);
-    train.marker.start();
-  }
-
   makeTrain(trainId, feed) {
     const id = trainId.split(".");
     const line = id[0].split("_").slice(-1)[0];
     const direction = id.slice(-1)[0][0];
     const route = this.routes[line];
-    return new _src_train__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction, route, feed);
+    const train = new _src_train__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction, route, feed);
+
+    train.marker.addTo(this.map);
+    this.trains[line] = Object.assign({},
+      this.trains[line],
+      { [trainId]: train }
+    );
+    train.marker.addEventListener('end', () => this.update(train.getStatus()));
+    train.marker.start();
   }
 
-  setListener(train) {
-    train.marker.addEventListener('end', () => this.update(train.getAction()));
-  }
-
-  update(action) {
-    switch (action.type) {
-      case 'delete':
-        setTimeout(() => this.deleteTrain(action.line, action.id), 60000);
+  update(status) {
+    switch (status.type) {
+      case 'idle':
+        setTimeout(() => this.deleteTrain(status.line, status.id), 60000);
         break;
 
-      case 'update':
-        this.trains[action.line][action.id].updatePath();
-        this.trains[action.line][action.id].marker.start();
+      case 'active':
+        this.trains[status.line][status.id].updatePath();
+        // this.trains[status.line][status.id].marker.start();
         break;
 
-      case 'countdown':
-        const startTime = this.trains[action.line][action.id].feedRoute[0].time;
-        const updateTime = this.trains[action.line][action.id].updateTime;
+      case 'standby':
+        const startTime = this.trains[status.line][status.id].feedRoute[0].time;
+        const updateTime = this.trains[status.line][status.id].updateTime;
         const countdown = startTime - updateTime;
         setTimeout(() => {
-          train.updatePath();
-          train.marker.start();
+          this.trains[status.line][status.id].updatePath();
+          // this.train[status.line][status.id].marker.start();
         }, countdown);
         break;
 
-      case 'A':
-        this.trains[action.line][action.id].marker.bindPopup('REROUTE');
+      default:
+        this.trains[status.line][status.id].marker.bindPopup('REROUTE');
         break;
     }
   }
@@ -75207,6 +75200,9 @@ class Train {
 
   setParams() {
     switch (this.status) {
+      case 'active':
+        this.setActiveParams();
+        break;
       case 'standby':
         this.path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[0]));
         this.durations.push(0);
@@ -75215,9 +75211,6 @@ class Train {
         const lastFeedStation = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(this.feedRoute[this.feedRoute.length - 1].id);
         this.path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(lastFeedStation));
         this.durations.push(0);
-        break;
-      case 'active':
-        this.setActiveParams();
         break;
     }
   }
@@ -75245,8 +75238,10 @@ class Train {
 
   createMarker() {
     if (this.durations.length === 0) {
+      this.status = 'reroute'
       return new L.Marker.movingMarker([[0,0],[0,0]], [1]);
     }
+    
     let path;
     if (this.path.length === 1) {
       path = [this.path[0], this.path[0]];
@@ -75265,33 +75260,12 @@ class Train {
   }
 
 // =====================================================================
-  getAction() {
-    switch (this.status) {
-      case 'standby':
-        return {
-          type: 'countdown',
-          id: this.id,
-          line: this.line
-        };
-      case 'idle':
-        return {
-          type: 'delete',
-          id: this.id,
-          line: this.line
-        };
-      case 'active':
-        return {
-          type: 'update',
-          id: this.id,
-          line: this.line
-        };
-      default:
-        return {
-          type: 'A',
-          id: this.id,
-          line: this.line
-        };
-    }
+  getStatus() {
+    return {
+      type: this.status,
+      id: this.id,
+      line: this.line
+    };
   }
 
   updatePath() {
