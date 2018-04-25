@@ -1,54 +1,27 @@
 import Train from '../src/train';
 import trainColors from '../assets/train_colors.json';
-import stations from '../data/stations.json';
-import subwayRoutes from '../data/subway_routes.json';
+import staticRoutes from '../data/static_routes.json';
 
 export default class App {
   constructor(map) {
     this.map = map;
     this.trains = {};
-    this.routes = {};
     this.polylines = {};
 
-    this.setupStaticRoutes();
     this.setupPolylines();
 
-    this.update = this.updateTrain.bind(this);
-  }
-
-  setupStaticRoutes() {
-    Object.keys(subwayRoutes).forEach((line) => {
-      const route = [];
-      subwayRoutes[line].forEach((stationName) => {
-        Object.keys(stations).forEach((stopId) => {
-          if (
-            stations[stopId].name === stationName &&
-            stations[stopId].trains.includes(line)
-          ) {
-            const stationLatLng = new Object();
-            stationLatLng.id = stopId
-            stationLatLng.lat = stations[stopId].lat;
-            stationLatLng.lng = stations[stopId].lng;
-            route.push(stationLatLng);
-          }
-        });
-      });
-      this.routes[line] = route;
-    });
+    this.updateTrain = this.updateTrain.bind(this);
   }
 
   setupPolylines() {
-    Object.keys(this.routes).forEach((line) => {
-      const route = this.routes[line];
-      const color = trainColors[line].trainColor;
-      const polyline = new L.Polyline(route, {
-        color: color,
+    Object.keys(staticRoutes).forEach((line) => {
+      this.polylines[line] = new L.Polyline(staticRoutes[line], {
+        color: '#a9a9a9',
         weight: 3,
-        opacity: 0.8,
+        opacity: 0.5,
         smoothFactor: 1
-      });
-      this.polylines[line] = polyline;
-      polyline.addTo(this.map);
+      })
+      this.polylines[line].addTo(this.map);
     });
   }
 
@@ -76,7 +49,7 @@ export default class App {
     const id = trainId.split(".");
     const line = id[0].split("_").slice(-1)[0];
     const direction = id.slice(-1)[0][0];
-    const route = this.routes[line];
+    const route = staticRoutes[line];
     const train = new Train(trainId, line, direction, route, feed);
 
     train.marker.addTo(this.map);

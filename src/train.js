@@ -81,6 +81,7 @@ export default class Train {
       iconAnchor: [12, 12]
     });
     this.marker.setIcon(trainIcon);
+    this.marker.setOpacity(.4);
   }
 
   getActiveParams(params) {
