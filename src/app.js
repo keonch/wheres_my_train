@@ -13,7 +13,7 @@ export default class App {
     this.setupStaticRoutes();
     this.setupPolylines();
 
-    this.update = this.update.bind(this);
+    this.update = this.updateTrain.bind(this);
   }
 
   setupStaticRoutes() {
@@ -55,7 +55,7 @@ export default class App {
   setupFeed(feed) {
     Object.keys(feed).forEach((trainId) => {
       // if train feed does not include tripUpdate or vehicleUpdate the
-      // train is not assigned a route hence no instance of the train is made
+      // train is not assigned a route: no instance of the train is made
       if (!feed[trainId].feedRoute || !feed[trainId].vehicleTime) {
 
       // create a new train object if new vehicleUpdate and tripUpdate
@@ -65,8 +65,8 @@ export default class App {
           this.makeTrain(trainId, feed[trainId]);
         }, 0);
 
-      // if the train instance already exist in the store, update the train
-      // with new set of data received
+      // if the train instance already exist in the store,
+      // update the train with new set of data received
       } else if (this.trains[trainId]) {
         console.log('update train');
         // this.trains[trainId].update(feed[trainId]);
@@ -86,62 +86,40 @@ export default class App {
       this.trains[line],
       { [trainId]: train }
     );
-    train.marker.addEventListener('end', () => this.update(train.getStatus()));
+    train.marker.addEventListener('end', () => this.updateTrain(train));
     train.marker.start();
   }
 
-  update(status) {
-    switch (status.type) {
-      case 'idle':
-        setTimeout(() => this.deleteTrain(status.line, status.id), 60000);
-        break;
-
+  updateTrain(train) {
+    switch (train.status) {
       case 'active':
-        this.trains[status.line][status.id].updatePath();
-        // this.trains[status.line][status.id].marker.start();
+        train.setNextPath();
+        // train.marker.start();
         break;
 
       case 'standby':
-        const startTime = this.trains[status.line][status.id].feedRoute[0].time;
-        const updateTime = this.trains[status.line][status.id].updateTime;
+        const startTime = train.feedRoute[0].time;
+        const updateTime = train.updateTime;
         const countdown = startTime - updateTime;
         setTimeout(() => {
-          this.trains[status.line][status.id].updatePath();
+          train.setNextPath();
           // this.train[status.line][status.id].marker.start();
         }, countdown);
         break;
 
+      case 'idle':
+        train.marker.setOpacity(.5);
+        setTimeout(() => this.deleteTrain(train), 60000);
+        break;
+
       default:
-        this.trains[status.line][status.id].marker.bindPopup('REROUTE');
+        train.marker.bindPopup('Off Route');
         break;
     }
   }
 
-  deleteTrain(line, id) {
-    this.trains[line][id].marker.remove();
-    delete this.trains[line][id];
+  deleteTrain(train) {
+    train.marker.remove();
+    delete this.trains[train.line][train.id];
   }
-
-  // updateTrain(train) {
-  //   if (train.status === 'idle') {
-  //     train.marker.setOpacity(.4);
-  //     setTimeout(() => this.deleteTrain(train), 60000);
-  //
-  //   } else if (train.status === 'standby') {
-  //     const countdown = train.route[0].time - new Date();
-  //     setTimeout(() => {
-  //       train.status = 'active';
-  //       train.marker.remove();
-  //       train.setMarker();
-  //       this.updateTrain(train);
-  //     }, countdown);
-  //
-  //   } else if (train.status === 'reroute') {
-  //     this.deleteTrain(train);
-  //
-  //   } else if (train.status === 'active') {
-  //     train.marker.start();
-  //   }
-  // }
-
 }

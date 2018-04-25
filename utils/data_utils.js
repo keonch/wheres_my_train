@@ -17,17 +17,21 @@ export function parseFeed(feed) {
 
 export function parseFeedRoute(feedRoute) {
   return feedRoute.map((feedStation) => {
-    const stationTime = feedStation.arrival || feedStation.departure;
+    const stationEntity = feedStation.arrival || feedStation.departure;
+    const stationTime = stationEntity.time * 1000;
+    const stationId = feedStation.stopId.slice(0, -1);
+    const stationLatLng = getStationLatLng(stationId);
     return {
-      id: feedStation.stopId.slice(0, -1),
-      time: stationTime.time * 1000
+      id: stationId,
+      lat: stationLatLng.lat,
+      lng: stationLatLng.lng,
+      time: stationTime
     }
   })
 };
 
-export function getStationById(stationId) {
+function getStationLatLng(stationId) {
   return {
-    id: stationId,
     lat: stations[stationId].lat,
     lng: stations[stationId].lng
   }

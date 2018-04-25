@@ -74700,7 +74700,7 @@ class App {
     this.setupStaticRoutes();
     this.setupPolylines();
 
-    this.update = this.update.bind(this);
+    this.update = this.updateTrain.bind(this);
   }
 
   setupStaticRoutes() {
@@ -74742,7 +74742,7 @@ class App {
   setupFeed(feed) {
     Object.keys(feed).forEach((trainId) => {
       // if train feed does not include tripUpdate or vehicleUpdate the
-      // train is not assigned a route hence no instance of the train is made
+      // train is not assigned a route: no instance of the train is made
       if (!feed[trainId].feedRoute || !feed[trainId].vehicleTime) {
 
       // create a new train object if new vehicleUpdate and tripUpdate
@@ -74752,8 +74752,8 @@ class App {
           this.makeTrain(trainId, feed[trainId]);
         }, 0);
 
-      // if the train instance already exist in the store, update the train
-      // with new set of data received
+      // if the train instance already exist in the store,
+      // update the train with new set of data received
       } else if (this.trains[trainId]) {
         console.log('update train');
         // this.trains[trainId].update(feed[trainId]);
@@ -74773,64 +74773,42 @@ class App {
       this.trains[line],
       { [trainId]: train }
     );
-    train.marker.addEventListener('end', () => this.update(train.getStatus()));
+    train.marker.addEventListener('end', () => this.updateTrain(train));
     train.marker.start();
   }
 
-  update(status) {
-    switch (status.type) {
-      case 'idle':
-        setTimeout(() => this.deleteTrain(status.line, status.id), 60000);
-        break;
-
+  updateTrain(train) {
+    switch (train.status) {
       case 'active':
-        this.trains[status.line][status.id].updatePath();
-        // this.trains[status.line][status.id].marker.start();
+        train.setNextPath();
+        // train.marker.start();
         break;
 
       case 'standby':
-        const startTime = this.trains[status.line][status.id].feedRoute[0].time;
-        const updateTime = this.trains[status.line][status.id].updateTime;
+        const startTime = train.feedRoute[0].time;
+        const updateTime = train.updateTime;
         const countdown = startTime - updateTime;
         setTimeout(() => {
-          this.trains[status.line][status.id].updatePath();
+          train.setNextPath();
           // this.train[status.line][status.id].marker.start();
         }, countdown);
         break;
 
+      case 'idle':
+        train.marker.setOpacity(.5);
+        setTimeout(() => this.deleteTrain(train), 60000);
+        break;
+
       default:
-        this.trains[status.line][status.id].marker.bindPopup('REROUTE');
+        train.marker.bindPopup('Off Route');
         break;
     }
   }
 
-  deleteTrain(line, id) {
-    this.trains[line][id].marker.remove();
-    delete this.trains[line][id];
+  deleteTrain(train) {
+    train.marker.remove();
+    delete this.trains[train.line][train.id];
   }
-
-  // updateTrain(train) {
-  //   if (train.status === 'idle') {
-  //     train.marker.setOpacity(.4);
-  //     setTimeout(() => this.deleteTrain(train), 60000);
-  //
-  //   } else if (train.status === 'standby') {
-  //     const countdown = train.route[0].time - new Date();
-  //     setTimeout(() => {
-  //       train.status = 'active';
-  //       train.marker.remove();
-  //       train.setMarker();
-  //       this.updateTrain(train);
-  //     }, countdown);
-  //
-  //   } else if (train.status === 'reroute') {
-  //     this.deleteTrain(train);
-  //
-  //   } else if (train.status === 'active') {
-  //     train.marker.start();
-  //   }
-  // }
-
 }
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
@@ -75146,244 +75124,9 @@ function requestMta(store, req) {
   !*** ./src/train.js ***!
   \**********************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
-/* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
-var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
-/* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
-/* harmony import */ var _utils_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/data_utils */ "./utils/data_utils.js");
-// =========================== this.status ============================
-// standby => train is waiting to leave its origin station
-// idle => train has reached its last stop
-// active => train is currently in transit
-// ====================================================================
-
-
-
-
-
-class Train {
-  constructor(id, line, direction, route, feed) {
-    this.id = id;
-    this.line = line;
-    this.direction = direction;
-    this.originTime = id.split(".")[0].split("_")[0];
-    this.staticRoute = this.direction === 'S' ? route : route.reverse();
-    this.feedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeedRoute"])(feed.feedRoute);
-    this.updateTime = new Date();
-    this.path = [];
-    this.durations = [];
-    this.marker;
-    this.setStatus();
-    this.setMarker();
-  }
-
-  setStatus() {
-    if (this.staticRoute[0].id === this.feedRoute[0].id && this.feedRoute[0].time >= this.updateTime) {
-      this.status = 'standby';
-
-    } else if (this.updateTime >= this.feedRoute[this.feedRoute.length - 1].time) {
-      this.status = 'idle';
-
-    } else {
-      this.status = 'active';
-    }
-  }
-
-  setMarker() {
-    this.setParams();
-    this.marker = this.createMarker();
-  }
-
-  setParams() {
-    switch (this.status) {
-      case 'active':
-        this.setActiveParams();
-        break;
-      case 'standby':
-        this.path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[0]));
-        this.durations.push(0);
-        break;
-      case 'idle':
-        const lastFeedStation = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["getStationById"])(this.feedRoute[this.feedRoute.length - 1].id);
-        this.path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(lastFeedStation));
-        this.durations.push(0);
-        break;
-    }
-  }
-
-  setActiveParams() {
-    for (let i = 0; i < this.feedRoute.length; i++) {
-      const feedStation = this.feedRoute[i];
-
-      if (feedStation.time > this.updateTime) {
-
-        for (let j = 1; j < this.staticRoute.length; j++) {
-
-          if (this.staticRoute[j].id === feedStation.id) {
-            this.feedRouteIndex = i;
-            this.staticRouteIndex = j;
-            this.path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[j-1]));
-            this.path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[j]));
-            this.durations.push(feedStation.time - this.updateTime);
-            return;
-          }
-        }
-      }
-    }
-  }
-
-  createMarker() {
-    if (this.durations.length === 0) {
-      this.status = 'reroute'
-      return new L.Marker.movingMarker([[0,0],[0,0]], [1]);
-    }
-    
-    let path;
-    if (this.path.length === 1) {
-      path = [this.path[0], this.path[0]];
-    } else {
-      path = this.path;
-    }
-
-    const marker = new L.Marker.movingMarker(path, this.durations);
-    const trainIcon = L.icon({
-      iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
-      iconSize: [25, 25],
-      iconAnchor: [12, 12]
-    });
-    marker.setIcon(trainIcon);
-    return marker;
-  }
-
-// =====================================================================
-  getStatus() {
-    return {
-      type: this.status,
-      id: this.id,
-      line: this.line
-    };
-  }
-
-  updatePath() {
-  //   if (
-  //     this.staticRouteIndex === this.staticRoute.length - 1 &&
-  //     this.feedRouteIndex === this.feedRoute.length - 1
-  //   ) {
-  //     this.status = 'idle';
-  //     this.marker.addLatLng(getLatLng(this.nextStop), 0);
-  //     return;
-  //
-  //   } else if (
-  //     this.staticRouteIndex !== this.staticRoute.length - 1 &&
-  //     this.feedRouteIndex === this.feedRoute.length - 1
-  //   ) {
-  //     this.status = 'need update';
-  //     this.marker.addLatLng(getLatLng(this.nextStop), 0);
-  //     return;
-  //
-  //   } else if (
-  //     this.staticRouteIndex === this.staticRoute.length - 1 &&
-  //     this.feedRouteIndex !== this.feedRoute.length - 1
-  //   ) {
-  //     this.status = 'reroute';
-  //     this.marker.addLatLng(getLatLng(this.nextStop), 0);
-  //     return;
-  //   }
-  //
-  //   for (let i = this.feedRouteIndex + 1; i < this.feedRoute.length; i++) {
-  //     const station = this.feedRoute[i];
-  //     const unmatchedStaticStations = [];
-  //
-  //     for (let j = this.staticRouteIndex + 1; j < this.staticRoute.length; j++) {
-  //
-  //       if (this.staticRoute[j].id === station.id) {
-  //         const duration = station.time - this.updateTime - this.duration;
-  //         const subduration = duration / (unmatchedStaticStations.length + 1);
-  //         this.duration += duration;
-  //         this.prevStop = this.nextStop;
-  //         this.nextStop = this.staticRoute[j];
-  //         unmatchedStaticStations.forEach((staticStation) => {
-  //           this.marker.addLatLng(getLatLng(staticStation), subduration);
-  //         })
-  //         this.marker.addLatLng(getLatLng(this.nextStop), subduration);
-  //         return;
-  //
-  //       } else {
-  //         unmatchedStaticStations.push(this.staticRoute[j]);
-  //       }
-  //     }
-  //     // next station in feedRoute is not found in staticRoute and needs rerouting
-  //     // placeholder for trains with off routes
-  //     this.status = 'reroute';
-  //     this.marker.addLatLng(getLatLng(this.nextStop), 0);
-  //     return;
-  //   }
-  // }
-
-  // getMarkerParams() {
-  //   if (this.status === 'standby') {
-  //     return {
-  //       path: [getLatLng(this.route[0]), getLatLng(this.route[0])],
-  //       pathTime: [0] }
-  //   } else if (this.status === 'idle') {
-  //     return {
-  //       path: [getLatLng(this.route[this.route.length - 1]), getLatLng(this.route[this.route.length - 1])],
-  //       pathTime: [0] }
-  //   }
-  //   const path = [];
-  //   const pathTime = [];
-  //   const currentTime = new Date();
-  //
-  //   let addPath = false;
-  //   let durationSum = 0;
-  //   const timelessStations = [];
-  //
-  //   for (let i = 1; i < this.route.length; i++) {
-  //     const station = this.route[i];
-  //
-  //     // begin adding stations when time is ahead of currentTime
-  //     if (station.time >= currentTime && !addPath) {
-  //       path.push(getLatLng(this.route[i - 1]));
-  //       path.push(getLatLng(station));
-  //       const duration = station.time - currentTime;
-  //       pathTime.push(duration);
-  //       durationSum += duration;
-  //       addPath = true;
-  //
-  //       // continue to add stations
-  //     } else if (station.time >= currentTime && timelessStations.length === 0) {
-  //       path.push(getLatLng(station));
-  //       const duration = station.time - currentTime - durationSum;
-  //       pathTime.push(duration);
-  //       durationSum += duration;
-  //
-  //       // queue the stations without time to divide duration of the next timed station
-  //     } else if (!station.time && addPath) {
-  //       timelessStations.push(station);
-  //
-  //       // if timeless stations are queued before a timed station, divide the duration to each timeless station then push
-  //     } else if (station.time >= currentTime && timelessStations.length > 0) {
-  //       const duration = station.time - currentTime - durationSum;
-  //       const subDurations = duration / (timelessStations.length + 1);
-  //       timelessStations.forEach((station) => {
-  //         path.push(getLatLng(station));
-  //         pathTime.push(subDurations);
-  //       });
-  //       path.push(getLatLng(station));
-  //       pathTime.push(subDurations);
-  //       durationSum += duration;
-  //     }
-  //   }
-  //   return { path: path, pathTime: pathTime };
-  console.log('hi');
-  }
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
+throw new Error("Module parse failed: Unexpected token (114:47)\nYou may need an appropriate loader to handle this file type.\n|       const finalStop = this.feedRoute[this.feedRouteIndex];\n|       const finalStopLatLng = getLatLng(getStationById(finalStop.id));\n|       this.marker.addLatLng(finalStopLatLng), 0);\n|       return;\n| ");
 
 /***/ }),
 
@@ -75391,14 +75134,13 @@ class Train {
 /*!*****************************!*\
   !*** ./utils/data_utils.js ***!
   \*****************************/
-/*! exports provided: parseFeed, parseFeedRoute, getStationById */
+/*! exports provided: parseFeed, parseFeedRoute */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeedRoute", function() { return parseFeedRoute; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStationById", function() { return getStationById; });
 /* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
 var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_0__});
 
@@ -75420,102 +75162,25 @@ function parseFeed(feed) {
 
 function parseFeedRoute(feedRoute) {
   return feedRoute.map((feedStation) => {
-    const stationTime = feedStation.arrival || feedStation.departure;
+    const stationEntity = feedStation.arrival || feedStation.departure;
+    const stationTime = stationEntity.time * 1000;
+    const stationId = feedStation.stopId.slice(0, -1);
+    const stationLatLng = getStationLatLng(stationId);
     return {
-      id: feedStation.stopId.slice(0, -1),
-      time: stationTime.time * 1000
+      id: stationId,
+      lat: stationLatLng.lat,
+      lng: stationLatLng.lng,
+      time: stationTime
     }
   })
 };
 
-function getStationById(stationId) {
+function getStationLatLng(stationId) {
   return {
-    id: stationId,
     lat: _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[stationId].lat,
     lng: _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[stationId].lng
   }
 }
-
-
-/***/ }),
-
-/***/ "./utils/train_utils.js":
-/*!******************************!*\
-  !*** ./utils/train_utils.js ***!
-  \******************************/
-/*! exports provided: interpolate, getLatLng */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatLng", function() { return getLatLng; });
-function interpolate(from, to, fromTime, toTime) {
-  const r = timeRatio(fromTime, toTime);
-  const lat = from.lat + (to.lat - from.lat) * r;
-  const lng = from.lng + (to.lng - from.lng) * r;
-  return [lat, lng];
-}
-
-function timeRatio(fromTime, toTime) {
-  const routeTime = toTime - fromTime;
-  const currentTime = (toTime) - new Date();
-  // if currentTime is negative train has passed the station
-  return (currentTime / routeTime);
-}
-
-function getLatLng(station) {
-  return [station.lat, station.lng];
-}
-
-// export function getStationTime(station) {
-//   const stationEntity = station.arrival || station.departure;
-//   return stationEntity.time * 1000;
-// }
-
-// export function mergeRoutes(staticRoute, feedRoute) {
-//   let route = staticRoute;
-//
-//   feedRoute.forEach((feedStation) => {
-//     let isIncluded = false;
-//
-//     for (let i = 0; i < route.length; i++) {
-//       if (feedStation.id === route[i].id) {
-//         isIncluded = true;
-//         route[i] = Object.assign({}, route[i], { time: feedStation.time });
-//         break;
-//       }
-//     };
-//
-//     // if (!isIncluded) {
-//     //   const station = {};
-//     //   station.id = feedStation.id;
-//     //   station.lat = stations[feedStation.id].lat;
-//     //   station.lng = stations[feedStation.id].lng;
-//     //   station.time = feedStation.time;
-//     //   route = mergeStation(route, station);
-//     // };
-//   });
-//
-//   return route;
-// }
-//
-// function mergeStation(route, station) {
-//   let shortest;
-//   let secondShortest;
-//
-//   route.forEach((routeStation) => {
-//     const d = getDistance(getLatLng(routeStation), getLatLng(station));
-//   });
-//
-//
-// }
-//
-// function getDistance(station1, station2) {
-//   const lat = station1.lat - station2.lat;
-//   const lng = station1.lng - station2.lng;
-//   return Math.sqrt((lat * lat) + (lng * lng));
-// }
 
 
 /***/ }),
