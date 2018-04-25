@@ -86,7 +86,7 @@ export default class App {
       this.trains[line],
       { [trainId]: train }
     );
-    train.marker.addEventListener('end', () => this.updateTrain(train));
+    // train.marker.addEventListener('end', () => this.updateTrain(train));
     train.marker.start();
   }
 

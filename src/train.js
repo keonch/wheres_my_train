@@ -17,7 +17,6 @@ export default class Train {
     this.updateTime = new Date();
 
     this.setStaticRoute(route);
-    console.log(this.id);
     console.log(feed.feedRoute);
     this.feedRoute = parseFeedRoute(feed.feedRoute);
 
@@ -31,11 +30,11 @@ export default class Train {
 
   setStaticRoute(route) {
     if (this.direction === 'S') {
-      this.route = route;
+      this.staticRoute = route;
 
     } else {
       const r = Array.from(route);
-      this.route = r.reverse();
+      this.staticRoute = r.reverse();
     }
   }
 
@@ -56,7 +55,7 @@ export default class Train {
 
     switch (this.status) {
       case 'active':
-      params = this.getActiveParams();
+      params = this.getActiveParams(params);
       break;
 
       case 'standby':
@@ -68,7 +67,7 @@ export default class Train {
       break;
 
       case 'idle':
-      this.path = [
+      params.path = [
         getLatLng(this.feedRoute[this.feedRoute.length - 1]),
         getLatLng(this.feedRoute[this.feedRoute.length - 1])
       ];
@@ -85,10 +84,12 @@ export default class Train {
     this.marker.setIcon(trainIcon);
   }
 
-  getActiveParams() {
-    const params = {};
+  getActiveParams(params) {
     if (this.feedRoute[0].time >= this.updateTime) {
-      return this.generateInitalParams();
+      console.log('FIRST FEEDROUTE STATION IS NOT FIRST STOP');
+      params.path = [getLatLng(this.feedRoute[0]), getLatLng(this.feedRoute[0])];
+      params.duration = [0];
+      return params;
     }
 
     for (let i = 1; i < this.feedRoute.length; i++) {
@@ -110,12 +111,14 @@ export default class Train {
             this.staticRouteIndex = j;
             this.durationSum += nextStop.time - this.updateTime;
             const subduration = this.durationSum / (nonMatchingStations.length + 1);
+            durations.push(subduration);
 
             nonMatchingStations.forEach((station) => {
               path.splice(-1, 0, getLatLng(station));
-              duration.push(subduration);
+              durations.push(subduration);
             });
 
+            console.log('ALL GOOD');
             return { path: path, duration: durations };
 
           } else if (startSplice) {
@@ -126,22 +129,18 @@ export default class Train {
         this.status = 'offroute';
         if (startSplice) {
           // next stop is not found in static route
+          console.log('NEXT STOP IS NOT IN STATIC ROUTE');
         } else {
           // previous stop is not found in static route
+          console.log('PREVIOUS STOP IS NOT IN STATIC ROUTE');
         }
-        return;
+        return { path: path, duration: [0] };
       }
     }
   }
 
-  generateInitalParams() {
-    console.log('FIRST FEEDROUTE STATION IS NOT FIRST STOP');
-    console.log(this);
-  }
-
   setNextPath() {
     if (this.feedRouteIndex === this.feedRoute.length - 1) {
-      console.log('reached its last stop');
       this.status = 'idle';
       const latLng = getLatLng(this.feedRoute[this.feedRouteIndex]);
       this.marker.addLatLng(latLng, 0);
@@ -151,7 +150,6 @@ export default class Train {
       this.staticRouteIndex === this.staticRoute.length - 1 &&
       this.feedRouteIndex !== this.feedRoute.length - 1
     ) {
-      console.log('last stop is off route');
       this.status = 'offroute';
       const latLng = getLatLng(this.feedRoute[this.feedRouteIndex]);
       this.marker.addLatLng(latLng, 0);

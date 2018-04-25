@@ -17,6 +17,7 @@ export function parseFeed(feed) {
 
 export function parseFeedRoute(feedRoute) {
   return feedRoute.map((feedStation) => {
+    console.log(feedStation);
     const stationEntity = feedStation.arrival || feedStation.departure;
     const stationTime = stationEntity.time * 1000;
     const stationId = feedStation.stopId.slice(0, -1);
