@@ -433,6 +433,7 @@
   "N08": {"name": "Kings Hwy", "borough": "Bk", "trains": "N", "lat": 40.603923, "lng": -73.980353},
   "N09": {"name": "Avenue U", "borough": "Bk", "trains": "N", "lat": 40.597473, "lng": -73.979137},
   "N10": {"name": "86 St", "borough": "Bk", "trains": "N", "lat": 40.592721, "lng": -73.97823},
+  "N12": {"name": "S.B. Coney Island", "borough": "Bk", "trains": "N", "lat": 40.5850715, "lng": -73.9797315},
   "Q01": {"name": "Canal St", "borough": "M", "trains": "N Q", "lat": 40.718383, "lng": -74.00046},
   "Q03": {"name": "72 St", "borough": "M", "trains": "Q", "lat": 40.768799, "lng": -73.958424},
   "Q04": {"name": "86 St", "borough": "M", "trains": "Q", "lat": 40.777891, "lng": -73.951787},
