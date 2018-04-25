@@ -74781,7 +74781,7 @@ class App {
     switch (train.status) {
       case 'active':
         train.setNextPath();
-        // train.marker.start();
+        train.marker.start();
         break;
 
       case 'standby':
@@ -75266,23 +75266,24 @@ class Train {
       if (this.staticRoute[i].id === nextStop.id) {
         const duration = nextStop.time - this.updateTime - this.durationSum;
         const subduration = duration / (unmatchedStaticStations.length + 1);
-        this.duration += duration;
-        this.prevStop = this.nextStop;
-        this.nextStop = this.staticRoute[j];
+        this.durationSum += duration;
+        this.staticRouteIndex = i;
+        this.feedRouteIndex += 1;
         unmatchedStaticStations.forEach((staticStation) => {
           this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(staticStation), subduration);
         })
-        this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop), subduration);
+        this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(nextStop), subduration);
         return;
 
       } else {
-        unmatchedStaticStations.push(this.staticRoute[j]);
+        unmatchedStaticStations.push(this.staticRoute[i]);
       }
     }
     // next station in feedRoute is not found in staticRoute and needs rerouting
     // placeholder for trains with off routes
+    console.log('station is headed off route');
     this.status = 'offroute';
-    this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop), 0);
+    this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(nextStop), 0);
     return;
   }
 }

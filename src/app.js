@@ -94,7 +94,7 @@ export default class App {
     switch (train.status) {
       case 'active':
         train.setNextPath();
-        // train.marker.start();
+        train.marker.start();
         break;
 
       case 'standby':

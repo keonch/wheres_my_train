@@ -131,23 +131,24 @@ export default class Train {
       if (this.staticRoute[i].id === nextStop.id) {
         const duration = nextStop.time - this.updateTime - this.durationSum;
         const subduration = duration / (unmatchedStaticStations.length + 1);
-        this.duration += duration;
-        this.prevStop = this.nextStop;
-        this.nextStop = this.staticRoute[j];
+        this.durationSum += duration;
+        this.staticRouteIndex = i;
+        this.feedRouteIndex += 1;
         unmatchedStaticStations.forEach((staticStation) => {
           this.marker.addLatLng(getLatLng(staticStation), subduration);
         })
-        this.marker.addLatLng(getLatLng(this.nextStop), subduration);
+        this.marker.addLatLng(getLatLng(nextStop), subduration);
         return;
 
       } else {
-        unmatchedStaticStations.push(this.staticRoute[j]);
+        unmatchedStaticStations.push(this.staticRoute[i]);
       }
     }
     // next station in feedRoute is not found in staticRoute and needs rerouting
     // placeholder for trains with off routes
+    console.log('station is headed off route');
     this.status = 'offroute';
-    this.marker.addLatLng(getLatLng(this.nextStop), 0);
+    this.marker.addLatLng(getLatLng(nextStop), 0);
     return;
   }
 }
