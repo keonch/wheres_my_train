@@ -68,8 +68,6 @@ export default class App {
       // if the train instance already exist in the store,
       // update the train with new set of data received
       } else if (this.trains[trainId]) {
-        console.log('update train');
-        // this.trains[trainId].update(feed[trainId]);
       }
     });
   }
@@ -86,7 +84,7 @@ export default class App {
       this.trains[line],
       { [trainId]: train }
     );
-    // train.marker.addEventListener('end', () => this.updateTrain(train));
+    train.marker.addEventListener('end', () => this.updateTrain(train));
     train.marker.start();
   }
 
