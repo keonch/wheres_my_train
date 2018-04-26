@@ -1,5 +1,4 @@
 import Train from '../src/train';
-import trainColors from '../assets/train_colors.json';
 import staticRoutes from '../data/static_routes.json';
 
 export default class App {
@@ -79,7 +78,6 @@ export default class App {
         break;
 
       case 'idle':
-        train.marker.setOpacity(.5);
         setTimeout(() => this.deleteTrain(train), 60000);
         break;
 

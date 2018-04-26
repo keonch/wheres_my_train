@@ -81,7 +81,7 @@ export default class Train {
       iconAnchor: [12, 12]
     });
     this.marker.setIcon(trainIcon);
-    this.marker.setOpacity(.4);
+    this.marker.setOpacity(.3);
   }
 
   getActiveParams(params) {
@@ -174,9 +174,9 @@ export default class Train {
         unmatchedStaticStations.push(this.staticRoute[i]);
       }
     }
+
     // next station in feedRoute is not found in staticRoute and needs rerouting
     // placeholder for trains with off routes
-    console.log('station is headed off route');
     this.status = 'offroute';
     this.marker.addLatLng(getLatLng(nextStop), 0);
     return;

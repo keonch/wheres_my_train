@@ -199,6 +199,7 @@
   "A25": {"name": "50 St", "borough": "M", "trains": "C E", "lat": 40.762456, "lng": -73.985984},
   "A27": {"name": "42 St - Port Authority Bus Terminal", "borough": "M", "trains": "A C E", "lat": 40.757308, "lng": -73.989735},
   "A28": {"name": "34 St - Penn Station", "borough": "M", "trains": "A C E", "lat": 40.752287, "lng": -73.993391},
+  "A29": {"name": "UNKNOWN", "borough": "M", "trains": "A C E", "lat": 40.7490965, "lng": -73.995716},
   "A30": {"name": "23 St", "borough": "M", "trains": "C E", "lat": 40.745906, "lng": -73.998041},
   "A31": {"name": "14 St", "borough": "M", "trains": "A C E", "lat": 40.740893, "lng": -74.00169},
   "A32": {"name": "W 4 St", "borough": "M", "trains": "A C E", "lat": 40.732338, "lng": -74.000495},
