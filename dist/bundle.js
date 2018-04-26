@@ -74966,7 +74966,7 @@ function toggleClass(element) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getData", function() { return getData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getData", function() { return getData; });
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _data_urls_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/urls.json */ "./data/urls.json");
@@ -74988,70 +74988,22 @@ function getData(app) {
       url: url,
       encoding: null
     };
-    // requestMta(app, req);
-    makeCorsRequest();
+    requestMta(app, req)
   })
 }
 
-// function requestMta(app, req) {
-//   request(req, function (error, response, body) {
-//     if (!error && response.statusCode == 200) {
-//       updateTime();
-//       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
-//       app.setupFeed(parseFeed(feed));
-//     } else {
-//       requestMta(app, req);
-//     }
-//   });
-// }
-function createCORSRequest(method, url) {
-  var xhr = new XMLHttpRequest();
-  if ("withCredentials" in xhr) {
-    // XHR for Chrome/Firefox/Opera/Safari.
-    xhr.open(method, url, true);
-  } else if (typeof XDomainRequest != "undefined") {
-    // XDomainRequest for IE.
-    xhr = new XDomainRequest();
-    xhr.open(method, url);
-  } else {
-    // CORS not supported.
-    xhr = null;
-  }
-  return xhr;
+function requestMta(app, req) {
+  request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      Object(_page_setup__WEBPACK_IMPORTED_MODULE_4__["updateTime"])();
+      const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2___default.a.transit_realtime.FeedMessage.decode(body);
+      app.setupFeed(Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_3__["parseFeed"])(feed));
+    } else {
+      requestMta(app, req);
+    }
+  });
 }
 
-// Helper method to parse the title tag from the response.
-function getTitle(text) {
-  return text.match('<title>(.*)?</title>')[1];
-}
-
-// Make the actual CORS request.
-function makeCorsRequest() {
-  // This is a sample server that supports CORS.
-  var url = 'http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=51';
-
-  var xhr = createCORSRequest('GET', url);
-  if (!xhr) {
-    alert('CORS not supported');
-    return;
-  }
-
-  // Response handlers.
-  xhr.onload = function() {
-    var text = xhr.responseText;
-    var title = getTitle(text);
-    console.log(text);
-    alert('Response from CORS request to ' + url + ': ' + title);
-  };
-
-  xhr.onerror = function() {
-    alert('Woops, there was an error making the request.');
-  };
-
-  xhr.send();
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
