@@ -1,0 +1,35 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  /* background: linear-gradient(#424a58, #2e3646); */
+  background: linear-gradient(#F1F1F1, #C0C0C0);
+}
+
+.app {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#clock {
+}
+
+.map {
+  display: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  display: inherit;
+  margin: 0 20px 20px 20px;
+  width: 100%;
+}
