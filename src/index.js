@@ -9,4 +9,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new App(map);
   setupControls();
   getData(app);
+  window.trains = app.trains;
 });

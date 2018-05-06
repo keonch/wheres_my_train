@@ -42,10 +42,11 @@ h1 {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-end: 4;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  padding: 5px;
 }
 
 #train-icons {
@@ -65,14 +66,7 @@ h1 {
 }
 
 .loading {
-  animation:
-  pulse
-  2s
-  ease-out
-  0s
-  alternate
-  infinite
-  none;
+  animation: pulse 2s ease-out 0s alternate infinite none;
 }
 
 @keyframes pulse {

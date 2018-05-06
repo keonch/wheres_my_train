@@ -1,5 +1,6 @@
 import Train from '../src/train';
 import staticRoutes from '../data/static_routes.json';
+import { setupToggle } from './setup';
 
 export default class App {
   constructor(map) {
@@ -52,6 +53,11 @@ export default class App {
     const train = new Train(trainId, line, direction, route, feed);
 
     train.marker.addTo(this.map);
+
+    if (!this.trains[line]) {
+      setupToggle(line);
+    }
+
     this.trains[line] = Object.assign({},
       this.trains[line],
       { [trainId]: train }

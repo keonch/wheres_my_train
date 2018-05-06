@@ -74681,6 +74681,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/train */ "./src/train.js");
 /* harmony import */ var _data_static_routes_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/static_routes.json */ "./data/static_routes.json");
 var _data_static_routes_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _data_static_routes_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _data_static_routes_json__WEBPACK_IMPORTED_MODULE_1__});
+/* harmony import */ var _setup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./setup */ "./src/setup.js");
+
 
 
 
@@ -74735,6 +74737,11 @@ class App {
     const train = new _src_train__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction, route, feed);
 
     train.marker.addTo(this.map);
+
+    if (!this.trains[line]) {
+      Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupToggle"])(line);
+    }
+
     this.trains[line] = Object.assign({},
       this.trains[line],
       { [trainId]: train }
@@ -74803,6 +74810,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new _app__WEBPACK_IMPORTED_MODULE_3__["default"](map);
   Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupControls"])();
   Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["getData"])(app);
+  window.trains = app.trains;
 });
 
 
@@ -74890,7 +74898,7 @@ function requestMta(app, req) {
 /*!**********************!*\
   !*** ./src/setup.js ***!
   \**********************/
-/*! exports provided: setupTime, updateTime, setupControls, setupToggleButtons */
+/*! exports provided: setupTime, updateTime, setupControls, setupToggle, setupToggleButtons */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74898,6 +74906,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupTime", function() { return setupTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTime", function() { return updateTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupControls", function() { return setupControls; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupToggle", function() { return setupToggle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupToggleButtons", function() { return setupToggleButtons; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
@@ -74956,12 +74965,23 @@ function setupControls(state) {
     column.className = `column column${idx}`;
     col.forEach((train) => {
       const trainIcon = document.createElement('img');
-      trainIcon.className = `train ${train}-train loading`;
+      trainIcon.id = `${train}-train`;
+      trainIcon.className = 'train loading'
       trainIcon.src = _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[train];
       column.appendChild(trainIcon);
     });
     icons.appendChild(column);
   });
+}
+
+function setupToggle(line) {
+  if (line === "GS") {
+    line = "S";
+  } else if (line === "SS") {
+    line = "SI";
+  }
+  const trainIcon = document.getElementById(`${line}-train`);
+  trainIcon.classList.remove("loading");
 }
 
 function setupToggleButtons() {

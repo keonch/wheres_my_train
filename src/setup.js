@@ -53,12 +53,23 @@ export function setupControls(state) {
     column.className = `column column${idx}`;
     col.forEach((train) => {
       const trainIcon = document.createElement('img');
-      trainIcon.className = `train ${train}-train loading`;
+      trainIcon.id = `${train}-train`;
+      trainIcon.className = 'train loading'
       trainIcon.src = trainIcons[train];
       column.appendChild(trainIcon);
     });
     icons.appendChild(column);
   });
+}
+
+export function setupToggle(line) {
+  if (line === "GS") {
+    line = "S";
+  } else if (line === "SS") {
+    line = "SI";
+  }
+  const trainIcon = document.getElementById(`${line}-train`);
+  trainIcon.classList.remove("loading");
 }
 
 export function setupToggleButtons() {
