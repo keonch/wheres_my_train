@@ -74788,20 +74788,21 @@ class App {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
-/* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map */ "./src/map.js");
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app */ "./src/app.js");
-/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
+/* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
+/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
+/* harmony import */ var _setup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./setup */ "./src/setup.js");
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app */ "./src/app.js");
 
 
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  Object(_page_setup__WEBPACK_IMPORTED_MODULE_0__["setupTime"])();
-  const map = Object(_map__WEBPACK_IMPORTED_MODULE_1__["initMap"])();
-  const app = new _app__WEBPACK_IMPORTED_MODULE_2__["default"](map);
-  Object(_request_mta__WEBPACK_IMPORTED_MODULE_3__["getData"])(app);
+  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupTime"])();
+  const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
+  const app = new _app__WEBPACK_IMPORTED_MODULE_3__["default"](map);
+  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupControls"])();
+  Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["getData"])(app);
 });
 
 
@@ -74835,18 +74836,68 @@ function initMap() {
 
 /***/ }),
 
-/***/ "./src/page_setup.js":
-/*!***************************!*\
-  !*** ./src/page_setup.js ***!
-  \***************************/
-/*! exports provided: setupTime, updateTime, setupTrainIcons, setupToggleButtons */
+/***/ "./src/request_mta.js":
+/*!****************************!*\
+  !*** ./src/request_mta.js ***!
+  \****************************/
+/*! exports provided: getData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getData", function() { return getData; });
+/* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
+/* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _data_urls_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/urls.json */ "./data/urls.json");
+var _data_urls_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _data_urls_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _data_urls_json__WEBPACK_IMPORTED_MODULE_1__});
+/* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../gtfs-realtime */ "./gtfs-realtime.js");
+/* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_gtfs_realtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_data_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/data_utils */ "./utils/data_utils.js");
+/* harmony import */ var _setup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./setup */ "./src/setup.js");
+
+
+
+
+
+
+function getData(app) {
+  _data_urls_json__WEBPACK_IMPORTED_MODULE_1__.forEach((url) => {
+    const req = {
+      method: 'GET',
+      url: url,
+      encoding: null
+    };
+    requestMta(app, req)
+  })
+}
+
+function requestMta(app, req) {
+  request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      Object(_setup__WEBPACK_IMPORTED_MODULE_4__["updateTime"])();
+      const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2___default.a.transit_realtime.FeedMessage.decode(body);
+      app.setupFeed(Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_3__["parseFeed"])(feed));
+    } else {
+      requestMta(app, req);
+    }
+  });
+}
+
+
+/***/ }),
+
+/***/ "./src/setup.js":
+/*!**********************!*\
+  !*** ./src/setup.js ***!
+  \**********************/
+/*! exports provided: setupTime, updateTime, setupControls, setupToggleButtons */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupTime", function() { return setupTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTime", function() { return updateTime; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupTrainIcons", function() { return setupTrainIcons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupControls", function() { return setupControls; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupToggleButtons", function() { return setupToggleButtons; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
@@ -74893,29 +74944,24 @@ function checkTime(i) {
     return i;
 }
 
-function setupTrainIcons(state) {
-  const iconDiv = document.getElementById('train-icons');
-  const rows = {
-    row1: ["A", "C", "E", "B", "D", "F", "M", "L"],
-    row2: ["1", "2", "3", "4", "5", "6", "7", "GS"],
-    row3: ["N", "Q", "R", "W", "G", "J", "Z", "SI"]
+function setupControls(state) {
+  const icons = document.getElementById('train-icons');
+  const cols = {
+    col1: ["A", "C", "E", "B", "D", "F", "M", "N", "Q", "R", "W", "G"],
+    col2: ["1", "2", "3", "4", "5", "6", "7", "L", "S", "J", "Z", "SI"]
   }
 
-  Object.values(rows).forEach((row, idx) => {
-    const rowDiv = document.createElement('div');
-    rowDiv.className = `train-icon-row row${idx}`;
-    row.forEach((trainLabel) => {
-      const url = _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[trainLabel];
+  Object.values(cols).forEach((col, idx) => {
+    const column = document.createElement('div');
+    column.className = `column column${idx}`;
+    col.forEach((train) => {
+      const path = _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[train];
       const trainIcon = document.createElement('img');
-      trainIcon.className = `train-label train-${trainLabel}`;
-      trainIcon.src = url;
-      trainIcon.addEventListener('click', () => {
-        const toggleble = toggleTrains(trainLabel, state);
-        if (toggleble) toggleClass(trainIcon);
-      });
-      rowDiv.appendChild(trainIcon);
+      trainIcon.className = `train ${train}-train loading`;
+      trainIcon.src = path;
+      column.appendChild(trainIcon);
     });
-    iconDiv.appendChild(rowDiv);
+    icons.appendChild(column);
   });
 }
 
@@ -74953,56 +74999,6 @@ function toggleClass(element) {
   :
   element.classList.add('active')
 };
-
-
-/***/ }),
-
-/***/ "./src/request_mta.js":
-/*!****************************!*\
-  !*** ./src/request_mta.js ***!
-  \****************************/
-/*! exports provided: getData */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getData", function() { return getData; });
-/* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
-/* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _data_urls_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/urls.json */ "./data/urls.json");
-var _data_urls_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _data_urls_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _data_urls_json__WEBPACK_IMPORTED_MODULE_1__});
-/* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../gtfs-realtime */ "./gtfs-realtime.js");
-/* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_gtfs_realtime__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils_data_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/data_utils */ "./utils/data_utils.js");
-/* harmony import */ var _page_setup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./page_setup */ "./src/page_setup.js");
-
-
-
-
-
-
-function getData(app) {
-  _data_urls_json__WEBPACK_IMPORTED_MODULE_1__.forEach((url) => {
-    const req = {
-      method: 'GET',
-      url: url,
-      encoding: null
-    };
-    requestMta(app, req)
-  })
-}
-
-function requestMta(app, req) {
-  request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      Object(_page_setup__WEBPACK_IMPORTED_MODULE_4__["updateTime"])();
-      const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2___default.a.transit_realtime.FeedMessage.decode(body);
-      app.setupFeed(Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_3__["parseFeed"])(feed));
-    } else {
-      requestMta(app, req);
-    }
-  });
-}
 
 
 /***/ }),

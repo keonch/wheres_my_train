@@ -41,29 +41,24 @@ function checkTime(i) {
     return i;
 }
 
-export function setupTrainIcons(state) {
-  const iconDiv = document.getElementById('train-icons');
-  const rows = {
-    row1: ["A", "C", "E", "B", "D", "F", "M", "L"],
-    row2: ["1", "2", "3", "4", "5", "6", "7", "GS"],
-    row3: ["N", "Q", "R", "W", "G", "J", "Z", "SI"]
+export function setupControls(state) {
+  const icons = document.getElementById('train-icons');
+  const cols = {
+    col1: ["A", "C", "E", "B", "D", "F", "M", "N", "Q", "R", "W", "G"],
+    col2: ["1", "2", "3", "4", "5", "6", "7", "L", "S", "J", "Z", "SI"]
   }
 
-  Object.values(rows).forEach((row, idx) => {
-    const rowDiv = document.createElement('div');
-    rowDiv.className = `train-icon-row row${idx}`;
-    row.forEach((trainLabel) => {
-      const url = trainIcons[trainLabel];
+  Object.values(cols).forEach((col, idx) => {
+    const column = document.createElement('div');
+    column.className = `column column${idx}`;
+    col.forEach((train) => {
+      const path = trainIcons[train];
       const trainIcon = document.createElement('img');
-      trainIcon.className = `train-label train-${trainLabel}`;
-      trainIcon.src = url;
-      trainIcon.addEventListener('click', () => {
-        const toggleble = toggleTrains(trainLabel, state);
-        if (toggleble) toggleClass(trainIcon);
-      });
-      rowDiv.appendChild(trainIcon);
+      trainIcon.className = `train ${train}-train loading`;
+      trainIcon.src = path;
+      column.appendChild(trainIcon);
     });
-    iconDiv.appendChild(rowDiv);
+    icons.appendChild(column);
   });
 }
 

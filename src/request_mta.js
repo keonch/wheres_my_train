@@ -2,7 +2,7 @@ import request from 'request';
 import urls from '../data/urls.json';
 import GtfsRealtimeBindings from '../gtfs-realtime';
 import { parseFeed } from '../utils/data_utils';
-import { updateTime } from './page_setup';
+import { updateTime } from './setup';
 
 export function getData(app) {
   urls.forEach((url) => {
