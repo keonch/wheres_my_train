@@ -74955,10 +74955,9 @@ function setupControls(state) {
     const column = document.createElement('div');
     column.className = `column column${idx}`;
     col.forEach((train) => {
-      const path = _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[train];
       const trainIcon = document.createElement('img');
       trainIcon.className = `train ${train}-train loading`;
-      trainIcon.src = path;
+      trainIcon.src = _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[train];
       column.appendChild(trainIcon);
     });
     icons.appendChild(column);

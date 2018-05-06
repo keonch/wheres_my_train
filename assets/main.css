@@ -64,6 +64,26 @@ h1 {
   width: 50px;
 }
 
+.loading {
+  animation:
+  pulse
+  2s
+  ease-out
+  0s
+  alternate
+  infinite
+  none;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: .2;
+  }
+  100% {
+    opacity: .5;
+  }
+}
+
 /* ============================ MAP =========================== */
 
 #map {

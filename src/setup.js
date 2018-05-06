@@ -52,10 +52,9 @@ export function setupControls(state) {
     const column = document.createElement('div');
     column.className = `column column${idx}`;
     col.forEach((train) => {
-      const path = trainIcons[train];
       const trainIcon = document.createElement('img');
       trainIcon.className = `train ${train}-train loading`;
-      trainIcon.src = path;
+      trainIcon.src = trainIcons[train];
       column.appendChild(trainIcon);
     });
     icons.appendChild(column);
