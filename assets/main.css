@@ -66,16 +66,20 @@ h1 {
 }
 
 .loading {
-  animation: pulse 2s ease-out 0s alternate infinite none;
+  animation: pulse 2s ease-in-out 0s alternate infinite none;
 }
 
 @keyframes pulse {
   0% {
-    opacity: .2;
+    opacity: .1;
   }
   100% {
-    opacity: .5;
+    opacity: .3;
   }
+}
+
+.loaded:hover {
+  opacity: .8;
 }
 
 /* ============================ MAP =========================== */

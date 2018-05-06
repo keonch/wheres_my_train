@@ -74808,9 +74808,8 @@ document.addEventListener('DOMContentLoaded', () => {
   Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupTime"])();
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
   const app = new _app__WEBPACK_IMPORTED_MODULE_3__["default"](map);
-  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupControls"])();
+  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupControls"])(app);
   Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["getData"])(app);
-  window.trains = app.trains;
 });
 
 
@@ -74898,7 +74897,7 @@ function requestMta(app, req) {
 /*!**********************!*\
   !*** ./src/setup.js ***!
   \**********************/
-/*! exports provided: setupTime, updateTime, setupControls, setupToggle, setupToggleButtons */
+/*! exports provided: setupTime, updateTime, setupControls, setupToggle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74907,7 +74906,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTime", function() { return updateTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupControls", function() { return setupControls; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupToggle", function() { return setupToggle; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupToggleButtons", function() { return setupToggleButtons; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 
@@ -74919,7 +74917,7 @@ function setupTime() {
   clock.appendChild(currentTime);
   const lastUpdate = document.createElement('div');
   lastUpdate.id = 'last-update';
-  lastUpdate.textContent = 'Updated At ...'
+  lastUpdate.textContent = 'Updated At: fetching..'
   clock.appendChild(lastUpdate);
 
   startTime();
@@ -74933,7 +74931,7 @@ function startTime() {
   h = checkTime(h);
   m = checkTime(m);
   s = checkTime(s);
-  document.getElementById('current-time').textContent = `Current Time ${h}:${m}:${s}`;
+  document.getElementById('current-time').textContent = `Current Time: ${h}:${m}:${s}`;
   setTimeout(startTime, 500);
 }
 
@@ -74945,7 +74943,7 @@ function updateTime() {
   h = checkTime(h);
   m = checkTime(m);
   s = checkTime(s);
-  document.getElementById('last-update').textContent = `Updated At ${h}:${m}:${s}`;
+  document.getElementById('last-update').textContent = `Updated At: ${h}:${m}:${s}`;
 }
 
 function checkTime(i) {
@@ -74953,7 +74951,7 @@ function checkTime(i) {
     return i;
 }
 
-function setupControls(state) {
+function setupControls() {
   const icons = document.getElementById('train-icons');
   const cols = {
     col1: ["A", "C", "E", "B", "D", "F", "M", "N", "Q", "R", "W", "G"],
@@ -74982,42 +74980,13 @@ function setupToggle(line) {
   }
   const trainIcon = document.getElementById(`${line}-train`);
   trainIcon.classList.remove("loading");
+  trainIcon.classList.add("loaded");
+  trainIcon.addEventListener("click", toggleTrains(line));
 }
 
-function setupToggleButtons() {
-  const buttonDiv = document.getElementById('toggle-buttons');
-  const toggleAll = document.createElement('div');
-  const northBound = document.createElement('div');
-  const southBound = document.createElement('div');
-  toggleAll.className = 'toggle-button toggle-all';
-  toggleAll.textContent = 'Select All';
-  northBound.className = 'toggle-button toggle-northbound';
-  northBound.textContent = 'Northbound Trains';
-  southBound.className = 'toggle-button toggle-southbound';
-  southBound.textContent = 'Southbound Trains';
-  buttonDiv.appendChild(toggleAll);
-  buttonDiv.appendChild(northBound);
-  buttonDiv.appendChild(southBound);
-}
+function toggleTrains(line) {
 
-function toggleTrains(trainLabel, state) {
-  let toggleble = false;
-  Object.keys(state.trains).forEach((trainId) => {
-    const train = state.trains[trainId];
-    if (train.trainLabel === trainLabel) {
-      train.toggleMarker(state.map);
-      toggleble = true;
-    }
-  });
-  return toggleble;
 }
-
-function toggleClass(element) {
-  element.classList.contains('active') ?
-  element.classList.remove('active')
-  :
-  element.classList.add('active')
-};
 
 
 /***/ }),

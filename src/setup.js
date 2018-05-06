@@ -7,7 +7,7 @@ export function setupTime() {
   clock.appendChild(currentTime);
   const lastUpdate = document.createElement('div');
   lastUpdate.id = 'last-update';
-  lastUpdate.textContent = 'Updated At ...'
+  lastUpdate.textContent = 'Updated At: fetching..'
   clock.appendChild(lastUpdate);
 
   startTime();
@@ -21,7 +21,7 @@ function startTime() {
   h = checkTime(h);
   m = checkTime(m);
   s = checkTime(s);
-  document.getElementById('current-time').textContent = `Current Time ${h}:${m}:${s}`;
+  document.getElementById('current-time').textContent = `Current Time: ${h}:${m}:${s}`;
   setTimeout(startTime, 500);
 }
 
@@ -33,7 +33,7 @@ export function updateTime() {
   h = checkTime(h);
   m = checkTime(m);
   s = checkTime(s);
-  document.getElementById('last-update').textContent = `Updated At ${h}:${m}:${s}`;
+  document.getElementById('last-update').textContent = `Updated At: ${h}:${m}:${s}`;
 }
 
 function checkTime(i) {
@@ -41,7 +41,7 @@ function checkTime(i) {
     return i;
 }
 
-export function setupControls(state) {
+export function setupControls() {
   const icons = document.getElementById('train-icons');
   const cols = {
     col1: ["A", "C", "E", "B", "D", "F", "M", "N", "Q", "R", "W", "G"],
@@ -70,39 +70,10 @@ export function setupToggle(line) {
   }
   const trainIcon = document.getElementById(`${line}-train`);
   trainIcon.classList.remove("loading");
+  trainIcon.classList.add("loaded");
+  trainIcon.addEventListener("click", toggleTrains(line));
 }
 
-export function setupToggleButtons() {
-  const buttonDiv = document.getElementById('toggle-buttons');
-  const toggleAll = document.createElement('div');
-  const northBound = document.createElement('div');
-  const southBound = document.createElement('div');
-  toggleAll.className = 'toggle-button toggle-all';
-  toggleAll.textContent = 'Select All';
-  northBound.className = 'toggle-button toggle-northbound';
-  northBound.textContent = 'Northbound Trains';
-  southBound.className = 'toggle-button toggle-southbound';
-  southBound.textContent = 'Southbound Trains';
-  buttonDiv.appendChild(toggleAll);
-  buttonDiv.appendChild(northBound);
-  buttonDiv.appendChild(southBound);
-}
+function toggleTrains(line) {
 
-function toggleTrains(trainLabel, state) {
-  let toggleble = false;
-  Object.keys(state.trains).forEach((trainId) => {
-    const train = state.trains[trainId];
-    if (train.trainLabel === trainLabel) {
-      train.toggleMarker(state.map);
-      toggleble = true;
-    }
-  });
-  return toggleble;
 }
-
-function toggleClass(element) {
-  element.classList.contains('active') ?
-  element.classList.remove('active')
-  :
-  element.classList.add('active')
-};
