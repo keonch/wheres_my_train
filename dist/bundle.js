@@ -74700,9 +74700,9 @@ class App {
   setupPolylines() {
     Object.keys(_data_static_routes_json__WEBPACK_IMPORTED_MODULE_1__).forEach((line) => {
       this.polylines[line] = new L.Polyline(_data_static_routes_json__WEBPACK_IMPORTED_MODULE_1__[line], {
-        color: '#a9a9a9',
-        weight: 3,
-        opacity: 0.5,
+        color: '#545454',
+        weight: 2,
+        opacity: 0.8,
         smoothFactor: 1
       })
       this.polylines[line].addTo(this.map);
@@ -74831,12 +74831,15 @@ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Ob
 
 function initMap() {
   const map = L.map(document.getElementById('map')).setView([40.7, -73.96], 12);
-  L.tileLayer('https://api.mapbox.com/styles/v1/keonch91/cjfytd1j93blb2rodt7by7e31/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2VvbmNoOTEiLCJhIjoiY2pmeWxlYXJtMWp3dzJxbjEzN2ZuMmtyeSJ9.bRpTj14kt1-MvRzLZOwEzg', {
+  L.tileLayer('https://api.mapbox.com/styles/v1/keonch91/cjgv02cqs00022rmj8wzkifa6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2VvbmNoOTEiLCJhIjoiY2pmeWxlYXJtMWp3dzJxbjEzN2ZuMmtyeSJ9.bRpTj14kt1-MvRzLZOwEzg', {
     maxZoom: 18
   }).addTo(map);
-  // attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-  // id: 'mapbox.streets',
-  // accessToken: 'pk.eyJ1Ijoia2VvbmNoOTEiLCJhIjoiY2pmeWxlYXJtMWp3dzJxbjEzN2ZuMmtyeSJ9.bRpTj14kt1-MvRzLZOwEzg'
+  // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+  //   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+  //   id: 'mapbox.night',
+  //   maxZoom: 18,
+  //   accessToken: 'pk.eyJ1Ijoia2VvbmNoOTEiLCJhIjoiY2pmeWxlYXJtMWp3dzJxbjEzN2ZuMmtyeSJ9.bRpTj14kt1-MvRzLZOwEzg'
+  // }).addTo(map);
   return map;
 }
 

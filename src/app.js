@@ -16,9 +16,9 @@ export default class App {
   setupPolylines() {
     Object.keys(staticRoutes).forEach((line) => {
       this.polylines[line] = new L.Polyline(staticRoutes[line], {
-        color: '#a9a9a9',
-        weight: 3,
-        opacity: 0.5,
+        color: '#545454',
+        weight: 2,
+        opacity: 0.8,
         smoothFactor: 1
       })
       this.polylines[line].addTo(this.map);
