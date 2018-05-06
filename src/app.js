@@ -1,5 +1,6 @@
 import Train from '../src/train';
 import staticRoutes from '../data/static_routes.json';
+import trainColors from '../assets/train_colors.json';
 import { setupToggle } from './setup';
 
 export default class App {
@@ -11,6 +12,7 @@ export default class App {
     this.setupPolylines();
 
     this.updateTrain = this.updateTrain.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   setupPolylines() {
@@ -54,9 +56,7 @@ export default class App {
 
     train.marker.addTo(this.map);
 
-    if (!this.trains[line]) {
-      setupToggle(line);
-    }
+    if (!this.trains[line]) setupToggle(line, this.toggle);
 
     this.trains[line] = Object.assign({},
       this.trains[line],
@@ -96,5 +96,32 @@ export default class App {
   deleteTrain(train) {
     train.marker.remove();
     delete this.trains[train.line][train.id];
+  }
+
+  toggle(line) {
+    this.toggleTrain(line);
+    this.togglePolyline(line);
+  }
+
+  toggleTrain(line) {
+    if (!this.trains[line].toggled) {
+      this.trains[line].toggled = true;
+      Object.keys(this.trains[line]).forEach((trainId) => {
+        if (trainId !== 'toggled') {
+          this.trains[line][trainId].marker.setOpacity(1);
+        }
+      });
+    }
+  }
+
+  togglePolyline(line) {
+    if (!this.polylines[line].toggled) {
+      this.polylines[line].setStyle({
+        opacity: 1,
+        color: trainColors[line],
+        weight: 3,
+        zIndex: 2
+      });
+    }
   }
 }

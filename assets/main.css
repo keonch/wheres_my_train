@@ -27,13 +27,18 @@ body {
 }
 
 #clock {
+  margin-left: 10px;
   font-size: 13px;
+  display: flex;
+  flex-flow: column nowrap;
+  min-width: 150px;
 }
 
 h1 {
   margin: auto;
   font-size: 24px;
   letter-spacing: 1px;
+  min-width: 250px;
 }
 
 /* ========================= CONTROLS ========================= */
@@ -79,7 +84,8 @@ h1 {
 }
 
 .loaded:hover {
-  opacity: .8;
+  opacity: .9;
+  cursor: pointer;
 }
 
 /* ============================ MAP =========================== */

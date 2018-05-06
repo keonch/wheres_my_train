@@ -71,6 +71,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./assets/train_colors.json":
+/*!**********************************!*\
+  !*** ./assets/train_colors.json ***!
+  \**********************************/
+/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, B, C, D, E, F, H, J, L, M, N, Q, R, W, Z, 6X, SI, G, GS, SS, S, default */
+/***/ (function(module) {
+
+module.exports = {"1":"#EE352E","2":"#EE352E","3":"#EE352E","4":"#00933C","5":"#00933C","6":"#00933C","7":"#B933AD","A":"#2850AD","B":"#FF6319","C":"#2850AD","D":"#FF6319","E":"#2850AD","F":"#FF6319","H":"#2850AD","J":"#963","L":"#A7A9AC","M":"#FF6319","N":"#FCCC0A","Q":"#FCCC0A","R":"#FCCC0A","W":"#FCCC0A","Z":"#963","6X":"#006600","SI":"#000052","G":"#6CBE45","GS":"808183","SS":"#000052","S":"808183"};
+
+/***/ }),
+
 /***/ "./assets/train_icons.json":
 /*!*********************************!*\
   !*** ./assets/train_icons.json ***!
@@ -74681,7 +74692,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_train__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/train */ "./src/train.js");
 /* harmony import */ var _data_static_routes_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/static_routes.json */ "./data/static_routes.json");
 var _data_static_routes_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object.assign({}, _data_static_routes_json__WEBPACK_IMPORTED_MODULE_1__, {"default": _data_static_routes_json__WEBPACK_IMPORTED_MODULE_1__});
-/* harmony import */ var _setup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./setup */ "./src/setup.js");
+/* harmony import */ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/train_colors.json */ "./assets/train_colors.json");
+var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/Object.assign({}, _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_2__, {"default": _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_2__});
+/* harmony import */ var _setup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./setup */ "./src/setup.js");
+
 
 
 
@@ -74695,6 +74709,7 @@ class App {
     this.setupPolylines();
 
     this.updateTrain = this.updateTrain.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   setupPolylines() {
@@ -74738,9 +74753,7 @@ class App {
 
     train.marker.addTo(this.map);
 
-    if (!this.trains[line]) {
-      Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupToggle"])(line);
-    }
+    if (!this.trains[line]) Object(_setup__WEBPACK_IMPORTED_MODULE_3__["setupToggle"])(line, this.toggle);
 
     this.trains[line] = Object.assign({},
       this.trains[line],
@@ -74780,6 +74793,33 @@ class App {
   deleteTrain(train) {
     train.marker.remove();
     delete this.trains[train.line][train.id];
+  }
+
+  toggle(line) {
+    this.toggleTrain(line);
+    this.togglePolyline(line);
+  }
+
+  toggleTrain(line) {
+    if (!this.trains[line].toggled) {
+      this.trains[line].toggled = true;
+      Object.keys(this.trains[line]).forEach((trainId) => {
+        if (trainId !== 'toggled') {
+          this.trains[line][trainId].marker.setOpacity(1);
+        }
+      });
+    }
+  }
+
+  togglePolyline(line) {
+    if (!this.polylines[line].toggled) {
+      this.polylines[line].setStyle({
+        opacity: 1,
+        color: _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_2__[line],
+        weight: 3,
+        zIndex: 2
+      });
+    }
   }
 }
 
@@ -74975,7 +75015,7 @@ function setupControls() {
   });
 }
 
-function setupToggle(line) {
+function setupToggle(line, toggle) {
   if (line === "GS") {
     line = "S";
   } else if (line === "SS") {
@@ -74984,11 +75024,9 @@ function setupToggle(line) {
   const trainIcon = document.getElementById(`${line}-train`);
   trainIcon.classList.remove("loading");
   trainIcon.classList.add("loaded");
-  trainIcon.addEventListener("click", toggleTrains(line));
-}
-
-function toggleTrains(line) {
-
+  trainIcon.addEventListener("click", () => {
+    toggle(line);
+  });
 }
 
 
