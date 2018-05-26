@@ -22,7 +22,7 @@ function requestMta(app, req) {
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
       app.setupFeed(parseFeed(feed));
     } else {
-      requestMta(app, req);
+      setTimeout(requestMta(app, req), 10000);
     }
   });
 }

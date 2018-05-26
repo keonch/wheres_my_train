@@ -108,10 +108,10 @@ module.exports = {"1":[{"id":"101","lat":40.889248,"lng":-73.898583},{"id":"103"
 /*!****************************!*\
   !*** ./data/stations.json ***!
   \****************************/
-/*! exports provided: 101, 103, 104, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 142, 201, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 301, 302, 401, 402, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 418, 419, 420, 423, 501, 502, 503, 504, 505, 601, 602, 603, 604, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 701, 702, 705, 706, 707, 708, 709, 710, 711, 712, 713, 714, 715, 716, 718, 719, 720, 721, 723, 724, 725, 726, 901, 902, A02, A03, A05, A06, A07, A09, A10, A11, A12, A14, A15, A16, A17, A18, A19, A20, A21, A22, A24, A25, A27, A28, A29, A30, A31, A32, A33, A34, A36, A38, A40, A41, A42, A43, A44, A45, A46, A47, A48, A49, A50, A51, A52, A53, A54, A55, A57, A59, A60, A61, A62, A63, A64, A65, B04, B05, B06, B08, B10, B12, B13, B14, B15, B16, B17, B18, B19, B20, B21, B22, B23, D01, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D24, D25, D26, D27, D28, D29, D30, D31, D32, D33, D34, D35, D37, D38, D39, D40, D41, D42, D43, E01, F01, F02, F03, F04, F05, F06, F07, F09, F11, F12, F14, F15, F16, F17, F18, F20, F21, F22, F23, F24, F25, F26, F27, F29, F30, F31, F32, F33, F34, F35, F36, F38, F39, G05, G06, G07, G08, G09, G10, G11, G12, G13, G14, G15, G16, G18, G19, G20, G21, G22, G24, G26, G28, G29, G30, G31, G32, G33, G34, G35, G36, H01, H02, H03, H04, H06, H07, H08, H09, H10, H11, H12, H13, H14, H15, H19, J12, J13, J14, J15, J16, J17, J19, J20, J21, J22, J23, J24, J27, J28, J29, J30, J31, L01, L02, L03, L05, L06, L08, L10, L11, L12, L13, L14, L15, L16, L17, L19, L20, L21, L22, L24, L25, L26, L27, L28, L29, M01, M04, M05, M06, M08, M09, M10, M11, M12, M13, M14, M16, M18, X22, M19, M20, M21, M22, M23, N02, N03, N04, N05, N06, N07, N08, N09, N10, N12, Q01, Q03, Q04, Q05, R01, R03, R04, R05, R06, R08, R09, R60, R11, R13, R14, R15, R16, R17, R18, R19, R20, R21, R22, R23, R24, R25, R26, R27, R65, R28, R29, R30, R31, R32, R33, R34, R35, R36, R39, R40, R41, R42, R43, R44, R45, S01, S03, S04, S09, S11, S13, S14, S15, S16, S17, S18, S19, S20, S21, S22, S23, S24, S25, S26, S27, S28, S29, S30, S31, default */
+/*! exports provided: 101, 103, 104, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 142, 201, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 301, 302, 401, 402, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 418, 419, 420, 423, 501, 502, 503, 504, 505, 601, 602, 603, 604, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 701, 702, 705, 706, 707, 708, 709, 710, 711, 712, 713, 714, 715, 716, 718, 719, 720, 721, 723, 724, 725, 726, 901, 902, A02, A03, A05, A06, A07, A09, A10, A11, A12, A14, A15, A16, A17, A18, A19, A20, A21, A22, A24, A25, A27, A28, A29, A30, A31, A32, A33, A34, A36, A38, A40, A41, A42, A43, A44, A45, A46, A47, A48, A49, A50, A51, A52, A53, A54, A55, A57, A59, A60, A61, A62, A63, A64, A65, B04, B05, B06, B08, B10, B12, B13, B14, B15, B16, B17, B18, B19, B20, B21, B22, B23, D01, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, D32, D33, D34, D35, D37, D38, D39, D40, D41, D42, D43, E01, F01, F02, F03, F04, F05, F06, F07, F09, F11, F12, F14, F15, F16, F17, F18, F20, F21, F22, F23, F24, F25, F26, F27, F29, F30, F31, F32, F33, F34, F35, F36, F38, F39, G05, G06, G07, G08, G09, G10, G11, G12, G13, G14, G15, G16, G18, G19, G20, G21, G22, G24, G26, G28, G29, G30, G31, G32, G33, G34, G35, G36, H01, H02, H03, H04, H06, H07, H08, H09, H10, H11, H12, H13, H14, H15, H19, J12, J13, J14, J15, J16, J17, J19, J20, J21, J22, J23, J24, J27, J28, J29, J30, J31, L01, L02, L03, L05, L06, L08, L10, L11, L12, L13, L14, L15, L16, L17, L19, L20, L21, L22, L24, L25, L26, L27, L28, L29, M01, M04, M05, M06, M08, M09, M10, M11, M12, M13, M14, M16, M18, X22, M19, M20, M21, M22, M23, N02, N03, N04, N05, N06, N07, N08, N09, N10, N12, Q01, Q03, Q04, Q05, R01, R03, R04, R05, R06, R08, R09, R60, R11, R13, R14, R15, R16, R17, R18, R19, R20, R21, R22, R23, R24, R25, R26, R27, R65, R28, R29, R30, R31, R32, R33, R34, R35, R36, R39, R40, R41, R42, R43, R44, R45, S01, S03, S04, S09, S11, S13, S14, S15, S16, S17, S18, S19, S20, S21, S22, S23, S24, S25, S26, S27, S28, S29, S30, S31, default */
 /***/ (function(module) {
 
-module.exports = {"101":{"name":"Van Cortlandt Park - 242 St","borough":"Bx","trains":"1","lat":40.889248,"lng":-73.898583},"103":{"name":"238 St","borough":"Bx","trains":"1","lat":40.884667,"lng":-73.90087},"104":{"name":"231 St","borough":"Bx","trains":"1","lat":40.878856,"lng":-73.904834},"106":{"name":"Marble Hill - 225 St","borough":"M","trains":"1","lat":40.874561,"lng":-73.909831},"107":{"name":"215 St","borough":"M","trains":"1","lat":40.869444,"lng":-73.915279},"108":{"name":"207 St","borough":"M","trains":"1","lat":40.864621,"lng":-73.918822},"109":{"name":"Dyckman St","borough":"M","trains":"1","lat":40.860531,"lng":-73.925536},"110":{"name":"191 St","borough":"M","trains":"1","lat":40.855225,"lng":-73.929412},"111":{"name":"181 St","borough":"M","trains":"1","lat":40.849505,"lng":-73.933596},"112":{"name":"168 St - Washington Hts","borough":"M","trains":"1","lat":40.840556,"lng":-73.940133},"113":{"name":"157 St","borough":"M","trains":"1","lat":40.834041,"lng":-73.94489},"114":{"name":"145 St","borough":"M","trains":"1","lat":40.826551,"lng":-73.95036},"115":{"name":"137 St - City College","borough":"M","trains":"1","lat":40.822008,"lng":-73.953676},"116":{"name":"125 St","borough":"M","trains":"1","lat":40.815581,"lng":-73.958372},"117":{"name":"116 St - Columbia University","borough":"M","trains":"1","lat":40.807722,"lng":-73.96411},"118":{"name":"Cathedral Pkwy","borough":"M","trains":"1","lat":40.803967,"lng":-73.966847},"119":{"name":"103 St","borough":"M","trains":"1","lat":40.799446,"lng":-73.968379},"120":{"name":"96 St","borough":"M","trains":"1 2 3","lat":40.793919,"lng":-73.972323},"121":{"name":"86 St","borough":"M","trains":"1","lat":40.788644,"lng":-73.976218},"122":{"name":"79 St","borough":"M","trains":"1","lat":40.783934,"lng":-73.979917},"123":{"name":"72 St","borough":"M","trains":"1 2 3","lat":40.778453,"lng":-73.98197},"124":{"name":"66 St - Lincoln Center","borough":"M","trains":"1","lat":40.77344,"lng":-73.982209},"125":{"name":"59 St - Columbus Circle","borough":"M","trains":"1","lat":40.768247,"lng":-73.981929},"126":{"name":"50 St","borough":"M","trains":"1","lat":40.761728,"lng":-73.983849},"127":{"name":"Times Sq - 42 St","borough":"M","trains":"1 2 3","lat":40.75529,"lng":-73.987495},"128":{"name":"34 St - Penn Station","borough":"M","trains":"1 2 3","lat":40.750373,"lng":-73.991057},"129":{"name":"28 St","borough":"M","trains":"1","lat":40.747215,"lng":-73.993365},"130":{"name":"23 St","borough":"M","trains":"1","lat":40.744081,"lng":-73.995657},"131":{"name":"18 St","borough":"M","trains":"1","lat":40.74104,"lng":-73.997871},"132":{"name":"14 St","borough":"M","trains":"1 2 3","lat":40.737826,"lng":-74.000201},"133":{"name":"Christopher St - Sheridan Sq","borough":"M","trains":"1","lat":40.733422,"lng":-74.002906},"134":{"name":"Houston St","borough":"M","trains":"1","lat":40.728251,"lng":-74.005367},"135":{"name":"Canal St","borough":"M","trains":"1","lat":40.722854,"lng":-74.006277},"136":{"name":"Franklin St","borough":"M","trains":"1","lat":40.719318,"lng":-74.006886},"137":{"name":"Chambers St","borough":"M","trains":"1 2 3","lat":40.715478,"lng":-74.009266},"138":{"name":"Cortlandt St","borough":"M","trains":"1","lat":40.711835,"lng":-74.012188},"139":{"name":"Rector St","borough":"M","trains":"1","lat":40.707513,"lng":-74.013783},"142":{"name":"South Ferry","borough":"M","trains":"1","lat":40.702068,"lng":-74.013664},"201":{"name":"Wakefield - 241 St","borough":"Bx","trains":"2","lat":40.903125,"lng":-73.85062},"204":{"name":"Nereid Av","borough":"Bx","trains":"2 5","lat":40.898379,"lng":-73.854376},"205":{"name":"233 St","borough":"Bx","trains":"2 5","lat":40.893193,"lng":-73.857473},"206":{"name":"225 St","borough":"Bx","trains":"2 5","lat":40.888022,"lng":-73.860341},"207":{"name":"219 St","borough":"Bx","trains":"2 5","lat":40.883895,"lng":-73.862633},"208":{"name":"Gun Hill Rd","borough":"Bx","trains":"2","lat":40.87785,"lng":-73.866256},"209":{"name":"Burke Av","borough":"Bx","trains":"2 5","lat":40.871356,"lng":-73.867164},"210":{"name":"Allerton Av","borough":"Bx","trains":"2 5","lat":40.865462,"lng":-73.867352},"211":{"name":"Pelham Pkwy","borough":"Bx","trains":"2","lat":40.857192,"lng":-73.867615},"212":{"name":"Bronx Park East","borough":"Bx","trains":"2 5","lat":40.848828,"lng":-73.868457},"213":{"name":"E 180 St","borough":"Bx","trains":"2 5","lat":40.841894,"lng":-73.873488},"214":{"name":"West Farms Sq - E Tremont Av","borough":"Bx","trains":"2 5","lat":40.840295,"lng":-73.880049},"215":{"name":"174 St","borough":"Bx","trains":"2 5","lat":40.837288,"lng":-73.887734},"216":{"name":"Freeman St","borough":"Bx","trains":"2 5","lat":40.829993,"lng":-73.891865},"217":{"name":"Simpson St","borough":"Bx","trains":"2 5","lat":40.824073,"lng":-73.893064},"218":{"name":"Intervale Av","borough":"Bx","trains":"2 5","lat":40.822181,"lng":-73.896736},"219":{"name":"Prospect Av","borough":"Bx","trains":"2 5","lat":40.819585,"lng":-73.90177},"220":{"name":"Jackson Av","borough":"Bx","trains":"2 5","lat":40.81649,"lng":-73.907807},"221":{"name":"3 Av - 149 St","borough":"Bx","trains":"2 5","lat":40.816109,"lng":-73.917757},"222":{"name":"149 St - Grand Concourse","borough":"Bx","trains":"2 5","lat":40.81841,"lng":-73.926718},"224":{"name":"135 St","borough":"M","trains":"2 3","lat":40.814229,"lng":-73.94077},"225":{"name":"125 St","borough":"M","trains":"2 3","lat":40.807754,"lng":-73.945495},"226":{"name":"116 St","borough":"M","trains":"2 3","lat":40.802098,"lng":-73.949625},"227":{"name":"Central Park North (110 St)","borough":"M","trains":"2 3","lat":40.799075,"lng":-73.951822},"228":{"name":"Park Pl","borough":"M","trains":"2 3","lat":40.713051,"lng":-74.008811},"229":{"name":"Fulton St","borough":"M","trains":"2 3","lat":40.709416,"lng":-74.006571},"230":{"name":"Wall St","borough":"M","trains":"2 3","lat":40.706821,"lng":-74.0091},"231":{"name":"Clark St","borough":"Bk","trains":"2 3","lat":40.697466,"lng":-73.993086},"232":{"name":"Borough Hall","borough":"Bk","trains":"2 3","lat":40.693219,"lng":-73.989998},"233":{"name":"Hoyt St","borough":"Bk","trains":"2 3","lat":40.690545,"lng":-73.985065},"234":{"name":"Nevins St","borough":"Bk","trains":"2 3 4 5","lat":40.688246,"lng":-73.980492},"235":{"name":"Atlantic Av - Barclays Ctr","borough":"Bk","trains":"2 3","lat":40.684359,"lng":-73.977666},"236":{"name":"Bergen St","borough":"Bk","trains":"2 3","lat":40.680829,"lng":-73.975098},"237":{"name":"Grand Army Plaza","borough":"Bk","trains":"2 3","lat":40.675235,"lng":-73.971046},"238":{"name":"Eastern Pkwy - Brooklyn Museum","borough":"Bk","trains":"2 3","lat":40.671987,"lng":-73.964375},"239":{"name":"Franklin Av","borough":"Bk","trains":"2 3 4 5","lat":40.670682,"lng":-73.958131},"241":{"name":"President St","borough":"Bk","trains":"2 5","lat":40.667883,"lng":-73.950683},"242":{"name":"Sterling St","borough":"Bk","trains":"2 5","lat":40.662742,"lng":-73.95085},"243":{"name":"Winthrop St","borough":"Bk","trains":"2 5","lat":40.656652,"lng":-73.9502},"244":{"name":"Church Av","borough":"Bk","trains":"2 5","lat":40.650843,"lng":-73.949575},"245":{"name":"Beverly Rd","borough":"Bk","trains":"2 5","lat":40.645098,"lng":-73.948959},"246":{"name":"Newkirk Av","borough":"Bk","trains":"2 5","lat":40.639967,"lng":-73.948411},"247":{"name":"Flatbush Av - Brooklyn College","borough":"Bk","trains":"2 5","lat":40.632836,"lng":-73.947642},"248":{"name":"Nostrand Av","borough":"Bk","trains":"3","lat":40.669847,"lng":-73.950466},"249":{"name":"Kingston Av","borough":"Bk","trains":"3","lat":40.669399,"lng":-73.942161},"250":{"name":"Crown Hts - Utica Av","borough":"Bk","trains":"3 4","lat":40.668897,"lng":-73.932942},"251":{"name":"Sutter Av - Rutland Rd","borough":"Bk","trains":"3","lat":40.664717,"lng":-73.92261},"252":{"name":"Saratoga Av","borough":"Bk","trains":"3","lat":40.661453,"lng":-73.916327},"253":{"name":"Rockaway Av","borough":"Bk","trains":"3","lat":40.662549,"lng":-73.908946},"254":{"name":"Junius St","borough":"Bk","trains":"3","lat":40.663515,"lng":-73.902447},"255":{"name":"Pennsylvania Av","borough":"Bk","trains":"3","lat":40.664635,"lng":-73.894895},"256":{"name":"Van Siclen Av","borough":"Bk","trains":"3","lat":40.665449,"lng":-73.889395},"257":{"name":"New Lots Av","borough":"Bk","trains":"3","lat":40.666235,"lng":-73.884079},"301":{"name":"Harlem - 148 St","borough":"M","trains":"3","lat":40.82388,"lng":-73.93647},"302":{"name":"145 St","borough":"M","trains":"3","lat":40.820421,"lng":-73.936245},"401":{"name":"Woodlawn","borough":"Bx","trains":"4","lat":40.886037,"lng":-73.878751},"402":{"name":"Mosholu Pkwy","borough":"Bx","trains":"4","lat":40.87975,"lng":-73.884655},"405":{"name":"Bedford Park Blvd - Lehman College","borough":"Bx","trains":"4","lat":40.873412,"lng":-73.890064},"406":{"name":"Kingsbridge Rd","borough":"Bx","trains":"4","lat":40.86776,"lng":-73.897174},"407":{"name":"Fordham Rd","borough":"Bx","trains":"4","lat":40.862803,"lng":-73.901034},"408":{"name":"183 St","borough":"Bx","trains":"4","lat":40.858407,"lng":-73.903879},"409":{"name":"Burnside Av","borough":"Bx","trains":"4","lat":40.853453,"lng":-73.907684},"410":{"name":"176 St","borough":"Bx","trains":"4","lat":40.84848,"lng":-73.911794},"411":{"name":"Mt Eden Av","borough":"Bx","trains":"4","lat":40.844434,"lng":-73.914685},"412":{"name":"170 St","borough":"Bx","trains":"4","lat":40.840075,"lng":-73.917791},"413":{"name":"167 St","borough":"Bx","trains":"4","lat":40.835537,"lng":-73.9214},"414":{"name":"161 St - Yankee Stadium","borough":"Bx","trains":"4","lat":40.827994,"lng":-73.925831},"415":{"name":"149 St - Grand Concourse","borough":"Bx","trains":"4","lat":40.818375,"lng":-73.927351},"416":{"name":"138 St - Grand Concourse","borough":"Bx","trains":"4 5","lat":40.813224,"lng":-73.929849},"418":{"name":"Fulton St","borough":"M","trains":"4 5","lat":40.710368,"lng":-74.009509},"419":{"name":"Wall St","borough":"M","trains":"4 5","lat":40.707557,"lng":-74.011862},"420":{"name":"Bowling Green","borough":"M","trains":"4 5","lat":40.704817,"lng":-74.014065},"423":{"name":"Borough Hall","borough":"Bk","trains":"4 5","lat":40.692404,"lng":-73.990151},"501":{"name":"Eastchester - Dyre Av","borough":"Bx","trains":"5","lat":40.8883,"lng":-73.830834},"502":{"name":"Baychester Av","borough":"Bx","trains":"5","lat":40.878663,"lng":-73.838591},"503":{"name":"Gun Hill Rd","borough":"Bx","trains":"5","lat":40.869526,"lng":-73.846384},"504":{"name":"Pelham Pkwy","borough":"Bx","trains":"5","lat":40.858985,"lng":-73.855359},"505":{"name":"Morris Park","borough":"Bx","trains":"5","lat":40.854364,"lng":-73.860495},"601":{"name":"Pelham Bay Park","borough":"Bx","trains":"6","lat":40.852462,"lng":-73.828121},"602":{"name":"Buhre Av","borough":"Bx","trains":"6","lat":40.84681,"lng":-73.832569},"603":{"name":"Middletown Rd","borough":"Bx","trains":"6","lat":40.843863,"lng":-73.836322},"604":{"name":"Westchester Sq - E Tremont Av","borough":"Bx","trains":"6","lat":40.839892,"lng":-73.842952},"606":{"name":"Zerega Av","borough":"Bx","trains":"6","lat":40.836488,"lng":-73.847036},"607":{"name":"Castle Hill Av","borough":"Bx","trains":"6","lat":40.834255,"lng":-73.851222},"608":{"name":"Parkchester","borough":"Bx","trains":"6","lat":40.833226,"lng":-73.860816},"609":{"name":"St Lawrence Av","borough":"Bx","trains":"6","lat":40.831509,"lng":-73.867618},"610":{"name":"Morrison Av- Sound View","borough":"Bx","trains":"6","lat":40.829521,"lng":-73.874516},"611":{"name":"Elder Av","borough":"Bx","trains":"6","lat":40.828584,"lng":-73.879159},"612":{"name":"Whitlock Av","borough":"Bx","trains":"6","lat":40.826525,"lng":-73.886283},"613":{"name":"Hunts Point Av","borough":"Bx","trains":"6","lat":40.820948,"lng":-73.890549},"614":{"name":"Longwood Av","borough":"Bx","trains":"6","lat":40.816104,"lng":-73.896435},"615":{"name":"E 149 St","borough":"Bx","trains":"6","lat":40.812118,"lng":-73.904098},"616":{"name":"E 143 St - St Mary's St","borough":"Bx","trains":"6","lat":40.808719,"lng":-73.907657},"617":{"name":"Cypress Av","borough":"Bx","trains":"6","lat":40.805368,"lng":-73.914042},"618":{"name":"Brook Av","borough":"Bx","trains":"6","lat":40.807566,"lng":-73.91924},"619":{"name":"3 Av - 138 St","borough":"Bx","trains":"6","lat":40.810476,"lng":-73.926138},"621":{"name":"125 St","borough":"M","trains":"4 5 6","lat":40.804138,"lng":-73.937594},"622":{"name":"116 St","borough":"M","trains":"6","lat":40.798629,"lng":-73.941617},"623":{"name":"110 St","borough":"M","trains":"6","lat":40.79502,"lng":-73.94425},"624":{"name":"103 St","borough":"M","trains":"6","lat":40.7906,"lng":-73.947478},"625":{"name":"96 St","borough":"M","trains":"6","lat":40.785672,"lng":-73.95107},"626":{"name":"86 St","borough":"M","trains":"4 5 6","lat":40.779492,"lng":-73.955589},"627":{"name":"77 St","borough":"M","trains":"6","lat":40.77362,"lng":-73.959874},"628":{"name":"68 St - Hunter College","borough":"M","trains":"6","lat":40.768141,"lng":-73.96387},"629":{"name":"59 St","borough":"M","trains":"4 5 6","lat":40.762526,"lng":-73.967967},"630":{"name":"51 St","borough":"M","trains":"6","lat":40.757107,"lng":-73.97192},"631":{"name":"Grand Central - 42 St","borough":"M","trains":"4 5 6","lat":40.751776,"lng":-73.976848},"632":{"name":"33 St","borough":"M","trains":"6","lat":40.746081,"lng":-73.982076},"633":{"name":"28 St","borough":"M","trains":"6","lat":40.74307,"lng":-73.984264},"634":{"name":"23 St","borough":"M","trains":"6","lat":40.739864,"lng":-73.986599},"635":{"name":"14 St - Union Sq","borough":"M","trains":"4 5 6","lat":40.734673,"lng":-73.989951},"636":{"name":"Astor Pl","borough":"M","trains":"6","lat":40.730054,"lng":-73.99107},"637":{"name":"Bleecker St","borough":"M","trains":"6","lat":40.725915,"lng":-73.994659},"638":{"name":"Spring St","borough":"M","trains":"6","lat":40.722301,"lng":-73.997141},"639":{"name":"Canal St","borough":"M","trains":"6","lat":40.718803,"lng":-74.000193},"640":{"name":"Brooklyn Bridge - City Hall","borough":"M","trains":"4 5 6","lat":40.713065,"lng":-74.004131},"701":{"name":"Flushing - Main St","borough":"Q","trains":"7","lat":40.7596,"lng":-73.83003},"702":{"name":"Mets - Willets Point","borough":"Q","trains":"7","lat":40.754622,"lng":-73.845625},"705":{"name":"111 St","borough":"Q","trains":"7","lat":40.75173,"lng":-73.855334},"706":{"name":"103 St - Corona Plaza","borough":"Q","trains":"7","lat":40.749865,"lng":-73.8627},"707":{"name":"Junction Blvd","borough":"Q","trains":"7","lat":40.749145,"lng":-73.869527},"708":{"name":"90 St - Elmhurst Av","borough":"Q","trains":"7","lat":40.748408,"lng":-73.876613},"709":{"name":"82 St - Jackson Hts","borough":"Q","trains":"7","lat":40.747659,"lng":-73.883697},"710":{"name":"74 St - Broadway","borough":"Q","trains":"7","lat":40.746848,"lng":-73.891394},"711":{"name":"69 St","borough":"Q","trains":"7","lat":40.746325,"lng":-73.896403},"712":{"name":"Woodside - 61 St","borough":"Q","trains":"7","lat":40.74563,"lng":-73.902984},"713":{"name":"52 St","borough":"Q","trains":"7","lat":40.744149,"lng":-73.912549},"714":{"name":"46 St","borough":"Q","trains":"7","lat":40.743132,"lng":-73.918435},"715":{"name":"40 St","borough":"Q","trains":"7","lat":40.743781,"lng":-73.924016},"716":{"name":"33 St","borough":"Q","trains":"7","lat":40.744587,"lng":-73.930997},"718":{"name":"Queensboro Plaza","borough":"Q","trains":"7","lat":40.750582,"lng":-73.940202},"719":{"name":"Court Sq","borough":"Q","trains":"7","lat":40.747023,"lng":-73.945264},"720":{"name":"Hunters Point Av","borough":"Q","trains":"7","lat":40.742216,"lng":-73.948916},"721":{"name":"Vernon Blvd - Jackson Av","borough":"Q","trains":"7","lat":40.742626,"lng":-73.953581},"723":{"name":"Grand Central - 42 St","borough":"M","trains":"7","lat":40.751431,"lng":-73.976041},"724":{"name":"5 Av","borough":"M","trains":"7","lat":40.753821,"lng":-73.981963},"725":{"name":"Times Sq - 42 St","borough":"M","trains":"7","lat":40.755477,"lng":-73.987691},"726":{"name":"34 St - 11 Av","borough":"M","trains":"7","lat":40.755882,"lng":-74.00191},"901":{"name":"Grand Central - 42 St","borough":"M","trains":"S GS SS","lat":40.752769,"lng":-73.979189},"902":{"name":"Times Sq - 42 St","borough":"M","trains":"S SS GS","lat":40.755983,"lng":-73.986229},"A02":{"name":"Inwood - 207 St","borough":"M","trains":"A","lat":40.868072,"lng":-73.919899},"A03":{"name":"Dyckman St","borough":"M","trains":"A","lat":40.865491,"lng":-73.927271},"A05":{"name":"190 St","borough":"M","trains":"A","lat":40.859022,"lng":-73.93418},"A06":{"name":"181 St","borough":"M","trains":"A","lat":40.851695,"lng":-73.937969},"A07":{"name":"175 St","borough":"M","trains":"A","lat":40.847391,"lng":-73.939704},"A09":{"name":"168 St","borough":"M","trains":"A C","lat":40.840719,"lng":-73.939561},"A10":{"name":"163 St - Amsterdam Av","borough":"M","trains":"C","lat":40.836013,"lng":-73.939892},"A11":{"name":"155 St","borough":"M","trains":"C","lat":40.830518,"lng":-73.941514},"A12":{"name":"145 St","borough":"M","trains":"A C","lat":40.824783,"lng":-73.944216},"A14":{"name":"135 St","borough":"M","trains":"B C","lat":40.817894,"lng":-73.947649},"A15":{"name":"125 St","borough":"M","trains":"A B C D","lat":40.811109,"lng":-73.952343},"A16":{"name":"116 St","borough":"M","trains":"B C","lat":40.805085,"lng":-73.954882},"A17":{"name":"Cathedral Pkwy (110 St)","borough":"M","trains":"B C","lat":40.800603,"lng":-73.958161},"A18":{"name":"103 St","borough":"M","trains":"B C","lat":40.796092,"lng":-73.961454},"A19":{"name":"96 St","borough":"M","trains":"B C","lat":40.791642,"lng":-73.964696},"A20":{"name":"86 St","borough":"M","trains":"B C","lat":40.785868,"lng":-73.968916},"A21":{"name":"81 St - Museum of Natural History","borough":"M","trains":"B C","lat":40.781433,"lng":-73.972143},"A22":{"name":"72 St","borough":"M","trains":"B C","lat":40.775594,"lng":-73.97641},"A24":{"name":"59 St - Columbus Circle","borough":"M","trains":"A B C D","lat":40.768296,"lng":-73.981736},"A25":{"name":"50 St","borough":"M","trains":"C E","lat":40.762456,"lng":-73.985984},"A27":{"name":"42 St - Port Authority Bus Terminal","borough":"M","trains":"A C E","lat":40.757308,"lng":-73.989735},"A28":{"name":"34 St - Penn Station","borough":"M","trains":"A C E","lat":40.752287,"lng":-73.993391},"A29":{"name":"UNKNOWN","borough":"M","trains":"A C E","lat":40.7490965,"lng":-73.995716},"A30":{"name":"23 St","borough":"M","trains":"C E","lat":40.745906,"lng":-73.998041},"A31":{"name":"14 St","borough":"M","trains":"A C E","lat":40.740893,"lng":-74.00169},"A32":{"name":"W 4 St","borough":"M","trains":"A C E","lat":40.732338,"lng":-74.000495},"A33":{"name":"Spring St","borough":"M","trains":"C E","lat":40.726227,"lng":-74.003739},"A34":{"name":"Canal St","borough":"M","trains":"A C E","lat":40.720824,"lng":-74.005229},"A36":{"name":"Chambers St","borough":"M","trains":"A C","lat":40.714111,"lng":-74.008585},"A38":{"name":"Fulton St","borough":"M","trains":"A C","lat":40.710197,"lng":-74.007691},"A40":{"name":"High St","borough":"Bk","trains":"A C","lat":40.699337,"lng":-73.990531},"A41":{"name":"Jay St - MetroTech","borough":"Bk","trains":"A C F","lat":40.692338,"lng":-73.987342},"A42":{"name":"Hoyt - Schermerhorn Sts","borough":"Bk","trains":"A C G","lat":40.688484,"lng":-73.985001},"A43":{"name":"Lafayette Av","borough":"Bk","trains":"C","lat":40.686113,"lng":-73.973946},"A44":{"name":"Clinton - Washington Avs","borough":"Bk","trains":"C","lat":40.683263,"lng":-73.965838},"A45":{"name":"Franklin Av","borough":"Bk","trains":"C","lat":40.68138,"lng":-73.956848},"A46":{"name":"Nostrand Av","borough":"Bk","trains":"A C","lat":40.680438,"lng":-73.950426},"A47":{"name":"Kingston - Throop Avs","borough":"Bk","trains":"C","lat":40.679921,"lng":-73.940858},"A48":{"name":"Utica Av","borough":"Bk","trains":"A C","lat":40.679364,"lng":-73.930729},"A49":{"name":"Ralph Av","borough":"Bk","trains":"C","lat":40.678822,"lng":-73.920786},"A50":{"name":"Rockaway Av","borough":"Bk","trains":"C","lat":40.67834,"lng":-73.911946},"A51":{"name":"Broadway Jct","borough":"Bk","trains":"A C","lat":40.678334,"lng":-73.905316},"A52":{"name":"Liberty Av","borough":"Bk","trains":"C","lat":40.674542,"lng":-73.896548},"A53":{"name":"Van Siclen Av","borough":"Bk","trains":"C","lat":40.67271,"lng":-73.890358},"A54":{"name":"Shepherd Av","borough":"Bk","trains":"C","lat":40.67413,"lng":-73.88075},"A55":{"name":"Euclid Av","borough":"Bk","trains":"A C","lat":40.675377,"lng":-73.872106},"A57":{"name":"Grant Av","borough":"Bk","trains":"A","lat":40.677044,"lng":-73.86505},"A59":{"name":"80 St","borough":"Q","trains":"A","lat":40.679371,"lng":-73.858992},"A60":{"name":"88 St","borough":"Q","trains":"A","lat":40.679843,"lng":-73.85147},"A61":{"name":"Rockaway Blvd","borough":"Q","trains":"A","lat":40.680429,"lng":-73.843853},"A62":{"name":"UNKNOWN","borough":"Q","trains":"A","lat":40.674331499999994,"lng":-73.8389555},"A63":{"name":"104 St","borough":"Q","trains":"A","lat":40.681711,"lng":-73.837683},"A64":{"name":"111 St","borough":"Q","trains":"A","lat":40.684331,"lng":-73.832163},"A65":{"name":"Ozone Park - Lefferts Blvd","borough":"Q","trains":"A","lat":40.685951,"lng":-73.825798},"B04":{"name":"21 St - Queensbridge","borough":"Q","trains":"F","lat":40.754203,"lng":-73.942836},"B05":{"name":"UNKNOWN","borough":"Q","trains":"F","lat":40.756674,"lng":-73.948048},"B06":{"name":"Roosevelt Island","borough":"M","trains":"F","lat":40.759145,"lng":-73.95326},"B08":{"name":"Lexington Av/63 St","borough":"M","trains":"F Q","lat":40.764629,"lng":-73.966113},"B10":{"name":"57 St","borough":"M","trains":"F","lat":40.763972,"lng":-73.97745},"B12":{"name":"9 Av","borough":"Bk","trains":"D","lat":40.646292,"lng":-73.994324},"B13":{"name":"Fort Hamilton Pkwy","borough":"Bk","trains":"D","lat":40.640914,"lng":-73.994304},"B14":{"name":"50 St","borough":"Bk","trains":"D","lat":40.63626,"lng":-73.994791},"B15":{"name":"55 St","borough":"Bk","trains":"D","lat":40.631435,"lng":-73.995476},"B16":{"name":"62 St","borough":"Bk","trains":"D","lat":40.626472,"lng":-73.996895},"B17":{"name":"71 St","borough":"Bk","trains":"D","lat":40.619589,"lng":-73.998864},"B18":{"name":"79 St","borough":"Bk","trains":"D","lat":40.613501,"lng":-74.00061},"B19":{"name":"18 Av","borough":"Bk","trains":"D","lat":40.607954,"lng":-74.001736},"B20":{"name":"20 Av","borough":"Bk","trains":"D","lat":40.604556,"lng":-73.998168},"B21":{"name":"Bay Pkwy","borough":"Bk","trains":"D","lat":40.601875,"lng":-73.993728},"B22":{"name":"25 Av","borough":"Bk","trains":"D","lat":40.597704,"lng":-73.986829},"B23":{"name":"Bay 50 St","borough":"Bk","trains":"D","lat":40.588841,"lng":-73.983765},"D01":{"name":"Norwood - 205 St","borough":"Bx","trains":"D","lat":40.874811,"lng":-73.878855},"D03":{"name":"Bedford Park Blvd","borough":"Bx","trains":"B D","lat":40.873244,"lng":-73.887138},"D04":{"name":"Kingsbridge Rd","borough":"Bx","trains":"B D","lat":40.866978,"lng":-73.893509},"D05":{"name":"Fordham Rd","borough":"Bx","trains":"B D","lat":40.861296,"lng":-73.897749},"D06":{"name":"182-183 Sts","borough":"Bx","trains":"B D","lat":40.856093,"lng":-73.900741},"D07":{"name":"Tremont Av","borough":"Bx","trains":"B D","lat":40.85041,"lng":-73.905227},"D08":{"name":"174-175 Sts","borough":"Bx","trains":"B D","lat":40.8459,"lng":-73.910136},"D09":{"name":"170 St","borough":"Bx","trains":"B D","lat":40.839306,"lng":-73.9134},"D10":{"name":"167 St","borough":"Bx","trains":"B D","lat":40.833771,"lng":-73.91844},"D11":{"name":"161 St - Yankee Stadium","borough":"Bx","trains":"B D","lat":40.827905,"lng":-73.925651},"D12":{"name":"155 St","borough":"M","trains":"B D","lat":40.830135,"lng":-73.938209},"D13":{"name":"145 St","borough":"M","trains":"B D","lat":40.824783,"lng":-73.944216},"D14":{"name":"7 Av","borough":"M","trains":"B D E","lat":40.762862,"lng":-73.981637},"D15":{"name":"47-50 Sts - Rockefeller Ctr","borough":"M","trains":"B D F M","lat":40.758663,"lng":-73.981329},"D16":{"name":"42 St - Bryant Pk","borough":"M","trains":"B D F M","lat":40.754222,"lng":-73.984569},"D17":{"name":"34 St - Herald Sq","borough":"M","trains":"B D F M","lat":40.749719,"lng":-73.987823},"D18":{"name":"23 St","borough":"M","trains":"F M","lat":40.742878,"lng":-73.992821},"D19":{"name":"14 St","borough":"M","trains":"F M","lat":40.738228,"lng":-73.996209},"D20":{"name":"W 4 St","borough":"M","trains":"B D F M","lat":40.732338,"lng":-74.000495},"D21":{"name":"Broadway-Lafayette St","borough":"M","trains":"B D F M","lat":40.725297,"lng":-73.996204},"D22":{"name":"Grand St","borough":"M","trains":"B D","lat":40.718267,"lng":-73.993753},"D24":{"name":"Atlantic Av - Barclays Ctr","borough":"Bk","trains":"B Q","lat":40.68446,"lng":-73.97689},"D25":{"name":"7 Av B","borough":"Bk","trains":"B Q","lat":40.67705,"lng":-73.972367},"D26":{"name":"Prospect Park","borough":"Bk","trains":"B Q","lat":40.661614,"lng":-73.962246},"D27":{"name":"Parkside Av","borough":"Bk","trains":"B Q","lat":40.655292,"lng":-73.961495},"D28":{"name":"Church Av","borough":"Bk","trains":"B Q","lat":40.650527,"lng":-73.962982},"D29":{"name":"Beverley Rd","borough":"Bk","trains":"B Q","lat":40.644031,"lng":-73.964492},"D30":{"name":"Cortelyou Rd","borough":"Bk","trains":"B Q","lat":40.640927,"lng":-73.963891},"D31":{"name":"Newkirk Plaza","borough":"Bk","trains":"B Q","lat":40.635082,"lng":-73.962793},"D32":{"name":"Avenue H","borough":"Bk","trains":"B Q","lat":40.62927,"lng":-73.961639},"D33":{"name":"Avenue J","borough":"Bk","trains":"B Q","lat":40.625039,"lng":-73.960803},"D34":{"name":"Avenue M","borough":"Bk","trains":"B Q","lat":40.617618,"lng":-73.959399},"D35":{"name":"Kings Hwy","borough":"Bk","trains":"B Q","lat":40.60867,"lng":-73.957734},"D37":{"name":"Avenue U","borough":"Bk","trains":"B Q","lat":40.5993,"lng":-73.955929},"D38":{"name":"Neck Rd","borough":"Bk","trains":"B Q","lat":40.595246,"lng":-73.955161},"D39":{"name":"Sheepshead Bay","borough":"Bk","trains":"B Q","lat":40.586896,"lng":-73.954155},"D40":{"name":"Brighton Beach","borough":"Bk","trains":"B Q","lat":40.577621,"lng":-73.961376},"D41":{"name":"Ocean Pkwy","borough":"Bk","trains":"Q","lat":40.576312,"lng":-73.968501},"D42":{"name":"W 8 St - NY Aquarium","borough":"Bk","trains":"F Q","lat":40.576127,"lng":-73.975939},"D43":{"name":"Coney Island - Stillwell Av","borough":"Bk","trains":"D F N Q","lat":40.577422,"lng":-73.981233},"E01":{"name":"World Trade Center","borough":"M","trains":"E","lat":40.712582,"lng":-74.009781},"F01":{"name":"Jamaica - 179 St","borough":"Q","trains":"F","lat":40.712646,"lng":-73.783817},"F02":{"name":"169 St","borough":"Q","trains":"F","lat":40.71047,"lng":-73.793604},"F03":{"name":"Parsons Blvd","borough":"Q","trains":"F","lat":40.707564,"lng":-73.803326},"F04":{"name":"Sutphin Blvd","borough":"Q","trains":"F","lat":40.70546,"lng":-73.810708},"F05":{"name":"Briarwood - Van Wyck Blvd","borough":"Q","trains":"E F","lat":40.709179,"lng":-73.820574},"F06":{"name":"Kew Gardens - Union Tpke","borough":"Q","trains":"E F","lat":40.714441,"lng":-73.831008},"F07":{"name":"75 Av","borough":"Q","trains":"E F","lat":40.718331,"lng":-73.837324},"F09":{"name":"Court Sq","borough":"Q","trains":"E M","lat":40.747846,"lng":-73.946},"F11":{"name":"Lexington Av/53 St","borough":"M","trains":"E M","lat":40.757552,"lng":-73.969055},"F12":{"name":"5 Av/53 St","borough":"M","trains":"E M","lat":40.760167,"lng":-73.975224},"F14":{"name":"2 Av","borough":"M","trains":"F","lat":40.723402,"lng":-73.989938},"F15":{"name":"Delancey St","borough":"M","trains":"F","lat":40.718611,"lng":-73.988114},"F16":{"name":"East Broadway","borough":"M","trains":"F","lat":40.713715,"lng":-73.990173},"F17":{"name":"UNKNOWN","borough":"M","trains":"F","lat":40.707556,"lng":-73.988462},"F18":{"name":"York St","borough":"Bk","trains":"F","lat":40.701397,"lng":-73.986751},"F20":{"name":"Bergen St","borough":"Bk","trains":"F G","lat":40.686145,"lng":-73.990862},"F21":{"name":"Carroll St","borough":"Bk","trains":"F G","lat":40.680303,"lng":-73.995048},"F22":{"name":"Smith - 9 Sts","borough":"Bk","trains":"F G","lat":40.67358,"lng":-73.995959},"F23":{"name":"4 Av","borough":"Bk","trains":"F G","lat":40.670272,"lng":-73.989779},"F24":{"name":"7 Av","borough":"Bk","trains":"F G","lat":40.666271,"lng":-73.980305},"F25":{"name":"15 St - Prospect Park","borough":"Bk","trains":"F G","lat":40.660365,"lng":-73.979493},"F26":{"name":"Fort Hamilton Pkwy","borough":"Bk","trains":"F G","lat":40.650782,"lng":-73.975776},"F27":{"name":"Church Av","borough":"Bk","trains":"F","lat":40.644041,"lng":-73.979678},"F29":{"name":"Ditmas Av","borough":"Bk","trains":"F","lat":40.636119,"lng":-73.978172},"F30":{"name":"18 Av","borough":"Bk","trains":"F","lat":40.629755,"lng":-73.976971},"F31":{"name":"Avenue I","borough":"Bk","trains":"F","lat":40.625322,"lng":-73.976127},"F32":{"name":"Bay Pkwy","borough":"Bk","trains":"F","lat":40.620769,"lng":-73.975264},"F33":{"name":"Avenue N","borough":"Bk","trains":"F","lat":40.61514,"lng":-73.974197},"F34":{"name":"Avenue P","borough":"Bk","trains":"F","lat":40.608944,"lng":-73.973022},"F35":{"name":"Kings Hwy","borough":"Bk","trains":"F","lat":40.603217,"lng":-73.972361},"F36":{"name":"Avenue U","borough":"Bk","trains":"F","lat":40.596063,"lng":-73.973357},"F38":{"name":"Avenue X","borough":"Bk","trains":"F","lat":40.58962,"lng":-73.97425},"F39":{"name":"Neptune Av","borough":"Bk","trains":"F","lat":40.581011,"lng":-73.974574},"G05":{"name":"Jamaica Center - Parsons/Archer","borough":"Q","trains":"E J Z","lat":40.702147,"lng":-73.801109},"G06":{"name":"Sutphin Blvd - Archer Av - JFK Airport","borough":"Q","trains":"E J Z","lat":40.700486,"lng":-73.807969},"G07":{"name":"Jamaica - Van Wyck","borough":"Q","trains":"E","lat":40.702566,"lng":-73.816859},"G08":{"name":"Forest Hills - 71 Av","borough":"Q","trains":"E F M R","lat":40.721691,"lng":-73.844521},"G09":{"name":"67 Av","borough":"Q","trains":"M R","lat":40.726523,"lng":-73.852719},"G10":{"name":"63 Dr - Rego Park","borough":"Q","trains":"M R","lat":40.729846,"lng":-73.861604},"G11":{"name":"Woodhaven Blvd","borough":"Q","trains":"M R","lat":40.733106,"lng":-73.869229},"G12":{"name":"Grand Av - Newtown","borough":"Q","trains":"M R","lat":40.737015,"lng":-73.877223},"G13":{"name":"Elmhurst Av","borough":"Q","trains":"M R","lat":40.742454,"lng":-73.882017},"G14":{"name":"Jackson Hts - Roosevelt Av","borough":"Q","trains":"E F M R","lat":40.746644,"lng":-73.891338},"G15":{"name":"65 St","borough":"Q","trains":"M R","lat":40.749669,"lng":-73.898453},"G16":{"name":"Northern Blvd","borough":"Q","trains":"M R","lat":40.752885,"lng":-73.906006},"G18":{"name":"46 St","borough":"Q","trains":"M R","lat":40.756312,"lng":-73.913333},"G19":{"name":"Steinway St","borough":"Q","trains":"M R","lat":40.756879,"lng":-73.92074},"G20":{"name":"36 St Q","borough":"Q","trains":"M R","lat":40.752039,"lng":-73.928781},"G21":{"name":"Queens Plaza","borough":"Q","trains":"E M R","lat":40.748973,"lng":-73.937243},"G22":{"name":"Court Sq","borough":"Q","trains":"G","lat":40.746554,"lng":-73.943832},"G24":{"name":"21 St","borough":"Q","trains":"G","lat":40.744065,"lng":-73.949724},"G26":{"name":"Greenpoint Av","borough":"Bk","trains":"G","lat":40.731352,"lng":-73.954449},"G28":{"name":"Nassau Av","borough":"Bk","trains":"G","lat":40.724635,"lng":-73.951277},"G29":{"name":"Metropolitan Av","borough":"Bk","trains":"G","lat":40.712792,"lng":-73.951418},"G30":{"name":"Broadway","borough":"Bk","trains":"G","lat":40.706092,"lng":-73.950308},"G31":{"name":"Flushing Av","borough":"Bk","trains":"G","lat":40.700377,"lng":-73.950234},"G32":{"name":"Myrtle - Willoughby Avs","borough":"Bk","trains":"G","lat":40.694568,"lng":-73.949046},"G33":{"name":"Bedford - Nostrand Avs","borough":"Bk","trains":"G","lat":40.689627,"lng":-73.953522},"G34":{"name":"Classon Av","borough":"Bk","trains":"G","lat":40.688873,"lng":-73.96007},"G35":{"name":"Clinton - Washington Avs","borough":"Bk","trains":"G","lat":40.688089,"lng":-73.966839},"G36":{"name":"Fulton St","borough":"Bk","trains":"G","lat":40.687119,"lng":-73.975375},"H01":{"name":"Aqueduct Racetrack","borough":"Q","trains":"A","lat":40.672097,"lng":-73.835919},"H02":{"name":"Aqueduct - N Conduit Av","borough":"Q","trains":"A","lat":40.668234,"lng":-73.834058},"H03":{"name":"Howard Beach - JFK Airport","borough":"Q","trains":"A","lat":40.660476,"lng":-73.830301},"H04":{"name":"Broad Channel","borough":"Q","trains":"A S","lat":40.608382,"lng":-73.815925},"H06":{"name":"Beach 67 St","borough":"Q","trains":"A H","lat":40.590927,"lng":-73.796924},"H07":{"name":"Beach 60 St","borough":"Q","trains":"A H","lat":40.592374,"lng":-73.788522},"H08":{"name":"Beach 44 St","borough":"Q","trains":"A H","lat":40.592943,"lng":-73.776013},"H09":{"name":"Beach 36 St","borough":"Q","trains":"A H","lat":40.595398,"lng":-73.768175},"H10":{"name":"Beach 25 St","borough":"Q","trains":"A H","lat":40.600066,"lng":-73.761353},"H11":{"name":"Far Rockaway - Mott Av","borough":"Q","trains":"A H","lat":40.603995,"lng":-73.755405},"H12":{"name":"Beach 90 St","borough":"Q","trains":"A S H","lat":40.588034,"lng":-73.813641},"H13":{"name":"Beach 98 St","borough":"Q","trains":"A S H","lat":40.585307,"lng":-73.820558},"H14":{"name":"Beach 105 St","borough":"Q","trains":"A S H","lat":40.583209,"lng":-73.827559},"H15":{"name":"Rockaway Park - Beach 116 St","borough":"Q","trains":"A S H","lat":40.580903,"lng":-73.835592},"H19":{"name":"Broad Channel","borough":"Q","trains":"A S","lat":40.608382,"lng":-73.815925},"J12":{"name":"121 St","borough":"Q","trains":"J Z","lat":40.700492,"lng":-73.828294},"J13":{"name":"111 St","borough":"Q","trains":"J","lat":40.697418,"lng":-73.836345},"J14":{"name":"104 St","borough":"Q","trains":"J Z","lat":40.695178,"lng":-73.84433},"J15":{"name":"Woodhaven Blvd","borough":"Q","trains":"J Z","lat":40.693879,"lng":-73.851576},"J16":{"name":"85 St - Forest Pkwy","borough":"Q","trains":"J","lat":40.692435,"lng":-73.86001},"J17":{"name":"75 St","borough":"Q","trains":"J Z","lat":40.691324,"lng":-73.867139},"J19":{"name":"Cypress Hills","borough":"Bk","trains":"J","lat":40.689941,"lng":-73.87255},"J20":{"name":"Crescent St","borough":"Bk","trains":"J Z","lat":40.683194,"lng":-73.873785},"J21":{"name":"Norwood Av","borough":"Bk","trains":"J Z","lat":40.68141,"lng":-73.880039},"J22":{"name":"Cleveland St","borough":"Bk","trains":"J","lat":40.679947,"lng":-73.884639},"J23":{"name":"Van Siclen Av","borough":"Bk","trains":"J Z","lat":40.678024,"lng":-73.891688},"J24":{"name":"Alabama Av","borough":"Bk","trains":"J","lat":40.676992,"lng":-73.898654},"J27":{"name":"Broadway Jct","borough":"Bk","trains":"J Z","lat":40.679498,"lng":-73.904512},"J28":{"name":"Chauncey St","borough":"Bk","trains":"J Z","lat":40.682893,"lng":-73.910456},"J29":{"name":"Halsey St","borough":"Bk","trains":"J","lat":40.68637,"lng":-73.916559},"J30":{"name":"Gates Av","borough":"Bk","trains":"J Z","lat":40.68963,"lng":-73.92227},"J31":{"name":"Kosciuszko St","borough":"Bk","trains":"J","lat":40.693342,"lng":-73.928814},"L01":{"name":"8 Av","borough":"M","trains":"L","lat":40.739777,"lng":-74.002578},"L02":{"name":"6 Av","borough":"M","trains":"L","lat":40.737335,"lng":-73.996786},"L03":{"name":"Union Sq - 14 St","borough":"M","trains":"L","lat":40.734789,"lng":-73.99073},"L05":{"name":"3 Av","borough":"M","trains":"L","lat":40.732849,"lng":-73.986122},"L06":{"name":"1 Av","borough":"M","trains":"L","lat":40.730953,"lng":-73.981628},"L08":{"name":"Bedford Av","borough":"Bk","trains":"L","lat":40.717304,"lng":-73.956872},"L10":{"name":"Lorimer St","borough":"Bk","trains":"L","lat":40.714063,"lng":-73.950275},"L11":{"name":"Graham Av","borough":"Bk","trains":"L","lat":40.714565,"lng":-73.944053},"L12":{"name":"Grand St","borough":"Bk","trains":"L","lat":40.711926,"lng":-73.94067},"L13":{"name":"Montrose Av","borough":"Bk","trains":"L","lat":40.707739,"lng":-73.93985},"L14":{"name":"Morgan Av","borough":"Bk","trains":"L","lat":40.706152,"lng":-73.933147},"L15":{"name":"Jefferson St","borough":"Bk","trains":"L","lat":40.706607,"lng":-73.922913},"L16":{"name":"DeKalb Av","borough":"Bk","trains":"L","lat":40.703811,"lng":-73.918425},"L17":{"name":"Myrtle - Wyckoff Avs","borough":"Bk","trains":"L","lat":40.699814,"lng":-73.911586},"L19":{"name":"Halsey St","borough":"Q","trains":"L","lat":40.695602,"lng":-73.904084},"L20":{"name":"Wilson Av","borough":"Bk","trains":"L","lat":40.688764,"lng":-73.904046},"L21":{"name":"Bushwick Av - Aberdeen St","borough":"Bk","trains":"L","lat":40.682829,"lng":-73.905249},"L22":{"name":"Broadway Jct","borough":"Bk","trains":"L","lat":40.678856,"lng":-73.90324},"L24":{"name":"Atlantic Av","borough":"Bk","trains":"L","lat":40.675345,"lng":-73.903097},"L25":{"name":"Sutter Av","borough":"Bk","trains":"L","lat":40.669367,"lng":-73.901975},"L26":{"name":"Livonia Av","borough":"Bk","trains":"L","lat":40.664038,"lng":-73.900571},"L27":{"name":"New Lots Av","borough":"Bk","trains":"L","lat":40.658733,"lng":-73.899232},"L28":{"name":"E 105 St","borough":"Bk","trains":"L","lat":40.650573,"lng":-73.899485},"L29":{"name":"Canarsie - Rockaway Pkwy","borough":"Bk","trains":"L","lat":40.646654,"lng":-73.90185},"M01":{"name":"Middle Village - Metropolitan Av","borough":"Q","trains":"M","lat":40.711396,"lng":-73.889601},"M04":{"name":"Fresh Pond Rd","borough":"Q","trains":"M","lat":40.706186,"lng":-73.895877},"M05":{"name":"Forest Av","borough":"Q","trains":"M","lat":40.704423,"lng":-73.903077},"M06":{"name":"Seneca Av","borough":"Q","trains":"M","lat":40.702762,"lng":-73.90774},"M08":{"name":"Myrtle - Wyckoff Avs","borough":"Bk","trains":"M","lat":40.69943,"lng":-73.912385},"M09":{"name":"Knickerbocker Av","borough":"Bk","trains":"M","lat":40.698664,"lng":-73.919711},"M10":{"name":"Central Av","borough":"Bk","trains":"M","lat":40.697857,"lng":-73.927397},"M11":{"name":"Myrtle Av","borough":"Bk","trains":"J M Z","lat":40.697207,"lng":-73.935657},"M12":{"name":"Flushing Av","borough":"Bk","trains":"J M","lat":40.70026,"lng":-73.941126},"M13":{"name":"Lorimer St","borough":"Bk","trains":"J M","lat":40.703869,"lng":-73.947408},"M14":{"name":"Hewes St","borough":"Bk","trains":"J M","lat":40.70687,"lng":-73.953431},"M16":{"name":"Marcy Av","borough":"Bk","trains":"J M Z","lat":40.708359,"lng":-73.957757},"M18":{"name":"Essex St","borough":"M","trains":"J M Z","lat":40.718315,"lng":-73.987437},"X22":{"name":"2 Av","borough":"M","trains":"F","lat":40.723402,"lng":-73.989938},"M19":{"name":"Bowery","borough":"M","trains":"J Z","lat":40.72028,"lng":-73.993915},"M20":{"name":"Canal St","borough":"M","trains":"J Z","lat":40.718092,"lng":-73.999892},"M21":{"name":"Chambers St","borough":"M","trains":"J Z","lat":40.713243,"lng":-74.003401},"M22":{"name":"Fulton St","borough":"M","trains":"J Z","lat":40.710374,"lng":-74.007582},"M23":{"name":"Broad St","borough":"M","trains":"J Z","lat":40.706476,"lng":-74.011056},"N02":{"name":"8 Av","borough":"Bk","trains":"N","lat":40.635064,"lng":-74.011719},"N03":{"name":"Fort Hamilton Pkwy","borough":"Bk","trains":"N","lat":40.631386,"lng":-74.005351},"N04":{"name":"New Utrecht Av","borough":"Bk","trains":"N","lat":40.624842,"lng":-73.996353},"N05":{"name":"18 Av","borough":"Bk","trains":"N","lat":40.620671,"lng":-73.990414},"N06":{"name":"20 Av","borough":"Bk","trains":"N","lat":40.61741,"lng":-73.985026},"N07":{"name":"Bay Pkwy","borough":"Bk","trains":"N","lat":40.611815,"lng":-73.981848},"N08":{"name":"Kings Hwy","borough":"Bk","trains":"N","lat":40.603923,"lng":-73.980353},"N09":{"name":"Avenue U","borough":"Bk","trains":"N","lat":40.597473,"lng":-73.979137},"N10":{"name":"86 St","borough":"Bk","trains":"N","lat":40.592721,"lng":-73.97823},"N12":{"name":"S.B. Coney Island","borough":"Bk","trains":"N","lat":40.5850715,"lng":-73.9797315},"Q01":{"name":"Canal St","borough":"M","trains":"N Q","lat":40.718383,"lng":-74.00046},"Q03":{"name":"72 St","borough":"M","trains":"Q","lat":40.768799,"lng":-73.958424},"Q04":{"name":"86 St","borough":"M","trains":"Q","lat":40.777891,"lng":-73.951787},"Q05":{"name":"96 St","borough":"M","trains":"Q","lat":40.784318,"lng":-73.947152},"R01":{"name":"Astoria - Ditmars Blvd","borough":"Q","trains":"N W","lat":40.775036,"lng":-73.912034},"R03":{"name":"Astoria Blvd","borough":"Q","trains":"N W","lat":40.770258,"lng":-73.917843},"R04":{"name":"30 Av","borough":"Q","trains":"N W","lat":40.766779,"lng":-73.921479},"R05":{"name":"Broadway","borough":"Q","trains":"N W","lat":40.76182,"lng":-73.925508},"R06":{"name":"36 Av","borough":"Q","trains":"N W","lat":40.756804,"lng":-73.929575},"R08":{"name":"39 Av","borough":"Q","trains":"N W","lat":40.752882,"lng":-73.932755},"R09":{"name":"Queensboro Plaza","borough":"Q","trains":"N W","lat":40.750582,"lng":-73.940202},"R60":{"name":"UNKNOWN","borough":"M","trains":"R","lat":40.756620999999996,"lng":-73.95373000000001},"R11":{"name":"Lexington Av/59 St","borough":"M","trains":"N W R","lat":40.76266,"lng":-73.967258},"R13":{"name":"5 Av/59 St","borough":"M","trains":"N W R","lat":40.764811,"lng":-73.973347},"R14":{"name":"57 St - 7 Av","borough":"M","trains":"N Q R W","lat":40.764664,"lng":-73.980658},"R15":{"name":"49 St","borough":"M","trains":"N R W","lat":40.759901,"lng":-73.984139},"R16":{"name":"Times Sq - 42 St","borough":"M","trains":"N Q R W","lat":40.754672,"lng":-73.986754},"R17":{"name":"34 St - Herald Sq","borough":"M","trains":"N Q R W","lat":40.749567,"lng":-73.98795},"R18":{"name":"28 St","borough":"M","trains":"R W","lat":40.745494,"lng":-73.988691},"R19":{"name":"23 St","borough":"M","trains":"R W","lat":40.741303,"lng":-73.989344},"R20":{"name":"14 St - Union Sq","borough":"M","trains":"N Q R W","lat":40.735736,"lng":-73.990568},"R21":{"name":"8 St - NYU","borough":"M","trains":"R W","lat":40.730328,"lng":-73.992629},"R22":{"name":"Prince St","borough":"M","trains":"R W","lat":40.724329,"lng":-73.997702},"R23":{"name":"Canal St","borough":"M","trains":"R W","lat":40.719527,"lng":-74.001775},"R24":{"name":"City Hall","borough":"M","trains":"R W","lat":40.713282,"lng":-74.006978},"R25":{"name":"Cortlandt St","borough":"M","trains":"R W","lat":40.710668,"lng":-74.011029},"R26":{"name":"Rector St","borough":"M","trains":"R W","lat":40.70722,"lng":-74.013342},"R27":{"name":"Whitehall St","borough":"M","trains":"R W","lat":40.703087,"lng":-74.012994},"R65":{"name":"UNKNOWN","borough":"M","trains":"R","lat":40.6985935,"lng":-74.0023855},"R28":{"name":"Court St","borough":"Bk","trains":"R","lat":40.6941,"lng":-73.991777},"R29":{"name":"Jay St - MetroTech","borough":"Bk","trains":"R","lat":40.69218,"lng":-73.985942},"R30":{"name":"DeKalb Av","borough":"Bk","trains":"B Q R","lat":40.690635,"lng":-73.981824},"R31":{"name":"Atlantic Av - Barclays Ctr","borough":"Bk","trains":"D N R","lat":40.683666,"lng":-73.97881},"R32":{"name":"Union St","borough":"Bk","trains":"R","lat":40.677316,"lng":-73.98311},"R33":{"name":"9 St","borough":"Bk","trains":"R","lat":40.670847,"lng":-73.988302},"R34":{"name":"Prospect Av","borough":"Bk","trains":"R","lat":40.665414,"lng":-73.992872},"R35":{"name":"25 St","borough":"Bk","trains":"R","lat":40.660397,"lng":-73.998091},"R36":{"name":"36 St","borough":"Bk","trains":"D N R","lat":40.655144,"lng":-74.003549},"R39":{"name":"45 St","borough":"Bk","trains":"R","lat":40.648939,"lng":-74.010006},"R40":{"name":"53 St","borough":"Bk","trains":"R","lat":40.645069,"lng":-74.014034},"R41":{"name":"59 St","borough":"Bk","trains":"N R","lat":40.641362,"lng":-74.017881},"R42":{"name":"Bay Ridge Av","borough":"Bk","trains":"R","lat":40.634967,"lng":-74.023377},"R43":{"name":"77 St","borough":"Bk","trains":"R","lat":40.629742,"lng":-74.02551},"R44":{"name":"86 St","borough":"Bk","trains":"R","lat":40.622687,"lng":-74.028398},"R45":{"name":"Bay Ridge - 95 St","borough":"Bk","trains":"R","lat":40.616622,"lng":-74.030876},"S01":{"name":"Franklin Av","borough":"Bk","trains":"S","lat":40.680596,"lng":-73.955827},"S03":{"name":"Park Pl","borough":"Bk","trains":"S","lat":40.674772,"lng":-73.957624},"S04":{"name":"Botanic Garden","borough":"Bk","trains":"S","lat":40.670343,"lng":-73.959245},"S09":{"name":"Tottenville","borough":"SI","trains":"SIR SS","lat":40.512764,"lng":-74.251961},"S11":{"name":"Arthur Kill","borough":"SI","trains":"SIR SS","lat":40.516578,"lng":-74.242096},"S13":{"name":"Richmond Valley","borough":"SI","trains":"SIR SS","lat":40.519631,"lng":-74.229141},"S14":{"name":"Pleasant Plains","borough":"SI","trains":"SIR SS","lat":40.52241,"lng":-74.217847},"S15":{"name":"Prince's Bay","borough":"SI","trains":"SIR SS","lat":40.525507,"lng":-74.200064},"S16":{"name":"Huguenot","borough":"SI","trains":"SIR SS","lat":40.533674,"lng":-74.191794},"S17":{"name":"Annadale","borough":"SI","trains":"SIR SS","lat":40.54046,"lng":-74.178217},"S18":{"name":"Eltingville","borough":"SI","trains":"SIR SS","lat":40.544601,"lng":-74.16457},"S19":{"name":"Great Kills","borough":"SI","trains":"SIR SS","lat":40.551231,"lng":-74.151399},"S20":{"name":"Bay Terrace","borough":"SI","trains":"SIR SS","lat":40.5564,"lng":-74.136907},"S21":{"name":"Oakwood Heights","borough":"SI","trains":"SIR SS","lat":40.56511,"lng":-74.12632},"S22":{"name":"New Dorp","borough":"SI","trains":"SIR SS","lat":40.57348,"lng":-74.11721},"S23":{"name":"Grant City","borough":"SI","trains":"SIR SS","lat":40.578965,"lng":-74.109704},"S24":{"name":"Jefferson Av","borough":"SI","trains":"SIR SS","lat":40.583591,"lng":-74.103338},"S25":{"name":"Dongan Hills","borough":"SI","trains":"SIR SS","lat":40.588849,"lng":-74.09609},"S26":{"name":"Old Town","borough":"SI","trains":"SIR SS","lat":40.596612,"lng":-74.087368},"S27":{"name":"Grasmere","borough":"SI","trains":"SIR SS","lat":40.603117,"lng":-74.084087},"S28":{"name":"Clifton","borough":"SI","trains":"SIR SS","lat":40.621319,"lng":-74.071402},"S29":{"name":"Stapleton","borough":"SI","trains":"SIR SS","lat":40.627915,"lng":-74.075162},"S30":{"name":"Tompkinsville","borough":"SI","trains":"SIR SS","lat":40.636949,"lng":-74.074835},"S31":{"name":"St George","borough":"SI","trains":"SIR SS","lat":40.643748,"lng":-74.073643}};
+module.exports = {"101":{"name":"Van Cortlandt Park - 242 St","borough":"Bx","trains":"1","lat":40.889248,"lng":-73.898583},"103":{"name":"238 St","borough":"Bx","trains":"1","lat":40.884667,"lng":-73.90087},"104":{"name":"231 St","borough":"Bx","trains":"1","lat":40.878856,"lng":-73.904834},"106":{"name":"Marble Hill - 225 St","borough":"M","trains":"1","lat":40.874561,"lng":-73.909831},"107":{"name":"215 St","borough":"M","trains":"1","lat":40.869444,"lng":-73.915279},"108":{"name":"207 St","borough":"M","trains":"1","lat":40.864621,"lng":-73.918822},"109":{"name":"Dyckman St","borough":"M","trains":"1","lat":40.860531,"lng":-73.925536},"110":{"name":"191 St","borough":"M","trains":"1","lat":40.855225,"lng":-73.929412},"111":{"name":"181 St","borough":"M","trains":"1","lat":40.849505,"lng":-73.933596},"112":{"name":"168 St - Washington Hts","borough":"M","trains":"1","lat":40.840556,"lng":-73.940133},"113":{"name":"157 St","borough":"M","trains":"1","lat":40.834041,"lng":-73.94489},"114":{"name":"145 St","borough":"M","trains":"1","lat":40.826551,"lng":-73.95036},"115":{"name":"137 St - City College","borough":"M","trains":"1","lat":40.822008,"lng":-73.953676},"116":{"name":"125 St","borough":"M","trains":"1","lat":40.815581,"lng":-73.958372},"117":{"name":"116 St - Columbia University","borough":"M","trains":"1","lat":40.807722,"lng":-73.96411},"118":{"name":"Cathedral Pkwy","borough":"M","trains":"1","lat":40.803967,"lng":-73.966847},"119":{"name":"103 St","borough":"M","trains":"1","lat":40.799446,"lng":-73.968379},"120":{"name":"96 St","borough":"M","trains":"1 2 3","lat":40.793919,"lng":-73.972323},"121":{"name":"86 St","borough":"M","trains":"1","lat":40.788644,"lng":-73.976218},"122":{"name":"79 St","borough":"M","trains":"1","lat":40.783934,"lng":-73.979917},"123":{"name":"72 St","borough":"M","trains":"1 2 3","lat":40.778453,"lng":-73.98197},"124":{"name":"66 St - Lincoln Center","borough":"M","trains":"1","lat":40.77344,"lng":-73.982209},"125":{"name":"59 St - Columbus Circle","borough":"M","trains":"1","lat":40.768247,"lng":-73.981929},"126":{"name":"50 St","borough":"M","trains":"1","lat":40.761728,"lng":-73.983849},"127":{"name":"Times Sq - 42 St","borough":"M","trains":"1 2 3","lat":40.75529,"lng":-73.987495},"128":{"name":"34 St - Penn Station","borough":"M","trains":"1 2 3","lat":40.750373,"lng":-73.991057},"129":{"name":"28 St","borough":"M","trains":"1","lat":40.747215,"lng":-73.993365},"130":{"name":"23 St","borough":"M","trains":"1","lat":40.744081,"lng":-73.995657},"131":{"name":"18 St","borough":"M","trains":"1","lat":40.74104,"lng":-73.997871},"132":{"name":"14 St","borough":"M","trains":"1 2 3","lat":40.737826,"lng":-74.000201},"133":{"name":"Christopher St - Sheridan Sq","borough":"M","trains":"1","lat":40.733422,"lng":-74.002906},"134":{"name":"Houston St","borough":"M","trains":"1","lat":40.728251,"lng":-74.005367},"135":{"name":"Canal St","borough":"M","trains":"1","lat":40.722854,"lng":-74.006277},"136":{"name":"Franklin St","borough":"M","trains":"1","lat":40.719318,"lng":-74.006886},"137":{"name":"Chambers St","borough":"M","trains":"1 2 3","lat":40.715478,"lng":-74.009266},"138":{"name":"Cortlandt St","borough":"M","trains":"1","lat":40.711835,"lng":-74.012188},"139":{"name":"Rector St","borough":"M","trains":"1","lat":40.707513,"lng":-74.013783},"142":{"name":"South Ferry","borough":"M","trains":"1","lat":40.702068,"lng":-74.013664},"201":{"name":"Wakefield - 241 St","borough":"Bx","trains":"2","lat":40.903125,"lng":-73.85062},"204":{"name":"Nereid Av","borough":"Bx","trains":"2 5","lat":40.898379,"lng":-73.854376},"205":{"name":"233 St","borough":"Bx","trains":"2 5","lat":40.893193,"lng":-73.857473},"206":{"name":"225 St","borough":"Bx","trains":"2 5","lat":40.888022,"lng":-73.860341},"207":{"name":"219 St","borough":"Bx","trains":"2 5","lat":40.883895,"lng":-73.862633},"208":{"name":"Gun Hill Rd","borough":"Bx","trains":"2","lat":40.87785,"lng":-73.866256},"209":{"name":"Burke Av","borough":"Bx","trains":"2 5","lat":40.871356,"lng":-73.867164},"210":{"name":"Allerton Av","borough":"Bx","trains":"2 5","lat":40.865462,"lng":-73.867352},"211":{"name":"Pelham Pkwy","borough":"Bx","trains":"2","lat":40.857192,"lng":-73.867615},"212":{"name":"Bronx Park East","borough":"Bx","trains":"2 5","lat":40.848828,"lng":-73.868457},"213":{"name":"E 180 St","borough":"Bx","trains":"2 5","lat":40.841894,"lng":-73.873488},"214":{"name":"West Farms Sq - E Tremont Av","borough":"Bx","trains":"2 5","lat":40.840295,"lng":-73.880049},"215":{"name":"174 St","borough":"Bx","trains":"2 5","lat":40.837288,"lng":-73.887734},"216":{"name":"Freeman St","borough":"Bx","trains":"2 5","lat":40.829993,"lng":-73.891865},"217":{"name":"Simpson St","borough":"Bx","trains":"2 5","lat":40.824073,"lng":-73.893064},"218":{"name":"Intervale Av","borough":"Bx","trains":"2 5","lat":40.822181,"lng":-73.896736},"219":{"name":"Prospect Av","borough":"Bx","trains":"2 5","lat":40.819585,"lng":-73.90177},"220":{"name":"Jackson Av","borough":"Bx","trains":"2 5","lat":40.81649,"lng":-73.907807},"221":{"name":"3 Av - 149 St","borough":"Bx","trains":"2 5","lat":40.816109,"lng":-73.917757},"222":{"name":"149 St - Grand Concourse","borough":"Bx","trains":"2 5","lat":40.81841,"lng":-73.926718},"224":{"name":"135 St","borough":"M","trains":"2 3","lat":40.814229,"lng":-73.94077},"225":{"name":"125 St","borough":"M","trains":"2 3","lat":40.807754,"lng":-73.945495},"226":{"name":"116 St","borough":"M","trains":"2 3","lat":40.802098,"lng":-73.949625},"227":{"name":"Central Park North (110 St)","borough":"M","trains":"2 3","lat":40.799075,"lng":-73.951822},"228":{"name":"Park Pl","borough":"M","trains":"2 3","lat":40.713051,"lng":-74.008811},"229":{"name":"Fulton St","borough":"M","trains":"2 3","lat":40.709416,"lng":-74.006571},"230":{"name":"Wall St","borough":"M","trains":"2 3","lat":40.706821,"lng":-74.0091},"231":{"name":"Clark St","borough":"Bk","trains":"2 3","lat":40.697466,"lng":-73.993086},"232":{"name":"Borough Hall","borough":"Bk","trains":"2 3","lat":40.693219,"lng":-73.989998},"233":{"name":"Hoyt St","borough":"Bk","trains":"2 3","lat":40.690545,"lng":-73.985065},"234":{"name":"Nevins St","borough":"Bk","trains":"2 3 4 5","lat":40.688246,"lng":-73.980492},"235":{"name":"Atlantic Av - Barclays Ctr","borough":"Bk","trains":"2 3","lat":40.684359,"lng":-73.977666},"236":{"name":"Bergen St","borough":"Bk","trains":"2 3","lat":40.680829,"lng":-73.975098},"237":{"name":"Grand Army Plaza","borough":"Bk","trains":"2 3","lat":40.675235,"lng":-73.971046},"238":{"name":"Eastern Pkwy - Brooklyn Museum","borough":"Bk","trains":"2 3","lat":40.671987,"lng":-73.964375},"239":{"name":"Franklin Av","borough":"Bk","trains":"2 3 4 5","lat":40.670682,"lng":-73.958131},"241":{"name":"President St","borough":"Bk","trains":"2 5","lat":40.667883,"lng":-73.950683},"242":{"name":"Sterling St","borough":"Bk","trains":"2 5","lat":40.662742,"lng":-73.95085},"243":{"name":"Winthrop St","borough":"Bk","trains":"2 5","lat":40.656652,"lng":-73.9502},"244":{"name":"Church Av","borough":"Bk","trains":"2 5","lat":40.650843,"lng":-73.949575},"245":{"name":"Beverly Rd","borough":"Bk","trains":"2 5","lat":40.645098,"lng":-73.948959},"246":{"name":"Newkirk Av","borough":"Bk","trains":"2 5","lat":40.639967,"lng":-73.948411},"247":{"name":"Flatbush Av - Brooklyn College","borough":"Bk","trains":"2 5","lat":40.632836,"lng":-73.947642},"248":{"name":"Nostrand Av","borough":"Bk","trains":"3","lat":40.669847,"lng":-73.950466},"249":{"name":"Kingston Av","borough":"Bk","trains":"3","lat":40.669399,"lng":-73.942161},"250":{"name":"Crown Hts - Utica Av","borough":"Bk","trains":"3 4","lat":40.668897,"lng":-73.932942},"251":{"name":"Sutter Av - Rutland Rd","borough":"Bk","trains":"3","lat":40.664717,"lng":-73.92261},"252":{"name":"Saratoga Av","borough":"Bk","trains":"3","lat":40.661453,"lng":-73.916327},"253":{"name":"Rockaway Av","borough":"Bk","trains":"3","lat":40.662549,"lng":-73.908946},"254":{"name":"Junius St","borough":"Bk","trains":"3","lat":40.663515,"lng":-73.902447},"255":{"name":"Pennsylvania Av","borough":"Bk","trains":"3","lat":40.664635,"lng":-73.894895},"256":{"name":"Van Siclen Av","borough":"Bk","trains":"3","lat":40.665449,"lng":-73.889395},"257":{"name":"New Lots Av","borough":"Bk","trains":"3","lat":40.666235,"lng":-73.884079},"301":{"name":"Harlem - 148 St","borough":"M","trains":"3","lat":40.82388,"lng":-73.93647},"302":{"name":"145 St","borough":"M","trains":"3","lat":40.820421,"lng":-73.936245},"401":{"name":"Woodlawn","borough":"Bx","trains":"4","lat":40.886037,"lng":-73.878751},"402":{"name":"Mosholu Pkwy","borough":"Bx","trains":"4","lat":40.87975,"lng":-73.884655},"405":{"name":"Bedford Park Blvd - Lehman College","borough":"Bx","trains":"4","lat":40.873412,"lng":-73.890064},"406":{"name":"Kingsbridge Rd","borough":"Bx","trains":"4","lat":40.86776,"lng":-73.897174},"407":{"name":"Fordham Rd","borough":"Bx","trains":"4","lat":40.862803,"lng":-73.901034},"408":{"name":"183 St","borough":"Bx","trains":"4","lat":40.858407,"lng":-73.903879},"409":{"name":"Burnside Av","borough":"Bx","trains":"4","lat":40.853453,"lng":-73.907684},"410":{"name":"176 St","borough":"Bx","trains":"4","lat":40.84848,"lng":-73.911794},"411":{"name":"Mt Eden Av","borough":"Bx","trains":"4","lat":40.844434,"lng":-73.914685},"412":{"name":"170 St","borough":"Bx","trains":"4","lat":40.840075,"lng":-73.917791},"413":{"name":"167 St","borough":"Bx","trains":"4","lat":40.835537,"lng":-73.9214},"414":{"name":"161 St - Yankee Stadium","borough":"Bx","trains":"4","lat":40.827994,"lng":-73.925831},"415":{"name":"149 St - Grand Concourse","borough":"Bx","trains":"4","lat":40.818375,"lng":-73.927351},"416":{"name":"138 St - Grand Concourse","borough":"Bx","trains":"4 5","lat":40.813224,"lng":-73.929849},"418":{"name":"Fulton St","borough":"M","trains":"4 5","lat":40.710368,"lng":-74.009509},"419":{"name":"Wall St","borough":"M","trains":"4 5","lat":40.707557,"lng":-74.011862},"420":{"name":"Bowling Green","borough":"M","trains":"4 5","lat":40.704817,"lng":-74.014065},"423":{"name":"Borough Hall","borough":"Bk","trains":"4 5","lat":40.692404,"lng":-73.990151},"501":{"name":"Eastchester - Dyre Av","borough":"Bx","trains":"5","lat":40.8883,"lng":-73.830834},"502":{"name":"Baychester Av","borough":"Bx","trains":"5","lat":40.878663,"lng":-73.838591},"503":{"name":"Gun Hill Rd","borough":"Bx","trains":"5","lat":40.869526,"lng":-73.846384},"504":{"name":"Pelham Pkwy","borough":"Bx","trains":"5","lat":40.858985,"lng":-73.855359},"505":{"name":"Morris Park","borough":"Bx","trains":"5","lat":40.854364,"lng":-73.860495},"601":{"name":"Pelham Bay Park","borough":"Bx","trains":"6","lat":40.852462,"lng":-73.828121},"602":{"name":"Buhre Av","borough":"Bx","trains":"6","lat":40.84681,"lng":-73.832569},"603":{"name":"Middletown Rd","borough":"Bx","trains":"6","lat":40.843863,"lng":-73.836322},"604":{"name":"Westchester Sq - E Tremont Av","borough":"Bx","trains":"6","lat":40.839892,"lng":-73.842952},"606":{"name":"Zerega Av","borough":"Bx","trains":"6","lat":40.836488,"lng":-73.847036},"607":{"name":"Castle Hill Av","borough":"Bx","trains":"6","lat":40.834255,"lng":-73.851222},"608":{"name":"Parkchester","borough":"Bx","trains":"6","lat":40.833226,"lng":-73.860816},"609":{"name":"St Lawrence Av","borough":"Bx","trains":"6","lat":40.831509,"lng":-73.867618},"610":{"name":"Morrison Av- Sound View","borough":"Bx","trains":"6","lat":40.829521,"lng":-73.874516},"611":{"name":"Elder Av","borough":"Bx","trains":"6","lat":40.828584,"lng":-73.879159},"612":{"name":"Whitlock Av","borough":"Bx","trains":"6","lat":40.826525,"lng":-73.886283},"613":{"name":"Hunts Point Av","borough":"Bx","trains":"6","lat":40.820948,"lng":-73.890549},"614":{"name":"Longwood Av","borough":"Bx","trains":"6","lat":40.816104,"lng":-73.896435},"615":{"name":"E 149 St","borough":"Bx","trains":"6","lat":40.812118,"lng":-73.904098},"616":{"name":"E 143 St - St Mary's St","borough":"Bx","trains":"6","lat":40.808719,"lng":-73.907657},"617":{"name":"Cypress Av","borough":"Bx","trains":"6","lat":40.805368,"lng":-73.914042},"618":{"name":"Brook Av","borough":"Bx","trains":"6","lat":40.807566,"lng":-73.91924},"619":{"name":"3 Av - 138 St","borough":"Bx","trains":"6","lat":40.810476,"lng":-73.926138},"621":{"name":"125 St","borough":"M","trains":"4 5 6","lat":40.804138,"lng":-73.937594},"622":{"name":"116 St","borough":"M","trains":"6","lat":40.798629,"lng":-73.941617},"623":{"name":"110 St","borough":"M","trains":"6","lat":40.79502,"lng":-73.94425},"624":{"name":"103 St","borough":"M","trains":"6","lat":40.7906,"lng":-73.947478},"625":{"name":"96 St","borough":"M","trains":"6","lat":40.785672,"lng":-73.95107},"626":{"name":"86 St","borough":"M","trains":"4 5 6","lat":40.779492,"lng":-73.955589},"627":{"name":"77 St","borough":"M","trains":"6","lat":40.77362,"lng":-73.959874},"628":{"name":"68 St - Hunter College","borough":"M","trains":"6","lat":40.768141,"lng":-73.96387},"629":{"name":"59 St","borough":"M","trains":"4 5 6","lat":40.762526,"lng":-73.967967},"630":{"name":"51 St","borough":"M","trains":"6","lat":40.757107,"lng":-73.97192},"631":{"name":"Grand Central - 42 St","borough":"M","trains":"4 5 6","lat":40.751776,"lng":-73.976848},"632":{"name":"33 St","borough":"M","trains":"6","lat":40.746081,"lng":-73.982076},"633":{"name":"28 St","borough":"M","trains":"6","lat":40.74307,"lng":-73.984264},"634":{"name":"23 St","borough":"M","trains":"6","lat":40.739864,"lng":-73.986599},"635":{"name":"14 St - Union Sq","borough":"M","trains":"4 5 6","lat":40.734673,"lng":-73.989951},"636":{"name":"Astor Pl","borough":"M","trains":"6","lat":40.730054,"lng":-73.99107},"637":{"name":"Bleecker St","borough":"M","trains":"6","lat":40.725915,"lng":-73.994659},"638":{"name":"Spring St","borough":"M","trains":"6","lat":40.722301,"lng":-73.997141},"639":{"name":"Canal St","borough":"M","trains":"6","lat":40.718803,"lng":-74.000193},"640":{"name":"Brooklyn Bridge - City Hall","borough":"M","trains":"4 5 6","lat":40.713065,"lng":-74.004131},"701":{"name":"Flushing - Main St","borough":"Q","trains":"7","lat":40.7596,"lng":-73.83003},"702":{"name":"Mets - Willets Point","borough":"Q","trains":"7","lat":40.754622,"lng":-73.845625},"705":{"name":"111 St","borough":"Q","trains":"7","lat":40.75173,"lng":-73.855334},"706":{"name":"103 St - Corona Plaza","borough":"Q","trains":"7","lat":40.749865,"lng":-73.8627},"707":{"name":"Junction Blvd","borough":"Q","trains":"7","lat":40.749145,"lng":-73.869527},"708":{"name":"90 St - Elmhurst Av","borough":"Q","trains":"7","lat":40.748408,"lng":-73.876613},"709":{"name":"82 St - Jackson Hts","borough":"Q","trains":"7","lat":40.747659,"lng":-73.883697},"710":{"name":"74 St - Broadway","borough":"Q","trains":"7","lat":40.746848,"lng":-73.891394},"711":{"name":"69 St","borough":"Q","trains":"7","lat":40.746325,"lng":-73.896403},"712":{"name":"Woodside - 61 St","borough":"Q","trains":"7","lat":40.74563,"lng":-73.902984},"713":{"name":"52 St","borough":"Q","trains":"7","lat":40.744149,"lng":-73.912549},"714":{"name":"46 St","borough":"Q","trains":"7","lat":40.743132,"lng":-73.918435},"715":{"name":"40 St","borough":"Q","trains":"7","lat":40.743781,"lng":-73.924016},"716":{"name":"33 St","borough":"Q","trains":"7","lat":40.744587,"lng":-73.930997},"718":{"name":"Queensboro Plaza","borough":"Q","trains":"7","lat":40.750582,"lng":-73.940202},"719":{"name":"Court Sq","borough":"Q","trains":"7","lat":40.747023,"lng":-73.945264},"720":{"name":"Hunters Point Av","borough":"Q","trains":"7","lat":40.742216,"lng":-73.948916},"721":{"name":"Vernon Blvd - Jackson Av","borough":"Q","trains":"7","lat":40.742626,"lng":-73.953581},"723":{"name":"Grand Central - 42 St","borough":"M","trains":"7","lat":40.751431,"lng":-73.976041},"724":{"name":"5 Av","borough":"M","trains":"7","lat":40.753821,"lng":-73.981963},"725":{"name":"Times Sq - 42 St","borough":"M","trains":"7","lat":40.755477,"lng":-73.987691},"726":{"name":"34 St - 11 Av","borough":"M","trains":"7","lat":40.755882,"lng":-74.00191},"901":{"name":"Grand Central - 42 St","borough":"M","trains":"S GS SS","lat":40.752769,"lng":-73.979189},"902":{"name":"Times Sq - 42 St","borough":"M","trains":"S SS GS","lat":40.755983,"lng":-73.986229},"A02":{"name":"Inwood - 207 St","borough":"M","trains":"A","lat":40.868072,"lng":-73.919899},"A03":{"name":"Dyckman St","borough":"M","trains":"A","lat":40.865491,"lng":-73.927271},"A05":{"name":"190 St","borough":"M","trains":"A","lat":40.859022,"lng":-73.93418},"A06":{"name":"181 St","borough":"M","trains":"A","lat":40.851695,"lng":-73.937969},"A07":{"name":"175 St","borough":"M","trains":"A","lat":40.847391,"lng":-73.939704},"A09":{"name":"168 St","borough":"M","trains":"A C","lat":40.840719,"lng":-73.939561},"A10":{"name":"163 St - Amsterdam Av","borough":"M","trains":"C","lat":40.836013,"lng":-73.939892},"A11":{"name":"155 St","borough":"M","trains":"C","lat":40.830518,"lng":-73.941514},"A12":{"name":"145 St","borough":"M","trains":"A C","lat":40.824783,"lng":-73.944216},"A14":{"name":"135 St","borough":"M","trains":"B C","lat":40.817894,"lng":-73.947649},"A15":{"name":"125 St","borough":"M","trains":"A B C D","lat":40.811109,"lng":-73.952343},"A16":{"name":"116 St","borough":"M","trains":"B C","lat":40.805085,"lng":-73.954882},"A17":{"name":"Cathedral Pkwy (110 St)","borough":"M","trains":"B C","lat":40.800603,"lng":-73.958161},"A18":{"name":"103 St","borough":"M","trains":"B C","lat":40.796092,"lng":-73.961454},"A19":{"name":"96 St","borough":"M","trains":"B C","lat":40.791642,"lng":-73.964696},"A20":{"name":"86 St","borough":"M","trains":"B C","lat":40.785868,"lng":-73.968916},"A21":{"name":"81 St - Museum of Natural History","borough":"M","trains":"B C","lat":40.781433,"lng":-73.972143},"A22":{"name":"72 St","borough":"M","trains":"B C","lat":40.775594,"lng":-73.97641},"A24":{"name":"59 St - Columbus Circle","borough":"M","trains":"A B C D","lat":40.768296,"lng":-73.981736},"A25":{"name":"50 St","borough":"M","trains":"C E","lat":40.762456,"lng":-73.985984},"A27":{"name":"42 St - Port Authority Bus Terminal","borough":"M","trains":"A C E","lat":40.757308,"lng":-73.989735},"A28":{"name":"34 St - Penn Station","borough":"M","trains":"A C E","lat":40.752287,"lng":-73.993391},"A29":{"name":"UNKNOWN","borough":"M","trains":"A C E","lat":40.7490965,"lng":-73.995716},"A30":{"name":"23 St","borough":"M","trains":"C E","lat":40.745906,"lng":-73.998041},"A31":{"name":"14 St","borough":"M","trains":"A C E","lat":40.740893,"lng":-74.00169},"A32":{"name":"W 4 St","borough":"M","trains":"A C E","lat":40.732338,"lng":-74.000495},"A33":{"name":"Spring St","borough":"M","trains":"C E","lat":40.726227,"lng":-74.003739},"A34":{"name":"Canal St","borough":"M","trains":"A C E","lat":40.720824,"lng":-74.005229},"A36":{"name":"Chambers St","borough":"M","trains":"A C","lat":40.714111,"lng":-74.008585},"A38":{"name":"Fulton St","borough":"M","trains":"A C","lat":40.710197,"lng":-74.007691},"A40":{"name":"High St","borough":"Bk","trains":"A C","lat":40.699337,"lng":-73.990531},"A41":{"name":"Jay St - MetroTech","borough":"Bk","trains":"A C F","lat":40.692338,"lng":-73.987342},"A42":{"name":"Hoyt - Schermerhorn Sts","borough":"Bk","trains":"A C G","lat":40.688484,"lng":-73.985001},"A43":{"name":"Lafayette Av","borough":"Bk","trains":"C","lat":40.686113,"lng":-73.973946},"A44":{"name":"Clinton - Washington Avs","borough":"Bk","trains":"C","lat":40.683263,"lng":-73.965838},"A45":{"name":"Franklin Av","borough":"Bk","trains":"C","lat":40.68138,"lng":-73.956848},"A46":{"name":"Nostrand Av","borough":"Bk","trains":"A C","lat":40.680438,"lng":-73.950426},"A47":{"name":"Kingston - Throop Avs","borough":"Bk","trains":"C","lat":40.679921,"lng":-73.940858},"A48":{"name":"Utica Av","borough":"Bk","trains":"A C","lat":40.679364,"lng":-73.930729},"A49":{"name":"Ralph Av","borough":"Bk","trains":"C","lat":40.678822,"lng":-73.920786},"A50":{"name":"Rockaway Av","borough":"Bk","trains":"C","lat":40.67834,"lng":-73.911946},"A51":{"name":"Broadway Jct","borough":"Bk","trains":"A C","lat":40.678334,"lng":-73.905316},"A52":{"name":"Liberty Av","borough":"Bk","trains":"C","lat":40.674542,"lng":-73.896548},"A53":{"name":"Van Siclen Av","borough":"Bk","trains":"C","lat":40.67271,"lng":-73.890358},"A54":{"name":"Shepherd Av","borough":"Bk","trains":"C","lat":40.67413,"lng":-73.88075},"A55":{"name":"Euclid Av","borough":"Bk","trains":"A C","lat":40.675377,"lng":-73.872106},"A57":{"name":"Grant Av","borough":"Bk","trains":"A","lat":40.677044,"lng":-73.86505},"A59":{"name":"80 St","borough":"Q","trains":"A","lat":40.679371,"lng":-73.858992},"A60":{"name":"88 St","borough":"Q","trains":"A","lat":40.679843,"lng":-73.85147},"A61":{"name":"Rockaway Blvd","borough":"Q","trains":"A","lat":40.680429,"lng":-73.843853},"A62":{"name":"UNKNOWN","borough":"Q","trains":"A","lat":40.674331499999994,"lng":-73.8389555},"A63":{"name":"104 St","borough":"Q","trains":"A","lat":40.681711,"lng":-73.837683},"A64":{"name":"111 St","borough":"Q","trains":"A","lat":40.684331,"lng":-73.832163},"A65":{"name":"Ozone Park - Lefferts Blvd","borough":"Q","trains":"A","lat":40.685951,"lng":-73.825798},"B04":{"name":"21 St - Queensbridge","borough":"Q","trains":"F","lat":40.754203,"lng":-73.942836},"B05":{"name":"UNKNOWN","borough":"Q","trains":"F","lat":40.756674,"lng":-73.948048},"B06":{"name":"Roosevelt Island","borough":"M","trains":"F","lat":40.759145,"lng":-73.95326},"B08":{"name":"Lexington Av/63 St","borough":"M","trains":"F Q","lat":40.764629,"lng":-73.966113},"B10":{"name":"57 St","borough":"M","trains":"F","lat":40.763972,"lng":-73.97745},"B12":{"name":"9 Av","borough":"Bk","trains":"D","lat":40.646292,"lng":-73.994324},"B13":{"name":"Fort Hamilton Pkwy","borough":"Bk","trains":"D","lat":40.640914,"lng":-73.994304},"B14":{"name":"50 St","borough":"Bk","trains":"D","lat":40.63626,"lng":-73.994791},"B15":{"name":"55 St","borough":"Bk","trains":"D","lat":40.631435,"lng":-73.995476},"B16":{"name":"62 St","borough":"Bk","trains":"D","lat":40.626472,"lng":-73.996895},"B17":{"name":"71 St","borough":"Bk","trains":"D","lat":40.619589,"lng":-73.998864},"B18":{"name":"79 St","borough":"Bk","trains":"D","lat":40.613501,"lng":-74.00061},"B19":{"name":"18 Av","borough":"Bk","trains":"D","lat":40.607954,"lng":-74.001736},"B20":{"name":"20 Av","borough":"Bk","trains":"D","lat":40.604556,"lng":-73.998168},"B21":{"name":"Bay Pkwy","borough":"Bk","trains":"D","lat":40.601875,"lng":-73.993728},"B22":{"name":"25 Av","borough":"Bk","trains":"D","lat":40.597704,"lng":-73.986829},"B23":{"name":"Bay 50 St","borough":"Bk","trains":"D","lat":40.588841,"lng":-73.983765},"D01":{"name":"Norwood - 205 St","borough":"Bx","trains":"D","lat":40.874811,"lng":-73.878855},"D03":{"name":"Bedford Park Blvd","borough":"Bx","trains":"B D","lat":40.873244,"lng":-73.887138},"D04":{"name":"Kingsbridge Rd","borough":"Bx","trains":"B D","lat":40.866978,"lng":-73.893509},"D05":{"name":"Fordham Rd","borough":"Bx","trains":"B D","lat":40.861296,"lng":-73.897749},"D06":{"name":"182-183 Sts","borough":"Bx","trains":"B D","lat":40.856093,"lng":-73.900741},"D07":{"name":"Tremont Av","borough":"Bx","trains":"B D","lat":40.85041,"lng":-73.905227},"D08":{"name":"174-175 Sts","borough":"Bx","trains":"B D","lat":40.8459,"lng":-73.910136},"D09":{"name":"170 St","borough":"Bx","trains":"B D","lat":40.839306,"lng":-73.9134},"D10":{"name":"167 St","borough":"Bx","trains":"B D","lat":40.833771,"lng":-73.91844},"D11":{"name":"161 St - Yankee Stadium","borough":"Bx","trains":"B D","lat":40.827905,"lng":-73.925651},"D12":{"name":"155 St","borough":"M","trains":"B D","lat":40.830135,"lng":-73.938209},"D13":{"name":"145 St","borough":"M","trains":"B D","lat":40.824783,"lng":-73.944216},"D14":{"name":"7 Av","borough":"M","trains":"B D E","lat":40.762862,"lng":-73.981637},"D15":{"name":"47-50 Sts - Rockefeller Ctr","borough":"M","trains":"B D F M","lat":40.758663,"lng":-73.981329},"D16":{"name":"42 St - Bryant Pk","borough":"M","trains":"B D F M","lat":40.754222,"lng":-73.984569},"D17":{"name":"34 St - Herald Sq","borough":"M","trains":"B D F M","lat":40.749719,"lng":-73.987823},"D18":{"name":"23 St","borough":"M","trains":"F M","lat":40.742878,"lng":-73.992821},"D19":{"name":"14 St","borough":"M","trains":"F M","lat":40.738228,"lng":-73.996209},"D20":{"name":"W 4 St","borough":"M","trains":"B D F M","lat":40.732338,"lng":-74.000495},"D21":{"name":"Broadway-Lafayette St","borough":"M","trains":"B D F M","lat":40.725297,"lng":-73.996204},"D22":{"name":"Grand St","borough":"M","trains":"B D","lat":40.718267,"lng":-73.993753},"D23":{"name":"Grand St","borough":"M","trains":"B D","lat":40.718267,"lng":-73.993753},"D24":{"name":"Atlantic Av - Barclays Ctr","borough":"Bk","trains":"B Q","lat":40.68446,"lng":-73.97689},"D25":{"name":"7 Av B","borough":"Bk","trains":"B Q","lat":40.67705,"lng":-73.972367},"D26":{"name":"Prospect Park","borough":"Bk","trains":"B Q","lat":40.661614,"lng":-73.962246},"D27":{"name":"Parkside Av","borough":"Bk","trains":"B Q","lat":40.655292,"lng":-73.961495},"D28":{"name":"Church Av","borough":"Bk","trains":"B Q","lat":40.650527,"lng":-73.962982},"D29":{"name":"Beverley Rd","borough":"Bk","trains":"B Q","lat":40.644031,"lng":-73.964492},"D30":{"name":"Cortelyou Rd","borough":"Bk","trains":"B Q","lat":40.640927,"lng":-73.963891},"D31":{"name":"Newkirk Plaza","borough":"Bk","trains":"B Q","lat":40.635082,"lng":-73.962793},"D32":{"name":"Avenue H","borough":"Bk","trains":"B Q","lat":40.62927,"lng":-73.961639},"D33":{"name":"Avenue J","borough":"Bk","trains":"B Q","lat":40.625039,"lng":-73.960803},"D34":{"name":"Avenue M","borough":"Bk","trains":"B Q","lat":40.617618,"lng":-73.959399},"D35":{"name":"Kings Hwy","borough":"Bk","trains":"B Q","lat":40.60867,"lng":-73.957734},"D37":{"name":"Avenue U","borough":"Bk","trains":"B Q","lat":40.5993,"lng":-73.955929},"D38":{"name":"Neck Rd","borough":"Bk","trains":"B Q","lat":40.595246,"lng":-73.955161},"D39":{"name":"Sheepshead Bay","borough":"Bk","trains":"B Q","lat":40.586896,"lng":-73.954155},"D40":{"name":"Brighton Beach","borough":"Bk","trains":"B Q","lat":40.577621,"lng":-73.961376},"D41":{"name":"Ocean Pkwy","borough":"Bk","trains":"Q","lat":40.576312,"lng":-73.968501},"D42":{"name":"W 8 St - NY Aquarium","borough":"Bk","trains":"F Q","lat":40.576127,"lng":-73.975939},"D43":{"name":"Coney Island - Stillwell Av","borough":"Bk","trains":"D F N Q","lat":40.577422,"lng":-73.981233},"E01":{"name":"World Trade Center","borough":"M","trains":"E","lat":40.712582,"lng":-74.009781},"F01":{"name":"Jamaica - 179 St","borough":"Q","trains":"F","lat":40.712646,"lng":-73.783817},"F02":{"name":"169 St","borough":"Q","trains":"F","lat":40.71047,"lng":-73.793604},"F03":{"name":"Parsons Blvd","borough":"Q","trains":"F","lat":40.707564,"lng":-73.803326},"F04":{"name":"Sutphin Blvd","borough":"Q","trains":"F","lat":40.70546,"lng":-73.810708},"F05":{"name":"Briarwood - Van Wyck Blvd","borough":"Q","trains":"E F","lat":40.709179,"lng":-73.820574},"F06":{"name":"Kew Gardens - Union Tpke","borough":"Q","trains":"E F","lat":40.714441,"lng":-73.831008},"F07":{"name":"75 Av","borough":"Q","trains":"E F","lat":40.718331,"lng":-73.837324},"F09":{"name":"Court Sq","borough":"Q","trains":"E M","lat":40.747846,"lng":-73.946},"F11":{"name":"Lexington Av/53 St","borough":"M","trains":"E M","lat":40.757552,"lng":-73.969055},"F12":{"name":"5 Av/53 St","borough":"M","trains":"E M","lat":40.760167,"lng":-73.975224},"F14":{"name":"2 Av","borough":"M","trains":"F","lat":40.723402,"lng":-73.989938},"F15":{"name":"Delancey St","borough":"M","trains":"F","lat":40.718611,"lng":-73.988114},"F16":{"name":"East Broadway","borough":"M","trains":"F","lat":40.713715,"lng":-73.990173},"F17":{"name":"UNKNOWN","borough":"M","trains":"F","lat":40.707556,"lng":-73.988462},"F18":{"name":"York St","borough":"Bk","trains":"F","lat":40.701397,"lng":-73.986751},"F20":{"name":"Bergen St","borough":"Bk","trains":"F G","lat":40.686145,"lng":-73.990862},"F21":{"name":"Carroll St","borough":"Bk","trains":"F G","lat":40.680303,"lng":-73.995048},"F22":{"name":"Smith - 9 Sts","borough":"Bk","trains":"F G","lat":40.67358,"lng":-73.995959},"F23":{"name":"4 Av","borough":"Bk","trains":"F G","lat":40.670272,"lng":-73.989779},"F24":{"name":"7 Av","borough":"Bk","trains":"F G","lat":40.666271,"lng":-73.980305},"F25":{"name":"15 St - Prospect Park","borough":"Bk","trains":"F G","lat":40.660365,"lng":-73.979493},"F26":{"name":"Fort Hamilton Pkwy","borough":"Bk","trains":"F G","lat":40.650782,"lng":-73.975776},"F27":{"name":"Church Av","borough":"Bk","trains":"F","lat":40.644041,"lng":-73.979678},"F29":{"name":"Ditmas Av","borough":"Bk","trains":"F","lat":40.636119,"lng":-73.978172},"F30":{"name":"18 Av","borough":"Bk","trains":"F","lat":40.629755,"lng":-73.976971},"F31":{"name":"Avenue I","borough":"Bk","trains":"F","lat":40.625322,"lng":-73.976127},"F32":{"name":"Bay Pkwy","borough":"Bk","trains":"F","lat":40.620769,"lng":-73.975264},"F33":{"name":"Avenue N","borough":"Bk","trains":"F","lat":40.61514,"lng":-73.974197},"F34":{"name":"Avenue P","borough":"Bk","trains":"F","lat":40.608944,"lng":-73.973022},"F35":{"name":"Kings Hwy","borough":"Bk","trains":"F","lat":40.603217,"lng":-73.972361},"F36":{"name":"Avenue U","borough":"Bk","trains":"F","lat":40.596063,"lng":-73.973357},"F38":{"name":"Avenue X","borough":"Bk","trains":"F","lat":40.58962,"lng":-73.97425},"F39":{"name":"Neptune Av","borough":"Bk","trains":"F","lat":40.581011,"lng":-73.974574},"G05":{"name":"Jamaica Center - Parsons/Archer","borough":"Q","trains":"E J Z","lat":40.702147,"lng":-73.801109},"G06":{"name":"Sutphin Blvd - Archer Av - JFK Airport","borough":"Q","trains":"E J Z","lat":40.700486,"lng":-73.807969},"G07":{"name":"Jamaica - Van Wyck","borough":"Q","trains":"E","lat":40.702566,"lng":-73.816859},"G08":{"name":"Forest Hills - 71 Av","borough":"Q","trains":"E F M R","lat":40.721691,"lng":-73.844521},"G09":{"name":"67 Av","borough":"Q","trains":"M R","lat":40.726523,"lng":-73.852719},"G10":{"name":"63 Dr - Rego Park","borough":"Q","trains":"M R","lat":40.729846,"lng":-73.861604},"G11":{"name":"Woodhaven Blvd","borough":"Q","trains":"M R","lat":40.733106,"lng":-73.869229},"G12":{"name":"Grand Av - Newtown","borough":"Q","trains":"M R","lat":40.737015,"lng":-73.877223},"G13":{"name":"Elmhurst Av","borough":"Q","trains":"M R","lat":40.742454,"lng":-73.882017},"G14":{"name":"Jackson Hts - Roosevelt Av","borough":"Q","trains":"E F M R","lat":40.746644,"lng":-73.891338},"G15":{"name":"65 St","borough":"Q","trains":"M R","lat":40.749669,"lng":-73.898453},"G16":{"name":"Northern Blvd","borough":"Q","trains":"M R","lat":40.752885,"lng":-73.906006},"G18":{"name":"46 St","borough":"Q","trains":"M R","lat":40.756312,"lng":-73.913333},"G19":{"name":"Steinway St","borough":"Q","trains":"M R","lat":40.756879,"lng":-73.92074},"G20":{"name":"36 St Q","borough":"Q","trains":"M R","lat":40.752039,"lng":-73.928781},"G21":{"name":"Queens Plaza","borough":"Q","trains":"E M R","lat":40.748973,"lng":-73.937243},"G22":{"name":"Court Sq","borough":"Q","trains":"G","lat":40.746554,"lng":-73.943832},"G24":{"name":"21 St","borough":"Q","trains":"G","lat":40.744065,"lng":-73.949724},"G26":{"name":"Greenpoint Av","borough":"Bk","trains":"G","lat":40.731352,"lng":-73.954449},"G28":{"name":"Nassau Av","borough":"Bk","trains":"G","lat":40.724635,"lng":-73.951277},"G29":{"name":"Metropolitan Av","borough":"Bk","trains":"G","lat":40.712792,"lng":-73.951418},"G30":{"name":"Broadway","borough":"Bk","trains":"G","lat":40.706092,"lng":-73.950308},"G31":{"name":"Flushing Av","borough":"Bk","trains":"G","lat":40.700377,"lng":-73.950234},"G32":{"name":"Myrtle - Willoughby Avs","borough":"Bk","trains":"G","lat":40.694568,"lng":-73.949046},"G33":{"name":"Bedford - Nostrand Avs","borough":"Bk","trains":"G","lat":40.689627,"lng":-73.953522},"G34":{"name":"Classon Av","borough":"Bk","trains":"G","lat":40.688873,"lng":-73.96007},"G35":{"name":"Clinton - Washington Avs","borough":"Bk","trains":"G","lat":40.688089,"lng":-73.966839},"G36":{"name":"Fulton St","borough":"Bk","trains":"G","lat":40.687119,"lng":-73.975375},"H01":{"name":"Aqueduct Racetrack","borough":"Q","trains":"A","lat":40.672097,"lng":-73.835919},"H02":{"name":"Aqueduct - N Conduit Av","borough":"Q","trains":"A","lat":40.668234,"lng":-73.834058},"H03":{"name":"Howard Beach - JFK Airport","borough":"Q","trains":"A","lat":40.660476,"lng":-73.830301},"H04":{"name":"Broad Channel","borough":"Q","trains":"A S","lat":40.608382,"lng":-73.815925},"H06":{"name":"Beach 67 St","borough":"Q","trains":"A H","lat":40.590927,"lng":-73.796924},"H07":{"name":"Beach 60 St","borough":"Q","trains":"A H","lat":40.592374,"lng":-73.788522},"H08":{"name":"Beach 44 St","borough":"Q","trains":"A H","lat":40.592943,"lng":-73.776013},"H09":{"name":"Beach 36 St","borough":"Q","trains":"A H","lat":40.595398,"lng":-73.768175},"H10":{"name":"Beach 25 St","borough":"Q","trains":"A H","lat":40.600066,"lng":-73.761353},"H11":{"name":"Far Rockaway - Mott Av","borough":"Q","trains":"A H","lat":40.603995,"lng":-73.755405},"H12":{"name":"Beach 90 St","borough":"Q","trains":"A S H","lat":40.588034,"lng":-73.813641},"H13":{"name":"Beach 98 St","borough":"Q","trains":"A S H","lat":40.585307,"lng":-73.820558},"H14":{"name":"Beach 105 St","borough":"Q","trains":"A S H","lat":40.583209,"lng":-73.827559},"H15":{"name":"Rockaway Park - Beach 116 St","borough":"Q","trains":"A S H","lat":40.580903,"lng":-73.835592},"H19":{"name":"Broad Channel","borough":"Q","trains":"A S","lat":40.608382,"lng":-73.815925},"J12":{"name":"121 St","borough":"Q","trains":"J Z","lat":40.700492,"lng":-73.828294},"J13":{"name":"111 St","borough":"Q","trains":"J","lat":40.697418,"lng":-73.836345},"J14":{"name":"104 St","borough":"Q","trains":"J Z","lat":40.695178,"lng":-73.84433},"J15":{"name":"Woodhaven Blvd","borough":"Q","trains":"J Z","lat":40.693879,"lng":-73.851576},"J16":{"name":"85 St - Forest Pkwy","borough":"Q","trains":"J","lat":40.692435,"lng":-73.86001},"J17":{"name":"75 St","borough":"Q","trains":"J Z","lat":40.691324,"lng":-73.867139},"J19":{"name":"Cypress Hills","borough":"Bk","trains":"J","lat":40.689941,"lng":-73.87255},"J20":{"name":"Crescent St","borough":"Bk","trains":"J Z","lat":40.683194,"lng":-73.873785},"J21":{"name":"Norwood Av","borough":"Bk","trains":"J Z","lat":40.68141,"lng":-73.880039},"J22":{"name":"Cleveland St","borough":"Bk","trains":"J","lat":40.679947,"lng":-73.884639},"J23":{"name":"Van Siclen Av","borough":"Bk","trains":"J Z","lat":40.678024,"lng":-73.891688},"J24":{"name":"Alabama Av","borough":"Bk","trains":"J","lat":40.676992,"lng":-73.898654},"J27":{"name":"Broadway Jct","borough":"Bk","trains":"J Z","lat":40.679498,"lng":-73.904512},"J28":{"name":"Chauncey St","borough":"Bk","trains":"J Z","lat":40.682893,"lng":-73.910456},"J29":{"name":"Halsey St","borough":"Bk","trains":"J","lat":40.68637,"lng":-73.916559},"J30":{"name":"Gates Av","borough":"Bk","trains":"J Z","lat":40.68963,"lng":-73.92227},"J31":{"name":"Kosciuszko St","borough":"Bk","trains":"J","lat":40.693342,"lng":-73.928814},"L01":{"name":"8 Av","borough":"M","trains":"L","lat":40.739777,"lng":-74.002578},"L02":{"name":"6 Av","borough":"M","trains":"L","lat":40.737335,"lng":-73.996786},"L03":{"name":"Union Sq - 14 St","borough":"M","trains":"L","lat":40.734789,"lng":-73.99073},"L05":{"name":"3 Av","borough":"M","trains":"L","lat":40.732849,"lng":-73.986122},"L06":{"name":"1 Av","borough":"M","trains":"L","lat":40.730953,"lng":-73.981628},"L08":{"name":"Bedford Av","borough":"Bk","trains":"L","lat":40.717304,"lng":-73.956872},"L10":{"name":"Lorimer St","borough":"Bk","trains":"L","lat":40.714063,"lng":-73.950275},"L11":{"name":"Graham Av","borough":"Bk","trains":"L","lat":40.714565,"lng":-73.944053},"L12":{"name":"Grand St","borough":"Bk","trains":"L","lat":40.711926,"lng":-73.94067},"L13":{"name":"Montrose Av","borough":"Bk","trains":"L","lat":40.707739,"lng":-73.93985},"L14":{"name":"Morgan Av","borough":"Bk","trains":"L","lat":40.706152,"lng":-73.933147},"L15":{"name":"Jefferson St","borough":"Bk","trains":"L","lat":40.706607,"lng":-73.922913},"L16":{"name":"DeKalb Av","borough":"Bk","trains":"L","lat":40.703811,"lng":-73.918425},"L17":{"name":"Myrtle - Wyckoff Avs","borough":"Bk","trains":"L","lat":40.699814,"lng":-73.911586},"L19":{"name":"Halsey St","borough":"Q","trains":"L","lat":40.695602,"lng":-73.904084},"L20":{"name":"Wilson Av","borough":"Bk","trains":"L","lat":40.688764,"lng":-73.904046},"L21":{"name":"Bushwick Av - Aberdeen St","borough":"Bk","trains":"L","lat":40.682829,"lng":-73.905249},"L22":{"name":"Broadway Jct","borough":"Bk","trains":"L","lat":40.678856,"lng":-73.90324},"L24":{"name":"Atlantic Av","borough":"Bk","trains":"L","lat":40.675345,"lng":-73.903097},"L25":{"name":"Sutter Av","borough":"Bk","trains":"L","lat":40.669367,"lng":-73.901975},"L26":{"name":"Livonia Av","borough":"Bk","trains":"L","lat":40.664038,"lng":-73.900571},"L27":{"name":"New Lots Av","borough":"Bk","trains":"L","lat":40.658733,"lng":-73.899232},"L28":{"name":"E 105 St","borough":"Bk","trains":"L","lat":40.650573,"lng":-73.899485},"L29":{"name":"Canarsie - Rockaway Pkwy","borough":"Bk","trains":"L","lat":40.646654,"lng":-73.90185},"M01":{"name":"Middle Village - Metropolitan Av","borough":"Q","trains":"M","lat":40.711396,"lng":-73.889601},"M04":{"name":"Fresh Pond Rd","borough":"Q","trains":"M","lat":40.706186,"lng":-73.895877},"M05":{"name":"Forest Av","borough":"Q","trains":"M","lat":40.704423,"lng":-73.903077},"M06":{"name":"Seneca Av","borough":"Q","trains":"M","lat":40.702762,"lng":-73.90774},"M08":{"name":"Myrtle - Wyckoff Avs","borough":"Bk","trains":"M","lat":40.69943,"lng":-73.912385},"M09":{"name":"Knickerbocker Av","borough":"Bk","trains":"M","lat":40.698664,"lng":-73.919711},"M10":{"name":"Central Av","borough":"Bk","trains":"M","lat":40.697857,"lng":-73.927397},"M11":{"name":"Myrtle Av","borough":"Bk","trains":"J M Z","lat":40.697207,"lng":-73.935657},"M12":{"name":"Flushing Av","borough":"Bk","trains":"J M","lat":40.70026,"lng":-73.941126},"M13":{"name":"Lorimer St","borough":"Bk","trains":"J M","lat":40.703869,"lng":-73.947408},"M14":{"name":"Hewes St","borough":"Bk","trains":"J M","lat":40.70687,"lng":-73.953431},"M16":{"name":"Marcy Av","borough":"Bk","trains":"J M Z","lat":40.708359,"lng":-73.957757},"M18":{"name":"Essex St","borough":"M","trains":"J M Z","lat":40.718315,"lng":-73.987437},"X22":{"name":"2 Av","borough":"M","trains":"F","lat":40.723402,"lng":-73.989938},"M19":{"name":"Bowery","borough":"M","trains":"J Z","lat":40.72028,"lng":-73.993915},"M20":{"name":"Canal St","borough":"M","trains":"J Z","lat":40.718092,"lng":-73.999892},"M21":{"name":"Chambers St","borough":"M","trains":"J Z","lat":40.713243,"lng":-74.003401},"M22":{"name":"Fulton St","borough":"M","trains":"J Z","lat":40.710374,"lng":-74.007582},"M23":{"name":"Broad St","borough":"M","trains":"J Z","lat":40.706476,"lng":-74.011056},"N02":{"name":"8 Av","borough":"Bk","trains":"N","lat":40.635064,"lng":-74.011719},"N03":{"name":"Fort Hamilton Pkwy","borough":"Bk","trains":"N","lat":40.631386,"lng":-74.005351},"N04":{"name":"New Utrecht Av","borough":"Bk","trains":"N","lat":40.624842,"lng":-73.996353},"N05":{"name":"18 Av","borough":"Bk","trains":"N","lat":40.620671,"lng":-73.990414},"N06":{"name":"20 Av","borough":"Bk","trains":"N","lat":40.61741,"lng":-73.985026},"N07":{"name":"Bay Pkwy","borough":"Bk","trains":"N","lat":40.611815,"lng":-73.981848},"N08":{"name":"Kings Hwy","borough":"Bk","trains":"N","lat":40.603923,"lng":-73.980353},"N09":{"name":"Avenue U","borough":"Bk","trains":"N","lat":40.597473,"lng":-73.979137},"N10":{"name":"86 St","borough":"Bk","trains":"N","lat":40.592721,"lng":-73.97823},"N12":{"name":"S.B. Coney Island","borough":"Bk","trains":"N","lat":40.5850715,"lng":-73.9797315},"Q01":{"name":"Canal St","borough":"M","trains":"N Q","lat":40.718383,"lng":-74.00046},"Q03":{"name":"72 St","borough":"M","trains":"Q","lat":40.768799,"lng":-73.958424},"Q04":{"name":"86 St","borough":"M","trains":"Q","lat":40.777891,"lng":-73.951787},"Q05":{"name":"96 St","borough":"M","trains":"Q","lat":40.784318,"lng":-73.947152},"R01":{"name":"Astoria - Ditmars Blvd","borough":"Q","trains":"N W","lat":40.775036,"lng":-73.912034},"R03":{"name":"Astoria Blvd","borough":"Q","trains":"N W","lat":40.770258,"lng":-73.917843},"R04":{"name":"30 Av","borough":"Q","trains":"N W","lat":40.766779,"lng":-73.921479},"R05":{"name":"Broadway","borough":"Q","trains":"N W","lat":40.76182,"lng":-73.925508},"R06":{"name":"36 Av","borough":"Q","trains":"N W","lat":40.756804,"lng":-73.929575},"R08":{"name":"39 Av","borough":"Q","trains":"N W","lat":40.752882,"lng":-73.932755},"R09":{"name":"Queensboro Plaza","borough":"Q","trains":"N W","lat":40.750582,"lng":-73.940202},"R60":{"name":"UNKNOWN","borough":"M","trains":"R","lat":40.756620999999996,"lng":-73.95373000000001},"R11":{"name":"Lexington Av/59 St","borough":"M","trains":"N W R","lat":40.76266,"lng":-73.967258},"R13":{"name":"5 Av/59 St","borough":"M","trains":"N W R","lat":40.764811,"lng":-73.973347},"R14":{"name":"57 St - 7 Av","borough":"M","trains":"N Q R W","lat":40.764664,"lng":-73.980658},"R15":{"name":"49 St","borough":"M","trains":"N R W","lat":40.759901,"lng":-73.984139},"R16":{"name":"Times Sq - 42 St","borough":"M","trains":"N Q R W","lat":40.754672,"lng":-73.986754},"R17":{"name":"34 St - Herald Sq","borough":"M","trains":"N Q R W","lat":40.749567,"lng":-73.98795},"R18":{"name":"28 St","borough":"M","trains":"R W","lat":40.745494,"lng":-73.988691},"R19":{"name":"23 St","borough":"M","trains":"R W","lat":40.741303,"lng":-73.989344},"R20":{"name":"14 St - Union Sq","borough":"M","trains":"N Q R W","lat":40.735736,"lng":-73.990568},"R21":{"name":"8 St - NYU","borough":"M","trains":"R W","lat":40.730328,"lng":-73.992629},"R22":{"name":"Prince St","borough":"M","trains":"R W","lat":40.724329,"lng":-73.997702},"R23":{"name":"Canal St","borough":"M","trains":"R W","lat":40.719527,"lng":-74.001775},"R24":{"name":"City Hall","borough":"M","trains":"R W","lat":40.713282,"lng":-74.006978},"R25":{"name":"Cortlandt St","borough":"M","trains":"R W","lat":40.710668,"lng":-74.011029},"R26":{"name":"Rector St","borough":"M","trains":"R W","lat":40.70722,"lng":-74.013342},"R27":{"name":"Whitehall St","borough":"M","trains":"R W","lat":40.703087,"lng":-74.012994},"R65":{"name":"UNKNOWN","borough":"M","trains":"R","lat":40.6985935,"lng":-74.0023855},"R28":{"name":"Court St","borough":"Bk","trains":"R","lat":40.6941,"lng":-73.991777},"R29":{"name":"Jay St - MetroTech","borough":"Bk","trains":"R","lat":40.69218,"lng":-73.985942},"R30":{"name":"DeKalb Av","borough":"Bk","trains":"B Q R","lat":40.690635,"lng":-73.981824},"R31":{"name":"Atlantic Av - Barclays Ctr","borough":"Bk","trains":"D N R","lat":40.683666,"lng":-73.97881},"R32":{"name":"Union St","borough":"Bk","trains":"R","lat":40.677316,"lng":-73.98311},"R33":{"name":"9 St","borough":"Bk","trains":"R","lat":40.670847,"lng":-73.988302},"R34":{"name":"Prospect Av","borough":"Bk","trains":"R","lat":40.665414,"lng":-73.992872},"R35":{"name":"25 St","borough":"Bk","trains":"R","lat":40.660397,"lng":-73.998091},"R36":{"name":"36 St","borough":"Bk","trains":"D N R","lat":40.655144,"lng":-74.003549},"R39":{"name":"45 St","borough":"Bk","trains":"R","lat":40.648939,"lng":-74.010006},"R40":{"name":"53 St","borough":"Bk","trains":"R","lat":40.645069,"lng":-74.014034},"R41":{"name":"59 St","borough":"Bk","trains":"N R","lat":40.641362,"lng":-74.017881},"R42":{"name":"Bay Ridge Av","borough":"Bk","trains":"R","lat":40.634967,"lng":-74.023377},"R43":{"name":"77 St","borough":"Bk","trains":"R","lat":40.629742,"lng":-74.02551},"R44":{"name":"86 St","borough":"Bk","trains":"R","lat":40.622687,"lng":-74.028398},"R45":{"name":"Bay Ridge - 95 St","borough":"Bk","trains":"R","lat":40.616622,"lng":-74.030876},"S01":{"name":"Franklin Av","borough":"Bk","trains":"S","lat":40.680596,"lng":-73.955827},"S03":{"name":"Park Pl","borough":"Bk","trains":"S","lat":40.674772,"lng":-73.957624},"S04":{"name":"Botanic Garden","borough":"Bk","trains":"S","lat":40.670343,"lng":-73.959245},"S09":{"name":"Tottenville","borough":"SI","trains":"SIR SS","lat":40.512764,"lng":-74.251961},"S11":{"name":"Arthur Kill","borough":"SI","trains":"SIR SS","lat":40.516578,"lng":-74.242096},"S13":{"name":"Richmond Valley","borough":"SI","trains":"SIR SS","lat":40.519631,"lng":-74.229141},"S14":{"name":"Pleasant Plains","borough":"SI","trains":"SIR SS","lat":40.52241,"lng":-74.217847},"S15":{"name":"Prince's Bay","borough":"SI","trains":"SIR SS","lat":40.525507,"lng":-74.200064},"S16":{"name":"Huguenot","borough":"SI","trains":"SIR SS","lat":40.533674,"lng":-74.191794},"S17":{"name":"Annadale","borough":"SI","trains":"SIR SS","lat":40.54046,"lng":-74.178217},"S18":{"name":"Eltingville","borough":"SI","trains":"SIR SS","lat":40.544601,"lng":-74.16457},"S19":{"name":"Great Kills","borough":"SI","trains":"SIR SS","lat":40.551231,"lng":-74.151399},"S20":{"name":"Bay Terrace","borough":"SI","trains":"SIR SS","lat":40.5564,"lng":-74.136907},"S21":{"name":"Oakwood Heights","borough":"SI","trains":"SIR SS","lat":40.56511,"lng":-74.12632},"S22":{"name":"New Dorp","borough":"SI","trains":"SIR SS","lat":40.57348,"lng":-74.11721},"S23":{"name":"Grant City","borough":"SI","trains":"SIR SS","lat":40.578965,"lng":-74.109704},"S24":{"name":"Jefferson Av","borough":"SI","trains":"SIR SS","lat":40.583591,"lng":-74.103338},"S25":{"name":"Dongan Hills","borough":"SI","trains":"SIR SS","lat":40.588849,"lng":-74.09609},"S26":{"name":"Old Town","borough":"SI","trains":"SIR SS","lat":40.596612,"lng":-74.087368},"S27":{"name":"Grasmere","borough":"SI","trains":"SIR SS","lat":40.603117,"lng":-74.084087},"S28":{"name":"Clifton","borough":"SI","trains":"SIR SS","lat":40.621319,"lng":-74.071402},"S29":{"name":"Stapleton","borough":"SI","trains":"SIR SS","lat":40.627915,"lng":-74.075162},"S30":{"name":"Tompkinsville","borough":"SI","trains":"SIR SS","lat":40.636949,"lng":-74.074835},"S31":{"name":"St George","borough":"SI","trains":"SIR SS","lat":40.643748,"lng":-74.073643}};
 
 /***/ }),
 
@@ -24783,127 +24783,129 @@ function objectToString(o) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer) {var elliptic = __webpack_require__(/*! elliptic */ "./node_modules/elliptic/lib/elliptic.js");
-var BN = __webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js");
+/* WEBPACK VAR INJECTION */(function(Buffer) {var elliptic = __webpack_require__(/*! elliptic */ "./node_modules/elliptic/lib/elliptic.js")
+var BN = __webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js")
 
-module.exports = function createECDH(curve) {
-	return new ECDH(curve);
-};
+module.exports = function createECDH (curve) {
+  return new ECDH(curve)
+}
 
 var aliases = {
-	secp256k1: {
-		name: 'secp256k1',
-		byteLength: 32
-	},
-	secp224r1: {
-		name: 'p224',
-		byteLength: 28
-	},
-	prime256v1: {
-		name: 'p256',
-		byteLength: 32
-	},
-	prime192v1: {
-		name: 'p192',
-		byteLength: 24
-	},
-	ed25519: {
-		name: 'ed25519',
-		byteLength: 32
-	},
-	secp384r1: {
-		name: 'p384',
-		byteLength: 48
-	},
-	secp521r1: {
-		name: 'p521',
-		byteLength: 66
-	}
-};
+  secp256k1: {
+    name: 'secp256k1',
+    byteLength: 32
+  },
+  secp224r1: {
+    name: 'p224',
+    byteLength: 28
+  },
+  prime256v1: {
+    name: 'p256',
+    byteLength: 32
+  },
+  prime192v1: {
+    name: 'p192',
+    byteLength: 24
+  },
+  ed25519: {
+    name: 'ed25519',
+    byteLength: 32
+  },
+  secp384r1: {
+    name: 'p384',
+    byteLength: 48
+  },
+  secp521r1: {
+    name: 'p521',
+    byteLength: 66
+  }
+}
 
-aliases.p224 = aliases.secp224r1;
-aliases.p256 = aliases.secp256r1 = aliases.prime256v1;
-aliases.p192 = aliases.secp192r1 = aliases.prime192v1;
-aliases.p384 = aliases.secp384r1;
-aliases.p521 = aliases.secp521r1;
+aliases.p224 = aliases.secp224r1
+aliases.p256 = aliases.secp256r1 = aliases.prime256v1
+aliases.p192 = aliases.secp192r1 = aliases.prime192v1
+aliases.p384 = aliases.secp384r1
+aliases.p521 = aliases.secp521r1
 
-function ECDH(curve) {
-	this.curveType = aliases[curve];
-	if (!this.curveType ) {
-		this.curveType = {
-			name: curve
-		};
-	}
-	this.curve = new elliptic.ec(this.curveType.name);
-	this.keys = void 0;
+function ECDH (curve) {
+  this.curveType = aliases[curve]
+  if (!this.curveType) {
+    this.curveType = {
+      name: curve
+    }
+  }
+  this.curve = new elliptic.ec(this.curveType.name) // eslint-disable-line new-cap
+  this.keys = void 0
 }
 
 ECDH.prototype.generateKeys = function (enc, format) {
-	this.keys = this.curve.genKeyPair();
-	return this.getPublicKey(enc, format);
-};
+  this.keys = this.curve.genKeyPair()
+  return this.getPublicKey(enc, format)
+}
 
 ECDH.prototype.computeSecret = function (other, inenc, enc) {
-	inenc = inenc || 'utf8';
-	if (!Buffer.isBuffer(other)) {
-		other = new Buffer(other, inenc);
-	}
-	var otherPub = this.curve.keyFromPublic(other).getPublic();
-	var out = otherPub.mul(this.keys.getPrivate()).getX();
-	return formatReturnValue(out, enc, this.curveType.byteLength);
-};
+  inenc = inenc || 'utf8'
+  if (!Buffer.isBuffer(other)) {
+    other = new Buffer(other, inenc)
+  }
+  var otherPub = this.curve.keyFromPublic(other).getPublic()
+  var out = otherPub.mul(this.keys.getPrivate()).getX()
+  return formatReturnValue(out, enc, this.curveType.byteLength)
+}
 
 ECDH.prototype.getPublicKey = function (enc, format) {
-	var key = this.keys.getPublic(format === 'compressed', true);
-	if (format === 'hybrid') {
-		if (key[key.length - 1] % 2) {
-			key[0] = 7;
-		} else {
-			key [0] = 6;
-		}
-	}
-	return formatReturnValue(key, enc);
-};
+  var key = this.keys.getPublic(format === 'compressed', true)
+  if (format === 'hybrid') {
+    if (key[key.length - 1] % 2) {
+      key[0] = 7
+    } else {
+      key[0] = 6
+    }
+  }
+  return formatReturnValue(key, enc)
+}
 
 ECDH.prototype.getPrivateKey = function (enc) {
-	return formatReturnValue(this.keys.getPrivate(), enc);
-};
+  return formatReturnValue(this.keys.getPrivate(), enc)
+}
 
 ECDH.prototype.setPublicKey = function (pub, enc) {
-	enc = enc || 'utf8';
-	if (!Buffer.isBuffer(pub)) {
-		pub = new Buffer(pub, enc);
-	}
-	this.keys._importPublic(pub);
-	return this;
-};
+  enc = enc || 'utf8'
+  if (!Buffer.isBuffer(pub)) {
+    pub = new Buffer(pub, enc)
+  }
+  this.keys._importPublic(pub)
+  return this
+}
 
 ECDH.prototype.setPrivateKey = function (priv, enc) {
-	enc = enc || 'utf8';
-	if (!Buffer.isBuffer(priv)) {
-		priv = new Buffer(priv, enc);
-	}
-	var _priv = new BN(priv);
-	_priv = _priv.toString(16);
-	this.keys._importPrivate(_priv);
-	return this;
-};
+  enc = enc || 'utf8'
+  if (!Buffer.isBuffer(priv)) {
+    priv = new Buffer(priv, enc)
+  }
 
-function formatReturnValue(bn, enc, len) {
-	if (!Array.isArray(bn)) {
-		bn = bn.toArray();
-	}
-	var buf = new Buffer(bn);
-	if (len && buf.length < len) {
-		var zeros = new Buffer(len - buf.length);
-		zeros.fill(0);
-		buf = Buffer.concat([zeros, buf]);
-	}
-	if (!enc) {
-		return buf;
-	} else {
-		return buf.toString(enc);
-	}
+  var _priv = new BN(priv)
+  _priv = _priv.toString(16)
+  this.keys = this.curve.genKeyPair()
+  this.keys._importPrivate(_priv)
+  return this
+}
+
+function formatReturnValue (bn, enc, len) {
+  if (!Array.isArray(bn)) {
+    bn = bn.toArray()
+  }
+  var buf = new Buffer(bn)
+  if (len && buf.length < len) {
+    var zeros = new Buffer(len - buf.length)
+    zeros.fill(0)
+    buf = Buffer.concat([zeros, buf])
+  }
+  if (!enc) {
+    return buf
+  } else {
+    return buf.toString(enc)
+  }
 }
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
@@ -34036,812 +34038,6 @@ function shr64_lo(ah, al, num) {
 }
 exports.shr64_lo = shr64_lo;
 
-
-/***/ }),
-
-/***/ "./node_modules/hawk/dist/browser.js":
-/*!*******************************************!*\
-  !*** ./node_modules/hawk/dist/browser.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(console) {
-
-/*
-    HTTP Hawk Authentication Scheme
-    Copyright (c) 2012-2016, Eran Hammer <eran@hammer.io>
-    BSD Licensed
-*/
-
-// Declare namespace
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var hawk = {
-    internals: {}
-};
-
-hawk.client = {
-
-    // Generate an Authorization header for a given request
-
-    /*
-        uri: 'http://example.com/resource?a=b' or object generated by hawk.utils.parseUri()
-        method: HTTP verb (e.g. 'GET', 'POST')
-        options: {
-             // Required
-             credentials: {
-                id: 'dh37fgj492je',
-                key: 'aoijedoaijsdlaksjdl',
-                algorithm: 'sha256'                                 // 'sha1', 'sha256'
-            },
-             // Optional
-             ext: 'application-specific',                        // Application specific data sent via the ext attribute
-            timestamp: Date.now() / 1000,                       // A pre-calculated timestamp in seconds
-            nonce: '2334f34f',                                  // A pre-generated nonce
-            localtimeOffsetMsec: 400,                           // Time offset to sync with server time (ignored if timestamp provided)
-            payload: '{"some":"payload"}',                      // UTF-8 encoded string for body hash generation (ignored if hash provided)
-            contentType: 'application/json',                    // Payload content-type (ignored if hash provided)
-            hash: 'U4MKKSmiVxk37JCCrAVIjV=',                    // Pre-calculated payload hash
-            app: '24s23423f34dx',                               // Oz application id
-            dlg: '234sz34tww3sd'                                // Oz delegated-by application id
-        }
-    */
-
-    header: function header(uri, method, options) {
-
-        var result = {
-            field: '',
-            artifacts: {}
-        };
-
-        // Validate inputs
-
-        if (!uri || typeof uri !== 'string' && (typeof uri === 'undefined' ? 'undefined' : _typeof(uri)) !== 'object' || !method || typeof method !== 'string' || !options || (typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== 'object') {
-
-            result.err = 'Invalid argument type';
-            return result;
-        }
-
-        // Application time
-
-        var timestamp = options.timestamp || hawk.utils.nowSec(options.localtimeOffsetMsec);
-
-        // Validate credentials
-
-        var credentials = options.credentials;
-        if (!credentials || !credentials.id || !credentials.key || !credentials.algorithm) {
-
-            result.err = 'Invalid credentials object';
-            return result;
-        }
-
-        if (hawk.crypto.algorithms.indexOf(credentials.algorithm) === -1) {
-            result.err = 'Unknown algorithm';
-            return result;
-        }
-
-        // Parse URI
-
-        if (typeof uri === 'string') {
-            uri = hawk.utils.parseUri(uri);
-        }
-
-        // Calculate signature
-
-        var artifacts = {
-            ts: timestamp,
-            nonce: options.nonce || hawk.utils.randomString(6),
-            method: method,
-            resource: uri.resource,
-            host: uri.host,
-            port: uri.port,
-            hash: options.hash,
-            ext: options.ext,
-            app: options.app,
-            dlg: options.dlg
-        };
-
-        result.artifacts = artifacts;
-
-        // Calculate payload hash
-
-        if (!artifacts.hash && (options.payload || options.payload === '')) {
-
-            artifacts.hash = hawk.crypto.calculatePayloadHash(options.payload, credentials.algorithm, options.contentType);
-        }
-
-        var mac = hawk.crypto.calculateMac('header', credentials, artifacts);
-
-        // Construct header
-
-        var hasExt = artifacts.ext !== null && artifacts.ext !== undefined && artifacts.ext !== ''; // Other falsey values allowed
-        var header = 'Hawk id="' + credentials.id + '", ts="' + artifacts.ts + '", nonce="' + artifacts.nonce + (artifacts.hash ? '", hash="' + artifacts.hash : '') + (hasExt ? '", ext="' + hawk.utils.escapeHeaderAttribute(artifacts.ext) : '') + '", mac="' + mac + '"';
-
-        if (artifacts.app) {
-            header += ', app="' + artifacts.app + (artifacts.dlg ? '", dlg="' + artifacts.dlg : '') + '"';
-        }
-
-        result.field = header;
-
-        return result;
-    },
-
-    // Generate a bewit value for a given URI
-
-    /*
-        uri: 'http://example.com/resource?a=b'
-        options: {
-             // Required
-             credentials: {
-            id: 'dh37fgj492je',
-            key: 'aoijedoaijsdlaksjdl',
-            algorithm: 'sha256'                             // 'sha1', 'sha256'
-            },
-            ttlSec: 60 * 60,                                    // TTL in seconds
-             // Optional
-             ext: 'application-specific',                        // Application specific data sent via the ext attribute
-            localtimeOffsetMsec: 400                            // Time offset to sync with server time
-         };
-    */
-
-    bewit: function bewit(uri, options) {
-
-        // Validate inputs
-
-        if (!uri || typeof uri !== 'string' || !options || (typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== 'object' || !options.ttlSec) {
-
-            return '';
-        }
-
-        options.ext = options.ext === null || options.ext === undefined ? '' : options.ext; // Zero is valid value
-
-        // Application time
-
-        var now = hawk.utils.nowSec(options.localtimeOffsetMsec);
-
-        // Validate credentials
-
-        var credentials = options.credentials;
-        if (!credentials || !credentials.id || !credentials.key || !credentials.algorithm) {
-
-            return '';
-        }
-
-        if (hawk.crypto.algorithms.indexOf(credentials.algorithm) === -1) {
-            return '';
-        }
-
-        // Parse URI
-
-        uri = hawk.utils.parseUri(uri);
-
-        // Calculate signature
-
-        var exp = now + options.ttlSec;
-        var mac = hawk.crypto.calculateMac('bewit', credentials, {
-            ts: exp,
-            nonce: '',
-            method: 'GET',
-            resource: uri.resource, // Maintain trailing '?' and query params
-            host: uri.host,
-            port: uri.port,
-            ext: options.ext
-        });
-
-        // Construct bewit: id\exp\mac\ext
-
-        var bewit = credentials.id + '\\' + exp + '\\' + mac + '\\' + options.ext;
-        return hawk.utils.base64urlEncode(bewit);
-    },
-
-    // Validate server response
-
-    /*
-        request:    object created via 'new XMLHttpRequest()' after response received or fetch API 'Response'
-        artifacts:  object received from header().artifacts
-        options: {
-            payload:    optional payload received
-            required:   specifies if a Server-Authorization header is required. Defaults to 'false'
-        }
-    */
-
-    authenticate: function authenticate(request, credentials, artifacts, options) {
-
-        options = options || {};
-
-        var getHeader = function getHeader(name) {
-
-            // Fetch API or plain headers
-
-            if (request.headers) {
-                return typeof request.headers.get === 'function' ? request.headers.get(name) : request.headers[name];
-            }
-
-            // XMLHttpRequest
-
-            return request.getResponseHeader ? request.getResponseHeader(name) : request.getHeader(name);
-        };
-
-        var wwwAuthenticate = getHeader('www-authenticate');
-        if (wwwAuthenticate) {
-
-            // Parse HTTP WWW-Authenticate header
-
-            var wwwAttributes = hawk.utils.parseAuthorizationHeader(wwwAuthenticate, ['ts', 'tsm', 'error']);
-            if (!wwwAttributes) {
-                return false;
-            }
-
-            if (wwwAttributes.ts) {
-                var tsm = hawk.crypto.calculateTsMac(wwwAttributes.ts, credentials);
-                if (tsm !== wwwAttributes.tsm) {
-                    return false;
-                }
-
-                hawk.utils.setNtpSecOffset(wwwAttributes.ts - Math.floor(Date.now() / 1000)); // Keep offset at 1 second precision
-            }
-        }
-
-        // Parse HTTP Server-Authorization header
-
-        var serverAuthorization = getHeader('server-authorization');
-        if (!serverAuthorization && !options.required) {
-
-            return true;
-        }
-
-        var attributes = hawk.utils.parseAuthorizationHeader(serverAuthorization, ['mac', 'ext', 'hash']);
-        if (!attributes) {
-            return false;
-        }
-
-        var modArtifacts = {
-            ts: artifacts.ts,
-            nonce: artifacts.nonce,
-            method: artifacts.method,
-            resource: artifacts.resource,
-            host: artifacts.host,
-            port: artifacts.port,
-            hash: attributes.hash,
-            ext: attributes.ext,
-            app: artifacts.app,
-            dlg: artifacts.dlg
-        };
-
-        var mac = hawk.crypto.calculateMac('response', credentials, modArtifacts);
-        if (mac !== attributes.mac) {
-            return false;
-        }
-
-        if (!options.payload && options.payload !== '') {
-
-            return true;
-        }
-
-        if (!attributes.hash) {
-            return false;
-        }
-
-        var calculatedHash = hawk.crypto.calculatePayloadHash(options.payload, credentials.algorithm, getHeader('content-type'));
-        return calculatedHash === attributes.hash;
-    },
-
-    message: function message(host, port, _message, options) {
-
-        // Validate inputs
-
-        if (!host || typeof host !== 'string' || !port || typeof port !== 'number' || _message === null || _message === undefined || typeof _message !== 'string' || !options || (typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== 'object') {
-
-            return null;
-        }
-
-        // Application time
-
-        var timestamp = options.timestamp || hawk.utils.nowSec(options.localtimeOffsetMsec);
-
-        // Validate credentials
-
-        var credentials = options.credentials;
-        if (!credentials || !credentials.id || !credentials.key || !credentials.algorithm) {
-
-            // Invalid credential object
-            return null;
-        }
-
-        if (hawk.crypto.algorithms.indexOf(credentials.algorithm) === -1) {
-            return null;
-        }
-
-        // Calculate signature
-
-        var artifacts = {
-            ts: timestamp,
-            nonce: options.nonce || hawk.utils.randomString(6),
-            host: host,
-            port: port,
-            hash: hawk.crypto.calculatePayloadHash(_message, credentials.algorithm)
-        };
-
-        // Construct authorization
-
-        var result = {
-            id: credentials.id,
-            ts: artifacts.ts,
-            nonce: artifacts.nonce,
-            hash: artifacts.hash,
-            mac: hawk.crypto.calculateMac('message', credentials, artifacts)
-        };
-
-        return result;
-    },
-
-    authenticateTimestamp: function authenticateTimestamp(message, credentials, updateClock) {
-        // updateClock defaults to true
-
-        var tsm = hawk.crypto.calculateTsMac(message.ts, credentials);
-        if (tsm !== message.tsm) {
-            return false;
-        }
-
-        if (updateClock !== false) {
-            hawk.utils.setNtpSecOffset(message.ts - Math.floor(Date.now() / 1000)); // Keep offset at 1 second precision
-        }
-
-        return true;
-    }
-};
-
-hawk.crypto = {
-
-    headerVersion: '1',
-
-    algorithms: ['sha1', 'sha256'],
-
-    calculateMac: function calculateMac(type, credentials, options) {
-
-        var normalized = hawk.crypto.generateNormalizedString(type, options);
-
-        var hmac = CryptoJS['Hmac' + credentials.algorithm.toUpperCase()](normalized, credentials.key);
-        return hmac.toString(CryptoJS.enc.Base64);
-    },
-
-    generateNormalizedString: function generateNormalizedString(type, options) {
-
-        var normalized = 'hawk.' + hawk.crypto.headerVersion + '.' + type + '\n' + options.ts + '\n' + options.nonce + '\n' + (options.method || '').toUpperCase() + '\n' + (options.resource || '') + '\n' + options.host.toLowerCase() + '\n' + options.port + '\n' + (options.hash || '') + '\n';
-
-        if (options.ext) {
-            normalized += options.ext.replace('\\', '\\\\').replace('\n', '\\n');
-        }
-
-        normalized += '\n';
-
-        if (options.app) {
-            normalized += options.app + '\n' + (options.dlg || '') + '\n';
-        }
-
-        return normalized;
-    },
-
-    calculatePayloadHash: function calculatePayloadHash(payload, algorithm, contentType) {
-
-        var hash = CryptoJS.algo[algorithm.toUpperCase()].create();
-        hash.update('hawk.' + hawk.crypto.headerVersion + '.payload\n');
-        hash.update(hawk.utils.parseContentType(contentType) + '\n');
-        hash.update(payload);
-        hash.update('\n');
-        return hash.finalize().toString(CryptoJS.enc.Base64);
-    },
-
-    calculateTsMac: function calculateTsMac(ts, credentials) {
-
-        var hash = CryptoJS['Hmac' + credentials.algorithm.toUpperCase()]('hawk.' + hawk.crypto.headerVersion + '.ts\n' + ts + '\n', credentials.key);
-        return hash.toString(CryptoJS.enc.Base64);
-    }
-};
-
-// localStorage compatible interface
-
-hawk.internals.LocalStorage = function () {
-
-    this._cache = {};
-    this.length = 0;
-
-    this.getItem = function (key) {
-
-        return this._cache.hasOwnProperty(key) ? String(this._cache[key]) : null;
-    };
-
-    this.setItem = function (key, value) {
-
-        this._cache[key] = String(value);
-        this.length = Object.keys(this._cache).length;
-    };
-
-    this.removeItem = function (key) {
-
-        delete this._cache[key];
-        this.length = Object.keys(this._cache).length;
-    };
-
-    this.clear = function () {
-
-        this._cache = {};
-        this.length = 0;
-    };
-
-    this.key = function (i) {
-
-        return Object.keys(this._cache)[i || 0];
-    };
-};
-
-hawk.utils = {
-
-    storage: new hawk.internals.LocalStorage(),
-
-    setStorage: function setStorage(storage) {
-
-        var ntpOffset = hawk.utils.storage.getItem('hawk_ntp_offset');
-        hawk.utils.storage = storage;
-        if (ntpOffset) {
-            hawk.utils.setNtpSecOffset(ntpOffset);
-        }
-    },
-
-    setNtpSecOffset: function setNtpSecOffset(offset) {
-
-        try {
-            hawk.utils.storage.setItem('hawk_ntp_offset', offset);
-        } catch (err) {
-            console.error('[hawk] could not write to storage.');
-            console.error(err);
-        }
-    },
-
-    getNtpSecOffset: function getNtpSecOffset() {
-
-        var offset = hawk.utils.storage.getItem('hawk_ntp_offset');
-        if (!offset) {
-            return 0;
-        }
-
-        return parseInt(offset, 10);
-    },
-
-    now: function now(localtimeOffsetMsec) {
-
-        return Date.now() + (localtimeOffsetMsec || 0) + hawk.utils.getNtpSecOffset() * 1000;
-    },
-
-    nowSec: function nowSec(localtimeOffsetMsec) {
-
-        return Math.floor(hawk.utils.now(localtimeOffsetMsec) / 1000);
-    },
-
-    escapeHeaderAttribute: function escapeHeaderAttribute(attribute) {
-
-        return attribute.replace(/\\/g, '\\\\').replace(/\"/g, '\\"');
-    },
-
-    parseContentType: function parseContentType(header) {
-
-        if (!header) {
-            return '';
-        }
-
-        return header.split(';')[0].replace(/^\s+|\s+$/g, '').toLowerCase();
-    },
-
-    parseAuthorizationHeader: function parseAuthorizationHeader(header, keys) {
-
-        if (!header) {
-            return null;
-        }
-
-        var headerParts = header.match(/^(\w+)(?:\s+(.*))?$/); // Header: scheme[ something]
-        if (!headerParts) {
-            return null;
-        }
-
-        var scheme = headerParts[1];
-        if (scheme.toLowerCase() !== 'hawk') {
-            return null;
-        }
-
-        var attributesString = headerParts[2];
-        if (!attributesString) {
-            return null;
-        }
-
-        var attributes = {};
-        var verify = attributesString.replace(/(\w+)="([^"\\]*)"\s*(?:,\s*|$)/g, function ($0, $1, $2) {
-
-            // Check valid attribute names
-
-            if (keys.indexOf($1) === -1) {
-                return;
-            }
-
-            // Allowed attribute value characters: !#$%&'()*+,-./:;<=>?@[]^_`{|}~ and space, a-z, A-Z, 0-9
-
-            if ($2.match(/^[ \w\!#\$%&'\(\)\*\+,\-\.\/\:;<\=>\?@\[\]\^`\{\|\}~]+$/) === null) {
-                return;
-            }
-
-            // Check for duplicates
-
-            if (attributes.hasOwnProperty($1)) {
-                return;
-            }
-
-            attributes[$1] = $2;
-            return '';
-        });
-
-        if (verify !== '') {
-            return null;
-        }
-
-        return attributes;
-    },
-
-    randomString: function randomString(size) {
-
-        var randomSource = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        var len = randomSource.length;
-
-        var result = [];
-        for (var i = 0; i < size; ++i) {
-            result[i] = randomSource[Math.floor(Math.random() * len)];
-        }
-
-        return result.join('');
-    },
-
-    //          1                        2             3      4
-    uriRegex: /^([^:]+)\:\/\/(?:[^@/]*@)?([^\/:]+)(?:\:(\d+))?([^#]*)(?:#.*)?$/, // scheme://credentials@host:port/resource#fragment
-    parseUri: function parseUri(input) {
-
-        var parts = input.match(hawk.utils.uriRegex);
-        if (!parts) {
-            return { host: '', port: '', resource: '' };
-        }
-
-        var scheme = parts[1].toLowerCase();
-        var uri = {
-            host: parts[2],
-            port: parts[3] || (scheme === 'http' ? '80' : scheme === 'https' ? '443' : ''),
-            resource: parts[4]
-        };
-
-        return uri;
-    },
-
-    base64urlEncode: function base64urlEncode(value) {
-
-        var wordArray = CryptoJS.enc.Utf8.parse(value);
-        var encoded = CryptoJS.enc.Base64.stringify(wordArray);
-        return encoded.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-    }
-};
-
-// $lab:coverage:off$
-/* eslint-disable */
-
-// Based on: Crypto-JS v3.1.2
-// Copyright (c) 2009-2013, Jeff Mott. All rights reserved.
-// http://code.google.com/p/crypto-js/
-// http://code.google.com/p/crypto-js/wiki/License
-
-var CryptoJS = CryptoJS || function (h, r) {
-    var k = {},
-        l = k.lib = {},
-        n = function n() {},
-        f = l.Base = { extend: function extend(a) {
-            n.prototype = this;var b = new n();a && b.mixIn(a);b.hasOwnProperty("init") || (b.init = function () {
-                b.$super.init.apply(this, arguments);
-            });b.init.prototype = b;b.$super = this;return b;
-        }, create: function create() {
-            var a = this.extend();a.init.apply(a, arguments);return a;
-        }, init: function init() {}, mixIn: function mixIn(a) {
-            for (var _b in a) {
-                a.hasOwnProperty(_b) && (this[_b] = a[_b]);
-            }a.hasOwnProperty("toString") && (this.toString = a.toString);
-        }, clone: function clone() {
-            return this.init.prototype.extend(this);
-        } },
-        j = l.WordArray = f.extend({ init: function init(a, b) {
-            a = this.words = a || [];this.sigBytes = b != r ? b : 4 * a.length;
-        }, toString: function toString(a) {
-            return (a || s).stringify(this);
-        }, concat: function concat(a) {
-            var b = this.words,
-                d = a.words,
-                c = this.sigBytes;a = a.sigBytes;this.clamp();if (c % 4) for (var e = 0; e < a; e++) {
-                b[c + e >>> 2] |= (d[e >>> 2] >>> 24 - 8 * (e % 4) & 255) << 24 - 8 * ((c + e) % 4);
-            } else if (65535 < d.length) for (var _e = 0; _e < a; _e += 4) {
-                b[c + _e >>> 2] = d[_e >>> 2];
-            } else b.push.apply(b, d);this.sigBytes += a;return this;
-        }, clamp: function clamp() {
-            var a = this.words,
-                b = this.sigBytes;a[b >>> 2] &= 4294967295 << 32 - 8 * (b % 4);a.length = h.ceil(b / 4);
-        }, clone: function clone() {
-            var a = f.clone.call(this);a.words = this.words.slice(0);return a;
-        }, random: function random(a) {
-            for (var _b2 = [], d = 0; d < a; d += 4) {
-                _b2.push(4294967296 * h.random() | 0);
-            }return new j.init(b, a);
-        } }),
-        m = k.enc = {},
-        s = m.Hex = { stringify: function stringify(a) {
-            var b = a.words;a = a.sigBytes;for (var d = [], c = 0; c < a; c++) {
-                var e = b[c >>> 2] >>> 24 - 8 * (c % 4) & 255;d.push((e >>> 4).toString(16));d.push((e & 15).toString(16));
-            }return d.join("");
-        }, parse: function parse(a) {
-            for (var b = a.length, d = [], c = 0; c < b; c += 2) {
-                d[c >>> 3] |= parseInt(a.substr(c, 2), 16) << 24 - 4 * (c % 8);
-            }return new j.init(d, b / 2);
-        } },
-        p = m.Latin1 = { stringify: function stringify(a) {
-            var b = a.words;a = a.sigBytes;for (var d = [], c = 0; c < a; c++) {
-                d.push(String.fromCharCode(b[c >>> 2] >>> 24 - 8 * (c % 4) & 255));
-            }return d.join("");
-        }, parse: function parse(a) {
-            for (var b = a.length, d = [], c = 0; c < b; c++) {
-                d[c >>> 2] |= (a.charCodeAt(c) & 255) << 24 - 8 * (c % 4);
-            }return new j.init(d, b);
-        } },
-        t = m.Utf8 = { stringify: function stringify(a) {
-            try {
-                return decodeURIComponent(escape(p.stringify(a)));
-            } catch (b) {
-                throw Error("Malformed UTF-8 data");
-            }
-        }, parse: function parse(a) {
-            return p.parse(unescape(encodeURIComponent(a)));
-        } },
-        q = l.BufferedBlockAlgorithm = f.extend({ reset: function reset() {
-            this._data = new j.init();this._nDataBytes = 0;
-        }, _append: function _append(a) {
-            "string" == typeof a && (a = t.parse(a));this._data.concat(a);this._nDataBytes += a.sigBytes;
-        }, _process: function _process(a) {
-            var b = this._data,
-                d = b.words,
-                c = b.sigBytes,
-                e = this.blockSize,
-                f = c / (4 * e),
-                f = a ? h.ceil(f) : h.max((f | 0) - this._minBufferSize, 0);a = f * e;c = h.min(4 * a, c);if (a) {
-                for (var g = 0; g < a; g += e) {
-                    this._doProcessBlock(d, g);
-                }g = d.splice(0, a);b.sigBytes -= c;
-            }return new j.init(g, c);
-        }, clone: function clone() {
-            var a = f.clone.call(this);a._data = this._data.clone();return a;
-        }, _minBufferSize: 0 });l.Hasher = q.extend({ cfg: f.extend(), init: function init(a) {
-            this.cfg = this.cfg.extend(a);this.reset();
-        }, reset: function reset() {
-            q.reset.call(this);this._doReset();
-        }, update: function update(a) {
-            this._append(a);this._process();return this;
-        }, finalize: function finalize(a) {
-            a && this._append(a);return this._doFinalize();
-        }, blockSize: 16, _createHelper: function _createHelper(a) {
-            return function (b, d) {
-                return new a.init(d).finalize(b);
-            };
-        }, _createHmacHelper: function _createHmacHelper(a) {
-            return function (b, d) {
-                return new u.HMAC.init(a, d).finalize(b);
-            };
-        } });var u = k.algo = {};return k;
-}(Math);
-(function () {
-    var k = CryptoJS,
-        b = k.lib,
-        m = b.WordArray,
-        l = b.Hasher,
-        d = [],
-        b = k.algo.SHA1 = l.extend({ _doReset: function _doReset() {
-            this._hash = new m.init([1732584193, 4023233417, 2562383102, 271733878, 3285377520]);
-        }, _doProcessBlock: function _doProcessBlock(n, p) {
-            for (var a = this._hash.words, e = a[0], f = a[1], h = a[2], j = a[3], b = a[4], c = 0; 80 > c; c++) {
-                if (16 > c) d[c] = n[p + c] | 0;else {
-                    var g = d[c - 3] ^ d[c - 8] ^ d[c - 14] ^ d[c - 16];d[c] = g << 1 | g >>> 31;
-                }g = (e << 5 | e >>> 27) + b + d[c];g = 20 > c ? g + ((f & h | ~f & j) + 1518500249) : 40 > c ? g + ((f ^ h ^ j) + 1859775393) : 60 > c ? g + ((f & h | f & j | h & j) - 1894007588) : g + ((f ^ h ^ j) - 899497514);b = j;j = h;h = f << 30 | f >>> 2;f = e;e = g;
-            }a[0] = a[0] + e | 0;a[1] = a[1] + f | 0;a[2] = a[2] + h | 0;a[3] = a[3] + j | 0;a[4] = a[4] + b | 0;
-        }, _doFinalize: function _doFinalize() {
-            var b = this._data,
-                d = b.words,
-                a = 8 * this._nDataBytes,
-                e = 8 * b.sigBytes;d[e >>> 5] |= 128 << 24 - e % 32;d[(e + 64 >>> 9 << 4) + 14] = Math.floor(a / 4294967296);d[(e + 64 >>> 9 << 4) + 15] = a;b.sigBytes = 4 * d.length;this._process();return this._hash;
-        }, clone: function clone() {
-            var b = l.clone.call(this);b._hash = this._hash.clone();return b;
-        } });k.SHA1 = l._createHelper(b);k.HmacSHA1 = l._createHmacHelper(b);
-})();
-(function (k) {
-    for (var g = CryptoJS, h = g.lib, v = h.WordArray, j = h.Hasher, h = g.algo, s = [], t = [], u = function u(q) {
-        return 4294967296 * (q - (q | 0)) | 0;
-    }, l = 2, b = 0; 64 > b;) {
-        var d;a: {
-            d = l;for (var w = k.sqrt(d), r = 2; r <= w; r++) {
-                if (!(d % r)) {
-                    d = !1;break a;
-                }
-            }d = !0;
-        }d && (8 > b && (s[b] = u(k.pow(l, 0.5))), t[b] = u(k.pow(l, 1 / 3)), b++);l++;
-    }var n = [],
-        h = h.SHA256 = j.extend({ _doReset: function _doReset() {
-            this._hash = new v.init(s.slice(0));
-        }, _doProcessBlock: function _doProcessBlock(q, h) {
-            for (var a = this._hash.words, c = a[0], d = a[1], b = a[2], k = a[3], f = a[4], g = a[5], j = a[6], l = a[7], e = 0; 64 > e; e++) {
-                if (16 > e) n[e] = q[h + e] | 0;else {
-                    var m = n[e - 15],
-                        p = n[e - 2];n[e] = ((m << 25 | m >>> 7) ^ (m << 14 | m >>> 18) ^ m >>> 3) + n[e - 7] + ((p << 15 | p >>> 17) ^ (p << 13 | p >>> 19) ^ p >>> 10) + n[e - 16];
-                }m = l + ((f << 26 | f >>> 6) ^ (f << 21 | f >>> 11) ^ (f << 7 | f >>> 25)) + (f & g ^ ~f & j) + t[e] + n[e];p = ((c << 30 | c >>> 2) ^ (c << 19 | c >>> 13) ^ (c << 10 | c >>> 22)) + (c & d ^ c & b ^ d & b);l = j;j = g;g = f;f = k + m | 0;k = b;b = d;d = c;c = m + p | 0;
-            }a[0] = a[0] + c | 0;a[1] = a[1] + d | 0;a[2] = a[2] + b | 0;a[3] = a[3] + k | 0;a[4] = a[4] + f | 0;a[5] = a[5] + g | 0;a[6] = a[6] + j | 0;a[7] = a[7] + l | 0;
-        }, _doFinalize: function _doFinalize() {
-            var d = this._data,
-                b = d.words,
-                a = 8 * this._nDataBytes,
-                c = 8 * d.sigBytes;b[c >>> 5] |= 128 << 24 - c % 32;b[(c + 64 >>> 9 << 4) + 14] = k.floor(a / 4294967296);b[(c + 64 >>> 9 << 4) + 15] = a;d.sigBytes = 4 * b.length;this._process();return this._hash;
-        }, clone: function clone() {
-            var b = j.clone.call(this);b._hash = this._hash.clone();return b;
-        } });g.SHA256 = j._createHelper(h);g.HmacSHA256 = j._createHmacHelper(h);
-})(Math);
-(function () {
-    var c = CryptoJS,
-        k = c.enc.Utf8;c.algo.HMAC = c.lib.Base.extend({ init: function init(a, b) {
-            a = this._hasher = new a.init();"string" == typeof b && (b = k.parse(b));var c = a.blockSize,
-                e = 4 * c;b.sigBytes > e && (b = a.finalize(b));b.clamp();for (var f = this._oKey = b.clone(), g = this._iKey = b.clone(), h = f.words, j = g.words, d = 0; d < c; d++) {
-                h[d] ^= 1549556828, j[d] ^= 909522486;
-            }f.sigBytes = g.sigBytes = e;this.reset();
-        }, reset: function reset() {
-            var a = this._hasher;a.reset();a.update(this._iKey);
-        }, update: function update(a) {
-            this._hasher.update(a);return this;
-        }, finalize: function finalize(a) {
-            var b = this._hasher;a = b.finalize(a);b.reset();return b.finalize(this._oKey.clone().concat(a));
-        } });
-})();
-(function () {
-    var h = CryptoJS,
-        j = h.lib.WordArray;h.enc.Base64 = { stringify: function stringify(b) {
-            var e = b.words,
-                f = b.sigBytes,
-                c = this._map;b.clamp();b = [];for (var a = 0; a < f; a += 3) {
-                for (var d = (e[a >>> 2] >>> 24 - 8 * (a % 4) & 255) << 16 | (e[a + 1 >>> 2] >>> 24 - 8 * ((a + 1) % 4) & 255) << 8 | e[a + 2 >>> 2] >>> 24 - 8 * ((a + 2) % 4) & 255, g = 0; 4 > g && a + 0.75 * g < f; g++) {
-                    b.push(c.charAt(d >>> 6 * (3 - g) & 63));
-                }
-            }if (e = c.charAt(64)) for (; b.length % 4;) {
-                b.push(e);
-            }return b.join("");
-        }, parse: function parse(b) {
-            var e = b.length,
-                f = this._map,
-                c = f.charAt(64);c && (c = b.indexOf(c), -1 != c && (e = c));for (var c = [], a = 0, d = 0; d < e; d++) {
-                if (d % 4) {
-                    var g = f.indexOf(b.charAt(d - 1)) << 2 * (d % 4),
-                        h = f.indexOf(b.charAt(d)) >>> 6 - 2 * (d % 4);c[a >>> 2] |= (g | h) << 24 - 8 * (a % 4);a++;
-                }
-            }return j.create(c, a);
-        }, _map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=" };
-})();
-
-hawk.crypto.utils = CryptoJS;
-
-// Export if used as a module
-
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = hawk;
-}
-
-/* eslint-enable */
-// $lab:coverage:on$
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -51486,6 +50682,107 @@ exports.Har = Har
 
 /***/ }),
 
+/***/ "./node_modules/request/lib/hawk.js":
+/*!******************************************!*\
+  !*** ./node_modules/request/lib/hawk.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var crypto = __webpack_require__(/*! crypto */ "./node_modules/crypto-browserify/index.js")
+
+function randomString (size) {
+  var bits = (size + 1) * 6
+  var buffer = crypto.randomBytes(Math.ceil(bits / 8))
+  var string = buffer.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+  return string.slice(0, size)
+}
+
+function calculatePayloadHash (payload, algorithm, contentType) {
+  var hash = crypto.createHash(algorithm)
+  hash.update('hawk.1.payload\n')
+  hash.update((contentType ? contentType.split(';')[0].trim().toLowerCase() : '') + '\n')
+  hash.update(payload || '')
+  hash.update('\n')
+  return hash.digest('base64')
+}
+
+exports.calculateMac = function (credentials, opts) {
+  var normalized = 'hawk.1.header\n' +
+    opts.ts + '\n' +
+    opts.nonce + '\n' +
+    (opts.method || '').toUpperCase() + '\n' +
+    opts.resource + '\n' +
+    opts.host.toLowerCase() + '\n' +
+    opts.port + '\n' +
+    (opts.hash || '') + '\n'
+
+  if (opts.ext) {
+    normalized = normalized + opts.ext.replace('\\', '\\\\').replace('\n', '\\n')
+  }
+
+  normalized = normalized + '\n'
+
+  if (opts.app) {
+    normalized = normalized + opts.app + '\n' + (opts.dlg || '') + '\n'
+  }
+
+  var hmac = crypto.createHmac(credentials.algorithm, credentials.key).update(normalized)
+  var digest = hmac.digest('base64')
+  return digest
+}
+
+exports.header = function (uri, method, opts) {
+  var timestamp = opts.timestamp || Math.floor((Date.now() + (opts.localtimeOffsetMsec || 0)) / 1000)
+  var credentials = opts.credentials
+  if (!credentials || !credentials.id || !credentials.key || !credentials.algorithm) {
+    return ''
+  }
+
+  if (['sha1', 'sha256'].indexOf(credentials.algorithm) === -1) {
+    return ''
+  }
+
+  var artifacts = {
+    ts: timestamp,
+    nonce: opts.nonce || randomString(6),
+    method: method,
+    resource: uri.pathname + (uri.search || ''),
+    host: uri.hostname,
+    port: uri.port || (uri.protocol === 'http:' ? 80 : 443),
+    hash: opts.hash,
+    ext: opts.ext,
+    app: opts.app,
+    dlg: opts.dlg
+  }
+
+  if (!artifacts.hash && (opts.payload || opts.payload === '')) {
+    artifacts.hash = calculatePayloadHash(opts.payload, credentials.algorithm, opts.contentType)
+  }
+
+  var mac = exports.calculateMac(credentials, artifacts)
+
+  var hasExt = artifacts.ext !== null && artifacts.ext !== undefined && artifacts.ext !== ''
+  var header = 'Hawk id="' + credentials.id +
+    '", ts="' + artifacts.ts +
+    '", nonce="' + artifacts.nonce +
+    (artifacts.hash ? '", hash="' + artifacts.hash : '') +
+    (hasExt ? '", ext="' + artifacts.ext.replace(/\\/g, '\\\\').replace(/"/g, '\\"') : '') +
+    '", mac="' + mac + '"'
+
+  if (artifacts.app) {
+    header = header + ', app="' + artifacts.app + (artifacts.dlg ? '", dlg="' + artifacts.dlg : '') + '"'
+  }
+
+  return header
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/request/lib/helpers.js":
 /*!*********************************************!*\
   !*** ./node_modules/request/lib/helpers.js ***!
@@ -52280,12 +51577,10 @@ var url = __webpack_require__(/*! url */ "./node_modules/url/url.js")
 var util = __webpack_require__(/*! util */ "./node_modules/util/util.js")
 var stream = __webpack_require__(/*! stream */ "./node_modules/stream-browserify/index.js")
 var zlib = __webpack_require__(/*! zlib */ "./node_modules/browserify-zlib/lib/index.js")
-var hawk = __webpack_require__(/*! hawk */ "./node_modules/hawk/dist/browser.js")
 var aws2 = __webpack_require__(/*! aws-sign2 */ "./node_modules/aws-sign2/index.js")
 var aws4 = __webpack_require__(/*! aws4 */ "./node_modules/aws4/aws4.js")
 var httpSignature = __webpack_require__(/*! http-signature */ "./node_modules/http-signature/lib/index.js")
 var mime = __webpack_require__(/*! mime-types */ "./node_modules/mime-types/index.js")
-var stringstream = __webpack_require__(/*! stringstream */ "./node_modules/stringstream/stringstream.js")
 var caseless = __webpack_require__(/*! caseless */ "./node_modules/caseless/index.js")
 var ForeverAgent = __webpack_require__(/*! forever-agent */ "./node_modules/forever-agent/index.js")
 var FormData = __webpack_require__(/*! form-data */ "./node_modules/form-data/lib/browser.js")
@@ -52299,6 +51594,7 @@ var Querystring = __webpack_require__(/*! ./lib/querystring */ "./node_modules/r
 var Har = __webpack_require__(/*! ./lib/har */ "./node_modules/request/lib/har.js").Har
 var Auth = __webpack_require__(/*! ./lib/auth */ "./node_modules/request/lib/auth.js").Auth
 var OAuth = __webpack_require__(/*! ./lib/oauth */ "./node_modules/request/lib/oauth.js").OAuth
+var hawk = __webpack_require__(/*! ./lib/hawk */ "./node_modules/request/lib/hawk.js")
 var Multipart = __webpack_require__(/*! ./lib/multipart */ "./node_modules/request/lib/multipart.js").Multipart
 var Redirect = __webpack_require__(/*! ./lib/redirect */ "./node_modules/request/lib/redirect.js").Redirect
 var Tunnel = __webpack_require__(/*! ./lib/tunnel */ "./node_modules/request/lib/tunnel.js").Tunnel
@@ -53323,13 +52619,8 @@ Request.prototype.onRequestResponse = function (response) {
     if (self.encoding) {
       if (self.dests.length !== 0) {
         console.error('Ignoring encoding parameter as this stream is being piped to another stream which makes the encoding option invalid.')
-      } else if (responseContent.setEncoding) {
-        responseContent.setEncoding(self.encoding)
       } else {
-        // Should only occur on node pre-v0.9.4 (joyent/node@9b5abe5) with
-        // zlib streams.
-        // If/When support for 0.9.4 is dropped, this should be unnecessary.
-        responseContent = responseContent.pipe(stringstream(self.encoding))
+        responseContent.setEncoding(self.encoding)
       }
     }
 
@@ -53700,7 +52991,7 @@ Request.prototype.httpSignature = function (opts) {
 }
 Request.prototype.hawk = function (opts) {
   var self = this
-  self.setHeader('Authorization', hawk.client.header(self.uri, self.method, opts).field)
+  self.setHeader('Authorization', hawk.header(self.uri, self.method, opts))
 }
 Request.prototype.oauth = function (_oauth) {
   var self = this
@@ -64495,6 +63786,7 @@ var ClientRequest = module.exports = function (opts) {
 		throw new Error('Invalid value for opts.mode')
 	}
 	self._mode = decideMode(preferBinary, useFetch)
+	self._fetchTimer = null
 
 	self.on('finish', function () {
 		self._onFinish()
@@ -64570,13 +63862,14 @@ ClientRequest.prototype._onFinish = function () {
 
 	if (self._mode === 'fetch') {
 		var signal = null
+		var fetchTimer = null
 		if (capability.abortController) {
 			var controller = new AbortController()
 			signal = controller.signal
 			self._fetchAbortController = controller
 
 			if ('requestTimeout' in opts && opts.requestTimeout !== 0) {
-				global.setTimeout(function () {
+				self._fetchTimer = global.setTimeout(function () {
 					self.emit('requestTimeout')
 					if (self._fetchAbortController)
 						self._fetchAbortController.abort()
@@ -64595,7 +63888,9 @@ ClientRequest.prototype._onFinish = function () {
 			self._fetchResponse = response
 			self._connect()
 		}, function (reason) {
-			self.emit('error', reason)
+			global.clearTimeout(self._fetchTimer)
+			if (!self._destroyed)
+				self.emit('error', reason)
 		})
 	} else {
 		var xhr = self._xhr = new global.XMLHttpRequest()
@@ -64695,7 +63990,7 @@ ClientRequest.prototype._connect = function () {
 	if (self._destroyed)
 		return
 
-	self._response = new IncomingMessage(self._xhr, self._fetchResponse, self._mode)
+	self._response = new IncomingMessage(self._xhr, self._fetchResponse, self._mode, self._fetchTimer)
 	self._response.on('error', function(err) {
 		self.emit('error', err)
 	})
@@ -64713,6 +64008,7 @@ ClientRequest.prototype._write = function (chunk, encoding, cb) {
 ClientRequest.prototype.abort = ClientRequest.prototype.destroy = function () {
 	var self = this
 	self._destroyed = true
+	global.clearTimeout(self._fetchTimer)
 	if (self._response)
 		self._response._destroyed = true
 	if (self._xhr)
@@ -64784,7 +64080,7 @@ var rStates = exports.readyStates = {
 	DONE: 4
 }
 
-var IncomingMessage = exports.IncomingMessage = function (xhr, response, mode) {
+var IncomingMessage = exports.IncomingMessage = function (xhr, response, mode, fetchTimer) {
 	var self = this
 	stream.Readable.call(self)
 
@@ -64819,7 +64115,7 @@ var IncomingMessage = exports.IncomingMessage = function (xhr, response, mode) {
 				write: function (chunk) {
 					return new Promise(function (resolve, reject) {
 						if (self._destroyed) {
-							return
+							reject()
 						} else if(self.push(new Buffer(chunk))) {
 							resolve()
 						} else {
@@ -64828,6 +64124,7 @@ var IncomingMessage = exports.IncomingMessage = function (xhr, response, mode) {
 					})
 				},
 				close: function () {
+					global.clearTimeout(fetchTimer)
 					if (!self._destroyed)
 						self.push(null)
 				},
@@ -64838,7 +64135,11 @@ var IncomingMessage = exports.IncomingMessage = function (xhr, response, mode) {
 			})
 
 			try {
-				response.body.pipeTo(writable)
+				response.body.pipeTo(writable).catch(function (err) {
+					global.clearTimeout(fetchTimer)
+					if (!self._destroyed)
+						self.emit('error', err)
+				})
 				return
 			} catch (e) {} // pipeTo method isn't defined. Can't find a better way to feature test this
 		}
@@ -64849,12 +64150,14 @@ var IncomingMessage = exports.IncomingMessage = function (xhr, response, mode) {
 				if (self._destroyed)
 					return
 				if (result.done) {
+					global.clearTimeout(fetchTimer)
 					self.push(null)
 					return
 				}
 				self.push(new Buffer(result.value))
 				read()
-			}).catch(function(err) {
+			}).catch(function (err) {
+				global.clearTimeout(fetchTimer)
 				if (!self._destroyed)
 					self.emit('error', err)
 			})
@@ -67367,120 +66670,6 @@ exports.Duplex = __webpack_require__(/*! ./lib/_stream_duplex.js */ "./node_modu
 exports.Transform = __webpack_require__(/*! ./lib/_stream_transform.js */ "./node_modules/stream-http/node_modules/readable-stream/lib/_stream_transform.js");
 exports.PassThrough = __webpack_require__(/*! ./lib/_stream_passthrough.js */ "./node_modules/stream-http/node_modules/readable-stream/lib/_stream_passthrough.js");
 
-
-/***/ }),
-
-/***/ "./node_modules/stringstream/stringstream.js":
-/*!***************************************************!*\
-  !*** ./node_modules/stringstream/stringstream.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(Buffer) {var util = __webpack_require__(/*! util */ "./node_modules/util/util.js")
-var Stream = __webpack_require__(/*! stream */ "./node_modules/stream-browserify/index.js")
-var StringDecoder = __webpack_require__(/*! string_decoder */ "./node_modules/node-libs-browser/node_modules/string_decoder/lib/string_decoder.js").StringDecoder
-
-module.exports = StringStream
-module.exports.AlignedStringDecoder = AlignedStringDecoder
-
-function StringStream(from, to) {
-  if (!(this instanceof StringStream)) return new StringStream(from, to)
-
-  Stream.call(this)
-
-  if (from == null) from = 'utf8'
-
-  this.readable = this.writable = true
-  this.paused = false
-  this.toEncoding = (to == null ? from : to)
-  this.fromEncoding = (to == null ? '' : from)
-  this.decoder = new AlignedStringDecoder(this.toEncoding)
-}
-util.inherits(StringStream, Stream)
-
-StringStream.prototype.write = function(data) {
-  if (!this.writable) {
-    var err = new Error('stream not writable')
-    err.code = 'EPIPE'
-    this.emit('error', err)
-    return false
-  }
-  if (this.fromEncoding) {
-    if (Buffer.isBuffer(data)) data = data.toString()
-    data = new Buffer(data, this.fromEncoding)
-  }
-  var string = this.decoder.write(data)
-  if (string.length) this.emit('data', string)
-  return !this.paused
-}
-
-StringStream.prototype.flush = function() {
-  if (this.decoder.flush) {
-    var string = this.decoder.flush()
-    if (string.length) this.emit('data', string)
-  }
-}
-
-StringStream.prototype.end = function() {
-  if (!this.writable && !this.readable) return
-  this.flush()
-  this.emit('end')
-  this.writable = this.readable = false
-  this.destroy()
-}
-
-StringStream.prototype.destroy = function() {
-  this.decoder = null
-  this.writable = this.readable = false
-  this.emit('close')
-}
-
-StringStream.prototype.pause = function() {
-  this.paused = true
-}
-
-StringStream.prototype.resume = function () {
-  if (this.paused) this.emit('drain')
-  this.paused = false
-}
-
-function AlignedStringDecoder(encoding) {
-  StringDecoder.call(this, encoding)
-
-  switch (this.encoding) {
-    case 'base64':
-      this.write = alignedWrite
-      this.alignedBuffer = new Buffer(3)
-      this.alignedBytes = 0
-      break
-  }
-}
-util.inherits(AlignedStringDecoder, StringDecoder)
-
-AlignedStringDecoder.prototype.flush = function() {
-  if (!this.alignedBuffer || !this.alignedBytes) return ''
-  var leftover = this.alignedBuffer.toString(this.encoding, 0, this.alignedBytes)
-  this.alignedBytes = 0
-  return leftover
-}
-
-function alignedWrite(buffer) {
-  var rem = (this.alignedBytes + buffer.length) % this.alignedBuffer.length
-  if (!rem && !this.alignedBytes) return buffer.toString(this.encoding)
-
-  var returnBuffer = new Buffer(this.alignedBytes + buffer.length - rem)
-
-  this.alignedBuffer.copy(returnBuffer, 0, 0, this.alignedBytes)
-  buffer.copy(returnBuffer, this.alignedBytes, 0, buffer.length - rem)
-
-  buffer.copy(this.alignedBuffer, 0, buffer.length - rem, buffer.length)
-  this.alignedBytes = rem
-
-  return returnBuffer.toString(this.encoding)
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
 
 /***/ }),
 
@@ -74928,7 +74117,7 @@ function requestMta(app, req) {
       const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2___default.a.transit_realtime.FeedMessage.decode(body);
       app.setupFeed(Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_3__["parseFeed"])(feed));
     } else {
-      requestMta(app, req);
+      setTimeout(requestMta(app, req), 10000);
     }
   });
 }
@@ -75021,6 +74210,7 @@ function setupToggle(line, toggle) {
   } else if (line === "SS") {
     line = "SI";
   }
+  if (line === "H") return;
   const trainIcon = document.getElementById(`${line}-train`);
   trainIcon.classList.remove("loading");
   trainIcon.classList.add("loaded");
@@ -75267,9 +74457,11 @@ function parseFeed(feed) {
 function parseFeedRoute(feedRoute) {
   return feedRoute.map((feedStation) => {
     const stationEntity = feedStation.arrival || feedStation.departure;
+    if (!stationEntity) return;
     const stationTime = stationEntity.time * 1000;
     const stationId = feedStation.stopId.slice(0, -1);
     const stationLatLng = getStationLatLng(stationId);
+    if (!stationLatLng) return;
     return {
       id: stationId,
       lat: stationLatLng.lat,
@@ -75280,6 +74472,7 @@ function parseFeedRoute(feedRoute) {
 };
 
 function getStationLatLng(stationId) {
+  if (!_data_stations_json__WEBPACK_IMPORTED_MODULE_0__[stationId]) return;
   return {
     lat: _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[stationId].lat,
     lng: _data_stations_json__WEBPACK_IMPORTED_MODULE_0__[stationId].lng

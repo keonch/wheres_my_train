@@ -269,6 +269,7 @@
   "D20": {"name": "W 4 St", "borough": "M", "trains": "B D F M", "lat": 40.732338, "lng": -74.000495},
   "D21": {"name": "Broadway-Lafayette St", "borough": "M", "trains": "B D F M", "lat": 40.725297, "lng": -73.996204},
   "D22": {"name": "Grand St", "borough": "M", "trains": "B D", "lat": 40.718267, "lng": -73.993753},
+  "D23": {"name": "Grand St", "borough": "M", "trains": "B D", "lat": 40.718267, "lng": -73.993753},
   "D24": {"name": "Atlantic Av - Barclays Ctr", "borough": "Bk", "trains": "B Q", "lat": 40.68446, "lng": -73.97689},
   "D25": {"name": "7 Av B", "borough": "Bk", "trains": "B Q", "lat": 40.67705, "lng": -73.972367},
   "D26": {"name": "Prospect Park", "borough": "Bk", "trains": "B Q", "lat": 40.661614, "lng": -73.962246},

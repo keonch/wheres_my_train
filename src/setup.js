@@ -68,6 +68,7 @@ export function setupToggle(line, toggle) {
   } else if (line === "SS") {
     line = "SI";
   }
+  if (line === "H") return;
   const trainIcon = document.getElementById(`${line}-train`);
   trainIcon.classList.remove("loading");
   trainIcon.classList.add("loaded");

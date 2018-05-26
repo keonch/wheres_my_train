@@ -18,9 +18,11 @@ export function parseFeed(feed) {
 export function parseFeedRoute(feedRoute) {
   return feedRoute.map((feedStation) => {
     const stationEntity = feedStation.arrival || feedStation.departure;
+    if (!stationEntity) return;
     const stationTime = stationEntity.time * 1000;
     const stationId = feedStation.stopId.slice(0, -1);
     const stationLatLng = getStationLatLng(stationId);
+    if (!stationLatLng) return;
     return {
       id: stationId,
       lat: stationLatLng.lat,
@@ -31,6 +33,7 @@ export function parseFeedRoute(feedRoute) {
 };
 
 function getStationLatLng(stationId) {
+  if (!stations[stationId]) return;
   return {
     lat: stations[stationId].lat,
     lng: stations[stationId].lng
