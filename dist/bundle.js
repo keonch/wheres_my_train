@@ -74107,7 +74107,7 @@ function getData(app) {
       encoding: null
     };
     requestMta(app, req)
-  })
+  });
 }
 
 function requestMta(app, req) {
