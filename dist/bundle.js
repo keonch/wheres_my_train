@@ -73868,6 +73868,24 @@ function extend() {
 
 /***/ }),
 
+/***/ "./routing/routing.js":
+/*!****************************!*\
+  !*** ./routing/routing.js ***!
+  \****************************/
+/*! exports provided: routing */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routing", function() { return routing; });
+const routing = (feed) => {
+  console.log(feed);
+};
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
+
+/***/ }),
+
 /***/ "./src/app.js":
 /*!********************!*\
   !*** ./src/app.js ***!
@@ -74034,11 +74052,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupTime"])();
-  const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
-  const app = new _app__WEBPACK_IMPORTED_MODULE_3__["default"](map);
-  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupControls"])(app);
-  Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["getData"])(app);
+  // setupTime();
+  // const map = initMap();
+  // const app = new App(map);
+  // setupControls(app);
+  // getData(app);
+  Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["test"])();
 });
 
 
@@ -74079,12 +74098,13 @@ function initMap() {
 /*!****************************!*\
   !*** ./src/request_mta.js ***!
   \****************************/
-/*! exports provided: getData */
+/*! exports provided: getData, test */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getData", function() { return getData; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getData", function() { return getData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "test", function() { return test; });
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! request */ "./node_modules/request/index.js");
 /* harmony import */ var request__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(request__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _data_urls_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/urls.json */ "./data/urls.json");
@@ -74093,6 +74113,9 @@ var _data_urls_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/Object
 /* harmony import */ var _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_gtfs_realtime__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _utils_data_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/data_utils */ "./utils/data_utils.js");
 /* harmony import */ var _setup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./setup */ "./src/setup.js");
+/* harmony import */ var _routing_routing__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../routing/routing */ "./routing/routing.js");
+
+
 
 
 
@@ -74122,6 +74145,23 @@ function requestMta(app, req) {
   });
 }
 
+function test() {
+  const req = {
+    method: 'GET',
+    url: "https://cors-anywhere.herokuapp.com/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=1",
+    encoding: null
+  };
+  request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2___default.a.transit_realtime.FeedMessage.decode(body);
+      Object(_routing_routing__WEBPACK_IMPORTED_MODULE_5__["routing"])(feed);
+    } else {
+      console.log(error);
+    }
+  });
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
