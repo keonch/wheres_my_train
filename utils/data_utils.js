@@ -63,7 +63,7 @@ export function mergeRoutes(staticRoute, feedRoute) {
     // insert into route array by interpolating it's distance from one station to another
     } else {
 
-      // the last stop on the static route has been matched therefore,
+      // if the last stop on the static route has been matched,
       // any feed stations preceding it is pushed onto the route array
       if (prevCheckedIndex === route.length) {
         route.push(station);
@@ -71,16 +71,34 @@ export function mergeRoutes(staticRoute, feedRoute) {
         insertionCounter++;
 
       } else if (prevCheckedIndex === null) {
-        
-      } else {
-        const prevStation = route[prevCheckedIndex];
-        const nextStation = route[prevCheckedIndex + 1];
+        console.log("have not checked any");
 
-        insertionCounter++;
+      } else {
+        for (let i = prevCheckedIndex; i < route.length - 1; i++) {
+          const prevStation = route[i];
+          const nextStation = route[i + 1];
+          const dPrevNext = getDistance(prevStation, nextStation);
+          const dPrevCurrent = getDistance(prevStation, station);
+          const dNextCurrent = getDistance(nextStation, station);
+          // if (dPrevCurrent < dPrevNext && dNextCurrent < dPrevNext) {
+          //   route.splice(prevCheckedIndex, 0, station);
+          //   prevCheckedIndex = i + 1;
+          //   insertionCounter++;
+          // }
+        }
       }
     }
   });
   console.log(staticRoute);
   console.log(feedRoute);
   console.log(route);
+}
+
+function getDistance(s1, s2) {
+  const s1LatLng = getStationLatLng(s1.id);
+  const s2LatLng = getStationLatLng(s2.id);
+  const lat = s1LatLng.lat - s2LatLng.lat;
+  const lng = s1LatLng.lng - s2LatLng.lng;
+  const d = Math.sqrt(lat * lat + lng * lng);
+  return d;
 }
