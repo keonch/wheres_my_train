@@ -7,6 +7,7 @@
 import trainIcons from '../assets/train_icons.json';
 import { getLatLng } from '../utils/train_utils';
 import { parseFeedRoute } from '../utils/data_utils';
+import { mergeRoutes } from '../utils/data_utils';
 
 export default class Train {
   constructor(id, line, direction, route, feed) {
@@ -19,12 +20,19 @@ export default class Train {
     this.setStaticRoute(route);
     this.feedRoute = parseFeedRoute(feed.feedRoute);
 
-    this.staticRouteIndex = 0;
-    this.feedRouteIndex = 0;
-    this.durationSum = 0;
+    this.setRoute();
 
-    this.setStatus();
-    this.makeMarker();
+    // TODO
+    // this.staticRouteIndex = 0;
+    // this.feedRouteIndex = 0;
+    // this.durationSum = 0;
+    //
+    // this.setStatus();
+    // this.makeMarker();
+  }
+
+  setRoute() {
+    this.route = mergeRoutes(this.staticRoute, this.feedRoute);
   }
 
   setStaticRoute(route) {

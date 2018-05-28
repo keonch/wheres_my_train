@@ -4,10 +4,12 @@ import { setupTime, setupControls } from './setup';
 import App from './app';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // TODO
   // setupTime();
   // const map = initMap();
   // const app = new App(map);
   // setupControls(app);
   // getData(app);
-  test();
+  const app = new App();
+  getData(app);
 });

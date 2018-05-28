@@ -5,11 +5,12 @@ import { setupToggle } from './setup';
 
 export default class App {
   constructor(map) {
-    this.map = map;
+    // TODO
+    // this.map = map;
     this.trains = {};
-    this.polylines = {};
+    // this.polylines = {};
 
-    this.setupPolylines();
+    // this.setupPolylines();
 
     this.updateTrain = this.updateTrain.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -54,16 +55,17 @@ export default class App {
     const route = staticRoutes[line];
     const train = new Train(trainId, line, direction, route, feed);
 
-    train.marker.addTo(this.map);
-
-    if (!this.trains[line]) setupToggle(line, this.toggle);
+    // TODO
+    // train.marker.addTo(this.map);
+    //
+    // if (!this.trains[line]) setupToggle(line, this.toggle);
 
     this.trains[line] = Object.assign({},
       this.trains[line],
       { [trainId]: train }
     );
-    train.marker.addEventListener('end', () => this.updateTrain(train));
-    train.marker.start();
+    // train.marker.addEventListener('end', () => this.updateTrain(train));
+    // train.marker.start();
   }
 
   updateTrain(train) {
