@@ -74262,13 +74262,14 @@ class Train {
     this.updateTime = new Date();
     this.route = this.setRoute(route, feed.feedRoute);
     this.status = this.setStatus();
-    console.log(this.status);
+    this.marker = this.makeMarker();
+    console.log(this.marker);
+
     // TODO
     // this.staticRouteIndex = 0;
     // this.feedRouteIndex = 0;
     // this.durationSum = 0;
     //
-    // this.makeMarker();
   }
 
   setRoute(route, feed) {
@@ -74289,11 +74290,48 @@ class Train {
   setStatus() {
     if (this.route.head.data.time > this.updateTime) {
       return 'standby';
-    } else if (this.route.tail.time < this.updateTime) {
+    } else if (this.route.tail.data.time < this.updateTime) {
       return 'idle';
     } else {
       return 'active';
     }
+  }
+
+  makeMarker() {
+    let path;
+    let duration;
+
+    switch (this.status) {
+      case 'active':
+      const activeParams = this.getActiveParams();
+      path = activeParams.path;
+      duration = activeParams.duration;
+      break;
+
+      case 'standby':
+      path = [[this.route.head.data.lat, this.route.head.data.lng], [this.route.head.data.lat, this.route.head.data.lng]];
+      duration = 0;
+      break;
+
+      case 'idle':
+      path = [[this.route.tail.data.lat, this.route.tail.data.lng], [this.route.tail.data.lat, this.route.tail.data.lng]];
+      duration = 0;
+      break;
+    }
+
+    const m = new L.Marker.movingMarker(path, duration);
+    const trainIcon = L.icon({
+      iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
+      iconSize: [25, 25],
+      iconAnchor: [12, 12]
+    });
+    m.setIcon(trainIcon);
+    m.setOpacity(.3);
+    return m;
+  }
+
+  getActiveParams() {
+    
   }
 
 //   setStatus() {
