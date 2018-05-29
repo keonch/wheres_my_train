@@ -74452,6 +74452,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeRoutes", function() { return mergeRoutes; });
 /* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
 var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_0__});
+/* harmony import */ var _linked_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./linked_list */ "./utils/linked_list.js");
+
 
 
 function parseFeed(feed) {
@@ -74495,57 +74497,62 @@ function getStationLatLng(stationId) {
 }
 
 function mergeRoutes(staticRoute, feedRoute) {
-  // create route from shallow dup of the staticRoute
-  let route = staticRoute.map(station => ({...station}));
-
-  // create hash map of stations to keep track of stations in route
-  const stations = {};
-  route.forEach((station, idx) => {
-    stations[station.id] = idx;
-  });
-
-  let prevCheckedIndex = null;
-  let insertionCounter = 0;
-  feedRoute.forEach((station) => {
-
-    // if a station from feed matches the static route, set feed time
-    if (stations[station.id]) {
-      route[stations[station.id]].time = station.time;
-      prevCheckedIndex = stations[station.id] + insertionCounter;
-
-    // if station from feed does not exist in static route,
-    // insert into route array by interpolating it's distance from one station to another
-    } else {
-
-      // if the last stop on the static route has been matched,
-      // any feed stations preceding it is pushed onto the route array
-      if (prevCheckedIndex === route.length) {
-        route.push(station);
-        prevCheckedIndex++;
-        insertionCounter++;
-
-      } else if (prevCheckedIndex === null) {
-        console.log("have not checked any");
-
-      } else {
-        for (let i = prevCheckedIndex; i < route.length - 1; i++) {
-          const prevStation = route[i];
-          const nextStation = route[i + 1];
-          const dPrevNext = getDistance(prevStation, nextStation);
-          const dPrevCurrent = getDistance(prevStation, station);
-          const dNextCurrent = getDistance(nextStation, station);
-          // if (dPrevCurrent < dPrevNext && dNextCurrent < dPrevNext) {
-          //   route.splice(prevCheckedIndex, 0, station);
-          //   prevCheckedIndex = i + 1;
-          //   insertionCounter++;
-          // }
-        }
-      }
-    }
-  });
-  console.log(staticRoute);
-  console.log(feedRoute);
-  console.log(route);
+  const routeLinkedList = createLinkedList(staticRoute);
+  const routeHash = {};
+  let node = routeLinkedList.head;
+  while (node) {
+    routeHash[node.data.id] = node.data;
+    node = node.next;
+  }
+  console.log(routeHash);
+  // // create route from shallow dup of the staticRoute
+  // let route = staticRoute.map(station => ({...station}));
+  //
+  // // create hash map of stations to keep track of stations in route
+  // const stations = {};
+  // staticRoute.forEach((station, idx) => {
+  //   stations[station.id] = idx;
+  // });
+  //
+  // const offRoute = [];
+  //
+  // let prevCheckedIndex = null;
+  // let insertionCounter = 0;
+  //
+  // feedRoute.forEach((station) => {
+  //   if (stations[station.id]) {
+  //     route[stations[station.id]].time = station.time;
+  //     prevCheckedIndex = stations[station.id] + insertionCounter;
+  //
+  //   } else {
+  //     offRoute.push(station);
+  //
+  //     // // if the last stop on the static route has been matched,
+  //     // // any feed stations preceding it is pushed onto the route array
+  //     // if (prevCheckedIndex === route.length) {
+  //     //   route.push(station);
+  //     //   prevCheckedIndex++;
+  //     //   insertionCounter++;
+  //     //
+  //     // } else if (prevCheckedIndex === null) {
+  //     //
+  //     // } else {
+  //     //   for (let i = prevCheckedIndex; i < route.length - 1; i++) {
+  //     //     const prevStation = route[i];
+  //     //     const nextStation = route[i + 1];
+  //     //     const dPrevNext = getDistance(prevStation, nextStation);
+  //     //     const dPrevCurrent = getDistance(prevStation, station);
+  //     //     const dNextCurrent = getDistance(nextStation, station);
+  //     //     // if (dPrevCurrent < dPrevNext && dNextCurrent < dPrevNext) {
+  //     //     //   route.splice(prevCheckedIndex, 0, station);
+  //     //     //   prevCheckedIndex = i + 1;
+  //     //     //   insertionCounter++;
+  //     //     //   i++
+  //     //     // }
+  //     //   }
+  //     // }
+  //   }
+  // });
 }
 
 function getDistance(s1, s2) {
@@ -74557,7 +74564,96 @@ function getDistance(s1, s2) {
   return d;
 }
 
+function createLinkedList(route) {
+  const linkedListRoute = new _linked_list__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  route.forEach((station) => {
+    linkedListRoute.add(station);
+  })
+  return linkedListRoute;
+}
+
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
+
+/***/ }),
+
+/***/ "./utils/linked_list.js":
+/*!******************************!*\
+  !*** ./utils/linked_list.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LinkedList; });
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null
+  }
+}
+class LinkedList {
+  constructor() {
+    this.head   = null;
+    this.length = 0;
+  }
+
+  add(data) {
+    const nodeToAdd = new Node(data);
+    let nodeToCheck = this.head;
+    if(!nodeToCheck) {
+      this.head = nodeToAdd;
+      this.length++;
+      return nodeToAdd;
+    }
+    while(nodeToCheck.next) {
+      nodeToCheck = nodeToCheck.next;
+    }
+    nodeToCheck.next = nodeToAdd;
+    this.length++;
+    return nodeToAdd;
+  }
+  get(num) {
+    let nodeToCheck = this.head;
+    let count = 0;
+
+    if(num > this.length) return "Doesn't Exist!"
+
+    while(count < num) {
+      nodeToCheck = nodeToCheck.next;
+      count++;
+    }
+
+    return nodeToCheck;
+  }
+// remove(num) {
+//     let nodeToCheck = this.head,
+//         count       = 0,
+//         prevNode    = null,
+//
+//     if(num > length) return "Doesn't Exist!"
+//
+//     if(num === 0) {
+//       this.head = nodeToCheck.next;
+//       this.length--;
+//
+//       return this.head;
+//     }
+//
+//     while(count < num) {
+//       prevNode = nodeToCheck;
+//       nodeToCheck = nodeToCheck.next;
+//       count++;
+//     }
+//
+//     prevNode.next = nodeToCheck.next;
+//     nodeToCheck = null;
+//     this.length--;
+//
+//     return this.head;
+//   }
+}
+
 
 /***/ }),
 
