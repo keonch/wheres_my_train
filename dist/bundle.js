@@ -73891,12 +73891,11 @@ var _assets_train_colors_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE
 
 class App {
   constructor(map) {
-    // TODO
-    // this.map = map;
+    this.map = map;
     this.trains = {};
-    // this.polylines = {};
+    this.polylines = {};
 
-    // this.setupPolylines();
+    this.setupPolylines();
 
     this.updateTrain = this.updateTrain.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -73941,16 +73940,14 @@ class App {
     const route = _data_static_routes_json__WEBPACK_IMPORTED_MODULE_1__[line];
     const train = new _src_train__WEBPACK_IMPORTED_MODULE_0__["default"](trainId, line, direction, route, feed);
 
-    // TODO
-    // train.marker.addTo(this.map);
-    //
-    // if (!this.trains[line]) setupToggle(line, this.toggle);
+    train.marker.addTo(this.map);
+    if (!this.trains[line]) Object(_setup__WEBPACK_IMPORTED_MODULE_3__["setupToggle"])(line, this.toggle);
 
     this.trains[line] = Object.assign({},
       this.trains[line],
       { [trainId]: train }
     );
-    // train.marker.addEventListener('end', () => this.updateTrain(train));
+    train.marker.addEventListener('end', () => this.updateTrain(train));
     // train.marker.start();
   }
 
@@ -74036,13 +74033,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // TODO
-  // setupTime();
-  // const map = initMap();
-  // const app = new App(map);
-  // setupControls(app);
-  // getData(app);
-  const app = new _app__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupTime"])();
+  const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
+  const app = new _app__WEBPACK_IMPORTED_MODULE_3__["default"](map);
+  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupControls"])(app);
   Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["getData"])(app);
 });
 
@@ -74118,8 +74112,7 @@ function getData(app) {
 function requestMta(app, req) {
   request__WEBPACK_IMPORTED_MODULE_0___default()(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      // TODO
-      // updateTime();
+      Object(_setup__WEBPACK_IMPORTED_MODULE_4__["updateTime"])();
       const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2___default.a.transit_realtime.FeedMessage.decode(body);
       app.setupFeed(Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_3__["parseFeed"])(feed));
     } else {
@@ -74237,7 +74230,7 @@ function setupToggle(line, toggle) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
@@ -74263,13 +74256,6 @@ class Train {
     this.route = this.setRoute(route, feed.feedRoute);
     this.status = this.setStatus();
     this.marker = this.makeMarker();
-    console.log(this.marker);
-
-    // TODO
-    // this.staticRouteIndex = 0;
-    // this.feedRouteIndex = 0;
-    // this.durationSum = 0;
-    //
   }
 
   setRoute(route, feed) {
@@ -74331,7 +74317,24 @@ class Train {
   }
 
   getActiveParams() {
-    
+    const activeParams = {};
+
+    let node = this.route.head;
+    while (node.next) {
+      if (node.next.data.time > this.updateTime) {
+        this.nextStop = node.next;
+        this.prevStop = node;
+        activeParams.path = [
+          Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop.data),
+          Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop.data)
+        ];
+        activeParams.duration = this.nextStop.data.time - this.updateTime;
+        break;
+      }
+      node = node.next;
+    }
+
+    return activeParams;
   }
 
 //   setStatus() {
@@ -74480,7 +74483,6 @@ class Train {
 //   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

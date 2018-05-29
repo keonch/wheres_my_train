@@ -19,13 +19,6 @@ export default class Train {
     this.route = this.setRoute(route, feed.feedRoute);
     this.status = this.setStatus();
     this.marker = this.makeMarker();
-    console.log(this.marker);
-
-    // TODO
-    // this.staticRouteIndex = 0;
-    // this.feedRouteIndex = 0;
-    // this.durationSum = 0;
-    //
   }
 
   setRoute(route, feed) {
@@ -87,7 +80,24 @@ export default class Train {
   }
 
   getActiveParams() {
-    
+    const activeParams = {};
+
+    let node = this.route.head;
+    while (node.next) {
+      if (node.next.data.time > this.updateTime) {
+        this.nextStop = node.next;
+        this.prevStop = node;
+        activeParams.path = [
+          getLatLng(this.prevStop.data),
+          getLatLng(this.nextStop.data)
+        ];
+        activeParams.duration = this.nextStop.data.time - this.updateTime;
+        break;
+      }
+      node = node.next;
+    }
+
+    return activeParams;
   }
 
 //   setStatus() {

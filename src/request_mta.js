@@ -18,8 +18,7 @@ export function getData(app) {
 function requestMta(app, req) {
   request(req, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      // TODO
-      // updateTime();
+      updateTime();
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
       app.setupFeed(parseFeed(feed));
     } else {
