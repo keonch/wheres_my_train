@@ -1,5 +1,5 @@
 import stations from '../data/stations.json';
-import LinkedList from './linked_list';
+import { DoublyLinkedList } from './linked_list';
 
 export function parseFeed(feed) {
   let trainFeeds = {};
@@ -42,14 +42,27 @@ function getStationLatLng(stationId) {
 }
 
 export function mergeRoutes(staticRoute, feedRoute) {
-  const routeLinkedList = createLinkedList(staticRoute);
-  const routeHash = {};
-  let node = routeLinkedList.head;
+  const linkedListRoute = createLinkedList(staticRoute);
+  const hshRoute = {};
+
+  let node = linkedListRoute.head;
   while (node) {
-    routeHash[node.data.id] = node.data;
+    hshRoute[node.data.id] = node;
     node = node.next;
   }
-  console.log(routeHash);
+
+  const offRoute = [];
+
+  feedRoute.forEach((station) => {
+    if (hshRoute[station.id]) {
+      hshRoute[station.id].data.time = station.time;
+      offRoute.forEach((offStation) => {
+
+      });
+    } else {
+      offRoute.push(station);
+    }
+  });
   // // create route from shallow dup of the staticRoute
   // let route = staticRoute.map(station => ({...station}));
   //
@@ -110,7 +123,7 @@ function getDistance(s1, s2) {
 }
 
 function createLinkedList(route) {
-  const linkedListRoute = new LinkedList();
+  const linkedListRoute = new DoublyLinkedList();
   route.forEach((station) => {
     linkedListRoute.add(station);
   })

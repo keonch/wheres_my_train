@@ -1,67 +1,85 @@
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null
-  }
+function Node(data) {
+  this.data = data;
+  this.previous = null;
+  this.next = null;
 }
-export default class LinkedList {
-  constructor() {
-    this.head   = null;
-    this.length = 0;
-  }
 
-  add(data) {
-    const nodeToAdd = new Node(data);
-    let nodeToCheck = this.head;
-    if(!nodeToCheck) {
-      this.head = nodeToAdd;
-      this.length++;
-      return nodeToAdd;
-    }
-    while(nodeToCheck.next) {
-      nodeToCheck = nodeToCheck.next;
-    }
-    nodeToCheck.next = nodeToAdd;
-    this.length++;
-    return nodeToAdd;
-  }
-  get(num) {
-    let nodeToCheck = this.head;
-    let count = 0;
-
-    if(num > this.length) return "Doesn't Exist!"
-
-    while(count < num) {
-      nodeToCheck = nodeToCheck.next;
-      count++;
-    }
-
-    return nodeToCheck;
-  }
-// remove(num) {
-//     let nodeToCheck = this.head,
-//         count       = 0,
-//         prevNode    = null,
-//
-//     if(num > length) return "Doesn't Exist!"
-//
-//     if(num === 0) {
-//       this.head = nodeToCheck.next;
-//       this.length--;
-//
-//       return this.head;
-//     }
-//
-//     while(count < num) {
-//       prevNode = nodeToCheck;
-//       nodeToCheck = nodeToCheck.next;
-//       count++;
-//     }
-//
-//     prevNode.next = nodeToCheck.next;
-//     nodeToCheck = null;
-//     this.length--;
-//
-//     return this.head;
-//   }
+export function DoublyLinkedList() {
+  this.head = null;
+  this.tail = null;
+  this.numberOfValues = 0;
 }
+
+DoublyLinkedList.prototype.add = function (data) {
+  var node = new Node(data);
+  if(!this.head) {
+    this.head = node;
+    this.tail = node;
+  } else {
+    node.previous = this.tail;
+    this.tail.next = node;
+    this.tail = node;
+  }
+  this.numberOfValues++;
+};
+DoublyLinkedList.prototype.remove = function(data) {
+  var current = this.head;
+  while(current) {
+    if(current.data === data) {
+      if(current === this.head && current === this.tail) {
+        this.head = null;
+        this.tail = null;
+      } else if(current === this.head) {
+        this.head = this.head.next;
+        this.head.previous = null;
+      } else if(current === this.tail) {
+        this.tail = this.tail.previous;
+        this.tail.next = null;
+      } else {
+        current.previous.next = current.next;
+        current.next.previous = current.previous;
+      }
+      this.numberOfValues--;
+    }
+    current = current.next;
+  }
+};
+DoublyLinkedList.prototype.insertAfter = function(data, toNodeData) {
+  var current = this.head;
+  while(current) {
+    if(current.data === toNodeData) {
+      var node = new Node(data);
+      if(current === this.tail) {
+        this.add(data);
+      } else {
+        current.next.previous = node;
+        node.previous = current;
+        node.next = current.next;
+        current.next = node;
+        this.numberOfValues++;
+      }
+    }
+    current = current.next;
+  }
+};
+DoublyLinkedList.prototype.traverse = function(fn) {
+  var current = this.head;
+  while(current) {
+    if(fn) {
+      fn(current);
+    }
+    current = current.next;
+  }
+};
+DoublyLinkedList.prototype.traverseReverse = function(fn) {
+  var current = this.tail;
+  while(current) {
+    if(fn) {
+      fn(current);
+    }
+    current = current.previous;
+  }
+};
+DoublyLinkedList.prototype.length = function() {
+  return this.numberOfValues;
+};

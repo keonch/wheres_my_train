@@ -74447,7 +74447,7 @@ class Train {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeedRoute", function() { return parseFeedRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeRoutes", function() { return mergeRoutes; });
 /* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
@@ -74497,14 +74497,27 @@ function getStationLatLng(stationId) {
 }
 
 function mergeRoutes(staticRoute, feedRoute) {
-  const routeLinkedList = createLinkedList(staticRoute);
-  const routeHash = {};
-  let node = routeLinkedList.head;
+  const linkedListRoute = createLinkedList(staticRoute);
+  const hshRoute = {};
+
+  let node = linkedListRoute.head;
   while (node) {
-    routeHash[node.data.id] = node.data;
+    hshRoute[node.data.id] = node;
     node = node.next;
   }
-  console.log(routeHash);
+
+  const offRoute = [];
+
+  feedRoute.forEach((station) => {
+    if (hshRoute[station.id]) {
+      hshRoute[station.id].data.time = station.time;
+      offRoute.forEach((offStation) => {
+
+      });
+    } else {
+      offRoute.push(station);
+    }
+  });
   // // create route from shallow dup of the staticRoute
   // let route = staticRoute.map(station => ({...station}));
   //
@@ -74565,14 +74578,13 @@ function getDistance(s1, s2) {
 }
 
 function createLinkedList(route) {
-  const linkedListRoute = new _linked_list__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  const linkedListRoute = new _linked_list__WEBPACK_IMPORTED_MODULE_1__["DoublyLinkedList"]();
   route.forEach((station) => {
     linkedListRoute.add(station);
   })
   return linkedListRoute;
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -74580,79 +74592,97 @@ function createLinkedList(route) {
 /*!******************************!*\
   !*** ./utils/linked_list.js ***!
   \******************************/
-/*! exports provided: default */
+/*! exports provided: DoublyLinkedList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LinkedList; });
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null
-  }
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DoublyLinkedList", function() { return DoublyLinkedList; });
+function Node(data) {
+  this.data = data;
+  this.previous = null;
+  this.next = null;
 }
-class LinkedList {
-  constructor() {
-    this.head   = null;
-    this.length = 0;
-  }
 
-  add(data) {
-    const nodeToAdd = new Node(data);
-    let nodeToCheck = this.head;
-    if(!nodeToCheck) {
-      this.head = nodeToAdd;
-      this.length++;
-      return nodeToAdd;
-    }
-    while(nodeToCheck.next) {
-      nodeToCheck = nodeToCheck.next;
-    }
-    nodeToCheck.next = nodeToAdd;
-    this.length++;
-    return nodeToAdd;
-  }
-  get(num) {
-    let nodeToCheck = this.head;
-    let count = 0;
-
-    if(num > this.length) return "Doesn't Exist!"
-
-    while(count < num) {
-      nodeToCheck = nodeToCheck.next;
-      count++;
-    }
-
-    return nodeToCheck;
-  }
-// remove(num) {
-//     let nodeToCheck = this.head,
-//         count       = 0,
-//         prevNode    = null,
-//
-//     if(num > length) return "Doesn't Exist!"
-//
-//     if(num === 0) {
-//       this.head = nodeToCheck.next;
-//       this.length--;
-//
-//       return this.head;
-//     }
-//
-//     while(count < num) {
-//       prevNode = nodeToCheck;
-//       nodeToCheck = nodeToCheck.next;
-//       count++;
-//     }
-//
-//     prevNode.next = nodeToCheck.next;
-//     nodeToCheck = null;
-//     this.length--;
-//
-//     return this.head;
-//   }
+function DoublyLinkedList() {
+  this.head = null;
+  this.tail = null;
+  this.numberOfValues = 0;
 }
+
+DoublyLinkedList.prototype.add = function (data) {
+  var node = new Node(data);
+  if(!this.head) {
+    this.head = node;
+    this.tail = node;
+  } else {
+    node.previous = this.tail;
+    this.tail.next = node;
+    this.tail = node;
+  }
+  this.numberOfValues++;
+};
+DoublyLinkedList.prototype.remove = function(data) {
+  var current = this.head;
+  while(current) {
+    if(current.data === data) {
+      if(current === this.head && current === this.tail) {
+        this.head = null;
+        this.tail = null;
+      } else if(current === this.head) {
+        this.head = this.head.next;
+        this.head.previous = null;
+      } else if(current === this.tail) {
+        this.tail = this.tail.previous;
+        this.tail.next = null;
+      } else {
+        current.previous.next = current.next;
+        current.next.previous = current.previous;
+      }
+      this.numberOfValues--;
+    }
+    current = current.next;
+  }
+};
+DoublyLinkedList.prototype.insertAfter = function(data, toNodeData) {
+  var current = this.head;
+  while(current) {
+    if(current.data === toNodeData) {
+      var node = new Node(data);
+      if(current === this.tail) {
+        this.add(data);
+      } else {
+        current.next.previous = node;
+        node.previous = current;
+        node.next = current.next;
+        current.next = node;
+        this.numberOfValues++;
+      }
+    }
+    current = current.next;
+  }
+};
+DoublyLinkedList.prototype.traverse = function(fn) {
+  var current = this.head;
+  while(current) {
+    if(fn) {
+      fn(current);
+    }
+    current = current.next;
+  }
+};
+DoublyLinkedList.prototype.traverseReverse = function(fn) {
+  var current = this.tail;
+  while(current) {
+    if(fn) {
+      fn(current);
+    }
+    current = current.previous;
+  }
+};
+DoublyLinkedList.prototype.length = function() {
+  return this.numberOfValues;
+};
 
 
 /***/ }),
