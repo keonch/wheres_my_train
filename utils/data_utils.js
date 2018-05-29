@@ -51,18 +51,41 @@ export function mergeRoutes(staticRoute, feedRoute) {
     node = node.next;
   }
 
-  const offRoute = [];
+  const test1 = [];
+  node = linkedListRoute.head;
+  while(node) {
+    test1.push(node.data);
+    node = node.next;
+  }
+  console.log(feedRoute);
+  console.log(test1);
+
+  let offRoute = [];
 
   feedRoute.forEach((station) => {
     if (hshRoute[station.id]) {
       hshRoute[station.id].data.time = station.time;
-      offRoute.forEach((offStation) => {
 
-      });
+      const prevStation = hshRoute[station.id].previous;
+      if (prevStation) {
+        for (var i = offRoute.length - 1; i === 0; i--) {
+          linkedListRoute.insertAfter(offRoute[i], prevStation.data);
+        }
+        offRoute = [];
+      }
+
     } else {
       offRoute.push(station);
     }
   });
+
+  const test2 = [];
+  node = linkedListRoute.head;
+  while(node) {
+    test2.push(node.data);
+    node = node.next;
+  }
+  console.log(test2);
   // // create route from shallow dup of the staticRoute
   // let route = staticRoute.map(station => ({...station}));
   //
@@ -125,7 +148,11 @@ function getDistance(s1, s2) {
 function createLinkedList(route) {
   const linkedListRoute = new DoublyLinkedList();
   route.forEach((station) => {
-    linkedListRoute.add(station);
+    linkedListRoute.add({
+      id: station.id,
+      lat: station.lat,
+      lng: station.lng
+    });
   })
   return linkedListRoute;
 }
