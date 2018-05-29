@@ -44,28 +44,21 @@ function getStationLatLng(stationId) {
 export function mergeRoutes(staticRoute, feedRoute) {
   const linkedListRoute = createLinkedList(staticRoute);
   const hshRoute = {};
+  let offRoute = [];
 
+  // create a hash from linked list route
   let node = linkedListRoute.head;
   while (node) {
     hshRoute[node.data.id] = node;
     node = node.next;
   }
 
-  const test1 = [];
-  node = linkedListRoute.head;
-  while(node) {
-    test1.push(node.data);
-    node = node.next;
-  }
-  console.log(feedRoute);
-  console.log(test1);
-
-  let offRoute = [];
-
   feedRoute.forEach((station) => {
+    // if station from feed exists within static route, update time data
     if (hshRoute[station.id]) {
       hshRoute[station.id].data.time = station.time;
 
+      // add offRoute stations before this station (only adds after first stop on staticRoute)
       const prevStation = hshRoute[station.id].previous;
       if (prevStation) {
         for (var i = offRoute.length - 1; i === 0; i--) {
@@ -74,66 +67,13 @@ export function mergeRoutes(staticRoute, feedRoute) {
         offRoute = [];
       }
 
+      // if station does not exist, add it onto offRoute queue to add onto later
     } else {
       offRoute.push(station);
     }
   });
 
-  const test2 = [];
-  node = linkedListRoute.head;
-  while(node) {
-    test2.push(node.data);
-    node = node.next;
-  }
-  console.log(test2);
-  // // create route from shallow dup of the staticRoute
-  // let route = staticRoute.map(station => ({...station}));
-  //
-  // // create hash map of stations to keep track of stations in route
-  // const stations = {};
-  // staticRoute.forEach((station, idx) => {
-  //   stations[station.id] = idx;
-  // });
-  //
-  // const offRoute = [];
-  //
-  // let prevCheckedIndex = null;
-  // let insertionCounter = 0;
-  //
-  // feedRoute.forEach((station) => {
-  //   if (stations[station.id]) {
-  //     route[stations[station.id]].time = station.time;
-  //     prevCheckedIndex = stations[station.id] + insertionCounter;
-  //
-  //   } else {
-  //     offRoute.push(station);
-  //
-  //     // // if the last stop on the static route has been matched,
-  //     // // any feed stations preceding it is pushed onto the route array
-  //     // if (prevCheckedIndex === route.length) {
-  //     //   route.push(station);
-  //     //   prevCheckedIndex++;
-  //     //   insertionCounter++;
-  //     //
-  //     // } else if (prevCheckedIndex === null) {
-  //     //
-  //     // } else {
-  //     //   for (let i = prevCheckedIndex; i < route.length - 1; i++) {
-  //     //     const prevStation = route[i];
-  //     //     const nextStation = route[i + 1];
-  //     //     const dPrevNext = getDistance(prevStation, nextStation);
-  //     //     const dPrevCurrent = getDistance(prevStation, station);
-  //     //     const dNextCurrent = getDistance(nextStation, station);
-  //     //     // if (dPrevCurrent < dPrevNext && dNextCurrent < dPrevNext) {
-  //     //     //   route.splice(prevCheckedIndex, 0, station);
-  //     //     //   prevCheckedIndex = i + 1;
-  //     //     //   insertionCounter++;
-  //     //     //   i++
-  //     //     // }
-  //     //   }
-  //     // }
-  //   }
-  // });
+  return linkedListRoute;
 }
 
 function getDistance(s1, s2) {

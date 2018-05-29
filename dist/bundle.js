@@ -74237,7 +74237,7 @@ function setupToggle(line, toggle) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
@@ -74260,181 +74260,189 @@ class Train {
     this.direction = direction;
     this.originTime = id.split(".")[0].split("_")[0];
     this.updateTime = new Date();
-
-    this.setStaticRoute(route);
-    this.feedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeedRoute"])(feed.feedRoute);
-
-    this.setRoute();
-
+    this.route = this.setRoute(route, feed.feedRoute);
+    this.status = this.setStatus();
+    console.log(this.status);
     // TODO
     // this.staticRouteIndex = 0;
     // this.feedRouteIndex = 0;
     // this.durationSum = 0;
     //
-    // this.setStatus();
     // this.makeMarker();
   }
 
-  setRoute() {
-    this.route = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["mergeRoutes"])(this.staticRoute, this.feedRoute);
+  setRoute(route, feed) {
+    const staticRoute = this.setStaticRoute(route);
+    const feedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeedRoute"])(feed);
+    return Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["mergeRoutes"])(staticRoute, feedRoute);
   }
 
   setStaticRoute(route) {
     if (this.direction === 'S') {
-      this.staticRoute = route;
-
+      return route;
     } else {
       const r = Array.from(route);
-      this.staticRoute = r.reverse();
+      return r.reverse();
     }
   }
 
   setStatus() {
-    if (this.staticRoute[0].id === this.feedRoute[0].id && this.feedRoute[0].time >= this.updateTime) {
-      this.status = 'standby';
-
-    } else if (this.feedRoute[this.feedRoute.length - 1].time <= this.updateTime) {
-      this.status = 'idle';
-
+    if (this.route.head.data.time > this.updateTime) {
+      return 'standby';
+    } else if (this.route.tail.time < this.updateTime) {
+      return 'idle';
     } else {
-      this.status = 'active';
+      return 'active';
     }
   }
 
-  makeMarker() {
-    let params = {};
-
-    switch (this.status) {
-      case 'active':
-      params = this.getActiveParams(params);
-      break;
-
-      case 'standby':
-      params.path = [
-        Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[0]),
-        Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.staticRoute[0])
-      ];
-      params.duration = 0;
-      break;
-
-      case 'idle':
-      params.path = [
-        Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[this.feedRoute.length - 1]),
-        Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[this.feedRoute.length - 1])
-      ];
-      params.duration = 0;
-      break;
-    }
-
-    this.marker = new L.Marker.movingMarker(params.path, params.duration);
-    const trainIcon = L.icon({
-      iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
-      iconSize: [25, 25],
-      iconAnchor: [12, 12]
-    });
-    this.marker.setIcon(trainIcon);
-    this.marker.setOpacity(.3);
-  }
-
-  getActiveParams(params) {
-    if (this.feedRoute[0].time >= this.updateTime) {
-      // FIRST FEED ROUTE STATION IS NOT FIRST STATIC ROUTE STATION
-      this.status = 'need initialize';
-      params.path = [Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[0]), Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[0])];
-      params.duration = [0];
-      return params;
-    }
-
-    for (let i = 1; i < this.feedRoute.length; i++) {
-      if (this.feedRoute[i].time > this.updateTime) {
-        const nextStop = this.feedRoute[i];
-        const prevStop = this.feedRoute[i-1];
-        const path = [Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(prevStop), Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(nextStop)];
-        const durations = [];
-        const nonMatchingStations = [];
-        let startSplice = false;
-
-        for (let j = 0; j < this.staticRoute.length; j++) {
-          const staticStation = this.staticRoute[j];
-          if (staticStation.id === prevStop.id) {
-            startSplice = true;
-
-          } else if (startSplice && staticStation.id === nextStop.id) {
-            this.feedRouteIndex = i;
-            this.staticRouteIndex = j;
-            this.durationSum += nextStop.time - this.updateTime;
-            const subduration = this.durationSum / (nonMatchingStations.length + 1);
-            durations.push(subduration);
-
-            nonMatchingStations.forEach((station) => {
-              path.splice(-1, 0, Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(station));
-              durations.push(subduration);
-            });
-            return { path: path, duration: durations };
-
-          } else if (startSplice) {
-            nonMatchingStations.push(staticStation);
-          }
-        }
-
-        this.status = 'offroute';
-        if (startSplice) {
-          // next stop is not found in static route
-        } else {
-          // previous stop is not found in static route
-        }
-        return { path: path, duration: [0] };
-      }
-    }
-  }
-
-  setNextPath() {
-    if (this.feedRouteIndex === this.feedRoute.length - 1) {
-      this.status = 'idle';
-      const latLng = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[this.feedRouteIndex]);
-      this.marker.addLatLng(latLng, 0);
-      return;
-
-    } else if (
-      this.staticRouteIndex === this.staticRoute.length - 1 &&
-      this.feedRouteIndex !== this.feedRoute.length - 1
-    ) {
-      this.status = 'offroute';
-      const latLng = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.feedRoute[this.feedRouteIndex]);
-      this.marker.addLatLng(latLng, 0);
-      return;
-    }
-
-    const nextStop = this.feedRoute[this.feedRouteIndex + 1];
-    const unmatchedStaticStations = [];
-
-    for (let i = this.staticRouteIndex + 1; i < this.staticRoute.length; i++) {
-
-      if (this.staticRoute[i].id === nextStop.id) {
-        const duration = nextStop.time - this.updateTime - this.durationSum;
-        const subduration = duration / (unmatchedStaticStations.length + 1);
-        this.durationSum += duration;
-        this.staticRouteIndex = i;
-        this.feedRouteIndex += 1;
-        unmatchedStaticStations.forEach((staticStation) => {
-          this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(staticStation), subduration);
-        })
-        this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(nextStop), subduration);
-        return;
-
-      } else {
-        unmatchedStaticStations.push(this.staticRoute[i]);
-      }
-    }
-
-    // next station in feedRoute is not found in staticRoute and needs rerouting
-    // placeholder for trains with off routes
-    this.status = 'offroute';
-    this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(nextStop), 0);
-    return;
-  }
+//   setStatus() {
+//     if (this.staticRoute[0].id === this.feedRoute[0].id && this.feedRoute[0].time >= this.updateTime) {
+//       this.status = 'standby';
+//
+//     } else if (this.feedRoute[this.feedRoute.length - 1].time <= this.updateTime) {
+//       this.status = 'idle';
+//
+//     } else {
+//       this.status = 'active';
+//     }
+//   }
+//
+//   makeMarker() {
+//     let params = {};
+//
+//     switch (this.status) {
+//       case 'active':
+//       params = this.getActiveParams(params);
+//       break;
+//
+//       case 'standby':
+//       params.path = [
+//         getLatLng(this.staticRoute[0]),
+//         getLatLng(this.staticRoute[0])
+//       ];
+//       params.duration = 0;
+//       break;
+//
+//       case 'idle':
+//       params.path = [
+//         getLatLng(this.feedRoute[this.feedRoute.length - 1]),
+//         getLatLng(this.feedRoute[this.feedRoute.length - 1])
+//       ];
+//       params.duration = 0;
+//       break;
+//     }
+//
+//     this.marker = new L.Marker.movingMarker(params.path, params.duration);
+//     const trainIcon = L.icon({
+//       iconUrl: trainIcons[this.line],
+//       iconSize: [25, 25],
+//       iconAnchor: [12, 12]
+//     });
+//     this.marker.setIcon(trainIcon);
+//     this.marker.setOpacity(.3);
+//   }
+//
+//   getActiveParams(params) {
+//     if (this.feedRoute[0].time >= this.updateTime) {
+//       // FIRST FEED ROUTE STATION IS NOT FIRST STATIC ROUTE STATION
+//       this.status = 'need initialize';
+//       params.path = [getLatLng(this.feedRoute[0]), getLatLng(this.feedRoute[0])];
+//       params.duration = [0];
+//       return params;
+//     }
+//
+//     for (let i = 1; i < this.feedRoute.length; i++) {
+//       if (this.feedRoute[i].time > this.updateTime) {
+//         const nextStop = this.feedRoute[i];
+//         const prevStop = this.feedRoute[i-1];
+//         const path = [getLatLng(prevStop), getLatLng(nextStop)];
+//         const durations = [];
+//         const nonMatchingStations = [];
+//         let startSplice = false;
+//
+//         for (let j = 0; j < this.staticRoute.length; j++) {
+//           const staticStation = this.staticRoute[j];
+//           if (staticStation.id === prevStop.id) {
+//             startSplice = true;
+//
+//           } else if (startSplice && staticStation.id === nextStop.id) {
+//             this.feedRouteIndex = i;
+//             this.staticRouteIndex = j;
+//             this.durationSum += nextStop.time - this.updateTime;
+//             const subduration = this.durationSum / (nonMatchingStations.length + 1);
+//             durations.push(subduration);
+//
+//             nonMatchingStations.forEach((station) => {
+//               path.splice(-1, 0, getLatLng(station));
+//               durations.push(subduration);
+//             });
+//             return { path: path, duration: durations };
+//
+//           } else if (startSplice) {
+//             nonMatchingStations.push(staticStation);
+//           }
+//         }
+//
+//         this.status = 'offroute';
+//         if (startSplice) {
+//           // next stop is not found in static route
+//         } else {
+//           // previous stop is not found in static route
+//         }
+//         return { path: path, duration: [0] };
+//       }
+//     }
+//   }
+//
+//   setNextPath() {
+//     if (this.feedRouteIndex === this.feedRoute.length - 1) {
+//       this.status = 'idle';
+//       const latLng = getLatLng(this.feedRoute[this.feedRouteIndex]);
+//       this.marker.addLatLng(latLng, 0);
+//       return;
+//
+//     } else if (
+//       this.staticRouteIndex === this.staticRoute.length - 1 &&
+//       this.feedRouteIndex !== this.feedRoute.length - 1
+//     ) {
+//       this.status = 'offroute';
+//       const latLng = getLatLng(this.feedRoute[this.feedRouteIndex]);
+//       this.marker.addLatLng(latLng, 0);
+//       return;
+//     }
+//
+//     const nextStop = this.feedRoute[this.feedRouteIndex + 1];
+//     const unmatchedStaticStations = [];
+//
+//     for (let i = this.staticRouteIndex + 1; i < this.staticRoute.length; i++) {
+//
+//       if (this.staticRoute[i].id === nextStop.id) {
+//         const duration = nextStop.time - this.updateTime - this.durationSum;
+//         const subduration = duration / (unmatchedStaticStations.length + 1);
+//         this.durationSum += duration;
+//         this.staticRouteIndex = i;
+//         this.feedRouteIndex += 1;
+//         unmatchedStaticStations.forEach((staticStation) => {
+//           this.marker.addLatLng(getLatLng(staticStation), subduration);
+//         })
+//         this.marker.addLatLng(getLatLng(nextStop), subduration);
+//         return;
+//
+//       } else {
+//         unmatchedStaticStations.push(this.staticRoute[i]);
+//       }
+//     }
+//
+//     // next station in feedRoute is not found in staticRoute and needs rerouting
+//     // placeholder for trains with off routes
+//     this.status = 'offroute';
+//     this.marker.addLatLng(getLatLng(nextStop), 0);
+//     return;
+//   }
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -74447,7 +74455,7 @@ class Train {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeedRoute", function() { return parseFeedRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeRoutes", function() { return mergeRoutes; });
 /* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
@@ -74499,28 +74507,21 @@ function getStationLatLng(stationId) {
 function mergeRoutes(staticRoute, feedRoute) {
   const linkedListRoute = createLinkedList(staticRoute);
   const hshRoute = {};
+  let offRoute = [];
 
+  // create a hash from linked list route
   let node = linkedListRoute.head;
   while (node) {
     hshRoute[node.data.id] = node;
     node = node.next;
   }
 
-  const test1 = [];
-  node = linkedListRoute.head;
-  while(node) {
-    test1.push(node.data);
-    node = node.next;
-  }
-  console.log(feedRoute);
-  console.log(test1);
-
-  let offRoute = [];
-
   feedRoute.forEach((station) => {
+    // if station from feed exists within static route, update time data
     if (hshRoute[station.id]) {
       hshRoute[station.id].data.time = station.time;
 
+      // add offRoute stations before this station (only adds after first stop on staticRoute)
       const prevStation = hshRoute[station.id].previous;
       if (prevStation) {
         for (var i = offRoute.length - 1; i === 0; i--) {
@@ -74529,66 +74530,13 @@ function mergeRoutes(staticRoute, feedRoute) {
         offRoute = [];
       }
 
+      // if station does not exist, add it onto offRoute queue to add onto later
     } else {
       offRoute.push(station);
     }
   });
 
-  const test2 = [];
-  node = linkedListRoute.head;
-  while(node) {
-    test2.push(node.data);
-    node = node.next;
-  }
-  console.log(test2);
-  // // create route from shallow dup of the staticRoute
-  // let route = staticRoute.map(station => ({...station}));
-  //
-  // // create hash map of stations to keep track of stations in route
-  // const stations = {};
-  // staticRoute.forEach((station, idx) => {
-  //   stations[station.id] = idx;
-  // });
-  //
-  // const offRoute = [];
-  //
-  // let prevCheckedIndex = null;
-  // let insertionCounter = 0;
-  //
-  // feedRoute.forEach((station) => {
-  //   if (stations[station.id]) {
-  //     route[stations[station.id]].time = station.time;
-  //     prevCheckedIndex = stations[station.id] + insertionCounter;
-  //
-  //   } else {
-  //     offRoute.push(station);
-  //
-  //     // // if the last stop on the static route has been matched,
-  //     // // any feed stations preceding it is pushed onto the route array
-  //     // if (prevCheckedIndex === route.length) {
-  //     //   route.push(station);
-  //     //   prevCheckedIndex++;
-  //     //   insertionCounter++;
-  //     //
-  //     // } else if (prevCheckedIndex === null) {
-  //     //
-  //     // } else {
-  //     //   for (let i = prevCheckedIndex; i < route.length - 1; i++) {
-  //     //     const prevStation = route[i];
-  //     //     const nextStation = route[i + 1];
-  //     //     const dPrevNext = getDistance(prevStation, nextStation);
-  //     //     const dPrevCurrent = getDistance(prevStation, station);
-  //     //     const dNextCurrent = getDistance(nextStation, station);
-  //     //     // if (dPrevCurrent < dPrevNext && dNextCurrent < dPrevNext) {
-  //     //     //   route.splice(prevCheckedIndex, 0, station);
-  //     //     //   prevCheckedIndex = i + 1;
-  //     //     //   insertionCounter++;
-  //     //     //   i++
-  //     //     // }
-  //     //   }
-  //     // }
-  //   }
-  // });
+  return linkedListRoute;
 }
 
 function getDistance(s1, s2) {
@@ -74612,7 +74560,6 @@ function createLinkedList(route) {
   return linkedListRoute;
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
