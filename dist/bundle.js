@@ -74490,11 +74490,14 @@ function filterRoute(route, updateTime) {
     } else if (node.data.time && !queueNode) {
       removeNode = false;
       queueNode = true;
-      if (prevNode) {
+      node.data.time -= updateTime;
+      if (prevNode && node.data.time > 0) {
         route.head = prevNode;
         prevNode.next = node;
         node.previous = prevNode;
       }
+    } else {
+      node.data.time -= updateTime;
     }
     prevNode = node;
     node = node.next;
