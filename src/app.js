@@ -10,8 +10,7 @@ export default class App {
     this.polylines = {};
 
     this.setupPolylines();
-
-    this.updateTrain = this.updateTrain.bind(this);
+    
     this.toggle = this.toggle.bind(this);
   }
 
