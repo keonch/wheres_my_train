@@ -6,8 +6,7 @@
 
 import trainIcons from '../assets/train_icons.json';
 import { getLatLng } from '../utils/train_utils';
-import { parseFeedRoute } from '../utils/data_utils';
-import { mergeRoutes } from '../utils/data_utils';
+import { parseFeedRoute, mergeRoutes, filterRoute } from '../utils/data_utils';
 
 export default class Train {
   constructor(id, line, direction, route, feed) {
@@ -24,7 +23,8 @@ export default class Train {
   setRoute(route, feed) {
     const staticRoute = this.setStaticRoute(route);
     const feedRoute = parseFeedRoute(feed);
-    return mergeRoutes(staticRoute, feedRoute);
+    const mergedRoute = mergeRoutes(staticRoute, feedRoute);
+    return filterRoute(mergedRoute, this.updateTime);
   }
 
   setStaticRoute(route) {
@@ -48,26 +48,26 @@ export default class Train {
 
   createMarker() {
     let path;
+    let duration;
 
     switch (this.status) {
       case 'active':
-      path = this.setInitalPath();
-      this.duration = this.nextStop.data.time - this.updateTime;
-
+      path = this.getPath();
+      duration = this.nextStop.data.time - this.updateTime;
       break;
 
       case 'standby':
       path = [[this.route.head.data.lat, this.route.head.data.lng], [this.route.head.data.lat, this.route.head.data.lng]];
-      this.duration = 0;
+      duration = 0;
       break;
 
       case 'idle':
       path = [[this.route.tail.data.lat, this.route.tail.data.lng], [this.route.tail.data.lat, this.route.tail.data.lng]];
-      this.duration = 0;
+      duration = 0;
       break;
     }
 
-    const m = new L.Marker.movingMarker(path, this.duration);
+    const m = new L.Marker.movingMarker(path, duration);
     const trainIcon = L.icon({
       iconUrl: trainIcons[this.line],
       iconSize: [25, 25],
@@ -78,7 +78,7 @@ export default class Train {
     return m;
   }
 
-  setInitalPath() {
+  getPath() {
     let node = this.route.head;
     while (node.next) {
       if (node.next.data.time > this.updateTime) {
@@ -88,13 +88,14 @@ export default class Train {
       }
       node = node.next;
     }
+    return null;
   }
 
   setNextPath() {
     if (!this.nextStop.next) {
       this.status = 'idle';
       this.duration = 0;
-      this.marker.addLatLng(getLatLng(this.nextStop.data), this,duration);
+      this.marker.addLatLng(getLatLng(this.nextStop.data), this.duration);
       return;
     }
 
@@ -113,6 +114,6 @@ export default class Train {
         this.nextStop = this.nextStop.next;
       }
     }
-    
+    this.duration = this.nextStop.data.time - this.updateTime - this.duration;
   }
 }

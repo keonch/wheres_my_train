@@ -73947,7 +73947,7 @@ class App {
       this.trains[line],
       { [trainId]: train }
     );
-    train.marker.addEventListener('end', () => this.updateTrain(train));
+    // train.marker.addEventListener('end', () => this.updateTrain(train));
     train.marker.start();
   }
 
@@ -74243,7 +74243,6 @@ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE_
 
 
 
-
 class Train {
   constructor(id, line, direction, route, feed) {
     this.id = id;
@@ -74259,7 +74258,8 @@ class Train {
   setRoute(route, feed) {
     const staticRoute = this.setStaticRoute(route);
     const feedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeedRoute"])(feed);
-    return Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["mergeRoutes"])(staticRoute, feedRoute);
+    const mergedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["mergeRoutes"])(staticRoute, feedRoute);
+    return Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["filterRoute"])(mergedRoute, this.updateTime);
   }
 
   setStaticRoute(route) {
@@ -74283,26 +74283,26 @@ class Train {
 
   createMarker() {
     let path;
+    let duration;
 
     switch (this.status) {
       case 'active':
-      path = this.setInitalPath();
-      this.duration = this.nextStop.data.time - this.updateTime;
-
+      path = this.getPath();
+      duration = this.nextStop.data.time - this.updateTime;
       break;
 
       case 'standby':
       path = [[this.route.head.data.lat, this.route.head.data.lng], [this.route.head.data.lat, this.route.head.data.lng]];
-      this.duration = 0;
+      duration = 0;
       break;
 
       case 'idle':
       path = [[this.route.tail.data.lat, this.route.tail.data.lng], [this.route.tail.data.lat, this.route.tail.data.lng]];
-      this.duration = 0;
+      duration = 0;
       break;
     }
 
-    const m = new L.Marker.movingMarker(path, this.duration);
+    const m = new L.Marker.movingMarker(path, duration);
     const trainIcon = L.icon({
       iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
       iconSize: [25, 25],
@@ -74313,7 +74313,7 @@ class Train {
     return m;
   }
 
-  setInitalPath() {
+  getPath() {
     let node = this.route.head;
     while (node.next) {
       if (node.next.data.time > this.updateTime) {
@@ -74323,13 +74323,14 @@ class Train {
       }
       node = node.next;
     }
+    return null;
   }
 
   setNextPath() {
     if (!this.nextStop.next) {
       this.status = 'idle';
       this.duration = 0;
-      this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop.data), this,duration);
+      this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop.data), this.duration);
       return;
     }
 
@@ -74348,7 +74349,7 @@ class Train {
         this.nextStop = this.nextStop.next;
       }
     }
-    
+    this.duration = this.nextStop.data.time - this.updateTime - this.duration;
   }
 }
 
@@ -74359,14 +74360,15 @@ class Train {
 /*!*****************************!*\
   !*** ./utils/data_utils.js ***!
   \*****************************/
-/*! exports provided: parseFeed, parseFeedRoute, mergeRoutes */
+/*! exports provided: parseFeed, parseFeedRoute, mergeRoutes, filterRoute */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeedRoute", function() { return parseFeedRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeRoutes", function() { return mergeRoutes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterRoute", function() { return filterRoute; });
 /* harmony import */ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/stations.json */ "./data/stations.json");
 var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _linked_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./linked_list */ "./utils/linked_list.js");
@@ -74469,6 +74471,46 @@ function createLinkedList(route) {
   return linkedListRoute;
 }
 
+function filterRoute(route, updateTime) {
+  const aaa = [];
+  let qwe = route.head;
+  while (qwe.next) {
+    aaa.push(qwe.data);
+    qwe = qwe.next;
+  }
+  console.log(aaa);
+
+  let node = route.head;
+  let removeNode = true;
+  let queueNode = false;
+  let prevNode = null;
+  while (node) {
+    if (!node.data.time && removeNode) {
+      route.remove(node.data);
+    } else if (node.data.time && !queueNode) {
+      removeNode = false;
+      queueNode = true;
+      if (prevNode) {
+        route.head = prevNode;
+        prevNode.next = node;
+        node.previous = prevNode;
+      }
+    }
+    prevNode = node;
+    node = node.next;
+  }
+
+  const qqq = [];
+  let abc = route.head;
+  while(abc.next) {
+    qqq.push(abc.data);
+    abc = abc.next;
+  }
+  console.log(qqq);
+  return route;
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

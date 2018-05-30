@@ -96,3 +96,42 @@ function createLinkedList(route) {
   })
   return linkedListRoute;
 }
+
+export function filterRoute(route, updateTime) {
+  const aaa = [];
+  let qwe = route.head;
+  while (qwe.next) {
+    aaa.push(qwe.data);
+    qwe = qwe.next;
+  }
+  console.log(aaa);
+
+  let node = route.head;
+  let removeNode = true;
+  let queueNode = false;
+  let prevNode = null;
+  while (node) {
+    if (!node.data.time && removeNode) {
+      route.remove(node.data);
+    } else if (node.data.time && !queueNode) {
+      removeNode = false;
+      queueNode = true;
+      if (prevNode) {
+        route.head = prevNode;
+        prevNode.next = node;
+        node.previous = prevNode;
+      }
+    }
+    prevNode = node;
+    node = node.next;
+  }
+
+  const qqq = [];
+  let abc = route.head;
+  while(abc.next) {
+    qqq.push(abc.data);
+    abc = abc.next;
+  }
+  console.log(qqq);
+  return route;
+}
