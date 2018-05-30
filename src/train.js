@@ -14,7 +14,7 @@ export default class Train {
     this.line = line;
     this.direction = direction;
     this.originTime = id.split(".")[0].split("_")[0];
-    this.updateTime = new Date();
+    this.updateTime = (new Date()).getTime();
     this.route = this.setRoute(route, feed.feedRoute);
     this.status = this.setStatus();
     this.marker = this.createMarker();
@@ -24,6 +24,13 @@ export default class Train {
     const staticRoute = this.setStaticRoute(route);
     const feedRoute = parseFeedRoute(feed);
     const mergedRoute = mergeRoutes(staticRoute, feedRoute);
+
+    const qqq = [];
+    mergedRoute.traverse((node) => {
+      qqq.push(node.data);
+    })
+    console.log(qqq);
+
     return filterRoute(mergedRoute, this.updateTime);
   }
 

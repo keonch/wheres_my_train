@@ -74228,7 +74228,7 @@ function setupToggle(line, toggle) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
@@ -74249,7 +74249,7 @@ class Train {
     this.line = line;
     this.direction = direction;
     this.originTime = id.split(".")[0].split("_")[0];
-    this.updateTime = new Date();
+    this.updateTime = (new Date()).getTime();
     this.route = this.setRoute(route, feed.feedRoute);
     this.status = this.setStatus();
     this.marker = this.createMarker();
@@ -74259,6 +74259,13 @@ class Train {
     const staticRoute = this.setStaticRoute(route);
     const feedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeedRoute"])(feed);
     const mergedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["mergeRoutes"])(staticRoute, feedRoute);
+
+    const qqq = [];
+    mergedRoute.traverse((node) => {
+      qqq.push(node.data);
+    })
+    console.log(qqq);
+
     return Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["filterRoute"])(mergedRoute, this.updateTime);
   }
 
@@ -74353,6 +74360,7 @@ class Train {
   }
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
@@ -74417,7 +74425,7 @@ function getStationLatLng(stationId) {
 
 function mergeRoutes(staticRoute, feedRoute) {
   const linkedListRoute = createLinkedList(staticRoute);
-  const hshRoute = {};
+  const hshRoute = new Object();
   let offRoute = [];
 
   // create a hash from linked list route
@@ -74462,55 +74470,93 @@ function getDistance(s1, s2) {
 function createLinkedList(route) {
   const linkedListRoute = new _linked_list__WEBPACK_IMPORTED_MODULE_1__["DoublyLinkedList"]();
   route.forEach((station) => {
-    linkedListRoute.add({
-      id: station.id,
-      lat: station.lat,
-      lng: station.lng
-    });
+    const data = new Object();
+    data.id = station.id;
+    data.lat = station.lat;
+    data.lng = station.lng;
+    linkedListRoute.add(data);
   })
   return linkedListRoute;
 }
 
 function filterRoute(route, updateTime) {
-  const aaa = [];
-  let qwe = route.head;
-  while (qwe.next) {
-    aaa.push(qwe.data);
-    qwe = qwe.next;
-  }
-  console.log(aaa);
+  // sets station time of arrivals relative to the time of update
+  setDurations(route, updateTime);
 
-  let node = route.head;
-  let removeNode = true;
-  let queueNode = false;
-  let prevNode = null;
-  while (node) {
-    if (!node.data.time && removeNode) {
-      route.remove(node.data);
-    } else if (node.data.time && !queueNode) {
-      removeNode = false;
-      queueNode = true;
-      node.data.time -= updateTime;
-      if (prevNode && node.data.time > 0) {
-        route.head = prevNode;
-        prevNode.next = node;
-        node.previous = prevNode;
-      }
-    } else {
-      node.data.time -= updateTime;
-    }
-    prevNode = node;
-    node = node.next;
-  }
+  // let node = route.head;
+  // let startCount = false;
+  // let prevNode = null;
+  // let nonTimedStationsCount = 0;
+  // let totalDuration = 0;
+  // while (node) {
+  //   // non timed stations
+  //   if (!node.data.time) {
+  //     startCount ? nonTimedStationsCount++ : route.remove(node.data)
+  //
+  //   // timed stations
+  //   } else {
+  //     // first timed station
+  //     if (!startCount) {
+  //       startCount = true;
+  //       if (node.data.time > 0) {
+  //         totalDuration += node.data.time;
+  //       }
+  //
+  //       // if train is arriving to first timed station, set head of route to its previous station if it exists
+  //       if (prevNode && node.data.time > 0) {
+  //         route.head = prevNode;
+  //         prevNode.next = node;
+  //         node.previous = prevNode;
+  //       }
+  //
+  //     } else {
+  //       let duration;
+  //       if (nonTimedStationsCount > 0) {
+  //         duration = node.data.time / nonTimedStationsCount;
+  //       }
+  //       node.data.time -= (updateTime + totalDuration);
+  //       while (nonTimedStationsCount > 0) {
+  //
+  //       }
+  //       totalDuration += node.data.time;
+  //     }
+  //     // else if (nonTimedStationsCount > 0) {
+  //     //       let prevNode = node.previous;
+  //     //       while (nonTimedStationsCount > 0) {
+  //     //         prevNode.data.time = "TESTESTSETEST";
+  //     //         prevNode = prevNode.previous;
+  //     //         nonTimedStationsCount--;
+  //     //       }
+  //     //       nonTimedStationsCount = 0;
+  //     //
+  //     //     } else if (node.data.time && node.previous.data.time > 0) {
+  //     //       node.data.time -= totalDuration;
+  //     //     }
+  //     //   }
+  //     // }
+  //   }
+  //   prevNode = node;
+  //   node = node.next;
+  // }
 
   const qqq = [];
-  let abc = route.head;
-  while(abc.next) {
-    qqq.push(abc.data);
-    abc = abc.next;
-  }
+  route.traverse((node) => {
+    qqq.push(node.data);
+  })
   console.log(qqq);
   return route;
+}
+
+function setDurations(route, updateTime) {
+  let totalDuration = 0;
+  route.traverse((node) => {
+    if (node.data.time) {
+      node.data.time -= (updateTime + totalDuration);
+      if (node.data.time > 0) {
+        totalDuration += node.data.time;
+      }
+    }
+  })
 }
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
