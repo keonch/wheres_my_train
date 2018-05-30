@@ -61,32 +61,19 @@ export default class App {
       this.trains[line],
       { [trainId]: train }
     );
-    // train.marker.addEventListener('end', () => this.updateTrain(train));
-    train.marker.start();
-  }
 
-  updateTrain(train) {
     switch (train.status) {
       case 'active':
-        train.setNextPath();
-        train.marker.start();
-        break;
+      train.marker.start();
+      break;
 
       case 'standby':
-        const countdown = train.route.head.data.time - train.updateTime;
-        setTimeout(() => {
-          train.setNextPath();
-          train.marker.start();
-        }, countdown);
-        break;
+      setTimeout(() => {train.marker.start()}, train.route.head.data.time);
+      break;
 
       case 'idle':
-        setTimeout(() => this.deleteTrain(train), 60000);
-        break;
-
-      default:
-        train.marker.bindPopup('Rerouting');
-        break;
+      setTimeout(() => this.deleteTrain(train), 60000);
+      break;
     }
   }
 

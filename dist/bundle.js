@@ -73947,32 +73947,19 @@ class App {
       this.trains[line],
       { [trainId]: train }
     );
-    // train.marker.addEventListener('end', () => this.updateTrain(train));
-    train.marker.start();
-  }
 
-  updateTrain(train) {
     switch (train.status) {
       case 'active':
-        train.setNextPath();
-        train.marker.start();
-        break;
+      train.marker.start();
+      break;
 
       case 'standby':
-        const countdown = train.route.head.data.time - train.updateTime;
-        setTimeout(() => {
-          train.setNextPath();
-          train.marker.start();
-        }, countdown);
-        break;
+      setTimeout(() => {train.marker.start()}, train.route.head.data.time);
+      break;
 
       case 'idle':
-        setTimeout(() => this.deleteTrain(train), 60000);
-        break;
-
-      default:
-        train.marker.bindPopup('Rerouting');
-        break;
+      setTimeout(() => this.deleteTrain(train), 60000);
+      break;
     }
   }
 
@@ -74228,7 +74215,7 @@ function setupToggle(line, toggle) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
 /* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
@@ -74309,9 +74296,6 @@ class Train {
       duration = 0;
       break;
     }
-
-    console.log(path);
-    console.log(duration);
     const m = new L.Marker.movingMarker(path, duration);
     const trainIcon = L.icon({
       iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
@@ -74350,7 +74334,6 @@ class Train {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

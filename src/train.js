@@ -74,9 +74,6 @@ export default class Train {
       duration = 0;
       break;
     }
-
-    console.log(path);
-    console.log(duration);
     const m = new L.Marker.movingMarker(path, duration);
     const trainIcon = L.icon({
       iconUrl: trainIcons[this.line],
