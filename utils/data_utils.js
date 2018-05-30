@@ -98,64 +98,42 @@ function createLinkedList(route) {
 }
 
 export function filterRoute(route, updateTime) {
-  // sets station time of arrivals relative to the time of update
   setDurations(route, updateTime);
 
-  // let node = route.head;
-  // let startCount = false;
-  // let prevNode = null;
-  // let nonTimedStationsCount = 0;
-  // let totalDuration = 0;
-  // while (node) {
-  //   // non timed stations
-  //   if (!node.data.time) {
-  //     startCount ? nonTimedStationsCount++ : route.remove(node.data)
-  //
-  //   // timed stations
-  //   } else {
-  //     // first timed station
-  //     if (!startCount) {
-  //       startCount = true;
-  //       if (node.data.time > 0) {
-  //         totalDuration += node.data.time;
-  //       }
-  //
-  //       // if train is arriving to first timed station, set head of route to its previous station if it exists
-  //       if (prevNode && node.data.time > 0) {
-  //         route.head = prevNode;
-  //         prevNode.next = node;
-  //         node.previous = prevNode;
-  //       }
-  //
-  //     } else {
-  //       let duration;
-  //       if (nonTimedStationsCount > 0) {
-  //         duration = node.data.time / nonTimedStationsCount;
-  //       }
-  //       node.data.time -= (updateTime + totalDuration);
-  //       while (nonTimedStationsCount > 0) {
-  //
-  //       }
-  //       totalDuration += node.data.time;
-  //     }
-  //     // else if (nonTimedStationsCount > 0) {
-  //     //       let prevNode = node.previous;
-  //     //       while (nonTimedStationsCount > 0) {
-  //     //         prevNode.data.time = "TESTESTSETEST";
-  //     //         prevNode = prevNode.previous;
-  //     //         nonTimedStationsCount--;
-  //     //       }
-  //     //       nonTimedStationsCount = 0;
-  //     //
-  //     //     } else if (node.data.time && node.previous.data.time > 0) {
-  //     //       node.data.time -= totalDuration;
-  //     //     }
-  //     //   }
-  //     // }
-  //   }
-  //   prevNode = node;
-  //   node = node.next;
-  // }
+  let node = route.head;
+  let removeNode = true;
+  let nodesMissingTime = [];
+  let startingNode = null;
+
+  while (node) {
+    if (!node.data.time) {
+      if (removeNode) {
+        startingNode = node;
+        route.remove(node.data);
+      } else {
+        nodesMissingTime.push(node);
+      }
+    } else {
+      if (removeNode) {
+        removeNode = false;
+        if (node.data.time > 0) {
+          route.head = startingNode;
+          node.previous = startingNode;
+          startingNode.next = node;
+        }
+
+      } else if (nodesMissingTime.length > 0) {
+        const duration = node.data.time / (nodesMissingTime.length + 1);
+        node.data.time = duration;
+        nodesMissingTime.forEach((node) => {
+          node.data.time = duration;
+        })
+        nodesMissingTime = [];
+        console.log("here");
+      }
+    }
+    node = node.next;
+  }
 
   const qqq = [];
   route.traverse((node) => {
@@ -165,6 +143,7 @@ export function filterRoute(route, updateTime) {
   return route;
 }
 
+// Sets the time it takes for the train to arrive at the station from its previous timed stop
 function setDurations(route, updateTime) {
   let totalDuration = 0;
   route.traverse((node) => {
