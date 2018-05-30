@@ -74256,36 +74256,16 @@ class Train {
   }
 
   setRoute(route, feed) {
-    const staticRoute = this.setStaticRoute(route);
+    const staticRoute = (this.direction === 'S') ? route : Array.from(route).reverse();
     const feedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeedRoute"])(feed);
     const mergedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["mergeRoutes"])(staticRoute, feedRoute);
-    const abc = [];
-    mergedRoute.traverse((node) => {
-      abc.push(node.data);
-    })
-    console.log(abc);
     return Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["filterRoute"])(mergedRoute, this.updateTime);
   }
 
-  setStaticRoute(route) {
-    if (this.direction === 'S') {
-      return route;
-    } else {
-      const r = Array.from(route);
-      return r.reverse();
-    }
-  }
-
   setStatus() {
-    const firstStop = this.route.head.data;
-    const abc = [];
-    this.route.traverse((node) => {
-      abc.push(node.data);
-    })
-    console.log(abc);
-    if (firstStop.time > 0) {
+    if (this.route.head.data.time > 0) {
       return 'standby';
-    } else if (this.route.tail.data.time < this.updateTime) {
+    } else if (this.route.tail.data.time < 0) {
       return 'idle';
     } else {
       return 'active';
@@ -74293,26 +74273,45 @@ class Train {
   }
 
   createMarker() {
-    let path;
-    let duration;
+    let path = [];
+    let duration = [];
 
     switch (this.status) {
       case 'active':
-      path = this.getPath();
-      duration = this.nextStop.data.time - this.updateTime;
+      let startQueue = false;
+      this.route.traverse((node) => {
+        if (node.data.time > 0 && startQueue) {
+          path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(node.data));
+          duration.push(node.data.time);
+        } else if (node.data.time > 0 && !startQueue) {
+          startQueue = true;
+          path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(node.previous.data));
+          path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(node.data));
+          duration.push(node.data.time);
+        }
+      });
       break;
 
       case 'standby':
-      path = [[this.route.head.data.lat, this.route.head.data.lng], [this.route.head.data.lat, this.route.head.data.lng]];
-      duration = 0;
+      this.route.traverse((node) => {
+        if (node === this.route.head) {
+          path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(node.data));
+        } else {
+          path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(node.data));
+          duration.push(node.data.time);
+        }
+      });
       break;
 
       case 'idle':
-      path = [[this.route.tail.data.lat, this.route.tail.data.lng], [this.route.tail.data.lat, this.route.tail.data.lng]];
+      const lastStopPos = Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.route.tail.data);
+      path = [lastStopPos, lastStopPos];
       duration = 0;
       break;
     }
 
+    console.log(path);
+    console.log(duration);
     const m = new L.Marker.movingMarker(path, duration);
     const trainIcon = L.icon({
       iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
@@ -74322,19 +74321,6 @@ class Train {
     m.setIcon(trainIcon);
     m.setOpacity(.3);
     return m;
-  }
-
-  getPath() {
-    let node = this.route.head;
-    while (node.next) {
-      if (node.next.data.time > this.updateTime) {
-        this.nextStop = node.next;
-        this.prevStop = node;
-        return [Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop.data), Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop.data)];
-      }
-      node = node.next;
-    }
-    return null;
   }
 
   setNextPath() {
@@ -74377,7 +74363,7 @@ class Train {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeedRoute", function() { return parseFeedRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeRoutes", function() { return mergeRoutes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterRoute", function() { return filterRoute; });
@@ -74499,6 +74485,7 @@ function filterRoute(route, updateTime) {
       } else {
         nodesMissingTime.push(node);
       }
+
     } else {
       if (removeNode) {
         removeNode = false;
@@ -74519,7 +74506,8 @@ function filterRoute(route, updateTime) {
     }
     node = node.next;
   }
-  console.log(nodesMissingTime);
+
+  // removes stations without time after the last-timed station
   nodesMissingTime.forEach((node) => {
     route.remove(node.data);
   })
@@ -74539,7 +74527,6 @@ function setDurations(route, updateTime) {
   })
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

@@ -21,36 +21,16 @@ export default class Train {
   }
 
   setRoute(route, feed) {
-    const staticRoute = this.setStaticRoute(route);
+    const staticRoute = (this.direction === 'S') ? route : Array.from(route).reverse();
     const feedRoute = parseFeedRoute(feed);
     const mergedRoute = mergeRoutes(staticRoute, feedRoute);
-    const abc = [];
-    mergedRoute.traverse((node) => {
-      abc.push(node.data);
-    })
-    console.log(abc);
     return filterRoute(mergedRoute, this.updateTime);
   }
 
-  setStaticRoute(route) {
-    if (this.direction === 'S') {
-      return route;
-    } else {
-      const r = Array.from(route);
-      return r.reverse();
-    }
-  }
-
   setStatus() {
-    const firstStop = this.route.head.data;
-    const abc = [];
-    this.route.traverse((node) => {
-      abc.push(node.data);
-    })
-    console.log(abc);
-    if (firstStop.time > 0) {
+    if (this.route.head.data.time > 0) {
       return 'standby';
-    } else if (this.route.tail.data.time < this.updateTime) {
+    } else if (this.route.tail.data.time < 0) {
       return 'idle';
     } else {
       return 'active';
@@ -58,26 +38,45 @@ export default class Train {
   }
 
   createMarker() {
-    let path;
-    let duration;
+    let path = [];
+    let duration = [];
 
     switch (this.status) {
       case 'active':
-      path = this.getPath();
-      duration = this.nextStop.data.time - this.updateTime;
+      let startQueue = false;
+      this.route.traverse((node) => {
+        if (node.data.time > 0 && startQueue) {
+          path.push(getLatLng(node.data));
+          duration.push(node.data.time);
+        } else if (node.data.time > 0 && !startQueue) {
+          startQueue = true;
+          path.push(getLatLng(node.previous.data));
+          path.push(getLatLng(node.data));
+          duration.push(node.data.time);
+        }
+      });
       break;
 
       case 'standby':
-      path = [[this.route.head.data.lat, this.route.head.data.lng], [this.route.head.data.lat, this.route.head.data.lng]];
-      duration = 0;
+      this.route.traverse((node) => {
+        if (node === this.route.head) {
+          path.push(getLatLng(node.data));
+        } else {
+          path.push(getLatLng(node.data));
+          duration.push(node.data.time);
+        }
+      });
       break;
 
       case 'idle':
-      path = [[this.route.tail.data.lat, this.route.tail.data.lng], [this.route.tail.data.lat, this.route.tail.data.lng]];
+      const lastStopPos = getLatLng(this.route.tail.data);
+      path = [lastStopPos, lastStopPos];
       duration = 0;
       break;
     }
 
+    console.log(path);
+    console.log(duration);
     const m = new L.Marker.movingMarker(path, duration);
     const trainIcon = L.icon({
       iconUrl: trainIcons[this.line],
@@ -87,19 +86,6 @@ export default class Train {
     m.setIcon(trainIcon);
     m.setOpacity(.3);
     return m;
-  }
-
-  getPath() {
-    let node = this.route.head;
-    while (node.next) {
-      if (node.next.data.time > this.updateTime) {
-        this.nextStop = node.next;
-        this.prevStop = node;
-        return [getLatLng(this.prevStop.data), getLatLng(this.nextStop.data)];
-      }
-      node = node.next;
-    }
-    return null;
   }
 
   setNextPath() {

@@ -113,6 +113,7 @@ export function filterRoute(route, updateTime) {
       } else {
         nodesMissingTime.push(node);
       }
+
     } else {
       if (removeNode) {
         removeNode = false;
@@ -133,7 +134,8 @@ export function filterRoute(route, updateTime) {
     }
     node = node.next;
   }
-  console.log(nodesMissingTime);
+
+  // removes stations without time after the last-timed station
   nodesMissingTime.forEach((node) => {
     route.remove(node.data);
   })
