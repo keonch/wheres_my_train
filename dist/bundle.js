@@ -74224,9 +74224,134 @@ function setupToggle(line, toggle) {
   !*** ./src/train.js ***!
   \**********************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (127:8)\nYou may need an appropriate loader to handle this file type.\n|     // next station in feedRoute is not found in staticRoute and needs rerouting\n|     // placeholder for trains with off routes\n|     this.status = 'offroute';\n|     this.marker.addLatLng(getLatLng(nextStop), 0);\n|     return;");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Train; });
+/* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
+var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
+/* harmony import */ var _utils_train_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/train_utils */ "./utils/train_utils.js");
+/* harmony import */ var _utils_data_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/data_utils */ "./utils/data_utils.js");
+// =========================== this.status ============================
+// standby => train is waiting to leave its origin station
+// idle => train has reached its last stop (last stop on feed routes)
+// active => train is currently in transit
+// ====================================================================
+
+
+
+
+
+
+class Train {
+  constructor(id, line, direction, route, feed) {
+    this.id = id;
+    this.line = line;
+    this.direction = direction;
+    this.originTime = id.split(".")[0].split("_")[0];
+    this.updateTime = new Date();
+    this.route = this.setRoute(route, feed.feedRoute);
+    this.status = this.setStatus();
+    this.marker = this.createMarker();
+  }
+
+  setRoute(route, feed) {
+    const staticRoute = this.setStaticRoute(route);
+    const feedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeedRoute"])(feed);
+    return Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["mergeRoutes"])(staticRoute, feedRoute);
+  }
+
+  setStaticRoute(route) {
+    if (this.direction === 'S') {
+      return route;
+    } else {
+      const r = Array.from(route);
+      return r.reverse();
+    }
+  }
+
+  setStatus() {
+    if (this.route.head.data.time > this.updateTime) {
+      return 'standby';
+    } else if (this.route.tail.data.time < this.updateTime) {
+      return 'idle';
+    } else {
+      return 'active';
+    }
+  }
+
+  createMarker() {
+    let path;
+
+    switch (this.status) {
+      case 'active':
+      path = this.setInitalPath();
+      this.duration = this.nextStop.data.time - this.updateTime;
+
+      break;
+
+      case 'standby':
+      path = [[this.route.head.data.lat, this.route.head.data.lng], [this.route.head.data.lat, this.route.head.data.lng]];
+      this.duration = 0;
+      break;
+
+      case 'idle':
+      path = [[this.route.tail.data.lat, this.route.tail.data.lng], [this.route.tail.data.lat, this.route.tail.data.lng]];
+      this.duration = 0;
+      break;
+    }
+
+    const m = new L.Marker.movingMarker(path, this.duration);
+    const trainIcon = L.icon({
+      iconUrl: _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[this.line],
+      iconSize: [25, 25],
+      iconAnchor: [12, 12]
+    });
+    m.setIcon(trainIcon);
+    m.setOpacity(.3);
+    return m;
+  }
+
+  setInitalPath() {
+    let node = this.route.head;
+    while (node.next) {
+      if (node.next.data.time > this.updateTime) {
+        this.nextStop = node.next;
+        this.prevStop = node;
+        return [Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.prevStop.data), Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop.data)];
+      }
+      node = node.next;
+    }
+  }
+
+  setNextPath() {
+    if (!this.nextStop.next) {
+      this.status = 'idle';
+      this.duration = 0;
+      this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop.data), this,duration);
+      return;
+    }
+
+    this.prevStop = this.nextStop;
+    this.nextStop = this.nextStop.next;
+
+    const path = [];
+    while (!this.nextStop.data.time) {
+      path.push(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop.data));
+      if (!this.nextStop.next) {
+        this.status = 'idle at non-last stop';
+        this.duration = 0;
+        this.marker.addLatLng(Object(_utils_train_utils__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(this.nextStop.data), this.duration);
+        return;
+      } else {
+        this.nextStop = this.nextStop.next;
+      }
+    }
+    
+  }
+}
+
 
 /***/ }),
 
@@ -74442,6 +74567,38 @@ DoublyLinkedList.prototype.traverseReverse = function(fn) {
 DoublyLinkedList.prototype.length = function() {
   return this.numberOfValues;
 };
+
+
+/***/ }),
+
+/***/ "./utils/train_utils.js":
+/*!******************************!*\
+  !*** ./utils/train_utils.js ***!
+  \******************************/
+/*! exports provided: interpolate, getLatLng */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return interpolate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatLng", function() { return getLatLng; });
+function interpolate(from, to, fromTime, toTime) {
+  const r = timeRatio(fromTime, toTime);
+  const lat = from.lat + (to.lat - from.lat) * r;
+  const lng = from.lng + (to.lng - from.lng) * r;
+  return [lat, lng];
+}
+
+function timeRatio(fromTime, toTime) {
+  const routeTime = toTime - fromTime;
+  const currentTime = (toTime) - new Date();
+  // if currentTime is negative train has passed the station
+  return (currentTime / routeTime);
+}
+
+function getLatLng(station) {
+  return [station.lat, station.lng];
+}
 
 
 /***/ }),
