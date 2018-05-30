@@ -24,13 +24,11 @@ export default class Train {
     const staticRoute = this.setStaticRoute(route);
     const feedRoute = parseFeedRoute(feed);
     const mergedRoute = mergeRoutes(staticRoute, feedRoute);
-
-    const qqq = [];
+    const abc = [];
     mergedRoute.traverse((node) => {
-      qqq.push(node.data);
+      abc.push(node.data);
     })
-    console.log(qqq);
-
+    console.log(abc);
     return filterRoute(mergedRoute, this.updateTime);
   }
 
@@ -44,7 +42,13 @@ export default class Train {
   }
 
   setStatus() {
-    if (this.route.head.data.time > this.updateTime) {
+    const firstStop = this.route.head.data;
+    const abc = [];
+    this.route.traverse((node) => {
+      abc.push(node.data);
+    })
+    console.log(abc);
+    if (firstStop.time > 0) {
       return 'standby';
     } else if (this.route.tail.data.time < this.updateTime) {
       return 'idle';

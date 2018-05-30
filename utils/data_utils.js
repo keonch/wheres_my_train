@@ -129,17 +129,14 @@ export function filterRoute(route, updateTime) {
           node.data.time = duration;
         })
         nodesMissingTime = [];
-        console.log("here");
       }
     }
     node = node.next;
   }
-
-  const qqq = [];
-  route.traverse((node) => {
-    qqq.push(node.data);
+  console.log(nodesMissingTime);
+  nodesMissingTime.forEach((node) => {
+    route.remove(node.data);
   })
-  console.log(qqq);
   return route;
 }
 

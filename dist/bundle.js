@@ -74259,13 +74259,11 @@ class Train {
     const staticRoute = this.setStaticRoute(route);
     const feedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["parseFeedRoute"])(feed);
     const mergedRoute = Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["mergeRoutes"])(staticRoute, feedRoute);
-
-    const qqq = [];
+    const abc = [];
     mergedRoute.traverse((node) => {
-      qqq.push(node.data);
+      abc.push(node.data);
     })
-    console.log(qqq);
-
+    console.log(abc);
     return Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_2__["filterRoute"])(mergedRoute, this.updateTime);
   }
 
@@ -74279,7 +74277,13 @@ class Train {
   }
 
   setStatus() {
-    if (this.route.head.data.time > this.updateTime) {
+    const firstStop = this.route.head.data;
+    const abc = [];
+    this.route.traverse((node) => {
+      abc.push(node.data);
+    })
+    console.log(abc);
+    if (firstStop.time > 0) {
       return 'standby';
     } else if (this.route.tail.data.time < this.updateTime) {
       return 'idle';
@@ -74511,17 +74515,14 @@ function filterRoute(route, updateTime) {
           node.data.time = duration;
         })
         nodesMissingTime = [];
-        console.log("here");
       }
     }
     node = node.next;
   }
-
-  const qqq = [];
-  route.traverse((node) => {
-    qqq.push(node.data);
+  console.log(nodesMissingTime);
+  nodesMissingTime.forEach((node) => {
+    route.remove(node.data);
   })
-  console.log(qqq);
   return route;
 }
 
