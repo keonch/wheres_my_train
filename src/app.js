@@ -62,7 +62,7 @@ export default class App {
       { [trainId]: train }
     );
     train.marker.addEventListener('end', () => this.updateTrain(train));
-    // train.marker.start();
+    train.marker.start();
   }
 
   updateTrain(train) {
@@ -73,9 +73,7 @@ export default class App {
         break;
 
       case 'standby':
-        const startTime = train.feedRoute[0].time;
-        const updateTime = train.updateTime;
-        const countdown = startTime - updateTime;
+        const countdown = train.route.head.data.time - train.updateTime;
         setTimeout(() => {
           train.setNextPath();
           train.marker.start();
@@ -87,7 +85,7 @@ export default class App {
         break;
 
       default:
-        train.marker.bindPopup('Off Route');
+        train.marker.bindPopup('Rerouting');
         break;
     }
   }
