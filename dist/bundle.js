@@ -74170,12 +74170,12 @@ function setupControls() {
   const icons = document.getElementById('train-icons');
   const cols = {
     col1: ["A", "C", "E", "B", "D", "F", "M", "N", "Q", "R", "W", "G"],
-    col2: ["1", "2", "3", "4", "5", "6", "7", "L", "S", "J", "Z", "SI"]
+    col2: ["L", "S", "J", "Z", "1", "2", "3", "4", "5", "6", "7", "SI",]
   }
 
-  Object.values(cols).forEach((col, idx) => {
-    const column = document.createElement('div');
-    column.className = `column column${idx}`;
+  const column = document.createElement('div');
+  Object.values(cols).forEach((col) => {
+    column.className = `column`;
     col.forEach((train) => {
       const trainIcon = document.createElement('img');
       trainIcon.id = `${train}-train`;
