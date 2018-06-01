@@ -1,8 +1,6 @@
 body {
   height: 100vh;
   background: black;
-  /* font-family: 'Skranji', cursive; */
-  /* font-family: 'Acme', sans-serif; */
   font-family: 'Francois One', sans-serif;
   color: white;
 }
@@ -35,19 +33,33 @@ header {
 .controls {
   grid-area: controls;
   margin: auto;
+  min-width: 500px;
 }
 
 #clock {
+  position: absolute;
+  z-index: 777;
+  right: 0;
+  top: 0;
   grid-area: time;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  font-family: 'Bitter', serif;
+  font-size: 13px;
 }
 
-#map {
+.map-container {
+  position: relative;
   margin: 0 20px;
   grid-area: map;
   min-height: 100px;
   max-height: 100%;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
 }
 
 .footer {
@@ -55,6 +67,8 @@ header {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  font-family: 'Bitter', serif;
+  /* font-family: 'Cabin', sans-serif; */
 }
 
 .link-images {
@@ -65,4 +79,8 @@ header {
 .train {
   width: 40px;
   height: 40px;
+}
+
+.leaflet-top, .leaflet-left, .leaflet-bottom, .leftlet-right {
+  display: none;
 }

@@ -74132,7 +74132,7 @@ function setupTime() {
   clock.appendChild(currentTime);
   const lastUpdate = document.createElement('div');
   lastUpdate.id = 'last-update';
-  lastUpdate.textContent = 'Updated At: fetching..'
+  lastUpdate.textContent = 'Updated At: fetching..';
   clock.appendChild(lastUpdate);
 
   startTime();
