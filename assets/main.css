@@ -8,11 +8,10 @@ body {
 .wrapper {
   height: 100%;
   display: grid;
-  grid-template-rows: 50px 40px 30px auto 50px;
+  grid-template-rows: 50px 60px auto 60px;
   grid-template-areas:
     "header"
     "controls"
-    "time"
     "map"
     "footer"
 }
@@ -32,7 +31,11 @@ header {
 
 .controls {
   grid-area: controls;
-  margin: auto;
+  /* margin: auto; */
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
   min-width: 500px;
 }
 
@@ -51,7 +54,7 @@ header {
 
 .map-container {
   position: relative;
-  margin: 0 20px;
+  margin: 0 30px;
   grid-area: map;
   min-height: 100px;
   max-height: 100%;
@@ -68,17 +71,21 @@ header {
   flex-flow: column nowrap;
   align-items: center;
   font-family: 'Bitter', serif;
-  /* font-family: 'Cabin', sans-serif; */
+  font-size: 12px;
+  margin: 10px 0;
+}
+
+.links {
+  margin-top: 5px;
 }
 
 .link-images {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  margin: 0 2px;
 }
 
 .train {
   width: 40px;
-  height: 40px;
 }
 
 .leaflet-top, .leaflet-left, .leaflet-bottom, .leftlet-right {
