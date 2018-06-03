@@ -42,23 +42,13 @@ function checkTime(i) {
 }
 
 export function setupControls() {
-  const icons = document.getElementById('train-icons');
-  const cols = {
-    col1: ["A", "C", "E", "B", "D", "F", "M", "N", "Q", "R", "W", "G"],
-    col2: ["L", "S", "J", "Z", "1", "2", "3", "4", "5", "6", "7", "SI",]
-  }
-
-  const column = document.createElement('div');
-  Object.values(cols).forEach((col) => {
-    column.className = `column`;
-    col.forEach((train) => {
-      const trainIcon = document.createElement('img');
-      trainIcon.id = `${train}-train`;
-      trainIcon.className = 'train loading'
-      trainIcon.src = trainIcons[train];
-      column.appendChild(trainIcon);
-    });
-    icons.appendChild(column);
+  const iconsDiv = document.getElementById('train-icons');
+  Object.keys(trainIcons).forEach((train) => {
+    const trainIconElement = document.createElement('img');
+    trainIconElement.id = `${train}-train`;
+    trainIconElement.className = 'train loading'
+    trainIconElement.src = trainIcons[train];
+    iconsDiv.appendChild(trainIconElement);
   });
 }
 

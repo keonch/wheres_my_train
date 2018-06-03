@@ -1,14 +1,13 @@
 body {
   height: 100vh;
   background: black;
-  font-family: 'Francois One', sans-serif;
   color: white;
 }
 
 .wrapper {
   height: 100%;
   display: grid;
-  grid-template-rows: 50px 60px auto 60px;
+  grid-template-rows: 50px min-content auto 60px;
   grid-template-areas:
     "header"
     "controls"
@@ -16,27 +15,37 @@ body {
     "footer"
 }
 
-/* @media only screen and (max-width: 1000px) {
-  .wrapper {
-    grid-template-rows: 50px 80px 30px auto 50px;
-    min-width: 500px;
-  }
-} */
-
+/* ============================= HEADER ============================= */
 header {
   grid-area: header;
   margin: auto;
   font-size: 30px;
+  font-family: 'Francois One', sans-serif;
 }
 
-.controls {
+/* ========================== TRAIN BUTTONS ========================= */
+
+#train-icons {
   grid-area: controls;
-  /* margin: auto; */
   display: flex;
-  flex-flow: row;
-  align-items: center;
+  flex-flow: row wrap;
   justify-content: center;
   min-width: 500px;
+}
+
+.train {
+  /* width: 40px; */
+  height: 40px;
+}
+
+/* =============================== MAP ============================== */
+
+.map-container {
+  position: relative;
+  margin: 0 30px;
+  grid-area: map;
+  min-height: 100px;
+  max-height: 100%;
 }
 
 #clock {
@@ -52,18 +61,16 @@ header {
   font-size: 13px;
 }
 
-.map-container {
-  position: relative;
-  margin: 0 30px;
-  grid-area: map;
-  min-height: 100px;
-  max-height: 100%;
-}
-
 #map {
   height: 100%;
   width: 100%;
 }
+
+.leaflet-top, .leaflet-left, .leaflet-bottom, .leftlet-right {
+  display: none;
+}
+
+/* ============================= FOOTER ============================= */
 
 .footer {
   grid-area: footer;
@@ -82,12 +89,4 @@ header {
 .link-images {
   width: 25px;
   margin: 0 2px;
-}
-
-.train {
-  width: 40px;
-}
-
-.leaflet-top, .leaflet-left, .leaflet-bottom, .leftlet-right {
-  display: none;
 }

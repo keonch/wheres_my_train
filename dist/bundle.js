@@ -86,10 +86,10 @@ module.exports = {"1":"#EE352E","2":"#EE352E","3":"#EE352E","4":"#00933C","5":"#
 /*!*********************************!*\
   !*** ./assets/train_icons.json ***!
   \*********************************/
-/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, C, E, B, D, F, M, J, Z, L, N, Q, R, W, SI, G, H, GS, S, SS, default */
+/*! exports provided: 1, 2, 3, 4, 5, 6, 7, A, C, E, B, D, F, M, J, Z, L, N, Q, R, W, SI, G, S, default */
 /***/ (function(module) {
 
-module.exports = {"1":"assets/images/NYCS-bull-trans-1.svg","2":"assets/images/NYCS-bull-trans-2.svg","3":"assets/images/NYCS-bull-trans-3.svg","4":"assets/images/NYCS-bull-trans-4.svg","5":"assets/images/NYCS-bull-trans-5.svg","6":"assets/images/NYCS-bull-trans-6.svg","7":"assets/images/NYCS-bull-trans-7.svg","A":"assets/images/NYCS-bull-trans-A.svg","C":"assets/images/NYCS-bull-trans-C.svg","E":"assets/images/NYCS-bull-trans-E.svg","B":"assets/images/NYCS-bull-trans-B.svg","D":"assets/images/NYCS-bull-trans-D.svg","F":"assets/images/NYCS-bull-trans-F.svg","M":"assets/images/NYCS-bull-trans-M.svg","J":"assets/images/NYCS-bull-trans-J.svg","Z":"assets/images/NYCS-bull-trans-Z.svg","L":"assets/images/NYCS-bull-trans-L.svg","N":"assets/images/NYCS-bull-trans-N.svg","Q":"assets/images/NYCS-bull-trans-Q.svg","R":"assets/images/NYCS-bull-trans-R.svg","W":"assets/images/NYCS-bull-trans-W.svg","SI":"assets/images/NYCS-bull-trans-SIR.png","G":"assets/images/NYCS-bull-trans-G.svg","H":"assets/images/NYCS-bull-trans-H.svg","GS":"assets/images/NYCS-bull-trans-S.svg","S":"assets/images/NYCS-bull-trans-S.svg","SS":"assets/images/NYCS-bull-trans-SIR.png"};
+module.exports = {"1":"assets/images/NYCS-bull-trans-1.svg","2":"assets/images/NYCS-bull-trans-2.svg","3":"assets/images/NYCS-bull-trans-3.svg","4":"assets/images/NYCS-bull-trans-4.svg","5":"assets/images/NYCS-bull-trans-5.svg","6":"assets/images/NYCS-bull-trans-6.svg","7":"assets/images/NYCS-bull-trans-7.svg","A":"assets/images/NYCS-bull-trans-A.svg","C":"assets/images/NYCS-bull-trans-C.svg","E":"assets/images/NYCS-bull-trans-E.svg","B":"assets/images/NYCS-bull-trans-B.svg","D":"assets/images/NYCS-bull-trans-D.svg","F":"assets/images/NYCS-bull-trans-F.svg","M":"assets/images/NYCS-bull-trans-M.svg","J":"assets/images/NYCS-bull-trans-J.svg","Z":"assets/images/NYCS-bull-trans-Z.svg","L":"assets/images/NYCS-bull-trans-L.svg","N":"assets/images/NYCS-bull-trans-N.svg","Q":"assets/images/NYCS-bull-trans-Q.svg","R":"assets/images/NYCS-bull-trans-R.svg","W":"assets/images/NYCS-bull-trans-W.svg","SI":"assets/images/NYCS-bull-trans-SIR.png","G":"assets/images/NYCS-bull-trans-G.svg","S":"assets/images/NYCS-bull-trans-S.svg"};
 
 /***/ }),
 
@@ -74046,12 +74046,6 @@ function initMap() {
   L.tileLayer('https://api.mapbox.com/styles/v1/keonch91/cjgv02cqs00022rmj8wzkifa6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2VvbmNoOTEiLCJhIjoiY2pmeWxlYXJtMWp3dzJxbjEzN2ZuMmtyeSJ9.bRpTj14kt1-MvRzLZOwEzg', {
     maxZoom: 18
   }).addTo(map);
-  // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-  //   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-  //   id: 'mapbox.night',
-  //   maxZoom: 18,
-  //   accessToken: 'pk.eyJ1Ijoia2VvbmNoOTEiLCJhIjoiY2pmeWxlYXJtMWp3dzJxbjEzN2ZuMmtyeSJ9.bRpTj14kt1-MvRzLZOwEzg'
-  // }).addTo(map);
   return map;
 }
 
@@ -74167,23 +74161,13 @@ function checkTime(i) {
 }
 
 function setupControls() {
-  const icons = document.getElementById('train-icons');
-  const cols = {
-    col1: ["A", "C", "E", "B", "D", "F", "M", "N", "Q", "R", "W", "G"],
-    col2: ["L", "S", "J", "Z", "1", "2", "3", "4", "5", "6", "7", "SI",]
-  }
-
-  const column = document.createElement('div');
-  Object.values(cols).forEach((col) => {
-    column.className = `column`;
-    col.forEach((train) => {
-      const trainIcon = document.createElement('img');
-      trainIcon.id = `${train}-train`;
-      trainIcon.className = 'train loading'
-      trainIcon.src = _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[train];
-      column.appendChild(trainIcon);
-    });
-    icons.appendChild(column);
+  const iconsDiv = document.getElementById('train-icons');
+  Object.keys(_assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__).forEach((train) => {
+    const trainIconElement = document.createElement('img');
+    trainIconElement.id = `${train}-train`;
+    trainIconElement.className = 'train loading'
+    trainIconElement.src = _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__[train];
+    iconsDiv.appendChild(trainIconElement);
   });
 }
 
