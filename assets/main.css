@@ -1,3 +1,14 @@
+@keyframes fadeRightToLeft {
+  from {
+    transform: translate3d(100vw, 0, 0);
+    /* margin-left: 100%; */
+    /* width: 300%; */
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 body {
   height: 100vh;
   background: black;
@@ -36,6 +47,8 @@ header {
 .train {
   /* width: 40px; */
   height: 40px;
+  animation-duration: 1s;
+  animation-name: fadeRightToLeft;
 }
 
 /* =============================== MAP ============================== */
