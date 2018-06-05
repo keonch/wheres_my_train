@@ -74020,8 +74020,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupTime"])();
   const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
   const app = new _app__WEBPACK_IMPORTED_MODULE_3__["default"](map);
-  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupControls"])(app);
-  Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["getData"])(app);
+  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupControls"])(app).then(setTimeout(() => Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["getData"])(app), 1000));
 });
 
 
@@ -74160,7 +74159,7 @@ function checkTime(i) {
     return i;
 }
 
-function setupControls() {
+async function setupControls() {
   const iconsDiv = document.getElementById('train-icons');
   Object.keys(_assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__).forEach((train) => {
     const trainIconElement = document.createElement('img');

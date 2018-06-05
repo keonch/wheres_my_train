@@ -7,6 +7,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setupTime();
   const map = initMap();
   const app = new App(map);
-  setupControls(app);
-  getData(app);
+  setupControls(app).then(setTimeout(() => getData(app), 1000));
 });

@@ -41,7 +41,7 @@ function checkTime(i) {
     return i;
 }
 
-export function setupControls() {
+export async function setupControls() {
   const iconsDiv = document.getElementById('train-icons');
   Object.keys(trainIcons).forEach((train) => {
     const trainIconElement = document.createElement('img');
