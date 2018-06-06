@@ -61,7 +61,6 @@ export function setupToggle(line, toggle) {
   if (line === "H") return;
   const trainIcon = document.getElementById(`${line}-train`);
   trainIcon.classList.remove("loading");
-  trainIcon.classList.add("loaded");
   trainIcon.addEventListener("click", () => {
     toggle(line);
   });

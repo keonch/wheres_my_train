@@ -2,6 +2,7 @@ import { initMap } from './map';
 import { getData, test } from './request_mta';
 import { setupTime, setupControls } from './setup';
 import App from './app';
+import $k from 'jkuery';
 
 document.addEventListener('DOMContentLoaded', () => {
   setupTime();
