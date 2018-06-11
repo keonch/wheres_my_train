@@ -1,6 +1,15 @@
 import trainIcons from '../assets/train_icons.json';
+import { getData } from './request_mta';
+import App from './app';
 
-export function setupTime() {
+export function setup(map) {
+  setupTime();
+  setupControls();
+  const app = new App(map);
+  setTimeout(() => getData(app), 1000);
+}
+
+function setupTime() {
   const clock = document.getElementById('clock');
   const currentTime = document.createElement('div');
   currentTime.id = 'current-time';
@@ -41,7 +50,7 @@ function checkTime(i) {
     return i;
 }
 
-export async function setupControls() {
+function setupControls() {
   const iconsDiv = document.getElementById('train-icons');
   Object.keys(trainIcons).forEach((train) => {
     const trainIconElement = document.createElement('img');

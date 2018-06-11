@@ -74008,19 +74008,12 @@ class App {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map */ "./src/map.js");
-/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
-/* harmony import */ var _setup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./setup */ "./src/setup.js");
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app */ "./src/app.js");
-
-
+/* harmony import */ var _setup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setup */ "./src/setup.js");
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupTime"])();
-  const map = Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])();
-  const app = new _app__WEBPACK_IMPORTED_MODULE_3__["default"](map);
-  Object(_setup__WEBPACK_IMPORTED_MODULE_2__["setupControls"])(app).then(setTimeout(() => Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["getData"])(app), 1000));
+  Object(_map__WEBPACK_IMPORTED_MODULE_0__["initMap"])().then((map) => Object(_setup__WEBPACK_IMPORTED_MODULE_1__["setup"])(map));
 });
 
 
@@ -74040,7 +74033,7 @@ __webpack_require__.r(__webpack_exports__);
 var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _data_stations_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _data_stations_json__WEBPACK_IMPORTED_MODULE_0__});
 
 
-function initMap() {
+async function initMap() {
   const map = L.map(document.getElementById('map')).setView([40.7, -73.96], 12);
   L.tileLayer('https://api.mapbox.com/styles/v1/keonch91/cjgv02cqs00022rmj8wzkifa6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2VvbmNoOTEiLCJhIjoiY2pmeWxlYXJtMWp3dzJxbjEzN2ZuMmtyeSJ9.bRpTj14kt1-MvRzLZOwEzg', {
     maxZoom: 18
@@ -74098,6 +74091,36 @@ function requestMta(app, req) {
   });
 }
 
+// var createCORSRequest = function(method, url) {
+//   var xhr = new XMLHttpRequest();
+//   if ("withCredentials" in xhr) {
+//     // Most browsers.
+//     xhr.open(method, url, true);
+//   } else if (typeof XDomainRequest != "undefined") {
+//     // IE8 & IE9
+//     xhr = new XDomainRequest();
+//     xhr.open(method, url);
+//   } else {
+//     // CORS not supported.
+//     xhr = null;
+//   }
+//   return xhr;
+// };
+//
+// var url = '/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=1';
+// var method = 'GET';
+// export const getData = createCORSRequest(method, url);
+//
+// getData.onload = function() {
+//   // Success code goes here.
+// };
+//
+// getData.onerror = function() {
+//   // Error code goes here.
+// };
+//
+// getData.send();
+
 
 /***/ }),
 
@@ -74105,18 +74128,28 @@ function requestMta(app, req) {
 /*!**********************!*\
   !*** ./src/setup.js ***!
   \**********************/
-/*! exports provided: setupTime, updateTime, setupControls, setupToggle */
+/*! exports provided: setup, updateTime, setupToggle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupTime", function() { return setupTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setup", function() { return setup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTime", function() { return updateTime; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupControls", function() { return setupControls; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupToggle", function() { return setupToggle; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
+/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app */ "./src/app.js");
 
+
+
+
+function setup(map) {
+  setupTime();
+  setupControls();
+  const app = new _app__WEBPACK_IMPORTED_MODULE_2__["default"](map);
+  setTimeout(() => Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["getData"])(app), 1000);
+}
 
 function setupTime() {
   const clock = document.getElementById('clock');
@@ -74159,7 +74192,7 @@ function checkTime(i) {
     return i;
 }
 
-async function setupControls() {
+function setupControls() {
   const iconsDiv = document.getElementById('train-icons');
   Object.keys(_assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__).forEach((train) => {
     const trainIconElement = document.createElement('img');
@@ -74179,7 +74212,6 @@ function setupToggle(line, toggle) {
   if (line === "H") return;
   const trainIcon = document.getElementById(`${line}-train`);
   trainIcon.classList.remove("loading");
-  trainIcon.classList.add("loaded");
   trainIcon.addEventListener("click", () => {
     toggle(line);
   });

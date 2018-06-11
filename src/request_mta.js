@@ -26,3 +26,33 @@ function requestMta(app, req) {
     }
   });
 }
+
+// var createCORSRequest = function(method, url) {
+//   var xhr = new XMLHttpRequest();
+//   if ("withCredentials" in xhr) {
+//     // Most browsers.
+//     xhr.open(method, url, true);
+//   } else if (typeof XDomainRequest != "undefined") {
+//     // IE8 & IE9
+//     xhr = new XDomainRequest();
+//     xhr.open(method, url);
+//   } else {
+//     // CORS not supported.
+//     xhr = null;
+//   }
+//   return xhr;
+// };
+//
+// var url = '/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=1';
+// var method = 'GET';
+// export const getData = createCORSRequest(method, url);
+//
+// getData.onload = function() {
+//   // Success code goes here.
+// };
+//
+// getData.onerror = function() {
+//   // Error code goes here.
+// };
+//
+// getData.send();
