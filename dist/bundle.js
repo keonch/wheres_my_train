@@ -74086,7 +74086,7 @@ function requestMta(app, req) {
       const feed = _gtfs_realtime__WEBPACK_IMPORTED_MODULE_2___default.a.transit_realtime.FeedMessage.decode(body);
       app.setupFeed(Object(_utils_data_utils__WEBPACK_IMPORTED_MODULE_3__["parseFeed"])(feed));
     } else {
-      setTimeout(requestMta(app, req), 10000);
+      setTimeout(() => requestMta(app, req), 10000);
     }
   });
 }
