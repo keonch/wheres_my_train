@@ -61,7 +61,7 @@ function setupControls() {
   });
 }
 
-export function setupToggle(line, toggle) {
+export function updateTrainIcon(line, toggle) {
   if (line === "GS") {
     line = "S";
   } else if (line === "SS") {
@@ -70,6 +70,7 @@ export function setupToggle(line, toggle) {
   if (line === "H") return;
   const trainIcon = document.getElementById(`${line}-train`);
   trainIcon.classList.remove("loading");
+  trainIcon.classList.add("loaded");
   trainIcon.addEventListener("click", () => {
     toggle(line);
   });

@@ -1,7 +1,7 @@
 import Train from '../src/train';
 import staticRoutes from '../data/static_routes.json';
 import trainColors from '../assets/train_colors.json';
-import { setupToggle } from './setup';
+import { updateTrainIcon } from './setup';
 
 export default class App {
   constructor(map) {
@@ -10,7 +10,7 @@ export default class App {
     this.polylines = {};
 
     this.setupPolylines();
-    
+
     this.toggle = this.toggle.bind(this);
   }
 
@@ -19,7 +19,7 @@ export default class App {
       this.polylines[line] = new L.Polyline(staticRoutes[line], {
         color: '#545454',
         weight: 2,
-        opacity: 0.8,
+        opacity: 0.5,
         smoothFactor: 1
       })
       this.polylines[line].addTo(this.map);
@@ -54,7 +54,7 @@ export default class App {
     const train = new Train(trainId, line, direction, route, feed);
 
     train.marker.addTo(this.map);
-    if (!this.trains[line]) setupToggle(line, this.toggle);
+    if (!this.trains[line]) updateTrainIcon(line, this.toggle);
 
     this.trains[line] = Object.assign({},
       this.trains[line],

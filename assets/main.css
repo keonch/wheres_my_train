@@ -40,15 +40,32 @@ header {
   flex-flow: row wrap;
   justify-content: center;
   min-width: 500px;
-}
-
-.train {
-  /* width: 40px; */
-  height: 40px;
+  margin-bottom: 10px;
   animation-duration: 1s;
   animation-name: fadeRightToLeft;
 }
 
+.train {
+  height: 40px;
+}
+
+.loaded:hover {
+  animation-duration: .5s;
+  animation-name: bounce;
+}
+
+.loading {
+  opacity: 0.4;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
 /* =============================== MAP ============================== */
 
 .map-container {
