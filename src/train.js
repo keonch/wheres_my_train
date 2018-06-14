@@ -81,7 +81,7 @@ export default class Train {
       iconAnchor: [12, 12]
     });
     m.setIcon(trainIcon);
-    m.setOpacity(.3);
+    m.setOpacity(.1);
     return m;
   }
 

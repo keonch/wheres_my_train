@@ -60,18 +60,3 @@ function setupControls() {
     iconsDiv.appendChild(trainIconElement);
   });
 }
-
-export function updateTrainIcon(line, toggle) {
-  if (line === "GS") {
-    line = "S";
-  } else if (line === "SS") {
-    line = "SI";
-  }
-  if (line === "H") return;
-  const trainIcon = document.getElementById(`${line}-train`);
-  trainIcon.classList.remove("loading");
-  trainIcon.classList.add("loaded");
-  trainIcon.addEventListener("click", () => {
-    toggle(line);
-  });
-}

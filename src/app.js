@@ -1,26 +1,24 @@
 import Train from '../src/train';
 import staticRoutes from '../data/static_routes.json';
 import trainColors from '../assets/train_colors.json';
-import { updateTrainIcon } from './setup';
 
 export default class App {
   constructor(map) {
     this.map = map;
     this.trains = {};
     this.polylines = {};
-
     this.setupPolylines();
 
-    this.toggle = this.toggle.bind(this);
+    this.updateTrainIcon = this.updateTrainIcon.bind(this);
   }
 
   setupPolylines() {
     Object.keys(staticRoutes).forEach((line) => {
       this.polylines[line] = new L.Polyline(staticRoutes[line], {
-        color: '#545454',
-        weight: 2,
-        opacity: 0.5,
-        smoothFactor: 1
+        color: 'grey',
+        // weight: 2,
+        opacity: .05
+        // smoothFactor: 1
       })
       this.polylines[line].addTo(this.map);
     });
@@ -49,12 +47,14 @@ export default class App {
   makeTrain(trainId, feed) {
     const id = trainId.split(".");
     const line = id[0].split("_").slice(-1)[0];
+    if (line === "H") return;
+
     const direction = id.slice(-1)[0][0];
     const route = staticRoutes[line];
     const train = new Train(trainId, line, direction, route, feed);
 
     train.marker.addTo(this.map);
-    if (!this.trains[line]) updateTrainIcon(line, this.toggle);
+    if (!this.trains[line]) this.updateTrainIcon(line);
 
     this.trains[line] = Object.assign({},
       this.trains[line],
@@ -81,30 +81,42 @@ export default class App {
     delete this.trains[train.line][train.id];
   }
 
-  toggle(line) {
-    this.toggleTrain(line);
-    this.togglePolyline(line);
-  }
-
-  toggleTrain(line) {
-    if (!this.trains[line].toggled) {
-      this.trains[line].toggled = true;
-      Object.keys(this.trains[line]).forEach((trainId) => {
-        if (trainId !== 'toggled') {
-          this.trains[line][trainId].marker.setOpacity(1);
-        }
-      });
+  updateTrainIcon(line) {
+    if (line === "GS") {
+      line = "S";
+    } else if (line === "SS") {
+      line = "SI";
     }
-  }
 
-  togglePolyline(line) {
-    if (!this.polylines[line].toggled) {
-      this.polylines[line].setStyle({
-        opacity: 1,
-        color: trainColors[line],
-        weight: 3,
-        zIndex: 2
-      });
-    }
+    const trainIcon = document.getElementById(`${line}-train`);
+    trainIcon.classList.remove("loading");
+    trainIcon.classList.add("loaded");
+
+    trainIcon.addEventListener("click", () => {
+      if (trainIcon.classList.contains("toggled")) {
+        trainIcon.classList.remove("toggled");
+        Object.values(this.trains[line]).forEach((train) => {
+          train.marker.setOpacity(.2);
+          train.marker.setZIndexOffset(0);
+        });
+        this.polylines[line].setStyle({
+          color: '#545454',
+          weight: 2,
+          opacity: 0.4,
+          smoothFactor: 1
+        });
+      } else {
+        trainIcon.classList.add("toggled");
+        Object.values(this.trains[line]).forEach((train) => {
+          train.marker.setOpacity(1);
+          train.marker.setZIndexOffset(100);
+        });
+        this.polylines[line].setStyle({
+          opacity: 1,
+          color: trainColors[line],
+          weight: 3
+        });
+      }
+    });
   }
 }
