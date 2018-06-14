@@ -50,22 +50,13 @@ header {
   margin: 0 1px;
 }
 
-.loaded:hover {
-  animation-duration: .5s;
-  animation-name: bounce;
-}
-
 .loading {
   opacity: 0.4;
 }
 
-@keyframes bounce {
-  50% {
-    transform: translate3d(0, -5px, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+.loaded:hover {
+  transition-duration: .3s;
+  transform: translate3d(0, -3px, 0);
 }
 
 .toggled {
