@@ -122,7 +122,7 @@ module.exports = {"101":{"name":"Van Cortlandt Park - 242 St","borough":"Bx","tr
 /*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, default */
 /***/ (function(module) {
 
-module.exports = ["https://cors-anywhere.herokuapp.com/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=1","https://cors-anywhere.herokuapp.com/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=26","https://cors-anywhere.herokuapp.com/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=16","https://cors-anywhere.herokuapp.com/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=21","https://cors-anywhere.herokuapp.com/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=2","https://cors-anywhere.herokuapp.com/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=11","https://cors-anywhere.herokuapp.com/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=31","https://cors-anywhere.herokuapp.com/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=36","https://cors-anywhere.herokuapp.com/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=51"];
+module.exports = ["http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=1","http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=26","http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=16","http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=21","http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=2","http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=11","http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=31","http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=36","http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=51"];
 
 /***/ }),
 
@@ -74074,8 +74074,8 @@ function getData(app) {
       method: 'GET',
       url: url,
       encoding: null
-    };
-    requestMta(app, req)
+    }
+    requestMta(app, req);
   });
 }
 
@@ -74090,36 +74090,6 @@ function requestMta(app, req) {
     }
   });
 }
-
-// var createCORSRequest = function(method, url) {
-//   var xhr = new XMLHttpRequest();
-//   if ("withCredentials" in xhr) {
-//     // Most browsers.
-//     xhr.open(method, url, true);
-//   } else if (typeof XDomainRequest != "undefined") {
-//     // IE8 & IE9
-//     xhr = new XDomainRequest();
-//     xhr.open(method, url);
-//   } else {
-//     // CORS not supported.
-//     xhr = null;
-//   }
-//   return xhr;
-// };
-//
-// var url = '/http://datamine.mta.info/mta_esi.php?key=19308d0a671d13b31508fb043399d045&feed_id=1';
-// var method = 'GET';
-// export const getData = createCORSRequest(method, url);
-//
-// getData.onload = function() {
-//   // Success code goes here.
-// };
-//
-// getData.onerror = function() {
-//   // Error code goes here.
-// };
-//
-// getData.send();
 
 
 /***/ }),
@@ -74138,8 +74108,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setupToggle", function() { return setupToggle; });
 /* harmony import */ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/train_icons.json */ "./assets/train_icons.json");
 var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Object.assign({}, _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__, {"default": _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0__});
-/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app */ "./src/app.js");
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app */ "./src/app.js");
+/* harmony import */ var _request_mta__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./request_mta */ "./src/request_mta.js");
 
 
 
@@ -74147,8 +74117,8 @@ var _assets_train_icons_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE_
 function setup(map) {
   setupTime();
   setupControls();
-  const app = new _app__WEBPACK_IMPORTED_MODULE_2__["default"](map);
-  setTimeout(() => Object(_request_mta__WEBPACK_IMPORTED_MODULE_1__["getData"])(app), 1000);
+  const app = new _app__WEBPACK_IMPORTED_MODULE_1__["default"](map);
+  setTimeout(() => Object(_request_mta__WEBPACK_IMPORTED_MODULE_2__["getData"])(app), 1000);
 }
 
 function setupTime() {

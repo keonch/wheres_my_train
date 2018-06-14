@@ -1,6 +1,6 @@
 import trainIcons from '../assets/train_icons.json';
-import { getData } from './request_mta';
 import App from './app';
+import { getData } from './request_mta';
 
 export function setup(map) {
   setupTime();
