@@ -1,8 +1,8 @@
 # wheres_my_train
 Where's my train?  
 See the subway trains moving within the boroughs of New York at realtime using this app.  
-[Live](https://keonch.github.io/wheres_my_train/)  
-![gif1](http://www.giphy.com/gifs/495DZoiR3A68TdER2I.gif)
+[See It Live](https://keonch.github.io/wheres_my_train/)  
+![wmt1](https://media.giphy.com/media/4MXMSSySPh5N7QMVtq/giphy.gif)
 
 ## General Implementation
 Here is a schematic diagram of this design.
