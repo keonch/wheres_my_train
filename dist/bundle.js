@@ -74326,7 +74326,7 @@ class Train {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeedRoute", function() { return parseFeedRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeRoutes", function() { return mergeRoutes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterRoute", function() { return filterRoute; });
@@ -74339,6 +74339,7 @@ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Ob
 function parseFeed(feed) {
   let trainFeeds = {};
   feed.entity.forEach((e) => {
+    console.log(e);
     let tripId;
     if (e.vehicle) {
       tripId = e.vehicle.trip.tripId;
@@ -74490,6 +74491,7 @@ function setDurations(route, updateTime) {
   })
 }
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 
