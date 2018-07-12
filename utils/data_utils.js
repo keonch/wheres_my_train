@@ -4,7 +4,6 @@ import { DoublyLinkedList } from './linked_list';
 export function parseFeed(feed) {
   let trainFeeds = {};
   feed.entity.forEach((e) => {
-    console.log(e);
     let tripId;
     if (e.vehicle) {
       tripId = e.vehicle.trip.tripId;
