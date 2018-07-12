@@ -74230,6 +74230,7 @@ class Train {
   }
 
   setStatus() {
+    if (!this.route.head) throw "train was rerouted";
     if (this.route.head.data.time > 0) {
       return 'standby';
     } else if (this.route.tail.data.time < 0) {
@@ -74326,7 +74327,7 @@ class Train {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(console) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeed", function() { return parseFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseFeedRoute", function() { return parseFeedRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeRoutes", function() { return mergeRoutes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterRoute", function() { return filterRoute; });
@@ -74339,7 +74340,6 @@ var _data_stations_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/Ob
 function parseFeed(feed) {
   let trainFeeds = {};
   feed.entity.forEach((e) => {
-    console.log(e);
     let tripId;
     if (e.vehicle) {
       tripId = e.vehicle.trip.tripId;
@@ -74391,6 +74391,7 @@ function mergeRoutes(staticRoute, feedRoute) {
 
   feedRoute.forEach((station) => {
     // if station from feed exists within static route, update time data
+    if (!station) throw "unidentified station";
     if (hshRoute[station.id]) {
       hshRoute[station.id].data.time = station.time;
 
@@ -74423,6 +74424,7 @@ function getDistance(s1, s2) {
 
 function createLinkedList(route) {
   const linkedListRoute = new _linked_list__WEBPACK_IMPORTED_MODULE_1__["DoublyLinkedList"]();
+  if (!route) throw "no route";
   route.forEach((station) => {
     const data = new Object();
     data.id = station.id;
@@ -74454,6 +74456,7 @@ function filterRoute(route, updateTime) {
       if (removeNode) {
         removeNode = false;
         if (node.data.time > 0) {
+          if (!startingNode) throw "unidentified station";
           route.head = startingNode;
           node.previous = startingNode;
           startingNode.next = node;
@@ -74491,7 +74494,6 @@ function setDurations(route, updateTime) {
   })
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js")))
 
 /***/ }),
 

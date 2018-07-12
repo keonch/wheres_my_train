@@ -28,6 +28,7 @@ export default class Train {
   }
 
   setStatus() {
+    if (!this.route.head) throw "train was rerouted";
     if (this.route.head.data.time > 0) {
       return 'standby';
     } else if (this.route.tail.data.time < 0) {

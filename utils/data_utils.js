@@ -55,6 +55,7 @@ export function mergeRoutes(staticRoute, feedRoute) {
 
   feedRoute.forEach((station) => {
     // if station from feed exists within static route, update time data
+    if (!station) throw "unidentified station";
     if (hshRoute[station.id]) {
       hshRoute[station.id].data.time = station.time;
 
@@ -87,6 +88,7 @@ function getDistance(s1, s2) {
 
 function createLinkedList(route) {
   const linkedListRoute = new DoublyLinkedList();
+  if (!route) throw "no route";
   route.forEach((station) => {
     const data = new Object();
     data.id = station.id;
@@ -118,6 +120,7 @@ export function filterRoute(route, updateTime) {
       if (removeNode) {
         removeNode = false;
         if (node.data.time > 0) {
+          if (!startingNode) throw "unidentified station";
           route.head = startingNode;
           node.previous = startingNode;
           startingNode.next = node;
